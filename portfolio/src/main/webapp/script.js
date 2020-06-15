@@ -13,16 +13,11 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Starts listening to user input and fetches user input string
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+function startListening() {
+    const graphic = document.getElementById('conversation-container');
+    graphic.innerHTML = "<p style = 'color: #DB4437'>I am listening </p>";
+    //fetch("/textinput").then(response => response.json()).then((status) => {
+    //});
 }
