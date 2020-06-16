@@ -2,17 +2,25 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>AI-ssistant</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <h1>Hi, what can I help you with?</h1>
+      <div id = "listening-graphic"> </div>
+      <div id = "conversation-container"> </div>
+      <button onclick="startListening()">Record</button>
+      <br><br>
+
+      <form action = "/dialog" method = "GET">
+        <textarea name="request-input" placeholder= "Type Your Question"></textarea>
+        <br><br>
+        <input type="submit"/>
+        <br><br>
+      </form>
     </div>
   </body>
 </html>
