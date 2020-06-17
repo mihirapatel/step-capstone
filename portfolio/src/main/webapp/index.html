@@ -5,16 +5,31 @@
     <title>AI-ssistant</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="setup()">
     <div id="content">
       <h1>Hi, what can I help you with?</h1>
       <div id = "listening-graphic"> </div>
       <div id = "conversation-container"> </div>
       <button onclick="startListening()">Record</button>
       <br><br>
+      
+      <div class="wrapper">
 
+        <section class="main-controls">
+          <canvas class="visualizer" height="60px"></canvas>
+          <div id="buttons">
+            <button class="record">Record</button>
+            <button class="stop">Stop</button>
+          </div>
+        </section>
+
+        <section class="sound-clips">
+
+
+        </section>
+
+      </div>
       <form action = "/audio-input" method = "POST">
         <textarea name="request-input" placeholder= "Type Your Question"></textarea>
         <br><br>
@@ -22,5 +37,7 @@
         <br><br>
       </form>
     </div>
+    <div name="streamed-stuff"></div>
+    <script src="script.js"></script>
   </body>
 </html>
