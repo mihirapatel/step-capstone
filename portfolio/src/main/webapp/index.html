@@ -2,14 +2,26 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>AI-ssistant</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
       <h1>Hi, what can I help you with?</h1>
+      
+      <section class="main-controls">
+        <canvas class="visualizer" height="60px"></canvas>
+        <div id="buttons">
+          <button class="record">Record</button>
+          <button class="stop">Stop</button>
+        </div>
+
+        <section class="sound-clips">
+        </section>
+      </section>
+
       <div id = "listening-graphic"> </div>
       <div id = "conversation-container"> </div>
       <button onclick="startListening()">Record</button>
@@ -22,5 +34,6 @@
         <br><br>
       </form>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
