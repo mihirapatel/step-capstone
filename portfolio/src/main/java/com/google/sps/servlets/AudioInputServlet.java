@@ -29,7 +29,7 @@ public class AudioInputServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Object formdata = request.getParameter("file");
+    String formdata = request.getParameter("file");
     System.out.println(formdata);
     System.out.println("Got to servlet");
     //response.setContentType("text/html;");
