@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Starts listening to user input and fetches user input string
- */
+// Set up basic variables for app
 // function startListening() {
 //     const graphic = document.getElementById('conversation-container');
 //     graphic.innerHTML = "<p style = 'color: #DB4437'>I am listening </p>";
