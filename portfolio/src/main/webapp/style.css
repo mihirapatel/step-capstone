@@ -1,9 +1,36 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+body {
+  background: white;
+  color: #4285F4;
+  font-weight: 300;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family:'Open Sans', sans-serif;
 }
 
-#greeting-container {
-  margin-top: 20px;
+h1 {
+  font-weight: 200;
+  font-style: 26px;
+  margin: 10px;
+}
+
+#listening-graphic {
+}
+
+#conversation-container {
+}
+
+textarea{
+  font-family:'Open Sans', sans-serif;
+}
+
+button{
+  font-family:'Open Sans', sans-serif;
+}
+
+input{
+  font-family:'Open Sans', sans-serif;
 }
