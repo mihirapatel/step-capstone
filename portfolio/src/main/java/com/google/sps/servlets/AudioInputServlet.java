@@ -15,10 +15,14 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+// import com.google.sps.utils.AudioUtils;
 
 /** Servlet that takes in audio stream and retrieves 
  ** user input string to display. */
@@ -27,8 +31,20 @@ import javax.servlet.http.HttpServletResponse;
 public class AudioInputServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // response.setContentType("text/html;");
+    // response.getWriter().println("<h1>Hello world!</h1>");
+    // AudioUtils.detectIntentStream();
+
+    // Object thing = request.getParameter("filename");
+    // System.out.println("the blob");
+    // System.out.println(thing);
+
+    System.out.println(request);
+    System.out.println("the reader");
+    System.out.println(request.getInputStrem());
+    String test = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    System.out.println("test");
+    System.out.println(test);
   }
 }
