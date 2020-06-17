@@ -109,16 +109,6 @@ if (navigator.mediaDevices.getUserMedia) {
         let evtTgt = e.target;
         evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
       }
-
-      clipLabel.onclick = function() {
-        const existingName = clipLabel.textContent;
-        const newClipName = prompt('Enter a new name for your sound clip?');
-        if(newClipName === null) {
-          clipLabel.textContent = existingName;
-        } else {
-          clipLabel.textContent = newClipName;
-        }
-      }
     }
 
     mediaRecorder.ondataavailable = function(e) {
@@ -202,13 +192,19 @@ window.onresize = function() {
 window.onresize();
 
 async function sendAudioFile(file) {
-  const formData = new FormData();
-  formData.append('audio-file', file);
-  console.log("entries:" + formData.get('audio-file'));
-  console.log("blob-file" + file);
-  const response = await fetch('/audio-input?file='+formdata, {
-    method: 'GET',
-    data: formData
+  var reader = new FileReader();
+  reader.readAsDataURL(file); 
+  var base64data;
+  reader.onloadend = function() {
+     base64data = reader.result;                
+     console.log(base64data);
+  }
+  //const formData = new FormData();
+  //formData.append('audio-file', file);
+  //console.log("entries:" + formData.get('audio-file'));
+  //console.log("blob-file" + file);
+  const response = await fetch('/audio-input?file='+base64data, {
+    method: 'GET'
   })
 }
 
