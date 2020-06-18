@@ -14,21 +14,48 @@
 
 package com.google.sps.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletInputStream;
+import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.protobuf.ByteString;
+import com.google.sps.utils.AudioUtils;
 
-/** Servlet that takes in audio stream and retrieves 
+/** Servlet that takes in audio stream and retrieves
  ** user input string to display. */
 
 @WebServlet("/audio-input")
 public class AudioInputServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+    PrintWriter out = response.getWriter();
+
+    // Convert input stream into bytestring for DialogFlow API input
+    ServletInputStream stream = request.getInputStream();
+    ByteString bytestring = ByteString.readFrom(stream);
+    QueryResult result = AudioUtils.detectIntentStream(bytestring);
+
+    if (result == null) {
+      out.println("An error occurred during Session Client creation.");
+      return;
+    }
+
+    // Retrieve detected input and AI response from DialogFlow result.
+    String inputDetected = result.getQueryText();
+    String fulfillment = result.getFulfillmentText();
+    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
+    fulfillment = fulfillment.equals("") ? " (null) " : fulfillment;
+
+    // Write output of dialogflow responses.
+    out.println("Audio detection result: " + inputDetected);
+    out.println("Fulfillment: " + fulfillment);
   }
 }
