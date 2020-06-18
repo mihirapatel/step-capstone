@@ -15,20 +15,28 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.cloud.dialogflow.v2.QueryInput;
+import com.google.cloud.dialogflow.v2.QueryResult;
 
-/** Servlet that takes in audio stream and retrieves 
- ** user input string to display. */
+import com.google.sps.utils.TextUtils;
 
-@WebServlet("/textinput")
+/** Servlet that takes in user text input and retrieves 
+ ** QueryResult from Dialogflow input string to display. */
+
+@WebServlet("/text-input")
 public class TextInputServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String userQuestion = request.getParameter("request-input");
+    QueryResult result = TextUtils.detectIntentStream(userQuestion);
+    String agentResponse = result.getFulfillmentText();
+    System.out.println(agentResponse);
   }
 }
