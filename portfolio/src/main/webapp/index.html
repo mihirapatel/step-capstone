@@ -10,29 +10,29 @@
   <body onload="setup()">
     <div id="content">
       <h1>Hi, what can I help you with?</h1>
+ 
+      <section class="main-controls">
+        <canvas class="visualizer" height="60px"></canvas>
+        <div id="buttons">
+          <button class="record">Record</button>
+          <button class="stop">Stop</button>
+        </div>
+      </section>
+
+      <section class="sound-clips">
+      </section>
       
-        <section class="main-controls">
-          <canvas class="visualizer" height="60px"></canvas>
-          <div id="buttons">
-            <button class="record">Record</button>
-            <button class="stop">Stop</button>
-          </div>
-        </section>
- 
-        <section class="sound-clips">
-        </section>
-        <div class = "response-text"></div>
- 
-        <form action = "/text-input" method = "POST">
-          <textarea name="request-input" placeholder= "Type Your Question"></textarea>
-          <br><br>
-          <input type="submit"/>
-          <br><br>
-        </form>
+      <form action = "/text-input" method = "POST">
+        <textarea name="request-input" placeholder= "Type Your Question"></textarea>
+        <br><br>
+        <input type="submit"/>
+        <br><br>
+      </form>
+
+      <div name="streamed-stuff" style="text-align:center"><h1>Audio Conversation:</h1> </div>
+
     </div>
-    
-    <div name="streamed-stuff"></div>
- 
+
     <script src="script.js"></script>
   </body>
 </html>
