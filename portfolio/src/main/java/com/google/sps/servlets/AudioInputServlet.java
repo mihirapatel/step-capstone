@@ -17,7 +17,7 @@ package com.google.sps.servlets;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.stream.Collectors;
+import java.util.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletInputStream;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.protobuf.ByteString;
+import com.google.sps.data.Output;
+import com.google.gson.Gson;
 import com.google.sps.utils.AudioUtils;
 
 /** Servlet that takes in audio stream and retrieves
@@ -35,8 +37,8 @@ public class AudioInputServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    PrintWriter out = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
 
     // Convert input stream into bytestring for DialogFlow API input
     ServletInputStream stream = request.getInputStream();
@@ -44,7 +46,7 @@ public class AudioInputServlet extends HttpServlet {
     QueryResult result = AudioUtils.detectIntentStream(bytestring);
 
     if (result == null) {
-      out.println("An error occurred during Session Client creation.");
+      response.getWriter().write(new Gson().toJson(null));
       return;
     }
 
@@ -54,8 +56,10 @@ public class AudioInputServlet extends HttpServlet {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     fulfillment = fulfillment.equals("") ? " (null) " : fulfillment;
 
-    // Write output of dialogflow responses.
-    out.println("Audio detection result: " + inputDetected);
-    out.println("Fulfillment: " + fulfillment);
+    // Create output object
+    Output output = new Output(inputDetected, fulfillment);
+    String json = new Gson().toJson(output);
+    response.getWrite().write(json);
+    // Convert to JSON string
   }
 }

@@ -97,7 +97,7 @@ if (navigator.mediaDevices.getUserMedia) {
  
       blob.lastModifiedDate = new Date();
       blob.name = "name";
-      dialogflowTheBlob(blob);
+      getResponseFromAudio(blob);
  
       chunks = [];
       const audioURL = window.URL.createObjectURL(blob);
@@ -159,11 +159,17 @@ function visualize(stream) {
  
     analyser.getByteTimeDomainData(dataArray);
  
-    canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+    canvasCtx.fillStyle = 'white';
     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
- 
+
+    var gradient = canvasCtx.createLinearGradient(0, 0, WIDTH, 0);
+    gradient.addColorStop("0", "#DB4437");
+    gradient.addColorStop("0.33", "#F4B400");
+    gradient.addColorStop("0.66", "#0F9D58");
+    gradient.addColorStop("1.0", "#4285F4");
+
     canvasCtx.lineWidth = 2;
-    canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+    canvasCtx.strokeStyle = gradient;
  
     canvasCtx.beginPath();
  
@@ -197,17 +203,42 @@ window.onresize = function() {
  
 window.onresize();
  
-function dialogflowTheBlob(blob) {
+function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
  
   fetch('/audio-input', {
     method: 'POST',
-    // data: formData
     body: blob
-  }).then(response => response.text()).then((stream) => {
-    var container = document.getElementsByName("streamed-stuff")[0];
-    container.innerHTML += ("<p>" + stream + "<p>");
-  });
+  }).then(response => response.text()).then(stream => displayComments(stream));
+}
+function getResponseFromText() {
+  var input = document.getElementById('text-input').value;
  
+  fetch('/text-input?request-input=' + input, {
+    method: 'POST',
+  }).then(response => response.text()).then(stream => displayComments(stream));
+}
+
+function displayComments(stream) {
+  var outputAsJson = JSON.parse(stream);
+  placeUserInput(outputAsJson.userInput);
+  placeFulfillmentResponse(outputAsJson.fulfillmentText);
+}
+
+function placeUserInput(text) {
+  placeObject("<p>" + text + "</p>", "user-side");
+}
+
+function placeFulfillmentResponse(text) {
+  placeObject("<p>" + text + "</p>", "assistant-side");
+}
+
+function placeDisplay(text) {
+  placeObject(text, "media-display");
+}
+
+function placeObject(text, type) {
+  var container = document.getElementsByClassNameByName("convo-container")[0];
+  container.innerHTML += ("div class='" + type + "'>" + text + "</div><br>")
 }
