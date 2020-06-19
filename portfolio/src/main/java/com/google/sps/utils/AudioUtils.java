@@ -32,7 +32,7 @@ public class AudioUtils {
       InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
           .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
           .setLanguageCode("en-US") // languageCode = "en-US"
-          .setSampleRateHertz(16000) // sampleRateHertz = 16000
+          .setSampleRateHertz(44100) // sampleRateHertz = 16000
           .build();
 
       // Build the query with the InputAudioConfig
