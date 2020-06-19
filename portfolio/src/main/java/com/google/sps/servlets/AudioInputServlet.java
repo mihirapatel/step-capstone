@@ -11,13 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+ 
 package com.google.sps.servlets;
-
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,40 +25,58 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletInputStream;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.protobuf.ByteString;
+import com.google.sps.utils.AudioUtils;
+import com.google.sps.utils.SpeechUtils;
+ 
 import com.google.sps.data.Output;
 import com.google.gson.Gson;
-import com.google.sps.utils.AudioUtils;
-
+ 
 /** Servlet that takes in audio stream and retrieves
  ** user input string to display. */
-
+ 
 @WebServlet("/audio-input")
 public class AudioInputServlet extends HttpServlet {
-
+ 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
-
+    response.setContentType("text/html;");
+    PrintWriter out = response.getWriter();
+ 
     // Convert input stream into bytestring for DialogFlow API input
     ServletInputStream stream = request.getInputStream();
     ByteString bytestring = ByteString.readFrom(stream);
     QueryResult result = AudioUtils.detectIntentStream(bytestring);
-
+ 
     if (result == null) {
-      response.getWriter().write(new Gson().toJson(null));
+      out.println("An error occurred during Session Client creation.");
       return;
     }
-
+ 
     // Retrieve detected input and AI response from DialogFlow result.
     String inputDetected = result.getQueryText();
     String fulfillment = result.getFulfillmentText();
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     fulfillment = fulfillment.equals("") ? " (null) " : fulfillment;
-
-    // Create output object
-    Output output = new Output(inputDetected, fulfillment);
+ 
+    byte[] byteStringToByteArray = null;
+    try {
+        ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment);
+        byteStringToByteArray = audioResponse.toByteArray();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+ 
+    //Create Output object
+    Output output = new Output(inputDetected, fulfillment, byteStringToByteArray);
+ 
+    //Convert to JSON string
     String json = new Gson().toJson(output);
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
     response.getWriter().write(json);
   }
 }
+ 
+
+ 
+
