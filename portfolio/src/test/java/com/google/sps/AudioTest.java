@@ -50,27 +50,27 @@ public class AudioTest {
     assertThat(output).contains("room");
   }
 
-  @Test 
-  public void testByteStringAudioInput() {
-    String audioFilePath = "resources/book_a_room.wav";
-    try {
-        File file = new File(audioFilePath);
-        byte[] bytesArray = new byte[(int) file.length()];
-        FileInputStream fis = new FileInputStream(file);
-        fis.read(bytesArray); //read file into bytes[]
-        fis.close();
+//   @Test 
+//   public void testByteStringAudioInput() {
+//     String audioFilePath = "resources/book_a_room.wav";
+//     try {
+//         File file = new File(audioFilePath);
+//         byte[] bytesArray = new byte[(int) file.length()];
+//         FileInputStream fis = new FileInputStream(file);
+//         fis.read(bytesArray); //read file into bytes[]
+//         fis.close();
 
-        ByteString bytestring = ByteString.copyFrom(bytesArray);
+//         ByteString bytestring = ByteString.copyFrom(bytesArray);
 
-        AudioUtils.detectIntentStream(bytestring);
+//         AudioUtils.detectIntentStream(bytestring);
 
-        String output = bout.toString();
+//         String output = bout.toString();
 
-        assertThat(output).contains("book");
-        assertThat(output).contains("a");
-        assertThat(output).contains("room");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+//         assertThat(output).contains("book");
+//         assertThat(output).contains("a");
+//         assertThat(output).contains("room");
+//     } catch (IOException e) {
+//       e.printStackTrace();
+//     }
+//   }
 }
