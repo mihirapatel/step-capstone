@@ -214,7 +214,10 @@ function displayResponse(stream) {
 }
 
 function placeUserInput(text) {
-  placeObject("<p>" + text + "</p>", "user-side");
+  if (text != "") {
+    var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1);
+    placeObject("<p>" + text + "</p>", "user-side");
+  }
 }
 
 function placeFulfillmentResponse(text) {

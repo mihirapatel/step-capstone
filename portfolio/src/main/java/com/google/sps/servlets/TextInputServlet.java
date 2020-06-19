@@ -28,7 +28,7 @@ import com.google.sps.data.Output;
 import com.google.sps.utils.TextUtils;
 import com.google.gson.Gson;
 import com.google.sps.utils.SpeechUtils;
-import com.google.protobuf.ByteString;;
+import com.google.protobuf.ByteString;
  
 /** Servlet that takes in user text input and retrieves 
  ** QueryResult from Dialogflow input string to display. */
@@ -38,14 +38,14 @@ public class TextInputServlet extends HttpServlet {
  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    PrintWriter out = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
  
     String userQuestion = request.getParameter("request-input");
     QueryResult result = TextUtils.detectIntentStream(userQuestion);
  
     if (result == null) {
-      out.println("An error occurred during Session Client creation.");
+      response.getWriter().write(new Gson().toJson(null));
       return;
     }
  
@@ -68,8 +68,6 @@ public class TextInputServlet extends HttpServlet {
  
     //Convert to JSON string
     String json = new Gson().toJson(output);
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
     response.getWriter().write(json);
  
   }

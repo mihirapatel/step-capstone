@@ -21,7 +21,7 @@ h1 {
 #header {
   position: absolute;
   top: 0px;
-  height: 150px;
+  height: fit-content;
   overflow: hidden;
   width: 90%;
   max-width: 850px;
@@ -30,7 +30,7 @@ h1 {
 #footer {
   position: absolute;
   bottom: 0px;
-  height: 170px;
+  height: fit-content;
   overflow: hidden;
   width: 90%;
   max-width: 850px;
