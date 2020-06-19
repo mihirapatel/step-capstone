@@ -19,7 +19,6 @@
  
 const record = document.querySelector('.record');
 const stop = document.querySelector('.stop');
-const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
  
@@ -68,31 +67,6 @@ if (navigator.mediaDevices.getUserMedia) {
  
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
- 
-      const clipName = prompt('Enter a name for your sound clip?','My unnamed clip');
- 
-      const clipContainer = document.createElement('article');
-      const clipLabel = document.createElement('p');
-      const audio = document.createElement('audio');
-      const deleteButton = document.createElement('button');
- 
-      clipContainer.classList.add('clip');
-      audio.setAttribute('controls', '');
-      deleteButton.textContent = 'Delete';
-      deleteButton.className = 'delete';
- 
-      if(clipName === null) {
-        clipLabel.textContent = 'My unnamed clip';
-      } else {
-        clipLabel.textContent = clipName;
-      }
- 
-      clipContainer.appendChild(audio);
-      clipContainer.appendChild(clipLabel);
-      clipContainer.appendChild(deleteButton);
-      soundClips.appendChild(clipContainer);
- 
-      audio.controls = true;
       const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
  
       blob.lastModifiedDate = new Date();
@@ -100,24 +74,7 @@ if (navigator.mediaDevices.getUserMedia) {
       getResponseFromAudio(blob);
  
       chunks = [];
-      const audioURL = window.URL.createObjectURL(blob);
-      audio.src = audioURL;
       console.log("recorder stopped");
- 
-      deleteButton.onclick = function(e) {
-        let evtTgt = e.target;
-        evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-      }
- 
-      clipLabel.onclick = function() {
-        const existingName = clipLabel.textContent;
-        const newClipName = prompt('Enter a new name for your sound clip?');
-        if(newClipName === null) {
-          clipLabel.textContent = existingName;
-        } else {
-          clipLabel.textContent = newClipName;
-        }
-      }
     }
  
     mediaRecorder.ondataavailable = function(e) {
@@ -159,8 +116,9 @@ function visualize(stream) {
  
     analyser.getByteTimeDomainData(dataArray);
  
-    canvasCtx.fillStyle = 'white';
+    canvasCtx.fillStyle = "rgba(42, 42, 42, 0)";
     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+    canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
     var gradient = canvasCtx.createLinearGradient(0, 0, WIDTH, 0);
     gradient.addColorStop("0", "#DB4437");
@@ -210,17 +168,19 @@ function getResponseFromAudio(blob) {
   fetch('/audio-input', {
     method: 'POST',
     body: blob
-  }).then(response => response.text()).then(stream => displayComments(stream));
+  }).then(response => response.text()).then(stream => displayChat(stream));
 }
 function getResponseFromText() {
   var input = document.getElementById('text-input').value;
  
   fetch('/text-input?request-input=' + input, {
-    method: 'POST',
-  }).then(response => response.text()).then(stream => displayComments(stream));
+    method: 'POST'
+  }).then(response => response.text()).then(stream => displayChat(stream));
+  var frm = document.getElementsByName('input-form')[0];
+  frm.reset();
 }
 
-function displayComments(stream) {
+function displayChat(stream) {
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput);
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
@@ -239,6 +199,12 @@ function placeDisplay(text) {
 }
 
 function placeObject(text, type) {
-  var container = document.getElementsByClassNameByName("convo-container")[0];
-  container.innerHTML += ("div class='" + type + "'>" + text + "</div><br>")
+  var container = document.getElementsByName("convo-container")[0];
+  container.innerHTML += ("<div class='" + type + "'>" + text + "</div><br>")
+  updateScroll();
+}
+
+function updateScroll() {
+  var element = document.getElementById("content");
+  element.scrollTop = element.scrollHeight;
 }

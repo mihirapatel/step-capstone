@@ -44,6 +44,8 @@ public class AudioInputServlet extends HttpServlet {
     ServletInputStream stream = request.getInputStream();
     ByteString bytestring = ByteString.readFrom(stream);
     QueryResult result = AudioUtils.detectIntentStream(bytestring);
+    System.out.println("Byte stuff");
+    System.out.println(bytestring);
 
     if (result == null) {
       response.getWriter().write(new Gson().toJson(null));
@@ -59,7 +61,6 @@ public class AudioInputServlet extends HttpServlet {
     // Create output object
     Output output = new Output(inputDetected, fulfillment);
     String json = new Gson().toJson(output);
-    response.getWrite().write(json);
-    // Convert to JSON string
+    response.getWriter().write(json);
   }
 }

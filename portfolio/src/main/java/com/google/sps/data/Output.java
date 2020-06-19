@@ -4,7 +4,7 @@ package com.google.sps.data;
 public final class Output {
 
   private final String userInput;
-  private final String fulfillmenttext;
+  private final String fulfillmentText;
   private final String display;
 
   // Constructor without display
