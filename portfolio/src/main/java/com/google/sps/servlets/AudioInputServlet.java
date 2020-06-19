@@ -39,8 +39,8 @@ public class AudioInputServlet extends HttpServlet {
  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    PrintWriter out = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
  
     // Convert input stream into bytestring for DialogFlow API input
     ServletInputStream stream = request.getInputStream();
@@ -48,7 +48,7 @@ public class AudioInputServlet extends HttpServlet {
     QueryResult result = AudioUtils.detectIntentStream(bytestring);
  
     if (result == null) {
-      out.println("An error occurred during Session Client creation.");
+      response.getWriter().write(new Gson().toJson(null));
       return;
     }
  
@@ -56,7 +56,7 @@ public class AudioInputServlet extends HttpServlet {
     String inputDetected = result.getQueryText();
     String fulfillment = result.getFulfillmentText();
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
-    fulfillment = fulfillment.equals("") ? " (null) " : fulfillment;
+    fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
  
     byte[] byteStringToByteArray = null;
     try {
@@ -71,8 +71,6 @@ public class AudioInputServlet extends HttpServlet {
  
     //Convert to JSON string
     String json = new Gson().toJson(output);
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
     response.getWriter().write(json);
   }
 }
