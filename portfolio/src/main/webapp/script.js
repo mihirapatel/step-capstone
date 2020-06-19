@@ -142,8 +142,9 @@ function visualize(stream) {
  
     analyser.getByteTimeDomainData(dataArray);
  
-    canvasCtx.fillStyle = 'white';
+    canvasCtx.fillStyle = 'rgba(42, 42, 42, 0)';
     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+    canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
     var gradient = canvasCtx.createLinearGradient(0, 0, WIDTH, 0);
     gradient.addColorStop("0", "#DB4437");
@@ -193,22 +194,23 @@ function getResponseFromAudio(blob) {
   fetch('/audio-input', {
     method: 'POST',
     body: blob
-  }).then(response => response.text()).then(stream => displayChat(stream));
+  }).then(response => response.text()).then(stream => displayResponse(stream));
 }
 function getResponseFromText() {
   var input = document.getElementById('text-input').value;
  
   fetch('/text-input?request-input=' + input, {
     method: 'POST'
-  }).then(response => response.text()).then(stream => displayChat(stream));
+  }).then(response => response.text()).then(stream => displayResponse(stream));
   var frm = document.getElementsByName('input-form')[0];
   frm.reset();
 }
 
-function displayChat(stream) {
+function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput);
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
+  outputAudio(stream);
 }
 
 function placeUserInput(text) {
@@ -232,4 +234,54 @@ function placeObject(text, type) {
 function updateScroll() {
   var element = document.getElementById("content");
   element.scrollTop = element.scrollHeight;
+}
+
+function outputAudio(stream){
+  var outputAsJson = JSON.parse(stream);
+  getAudio(outputAsJson.byteStringToByteArray);
+}
+ 
+function getAudio(byteArray){
+  var base64 = arrayBufferToBase64(byteArray);
+  var audioURL = base64toURL(base64, "audio/mp3");
+  play(audioURL);
+}
+ 
+function arrayBufferToBase64(buffer) {
+  var binary = '';
+  var bytes = new Uint8Array(buffer);
+  var len = bytes.byteLength;
+  for (var i = 0; i < len; i++) {
+    binary += String.fromCharCode( bytes[ i ] );
+  }
+  return window.btoa(binary);
+}
+ 
+function base64toURL(b64Data, type){
+  var audioURL = "data:" + type + ";base64," + b64Data;
+  return audioURL;
+}
+ 
+function play(src) {
+  var elem = document.getElementById('sound_player'),
+      body = document.body;
+ 
+  src = src.replace(/\s/g, '%20').replace(/\\/g, '/');
+ 
+  if (!elem) {
+    elem = document.createElement('audio');
+    elem.src = src;
+    elem.id = 'sound-player';
+    elem.setAttribute('autoplay', '');
+    elem.setAttribute('preload', 'auto');
+    if (body) {
+      body.appendChild(elem);
+    }
+  } else {
+    if (elem.src !== src) {
+      elem.src = src;
+    } else {
+      elem.play();
+    }
+  }
 }
