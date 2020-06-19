@@ -16,6 +16,7 @@ package com.google.sps.servlets;
 
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.sps.data.Output;
+import com.google.gson.Gson;
 
 import com.google.sps.utils.TextUtils;
 
@@ -34,9 +37,24 @@ public class TextInputServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    response.setContentType("application/json");
+
     String userQuestion = request.getParameter("request-input");
     QueryResult result = TextUtils.detectIntentStream(userQuestion);
-    String agentResponse = result.getFulfillmentText();
-    System.out.println(agentResponse);
+
+    if (result == null) {
+      response.getWriter().write(new Gson().toJson(null));
+      return;
+    }
+
+    // Retrieve detected input and AI response from DialogFlow result.
+    String inputDetected = result.getQueryText();
+    String fulfillment = result.getFulfillmentText();
+    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
+    fulfillment = fulfillment.equals("") ? " (null) " : fulfillment;
+
+    Output output = new Output(inputDetected, fulfillment);
+    String json = new Gson().toJson(output);
+    response.getWriter().write(json);
   }
 }

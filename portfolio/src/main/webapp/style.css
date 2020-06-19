@@ -1,6 +1,7 @@
 body {
-  background: white;
-  color: #4285F4;
+  background: rgb(42, 42, 42);
+  background: linear-gradient(90deg, rgba(42, 42, 42, 1)0%, rgba(85, 85, 85, 1)50%, rgba(42, 42, 42, 1)100%);
+  color: white;
   font-weight: 300;
   height: 100vh;
   margin: 0;
@@ -16,17 +17,62 @@ h1 {
   font-style: 26px;
   margin: 10px;
 }
+
+#header {
+  position: absolute;
+  top: 0px;
+  height: 150px;
+  overflow: hidden;
+  width: 90%;
+  max-width: 850px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  height: 170px;
+  overflow: hidden;
+  width: 90%;
+  max-width: 850px;
+}
  
 #listening-graphic {
     display: initial;
 }
  
-#conversation-container {
+#convo-container {
     display: initial;
+}
+
+#content {
+  position: absolute;
+  top: 200px;
+  bottom: 170px;
+  overflow: auto;
+  width: 90%;
+  max-width: 850px;
+}
+
+.user-side {
+  text-align: right;
+}
+
+.assistant-side {
+  text-align: left;
+}
+
+.media-display {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
  
 textarea{
   font-family:'Open Sans', sans-serif;
+  text-align: center;
+  width: 80%;
+  max-width: 650px;
+  height: 30px;
 }
  
 button{
@@ -46,11 +92,9 @@ input{
 html, body {
   height: 100%;
 }
- 
-.wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+
+table {
+  width: 100%;
 }
  
 h1, h2 {
@@ -71,43 +115,53 @@ canvas {
  
 #buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
  
 #buttons button {
   font-size: 1rem;
   padding: 1rem;
-  width: calc(50% - 0.25rem);
+  min-width: 50px;
+  min-height: 50px;
 }
  
 button {
   font-size: 1rem;
-  background: #0088cc;
+  background: rgba(2555, 2555, 255, 0);
   text-align: center;
   color: white;
   border: none;
   transition: all 0.2s;
   padding: 0.5rem;
 }
+
+.record {
+  border-radius: 50%;
+}
+
+.microphone {
+  max-height: 35px;
+}
  
 button:hover, button:focus {
   box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: #0ae;
+  background: rgb(158, 158, 158);
+}
+
+.box {
+  width: 25px;
+  height: 25px;
+  background-color: #DB4437;
+}
+
+.box:hover, .box:focus {
+  box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 1);
+  background: #DB4437;
 }
  
 button:active {
   box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
   transform: translateY(2px);
-}
- 
- 
-/* Make the clips use as much space as possible, and
- * also show a scrollbar when there are too many clips to show
- * in the available space */
-.sound-clips {
-  flex: 1;
-  overflow: auto;
 }
  
 section, article {
