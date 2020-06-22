@@ -28,6 +28,7 @@ import com.google.sps.data.Output;
 import com.google.sps.utils.TextUtils;
 import com.google.gson.Gson;
 import com.google.sps.utils.SpeechUtils;
+import com.google.sps.utils.AgentUtils;
 import com.google.protobuf.ByteString;
  
 /** Servlet that takes in user text input and retrieves 
@@ -42,36 +43,25 @@ public class TextInputServlet extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
  
     String userQuestion = request.getParameter("request-input");
-    QueryResult result = TextUtils.detectIntentStream(userQuestion);
+    String language = request.getParameter("language");
+    String languageCode = AgentUtils.getLanguageCode(language);
+    QueryResult result = TextUtils.detectIntentStream(userQuestion, languageCode);
  
     if (result == null) {
       response.getWriter().write(new Gson().toJson(null));
       return;
     }
  
-    // Retrieve detected input and AI response from DialogFlow result.
-    String inputDetected = result.getQueryText();
-    String fulfillment = result.getFulfillmentText();
-    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
-    fulfillment = fulfillment.equals("") ? " (null) " : fulfillment;
- 
-    byte[] byteStringToByteArray = null;
-    try {
-        ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment);
-        byteStringToByteArray = audioResponse.toByteArray();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
- 
-    //Create Output object
-    Output output = new Output(inputDetected, fulfillment, byteStringToByteArray);
+    Output output = AgentUtils.getOutput(result, languageCode);
  
     //Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);
- 
   }
 }
+ 
+ 
+ 
  
 
  

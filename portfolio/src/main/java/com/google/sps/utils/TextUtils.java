@@ -16,12 +16,12 @@ public class TextUtils {
 
   static SessionName session = SessionName.of("fair-syntax-280601", "1");
 
-  public static QueryResult detectIntentStream(String text) {
+  public static QueryResult detectIntentStream(String text, String languageCode) {
     QueryResult queryResult = null;
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
       // Set the session name using the sessionId (UUID) and projectID (my-project-id)
-        String languageCode = "en-US";
+        // String languageCode = languageCode;
         
         // Set the text and language code (en-US) for the query
         TextInput.Builder textInput =
