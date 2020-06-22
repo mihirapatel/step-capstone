@@ -27,6 +27,7 @@ import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.protobuf.ByteString;
 import com.google.sps.utils.AudioUtils;
 import com.google.sps.utils.SpeechUtils;
+import com.google.sps.utils.AgentUtils;
  
 import com.google.sps.data.Output;
 import com.google.gson.Gson;
@@ -45,36 +46,19 @@ public class AudioInputServlet extends HttpServlet {
     // Convert input stream into bytestring for DialogFlow API input
     ServletInputStream stream = request.getInputStream();
     ByteString bytestring = ByteString.readFrom(stream);
-    QueryResult result = AudioUtils.detectIntentStream(bytestring);
+    String language = request.getParameter("language");
+    String languageCode = AgentUtils.getLanguageCode(language);
+    QueryResult result = AudioUtils.detectIntentStream(bytestring, languageCode);
  
     if (result == null) {
       response.getWriter().write(new Gson().toJson(null));
       return;
     }
  
-    // Retrieve detected input and AI response from DialogFlow result.
-    String inputDetected = result.getQueryText();
-    String fulfillment = result.getFulfillmentText();
-    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
-    fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
- 
-    byte[] byteStringToByteArray = null;
-    try {
-        ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment);
-        byteStringToByteArray = audioResponse.toByteArray();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
- 
-    //Create Output object
-    Output output = new Output(inputDetected, fulfillment, byteStringToByteArray);
+    Output output = AgentUtils.getOutput(result, languageCode);
  
     //Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);
   }
 }
- 
-
- 
-

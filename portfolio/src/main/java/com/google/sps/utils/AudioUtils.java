@@ -21,13 +21,13 @@ public class AudioUtils {
 
   static SessionName session = SessionName.of("fair-syntax-280601", "1");
 
-  public static QueryResult detectIntentStream(ByteString bytestring) {
+  public static QueryResult detectIntentStream(ByteString bytestring, String languageCode) {
     QueryResult queryResult = null;
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
       InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
           .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
-          .setLanguageCode("en-US")
+          .setLanguageCode(languageCode)
           .setSampleRateHertz(44100)
           .build();
       QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();

@@ -38,7 +38,7 @@ function startRecording() {
     // Disable the record button until we get a success or fail from getUserMedia() 
     record.disabled = true;
     stop.disabled = false;
-    record.style.background = "red";
+    record.style.background = "#DB4437";
 
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
         console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
@@ -186,20 +186,24 @@ window.onresize = function() {
 }
  
 window.onresize();
+
+function getLanguage() {
+  var language = window.sessionStorage.getItem("language");
+  language = language == null ? "English" : language;
+  return language;
+}
  
 function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
- 
-  fetch('/audio-input', {
+  fetch('/audio-input' + '?language=' + getLanguage(), {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => displayResponse(stream));
 }
 function getResponseFromText() {
   var input = document.getElementById('text-input').value;
- 
-  fetch('/text-input?request-input=' + input, {
+  fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
     method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
   var frm = document.getElementsByName('input-form')[0];
@@ -220,8 +224,16 @@ function placeUserInput(text) {
   }
 }
 
+function getLastWord(words) {
+    var split = words.split(" ");
+    return split[split.length - 1];
+}
+
 function placeFulfillmentResponse(text) {
   placeObject("<p>" + text + "</p>", "assistant-side");
+  if (text.includes("Switching conversation language")) {
+    window.sessionStorage.setItem("language", getLastWord(text));
+  }
 }
 
 function placeDisplay(text) {
@@ -242,6 +254,22 @@ function updateScroll() {
 function outputAudio(stream){
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
+ 
+  if (outputAsJson.redirect != null){
+    var aud = document.getElementById("sound-player");
+    aud.onended = function() {
+      console.log('audio ended');
+      sendRedirect(outputAsJson.redirect);
+    };
+  } else{
+    var aud = document.getElementById("sound-player");
+    aud.onended = function() {
+    };
+  }
+}
+ 
+function sendRedirect(URL){
+  window.open(URL);
 }
  
 function getAudio(byteArray){
@@ -266,7 +294,7 @@ function base64toURL(b64Data, type){
 }
  
 function play(src) {
-  var elem = document.getElementById('sound_player'),
+  var elem = document.getElementById('sound-player'),
       body = document.body;
  
   src = src.replace(/\s/g, '%20').replace(/\\/g, '/');

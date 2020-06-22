@@ -37,7 +37,7 @@ public class SpeechUtils {
     * @param text the raw text to be synthesized. (e.g., "Hello there!")
     * @throws Exception on TextToSpeechClient Errors.
     */
-    public static ByteString synthesizeText(String text) throws Exception {
+    public static ByteString synthesizeText(String text, String languageCode) throws Exception {
         // Instantiates a client
         try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
             // Set the text input to be synthesized
@@ -46,7 +46,7 @@ public class SpeechUtils {
             // Build the voice request
             VoiceSelectionParams voice =
                 VoiceSelectionParams.newBuilder()
-                    .setLanguageCode("en-US") // languageCode = "en_us"
+                    .setLanguageCode(languageCode) // languageCode = "en_us"
                     .setSsmlGender(SsmlVoiceGender.FEMALE) // ssmlVoiceGender = SsmlVoiceGender.FEMALE
                     .build();
  
