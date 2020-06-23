@@ -47,18 +47,39 @@ public class AudioInputServlet extends HttpServlet {
     ServletInputStream stream = request.getInputStream();
     ByteString bytestring = ByteString.readFrom(stream);
     String language = request.getParameter("language");
-    String languageCode = AgentUtils.getLanguageCode(language);
-    QueryResult result = AudioUtils.detectIntentStream(bytestring, languageCode);
- 
-    if (result == null) {
-      response.getWriter().write(new Gson().toJson(null));
-      return;
-    }
- 
-    Output output = AgentUtils.getOutput(result, languageCode);
+    Output output = null;
+
+    if (language.equals("English")) {
+      output = handleEnglishQuery(bytestring, null);
+    } else {
+      try {
+        output = handleForeignQuery(bytestring, language);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } 
  
     //Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);
+  }
+
+  private Output handleEnglishQuery(ByteString bytestring, String languageCode) {
+    QueryResult result = AudioUtils.detectIntentStream(bytestring);
+    if (result == null) {
+      return null;
+    }
+    return AgentUtils.getOutput(result, languageCode);
+  }
+
+  private Output handleForeignQuery(ByteString bytestring, String language) {
+    String languageCode = AgentUtils.getLanguageCode(language);
+    String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
+    System.out.println("TODO: handle foreign language inputs.");
+    //TODO: Google Translate API - convert detectedUserInputString from language to English
+    //TODO: call handleEnglishQuery
+    //TODO: Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
+    //TODO: return output
+    return null;
   }
 }
