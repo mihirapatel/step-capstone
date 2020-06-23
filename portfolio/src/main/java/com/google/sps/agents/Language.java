@@ -7,13 +7,16 @@ import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.Output;
 import com.google.sps.agents.Agent;
+import com.google.sps.utils.AgentUtils;
 import java.io.IOException;
 import java.util.Map;
  
 /**
- * Language Agent
+ * DialogFlow API Detect Intent sample with audio files processes as an audio stream.
  */
 public class Language implements Agent {
+
+    String language;
     private final String intentName;
   	private String searchText;
     
@@ -21,23 +24,27 @@ public class Language implements Agent {
       this.intentName = intentName;
       setParameters(parameters);
     }
-
-	@Override 
-	public void setParameters(Map<String, Value> parameters) {
-	}
-	
-	@Override
-	public String getOutput() {
-	  return null;
-	}
-
-	@Override
-	public String getDisplay() {
-		return null;
-	}
-
-	@Override
-	public String getRedirect() {
-		return null;
+ 
+    @Override 
+    public void setParameters(Map<String, Value> parameters) {
+      language = parameters.get("language").getStringValue();
+    }
+    
+    @Override
+    public String getOutput() {
+      if (AgentUtils.getLanguageCode(language) == null) {
+        return "Sorry, this language is not supported.";
+      }
+      return "Switching conversation language to " + language;
+    }
+ 
+    @Override
+    public String getDisplay() {
+        return null;
+    }
+ 
+    @Override
+    public String getRedirect() {
+        return null;
     }
 }

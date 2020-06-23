@@ -13,15 +13,13 @@ import java.io.IOException;
 **/
 
 public class TextUtils {
-  public static QueryResult detectIntentStream(String text) {
+
+  static SessionName session = SessionName.of("fair-syntax-280601", "1");
+
+  public static QueryResult detectIntentStream(String text, String languageCode) {
     QueryResult queryResult = null;
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
-      // Set the session name using the sessionId (UUID) and projectID (my-project-id)
-      SessionName session = SessionName.of("fair-syntax-280601", "1");
-        String languageCode = "en-US";
-        
-        // Set the text and language code (en-US) for the query
         TextInput.Builder textInput =
             TextInput.newBuilder().setText(text).setLanguageCode(languageCode);
 
@@ -33,7 +31,6 @@ public class TextUtils {
 
         // Display the query result
         queryResult = response.getQueryResult();
-        System.out.println(AgentUtils.getParameterMap(queryResult));
 
         System.out.println("====================");
         System.out.format("Query Text: '%s'\n", queryResult.getQueryText());
