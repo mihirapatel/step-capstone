@@ -13,6 +13,15 @@
 // limitations under the License.
  
 package com.google.sps.servlets;
+
+import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
+import com.google.sps.utils.AgentUtils;
+import com.google.sps.utils.AudioUtils;
+import com.google.sps.data.Output;
+import com.google.sps.utils.SpeechUtils;
+
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,14 +32,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletInputStream;
-import com.google.cloud.dialogflow.v2.QueryResult;
-import com.google.protobuf.ByteString;
-import com.google.sps.utils.AudioUtils;
-import com.google.sps.utils.SpeechUtils;
-import com.google.sps.utils.AgentUtils;
- 
-import com.google.sps.data.Output;
-import com.google.gson.Gson;
  
 /** Servlet that takes in audio stream and retrieves
  ** user input string to display. */
@@ -57,7 +58,7 @@ public class AudioInputServlet extends HttpServlet {
       } catch (Exception e) {
         e.printStackTrace();
       }
-    } 
+    }
  
     //Convert to JSON string
     String json = new Gson().toJson(output);
@@ -73,7 +74,9 @@ public class AudioInputServlet extends HttpServlet {
   }
 
   private Output handleForeignQuery(ByteString bytestring, String language) {
+    System.out.println("LANGUAGEL : " + language);
     String languageCode = AgentUtils.getLanguageCode(language);
+    System.out.println("CODE: " + languageCode);
     String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
     System.out.println("TODO: handle foreign language inputs.");
     //TODO: Google Translate API - convert detectedUserInputString from language to English

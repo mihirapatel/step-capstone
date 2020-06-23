@@ -11,25 +11,24 @@ import java.io.IOException;
 import java.util.Map;
  
 /**
- * WebSearch Agent
+ * Time Agent
  */
-public class WebSearch implements Agent {
+public class Time implements Agent {
     private final String intentName;
   	private String searchText;
     
-    public WebSearch(String intentName, Map<String, Value> parameters) {
+    public Time(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
       setParameters(parameters);
     }
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-	  this.searchText = parameters.get("q").getStringValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return "Redirecting to Google Search for " + searchText;
+	  return null;
 	}
 
 	@Override
@@ -39,9 +38,6 @@ public class WebSearch implements Agent {
 
 	@Override
 	public String getRedirect() {
-        String baseURL = "http://www.google.com/search?q=";
-		String[] individualWords = searchText.split(" ");
-        String endURL = String.join("+", individualWords);
-		return baseURL + endURL;
+		return null;
     }
 }

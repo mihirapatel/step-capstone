@@ -1,9 +1,7 @@
 package com.google.sps.utils;
-
+ 
 // Imports the Google Cloud client library
-import com.google.api.gax.rpc.ApiStreamObserver;
 import com.google.api.gax.rpc.BidiStream;
-import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.cloud.dialogflow.v2.AudioEncoding;
 import com.google.cloud.dialogflow.v2.InputAudioConfig;
 import com.google.cloud.dialogflow.v2.QueryInput;
@@ -19,25 +17,23 @@ import com.google.cloud.speech.v1.RecognizeResponse;
 import com.google.cloud.speech.v1.SpeechClient;
 import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
-import com.google.common.util.concurrent.SettableFuture;
 import com.google.protobuf.ByteString;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
-
+ 
 /**
  * DialogFlow API Detect Intent sample with audio files processes as an audio stream.
  */
 public class AudioUtils {
-
+ 
   static SessionName session = SessionName.of("fair-syntax-280601", "1");
-
+ 
   public static QueryResult detectIntentStream(ByteString bytestring) {
     QueryResult queryResult = null;
-
+ 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
       InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
           .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
@@ -45,10 +41,10 @@ public class AudioUtils {
           .setSampleRateHertz(44100)
           .build();
       QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
-
+ 
       BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream = 
         makeBidiStream(sessionsClient, queryInput, bytestring);
-
+ 
       for (StreamingDetectIntentResponse response : bidiStream) {
         queryResult = response.getQueryResult();
         printResult(queryResult);
@@ -99,10 +95,9 @@ public static String detectSpeechLanguage(byte[] data, String languageCode) {
           .setSampleRateHertz(16000) // sampleRateHertz = 16000
           .build();
       QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
-
+ 
       BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream =
           sessionsClient.streamingDetectIntentCallable().call();
-
       bidiStream.send(StreamingDetectIntentRequest.newBuilder()
           .setSession(session.toString())
           .setQueryInput(queryInput)
