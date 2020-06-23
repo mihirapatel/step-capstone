@@ -13,7 +13,15 @@
 // limitations under the License.
  
 package com.google.sps.servlets;
- 
+
+import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.cloud.dialogflow.v2.QueryInput;
+import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
+import com.google.sps.utils.AgentUtils;
+import com.google.sps.data.Output;
+import com.google.sps.utils.SpeechUtils;
+import com.google.sps.utils.TextUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
@@ -22,14 +30,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.cloud.dialogflow.v2.QueryInput;
-import com.google.cloud.dialogflow.v2.QueryResult;
-import com.google.sps.data.Output;
-import com.google.sps.utils.TextUtils;
-import com.google.gson.Gson;
-import com.google.sps.utils.SpeechUtils;
-import com.google.sps.utils.AgentUtils;
-import com.google.protobuf.ByteString;
  
 /** Servlet that takes in user text input and retrieves 
  ** QueryResult from Dialogflow input string to display. */
@@ -43,15 +43,18 @@ public class TextInputServlet extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
  
     String userQuestion = request.getParameter("request-input");
-    QueryResult result = TextUtils.detectIntentStream(userQuestion);
+
+    String language = request.getParameter("language");
+    String languageCode = AgentUtils.getLanguageCode(language);
+    QueryResult result = TextUtils.detectIntentStream(userQuestion, languageCode);
  
     if (result == null) {
       response.getWriter().write(new Gson().toJson(null));
       return;
     }
- 
-    Output output = AgentUtils.getOutput(result);
- 
+
+    Output output = AgentUtils.getOutput(result, languageCode);
+     
     //Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);

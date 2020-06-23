@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
  */
 public class AgentUtils {
   
-  public static Output getOutput(QueryResult queryResult) {
+  public static Output getOutput(QueryResult queryResult, String languageCode) {
     String fulfillment = null;
     String display = null;
     String redirect = null;
@@ -39,59 +39,55 @@ public class AgentUtils {
     String inputDetected = queryResult.getQueryText();
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
+    Agent object = getAgent(agentName, intentName, parameterMap);
 
-    // Set Response Info From Web Search Agent
-    if (agentName.equals("calculator")){
-        object = new Tip(intentName, parameterMap);
-    }
-    if (agentName.equals("currency")){
-        object = new Currency(intentName, parameterMap);
-    }
-    if (agentName.equals("language")){
-        object = new Language(intentName, parameterMap);
-    }
-    if (agentName.equals("name")){
-        object = new Name(intentName, parameterMap);
-    }
-    if (agentName.equals("reminders")){
-        object = new Reminders(intentName, parameterMap);
-    }
-    if (agentName.equals("time")){
-        object = new Time(intentName, parameterMap);
-    }
-    if (agentName.equals("translate")){
-        object = new Translate(intentName, parameterMap);
-    }
-    if (agentName.equals("units")){
-        object = new UnitConverter(intentName, parameterMap);
-    }
-    if (agentName.equals("weather")){
-        object = new Weather(intentName, parameterMap);
-    }
-    if (agentName.equals("web")){
-        object = new WebSearch(intentName, parameterMap);
-    }
     if (object != null){
         fulfillment = object.getOutput();
         display = object.getDisplay();
         redirect = object.getRedirect();
-    }
-    else {
+    } else {
         fulfillment = queryResult.getFulfillmentText();
         fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
     }
-    
-    byteStringToByteArray = getByteStringToByteArray(fulfillment);
+
+    byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
     return output;
   }
 
-  public static String getAgentName(String detectedIntent) {
+  private static Agent getAgent(String agentName, String intentName, Map<String, Value> parameterMap) {
+    switch(agentName) {
+      case "calculator":
+        return new Tip(intentName, parameterMap);
+      case "currency":
+        return new Currency(intentName, parameterMap);
+      case "language":
+        return new Language(intentName, parameterMap);
+      case "name":
+        return new Name(intentName, parameterMap);
+      case "reminders":
+        return new Reminders(intentName, parameterMap);
+      case "time":
+        return new Time(intentName, parameterMap);
+      case "translate":
+        return new Translate(intentName, parameterMap);
+      case "units":
+        return new UnitConverter(intentName, parameterMap);
+      case "weather":
+        return new Weather(intentName, parameterMap);
+      case "web":
+        return new WebSearch(intentName, parameterMap);
+      default:
+        return null;
+    }
+  }
+
+  private static String getAgentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     return intentList[0];
   }
 
-  public static String getIntentName(String detectedIntent) {
+  private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1){
@@ -105,15 +101,47 @@ public class AgentUtils {
     Map<String, Value> parameters = paramStruct.getFieldsMap();
     return parameters;
   }
-
-  public static byte[] getByteStringToByteArray(String fulfillment){
+ 
+  public static byte[] getByteStringToByteArray(String fulfillment, String languageCode){
     byte[] byteArray = null;
     try {
-        ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment);
+        ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment, languageCode);
         byteArray = audioResponse.toByteArray();
     } catch (Exception e) {
         e.printStackTrace();
     }
     return byteArray;
   }
+
+  public static String getLanguageCode(String language) {
+    switch(language) {
+      case "Chinese":
+        return "zh-CN";
+      case "English": 
+        return "en-US";
+      case "French":
+        return "fr";
+      case "German":
+        return "de";
+      case "Hindi":
+        return "hi";
+      case "Italian":
+        return "it";
+      case "Japanese":
+        return "ja";
+      case "Korean":
+        return "ko";
+      case "Portuguese":
+        return "pt";
+      case "Russian":
+        return "ru";
+      case "Spanish":
+        return "es";
+      case "Swedish":
+        return "sv";
+      default:
+        return null;
+    }
+  }
 }
+

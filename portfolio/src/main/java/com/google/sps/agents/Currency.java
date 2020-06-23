@@ -19,7 +19,6 @@ public class Currency implements Agent {
     private String currencyTo;
     private Double amount;
 
-    
     public Currency(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
       setParameters(parameters);
