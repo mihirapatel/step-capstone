@@ -442,3 +442,10 @@ function play(src) {
     }
   }
 }
+
+function authSetup() {
+  fetch("/auth").then((response) => response.text()).then((displayText) => {
+    var authContainer = document.getElementsByClassName("auth-link")[0];
+    authContainer.innerHTML = displayText;
+  });
+}
