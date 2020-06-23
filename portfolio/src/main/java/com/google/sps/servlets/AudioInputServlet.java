@@ -11,34 +11,52 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+ 
 package com.google.sps.servlets;
 import java.util.*;
-
-import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletInputStream;
+import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.protobuf.ByteString;
 import com.google.sps.utils.AudioUtils;
-
-/** Servlet that takes in audio stream and retrieves 
+import com.google.sps.utils.SpeechUtils;
+import com.google.sps.utils.AgentUtils;
+ 
+import com.google.sps.data.Output;
+import com.google.gson.Gson;
+ 
+/** Servlet that takes in audio stream and retrieves
  ** user input string to display. */
-
+ 
 @WebServlet("/audio-input")
 public class AudioInputServlet extends HttpServlet {
-
+ 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    System.out.println(request);
-    InputStream inputStream = request.getInputStream();
-    ByteString bytestring =  ByteString.readFrom(inputStream);
-    AudioUtils.detectIntentStream(bytestring);
-
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+ 
+    // Convert input stream into bytestring for DialogFlow API input
+    ServletInputStream stream = request.getInputStream();
+    ByteString bytestring = ByteString.readFrom(stream);
+    QueryResult result = AudioUtils.detectIntentStream(bytestring);
+ 
+    if (result == null) {
+      response.getWriter().write(new Gson().toJson(null));
+      return;
+    }
+ 
+    Output output = AgentUtils.getOutput(result);
+ 
+    //Convert to JSON string
+    String json = new Gson().toJson(output);
+    response.getWriter().write(json);
   }
 }
