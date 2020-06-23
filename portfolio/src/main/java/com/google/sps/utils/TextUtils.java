@@ -1,27 +1,25 @@
 package com.google.sps.utils;
 
+import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
-import java.io.IOException;
 import com.google.cloud.dialogflow.v2.TextInput;
-import com.google.cloud.dialogflow.v2.DetectIntentResponse;
+import java.io.IOException;
 
 /**
  * DialogFlow API Detects Intent with input text.
 **/
 
 public class TextUtils {
-  public static QueryResult detectIntentStream(String text) {
+
+  static SessionName session = SessionName.of("fair-syntax-280601", "1");
+
+  public static QueryResult detectIntentStream(String text, String languageCode) {
     QueryResult queryResult = null;
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
-      // Set the session name using the sessionId (UUID) and projectID (my-project-id)
-      SessionName session = SessionName.of("fair-syntax-280601", "1");
-        String languageCode = "en-US";
-        
-        // Set the text and language code (en-US) for the query
         TextInput.Builder textInput =
             TextInput.newBuilder().setText(text).setLanguageCode(languageCode);
 
@@ -46,3 +44,4 @@ public class TextUtils {
     return queryResult;
   }
 }
+

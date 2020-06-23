@@ -15,7 +15,6 @@ import java.text.DecimalFormat;
  * Tip Agent calculates tip for given parameters, only supports USD deimal formatting for now
  */
 public class Tip implements Agent {
-    
     private final String intentName;
   	private String searchText;
     private Double tipAmount;
@@ -77,3 +76,4 @@ public class Tip implements Agent {
         return null;
     }
 }
+

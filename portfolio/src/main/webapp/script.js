@@ -1,10 +1,10 @@
-// Copyright 2019 Google LLC
+// Copyright 2019 Google LLC
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//     https://www.apache.org/licenses/LICENSE-2.0
+//     https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -64,7 +64,6 @@ function startRecording() {
  
         //start the recording process
         rec.record()
- 
         console.log("Recording started");
  
     }).catch(function(err) {
@@ -109,7 +108,7 @@ if (navigator.mediaDevices.getUserMedia) {
   }
  
   let onError = function(err) {
-    console.log('The following error occured: ' + err);
+    console.log('The following error occurred: ' + err);
   }
  
   navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
@@ -178,17 +177,20 @@ function visualize(stream) {
  
     canvasCtx.lineTo(canvas.width, canvas.height/2);
     canvasCtx.stroke();
- 
   }
 }
- 
- 
+
 window.onresize = function() {
   canvas.width = mainSection.offsetWidth;
 }
  
 window.onresize();
- 
+
+function getLanguage() {
+  var language = window.sessionStorage.getItem("language");
+  language = language == null ? "English" : language;
+  return language;
+}
  
 function getResponseFromAudio(blob) {
   const formData = new FormData();
@@ -209,12 +211,11 @@ function getResponseFromText(){
   }).then(response => response.text()).then((stream) => {
      displayResponse(stream);
   });
- 
+
   var frm = document.getElementsByName('input-form')[0];
   frm.reset(); 
 }
- 
- 
+
 function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput);
@@ -227,11 +228,20 @@ function placeUserInput(text) {
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
     placeObject("<p>" + formattedInput + "</p>", "user-side");
   }
-
 }
  
 function placeFulfillmentResponse(text) {
   placeObject("<p>" + text + "</p>", "assistant-side");
+  console.log(text);
+  if (text.includes("Switching conversation language")) {
+    window.sessionStorage.setItem("language", getLastWord(text));
+  }
+}
+
+function getLastWord(words) {
+    var split = words.split(/[ ]+/);
+    console.log(split);
+    return split[split.length - 1];
 }
  
 function placeDisplay(text) {
@@ -243,17 +253,16 @@ function placeObject(text, type) {
   container.innerHTML += ("<div class='" + type + "'>" + text + "</div><br>")
   updateScroll();
 }
- 
+
 function updateScroll() {
   var element = document.getElementById("content");
   element.scrollTop = element.scrollHeight;
 }
- 
- 
+
 function outputAudio(stream){
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
- 
+
   if (outputAsJson.redirect != null){
     var aud = document.getElementById("sound-player");
     aud.onended = function() {
@@ -314,8 +323,3 @@ function play(src) {
     }
   }
 }
- 
-
- 
-
-

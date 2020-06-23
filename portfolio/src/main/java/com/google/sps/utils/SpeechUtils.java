@@ -15,7 +15,7 @@
  */
 
 package com.google.sps.utils;
-
+ 
 // Imports the Google Cloud client library
 import com.google.cloud.texttospeech.v1.AudioConfig;
 import com.google.cloud.texttospeech.v1.AudioEncoding;
@@ -29,7 +29,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.IOException;
 
-
 public class SpeechUtils {
     /**
     * Demonstrates using the Text to Speech client to synthesize text or ssml.
@@ -37,16 +36,19 @@ public class SpeechUtils {
     * @param text the raw text to be synthesized. (e.g., "Hello there!")
     * @throws Exception on TextToSpeechClient Errors.
     */
-    public static ByteString synthesizeText(String text) throws Exception {
+
+    public static ByteString synthesizeText(String text, String languageCode) throws Exception {
+        languageCode = (languageCode == null) ? "en-US" : languageCode;
+
         // Instantiates a client
         try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
             // Set the text input to be synthesized
             SynthesisInput input = SynthesisInput.newBuilder().setText(text).build();
-
+ 
             // Build the voice request
             VoiceSelectionParams voice =
                 VoiceSelectionParams.newBuilder()
-                    .setLanguageCode("en-US") // languageCode = "en_us"
+                    .setLanguageCode(languageCode) // languageCode = "en_us"
                     .setSsmlGender(SsmlVoiceGender.FEMALE) // ssmlVoiceGender = SsmlVoiceGender.FEMALE
                     .build();
 
@@ -59,10 +61,10 @@ public class SpeechUtils {
             // Perform the text-to-speech request
             SynthesizeSpeechResponse response =
                 textToSpeechClient.synthesizeSpeech(input, voice, audioConfig);
-
+ 
             // Get the audio contents from the response
             ByteString audioContents = response.getAudioContent();
-
+ 
             // Write the response to the output file.
             OutputStream out = new FileOutputStream("output.mp3");
             out.write(audioContents.toByteArray());

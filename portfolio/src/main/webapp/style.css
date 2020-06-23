@@ -1,4 +1,5 @@
 body {
+
   background: rgb(42, 42, 42);
   background: linear-gradient(90deg, rgba(42,42,42,1) 0%, rgba(85,85,85,1) 50%, rgba(42,42,42,1) 100%);
   color: white;
@@ -21,7 +22,7 @@ h1 {
 #header {
   position:absolute; 
   top:0px; 
-  height:fit-content;
+  height: fit-content;
   overflow:hidden; 
   width: 90%; 
   max-width: 850px;
@@ -30,7 +31,7 @@ h1 {
 #footer {
   position:absolute; 
   bottom:0px; 
-  height:fit-content; 
+  height: fit-content; 
   overflow:hidden; 
   width: 90%; 
   max-width: 850px;
@@ -46,8 +47,8 @@ h1 {
  
 #content {
   position:absolute; 
-  top: 200px; 
-  bottom:170px; 
+  top: inherit; 
+  bottom: inherit; 
   overflow: auto;
   width: 90%;
   max-width: 850px;
@@ -92,7 +93,7 @@ input{
 html, body {
   height: 100%;
 }
- 
+
 table {
   width: 100%;
 }
@@ -112,8 +113,7 @@ canvas {
   display: block;
   margin-bottom: 0.5rem;
 }
- 
- 
+
 #buttons {
   display: flex;
   justify-content: center;
@@ -165,38 +165,8 @@ button:active {
   transform: translateY(2px);
 }
  
-/* Make the clips use as much space as possible, and
- * also show a scrollbar when there are too many clips to show
- * in the available space */
- 
 section, article {
   display: block;
-}
- 
-.clip {
-  padding-bottom: 1rem;
-}
- 
-audio {
-  width: 100%;
-  display: block;
-  margin: 1rem auto 0.5rem;
-}
- 
-.clip p {
-  display: inline-block;
-  font-size: 1rem;
-}
- 
-.clip button {
-  font-size: 1rem;
-  float: right;
-}
- 
-button.delete {
-  background: #DB4437;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
 }
  
 /* Checkbox hack to control information box display */
@@ -212,6 +182,43 @@ label {
   border-radius: 10px;
 }
  
+input[type=checkbox] {
+   position: absolute;
+   top: -100px;
+}
+ 
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(100%);
+  transition: 0.3s all ease-out;
+  background-color: #efefef;
+  padding: 1rem;
+}
+ 
+aside p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+ 
+aside a {
+  color: #666;
+}
+ 
+/* Toggled State of information box */
+input[type=checkbox]:checked ~ aside {
+  transform: translateX(0);
+}
+ 
+/* Cursor when clip name is clicked over */
+ 
+.clip p {
+  cursor: pointer;
+}
+ 
 /* Adjustments for wider screens */
 @media all and (min-width: 800px) {
   /* Don't take all the space as readability is lost when line length
@@ -222,3 +229,4 @@ label {
     margin: 0 auto;
   }
 }
+
