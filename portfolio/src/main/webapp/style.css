@@ -92,7 +92,7 @@ input{
 html, body {
   height: 100%;
 }
- 
+
 table {
   width: 100%;
 }
@@ -112,8 +112,7 @@ canvas {
   display: block;
   margin-bottom: 0.5rem;
 }
- 
- 
+
 #buttons {
   display: flex;
   justify-content: center;
@@ -168,7 +167,6 @@ button:active {
 section, article {
   display: block;
 }
- 
  
 /* Checkbox hack to control information box display */
  

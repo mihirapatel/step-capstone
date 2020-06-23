@@ -45,6 +45,3 @@ public class WebSearch implements Agent {
 		return baseURL + endURL;
     }
 }
-
-
-
