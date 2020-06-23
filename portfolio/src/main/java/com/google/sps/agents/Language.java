@@ -12,11 +12,11 @@ import java.io.IOException;
 import java.util.Map;
  
 /**
-<<<<<<< HEAD
  * Language Agent
  */
 public class Language implements Agent {
 
+    String language;
     private final String intentName;
   	private String searchText;
     

@@ -196,7 +196,7 @@ function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
  
-  fetch('/audio-input', {
+  fetch('/audio-input'+"?language="+getLanguage(), {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then((stream) => {
@@ -206,7 +206,7 @@ function getResponseFromAudio(blob) {
  
 function getResponseFromText(){
   var input = document.getElementById('text-input').value;
-  fetch('/text-input?request-input=' + input,{
+  fetch('/text-input?request-input=' + input + "&language="+getLanguage(),{
       method: 'POST'
   }).then(response => response.text()).then((stream) => {
      displayResponse(stream);

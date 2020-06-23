@@ -39,7 +39,7 @@ public class AgentUtils {
     String inputDetected = queryResult.getQueryText();
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
-    Agent object = getAgent(agentName, intentName, parameterMap);
+    object = getAgent(agentName, intentName, parameterMap);
 
     if (object != null){
         fulfillment = object.getOutput();
@@ -114,6 +114,9 @@ public class AgentUtils {
   }
 
   public static String getLanguageCode(String language) {
+    if (language == null) {
+        return "en-US";
+    }
     switch(language) {
       case "Chinese":
         return "zh-CN";
