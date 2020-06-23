@@ -2,25 +2,44 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>AI-ssistant</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
   </head>
+  
   <body>
-    <div id="content">
+    <div id="header" > 
       <h1>Hi, what can I help you with?</h1>
-      <div id = "listening-graphic"> </div>
-      <div id = "conversation-container"> </div>
-      <button onclick="startListening()">Record</button>
-      <br><br>
+      <section class="main-controls">
+        <canvas class="visualizer" height="60px"></canvas>
+      </section>
+    </div> 
 
-      <form action = "/audio-input" method = "POST">
-        <textarea name="request-input" placeholder= "Type Your Question"></textarea>
-        <br><br>
+    <audio id="sound-player" autoplay preload = "auto"></audio>
+      
+    <div id = "content">
+       <div name = "convo-container"></div>
+    </div>
+    
+    <div id="footer" >
+      <section class="main-controls">
+        <div id="buttons">
+          <button class="record"><img src = "images/googlemic.jpg" class = 'microphone' alt = "Record"></button>
+          <br>
+          <button class="stop"><div class = 'box' alt = "Stop recording"></div> </button>
+        </div>
+      </section>
+      
+      <form name = 'input-form' onsubmit = "getResponseFromText(); return false">
+        <textarea id = "text-input" placeholder= "Type Your Question"></textarea>
+        <br>
         <input type="submit"/>
         <br><br>
       </form>
+ 
     </div>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -11,24 +11,53 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+ 
 package com.google.sps.servlets;
 
+import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
+import com.google.sps.utils.AgentUtils;
+import com.google.sps.utils.AudioUtils;
+import com.google.sps.data.Output;
+import com.google.sps.utils.SpeechUtils;
+
+import java.util.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-/** Servlet that takes in audio stream and retrieves 
+import javax.servlet.ServletInputStream;
+ 
+/** Servlet that takes in audio stream and retrieves
  ** user input string to display. */
-
+ 
 @WebServlet("/audio-input")
 public class AudioInputServlet extends HttpServlet {
-
+ 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+ 
+    // Convert input stream into bytestring for DialogFlow API input
+    ServletInputStream stream = request.getInputStream();
+    ByteString bytestring = ByteString.readFrom(stream);
+    QueryResult result = AudioUtils.detectIntentStream(bytestring);
+ 
+    if (result == null) {
+      response.getWriter().write(new Gson().toJson(null));
+      return;
+    }
+
+    Output output = AgentUtils.getOutput(result);
+ 
+    //Convert to JSON string
+    String json = new Gson().toJson(output);
+    response.getWriter().write(json);
   }
 }
