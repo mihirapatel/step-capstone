@@ -8,6 +8,9 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gson.Gson;
+import com.google.sps.utils.UserUtils;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
@@ -27,41 +30,39 @@ public class AuthServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
+    response.setContentType("application/json");
     PrintWriter out = response.getWriter();
 
     String loginUrl = userService.createLoginURL("/index.html");
-
+    String authText;
+    String displayName;
     if (userService.isUserLoggedIn()) {
       String logoutUrl = userService.createLogoutURL("/index.html");
       String id = userService.getCurrentUser().getUserId();
-    //   String nickname = UserUtils.getUserNickname(id, userService);
-      out.println("<a class=\"link\" href=\"" + logoutUrl + "\">Logout</a>");
+      authText = logoutUrl;
+      displayName = UserUtils.getDisplayName();
     } else {
-      out.println("<a class=\"link\" href=\"" + loginUrl + "\">Login</a>");
+      authText = loginUrl;
+      displayName = "";
     }
+
+    AuthOutput output = new AuthOutput(authText, displayName);
+    String json = new Gson().toJson(output);
+    System.out.println(json);
+    response.getWriter().write(json);
   }
-
-//   @Override
-//   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//     // String nickname = request.getParameter("nickname");
-//     String id = userService.getCurrentUser().getUserId();
-
-//     DatastoreService datastore = createDataService();
-//     Entity entity = new Entity("UserInfo", id);
-//     entity.setProperty("id", id);
-//     entity.setProperty("nickname", nickname);
-//     datastore.put(entity);
-
-//     response.sendRedirect("/travel.html");
-//   }
 
   protected UserService createUserService() {
     return UserServiceFactory.getUserService();
   }
 
-  protected DatastoreService createDataService() {
-    return DatastoreServiceFactory.getDatastoreService();
-  }
+  class AuthOutput {
+    String authText;
+    String displayName;
 
+    AuthOutput(String authText, String displayName) {
+      this.authText = authText;
+      this.displayName = displayName;
+    }
+  }
 }

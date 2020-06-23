@@ -280,7 +280,9 @@ function placeFulfillmentResponse(text) {
   console.log(text);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
-  }
+  } else if (text.includes("Changing your") && text.includes("name")) {
+    updateName(getLastWord(text));
+  }
 }
 
 function getLastWord(words) {
@@ -444,8 +446,14 @@ function play(src) {
 }
 
 function authSetup() {
-  fetch("/auth").then((response) => response.text()).then((displayText) => {
+  fetch("/auth").then((response) => response.json()).then((displayText) => {
     var authContainer = document.getElementsByClassName("auth-link")[0];
-    authContainer.innerHTML = displayText;
+    authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">Logout</a>";
+    updateName(displayText.displayName);
   });
+}
+
+function updateName(name) {
+  var greetingContainer = document.getElementsByName("greeting")[0];
+  greetingContainer.innerHTML = "<h1>Hi " + name + ", what can I help you with?</h1>";
 }
