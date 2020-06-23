@@ -9,7 +9,8 @@ public final class Output {
   private final String display;
   private final String redirect;
  
-  // Constructor without display or redirect
+
+  // Constructor without display
   public Output(String userInput, String fulfillmentText, byte[] byteStringToByteArray) {
       this.userInput = userInput;
       this.fulfillmentText = fulfillmentText;
@@ -18,7 +19,8 @@ public final class Output {
       this.redirect = null;
   }
  
-  // Constructor with display and without redirect
+  // Constructor with display
+
   public Output(String userInput, String fulfillmentText, byte[] byteStringToByteArray, String display) {
       this.userInput = userInput;
       this.fulfillmentText = fulfillmentText;
@@ -26,7 +28,7 @@ public final class Output {
       this.display = display;
       this.redirect = null;
   }
- 
+
   // Constructor with display and redirect
   public Output(String userInput, String fulfillmentText, byte[] byteStringToByteArray, String display, String redirect) {
       this.userInput = userInput;
@@ -52,7 +54,4 @@ public final class Output {
       return this.display;
   }
 }
- 
- 
- 
 
