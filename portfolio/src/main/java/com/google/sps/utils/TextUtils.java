@@ -1,12 +1,12 @@
 package com.google.sps.utils;
 
+import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
-import java.io.IOException;
 import com.google.cloud.dialogflow.v2.TextInput;
-import com.google.cloud.dialogflow.v2.DetectIntentResponse;
+import java.io.IOException;
 
 /**
  * DialogFlow API Detects Intent with input text.
@@ -33,6 +33,7 @@ public class TextUtils {
 
         // Display the query result
         queryResult = response.getQueryResult();
+        System.out.println(AgentUtils.getParameterMap(queryResult));
 
         System.out.println("====================");
         System.out.format("Query Text: '%s'\n", queryResult.getQueryText());
