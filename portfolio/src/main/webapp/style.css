@@ -1,6 +1,6 @@
 body {
-  background: rgb(42, 42, 42);
-  background: linear-gradient(90deg, rgba(42, 42, 42, 1)0%, rgba(85, 85, 85, 1)50%, rgba(42, 42, 42, 1)100%);
+  background: rgb(42,42,42);
+  background: linear-gradient(90deg, rgba(42,42,42,1) 0%, rgba(85,85,85,1) 50%, rgba(42,42,42,1) 100%);
   color: white;
   font-weight: 300;
   height: 100vh;
@@ -17,53 +17,53 @@ h1 {
   font-style: 26px;
   margin: 10px;
 }
-
+ 
 #header {
-  position: absolute;
-  top: 0px;
+  position:absolute; 
+  top:0px; 
   height: fit-content;
-  overflow: hidden;
-  width: 90%;
+  overflow:hidden; 
+  width: 90%; 
   max-width: 850px;
 }
-
+ 
 #footer {
-  position: absolute;
-  bottom: 0px;
-  height: fit-content;
-  overflow: hidden;
-  width: 90%;
+  position:absolute; 
+  bottom:0px; 
+  height: fit-content; 
+  overflow:hidden; 
+  width: 90%; 
   max-width: 850px;
 }
  
 #listening-graphic {
-    display: initial;
+  display: initial;
 }
  
 #convo-container {
-    display: initial;
+  display: initial;
 }
-
+ 
 #content {
-  position: absolute;
-  top: 200px;
-  bottom: 170px;
+  position:absolute; 
+  top: inherit; 
+  bottom: inherit; 
   overflow: auto;
   width: 90%;
   max-width: 850px;
 }
-
-.user-side {
+ 
+.user-side{
   text-align: right;
 }
-
-.assistant-side {
+ 
+.assistant-side{
   text-align: left;
 }
-
-.media-display {
-  margin-left: auto;
-  margin-right: auto;
+ 
+.media-display{
+  margin-left:auto; 
+  margin-right:auto;
   text-align: center;
 }
  
@@ -112,7 +112,7 @@ canvas {
   display: block;
   margin-bottom: 0.5rem;
 }
- 
+
 #buttons {
   display: flex;
   justify-content: center;
@@ -127,19 +127,19 @@ canvas {
  
 button {
   font-size: 1rem;
-  background: rgba(2555, 2555, 255, 0);
+  background: rgba(255, 255, 255, 0);
   text-align: center;
   color: white;
   border: none;
   transition: all 0.2s;
   padding: 0.5rem;
 }
-
-.record {
+ 
+.record{
   border-radius: 50%;
 }
-
-.microphone {
+ 
+.microphone{
   max-height: 35px;
 }
  
@@ -147,15 +147,15 @@ button:hover, button:focus {
   box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
   background: rgb(158, 158, 158);
 }
-
-.box {
-  width: 25px;
-  height: 25px;
+ 
+.box{
+    width: 25px;
+    height: 25px;
   background-color: #DB4437;
 }
-
-.box:hover, .box:focus {
-  box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 1);
+ 
+.box:hover, .box:focus{
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
   background: #DB4437;
 }
  
@@ -166,32 +166,6 @@ button:active {
  
 section, article {
   display: block;
-}
- 
-.clip {
-  padding-bottom: 1rem;
-}
- 
-audio {
-  width: 100%;
-  display: block;
-  margin: 1rem auto 0.5rem;
-}
- 
-.clip p {
-  display: inline-block;
-  font-size: 1rem;
-}
- 
-.clip button {
-  font-size: 1rem;
-  float: right;
-}
- 
-button.delete {
-  background: #f00;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
 }
  
 /* Checkbox hack to control information box display */

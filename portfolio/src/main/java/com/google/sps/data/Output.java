@@ -26,7 +26,7 @@ public final class Output {
       this.display = display;
       this.redirect = null;
   }
- 
+
   // Constructor with display and redirect
   public Output(String userInput, String fulfillmentText, byte[] byteStringToByteArray, String display, String redirect) {
       this.userInput = userInput;
@@ -52,9 +52,3 @@ public final class Output {
       return this.display;
   }
 }
- 
- 
- 
-
- 
-
