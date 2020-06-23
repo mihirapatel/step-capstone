@@ -12,18 +12,25 @@ import com.google.cloud.dialogflow.v2.QueryResult;
 import java.text.DecimalFormat;
  
 /**
- * Tip agent calculates tip for given parameters, only supports USD deimal formatting for now
+ * Tip Agent calculates tip for given parameters, only supports USD deimal formatting for now
  */
 public class Tip implements Agent {
-    Double tipAmount;
-    Double tipAmountPerPerson;
-    String tipPercentageString = null;
-    Double tipPercentageDouble = null;
-    Double amountWithoutTip = null;
-    String currency = null;
-    String currencySymbol = null;
-    Double peopleNumber = null;
-
+    
+    private final String intentName;
+  	private String searchText;
+    private final Double tipAmount;
+    private final Double tipAmountPerPerson;
+    private final String tipPercentageString = null;
+    private final Double tipPercentageDouble = null;
+    private final Double amountWithoutTip = null;
+    private final String currency = null;
+    private final String currencySymbol = null;
+    private final Double peopleNumber = null;
+    
+    public Tip(String intentName, Map<String, Value> parameters) {
+      this.intentName = intentName;
+      setParameters(parameters);
+    }
 
     @Override 
     public void setParameters(Map<String, Value> parameters) {
