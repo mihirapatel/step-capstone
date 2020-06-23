@@ -15,6 +15,7 @@
 package com.google.sps.servlets;
 
 import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.cloud.translate.*;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 import com.google.sps.utils.AgentUtils;
@@ -73,15 +74,65 @@ public class AudioInputServlet extends HttpServlet {
   }
 
   private Output handleForeignQuery(ByteString bytestring, String language) {
-    System.out.println("LANGUAGEL : " + language);
+    System.out.println("LANGUAGE : " + language);
     String languageCode = AgentUtils.getLanguageCode(language);
     System.out.println("CODE: " + languageCode);
     String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
     System.out.println("TODO: handle foreign language inputs.");
-    //TODO: Google Translate API - convert detectedUserInputString from language to English
-    //TODO: call handleEnglishQuery
-    //TODO: Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
-    //TODO: return output
-    return null;
+
+    //Google Translate API - convert detectedUserInputString from language to English
+    Translation inputTranslation = translateToEnglish(detectedUserInputString, languageCode);
+
+    //call handleEnglishQuery
+    String translatedInputText = inputTranslation.getTranslatedText(); 
+    ByteString inputByteString = null;
+    try {
+        inputByteString = SpeechUtils.synthesizeText(translatedInputText, languageCode);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    
+    Output englishOutput = handleEnglishQuery(inputByteString, languageCode);
+
+    // Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
+    String userInput = englishOutput.getUserInput();
+    String fulfillment = englishOutput.getFulfillmentText();
+    String userInputTranslation = translateFromEnglish(userInput, languageCode).getTranslatedText();
+    String fulfillmentTranslation = translateFromEnglish(userInput, languageCode).getTranslatedText();
+    byte[] byteArray = AgentUtils.getByteStringToByteArray(fulfillmentTranslation, languageCode);
+    Output languageOutput = new Output(userInputTranslation, fulfillmentTranslation, byteArray);
+    return languageOutput;
+  }
+
+  private Translation translateToEnglish(String text, String languageCode) {
+
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+
+    Translation translation =
+      translate.translate(
+        text,
+        Translate.TranslateOption.sourceLanguage(languageCode),
+        Translate.TranslateOption.targetLanguage("en-US"),
+        // Use "base" for standard edition, "nmt" for the premium model.
+        Translate.TranslateOption.model("nmt"));
+
+    System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
+    return translation;
+  }
+
+  private Translation translateFromEnglish(String text, String languageCode) {
+    
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+
+    Translation translation =
+      translate.translate(
+        text,
+        Translate.TranslateOption.sourceLanguage("en-US"),
+        Translate.TranslateOption.targetLanguage(languageCode),
+        // Use "base" for standard edition, "nmt" for the premium model.
+        Translate.TranslateOption.model("nmt"));
+
+    System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
+    return translation;
   }
 }
