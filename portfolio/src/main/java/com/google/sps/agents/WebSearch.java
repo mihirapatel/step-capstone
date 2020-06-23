@@ -24,7 +24,7 @@ public class WebSearch implements Agent {
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-	  this.searchText = parameters.get("q").getStringValue();
+	  searchText = parameters.get("q").getStringValue();
 	}
 	
 	@Override

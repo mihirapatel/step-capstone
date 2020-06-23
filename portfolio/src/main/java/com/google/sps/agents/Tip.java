@@ -18,14 +18,14 @@ public class Tip implements Agent {
     
     private final String intentName;
   	private String searchText;
-    private final Double tipAmount;
-    private final Double tipAmountPerPerson;
-    private final String tipPercentageString = null;
-    private final Double tipPercentageDouble = null;
-    private final Double amountWithoutTip = null;
-    private final String currency = null;
-    private final String currencySymbol = null;
-    private final Double peopleNumber = null;
+    private Double tipAmount;
+    private Double tipAmountPerPerson;
+    private String tipPercentageString = null;
+    private Double tipPercentageDouble = null;
+    private Double amountWithoutTip = null;
+    private String currency = null;
+    private String currencySymbol = null;
+    private Double peopleNumber = null;
     
     public Tip(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;

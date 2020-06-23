@@ -11,30 +11,24 @@ import java.io.IOException;
 import java.util.Map;
  
 /**
- * Currency Agent
+ * Language Agent
  */
-public class Currency implements Agent {
+public class Language implements Agent {
     private final String intentName;
-  	private String currencyFrom;
-    private String currencyTo;
-    private Double amount;
-
+  	private String searchText;
     
-    public Currency(String intentName, Map<String, Value> parameters) {
+    public Language(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
       setParameters(parameters);
     }
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-	  currencyFrom = parameters.get("currency-from").getStringValue();
-      currencyTo = parameters.get("currency-to").getStringValue();
-      amount = parameters.get("amount").getNumberValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return "Redirecting for conversion";
+	  return null;
 	}
 
 	@Override
@@ -44,8 +38,6 @@ public class Currency implements Agent {
 
 	@Override
 	public String getRedirect() {
-        String baseURL = "http://www.google.com/search?q=";
-        String endURL = String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo);
-		return baseURL + endURL;
+		return null;
     }
 }
