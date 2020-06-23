@@ -38,6 +38,7 @@ public class SpeechUtils {
     * @throws Exception on TextToSpeechClient Errors.
     */
     public static ByteString synthesizeText(String text, String languageCode) throws Exception {
+        languageCode = (languageCode == null) ? "en-US" : languageCode;
         // Instantiates a client
         try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
             // Set the text input to be synthesized
