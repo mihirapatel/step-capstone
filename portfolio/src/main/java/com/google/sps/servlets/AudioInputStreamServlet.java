@@ -36,53 +36,24 @@ import javax.servlet.ServletInputStream;
 /** Servlet that takes in audio stream and retrieves
  ** user input string to display. */
  
-@WebServlet("/audio-input")
-public class AudioInputServlet extends HttpServlet {
+@WebServlet("/audio-stream")
+public class AudioInputStreamServlet extends HttpServlet {
  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
- 
+    response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
+
     // Convert input stream into bytestring for DialogFlow API input
     ServletInputStream stream = request.getInputStream();
     ByteString bytestring = ByteString.readFrom(stream);
     String language = request.getParameter("language");
-    Output output = null;
 
     if (language.equals("English")) {
-      output = handleEnglishQuery(bytestring, null);
+      out.println(AudioUtils.detectIntentStream(bytestring).getQueryText());
     } else {
-      try {
-        output = handleForeignQuery(bytestring, language);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      String languageCode = AgentUtils.getLanguageCode(language);
+      out.println(AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode));
     }
- 
-    //Convert to JSON string
-    String json = new Gson().toJson(output);
-    response.getWriter().write(json);
-  }
-
-  private Output handleEnglishQuery(ByteString bytestring, String languageCode) {
-    QueryResult result = AudioUtils.detectIntentStream(bytestring);
-    if (result == null) {
-      return null;
-    }
-    return AgentUtils.getOutput(result, languageCode);
-  }
-
-  private Output handleForeignQuery(ByteString bytestring, String language) {
-    System.out.println("LANGUAGEL : " + language);
-    String languageCode = AgentUtils.getLanguageCode(language);
-    System.out.println("CODE: " + languageCode);
-    String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
-    System.out.println("TODO: handle foreign language inputs.");
-    //TODO: Google Translate API - convert detectedUserInputString from language to English
-    //TODO: call handleEnglishQuery
-    //TODO: Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
-    //TODO: return output
-    return null;
   }
 }
