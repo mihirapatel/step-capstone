@@ -68,7 +68,6 @@ function startRecording() {
  
         //start the recording process
         rec.record()
-         
         console.log("Recording started");
 
         streamingStarted = setInterval(streamAudio, 1000);
@@ -193,7 +192,7 @@ function visualize(stream) {
     canvasCtx.stroke();
   }
 }
- 
+
 window.onresize = function() {
   canvas.width = mainSection.offsetWidth;
 }
@@ -224,10 +223,12 @@ function getResponseFromAudio(blob) {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => displayResponse(stream));
+
 }
  
 function getResponseFromText(){
   var input = document.getElementById('text-input').value;
+
   fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
@@ -282,7 +283,7 @@ function updateScroll() {
   var element = document.getElementById("content");
   element.scrollTop = element.scrollHeight;
 }
- 
+
 function outputAudio(stream){
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
@@ -292,14 +293,12 @@ function outputAudio(stream){
     aud.onended = function() {
       sendRedirect(outputAsJson.redirect);
     };
-  }
-  else{
-    var aud = document.getElementById("sound-player");
-    aud.onended = function() {
-    };
+  } else {
+      var aud = document.getElementById("sound-player");
+      aud.onended = function() {};
   }
 }
-
+ 
 function sendRedirect(URL){
   window.open(URL);
 }

@@ -29,6 +29,8 @@ public class AgentUtils {
     String display = null;
     String redirect = null;
     byte[] byteStringToByteArray = null;
+    Agent object = null;
+
 
     String detectedIntent = queryResult.getIntent().getDisplayName();
     String agentName = getAgentName(detectedIntent);
@@ -39,7 +41,8 @@ public class AgentUtils {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    Agent object = getAgent(agentName, intentName, parameterMap);
+    object = getAgent(agentName, intentName, parameterMap);
+
     if (object != null){
         fulfillment = object.getOutput();
         display = object.getDisplay();
@@ -69,7 +72,7 @@ public class AgentUtils {
       case "time":
         return new Time(intentName, parameterMap);
       case "translate":
-        return new Translate(intentName, parameterMap);
+        return new TranslateAgent(intentName, parameterMap);
       case "units":
         return new UnitConverter(intentName, parameterMap);
       case "weather":
@@ -113,6 +116,9 @@ public class AgentUtils {
   }
 
   public static String getLanguageCode(String language) {
+    if (language == null) {
+        return "en-US";
+    }
     switch(language) {
       case "Chinese":
         return "zh-CN";
