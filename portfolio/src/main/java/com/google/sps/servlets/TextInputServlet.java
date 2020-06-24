@@ -52,7 +52,12 @@ public class TextInputServlet extends HttpServlet {
       return;
     }
 
-    Output output = AgentUtils.getOutput(result, languageCode);
+    Output output = null;
+    try{
+        output = AgentUtils.getOutput(result, languageCode);
+    }catch (Exception e) {
+        e.printStackTrace();
+    }
 
     //Convert to JSON string
     String json = new Gson().toJson(output);
