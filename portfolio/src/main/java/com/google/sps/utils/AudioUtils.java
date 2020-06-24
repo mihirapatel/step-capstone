@@ -98,6 +98,7 @@ public static String detectSpeechLanguage(byte[] data, String languageCode) {
  
       BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream =
           sessionsClient.streamingDetectIntentCallable().call();
+
       bidiStream.send(StreamingDetectIntentRequest.newBuilder()
           .setSession(session.toString())
           .setQueryInput(queryInput)
