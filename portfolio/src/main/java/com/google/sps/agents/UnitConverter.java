@@ -15,8 +15,10 @@ import java.util.Map;
  */
 public class UnitConverter implements Agent {
     private final String intentName;
-  	private String searchText;
-    
+  	private String unitFrom;
+    private String unitTo;
+    private Double amount;
+  
     public UnitConverter(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
       setParameters(parameters);
@@ -24,11 +26,14 @@ public class UnitConverter implements Agent {
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
+	  unitFrom = parameters.get("unit-from").getStringValue();
+      unitTo = parameters.get("unit-to").getStringValue();
+      amount = parameters.get("amount").getNumberValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return null;
+	  return "Redirecting for conversion";
 	}
 
 	@Override
@@ -38,6 +43,8 @@ public class UnitConverter implements Agent {
 
 	@Override
 	public String getRedirect() {
-		return null;
+    String baseURL = "http://www.google.com/search?q=";
+    String endURL = String.join("+", "Convert", String.valueOf(amount), unitFrom, "to", unitTo);
+		return baseURL + endURL;
     }
 }
