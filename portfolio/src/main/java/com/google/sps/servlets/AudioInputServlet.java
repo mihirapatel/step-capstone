@@ -18,6 +18,7 @@ import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.translate.*;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
+import com.google.sps.agents.TranslateAgent;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.AudioUtils;
 import com.google.sps.data.Output;
@@ -81,7 +82,7 @@ public class AudioInputServlet extends HttpServlet {
     System.out.println("TODO: handle foreign language inputs.");
 
     //Google Translate API - convert detectedUserInputString from language to English
-    Translation inputTranslation = translateToEnglish(detectedUserInputString, languageCode);
+    Translation inputTranslation = TranslateAgent.translateToEnglish(detectedUserInputString, languageCode);
 
     //call handleEnglishQuery
     String translatedInputText = inputTranslation.getTranslatedText(); 
@@ -97,42 +98,42 @@ public class AudioInputServlet extends HttpServlet {
     // Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
     String userInput = englishOutput.getUserInput();
     String fulfillment = englishOutput.getFulfillmentText();
-    String userInputTranslation = translateFromEnglish(userInput, languageCode).getTranslatedText();
-    String fulfillmentTranslation = translateFromEnglish(userInput, languageCode).getTranslatedText();
+    String userInputTranslation = TranslateAgent.translateFromEnglish(userInput, languageCode).getTranslatedText();
+    String fulfillmentTranslation = TranslateAgent.translateFromEnglish(userInput, languageCode).getTranslatedText();
     byte[] byteArray = AgentUtils.getByteStringToByteArray(fulfillmentTranslation, languageCode);
     Output languageOutput = new Output(userInputTranslation, fulfillmentTranslation, byteArray);
     return languageOutput;
   }
 
-  private Translation translateToEnglish(String text, String languageCode) {
+//   private Translation translateToEnglish(String text, String languageCode) {
 
-    Translate translate = TranslateOptions.getDefaultInstance().getService();
+//     Translate translate = TranslateOptions.getDefaultInstance().getService();
 
-    Translation translation =
-      translate.translate(
-        text,
-        Translate.TranslateOption.sourceLanguage(languageCode),
-        Translate.TranslateOption.targetLanguage("en-US"),
-        // Use "base" for standard edition, "nmt" for the premium model.
-        Translate.TranslateOption.model("nmt"));
+//     Translation translation =
+//       translate.translate(
+//         text,
+//         Translate.TranslateOption.sourceLanguage(languageCode),
+//         Translate.TranslateOption.targetLanguage("en-US"),
+//         // Use "base" for standard edition, "nmt" for the premium model.
+//         Translate.TranslateOption.model("nmt"));
 
-    System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
-    return translation;
-  }
+//     System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
+//     return translation;
+//   }
 
-  private Translation translateFromEnglish(String text, String languageCode) {
+//   private Translation translateFromEnglish(String text, String languageCode) {
     
-    Translate translate = TranslateOptions.getDefaultInstance().getService();
+//     Translate translate = TranslateOptions.getDefaultInstance().getService();
 
-    Translation translation =
-      translate.translate(
-        text,
-        Translate.TranslateOption.sourceLanguage("en-US"),
-        Translate.TranslateOption.targetLanguage(languageCode),
-        // Use "base" for standard edition, "nmt" for the premium model.
-        Translate.TranslateOption.model("nmt"));
+//     Translation translation =
+//       translate.translate(
+//         text,
+//         Translate.TranslateOption.sourceLanguage("en-US"),
+//         Translate.TranslateOption.targetLanguage(languageCode),
+//         // Use "base" for standard edition, "nmt" for the premium model.
+//         Translate.TranslateOption.model("nmt"));
 
-    System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
-    return translation;
-  }
+//     System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
+//     return translation;
+//   }
 }

@@ -70,7 +70,7 @@ public class AgentUtils {
       case "time":
         return new Time(intentName, parameterMap);
       case "translate":
-        return new Translate(intentName, parameterMap);
+        return new TranslateAgent(intentName, parameterMap);
       case "units":
         return new UnitConverter(intentName, parameterMap);
       case "weather":
