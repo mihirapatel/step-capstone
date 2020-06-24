@@ -207,12 +207,12 @@ function getLanguage() {
 }
 
 function getAudioStream(blob) {
-  fetch('/audio-input' + '?language=' + getLanguage() + '&stream=true', {
+  fetch('/audio-stream' + '?language=' + getLanguage(), {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => {
     streamingContainer.innerHTML = "";
-    placeUserInput(JSON.parse(stream).userInput + "...", "streaming");
+    placeUserInput(stream + "...", "streaming");
   });
 }
  
@@ -220,7 +220,7 @@ function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
  
-  fetch('/audio-input' + '?language=' + getLanguage() + '&stream=false', {
+  fetch('/audio-input' + '?language=' + getLanguage(), {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => displayResponse(stream));
