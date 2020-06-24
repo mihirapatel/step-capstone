@@ -81,8 +81,9 @@ public class AudioInputServlet extends HttpServlet {
     String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
     System.out.println("TODO: handle foreign language inputs.");
 
+    String englishLanguageCode = AgentUtils.getLanguageCode("English");
     //Google Translate API - convert detectedUserInputString from language to English
-    Translation inputTranslation = TranslateAgent.translateToEnglish(detectedUserInputString, languageCode);
+    Translation inputTranslation = TranslateAgent.translate(detectedUserInputString, languageCode, englishLanguageCode);
 
     //call handleEnglishQuery
     String translatedInputText = inputTranslation.getTranslatedText(); 
@@ -98,42 +99,10 @@ public class AudioInputServlet extends HttpServlet {
     // Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
     String userInput = englishOutput.getUserInput();
     String fulfillment = englishOutput.getFulfillmentText();
-    String userInputTranslation = TranslateAgent.translateFromEnglish(userInput, languageCode).getTranslatedText();
-    String fulfillmentTranslation = TranslateAgent.translateFromEnglish(userInput, languageCode).getTranslatedText();
+    String userInputTranslation = TranslateAgent.translate(userInput, englishLanguageCode, languageCode).getTranslatedText();
+    String fulfillmentTranslation = TranslateAgent.translate(userInput, englishLanguageCode, languageCode).getTranslatedText();
     byte[] byteArray = AgentUtils.getByteStringToByteArray(fulfillmentTranslation, languageCode);
     Output languageOutput = new Output(userInputTranslation, fulfillmentTranslation, byteArray);
     return languageOutput;
   }
-
-//   private Translation translateToEnglish(String text, String languageCode) {
-
-//     Translate translate = TranslateOptions.getDefaultInstance().getService();
-
-//     Translation translation =
-//       translate.translate(
-//         text,
-//         Translate.TranslateOption.sourceLanguage(languageCode),
-//         Translate.TranslateOption.targetLanguage("en-US"),
-//         // Use "base" for standard edition, "nmt" for the premium model.
-//         Translate.TranslateOption.model("nmt"));
-
-//     System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
-//     return translation;
-//   }
-
-//   private Translation translateFromEnglish(String text, String languageCode) {
-    
-//     Translate translate = TranslateOptions.getDefaultInstance().getService();
-
-//     Translation translation =
-//       translate.translate(
-//         text,
-//         Translate.TranslateOption.sourceLanguage("en-US"),
-//         Translate.TranslateOption.targetLanguage(languageCode),
-//         // Use "base" for standard edition, "nmt" for the premium model.
-//         Translate.TranslateOption.model("nmt"));
-
-//     System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
-//     return translation;
-//   }
 }
