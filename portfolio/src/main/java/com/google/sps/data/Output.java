@@ -8,15 +8,6 @@ public final class Output {
   private final byte[] byteStringToByteArray;
   private final String display;
   private final String redirect;
-
-  //Constructor with only input (for streaming purposes)
-  public Output(String userInput) {
-    this.userInput = userInput;
-    this.fulfillmentText = null;
-    this.byteStringToByteArray = null;
-    this.display = null;
-    this.redirect = null;
-  }
  
   // Constructor without display
   public Output(String userInput, String fulfillmentText, byte[] byteStringToByteArray) {
