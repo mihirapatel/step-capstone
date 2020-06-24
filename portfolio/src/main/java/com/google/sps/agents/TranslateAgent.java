@@ -8,6 +8,7 @@ import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.Output;
 import com.google.sps.agents.Agent;
+import com.google.sps.utils.AgentUtils;
 import java.io.IOException;
 import java.util.Map;
  
@@ -18,7 +19,9 @@ public class TranslateAgent implements Agent {
     private final String intentName;
   	private String text;
     private String languageTo;
-    private String langaugeFrom;
+    private String languageFrom;
+    private String languageToCode;
+    private String languageFromCode;
  
     public TranslateAgent(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
@@ -30,19 +33,21 @@ public class TranslateAgent implements Agent {
         System.out.println(parameters);
         text = parameters.get("text").getStringValue();
         languageTo = parameters.get("lang-to").getStringValue();
-        langaugeFrom = parameters.get("lang-from").getStringValue();
+        languageFrom = parameters.get("lang-from").getStringValue();
  
-        if (langaugeFrom == "") {
-            langaugeFrom = "English";
-            System.out.println(langaugeFrom);
+        if (languageFrom == "") {
+            languageFrom = "English";
         }
 
+        languageToCode = AgentUtils.getLanguageCode(languageTo);
+        languageFromCode = AgentUtils.getLanguageCode(languageFrom);
 	}
 	
 	@Override
 	public String getOutput() {
-        
-	    return null;
+        Translation translation = translate(text, languageFromCode, languageToCode);
+        String translatedString = translation.getTranslatedText();
+	    return text + " in " + languageTo + " is :" + translatedString;
 	}
 
 	@Override
@@ -55,14 +60,14 @@ public class TranslateAgent implements Agent {
 		return null;
     }
 
-    public static Translation translateToEnglish(String text, String languageCode) {
+    public static Translation translate(String text, String languageFromCode, String languageToCode) {
         Translate translate = TranslateOptions.getDefaultInstance().getService();
 
         Translation translation =
         translate.translate(
             text,
-            Translate.TranslateOption.sourceLanguage(languageCode),
-            Translate.TranslateOption.targetLanguage("en-US"),
+            Translate.TranslateOption.sourceLanguage(languageFromCode),
+            Translate.TranslateOption.targetLanguage(languageToCode),
             // Use "base" for standard edition, "nmt" for the premium model.
             Translate.TranslateOption.model("nmt"));
 
@@ -70,18 +75,6 @@ public class TranslateAgent implements Agent {
         return translation;
     }
 
-    public static Translation translateFromEnglish(String text, String languageCode) {
-        Translate translate = TranslateOptions.getDefaultInstance().getService();
 
-        Translation translation =
-        translate.translate(
-            text,
-            Translate.TranslateOption.sourceLanguage("en-US"),
-            Translate.TranslateOption.targetLanguage(languageCode),
-            // Use "base" for standard edition, "nmt" for the premium model.
-            Translate.TranslateOption.model("nmt"));
 
-        System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
-        return translation;
-    }
 }
