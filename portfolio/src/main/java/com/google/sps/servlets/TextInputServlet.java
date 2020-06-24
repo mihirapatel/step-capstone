@@ -43,7 +43,6 @@ public class TextInputServlet extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
  
     String userQuestion = request.getParameter("request-input");
-
     String language = request.getParameter("language");
     String languageCode = AgentUtils.getLanguageCode(language);
     QueryResult result = TextUtils.detectIntentStream(userQuestion, languageCode);
@@ -54,7 +53,7 @@ public class TextInputServlet extends HttpServlet {
     }
 
     Output output = AgentUtils.getOutput(result, languageCode);
-     
+
     //Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);
