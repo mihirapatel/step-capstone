@@ -47,8 +47,8 @@ h1 {
  
 #content {
   position:absolute; 
-  top: inherit; 
-  Bottom: inherit; 
+  top: 200px; 
+  Bottom: 200px; 
   overflow: auto;
   width: 90%;
   max-width: 850px;
