@@ -42,25 +42,17 @@ public class AgentUtils {
         inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
         Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-        // Case where response is pre-defined in Dialogflow
-        if (!queryResult.getFulfillmentText().isEmpty()) {
-            fulfillment = queryResult.getFulfillmentText();
+        object = getAgent(agentName, intentName, parameterMap);
+        if (object != null) {
+            fulfillment = object.getOutput();
+            fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
+            display = object.getDisplay();
+            redirect = object.getRedirect();
         } else {
-            object = getAgent(agentName, intentName, parameterMap);
-            if (object != null) {
-                try {
-                    fulfillment = object.getOutput();
-                    display = object.getDisplay();
-                    redirect = object.getRedirect();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                fulfillment = queryResult.getFulfillmentText();
-                fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
-            }
+            fulfillment = queryResult.getFulfillmentText();
+            fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
         }
-        fulfillment = fulfillment == null ? "I didn't hear you. Can you repeat that?" : fulfillment;
+        fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
     
         byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
         Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
