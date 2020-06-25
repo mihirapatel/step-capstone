@@ -35,19 +35,10 @@ public class AudioUtils {
     QueryResult queryResult = null;
  
     try (SessionsClient sessionsClient = SessionsClient.create()) {
-      InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
-          .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
-          .setLanguageCode("en-US")
-          .setSampleRateHertz(48000)
-          .build();
-      QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
- 
-      BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream = 
-        makeBidiStream(sessionsClient, queryInput, bytestring);
- 
-      for (StreamingDetectIntentResponse response : bidiStream) {
-        queryResult = response.getQueryResult();
-        printResult(queryResult);
+      try {
+        queryResult = streamAudio(sessionsClient, bytestring, 48000);
+      } catch (Exception e) {
+        queryResult = streamAudio(sessionsClient, bytestring, 44100);
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -55,37 +46,60 @@ public class AudioUtils {
     return queryResult;
   }
 
-/**
- * Transcribe a short audio file using synchronous speech recognition
- *
- * @param localFilePath Path to local audio file, e.g. /path/audio.wav
- */
-public static String detectSpeechLanguage(byte[] data, String languageCode) {
-  try (SpeechClient speechClient = SpeechClient.create()) {
-    int sampleRateHertz = 44100;
+  private static QueryResult streamAudio(SessionsClient sessionsClient, ByteString bytestring, int sampleRate) {
+    InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
+      .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
+      .setLanguageCode("en-US")
+      .setSampleRateHertz(sampleRate)
+      .build();
+    QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
+ 
+    BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream = 
+      makeBidiStream(sessionsClient, queryInput, bytestring);
+    QueryResult queryResult = null;
+    for (StreamingDetectIntentResponse response : bidiStream) {
+      queryResult = response.getQueryResult();
+      printResult(queryResult);
+    }
+    return queryResult;
+  }
 
+  /**
+   * Transcribe a short audio file using synchronous speech recognition
+   *
+   * @param localFilePath Path to local audio file, e.g. /path/audio.wav
+   */
+  public static String detectSpeechLanguage(byte[] data, String languageCode) {
+    try (SpeechClient speechClient = SpeechClient.create()) {
+      try {
+        return getAudioLanguage(speechClient, data, languageCode, 48000);
+      } catch (Exception e) {
+        return getAudioLanguage(speechClient, data, languageCode, 44100);
+      }
+  } catch (Exception exception) {
+    System.err.println("Failed to create the client due to: " + exception);
+  }
+  return null;
+}
+
+  private static String getAudioLanguage(SpeechClient speechClient, byte[] data, String languageCode, int sampleRate) {
     RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.LINEAR16;
-    RecognitionConfig config =
-        RecognitionConfig.newBuilder()
-            .setLanguageCode(languageCode)
-            .setSampleRateHertz(sampleRateHertz)
-            .setEncoding(encoding)
-            .build();
+    RecognitionConfig config = RecognitionConfig.newBuilder()
+      .setLanguageCode(languageCode)
+      .setSampleRateHertz(sampleRate)
+      .setEncoding(encoding)
+      .build();
     ByteString content = ByteString.copyFrom(data);
     RecognitionAudio audio = RecognitionAudio.newBuilder().setContent(content).build();
-    RecognizeRequest request =
-        RecognizeRequest.newBuilder().setConfig(config).setAudio(audio).build();
+    RecognizeRequest request = RecognizeRequest.newBuilder().setConfig(config).setAudio(audio).build();
     RecognizeResponse response = speechClient.recognize(request);
     for (SpeechRecognitionResult result : response.getResultsList()) {
       SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
       System.out.printf("Transcript: %s\n", alternative.getTranscript());
       return alternative.getTranscript();
     }
-  } catch (Exception exception) {
-    System.err.println("Failed to create the client due to: " + exception);
+    return null;
   }
-  return null;
-}
 
   public static void detectIntentStream(String projectId, String audioFilePath, String sessionId) {
     try (SessionsClient sessionsClient = SessionsClient.create()) {
