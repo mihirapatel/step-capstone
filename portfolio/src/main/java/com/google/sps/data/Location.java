@@ -52,7 +52,7 @@ public class Location {
 
     public void setProperties() throws Exception{
         GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey("YOURAPIKEY")
+            .apiKey("APIKEYHERE")
             .build();
 
         // Synchronous
