@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Map;
  
 /**
- * DialogFlow API Detect Intent sample with audio files processes as an audio stream.
+ * Language Agent
  */
 public class Language implements Agent {
 
