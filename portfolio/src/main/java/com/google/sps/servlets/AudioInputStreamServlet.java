@@ -39,21 +39,21 @@ import javax.servlet.ServletInputStream;
 @WebServlet("/audio-stream")
 public class AudioInputStreamServlet extends HttpServlet {
  
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
 
-    // Convert input stream into bytestring for DialogFlow API input
-    ServletInputStream stream = request.getInputStream();
-    ByteString bytestring = ByteString.readFrom(stream);
-    String language = request.getParameter("language");
+        // Convert input stream into bytestring for DialogFlow API input
+        ServletInputStream stream = request.getInputStream();
+        ByteString bytestring = ByteString.readFrom(stream);
+        String language = request.getParameter("language");
 
-    String languageCode = AgentUtils.getLanguageCode(language);
-    String detectedIntent = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
-    if (detectedIntent == null) {
-      out.println("");
+        String languageCode = AgentUtils.getLanguageCode(language);
+        String detectedIntent = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
+        if (detectedIntent == null) {
+            out.println("");
+        }
+            out.println(detectedIntent);
     }
-    out.println(detectedIntent);
-  }
 }
