@@ -15,6 +15,9 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+import java.time.temporal.ChronoUnit;
+import java.time.Duration;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -81,14 +84,14 @@ public class Time implements Agent {
         String timeToString = "";
         String timeFromString = "";
         if (timeFrom != null){
-            // Get time based on time to check
-            timeToString = zonedTimeToString(getTimeIn(locationTo));
+            // Get time in locationTo based on TimeFrom on locationFrom
+            timeToString = zonedTimeToString(getTimeIn(locationTo, timeFrom));
             timeFromString = zonedTimeToString(timeFrom);
             output = "It's "+ timeToString + " in " + locationTo 
                 + " when it's " + timeFromString + " in " + locationFrom +".";
 
         } else {
-            // Get current time in 2 diff timezones
+            // Get current time in 2 different timezones
             timeFromString = getCurrentTimeString(locationFrom);
             timeToString = getCurrentTimeString(locationTo);
             output = "It is currently "+ timeFromString + " in " + locationFrom 
@@ -153,34 +156,48 @@ public class Time implements Agent {
     }
 
     public String getTimeDiff(String firstLocation, String secondLocation){
-        // TO DO: fix to calculate difference in days, not just hours
-        ZonedDateTime firstTime = getCurrentTime(firstLocation);
-        ZonedDateTime secondTime = getCurrentTime(secondLocation);
+        ZonedDateTime firstZonedTime = getCurrentTime(firstLocation);
+        ZonedDateTime secondZonedTime = getTimeIn(secondLocation, firstZonedTime);
+        LocalDateTime firstLocalTime = firstZonedTime.toLocalDateTime();
+        LocalDateTime secondLocalTime = secondZonedTime.toLocalDateTime();
 
-        int firstHour = firstTime.getHour();
-        int secondHour = secondTime.getHour();
-        int hourDiff = firstHour - secondHour;
+        Duration duration = Duration.between(secondLocalTime, firstLocalTime);
+        int hours = (int)duration.toHours();
+        int minutes = (int)duration.toMinutes() - (hours * 60);
+
+        String hourString = String.valueOf(Math.abs(hours));
+        String timeString = "";
+        if (Math.abs(hours) == 1){
+            timeString += hourString + " hour";
+        }else{
+            timeString += hourString + " hours";
+        }
+        if (minutes!=0){
+            String minuteString = String.valueOf(Math.abs(minutes));
+            timeString += " and " + minuteString + " minutes";
+        }
 
         String ret = "";
-        if (hourDiff < 0){
-            ret +=  String.valueOf(hourDiff * -1) + " hours behind ";
+        if (hours < 0){
+            ret +=  timeString + " behind ";
         }
-        else if (hourDiff == 0){
+        else if (hours == 0){
             ret +=  "in the same time zone as ";
-        }else{
-            ret += String.valueOf(hourDiff) + " hours ahead of ";
+        } else {
+            ret += timeString + " ahead of ";
         }
         return ret;
     }
 
-    public ZonedDateTime getTimeIn(String locationIn){
+    public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject){
         ZonedDateTime timeIn = null;
         try{
-            Location placeTo = new Location(locationTo);
+            Location placeTo = new Location(locationIn);
             String timeZoneID = placeTo.getTimeZoneID();
-            timeIn = timeFrom.withZoneSameInstant(ZoneId.of(timeZoneID));
+            timeIn = timeFromObject.withZoneSameInstant(ZoneId.of(timeZoneID));
         } catch (Exception e) {
             e.printStackTrace();
+            return timeIn;
         }
         return timeIn;
     }
@@ -191,8 +208,11 @@ public class Time implements Agent {
     }
 
     public String zonedTimeToString(ZonedDateTime time){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-        String timeString = time.format(formatter);
+        String timeString = "";
+        if (time != null){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+            timeString = time.format(formatter);
+        }
         return timeString;
     }
 
@@ -237,6 +257,7 @@ public class Time implements Agent {
 
         if (!location_fields.isEmpty()){
             String island = location_fields.get("island").getStringValue();
+            String businessName = location_fields.get("business-name").getStringValue();
             String street = location_fields.get("street-address").getStringValue();
             String city = location_fields.get("city").getStringValue();
             String subAdminArea = location_fields.get("subadmin-area").getStringValue();
@@ -253,8 +274,12 @@ public class Time implements Agent {
                 if (!country.isEmpty()){location_words.add(country);}
                 if (!street.isEmpty()){location_words.add(street);}
                 if (!zipCode.isEmpty()){location_words.add(zipCode);}
+                if (!businessName.isEmpty()){location_words.add(businessName);}
                 if (location_words.size() > 0){
                     ret = location_words.get(0);
+                    if (ret.startsWith("in ")){
+                        ret = ret.substring(3);
+                    }
                 }
                 else{
                     ret = "";
