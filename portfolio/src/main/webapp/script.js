@@ -246,7 +246,7 @@ function displayResponse(stream) {
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
   if (outputAsJson.display) {
     if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
-      convoContainer = placeObject(outputAsJson.display, "media-display timer-display");
+      convoContainer = placeObjectContainer(outputAsJson.display, "media-display timer-display", "convo-container");
       var allTimers = document.getElementsByClassName("timer-display");
       if (existingTimer) {
         terminateTimer(allTimers[0]);
