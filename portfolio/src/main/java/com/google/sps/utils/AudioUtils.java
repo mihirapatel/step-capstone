@@ -62,7 +62,7 @@ public class AudioUtils {
  */
 public static String detectSpeechLanguage(byte[] data, String languageCode) {
   try (SpeechClient speechClient = SpeechClient.create()) {
-    int sampleRateHertz = 44100;
+    int sampleRateHertz = 48000;
 
     RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.LINEAR16;
     RecognitionConfig config =

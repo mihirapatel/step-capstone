@@ -54,7 +54,6 @@ public class AudioInputStreamServlet extends HttpServlet {
     if (detectedIntent == null) {
       out.println("");
     }
-    System.out.println("Detected intent: " + detectedIntent);
     out.println(detectedIntent);
   }
 }
