@@ -38,7 +38,7 @@ public class AudioUtils {
       InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
           .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
           .setLanguageCode("en-US")
-          .setSampleRateHertz(44100)
+          .setSampleRateHertz(48000)
           .build();
       QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
  
@@ -62,7 +62,7 @@ public class AudioUtils {
  */
 public static String detectSpeechLanguage(byte[] data, String languageCode) {
   try (SpeechClient speechClient = SpeechClient.create()) {
-    int sampleRateHertz = 48000;
+    int sampleRateHertz = 44100;
 
     RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.LINEAR16;
     RecognitionConfig config =
