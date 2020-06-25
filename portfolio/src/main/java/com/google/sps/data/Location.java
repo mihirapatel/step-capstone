@@ -24,13 +24,17 @@ import com.google.maps.GaeRequestHandler;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.TimeZoneApi;
-import java.util.TimeZone;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileOutputStream;
+import java.io.FileReader; 
+import java.io.File;
+import java.nio.file.Files; 
+import java.nio.file.Paths;
 import java.io.OutputStream;
 import java.io.IOException;
+import java.util.TimeZone;
+
 
 /* Location object */
 public class Location {
@@ -40,76 +44,77 @@ public class Location {
     private LatLng coords;
     private TimeZone timeZoneObj;
     private String timeZoneID;
+    
 
     public Location(String address) {
-      this.address = address;
-      try{
-        setProperties();
-      } catch (Exception e){
-          e.printStackTrace();
-      }
-    }
-
-    public void setProperties() throws Exception{
-        GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey("PUTAPIKEYHERE")
-            .build();
-
-        // Synchronous
+        this.address = address;
         try {
-            getCoordinates(context, this.address);
-            getTimeZone(context, this.coords);
+            setProperties();
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
-    public void getCoordinates(GeoApiContext context, String address) throws Exception{
+    public void setProperties() throws Exception {
+        String apiKey = new String(Files.readAllBytes(Paths.get(getClass().getResource("/files/apikey.txt").getFile())));
+        GeoApiContext context = new GeoApiContext.Builder()
+            .apiKey(apiKey)
+            .build();
+
+        try {
+            setCoordinates(context, address);
+            setTimeZone(context, coords);
+        } catch (Exception e) {
+            return;
+        }
+    }
+
+    public void setCoordinates(GeoApiContext context, String address) throws Exception {
         try {
             GeocodingResult[] results =  GeocodingApi.geocode(context,
-             address).await();
+                address).await();
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             this.latCoord = results[0].geometry.location.lat;
             this.lngCoord = results[0].geometry.location.lng;
-            this.coords = new LatLng(this.latCoord, this.lngCoord);
+            this.coords = new LatLng(latCoord, lngCoord);
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
-    public void getTimeZone(GeoApiContext context, LatLng location) throws Exception{
+    public void setTimeZone(GeoApiContext context, LatLng location) throws Exception {
         try {
             TimeZone results =  TimeZoneApi.getTimeZone(context,
-             location).await();
+                location).await();
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             this.timeZoneObj = results;
             this.timeZoneID = results.getID();
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
     public String getAddress() {
-      return this.address;
+        return this.address;
     }
  
     public Double getLat() {
-      return this.latCoord;
+        return this.latCoord;
     }
 
     public Double getLng() {
-      return this.lngCoord;
+        return this.lngCoord;
     }
 
     public LatLng getCoords() {
-      return this.coords;
+        return this.coords;
     }
  
     public String getTimeZoneID() {
-      return this.timeZoneID;
+        return this.timeZoneID;
     }
 
     public TimeZone getTimeZone() {
-      return this.timeZoneObj;
+        return this.timeZoneObj;
     }
 }
