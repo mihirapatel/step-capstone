@@ -45,20 +45,20 @@ public class Location {
         try {
             setProperties();
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
     public void setProperties() throws Exception {
         GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey("YOUR-API-KEY")
+            .apiKey("AIzaSyD-yzkJXzUoSmD3IsclTXwugHGaqrb5ijk")
             .build();
 
         try {
             setCoordinates(context, address);
             setTimeZone(context, coords);
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
@@ -71,7 +71,7 @@ public class Location {
             this.lngCoord = results[0].geometry.location.lng;
             this.coords = new LatLng(latCoord, lngCoord);
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
@@ -83,7 +83,7 @@ public class Location {
             this.timeZoneObj = results;
             this.timeZoneID = results.getID();
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 
