@@ -53,13 +53,13 @@ public class Time implements Agent {
                 output = "It is " + currentTime + " in " + location + ".";
             }
         }
-        if (intentName.equals("check")) {
+        else if (intentName.equals("check")) {
             String currentTime = getCurrentTimeString(location);
             if (!currentTime.isEmpty()) {
                 output = "In " + location + ", it is currently " + currentTime + ".";
             }
         }
-        if (intentName.contains("convert")) {
+        else if (intentName.contains("convert")) {
             this.locationFrom = getLocationParameter("location-from", parameters);
             this.locationTo = getLocationParameter("location-to", parameters);
             this.timeFrom = getZonedTime("time-from", locationFrom, parameters);
@@ -83,7 +83,7 @@ public class Time implements Agent {
                 output = null;
             }
         }
-        if (intentName.contains("time_zones")) {
+        else if (intentName.contains("time_zones")) {
             this.location = getLocationParameter("location", parameters);
 
             String timezone = getZone(location);
@@ -91,7 +91,7 @@ public class Time implements Agent {
                 output = "The timezone in "+ location + " is " + timezone + "."; 
             }
         }
-        if (intentName.contains("time_difference")) {
+        else if (intentName.contains("time_difference")) {
             this.locationOne = getLocationParameter("location-1", parameters);
             this.locationTwo = getLocationParameter("location-2", parameters);
 
