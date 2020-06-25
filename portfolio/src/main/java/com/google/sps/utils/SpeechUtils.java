@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package com.google.sps.utils;
  
 // Imports the Google Cloud client library
@@ -28,8 +28,7 @@ import com.google.protobuf.ByteString;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.IOException;
- 
- 
+
 public class SpeechUtils {
     /**
     * Demonstrates using the Text to Speech client to synthesize text or ssml.
@@ -39,6 +38,7 @@ public class SpeechUtils {
     */
     public static ByteString synthesizeText(String text, String languageCode) throws Exception {
         languageCode = (languageCode == null) ? "en-US" : languageCode;
+
         // Instantiates a client
         try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
             // Set the text input to be synthesized
@@ -50,13 +50,13 @@ public class SpeechUtils {
                     .setLanguageCode(languageCode) // languageCode = "en_us"
                     .setSsmlGender(SsmlVoiceGender.FEMALE) // ssmlVoiceGender = SsmlVoiceGender.FEMALE
                     .build();
- 
+
             // Select the type of audio file you want returned
             AudioConfig audioConfig =
                 AudioConfig.newBuilder()
                     .setAudioEncoding(AudioEncoding.MP3) // MP3 audio.
                     .build();
- 
+
             // Perform the text-to-speech request
             SynthesizeSpeechResponse response =
                 textToSpeechClient.synthesizeSpeech(input, voice, audioConfig);

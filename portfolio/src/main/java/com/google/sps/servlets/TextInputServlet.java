@@ -22,7 +22,6 @@ import com.google.sps.utils.AgentUtils;
 import com.google.sps.data.Output;
 import com.google.sps.utils.SpeechUtils;
 import com.google.sps.utils.TextUtils;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
@@ -52,13 +51,14 @@ public class TextInputServlet extends HttpServlet {
       response.getWriter().write(new Gson().toJson(null));
       return;
     }
-    //
+
     Output output = null;
     try{
         output = AgentUtils.getOutput(result, languageCode);
     }catch (Exception e) {
         e.printStackTrace();
     }
+
     //Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);

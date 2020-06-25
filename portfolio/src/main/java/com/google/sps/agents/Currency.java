@@ -15,8 +15,10 @@ import java.util.Map;
  */
 public class Currency implements Agent {
     private final String intentName;
-  	private String searchText;
-    
+  	private String currencyFrom;
+    private String currencyTo;
+    private Double amount;
+
     public Currency(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
       setParameters(parameters);
@@ -24,11 +26,14 @@ public class Currency implements Agent {
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
+	  currencyFrom = parameters.get("currency-from").getStringValue();
+      currencyTo = parameters.get("currency-to").getStringValue();
+      amount = parameters.get("amount").getNumberValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return null;
+	  return "Redirecting for conversion";
 	}
 
 	@Override
@@ -38,6 +43,8 @@ public class Currency implements Agent {
 
 	@Override
 	public String getRedirect() {
-		return null;
+        String baseURL = "http://www.google.com/search?q=";
+        String endURL = String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo);
+		return baseURL + endURL;
     }
 }
