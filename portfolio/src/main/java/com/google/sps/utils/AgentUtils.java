@@ -24,132 +24,130 @@ import javax.servlet.http.HttpServlet;
  * Identifies agent from Dialogflow API Query result and creates Output object
  */
 public class AgentUtils {
-  
-  public static Output getOutput(QueryResult queryResult, String languageCode) {
-    //
-    String fulfillment = null;
-    String display = null;
-    String redirect = null;
-    byte[] byteStringToByteArray = null;
-    Agent object = null;
+
+    public static Output getOutput(QueryResult queryResult, String languageCode) {
+        String fulfillment = null;
+        String display = null;
+        String redirect = null;
+        byte[] byteStringToByteArray = null;
+        Agent object = null;
 
 
-    String detectedIntent = queryResult.getIntent().getDisplayName();
-    String agentName = getAgentName(detectedIntent);
-    String intentName = getIntentName(detectedIntent);
+        String detectedIntent = queryResult.getIntent().getDisplayName();
+        String agentName = getAgentName(detectedIntent);
+        String intentName = getIntentName(detectedIntent);
 
-    // Retrieve detected input from DialogFlow result.
-    String inputDetected = queryResult.getQueryText();
-    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
-    Map<String, Value> parameterMap = getParameterMap(queryResult);
+        // Retrieve detected input from DialogFlow result.
+        String inputDetected = queryResult.getQueryText();
+        inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
+        Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    object = getAgent(agentName, intentName, parameterMap);
-
-    if (object != null){
-        try{
+        object = getAgent(agentName, intentName, parameterMap);
+        if (object != null) {
             fulfillment = object.getOutput();
+            fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
             display = object.getDisplay();
             redirect = object.getRedirect();
-        }catch (Exception e){
-            e.printStackTrace();
+        } else {
+            fulfillment = queryResult.getFulfillmentText();
+            fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
+        }
+        fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
+    
+        byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
+        Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
+        return output;
+    }
+
+    private static Agent getAgent(String agentName, String intentName, Map<String, Value> parameterMap) {
+        switch(agentName) {
+            case "calculator":
+                return new Tip(intentName, parameterMap);
+            case "currency":
+                return new Currency(intentName, parameterMap);
+            case "language":
+                return new Language(intentName, parameterMap);
+            case "name":
+                return new Name(intentName, parameterMap);
+            case "reminders":
+                return new Reminders(intentName, parameterMap);
+            case "time":
+                return new Time(intentName, parameterMap);
+            case "translate":
+                return new TranslateAgent(intentName, parameterMap);
+            case "units":
+                return new UnitConverter(intentName, parameterMap);
+            case "weather":
+                return new Weather(intentName, parameterMap);
+            case "web":
+                return new WebSearch(intentName, parameterMap);
+            default:
+                return null;
         }
     }
-    fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
-    
-    byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
-    Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
-    return output;
-  }
 
-  private static Agent getAgent(String agentName, String intentName, Map<String, Value> parameterMap) {
-    switch(agentName) {
-      case "calculator":
-        return new Tip(intentName, parameterMap);
-      case "currency":
-        return new Currency(intentName, parameterMap);
-      case "language":
-        return new Language(intentName, parameterMap);
-      case "name":
-        return new Name(intentName, parameterMap);
-      case "reminders":
-        return new Reminders(intentName, parameterMap);
-      case "time":
-        return new Time(intentName, parameterMap);
-      case "translate":
-        return new TranslateAgent(intentName, parameterMap);
-      case "units":
-        return new UnitConverter(intentName, parameterMap);
-      case "weather":
-        return new Weather(intentName, parameterMap);
-      case "web":
-        return new WebSearch(intentName, parameterMap);
-      default:
-        return null;
+    private static String getAgentName(String detectedIntent) {
+        String[] intentList = detectedIntent.split("\\.", 2);
+        return intentList[0];
     }
-  }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
-  private static String getIntentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    String intentName = detectedIntent;
-    if (intentList.length > 1){
-        intentName = intentList[1];
+    private static String getIntentName(String detectedIntent) {
+        String[] intentList = detectedIntent.split("\\.", 2);
+        String intentName = detectedIntent;
+        if (intentList.length > 1) {
+            intentName = intentList[1];
+        }
+        return intentName;
     }
-    return intentName;
-  }
 
-  public static Map<String, Value> getParameterMap(QueryResult queryResult) {
-    Struct paramStruct = queryResult.getParameters();
-    Map<String, Value> parameters = paramStruct.getFieldsMap();
-    return parameters;
-  }
+    public static Map<String, Value> getParameterMap(QueryResult queryResult) {
+        Struct paramStruct = queryResult.getParameters();
+        Map<String, Value> parameters = paramStruct.getFieldsMap();
+        return parameters;
+    }
  
-  public static byte[] getByteStringToByteArray(String fulfillment, String languageCode){
-    byte[] byteArray = null;
-    try {
-        ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment, languageCode);
-        byteArray = audioResponse.toByteArray();
-    } catch (Exception e) {
-        e.printStackTrace();
+    public static byte[] getByteStringToByteArray(String fulfillment, String languageCode){
+        byte[] byteArray = null;
+        try {
+            ByteString audioResponse = SpeechUtils.synthesizeText(fulfillment, languageCode);
+            byteArray = audioResponse.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return byteArray;
     }
-    return byteArray;
-  }
 
-  public static String getLanguageCode(String language) {
-    if (language == null) {
-        return "en-US";
+    public static String getLanguageCode(String language) {
+        if (language == null) {
+            return "en-US";
+        }
+        switch(language) {
+            case "Chinese":
+                return "zh-CN";
+            case "English": 
+                return "en-US";
+            case "French":
+                return "fr";
+            case "German":
+                return "de";
+            case "Hindi":
+                return "hi";
+            case "Italian":
+                return "it";
+            case "Japanese":
+                return "ja";
+            case "Korean":
+                return "ko";
+            case "Portuguese":
+                return "pt";
+            case "Russian":
+                return "ru";
+            case "Spanish":
+                return "es";
+            case "Swedish":
+                return "sv";
+            default:
+                return null;
+        }
     }
-    switch(language) {
-      case "Chinese":
-        return "zh-CN";
-      case "English": 
-        return "en-US";
-      case "French":
-        return "fr";
-      case "German":
-        return "de";
-      case "Hindi":
-        return "hi";
-      case "Italian":
-        return "it";
-      case "Japanese":
-        return "ja";
-      case "Korean":
-        return "ko";
-      case "Portuguese":
-        return "pt";
-      case "Russian":
-        return "ru";
-      case "Spanish":
-        return "es";
-      case "Swedish":
-        return "sv";
-      default:
-        return null;
-    }
-  }
 }
