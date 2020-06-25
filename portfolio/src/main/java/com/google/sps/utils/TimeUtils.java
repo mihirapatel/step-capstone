@@ -8,16 +8,16 @@ import java.util.TimeZone;
 
 public class TimeUtils {
 
-  public static Date stringToDate(String dateString) {
-    try {
-      SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.ENGLISH);
-      Date parsed = parser.parse(dateString);
-      return parsed;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
+    public static Date stringToDate(String dateString) {
+        try {
+            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.ENGLISH);
+            Date parsed = parser.parse(dateString);
+            return parsed;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;   
+        }
     }
-  }
 
   public static String timeToString(int duration) {
     if (duration < 0) {
