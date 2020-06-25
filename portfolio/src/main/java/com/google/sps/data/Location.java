@@ -52,32 +52,32 @@ public class Location {
 
     public void setProperties() throws Exception{
         GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey("PUTAPIKEYHERE")
+            .apiKey("AIzaSyD-yzkJXzUoSmD3IsclTXwugHGaqrb5ijk")
             .build();
 
         // Synchronous
         try {
-            getCoordinates(context, this.address);
-            getTimeZone(context, this.coords);
+            setCoordinates(context, address);
+            setTimeZone(context, coords);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void getCoordinates(GeoApiContext context, String address) throws Exception{
+    public void setCoordinates(GeoApiContext context, String address) throws Exception{
         try {
             GeocodingResult[] results =  GeocodingApi.geocode(context,
              address).await();
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             this.latCoord = results[0].geometry.location.lat;
             this.lngCoord = results[0].geometry.location.lng;
-            this.coords = new LatLng(this.latCoord, this.lngCoord);
+            this.coords = new LatLng(latCoord, lngCoord);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void getTimeZone(GeoApiContext context, LatLng location) throws Exception{
+    public void setTimeZone(GeoApiContext context, LatLng location) throws Exception{
         try {
             TimeZone results =  TimeZoneApi.getTimeZone(context,
              location).await();
