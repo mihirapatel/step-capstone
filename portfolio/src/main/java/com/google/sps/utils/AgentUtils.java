@@ -43,8 +43,6 @@ public class AgentUtils {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    Agent object = null;
-
     // Case where response is pre-defined in Dialogflow
     if (!queryResult.getFulfillmentText().isEmpty()){
       fulfillment = queryResult.getFulfillmentText();
