@@ -9,19 +9,17 @@ import com.google.sps.data.Output;
 import com.google.sps.data.Location;
 import com.google.sps.agents.Agent;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-import java.time.temporal.ChronoUnit;
 import java.time.Duration;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimeZone;
  
 /**
  * Time Agent
@@ -36,8 +34,8 @@ public class Time implements Agent {
     private ZonedDateTime timeFrom;
     
     public Time(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
@@ -45,15 +43,15 @@ public class Time implements Agent {
         if (intentName.equals("get") || intentName.equals("context:time") || intentName.equals("check")){
             this.location = getLocationParameter("location", parameters);
         }
-        if (intentName.contains("convert")){
+        if (intentName.contains("convert")) {
             this.locationFrom = getLocationParameter("location-from", parameters);
             this.locationTo = getLocationParameter("location-to", parameters);
             this.timeFrom = getZonedTime("time-from", locationFrom, parameters);
         }
-        if (intentName.contains("time_zones")){
+        if (intentName.contains("time_zones")) {
             this.location = getLocationParameter("location", parameters);
         }
-        if (intentName.contains("time_difference")){
+        if (intentName.contains("time_difference")) {
             this.locationOne = getLocationParameter("location-1", parameters);
             this.locationTwo = getLocationParameter("location-2", parameters);
         }
@@ -61,69 +59,57 @@ public class Time implements Agent {
 	
 	@Override
 	public String getOutput() {
-      String output = "";
-      if (intentName.equals("get") || intentName.equals("context:time")){
-          String currentTime = getCurrentTimeString(location);
-          if (!currentTime.isEmpty()){
-            output = "It is " + currentTime + " in " + location + ".";
-          }
-          else{
-            output = "I don't recognize that place. Can you repeat that?";
-          }
-      }
-      if (intentName.equals("check")){
-          String currentTime = getCurrentTimeString(location);
-          if (!currentTime.isEmpty()){
-            output = "In " + location +", it is currently " + currentTime + ".";
-          }
-          else{
-            output = "I don't recognize that place. Can you try again?";
-          }
-      }
-      if (intentName.contains("convert")){
-        String timeToString = "";
-        String timeFromString = "";
-        if (timeFrom != null){
-            // Get time in locationTo based on TimeFrom on locationFrom
-            timeToString = zonedTimeToString(getTimeIn(locationTo, timeFrom));
-            timeFromString = zonedTimeToString(timeFrom);
-            output = "It's "+ timeToString + " in " + locationTo 
-                + " when it's " + timeFromString + " in " + locationFrom +".";
-
-        } else {
-            // Get current time in 2 different timezones
-            timeFromString = getCurrentTimeString(locationFrom);
-            timeToString = getCurrentTimeString(locationTo);
-            output = "It is currently "+ timeFromString + " in " + locationFrom 
-                + " and " + timeToString + " in " + locationTo +".";
+        String output = "I didn't catch that. Can you repeat that?";
+        if (intentName.equals("get") || intentName.equals("context:time")) {
+            String currentTime = getCurrentTimeString(location);
+            if (!currentTime.isEmpty()) {
+                output = "It is " + currentTime + " in " + location + ".";
+            }
         }
-        if (timeToString.isEmpty() || timeFromString.isEmpty()) {
-            output = "I didn't catch that. Can you repeat that?";
+        if (intentName.equals("check")) {
+            String currentTime = getCurrentTimeString(location);
+            if (!currentTime.isEmpty()) {
+                output = "In " + location + ", it is currently " + currentTime + ".";
+            }
         }
-      }
-
-      if (intentName.contains("time_zones")){
-        String timezone = getZone(location);
-        if (! timezone.isEmpty()){
-            output = "The timezone in "+ location + " is " + timezone + "."; 
-        } else {
-            output = "I'm not sure where you are talking about. Can you repeat that?";
+        if (intentName.contains("convert")) {
+            String timeToString = "";
+            String timeFromString = "";
+            if (timeFrom != null) {
+                // Get time in locationTo based on time given in locationFrom
+                timeToString = zonedTimeToString(getTimeIn(locationTo, timeFrom));
+                timeFromString = zonedTimeToString(timeFrom);
+                output = "It's " + timeToString + " in " + locationTo 
+                        + " when it's " + timeFromString + " in " + locationFrom + ".";
+            } else {
+                // Get current time in 2 different timezones
+                timeFromString = getCurrentTimeString(locationFrom);
+                timeToString = getCurrentTimeString(locationTo);
+                output = "It is currently " + timeFromString + " in " + locationFrom 
+                        + " and " + timeToString + " in " + locationTo +".";
+            }
+            if (timeToString.isEmpty() || timeFromString.isEmpty()) {
+                output = "I didn't catch that. Can you repeat that?";
+            }
         }
-      }
-      if (intentName.contains("time_difference")){
-        String timeDiffString = getTimeDiff(locationOne, locationTwo);
-        if (! timeDiffString.isEmpty()){
-            output = locationOne + " is " + timeDiffString + locationTwo + "."; 
-        } else {
-            output = "I didn't catch that. Can you repeat that?";
+        if (intentName.contains("time_zones")) {
+            String timezone = getZone(location);
+            if (!timezone.isEmpty()) {
+                output = "The timezone in "+ location + " is " + timezone + "."; 
+            }
         }
-      }
-	  return output;
+        if (intentName.contains("time_difference")) {
+            String timeDiffString = getTimeDiff(locationOne, locationTwo);
+            if (! timeDiffString.isEmpty()) {
+                output = locationOne + " is " + timeDiffString + locationTwo + "."; 
+            }
+        }
+	    return output;
 	}
 
 	@Override
 	public String getDisplay() {
-		return null;
+	    return null;
 	}
 
 	@Override
@@ -131,9 +117,9 @@ public class Time implements Agent {
 		return null;
     }
 
-    public ZonedDateTime getCurrentTime(String locationName){
+    public ZonedDateTime getCurrentTime(String locationName) {
         ZonedDateTime currentTime = null;
-        try{
+        try {
             Location place = new Location(locationName);
             String timeZoneID = place.getTimeZoneID();
             currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
@@ -143,9 +129,9 @@ public class Time implements Agent {
         return currentTime;
     }
 
-    public String getZone(String locationName){
+    public String getZone(String locationName) {
         String timeZone = null;
-        try{
+        try {
             ZonedDateTime time = getCurrentTime(locationName);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
             timeZone = time.format(formatter);
@@ -155,7 +141,7 @@ public class Time implements Agent {
         return timeZone;
     }
 
-    public String getTimeDiff(String firstLocation, String secondLocation){
+    public String getTimeDiff(String firstLocation, String secondLocation) {
         ZonedDateTime firstZonedTime = getCurrentTime(firstLocation);
         ZonedDateTime secondZonedTime = getTimeIn(secondLocation, firstZonedTime);
         LocalDateTime firstLocalTime = firstZonedTime.toLocalDateTime();
@@ -167,60 +153,59 @@ public class Time implements Agent {
 
         String hourString = String.valueOf(Math.abs(hours));
         String timeString = "";
-        if (Math.abs(hours) == 1){
+        if (Math.abs(hours) == 1) {
             timeString += hourString + " hour";
-        }else{
+        } else {
             timeString += hourString + " hours";
         }
-        if (minutes!=0){
+        if (minutes != 0) {
             String minuteString = String.valueOf(Math.abs(minutes));
             timeString += " and " + minuteString + " minutes";
         }
 
         String ret = "";
-        if (hours < 0){
-            ret +=  timeString + " behind ";
+        if (hours < 0) {
+            ret += timeString + " behind ";
         }
-        else if (hours == 0){
-            ret +=  "in the same time zone as ";
+        else if (hours == 0) {
+            ret += "in the same time zone as ";
         } else {
             ret += timeString + " ahead of ";
         }
         return ret;
     }
 
-    public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject){
+    public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject) {
         ZonedDateTime timeIn = null;
-        try{
+        try {
             Location placeTo = new Location(locationIn);
             String timeZoneID = placeTo.getTimeZoneID();
             timeIn = timeFromObject.withZoneSameInstant(ZoneId.of(timeZoneID));
         } catch (Exception e) {
             e.printStackTrace();
-            return timeIn;
         }
         return timeIn;
     }
 
-    public String getCurrentTimeString(String location){
+    public String getCurrentTimeString(String location) {
         ZonedDateTime time = getCurrentTime(location);
         return zonedTimeToString(time);
     }
 
-    public String zonedTimeToString(ZonedDateTime time){
+    public String zonedTimeToString(ZonedDateTime time) {
         String timeString = "";
-        if (time != null){
+        if (time != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
             timeString = time.format(formatter);
         }
         return timeString;
     }
 
-    public ZonedDateTime getZonedTime(String timeName, String locationParameter, Map<String, Value> parameters){
+    public ZonedDateTime getZonedTime(String timeName, String locationParameter, Map<String, Value> parameters) {
         LocalDateTime localTime = getTimeParameter(timeName, parameters);
         ZonedDateTime zonedTime = null;
-        if (localTime != null){
-           try{
+        if (localTime != null) {
+           try {
                 Location place = new Location(locationParameter);
                 String timeZoneID = place.getTimeZoneID();
                 zonedTime = ZonedDateTime.of(localTime, ZoneId.of(timeZoneID));
@@ -231,11 +216,11 @@ public class Time implements Agent {
         return zonedTime;
     }
 
-    public LocalDateTime getTimeParameter(String parameterName, Map<String, Value> parameters){
+    public LocalDateTime getTimeParameter(String parameterName, Map<String, Value> parameters) {
         String time = parameters.get(parameterName).getStringValue();
         LocalDateTime timeToCheck = null;
 
-        if (! time.isEmpty()){
+        if (!time.isEmpty()) {
             // Parses time string: "2020-06-24T16:25:00-04:00"
             String[] dateComponents = time.split("T")[0].split("\\-");
             int year = Integer.parseInt(dateComponents[0]);
@@ -250,12 +235,12 @@ public class Time implements Agent {
         return timeToCheck;
     }
 
-    public String getLocationParameter(String parameterName, Map<String, Value> parameters){
+    public String getLocationParameter(String parameterName, Map<String, Value> parameters) {
         Struct locationStruct = parameters.get(parameterName).getStructValue();
         Map<String, Value> location_fields = locationStruct.getFieldsMap();
         String ret = "";
 
-        if (!location_fields.isEmpty()){
+        if (!location_fields.isEmpty()) {
             String island = location_fields.get("island").getStringValue();
             String businessName = location_fields.get("business-name").getStringValue();
             String street = location_fields.get("street-address").getStringValue();
@@ -266,22 +251,36 @@ public class Time implements Agent {
             String zipCode = location_fields.get("zip-code").getStringValue();
 
             ArrayList<String> location_words = new ArrayList<String>();
-            if (!island.isEmpty()){ret = island;}
-            else{
-                if (!city.isEmpty()){location_words.add(city);}
-                if (!subAdminArea.isEmpty()){location_words.add(subAdminArea);}
-                if (!adminArea.isEmpty()){location_words.add(adminArea);}
-                if (!country.isEmpty()){location_words.add(country);}
-                if (!street.isEmpty()){location_words.add(street);}
-                if (!zipCode.isEmpty()){location_words.add(zipCode);}
-                if (!businessName.isEmpty()){location_words.add(businessName);}
-                if (location_words.size() > 0){
+            if (!island.isEmpty()) {
+                ret = island;
+            } else {
+                if (!city.isEmpty()) {
+                    location_words.add(city);
+                }
+                if (!subAdminArea.isEmpty()) { 
+                    location_words.add(subAdminArea);
+                }
+                if (!adminArea.isEmpty()) { 
+                    location_words.add(adminArea); 
+                }
+                if (!country.isEmpty()) { 
+                    location_words.add(country);
+                }
+                if (!street.isEmpty()) { 
+                    location_words.add(street); 
+                }
+                if (!zipCode.isEmpty()) { 
+                    location_words.add(zipCode); 
+                }
+                if (!businessName.isEmpty()) {
+                    location_words.add(businessName);
+                }
+                if (location_words.size() > 0) {
                     ret = location_words.get(0);
-                    if (ret.startsWith("in ")){
+                    if (ret.startsWith("in ")) {
                         ret = ret.substring(3);
                     }
-                }
-                else{
+                } else {
                     ret = "";
                 }
             }
