@@ -25,7 +25,11 @@ public class Reminders implements Agent {
     
     public Reminders(String intentName, Map<String, Value> parameters) {
       this.intentName = intentName;
-      setParameters(parameters);
+      try {
+        setParameters(parameters);
+      } catch (Exception e) {
+        fulfillment = null;
+      }
     }
 
 	@Override 
