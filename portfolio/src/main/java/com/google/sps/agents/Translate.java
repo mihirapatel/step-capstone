@@ -11,15 +11,15 @@ import java.io.IOException;
 import java.util.Map;
  
 /**
- * Weather Agent
+ * Translate Agent
  */
-public class Weather implements Agent {
+public class Translate implements Agent {
     private final String intentName;
   	private String searchText;
     
-    public Weather(String intentName, Map<String, Value> parameters) {
-        this.intentName = intentName;
-        setParameters(parameters);
+    public Translate(String intentName, Map<String, Value> parameters) {
+      this.intentName = intentName;
+      setParameters(parameters);
     }
 
 	@Override 
@@ -28,7 +28,7 @@ public class Weather implements Agent {
 	
 	@Override
 	public String getOutput() {
-	    return null;
+	  return null;
 	}
 
 	@Override

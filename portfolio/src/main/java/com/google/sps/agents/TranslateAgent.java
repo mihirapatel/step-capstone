@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class TranslateAgent implements Agent {
     private final String intentName;
-  	private String text;
+    private String text;
     private String languageTo;
     private String languageFrom;
     private String languageToCode;
