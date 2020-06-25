@@ -30,14 +30,12 @@ public class Reminders implements Agent {
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-      System.out.println(parameters);
-      System.out.println(intentName);
       if (intentName.equals("snooze")) {
         Struct durationStruct = parameters.get("date-time").getStructValue();
         Map<String, Value> durationMap = durationStruct.getFieldsMap();
         Date start = TimeUtils.stringToDate(durationMap.get("startDateTime").getStringValue());
         Date end = TimeUtils.stringToDate(durationMap.get("endDateTime").getStringValue());
-        int diffSec = Math.floor((end.getTime() - start.getTime()) / 1000);
+        int diffSec = (int)((end.getTime() - start.getTime()) / 1000);
         String timeDisplay = TimeUtils.timeToString(diffSec);
         if (timeDisplay == null) {
           fulfillment = "Sorry, unable to set a timer for less than 1 second or more than 1 day. Please try adding a reminder instead.";
