@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class Currency implements Agent {
     private final String intentName;
-  	private String currencyFrom;
+    private String currencyFrom;
     private String currencyTo;
     private Double amount;
 
@@ -24,27 +24,27 @@ public class Currency implements Agent {
         setParameters(parameters);
     }
 
-	@Override 
-	public void setParameters(Map<String, Value> parameters) {
+    @Override 
+    public void setParameters(Map<String, Value> parameters) {
         currencyFrom = parameters.get("currency-from").getStringValue();
         currencyTo = parameters.get("currency-to").getStringValue();
         amount = parameters.get("amount").getNumberValue();
-	}
-	
-	@Override
-	public String getOutput() {
+    }
+
+    @Override
+    public String getOutput() {
         return "Redirecting for conversion";
-	}
+    }
 
-	@Override
-	public String getDisplay() {
-		return null;
-	}
+    @Override
+    public String getDisplay() {
+	return null;
+    }
 
-	@Override
-	public String getRedirect() {
+    @Override
+    public String getRedirect() {
         String baseURL = "http://www.google.com/search?q=";
         String endURL = String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo);
-		return baseURL + endURL;
+	return baseURL + endURL;
     }
 }
