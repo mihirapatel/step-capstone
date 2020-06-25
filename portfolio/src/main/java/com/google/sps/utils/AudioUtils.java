@@ -38,7 +38,7 @@ public class AudioUtils {
       InputAudioConfig inputAudioConfig = InputAudioConfig.newBuilder()
           .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
           .setLanguageCode("en-US")
-          .setSampleRateHertz(48000)
+          .setSampleRateHertz(44100)
           .build();
       QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
  
