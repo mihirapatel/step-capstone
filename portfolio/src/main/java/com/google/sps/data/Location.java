@@ -27,9 +27,14 @@ import com.google.maps.TimeZoneApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileOutputStream;
+import java.io.FileReader; 
+import java.io.File;
+import java.nio.file.Files; 
+import java.nio.file.Paths;
 import java.io.OutputStream;
 import java.io.IOException;
 import java.util.TimeZone;
+
 
 /* Location object */
 public class Location {
@@ -39,6 +44,7 @@ public class Location {
     private LatLng coords;
     private TimeZone timeZoneObj;
     private String timeZoneID;
+    
 
     public Location(String address) {
         this.address = address;
@@ -50,8 +56,9 @@ public class Location {
     }
 
     public void setProperties() throws Exception {
+        String apiKey = new String(Files.readAllBytes(Paths.get(getClass().getResource("/files/apikey.txt").getFile())));
         GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey("AIzaSyD-yzkJXzUoSmD3IsclTXwugHGaqrb5ijk")
+            .apiKey(apiKey)
             .build();
 
         try {
