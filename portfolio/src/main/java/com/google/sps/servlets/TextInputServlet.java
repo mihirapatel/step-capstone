@@ -37,30 +37,28 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/text-input")
 public class TextInputServlet extends HttpServlet {
  
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
- 
-    String userQuestion = request.getParameter("request-input");
-    String language = request.getParameter("language");
-    String languageCode = AgentUtils.getLanguageCode(language);
-    QueryResult result = TextUtils.detectIntentStream(userQuestion, languageCode);
- 
-    if (result == null) {
-      response.getWriter().write(new Gson().toJson(null));
-      return;
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+    
+        String userQuestion = request.getParameter("request-input");
+        String language = request.getParameter("language");
+        String languageCode = AgentUtils.getLanguageCode(language);
+        QueryResult result = TextUtils.detectIntentStream(userQuestion, languageCode);
+    
+        if (result == null){
+            response.getWriter().write(new Gson().toJson(null));
+            return;
+        }
+        Output output = null;
+        try {
+            output = AgentUtils.getOutput(result, languageCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //Convert to JSON string
+        String json = new Gson().toJson(output);
+        response.getWriter().write(json);
     }
-
-    Output output = null;
-    try{
-        output = AgentUtils.getOutput(result, languageCode);
-    }catch (Exception e) {
-        e.printStackTrace();
-    }
-
-    //Convert to JSON string
-    String json = new Gson().toJson(output);
-    response.getWriter().write(json);
-  }
 }
