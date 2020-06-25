@@ -1,71 +1,72 @@
 body {
-
-  background: rgb(42, 42, 42);
-  background: linear-gradient(90deg, rgba(42,42,42,1) 0%, rgba(85,85,85,1) 50%, rgba(42,42,42,1) 100%);
-  color: white;
-  font-weight: 300;
-  height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family:'Open Sans', sans-serif;
+    background: rgb(42, 42, 42);
+    background: linear-gradient(90deg, rgba(42,42,42,1) 0%, 
+                                        rgba(85,85,85,1) 50%, 
+                                        rgba(42,42,42,1) 100%);
+    color: white;
+    font-weight: 300;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family:'Open Sans', sans-serif;
 }
  
 h1 {
-  font-weight: 200;
-  font-style: 26px;
-  margin: 10px;
+    font-weight: 200;
+    font-style: 26px;
+    margin: 10px;
 }
  
 #header {
-  position:absolute; 
-  top:0px; 
-  Height: fit-content;
-  overflow:hidden; 
-  width: 90%; 
-  max-width: 850px;
+    position:absolute; 
+    top:0px; 
+    Height: fit-content;
+    overflow:hidden; 
+    width: 90%; 
+    max-width: 850px;
 }
  
 #footer {
-  position:absolute; 
-  bottom:0px; 
-  Height: fit-content; 
-  overflow:hidden; 
-  width: 90%; 
-  max-width: 850px;
+    position:absolute; 
+    bottom:0px; 
+    Height: fit-content; 
+    overflow:hidden; 
+    width: 90%; 
+    max-width: 850px;
 }
  
 #listening-graphic {
-  display: initial;
+    display: initial;
 }
  
 #convo-container {
-  display: initial;
+    display: initial;
 }
  
 #content {
-  position:absolute; 
-  top: inherit; 
-  Bottom: inherit; 
-  overflow: auto;
-  width: 90%;
-  max-width: 850px;
+    position:absolute; 
+    top: 200px; 
+    bottom: 200px; 
+    overflow: auto;
+    width: 90%;
+    max-width: 850px;
 }
  
-.user-side{
-  text-align: right;
+.user-side {
+    text-align: right;
 }
  
-.assistant-side{
-  text-align: left;
+.assistant-side {
+    text-align: left;
 }
  
-.media-display{
-  margin-left:auto; 
-  margin-right:auto;
-  text-align: center;
+.media-display {
+    margin-left:auto; 
+    margin-right:auto;
+    text-align: center;
 }
 
 .timer-display {
@@ -75,166 +76,163 @@ h1 {
   font-size: 2.5rem;
 }
  
-textarea{
-  font-family:'Open Sans', sans-serif;
-  text-align: center;
-  width: 80%;
-  max-width: 650px;
-  height: 30px;
+textarea {
+    font-family:'Open Sans', sans-serif;
+    text-align: center;
+    width: 80%;
+    max-width: 650px;
+    height: 30px;
 }
  
-button{
-  font-family:'Open Sans', sans-serif;
+button {
+    font-family:'Open Sans', sans-serif;
 }
  
-input{
-  font-family:'Open Sans', sans-serif;
+input {
+    font-family:'Open Sans', sans-serif;
 } 
  
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
  
 html, body {
-  height: 100%;
+    height: 100%;
 }
  
 table {
-  width: 100%;
+    width: 100%;
 }
  
 h1, h2 {
-  font-size: 2rem;
-  text-align: center;
-  font-weight: normal;
-  padding: 0.5rem 0 0 0;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0 0;
 }
  
 .main-controls {
-  padding: 0.5rem 0;
+    padding: 0.5rem 0;
 }
  
 canvas {
-  display: block;
-  margin-bottom: 0.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
 }
  
  
 #buttons {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
  
 #buttons button {
-  font-size: 1rem;
-  padding: 1rem;
-  min-width: 50px;
-  min-height: 50px;
+    font-size: 1rem;
+    padding: 1rem;
+    min-width: 50px;
+    min-height: 50px;
 }
  
 button {
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0);
-  text-align: center;
-  color: white;
-  border: none;
-  transition: all 0.2s;
-  padding: 0.5rem;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0);
+    text-align: center;
+    color: white;
+    border: none;
+    transition: all 0.2s;
+    padding: 0.5rem;
 }
  
-.record{
-  border-radius: 50%;
+.record {
+    border-radius: 50%;
 }
  
-.microphone{
-  max-height: 35px;
+.microphone {
+    max-height: 35px;
 }
  
 button:hover, button:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: rgb(158, 158, 158);
+    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
+    background: rgb(158, 158, 158);
 }
  
-.box{
+.box {
     width: 25px;
     height: 25px;
-  background-color: #DB4437;
+    background-color: #DB4437;
 }
  
-.box:hover, .box:focus{
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: #DB4437;
+.box:hover, .box:focus {
+    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
+    background: #DB4437;
 }
  
 button:active {
-  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
-  transform: translateY(2px);
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
+    transform: translateY(2px);
 }
  
 section, article {
-  display: block;
+    display: block;
 }
- 
- 
+
 /* Checkbox hack to control information box display */
- 
 label {
-  font-size: 3rem;
-  position: absolute;
-  top: 2px;
-  right: 3px;
-  z-index: 5;
-  cursor: pointer;
-  background-color: black;
-  border-radius: 10px;
+    font-size: 3rem;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    z-index: 5;
+    cursor: pointer;
+    background-color: black;
+    border-radius: 10px;
 }
  
 input[type=checkbox] {
-   position: absolute;
-   top: -100px;
+    position: absolute;
+    top: -100px;
 }
  
 aside {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateX(100%);
-  transition: 0.3s all ease-out;
-  background-color: #efefef;
-  padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: 0.3s all ease-out;
+    background-color: #efefef;
+    padding: 1rem;
 }
  
 aside p {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
 }
  
 aside a {
-  color: #666;
+    color: #666;
 }
  
 /* Toggled State of information box */
 input[type=checkbox]:checked ~ aside {
-  transform: translateX(0);
+    transform: translateX(0);
 }
  
 /* Cursor when clip name is clicked over */
- 
 .clip p {
-  cursor: pointer;
+    cursor: pointer;
 }
  
 /* Adjustments for wider screens */
 @media all and (min-width: 800px) {
-  /* Don't take all the space as readability is lost when line length
-     goes past a certain size */
-  .wrapper {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+    /* Don't take all the space as readability is lost when line length
+        goes past a certain size */
+    .wrapper {
+        width: 90%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 }
