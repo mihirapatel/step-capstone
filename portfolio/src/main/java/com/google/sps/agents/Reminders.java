@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class Reminders implements Agent {
     private String intentName = null;
-  	private String recurrence = null;
+    private String recurrence = null;
     private Date date = null;
     private String name = "";
     private String fulfillment = "";
@@ -32,8 +32,8 @@ public class Reminders implements Agent {
         }
     }
 
-	@Override 
-	public void setParameters(Map<String, Value> parameters) {
+    @Override 
+    public void setParameters(Map<String, Value> parameters) {
         if (intentName.equals("snooze")) {
             Struct durationStruct = parameters.get("date-time").getStructValue();
             Map<String, Value> durationMap = durationStruct.getFieldsMap();
@@ -52,19 +52,20 @@ public class Reminders implements Agent {
             //TODO: if we ever get access to storing user info or calendars...
         }
 	}
+    }
 	
 	@Override
 	public String getOutput() {
 	    return fulfillment;
 	}
 
-	@Override
-	public String getDisplay() {
-		return display;
-	}
+    @Override
+    public String getDisplay() {
+        return display;
+    }
 
-	@Override
-	public String getRedirect() {
-		return null;
+    @Override
+    public String getRedirect() {
+	    return null;
     }
 }
