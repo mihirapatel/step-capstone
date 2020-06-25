@@ -24,8 +24,8 @@ public class TranslateAgent implements Agent {
     private String languageFromCode;
  
     public TranslateAgent(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 

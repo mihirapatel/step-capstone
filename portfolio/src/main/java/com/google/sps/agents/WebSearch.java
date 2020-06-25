@@ -18,18 +18,18 @@ public class WebSearch implements Agent {
   	private String searchText;
     
     public WebSearch(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-	  searchText = parameters.get("q").getStringValue();
+	    searchText = parameters.get("q").getStringValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return "Redirecting to Google Search for " + searchText;
+	    return "Redirecting to Google Search for " + searchText;
 	}
 
 	@Override

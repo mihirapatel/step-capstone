@@ -21,21 +21,20 @@ public class UnitConverter implements Agent {
     private Double amount;
 
     public UnitConverter(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-
-	  unitFrom = parameters.get("unit-from").getStringValue();
-      unitTo = parameters.get("unit-to").getStringValue();
-      amount = parameters.get("amount").getNumberValue();
+        unitFrom = parameters.get("unit-from").getStringValue();
+        unitTo = parameters.get("unit-to").getStringValue();
+        amount = parameters.get("amount").getNumberValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return "Redirecting for conversion";
+	    return "Redirecting for conversion";
 	}
 
 	@Override
