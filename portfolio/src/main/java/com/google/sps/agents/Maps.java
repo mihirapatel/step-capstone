@@ -16,6 +16,7 @@ import java.util.Map;
 public class Maps implements Agent {
     
     private final String intentName;
+    private String searchString;
     private Struct location;
     private Map<String, Value> fields;
     private String businessName;
@@ -29,8 +30,8 @@ public class Maps implements Agent {
 
 
     public Maps(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
@@ -40,18 +41,17 @@ public class Maps implements Agent {
         fields = location.getFieldsMap();
         businessName = fields.get("business-name").getStringValue();
         city = fields.get("city").getStringValue();
-        county = fields.get("subadmin-area");
+        county = fields.get("subadmin-area").getStringValue();
         country = fields.get("country").getStringValue();
         island = fields.get("island").getStringValue();
         streetAddress = fields.get("street-address").getStringValue();
         state = fields.get("admin-area").getStringValue();
         zipCode = fields.get("zip-code").getStringValue();
-        
 	}
 	
 	@Override
 	public String getOutput() {
-	  return null;
+	    return null;
 	}
 
 	@Override

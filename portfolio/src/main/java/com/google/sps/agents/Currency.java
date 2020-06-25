@@ -20,20 +20,20 @@ public class Currency implements Agent {
     private Double amount;
 
     public Currency(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-	  currencyFrom = parameters.get("currency-from").getStringValue();
-      currencyTo = parameters.get("currency-to").getStringValue();
-      amount = parameters.get("amount").getNumberValue();
+        currencyFrom = parameters.get("currency-from").getStringValue();
+        currencyTo = parameters.get("currency-to").getStringValue();
+        amount = parameters.get("amount").getNumberValue();
 	}
 	
 	@Override
 	public String getOutput() {
-	  return "Redirecting for conversion";
+        return "Redirecting for conversion";
 	}
 
 	@Override
