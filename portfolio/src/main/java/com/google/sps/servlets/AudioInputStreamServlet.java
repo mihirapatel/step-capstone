@@ -49,11 +49,12 @@ public class AudioInputStreamServlet extends HttpServlet {
     ByteString bytestring = ByteString.readFrom(stream);
     String language = request.getParameter("language");
 
-    if (language.equals("English")) {
-      out.println(AudioUtils.detectIntentStream(bytestring).getQueryText());
-    } else {
-      String languageCode = AgentUtils.getLanguageCode(language);
-      out.println(AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode));
+    String languageCode = AgentUtils.getLanguageCode(language);
+    String detectedIntent = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
+    if (detectedIntent == null) {
+      out.println("");
     }
+    System.out.println("Detected intent: " + detectedIntent);
+    out.println(detectedIntent);
   }
 }

@@ -70,7 +70,7 @@ function startRecording() {
         rec.record()
         console.log("Recording started");
 
-        streamingStarted = setInterval(streamAudio, 1000);
+        streamingStarted = setInterval(streamAudio, 500);
  
     }).catch(function(err) {
         //enable the record button if getUserMedia() fails
@@ -211,6 +211,7 @@ function getAudioStream(blob) {
     body: blob
   }).then(response => response.text()).then(stream => {
     streamingContainer.innerHTML = "";
+    stream = (stream.includes(null)) ? "" : stream;
     placeUserInput(stream + "...", "streaming");
   });
 }
