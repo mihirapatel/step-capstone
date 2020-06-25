@@ -26,6 +26,7 @@ import java.util.TimeZone;
  */
 public class Time implements Agent {
     private final String intentName;
+    private String output = null;
   	private String location;
     private String locationTo;
     private String locationFrom;
@@ -35,32 +36,18 @@ public class Time implements Agent {
     
     public Time(String intentName, Map<String, Value> parameters) {
         this.intentName = intentName;
-        setParameters(parameters);
+        try {
+            setParameters(parameters);
+        } catch (Exception e) {
+            return;
+        }
     }
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
         if (intentName.equals("get") || intentName.equals("context:time") || intentName.equals("check")){
             this.location = getLocationParameter("location", parameters);
-        }
-        if (intentName.contains("convert")) {
-            this.locationFrom = getLocationParameter("location-from", parameters);
-            this.locationTo = getLocationParameter("location-to", parameters);
-            this.timeFrom = getZonedTime("time-from", locationFrom, parameters);
-        }
-        if (intentName.contains("time_zones")) {
-            this.location = getLocationParameter("location", parameters);
-        }
-        if (intentName.contains("time_difference")) {
-            this.locationOne = getLocationParameter("location-1", parameters);
-            this.locationTwo = getLocationParameter("location-2", parameters);
-        }
-	}
-	
-	@Override
-	public String getOutput() {
-        String output = "I didn't catch that. Can you repeat that?";
-        if (intentName.equals("get") || intentName.equals("context:time")) {
+
             String currentTime = getCurrentTimeString(location);
             if (!currentTime.isEmpty()) {
                 output = "It is " + currentTime + " in " + location + ".";
@@ -73,6 +60,10 @@ public class Time implements Agent {
             }
         }
         if (intentName.contains("convert")) {
+            this.locationFrom = getLocationParameter("location-from", parameters);
+            this.locationTo = getLocationParameter("location-to", parameters);
+            this.timeFrom = getZonedTime("time-from", locationFrom, parameters);
+
             String timeToString = "";
             String timeFromString = "";
             if (timeFrom != null) {
@@ -89,22 +80,31 @@ public class Time implements Agent {
                         + " and " + timeToString + " in " + locationTo +".";
             }
             if (timeToString.isEmpty() || timeFromString.isEmpty()) {
-                output = "I didn't catch that. Can you repeat that?";
+                output = null;
             }
         }
         if (intentName.contains("time_zones")) {
+            this.location = getLocationParameter("location", parameters);
+
             String timezone = getZone(location);
             if (!timezone.isEmpty()) {
                 output = "The timezone in "+ location + " is " + timezone + "."; 
             }
         }
         if (intentName.contains("time_difference")) {
+            this.locationOne = getLocationParameter("location-1", parameters);
+            this.locationTwo = getLocationParameter("location-2", parameters);
+
             String timeDiffString = getTimeDiff(locationOne, locationTwo);
             if (! timeDiffString.isEmpty()) {
                 output = locationOne + " is " + timeDiffString + locationTwo + "."; 
             }
         }
-	    return output;
+	}
+	
+	@Override
+	public String getOutput() {
+	    return this.output;
 	}
 
 	@Override
@@ -119,25 +119,17 @@ public class Time implements Agent {
 
     public ZonedDateTime getCurrentTime(String locationName) {
         ZonedDateTime currentTime = null;
-        try {
-            Location place = new Location(locationName);
-            String timeZoneID = place.getTimeZoneID();
-            currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Location place = new Location(locationName);
+        String timeZoneID = place.getTimeZoneID();
+        currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
         return currentTime;
     }
 
     public String getZone(String locationName) {
         String timeZone = null;
-        try {
-            ZonedDateTime time = getCurrentTime(locationName);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
-            timeZone = time.format(formatter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ZonedDateTime time = getCurrentTime(locationName);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
+        timeZone = time.format(formatter);
         return timeZone;
     }
 
@@ -177,13 +169,9 @@ public class Time implements Agent {
 
     public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject) {
         ZonedDateTime timeIn = null;
-        try {
-            Location placeTo = new Location(locationIn);
-            String timeZoneID = placeTo.getTimeZoneID();
-            timeIn = timeFromObject.withZoneSameInstant(ZoneId.of(timeZoneID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Location placeTo = new Location(locationIn);
+        String timeZoneID = placeTo.getTimeZoneID();
+        timeIn = timeFromObject.withZoneSameInstant(ZoneId.of(timeZoneID));
         return timeIn;
     }
 
@@ -205,13 +193,9 @@ public class Time implements Agent {
         LocalDateTime localTime = getTimeParameter(timeName, parameters);
         ZonedDateTime zonedTime = null;
         if (localTime != null) {
-           try {
-                Location place = new Location(locationParameter);
-                String timeZoneID = place.getTimeZoneID();
-                zonedTime = ZonedDateTime.of(localTime, ZoneId.of(timeZoneID));
-            } catch (Exception e) {
-                e.printStackTrace();
-            } 
+            Location place = new Location(locationParameter);
+            String timeZoneID = place.getTimeZoneID();
+            zonedTime = ZonedDateTime.of(localTime, ZoneId.of(timeZoneID));
         }
         return zonedTime;
     }
