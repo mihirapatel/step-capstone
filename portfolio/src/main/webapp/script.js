@@ -244,17 +244,15 @@ function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput, "convo-container");
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
-  if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
-    convoContainer = placeObjectContainer(outputAsJson.display, "media-display timer-display", "convo-container");
-    var allTimers = document.getElementsByClassName("timer-display");
-    if (existingTimer) {
-      terminateTimer(allTimers[0]);
+  if (outputAsJson.display) {
+    if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+      convoContainer = placeObject(outputAsJson.display, "media-display timer-display");
+      var allTimers = document.getElementsByClassName("timer-display");
+      if (existingTimer) {
+        terminateTimer(allTimers[0]);
+      }
+      existingTimer = true;
     }
-    existingTimer = true;
-    var timeContainer = allTimers[allTimers.length - 1];
-    setTimeout(function() {
-      timer = setInterval(decrementTime, 1000, timeContainer);
-    }, 1000);
   }
   outputAudio(stream);
 }
@@ -353,17 +351,42 @@ function outputAudio(stream){
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
 
-  if (outputAsJson.redirect != null){
+  if (outputAsJson.redirect != null) {
     var aud = document.getElementById("sound-player");
     aud.onended = function() {
       sendRedirect(outputAsJson.redirect);
     };
   } else {
-      var aud = document.getElementById("sound-player");
-      aud.onended = function() {};
+    var aud = document.getElementById("sound-player");
+    aud.onended = function() {
+      if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+        initiateTimer(outputAsJson);
+      }
+    };
   }
 }
- 
+
+function initiateTimer(outputAsJson) { 
+  var allTimers = document.getElementsByClassName("timer-display");
+  var timeContainer = allTimers[allTimers.length - 1];
+  var audio = new Audio('audio/timerStart.wav');
+  audio.play();
+  timer = setInterval(decrementTime, 1000, timeContainer);
+  setTimeout(function(){
+    var audio = new Audio('audio/timerEnd.wav');
+    audio.play();
+  }, getTime(timeContainer.innerText));
+}
+
+function getTime(timeString) {
+  var splitTimes = timeString.split(':');
+  var totalTime = 0;
+  for (var i = 0; i < splitTimes.length; i++) {
+    totalTime += parseInt(splitTimes[i]) * Math.pow(60, splitTimes.length - 1 - i);
+  }
+  return totalTime * 1000;
+}
+
 function sendRedirect(URL){
   window.open(URL);
 }
