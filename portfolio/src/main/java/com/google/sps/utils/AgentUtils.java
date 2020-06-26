@@ -32,7 +32,6 @@ public class AgentUtils {
         byte[] byteStringToByteArray = null;
         Agent object = null;
 
-
         String detectedIntent = queryResult.getIntent().getDisplayName();
         String agentName = getAgentName(detectedIntent);
         String intentName = getIntentName(detectedIntent);
@@ -44,6 +43,7 @@ public class AgentUtils {
 
         object = getAgent(agentName, intentName, parameterMap);
         if (object != null) {
+            System.out.println("FULFILLMENT");
             fulfillment = object.getOutput();
             fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
             display = object.getDisplay();
@@ -52,7 +52,6 @@ public class AgentUtils {
             fulfillment = queryResult.getFulfillmentText();
             fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
         }
-        fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
     
         byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
         Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
