@@ -21,21 +21,21 @@ public class Language implements Agent {
   	private String searchText;
     
     public Language(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
  
     @Override 
     public void setParameters(Map<String, Value> parameters) {
-      language = parameters.get("language").getStringValue();
+        language = parameters.get("language").getStringValue();
     }
     
     @Override
     public String getOutput() {
-      if (AgentUtils.getLanguageCode(language) == null) {
-        return "Sorry, this language is not supported.";
-      }
-      return "Switching conversation language to " + language;
+        if (AgentUtils.getLanguageCode(language) == null) {
+            return "Sorry, this language is not supported.";
+        }
+        return "Switching conversation language to " + language;
     }
  
     @Override

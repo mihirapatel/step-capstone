@@ -18,8 +18,8 @@ public class Weather implements Agent {
   	private String searchText;
     
     public Weather(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
@@ -28,7 +28,7 @@ public class Weather implements Agent {
 	
 	@Override
 	public String getOutput() {
-	  return null;
+	    return null;
 	}
 
 	@Override
