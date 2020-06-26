@@ -42,51 +42,48 @@ import javax.servlet.ServletInputStream;
 @WebServlet("/audio-input")
 public class AudioInputServlet extends HttpServlet {
  
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
- 
-    // Convert input stream into bytestring for DialogFlow API input
-    ServletInputStream stream = request.getInputStream();
-    ByteString bytestring = ByteString.readFrom(stream);
-    String language = request.getParameter("language");
-    Output output = null;
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+    
+        // Convert input stream into bytestring for DialogFlow API input
+        ServletInputStream stream = request.getInputStream();
+        ByteString bytestring = ByteString.readFrom(stream);
+        String language = request.getParameter("language");
+        Output output = null;
 
-    if (language.equals("English")) {
-      output = handleEnglishQuery(bytestring, null);
-    } else {
-      try {
-        output = handleForeignQuery(bytestring, language);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+        if (language.equals("English")) {
+            output = handleEnglishQuery(bytestring, null);
+        } else {
+            try {
+                output = handleForeignQuery(bytestring, language);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //Convert to JSON string
+        String json = new Gson().toJson(output);
+        response.getWriter().write(json);
     }
- 
-    //Convert to JSON string
-    String json = new Gson().toJson(output);
-    response.getWriter().write(json);
-  }
 
-  private Output handleEnglishQuery(ByteString bytestring, String languageCode) {
-    QueryResult result = AudioUtils.detectIntentStream(bytestring);
-    if (result == null) {
-      return null;
+    private Output handleEnglishQuery(ByteString bytestring, String languageCode) {
+        QueryResult result = AudioUtils.detectIntentStream(bytestring);
+        if (result == null) {
+            return null;
+        }
+        return AgentUtils.getOutput(result, languageCode);
     }
-    return AgentUtils.getOutput(result, languageCode);
-  }
 
   private Output handleForeignQuery(ByteString bytestring, String language) {
     System.out.println("LANGUAGE : " + language);
     String languageCode = AgentUtils.getLanguageCode(language);
     System.out.println("CODE: " + languageCode);
     String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
-
     String englishLanguageCode = AgentUtils.getLanguageCode("English");
     //Google Translate API - convert detectedUserInputString from language to English
     Translation inputTranslation = TranslateAgent.translate(detectedUserInputString, languageCode, englishLanguageCode);
-
-    //call handleEnglishQuery
+    
     String translatedInputText = inputTranslation.getTranslatedText(); 
     ByteString inputByteString = null;
     try {

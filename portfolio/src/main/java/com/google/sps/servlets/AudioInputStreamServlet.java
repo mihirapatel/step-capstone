@@ -39,21 +39,21 @@ import javax.servlet.ServletInputStream;
 @WebServlet("/audio-stream")
 public class AudioInputStreamServlet extends HttpServlet {
  
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
 
-    // Convert input stream into bytestring for DialogFlow API input
-    ServletInputStream stream = request.getInputStream();
-    ByteString bytestring = ByteString.readFrom(stream);
-    String language = request.getParameter("language");
+        // Convert input stream into bytestring for DialogFlow API input
+        ServletInputStream stream = request.getInputStream();
+        ByteString bytestring = ByteString.readFrom(stream);
+        String language = request.getParameter("language");
 
-    if (language.equals("English")) {
-      out.println(AudioUtils.detectIntentStream(bytestring).getQueryText());
-    } else {
-      String languageCode = AgentUtils.getLanguageCode(language);
-      out.println(AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode));
+        if (language.equals("English")) {
+            out.println(AudioUtils.detectIntentStream(bytestring).getQueryText());
+        } else {
+            String languageCode = AgentUtils.getLanguageCode(language);
+            out.println(AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode));
+        }
     }
-  }
 }
