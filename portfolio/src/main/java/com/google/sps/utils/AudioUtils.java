@@ -29,7 +29,7 @@ import java.nio.file.Paths;
  */
 public class AudioUtils {
  
-    static SessionName session = SessionName.of("fair-syntax-280601", "1");
+    static SessionName session = SessionName.of("mihira-step-2020-3", "1");
     
     public static QueryResult detectIntentStream(ByteString bytestring) {
         QueryResult queryResult = null;
