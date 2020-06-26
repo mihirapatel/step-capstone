@@ -48,28 +48,23 @@ public class Location {
 
     public Location(String address) {
         this.address = address;
-        try {
-            setProperties();
-        } catch (Exception e) {
-            return;
-        }
+        setProperties();
     }
 
-    public void setProperties() throws Exception {
-        String apiKey = new String(Files.readAllBytes(Paths.get(getClass().getResource("/files/apikey.txt").getFile())));
-        GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey(apiKey)
-            .build();
-
+    public void setProperties() {
         try {
+            String apiKey = new String(Files.readAllBytes(Paths.get(getClass().getResource("/files/apikey.txt").getFile())));
+            GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(apiKey)
+                .build();
             setCoordinates(context, address);
             setTimeZone(context, coords);
-        } catch (Exception e) {
-            return;
+        } catch (IOException e) {
+            System.out.println("API key for maps not found.");
         }
     }
 
-    public void setCoordinates(GeoApiContext context, String address) throws Exception {
+    public void setCoordinates(GeoApiContext context, String address) {
         try {
             GeocodingResult[] results =  GeocodingApi.geocode(context,
                 address).await();
@@ -82,7 +77,7 @@ public class Location {
         }
     }
 
-    public void setTimeZone(GeoApiContext context, LatLng location) throws Exception {
+    public void setTimeZone(GeoApiContext context, LatLng location) {
         try {
             TimeZone results =  TimeZoneApi.getTimeZone(context,
                 location).await();
