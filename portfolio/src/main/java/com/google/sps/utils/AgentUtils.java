@@ -116,7 +116,7 @@ public class AgentUtils {
         }
         return byteArray;
     }
-
+  
     public static String getLanguageCode(String language) {
         if (language == null) {
             return "en-US";
@@ -148,6 +148,5 @@ public class AgentUtils {
                 return "sv";
             default:
                 return null;
-        }
-    }
+      }
 }

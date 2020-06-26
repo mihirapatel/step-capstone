@@ -37,49 +37,46 @@ stop.addEventListener("click", stopRecording);
 var streamingStarted;
  
 function startRecording() {
-    console.log("recordButton clicked");
-    streamingContainer.style.display = "initial";
-    placeUserInput("...", "streaming");
-    var constraints = { audio: true, video:false }
- 
-    // Disable the record button until we get a success or fail from getUserMedia() 
-    record.disabled = true;
-    stop.disabled = false;
-    record.style.background = "#DB4437";
- 
-    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-        console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
- 
-        /*
-            create an audio context after getUserMedia is called
-            sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
-            the sampleRate defaults to the one set in your OS for your playback device
-        */
-        audioContext = new AudioContext();
- 
-        /*  assign to gumStream for later use  */
-        gumStream = stream;
-        
-        /* use the stream */
-        input = audioContext.createMediaStreamSource(stream);
- 
-        /* 
-            Create the Recorder object and configure to record mono sound (1 channel)
-            Recording 2 channels  will double the file size
-        */
-        rec = new Recorder(input,{numChannels:1})
- 
-        //start the recording process
-        rec.record()
-        console.log("Recording started");
+  console.log("recordButton clicked");
 
-        streamingStarted = setInterval(streamAudio, 1000);
- 
-    }).catch(function(err) {
-        //enable the record button if getUserMedia() fails
-        record.disabled = false;
-        stop.disabled = true;
-    });
+  var constraints = { audio: true, video:false }
+
+  // Disable the record button until we get a success or fail from getUserMedia() 
+  record.disabled = true;
+  stop.disabled = false;
+  record.style.background = "#DB4437";
+
+  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+    console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
+
+    /*
+        create an audio context after getUserMedia is called
+        sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
+        the sampleRate defaults to the one set in your OS for your playback device
+    */
+    audioContext = new AudioContext();
+
+    /*  assign to gumStream for later use  */
+    gumStream = stream;
+    
+    /* use the stream */
+    input = audioContext.createMediaStreamSource(stream);
+
+    /* 
+        Create the Recorder object and configure to record mono sound (1 channel)
+        Recording 2 channels  will double the file size
+    */
+    rec = new Recorder(input, {numChannels:1})
+
+    //start the recording process
+    rec.record()
+    console.log("Recording started");
+
+  }).catch(function(err) {
+    //enable the record button if getUserMedia() fails
+    record.disabled = false;
+    stop.disabled = true;
+  });
 }
 
 function streamAudio() {
@@ -89,23 +86,22 @@ function streamAudio() {
 }
  
 function stopRecording() {
-    console.log("stopButton clicked");
-    clearInterval(streamingStarted);
- 
-    //disable the stop button, enable the record too allow for new recordings
-    stop.disabled = true;
-    record.disabled = false;
-    record.style.background = "";
-    record.style.color = "";
-    
-    //tell the recorder to stop the recording
-    rec.stop();
- 
-    //stop microphone access
-    gumStream.getAudioTracks()[0].stop();
- 
-    //create the wav blob and pass it on to createDownloadLink
-    rec.exportWAV(getResponseFromAudio);
+  console.log("stopButton clicked");
+
+  //disable the stop button, enable the record too allow for new recordings
+  stop.disabled = true;
+  record.disabled = false;
+  record.style.background = "";
+  record.style.color = "";
+
+  //tell the recorder to stop the recording
+  rec.stop();
+
+  //stop microphone access
+  gumStream.getAudioTracks()[0].stop();
+
+  //create the wav blob and pass it on to createDownloadLink
+  rec.exportWAV(getResponseFromAudio);
 }
  
 // visualiser setup - create web audio api context and canvas
@@ -134,7 +130,7 @@ if (navigator.mediaDevices.getUserMedia) {
 }
  
 function visualize(stream) {
-  if(!audioCtx) {
+  if (!audioCtx) {
     audioCtx = new AudioContext();
   }
  
@@ -229,7 +225,7 @@ function getResponseFromAudio(blob) {
 
 }
  
-function getResponseFromText(){
+function getResponseFromText() {
   var input = document.getElementById('text-input').value;
 
   fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
@@ -347,7 +343,7 @@ function updateScroll() {
   element.scrollTop = element.scrollHeight;
 }
 
-function outputAudio(stream){
+function outputAudio(stream) {
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
 
@@ -391,7 +387,7 @@ function sendRedirect(URL){
   window.open(URL);
 }
  
-function getAudio(byteArray){
+function getAudio(byteArray) {
   var base64 = arrayBufferToBase64(byteArray);
   var audioURL = base64toURL(base64, "audio/mp3");
   play(audioURL);
@@ -407,7 +403,7 @@ function arrayBufferToBase64(buffer) {
   return window.btoa(binary);
 }
  
-function base64toURL(b64Data, type){
+function base64toURL(b64Data, type) {
   var audioURL = "data:" + type + ";base64," + b64Data;
   return audioURL;
 }
