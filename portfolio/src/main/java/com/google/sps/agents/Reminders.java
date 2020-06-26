@@ -18,8 +18,8 @@ public class Reminders implements Agent {
   	private String searchText;
     
     public Reminders(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
@@ -28,7 +28,7 @@ public class Reminders implements Agent {
 	
 	@Override
 	public String getOutput() {
-	  return null;
+	    return null;
 	}
 
 	@Override
