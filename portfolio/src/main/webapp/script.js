@@ -25,6 +25,9 @@ const mainSection = document.querySelector('.main-controls');
 const streamingContainer = document.getElementsByName('streaming')[0];
 const formContainer = document.getElementsByName('input-form')[0];
 const textInputContainer = document.getElementById("text-input");
+
+var existingTimer = false;
+var timer = null;
  
 // disable stop button while not recording
  
@@ -238,11 +241,21 @@ function getResponseFromText(){
  
   formContainer.reset(); 
 }
- 
+
 function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput, "convo-container");
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
+  if (outputAsJson.display) {
+    if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+      convoContainer = placeObjectContainer(outputAsJson.display, "media-display timer-display", "convo-container");
+      var allTimers = document.getElementsByClassName("timer-display");
+      if (existingTimer) {
+        terminateTimer(allTimers[0]);
+      }
+      existingTimer = true;
+    }
+  }
   outputAudio(stream);
 }
  
@@ -270,15 +283,65 @@ function getLastWord(words) {
     console.log(split);
     return split[split.length - 1];
 }
- 
+
 function placeDisplay(text) {
   placeObjectContainer(text, "media-display", "convo-container");
 }
+ 
+function placeDisplay(text, type) {
+  placeObjectContainer(text, type, "convo-container");
+}
 
+function decrementTime(timeContainer) {
+  var splitTimes = timeContainer.innerText.split(':');
+  var last = splitTimes.length - 1;
+  while(splitTimes[last] == "00" || splitTimes[last] == "0") {
+    if (last == 0) {
+      terminateTimer(timeContainer);
+      return;
+    }
+    last -= 1;
+  }
+  subtract(splitTimes, last);
+  var timeString = "";
+  for (var i = 0; i < splitTimes.length; i++) {
+    timeString += splitTimes[i];
+    if (i != splitTimes.length - 1) {
+      timeString += ":";
+    }
+  }
+  timeContainer.innerText = timeString;
+}
+
+function subtract(split, startIndex) {
+  for(var i = startIndex; i < split.length; i++) {
+    split[i] = subtractOne(split[i]);
+  }
+}
+
+function subtractOne(timeString) {
+  if (timeString == "00") {
+    return "59";
+  }
+  var timeInt = parseInt(timeString) - 1;
+  if (timeInt < 10) {
+    return "0" + timeInt.toString();
+  }
+  return timeInt.toString();
+}
+
+function terminateTimer(timeContainer) {
+  timeContainer.classList.remove('timer-display');
+  timeContainer.innerHTML = "<p style=\'background-color: rgba(5, 5, 5, 0.678)\'>Timer has ended.</p>";
+  clearInterval(timer);
+  existingTimer = false;
+}
+ 
 function placeObjectContainer(text, type, container) {
   var container = document.getElementsByName(container)[0];
   container.innerHTML += ("<div class='" + type + "'>" + text + "</div><br>")
   updateScroll();
+  return container;
 }
 
 function updateScroll() {
@@ -289,19 +352,44 @@ function updateScroll() {
 function outputAudio(stream) {
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
- 
+
   if (outputAsJson.redirect != null) {
     var aud = document.getElementById("sound-player");
     aud.onended = function() {
       sendRedirect(outputAsJson.redirect);
     };
   } else {
-      var aud = document.getElementById("sound-player");
-      aud.onended = function() {};
+    var aud = document.getElementById("sound-player");
+    aud.onended = function() {
+      if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+        initiateTimer(outputAsJson);
+      }
+    };
   }
 }
- 
-function sendRedirect(URL) {
+
+function initiateTimer(outputAsJson) { 
+  var allTimers = document.getElementsByClassName("timer-display");
+  var timeContainer = allTimers[allTimers.length - 1];
+  var audio = new Audio('audio/timerStart.wav');
+  audio.play();
+  timer = setInterval(decrementTime, 1000, timeContainer);
+  setTimeout(function(){
+    var audio = new Audio('audio/timerEnd.wav');
+    audio.play();
+  }, getTime(timeContainer.innerText));
+}
+
+function getTime(timeString) {
+  var splitTimes = timeString.split(':');
+  var totalTime = 0;
+  for (var i = 0; i < splitTimes.length; i++) {
+    totalTime += parseInt(splitTimes[i]) * Math.pow(60, splitTimes.length - 1 - i);
+  }
+  return totalTime * 1000;
+}
+
+function sendRedirect(URL){
   window.open(URL);
 }
  
