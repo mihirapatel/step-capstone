@@ -53,7 +53,8 @@ public class AudioInputStreamServlet extends HttpServlet {
         String detectedIntent = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
         if (detectedIntent == null) {
             out.println("");
-        }
+        } else {
             out.println(detectedIntent);
+        }
     }
 }
