@@ -32,7 +32,6 @@ public class AgentUtils {
         byte[] byteStringToByteArray = null;
         Agent object = null;
 
-
         String detectedIntent = queryResult.getIntent().getDisplayName();
         String agentName = getAgentName(detectedIntent);
         String intentName = getIntentName(detectedIntent);
@@ -52,7 +51,6 @@ public class AgentUtils {
             fulfillment = queryResult.getFulfillmentText();
             fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
         }
-        fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
     
         byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
         Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
@@ -148,5 +146,6 @@ public class AgentUtils {
                 return "sv";
             default:
                 return null;
-      }
+        }
+    }
 }
