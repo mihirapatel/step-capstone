@@ -23,6 +23,8 @@ const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
 const streamingContainer = document.getElementsByName('streaming')[0];
+const formContainer = document.getElementsByName('input-form')[0];
+const textInputContainer = document.getElementById("text-input");
 
 var existingTimer = false;
 var timer = null;
@@ -33,6 +35,12 @@ stop.disabled = true;
  
 record.addEventListener("click", startRecording);
 stop.addEventListener("click", stopRecording);
+
+formContainer.onkeyup = function(e){
+  if(e.keyCode == 13 && textInputContainer.value.length != 0) { //return key and non-empty input
+    getResponseFromText();
+  }
+};
 
 var streamingStarted;
  
@@ -225,15 +233,13 @@ function getResponseFromAudio(blob) {
 
 }
  
-function getResponseFromText() {
-  var input = document.getElementById('text-input').value;
-
+function getResponseFromText(){
+  var input = textInputContainer.value;
   fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
  
-  var frm = document.getElementsByName('input-form')[0];
-  frm.reset(); 
+  formContainer.reset(); 
 }
 
 function displayResponse(stream) {
