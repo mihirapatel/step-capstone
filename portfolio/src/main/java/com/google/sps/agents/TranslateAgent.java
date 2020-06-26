@@ -17,15 +17,15 @@ import java.util.Map;
  */
 public class TranslateAgent implements Agent {
     private final String intentName;
-  	private String text;
+    private String text;
     private String languageTo;
     private String languageFrom;
     private String languageToCode;
     private String languageFromCode;
  
     public TranslateAgent(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
 	@Override 
@@ -47,7 +47,7 @@ public class TranslateAgent implements Agent {
 	public String getOutput() {
         Translation translation = translate(text, languageFromCode, languageToCode);
         String translatedString = translation.getTranslatedText();
-	    return text + " in " + languageTo + " is :" + translatedString;
+        return text + " in " + languageTo + " is: " + translatedString;
 	}
 
 	@Override
