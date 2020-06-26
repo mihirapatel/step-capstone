@@ -43,7 +43,6 @@ public class AgentUtils {
 
         object = getAgent(agentName, intentName, parameterMap);
         if (object != null) {
-            System.out.println("FULFILLMENT");
             fulfillment = object.getOutput();
             fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
             display = object.getDisplay();
