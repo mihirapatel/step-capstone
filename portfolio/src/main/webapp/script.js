@@ -45,46 +45,49 @@ formContainer.onkeyup = function(e){
 var streamingStarted;
  
 function startRecording() {
-  console.log("recordButton clicked");
+    console.log("recordButton clicked");
+    streamingContainer.style.display = "initial";
+    placeUserInput("...", "streaming");
+    var constraints = { audio: true, video:false }
+ 
+    // Disable the record button until we get a success or fail from getUserMedia() 
+    record.disabled = true;
+    stop.disabled = false;
+    record.style.background = "#DB4437";
+ 
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+        console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
+ 
+        /*
+            create an audio context after getUserMedia is called
+            sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
+            the sampleRate defaults to the one set in your OS for your playback device
+        */
+        audioContext = new AudioContext();
+ 
+        /*  assign to gumStream for later use  */
+        gumStream = stream;
+        
+        /* use the stream */
+        input = audioContext.createMediaStreamSource(stream);
+ 
+        /* 
+            Create the Recorder object and configure to record mono sound (1 channel)
+            Recording 2 channels  will double the file size
+        */
+        rec = new Recorder(input,{numChannels:1})
+ 
+        //start the recording process
+        rec.record()
+        console.log("Recording started");
 
-  var constraints = { audio: true, video:false }
-
-  // Disable the record button until we get a success or fail from getUserMedia() 
-  record.disabled = true;
-  stop.disabled = false;
-  record.style.background = "#DB4437";
-
-  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-    console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
-
-    /*
-        create an audio context after getUserMedia is called
-        sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
-        the sampleRate defaults to the one set in your OS for your playback device
-    */
-    audioContext = new AudioContext();
-
-    /*  assign to gumStream for later use  */
-    gumStream = stream;
-    
-    /* use the stream */
-    input = audioContext.createMediaStreamSource(stream);
-
-    /* 
-        Create the Recorder object and configure to record mono sound (1 channel)
-        Recording 2 channels  will double the file size
-    */
-    rec = new Recorder(input, {numChannels:1})
-
-    //start the recording process
-    rec.record()
-    console.log("Recording started");
-
-  }).catch(function(err) {
-    //enable the record button if getUserMedia() fails
-    record.disabled = false;
-    stop.disabled = true;
-  });
+        streamingStarted = setInterval(streamAudio, 500);
+ 
+    }).catch(function(err) {
+        //enable the record button if getUserMedia() fails
+        record.disabled = false;
+        stop.disabled = true;
+    });
 }
 
 function streamAudio() {
@@ -218,6 +221,7 @@ function getAudioStream(blob) {
     body: blob
   }).then(response => response.text()).then(stream => {
     streamingContainer.innerHTML = "";
+    stream = (stream.includes(null)) ? "" : stream;
     placeUserInput(stream + "...", "streaming");
   });
 }
