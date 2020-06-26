@@ -8,6 +8,7 @@ import com.google.protobuf.Value;
 import com.google.sps.data.Output;
 import com.google.sps.data.Location;
 import com.google.sps.agents.Agent;
+import com.google.sps.utils.LocationUtils;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
@@ -16,8 +17,6 @@ import java.time.Period;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
  
@@ -27,11 +26,12 @@ import java.util.TimeZone;
 public class Time implements Agent {
     private final String intentName;
     private String output = null;
-  	private String location;
-    private String locationTo;
-    private String locationFrom;
-    private String locationOne;
-    private String locationTwo;
+  	private String locationFormatted;
+    private String locationDisplay;
+    private String locationToFormatted;
+    private String locationToDisplay;
+    private String locationFromFormatted;
+    private String locationFromDisplay;
     private ZonedDateTime timeFrom;
     
     public Time(String intentName, Map<String, Value> parameters) {
@@ -45,59 +45,68 @@ public class Time implements Agent {
 
 	@Override 
 	public void setParameters(Map<String, Value> parameters) {
-        if (intentName.equals("get") || intentName.equals("context:time") || intentName.equals("check")){
-            this.location = getLocationParameter("location", parameters);
+        if (intentName.equals("get") || intentName.equals("context:time")) {
+            this.locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
+            this.locationDisplay = LocationUtils.getDisplayAddress("location", parameters);
 
-            String currentTime = getCurrentTimeString(location);
+            String currentTime = getCurrentTimeString(locationFormatted);
             if (!currentTime.isEmpty()) {
-                output = "It is " + currentTime + " in " + location + ".";
+                output = "It is " + currentTime + " in " + locationDisplay + ".";
             }
         }
         else if (intentName.equals("check")) {
-            String currentTime = getCurrentTimeString(location);
+            this.locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
+            this.locationDisplay = LocationUtils.getDisplayAddress("location", parameters);
+            
+            String currentTime = getCurrentTimeString(locationFormatted);
             if (!currentTime.isEmpty()) {
-                output = "In " + location + ", it is currently " + currentTime + ".";
+                output = "In " + locationDisplay + ", it is currently " + currentTime + ".";
             }
         }
         else if (intentName.contains("convert")) {
-            this.locationFrom = getLocationParameter("location-from", parameters);
-            this.locationTo = getLocationParameter("location-to", parameters);
-            this.timeFrom = getZonedTime("time-from", locationFrom, parameters);
+            this.locationFromFormatted = LocationUtils.getFormattedAddress("location-from", parameters);
+            this.locationFromDisplay = LocationUtils.getDisplayAddress("location-from", parameters);
+            this.locationToFormatted = LocationUtils.getFormattedAddress("location-to", parameters);
+            this.locationToDisplay = LocationUtils.getDisplayAddress("location-to", parameters);
+            this.timeFrom = getZonedTime("time-from", locationFromFormatted, parameters);
 
             String timeToString = "";
             String timeFromString = "";
             if (timeFrom != null) {
                 // Get time in locationTo based on time given in locationFrom
-                timeToString = zonedTimeToString(getTimeIn(locationTo, timeFrom));
+                timeToString = zonedTimeToString(getTimeIn(locationToFormatted, timeFrom));
                 timeFromString = zonedTimeToString(timeFrom);
-                output = "It's " + timeToString + " in " + locationTo 
-                        + " when it's " + timeFromString + " in " + locationFrom + ".";
+                output = "It's " + timeToString + " in " + locationToDisplay 
+                        + " when it's " + timeFromString + " in " + locationFromDisplay + ".";
             } else {
                 // Get current time in 2 different timezones
-                timeFromString = getCurrentTimeString(locationFrom);
-                timeToString = getCurrentTimeString(locationTo);
-                output = "It is currently " + timeFromString + " in " + locationFrom 
-                        + " and " + timeToString + " in " + locationTo +".";
+                timeFromString = getCurrentTimeString(locationFromFormatted);
+                timeToString = getCurrentTimeString(locationToFormatted);
+                output = "It is currently " + timeFromString + " in " + locationFromDisplay 
+                        + " and " + timeToString + " in " + locationToDisplay +".";
             }
             if (timeToString.isEmpty() || timeFromString.isEmpty()) {
                 output = null;
             }
         }
         else if (intentName.contains("time_zones")) {
-            this.location = getLocationParameter("location", parameters);
+            this.locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
+            this.locationDisplay = LocationUtils.getDisplayAddress("location", parameters);
 
-            String timezone = getZone(location);
+            String timezone = getZone(locationFormatted);
             if (!timezone.isEmpty()) {
-                output = "The timezone in "+ location + " is " + timezone + "."; 
+                output = "The timezone in "+ locationDisplay + " is " + timezone + "."; 
             }
         }
         else if (intentName.contains("time_difference")) {
-            this.locationOne = getLocationParameter("location-1", parameters);
-            this.locationTwo = getLocationParameter("location-2", parameters);
+            this.locationFromFormatted = LocationUtils.getFormattedAddress("location-1", parameters);
+            this.locationFromDisplay = LocationUtils.getDisplayAddress("location-1", parameters);
+            this.locationToFormatted = LocationUtils.getFormattedAddress("location-2", parameters);
+            this.locationToDisplay = LocationUtils.getDisplayAddress("location-2", parameters);
 
-            String timeDiffString = getTimeDiff(locationOne, locationTwo);
+            String timeDiffString = getTimeDiff(locationFromFormatted, locationToFormatted);
             if (! timeDiffString.isEmpty()) {
-                output = locationOne + " is " + timeDiffString + locationTwo + "."; 
+                output = locationFromDisplay + " is " + timeDiffString + locationToDisplay + "."; 
             }
         }
 	}
@@ -217,58 +226,5 @@ public class Time implements Agent {
             timeToCheck = LocalDateTime.of(year, month, day, hour, minute);
         }
         return timeToCheck;
-    }
-
-    public String getLocationParameter(String parameterName, Map<String, Value> parameters) {
-        Struct locationStruct = parameters.get(parameterName).getStructValue();
-        Map<String, Value> location_fields = locationStruct.getFieldsMap();
-        String ret = "";
-
-        if (!location_fields.isEmpty()) {
-            String island = location_fields.get("island").getStringValue();
-            String businessName = location_fields.get("business-name").getStringValue();
-            String street = location_fields.get("street-address").getStringValue();
-            String city = location_fields.get("city").getStringValue();
-            String subAdminArea = location_fields.get("subadmin-area").getStringValue();
-            String adminArea = location_fields.get("admin-area").getStringValue();
-            String country = location_fields.get("country").getStringValue();
-            String zipCode = location_fields.get("zip-code").getStringValue();
-
-            ArrayList<String> location_words = new ArrayList<String>();
-            if (!island.isEmpty()) {
-                ret = island;
-            } else {
-                if (!city.isEmpty()) {
-                    location_words.add(city);
-                }
-                if (!subAdminArea.isEmpty()) { 
-                    location_words.add(subAdminArea);
-                }
-                if (!adminArea.isEmpty()) { 
-                    location_words.add(adminArea); 
-                }
-                if (!country.isEmpty()) { 
-                    location_words.add(country);
-                }
-                if (!street.isEmpty()) { 
-                    location_words.add(street); 
-                }
-                if (!zipCode.isEmpty()) { 
-                    location_words.add(zipCode); 
-                }
-                if (!businessName.isEmpty()) {
-                    location_words.add(businessName);
-                }
-                if (location_words.size() > 0) {
-                    ret = location_words.get(0);
-                    if (ret.startsWith("in ")) {
-                        ret = ret.substring(3);
-                    }
-                } else {
-                    ret = "";
-                }
-            }
-        }
-        return ret;
     }
 }
