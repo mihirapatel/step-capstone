@@ -52,7 +52,6 @@ public class Reminders implements Agent {
             //TODO: if we ever get access to storing user info or calendars...
         }
 	}
-    
 	
 	@Override
 	public String getOutput() {
