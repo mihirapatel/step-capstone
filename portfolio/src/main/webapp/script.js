@@ -98,6 +98,7 @@ function streamAudio() {
  
 function stopRecording() {
   console.log("stopButton clicked");
+  clearInterval(streamingStarted);
 
   //disable the stop button, enable the record too allow for new recordings
   stop.disabled = true;
