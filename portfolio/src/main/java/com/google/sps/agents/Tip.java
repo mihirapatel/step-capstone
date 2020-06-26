@@ -27,8 +27,8 @@ public class Tip implements Agent {
     private Double peopleNumber = null;
     
     public Tip(String intentName, Map<String, Value> parameters) {
-      this.intentName = intentName;
-      setParameters(parameters);
+        this.intentName = intentName;
+        setParameters(parameters);
     }
 
     @Override 
@@ -58,7 +58,7 @@ public class Tip implements Agent {
         if (String.valueOf(peopleNumber).equals("0.0")) {
             return "The total tip is " + currencySymbol + String.valueOf(tipAmount);
         } else {
-        //Tip with percentage and people
+            //Tip with percentage and people
             tipAmountPerPerson = tipAmount / peopleNumber;
             DecimalFormat formatTipAmountPerPerson = new DecimalFormat("#.##");   
             tipAmountPerPerson = Double.valueOf(formatTipAmountPerPerson.format(tipAmountPerPerson));  
