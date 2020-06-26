@@ -23,6 +23,11 @@ const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
 const streamingContainer = document.getElementsByName('streaming')[0];
+const formContainer = document.getElementsByName('input-form')[0];
+const textInputContainer = document.getElementById("text-input");
+
+var existingTimer = false;
+var timer = null;
  
 // disable stop button while not recording
  
@@ -30,6 +35,12 @@ stop.disabled = true;
  
 record.addEventListener("click", startRecording);
 stop.addEventListener("click", stopRecording);
+
+formContainer.onkeyup = function(e){
+  if(e.keyCode == 13 && textInputContainer.value.length != 0) { //return key and non-empty input
+    getResponseFromText();
+  }
+};
 
 var streamingStarted;
  
@@ -86,23 +97,22 @@ function streamAudio() {
 }
  
 function stopRecording() {
-    console.log("stopButton clicked");
-    clearInterval(streamingStarted);
- 
-    //disable the stop button, enable the record too allow for new recordings
-    stop.disabled = true;
-    record.disabled = false;
-    record.style.background = "";
-    record.style.color = "";
-    
-    //tell the recorder to stop the recording
-    rec.stop();
- 
-    //stop microphone access
-    gumStream.getAudioTracks()[0].stop();
- 
-    //create the wav blob and pass it on to createDownloadLink
-    rec.exportWAV(getResponseFromAudio);
+  console.log("stopButton clicked");
+
+  //disable the stop button, enable the record too allow for new recordings
+  stop.disabled = true;
+  record.disabled = false;
+  record.style.background = "";
+  record.style.color = "";
+
+  //tell the recorder to stop the recording
+  rec.stop();
+
+  //stop microphone access
+  gumStream.getAudioTracks()[0].stop();
+
+  //create the wav blob and pass it on to createDownloadLink
+  rec.exportWAV(getResponseFromAudio);
 }
  
 // visualiser setup - create web audio api context and canvas
@@ -131,7 +141,7 @@ if (navigator.mediaDevices.getUserMedia) {
 }
  
 function visualize(stream) {
-  if(!audioCtx) {
+  if (!audioCtx) {
     audioCtx = new AudioContext();
   }
  
@@ -228,20 +238,28 @@ function getResponseFromAudio(blob) {
 }
  
 function getResponseFromText(){
-  var input = document.getElementById('text-input').value;
-
+  var input = textInputContainer.value;
   fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
  
-  var frm = document.getElementsByName('input-form')[0];
-  frm.reset(); 
+  formContainer.reset(); 
 }
- 
+
 function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput, "convo-container");
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
+  if (outputAsJson.display) {
+    if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+      convoContainer = placeObjectContainer(outputAsJson.display, "media-display timer-display", "convo-container");
+      var allTimers = document.getElementsByClassName("timer-display");
+      if (existingTimer) {
+        terminateTimer(allTimers[0]);
+      }
+      existingTimer = true;
+    }
+  }
   outputAudio(stream);
 }
  
@@ -269,15 +287,65 @@ function getLastWord(words) {
     console.log(split);
     return split[split.length - 1];
 }
- 
+
 function placeDisplay(text) {
   placeObjectContainer(text, "media-display", "convo-container");
 }
+ 
+function placeDisplay(text, type) {
+  placeObjectContainer(text, type, "convo-container");
+}
 
+function decrementTime(timeContainer) {
+  var splitTimes = timeContainer.innerText.split(':');
+  var last = splitTimes.length - 1;
+  while(splitTimes[last] == "00" || splitTimes[last] == "0") {
+    if (last == 0) {
+      terminateTimer(timeContainer);
+      return;
+    }
+    last -= 1;
+  }
+  subtract(splitTimes, last);
+  var timeString = "";
+  for (var i = 0; i < splitTimes.length; i++) {
+    timeString += splitTimes[i];
+    if (i != splitTimes.length - 1) {
+      timeString += ":";
+    }
+  }
+  timeContainer.innerText = timeString;
+}
+
+function subtract(split, startIndex) {
+  for(var i = startIndex; i < split.length; i++) {
+    split[i] = subtractOne(split[i]);
+  }
+}
+
+function subtractOne(timeString) {
+  if (timeString == "00") {
+    return "59";
+  }
+  var timeInt = parseInt(timeString) - 1;
+  if (timeInt < 10) {
+    return "0" + timeInt.toString();
+  }
+  return timeInt.toString();
+}
+
+function terminateTimer(timeContainer) {
+  timeContainer.classList.remove('timer-display');
+  timeContainer.innerHTML = "<p style=\'background-color: rgba(5, 5, 5, 0.678)\'>Timer has ended.</p>";
+  clearInterval(timer);
+  existingTimer = false;
+}
+ 
 function placeObjectContainer(text, type, container) {
   var container = document.getElementsByName(container)[0];
   container.innerHTML += ("<div class='" + type + "'>" + text + "</div><br>")
   updateScroll();
+  return container;
 }
 
 function updateScroll() {
@@ -285,26 +353,51 @@ function updateScroll() {
   element.scrollTop = element.scrollHeight;
 }
 
-function outputAudio(stream){
+function outputAudio(stream) {
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
 
-  if (outputAsJson.redirect != null){
+  if (outputAsJson.redirect != null) {
     var aud = document.getElementById("sound-player");
     aud.onended = function() {
       sendRedirect(outputAsJson.redirect);
     };
   } else {
-      var aud = document.getElementById("sound-player");
-      aud.onended = function() {};
+    var aud = document.getElementById("sound-player");
+    aud.onended = function() {
+      if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+        initiateTimer(outputAsJson);
+      }
+    };
   }
 }
- 
+
+function initiateTimer(outputAsJson) { 
+  var allTimers = document.getElementsByClassName("timer-display");
+  var timeContainer = allTimers[allTimers.length - 1];
+  var audio = new Audio('audio/timerStart.wav');
+  audio.play();
+  timer = setInterval(decrementTime, 1000, timeContainer);
+  setTimeout(function(){
+    var audio = new Audio('audio/timerEnd.wav');
+    audio.play();
+  }, getTime(timeContainer.innerText));
+}
+
+function getTime(timeString) {
+  var splitTimes = timeString.split(':');
+  var totalTime = 0;
+  for (var i = 0; i < splitTimes.length; i++) {
+    totalTime += parseInt(splitTimes[i]) * Math.pow(60, splitTimes.length - 1 - i);
+  }
+  return totalTime * 1000;
+}
+
 function sendRedirect(URL){
   window.open(URL);
 }
  
-function getAudio(byteArray){
+function getAudio(byteArray) {
   var base64 = arrayBufferToBase64(byteArray);
   var audioURL = base64toURL(base64, "audio/mp3");
   play(audioURL);
@@ -320,7 +413,7 @@ function arrayBufferToBase64(buffer) {
   return window.btoa(binary);
 }
  
-function base64toURL(b64Data, type){
+function base64toURL(b64Data, type) {
   var audioURL = "data:" + type + ";base64," + b64Data;
   return audioURL;
 }
