@@ -49,8 +49,8 @@ public class AgentUtils {
             redirect = object.getRedirect();
         } else {
             fulfillment = queryResult.getFulfillmentText();
-            fulfillment = fulfillment.equals("") ? "I didn't hear you. Can you repeat that?" : fulfillment;
         }
+        fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
     
         byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
         Output output = new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
