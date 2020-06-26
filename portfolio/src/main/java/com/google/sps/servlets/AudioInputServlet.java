@@ -21,6 +21,7 @@ import com.google.protobuf.ByteString;
 import com.google.sps.agents.TranslateAgent;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.AudioUtils;
+import com.google.sps.utils.TextUtils;
 import com.google.sps.data.Output;
 import com.google.sps.utils.SpeechUtils;
 
@@ -74,35 +75,32 @@ public class AudioInputServlet extends HttpServlet {
         return AgentUtils.getOutput(result, languageCode);
     }
 
-    private Output handleForeignQuery(ByteString bytestring, String language) {
-        System.out.println("LANGUAGE : " + language);
-        String languageCode = AgentUtils.getLanguageCode(language);
-        System.out.println("CODE: " + languageCode);
-        String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
-        System.out.println("TODO: handle foreign language inputs.");
-
-        String englishLanguageCode = AgentUtils.getLanguageCode("English");
-        //Google Translate API - convert detectedUserInputString from language to English
-        Translation inputTranslation = TranslateAgent.translate(detectedUserInputString, languageCode, englishLanguageCode);
-
-        //call handleEnglishQuery
-        String translatedInputText = inputTranslation.getTranslatedText(); 
-        ByteString inputByteString = null;
-        try {
-            inputByteString = SpeechUtils.synthesizeText(translatedInputText, languageCode);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        Output englishOutput = handleEnglishQuery(inputByteString, languageCode);
-
-        // Google Translate API - convert Output.userInput and Output.fulfillment to appropriate language
-        String userInput = englishOutput.getUserInput();
-        String fulfillment = englishOutput.getFulfillmentText();
-        String userInputTranslation = TranslateAgent.translate(userInput, englishLanguageCode, languageCode).getTranslatedText();
-        String fulfillmentTranslation = TranslateAgent.translate(userInput, englishLanguageCode, languageCode).getTranslatedText();
-        byte[] byteArray = AgentUtils.getByteStringToByteArray(fulfillmentTranslation, languageCode);
-        Output languageOutput = new Output(userInputTranslation, fulfillmentTranslation, byteArray);
-        return languageOutput;
+  private Output handleForeignQuery(ByteString bytestring, String language) {
+    System.out.println("LANGUAGE : " + language);
+    String languageCode = AgentUtils.getLanguageCode(language);
+    System.out.println("CODE: " + languageCode);
+    String detectedUserInputString = AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
+    String englishLanguageCode = AgentUtils.getLanguageCode("English");
+    //Google Translate API - convert detectedUserInputString from language to English
+    Translation inputTranslation = TranslateAgent.translate(detectedUserInputString, languageCode, englishLanguageCode);
+    
+    String translatedInputText = inputTranslation.getTranslatedText(); 
+    ByteString inputByteString = null;
+    try {
+        inputByteString = SpeechUtils.synthesizeText(translatedInputText, languageCode);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    
+    QueryResult englishOutput = TextUtils.detectIntentStream(translatedInputText, englishLanguageCode);
+
+    // Google Translate API - convert input and fulfillment to appropriate language
+    String userInput = englishOutput.getQueryText();
+    String fulfillment = englishOutput.getFulfillmentText();
+    String userInputTranslation = TranslateAgent.translate(userInput, englishLanguageCode, languageCode).getTranslatedText();
+    String fulfillmentTranslation = TranslateAgent.translate(fulfillment, englishLanguageCode, languageCode).getTranslatedText();
+    byte[] byteArray = AgentUtils.getByteStringToByteArray(fulfillmentTranslation, languageCode);
+    Output languageOutput = new Output(userInputTranslation, fulfillmentTranslation, byteArray);
+    return languageOutput;
+  }
 }
