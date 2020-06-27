@@ -63,6 +63,8 @@ public class AgentUtils {
                 return new Tip(intentName, parameterMap);
             case "currency":
                 return new Currency(intentName, parameterMap);
+            case "date":
+                return new Date(intentName, parameterMap);
             case "language":
                 return new Language(intentName, parameterMap);
             case "name":
