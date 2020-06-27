@@ -65,6 +65,8 @@ public class AgentUtils {
                 return new Currency(intentName, parameterMap);
             case "language":
                 return new Language(intentName, parameterMap);
+            case "maps":
+                return new Maps(intentName, parameterMap);
             case "name":
                 return new Name(intentName, parameterMap);
             case "reminders":
@@ -117,13 +119,13 @@ public class AgentUtils {
   
     public static String getLanguageCode(String language) {
         if (language == null) {
-            return "en-US";
+            return "en";
         }
         switch(language) {
             case "Chinese":
-                return "zh-CN";
+                return "zh";
             case "English": 
-                return "en-US";
+                return "en";
             case "French":
                 return "fr";
             case "German":

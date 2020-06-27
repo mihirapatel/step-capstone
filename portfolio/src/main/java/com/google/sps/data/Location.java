@@ -44,6 +44,7 @@ public class Location {
     private LatLng coords;
     private TimeZone timeZoneObj;
     private String timeZoneID;
+    private String formattedAddress;
     
 
     public Location(String address) {
@@ -72,6 +73,7 @@ public class Location {
             this.latCoord = results[0].geometry.location.lat;
             this.lngCoord = results[0].geometry.location.lng;
             this.coords = new LatLng(latCoord, lngCoord);
+            this.formattedAddress = results[0].formattedAddress;
         } catch (Exception e) {
             return;
         }
@@ -91,6 +93,10 @@ public class Location {
 
     public String getAddress() {
         return this.address;
+    }
+
+    public String getAddressFormatted() {
+        return this.formattedAddress;
     }
  
     public Double getLat() {
