@@ -36,8 +36,6 @@ public class Weather implements Agent {
 	public void setParameters(Map<String, Value> parameters) {
         this.displayAddress = LocationUtils.getDisplayAddress("address", parameters);
         this.searchAddress = LocationUtils.getFormattedAddress("address", parameters);
-        System.out.println(displayAddress);
-        System.out.println(searchAddress);
         if (!displayAddress.isEmpty() && !searchAddress.isEmpty()){
             String baseURL = "http://www.google.com/search?q=weather+in+";
 		    String[] individualWords = searchAddress.split(" ");
