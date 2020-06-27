@@ -260,6 +260,9 @@ function displayResponse(stream) {
       }
       existingTimer = true;
     } else if (outputAsJson.fulfillmentText.includes("Here are the top")) {
+      if (moreButton) {
+        moreButton.style.display = "none";
+      }
       mapContainer = nearestPlacesMap(outputAsJson.display);
       placeMapDisplay(mapContainer, "convo-container");
     }
@@ -459,13 +462,13 @@ var infowindow;
 var limit;
 var rightPanel;
 var placesList;
-var moreButton;
 var placesDict = new Map();
 var markerMap = new Map();
+var moreButton;
 
 function nearestPlacesMap(placeQuery) {
   var place = JSON.parse(placeQuery);
-  limit = place.limit > 0 ? place.limit : Number.MAX_SAFE_INTEGER;
+  limit = place.limit;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
 
   let {mapDiv, newMap} = createMapDivs();
@@ -482,20 +485,38 @@ function nearestPlacesMap(placeQuery) {
   };
 
   service = new google.maps.places.PlacesService(map);
-  var getNextPage = null;
-  moreButton.onclick = function() {
-    moreButton.disabled = true;
-    if (getNextPage) getNextPage();
-  };
-  service.textSearch(request, function(results, status, pagination) {
-    if (status !== 'OK') return;
-    createMarkers(results, map);
-    moreButton.disabled = !pagination.hasNextPage;
-    getNextPage = pagination.hasNextPage && function() {
-      pagination.nextPage();
+  if (place.limit > 0) {
+    service.textSearch(request, function(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        createMarkers(results, map, limit);
+      }
+    });
+  } else {
+    var getNextPage = null;
+    createMoreButton();
+    moreButton.onclick = function() {
+      moreButton.disabled = true;
+      if (getNextPage) getNextPage();
     };
-  });
+    service.textSearch(request, function(results, status, pagination) {
+      if (status !== 'OK') return;
+      createMarkers(results, map, results.length);
+      moreButton.disabled = !pagination.hasNextPage;
+      if (moreButton.disabled) {
+        moreButton.style.display = "none";
+      }
+      getNextPage = pagination.hasNextPage && function() {
+        pagination.nextPage();
+      };
+    });
+  }
   return mapDiv;
+}
+
+function standardCallback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    createMarkers(results, map);
+  }
 }
 
 function createMapDivs() {
@@ -519,15 +540,18 @@ function createMapDivs() {
   placesList.id = 'places';
   rightPanel.appendChild(placesList);
 
+  return {mapDiv, newMap};
+}
+
+function createMoreButton() {
   moreButton = document.createElement('button');
   moreButton.id = 'more';
   moreButton.innerHTML = 'More results';
   rightPanel.appendChild(moreButton);
-
-  return {mapDiv, newMap};
+  return moreButton;
 }
 
-function createMarkers(places, map) {
+function createMarkers(places, map, limit) {
   var bounds = new google.maps.LatLngBounds();
 
   for (var i = 0; i < places.length && i < limit; i++) {
