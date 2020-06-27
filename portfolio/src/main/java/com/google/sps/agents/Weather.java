@@ -21,7 +21,6 @@ public class Weather implements Agent {
     private String displayAddress;
     private String searchAddress;
     private String output = null;
-    private String redirect = null;
     
     public Weather(String intentName, Map<String, Value> parameters) {
         this.intentName = intentName;
@@ -38,7 +37,7 @@ public class Weather implements Agent {
         this.searchAddress = LocationUtils.getFormattedAddress("address", parameters);
         if (!displayAddress.isEmpty() && !searchAddress.isEmpty()){
             String baseURL = "http://www.google.com/search?q=weather+in+";
-		    String[] individualWords = searchAddress.split(" ");
+            String[] individualWords = searchAddress.split(" ");
             String endURL = String.join("+", individualWords);
             this.redirect = baseURL + endURL;
             this.output = "Redirecting you to the current forecast in " + displayAddress + ".";
@@ -57,6 +56,6 @@ public class Weather implements Agent {
 
 	@Override
 	public String getRedirect() {
-		return this.redirect;
+		return null;
     }
 }
