@@ -347,7 +347,9 @@ function terminateTimer(timeContainer) {
  
 function placeObjectContainer(text, type, container) {
   var container = document.getElementsByName(container)[0];
-  container.innerHTML += ("<div class='" + type + "'>" + text + "</div><br>")
+  var newDiv = document.createElement('div');
+  newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div><br>";
+  container.appendChild(newDiv);
   updateScroll();
   return container;
 }
@@ -452,25 +454,23 @@ function play(src) {
   }
 }
 
-var map;
 var service;
 var infowindow;
 var limit;
-var mapDiv;
-var newMap;
 var rightPanel;
 var placesList;
 var moreButton;
 var placesDict = new Map();
+var markerMap = new Map();
 
 function nearestPlacesMap(placeQuery) {
   var place = JSON.parse(placeQuery);
   limit = place.limit;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
 
-  createMapDivs();
+  let {mapDiv, newMap} = createMapDivs();
   
-  map = new google.maps.Map(newMap, {
+  var map = new google.maps.Map(newMap, {
     center: mapCenter,
     zoom: 15
   });
@@ -489,7 +489,7 @@ function nearestPlacesMap(placeQuery) {
   };
   service.textSearch(request, function(results, status, pagination) {
     if (status !== 'OK') return;
-    createMarkers(results);
+    createMarkers(results, map);
     moreButton.disabled = !pagination.hasNextPage;
     getNextPage = pagination.hasNextPage && function() {
       pagination.nextPage();
@@ -523,9 +523,11 @@ function createMapDivs() {
   moreButton.id = 'more';
   moreButton.innerHTML = 'More results';
   rightPanel.appendChild(moreButton);
+
+  return {mapDiv, newMap};
 }
 
-function createMarkers(places) {
+function createMarkers(places, map) {
   var bounds = new google.maps.LatLngBounds();
 
   for (var i = 0, place; place = places[i]; i++) {
@@ -535,11 +537,12 @@ function createMarkers(places) {
       position: place.geometry.location,
       info: infowindow
     });
+    markerMap.set(marker, map);
     marker.addListener('click', function() {
       if (isInfoWindowOpen(this.info)) {
-        this.info.close(map, this);
+        this.info.close(markerMap.get(this), this);
       } else {
-        this.info.open(map, this);
+        this.info.open(markerMap.get(this), this);
       }
     });
     
@@ -550,9 +553,9 @@ function createMarkers(places) {
     li.addEventListener('click', function() {
       var liMarker = placesDict.get(this);
       if (isInfoWindowOpen(liMarker.info)) {
-        liMarker.info.close(map, liMarker);
+        liMarker.info.close(markerMap.get(liMarker), liMarker);
       } else {
-        liMarker.info.open(map, liMarker);
+        liMarker.info.open(markerMap.get(liMarker), liMarker);
       }
     });
 
