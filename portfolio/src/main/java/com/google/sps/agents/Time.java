@@ -57,7 +57,7 @@ public class Time implements Agent {
         else if (intentName.equals("check")) {
             this.locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
             this.locationDisplay = LocationUtils.getDisplayAddress("location", parameters);
-            
+
             String currentTime = getCurrentTimeString(locationFormatted);
             if (!currentTime.isEmpty()) {
                 output = "In " + locationDisplay + ", it is currently " + currentTime + ".";
@@ -192,13 +192,13 @@ public class Time implements Agent {
     public String zonedTimeToString(ZonedDateTime time) {
         String timeString = "";
         if (time != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
             timeString = time.format(formatter);
         }
         return timeString;
     }
 
-    public ZonedDateTime getZonedTime(String timeName, String locationParameter, Map<String, Value> parameters) {
+    public static ZonedDateTime getZonedTime(String timeName, String locationParameter, Map<String, Value> parameters) {
         LocalDateTime localTime = getTimeParameter(timeName, parameters);
         ZonedDateTime zonedTime = null;
         if (localTime != null) {
@@ -209,7 +209,7 @@ public class Time implements Agent {
         return zonedTime;
     }
 
-    public LocalDateTime getTimeParameter(String parameterName, Map<String, Value> parameters) {
+    public static LocalDateTime getTimeParameter(String parameterName, Map<String, Value> parameters) {
         String time = parameters.get(parameterName).getStringValue();
         LocalDateTime timeToCheck = null;
 
