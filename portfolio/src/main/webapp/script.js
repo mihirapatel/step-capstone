@@ -465,7 +465,7 @@ var markerMap = new Map();
 
 function nearestPlacesMap(placeQuery) {
   var place = JSON.parse(placeQuery);
-  limit = place.limit;
+  limit = place.limit > 0 ? place.limit : Number.MAX_SAFE_INTEGER;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
 
   let {mapDiv, newMap} = createMapDivs();
@@ -530,7 +530,8 @@ function createMapDivs() {
 function createMarkers(places, map) {
   var bounds = new google.maps.LatLngBounds();
 
-  for (var i = 0, place; place = places[i]; i++) {
+  for (var i = 0; i < places.length && i < limit; i++) {
+    var place = places[i];
     var infowindow = new google.maps.InfoWindow({content: place.name});
     var marker = new google.maps.Marker({
       map: map,
