@@ -18,7 +18,11 @@ public class Name implements Agent {
     if (userID == null) {
       outputText = "Please login to modify your name.";
     } else {
-      setParameters(parameters);
+      try {
+        setParameters(parameters);
+      } catch (Exception e) {
+        return;
+      }
     }
   }
 
@@ -29,23 +33,27 @@ public class Name implements Agent {
     String nameType = parameters.get("type").getStringValue();
     String name = null;
     nameType = nameType.equals("") ? "first name" : nameType;
-    switch (nameType) {
-      case "first name":
-        name = parameters.get("given-name").getStringValue();
-        break;
-      case "middle name":
-        name = parameters.get("given-name").getStringValue();
-        break;
-      case "last name":
-        name = parameters.get("last-name").getStringValue();
-        break;
-      case "nickname":
-        name = parameters.get("nick-name").getStringValue();
-        name = (name == null) ? parameters.get("given-name").getStringValue() : name;
+    name = getSpecificName(parameters, nameType);
+    if (name.equals("")) {
+      outputText = "I'm sorry, I didn't catch the name. Can you repeat that?";
+    } else {
+      UserUtils.saveName(nameType, name);
+      outputText = "Changing your " + nameType + " to be " + name;
+      userDisplayName = UserUtils.getDisplayName();
     }
-    UserUtils.saveName(nameType, name);
-    outputText = "Changing your " + nameType + " to be " + name;
-    userDisplayName = UserUtils.getDisplayName();
+  }
+
+  private String getSpecificName(Map<String, Value> parameters, String nameType) {
+    String name = parameters.get("given-name").getStringValue();
+    if (!name.equals("")) {
+      return name;
+    }
+    if (nameType.equals("last name")) {
+      return parameters.get("last-name").getStringValue();
+    } else if (nameType.equals("nickname")) {
+      return parameters.get("nick-name").getStringValue();
+    }
+    return null;
   }
 
   @Override
