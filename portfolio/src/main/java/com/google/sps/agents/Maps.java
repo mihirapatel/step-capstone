@@ -18,14 +18,6 @@ public class Maps implements Agent {
   private String locationDisplayed;
   private Location location;
   private Map<String, Value> fields;
-  private String businessName;
-  private String city;
-  private String county;
-  private String country;
-  private String island;
-  private String state;
-  private String streetAddress;
-  private String zipCode;
 
   public Maps(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
