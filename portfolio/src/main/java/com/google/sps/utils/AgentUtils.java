@@ -37,6 +37,7 @@ public class AgentUtils {
     } else {
       fulfillment = queryResult.getFulfillmentText();
     }
+    fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
 
     if (fulfillment.equals("")) {
       fulfillment = "Can you repeat that?";
