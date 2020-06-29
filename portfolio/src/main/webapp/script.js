@@ -361,6 +361,7 @@ function placeMapDisplay(mapDiv, container) {
   var container = document.getElementsByName(container)[0];
   container.appendChild(mapDiv);
   updateScroll();
+  return container;
 }
 
 function updateScroll() {
