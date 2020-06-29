@@ -11,6 +11,7 @@ public class Weather implements Agent {
   private String displayAddress;
   private String searchAddress;
   private String output = null;
+  private String redirect = null;
 
   public Weather(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
@@ -46,6 +47,6 @@ public class Weather implements Agent {
 
   @Override
   public String getRedirect() {
-    return null;
+    return this.redirect;
   }
 }
