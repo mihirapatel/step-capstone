@@ -22,7 +22,7 @@ public class LocationUtils {
   public static String getDisplayAddress(String parameterName, Map<String, Value> parameters) {
     ArrayList<String> locationNames = getLocationParameters(parameterName, parameters);
     String displayAddress = "";
-    if (locationNames.size() > 0) {
+    if (!locationNames.isEmpty()) {
       for (int i = 0; i < locationNames.size(); ++i) {
         String currentString = locationNames.get(i);
         if (currentString.startsWith("in ")) {
@@ -38,10 +38,10 @@ public class LocationUtils {
   public static String getOneFieldAddress(String parameterName, Map<String, Value> parameters) {
     ArrayList<String> locationNames = getLocationParameters(parameterName, parameters);
     String displayAddress = "";
-    if (locationNames.size() > 0) {
+    if (!locationNames.isEmpty()) {
       displayAddress = locationNames.get(0);
       if (displayAddress.startsWith("in ")) {
-        displayAddress = displayAddress.substring(3);
+        return displayAddress.substring(3);
       }
     }
     return displayAddress;
