@@ -448,7 +448,7 @@ function play(src) {
 function authSetup() {
   fetch("/auth").then((response) => response.json()).then((displayText) => {
     var authContainer = document.getElementsByClassName("auth-link")[0];
-    authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">Logout</a>";
+    authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
   });
 }
