@@ -259,6 +259,8 @@ function displayResponse(stream) {
         terminateTimer(allTimers[0]);
       }
       existingTimer = true;
+    } else if (outputAsJson.fulfillmentText.includes("Changing your") && outputAsJson.fulfillmentText.includes("name")) {
+      updateName(outputAsJson.display);
     }
   }
   outputAudio(stream);
@@ -280,9 +282,7 @@ function placeFulfillmentResponse(text) {
   console.log(text);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
-  } else if (text.includes("Changing your") && text.includes("name")) {
-    updateName(getLastWord(text));
-  }
+  }
 }
 
 function getLastWord(words) {
