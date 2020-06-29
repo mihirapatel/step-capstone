@@ -22,7 +22,7 @@ public class AudioTest {
 
   private ByteArrayOutputStream bout;
 
-  private static String PROJECT_ID = "fair-syntax-280601";
+  private static String PROJECT_ID = "mihira-step-2020-3";
   private static String SESSION_ID = UUID.randomUUID().toString();
 
   @Before
@@ -38,39 +38,26 @@ public class AudioTest {
   }
 
   @Test
-  public void testStreamingDetectIntentCallable() {
+  public void testByteStringAudioInput() {
     String audioFilePath = "resources/book_a_room.wav";
-    AudioUtils.detectIntentStream(
-            PROJECT_ID, audioFilePath, SESSION_ID);
+    try {
+      File file = new File(audioFilePath);
+      byte[] bytesArray = new byte[(int) file.length()];
+      FileInputStream fis = new FileInputStream(file);
+      fis.read(bytesArray); // read file into bytes[]
+      fis.close();
 
-    String output = bout.toString();
+      ByteString bytestring = ByteString.copyFrom(bytesArray);
 
-    assertThat(output).contains("book");
-    assertThat(output).contains("a");
-    assertThat(output).contains("room");
+      AudioUtils.detectIntentStream(bytestring, 16000);
+
+      String output = bout.toString();
+
+      assertThat(output).contains("book");
+      assertThat(output).contains("a");
+      assertThat(output).contains("room");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
-
-//   @Test 
-//   public void testByteStringAudioInput() {
-//     String audioFilePath = "resources/book_a_room.wav";
-//     try {
-//         File file = new File(audioFilePath);
-//         byte[] bytesArray = new byte[(int) file.length()];
-//         FileInputStream fis = new FileInputStream(file);
-//         fis.read(bytesArray); //read file into bytes[]
-//         fis.close();
-
-//         ByteString bytestring = ByteString.copyFrom(bytesArray);
-
-//         AudioUtils.detectIntentStream(bytestring);
-
-//         String output = bout.toString();
-
-//         assertThat(output).contains("book");
-//         assertThat(output).contains("a");
-//         assertThat(output).contains("room");
-//     } catch (IOException e) {
-//       e.printStackTrace();
-//     }
-//   }
 }
