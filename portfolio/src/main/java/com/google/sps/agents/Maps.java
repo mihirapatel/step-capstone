@@ -72,8 +72,7 @@ public class Maps implements Agent {
     private void mapsFind(Map<String, Value> parameters) {
         String attraction = parameters.get("place-attraction").getStringValue();
         location = new Location(locationFormatted);
-        
-        Place place;
+Place place;
         String limitDisplay = "";
         int limit = (int) parameters.get("number").getNumberValue();
         if (limit > 0) {

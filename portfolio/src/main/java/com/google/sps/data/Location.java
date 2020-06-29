@@ -70,7 +70,7 @@ public class Location {
             GeocodingResult[] results =  GeocodingApi.geocode(context,
                 address).await();
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            this.latCoord = results[0].geometry.location.lat;
+this.latCoord = results[0].geometry.location.lat;
             this.lngCoord = results[0].geometry.location.lng;
             this.coords = new LatLng(latCoord, lngCoord);
             this.formattedAddress = results[0].formattedAddress;
