@@ -52,17 +52,6 @@ public class Maps implements Agent {
         if (intentName.contains("find")) {
             mapsFind(parameters);
         }
-        // System.out.println(parameters);
-        // location = parameters.get("location").getStructValue();
-        // fields = location.getFieldsMap();
-        // businessName = fields.get("business-name").getStringValue();
-        // city = fields.get("city").getStringValue();
-        // county = fields.get("subadmin-area").getStringValue();
-        // country = fields.get("country").getStringValue();
-        // island = fields.get("island").getStringValue();
-        // streetAddress = fields.get("street-address").getStringValue();
-        // state = fields.get("admin-area").getStringValue();
-        // zipCode = fields.get("zip-code").getStringValue();
 	}
 	
 	@Override
