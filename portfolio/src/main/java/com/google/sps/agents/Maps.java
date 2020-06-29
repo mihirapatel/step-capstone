@@ -17,7 +17,6 @@ public class Maps implements Agent {
   private String locationFormatted;
   private String locationDisplayed;
   private Location location;
-  private Map<String, Value> fields;
 
   public Maps(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
