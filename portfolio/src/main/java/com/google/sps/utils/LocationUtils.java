@@ -25,6 +25,7 @@ public class LocationUtils {
     if (!locationNames.isEmpty()) {
       for (int i = 0; i < locationNames.size(); ++i) {
         String currentString = locationNames.get(i);
+        // Case when Dialogflow detects "in London" instead of London as location
         if (currentString.startsWith("in ")) {
           String newString = currentString.substring(3);
           locationNames.set(i, newString);
@@ -40,6 +41,7 @@ public class LocationUtils {
     String displayAddress = "";
     if (!locationNames.isEmpty()) {
       displayAddress = locationNames.get(0);
+      // Case when Dialogflow detects "in London" instead of London as location
       if (displayAddress.startsWith("in ")) {
         return displayAddress.substring(3);
       }
