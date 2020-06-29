@@ -37,9 +37,9 @@ public class AgentUtils {
     } else {
       fulfillment = queryResult.getFulfillmentText();
     }
-    
-    if (fulfillment.equals("")){
-        fulfillment = "Can you repeat that?";
+
+    if (fulfillment.equals("")) {
+      fulfillment = "Can you repeat that?";
     }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
