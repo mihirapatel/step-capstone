@@ -47,7 +47,6 @@ public class Date implements Agent {
         String dateString = getDateString(dateGiven);
         String dayOfWeek = getDayOfWeek(dateGiven);
         String verb = " was a ";
-
         if (currentDate.isBefore(givenDate)) {
           verb = " is a ";
         }
