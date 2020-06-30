@@ -6,6 +6,7 @@
     <title>AI-ssistant</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&libraries=places"></script> 
   </head>
 
   <body onload="authSetup()">
@@ -19,8 +20,10 @@
       
     <div id = "content">
        <div name = "convo-container"></div>
+       <div id="map"></div>
        <div name = "streaming" style="display: none"></div>
     </div>
+    
     <div id="footer" >
       <section class="main-controls">
         <div id="buttons">
@@ -38,9 +41,10 @@
       </form>
  
     </div>
+     
     <audio id="sound-player" autoplay preload = "auto"></audio>
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=INSERT_API_KEY&libraries=places"></script>
     <script src="script.js"></script>
+    
   </body>
 </html>

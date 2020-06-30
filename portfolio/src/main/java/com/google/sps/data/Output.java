@@ -20,7 +20,6 @@ public final class Output {
     }
 
     // Constructor with display
-
     public Output(String userInput, String fulfillmentText, byte[] byteStringToByteArray, String display) {
         this.userInput = userInput;
         this.fulfillmentText = fulfillmentText;
