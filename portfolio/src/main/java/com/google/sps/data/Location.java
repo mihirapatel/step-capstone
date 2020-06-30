@@ -31,6 +31,7 @@ import java.util.TimeZone;
 
 /* Location object */
 public class Location {
+
   private String address;
   private double latCoord;
   private double lngCoord;

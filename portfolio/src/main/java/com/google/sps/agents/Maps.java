@@ -4,35 +4,40 @@ package com.google.sps.agents;
 import com.google.gson.Gson;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
+import com.google.sps.data.Place;
+import com.google.sps.data.Output;
+import com.google.sps.agents.Agent;
 import com.google.sps.utils.LocationUtils;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /** Maps Agent */
 public class Maps implements Agent {
-
+    
   private final String intentName;
   private String fulfillment = null;
   private String display = null;
   private String redirect = null;
+  private ArrayList<String> locationWords;
   private String locationFormatted;
   private String locationDisplayed;
   private Location location;
 
   public Maps(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
-    try {
-      setParameters(parameters);
-    } catch (Exception e) {
-      return;
-    }
+    setParameters(parameters);
   }
 
-  @Override
+  @Override 
   public void setParameters(Map<String, Value> parameters) {
     locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
-    locationDisplayed = LocationUtils.getDisplayAddress("location", parameters);
-    if (intentName.contains("find")) {
-      mapsFind(parameters);
+    locationWords = LocationUtils.getLocationParameters("location", parameters);
+    if(intentName.contains("search")) {
+        mapsSearch(parameters);
+    } else if (intentName.contains("find")) {
+        mapsFind(parameters);
     }
   }
 
@@ -48,7 +53,15 @@ public class Maps implements Agent {
 
   @Override
   public String getRedirect() {
-    return null;
+    return redirect;
+  }
+
+  private void mapsSearch(Map<String, Value> parameters) {
+    location = new Location(locationFormatted); 
+    fulfillment = "Here is the map for: " + locationFormatted;
+
+    Place place = new Place(location.getLng(), location.getLat());
+    display = place.toString();
   }
 
   private void mapsFind(Map<String, Value> parameters) {
@@ -74,26 +87,5 @@ public class Maps implements Agent {
             + ".";
     display = place.toString();
   }
-
-  class Place {
-    String attractionQuery;
-    int limit = -1;
-    double lng;
-    double lat;
-
-    Place(String query, double longitude, double latitude) {
-      attractionQuery = query;
-      lng = longitude;
-      lat = latitude;
-    }
-
-    Place(String query, double longitude, double latitude, int limit) {
-      this(query, longitude, latitude);
-      this.limit = limit;
-    }
-
-    public String toString() {
-      return new Gson().toJson(this);
-    }
-  }
+  
 }
