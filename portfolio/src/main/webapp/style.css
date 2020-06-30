@@ -239,6 +239,29 @@ input[type=checkbox]:checked ~ aside {
 .clip p {
   cursor: pointer;
 }
+
+.auth-link {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 10px;
+  background-color:  rgba(255, 255, 255, 0.156);
+  padding: 10px;
+  padding-top: 5px;
+  margin: 10px;
+}
+
+.auth-link:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.356);
+}
+
+a.link {
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  color: white;
+  font-size: 1.3rem;
+}
  
 /* Adjustments for wider screens */
 @media all and (min-width: 800px) {

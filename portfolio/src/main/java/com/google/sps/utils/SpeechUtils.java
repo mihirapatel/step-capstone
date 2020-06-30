@@ -15,7 +15,7 @@
  */
 
 package com.google.sps.utils;
- 
+
 // Imports the Google Cloud client library
 import com.google.cloud.texttospeech.v1.AudioConfig;
 import com.google.cloud.texttospeech.v1.AudioEncoding;

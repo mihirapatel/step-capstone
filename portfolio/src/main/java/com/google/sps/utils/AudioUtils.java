@@ -1,5 +1,5 @@
 package com.google.sps.utils;
- 
+
 // Imports the Google Cloud client library
 import com.google.api.gax.rpc.BidiStream;
 import com.google.cloud.dialogflow.v2.AudioEncoding;
@@ -20,15 +20,9 @@ import com.google.cloud.speech.v1.SpeechRecognitionResult;
 import com.google.protobuf.ByteString;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
- 
-/**
- * DialogFlow API Detect Intent sample with audio files processes as an audio stream.
- */
-public class AudioUtils {
- 
+
+/** DialogFlow API Detect Intent sample with audio files processes as an audio stream. */
+public class AudioUtils { 
     static SessionName session = SessionName.of("mihira-step-2020-3", "1");
     
     public static QueryResult detectIntentStream(ByteString bytestring) {
@@ -112,7 +106,6 @@ public class AudioUtils {
         
             BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream =
                 sessionsClient.streamingDetectIntentCallable().call();
-
             bidiStream.send(StreamingDetectIntentRequest.newBuilder()
                 .setSession(session.toString())
                 .setQueryInput(queryInput)
