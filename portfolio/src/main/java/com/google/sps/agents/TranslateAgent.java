@@ -43,7 +43,7 @@ public class TranslateAgent implements Agent {
     Translation translation = translate(text, languageFromCode, languageToCode);
     translatedString = translation.getTranslatedText();
 
-    if (languageToCode == null || languageFromCode == null) {
+    if (languageToCode == null && languageFromCode == null) {
       fulfillment = null;
     } else {
       fulfillment = text + " in " + languageTo + " is: " + translatedString;
