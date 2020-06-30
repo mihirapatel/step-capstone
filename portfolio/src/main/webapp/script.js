@@ -260,7 +260,7 @@ function displayResponse(stream) {
       }
       existingTimer = true;
     } else if (outputAsJson.fulfillmentText.includes("Here is the map for")) {
-      displayMap(stream);
+        displayMap(stream);
     }
   }
   outputAudio(stream);
