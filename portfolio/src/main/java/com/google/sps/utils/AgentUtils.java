@@ -79,18 +79,12 @@ public class AgentUtils {
     }
   }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
   private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
       intentName = intentList[1];
     }
-    return intentName;
   }
 
   public static Map<String, Value> getParameterMap(QueryResult queryResult) {
@@ -107,7 +101,6 @@ public class AgentUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return byteArray;
   }
 
   public static String getLanguageCode(String language) {
