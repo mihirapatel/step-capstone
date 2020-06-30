@@ -14,11 +14,11 @@
 
 package com.google.sps.servlets;
 
+import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.sps.data.DialogFlow;
 import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
-import com.google.sps.utils.TextUtils;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +40,7 @@ public class TextInputServlet extends HttpServlet {
     String userQuestion = request.getParameter("request-input");
     String language = request.getParameter("language");
     String languageCode = AgentUtils.getLanguageCode(language);
-    DialogFlow result = TextUtils.detectIntentStream(userQuestion, languageCode);
+    DialogFlow result = detectIntentStream(userQuestion, languageCode);
 
     if (result == null) {
       response.getWriter().write(new Gson().toJson(null));
@@ -55,5 +55,29 @@ public class TextInputServlet extends HttpServlet {
     // Convert to JSON string
     String json = new Gson().toJson(output);
     response.getWriter().write(json);
+  }
+
+  private DialogFlow detectIntentStream(String text, String languageCode) {
+    DialogFlow dialogFlowResult = null;
+
+    try (SessionsClient sessionsClient = SessionsClient.create()) {
+      dialogFlowResult = createDialogFlow(text, languageCode, sessionsClient);
+
+      System.out.println("====================");
+      System.out.format("Query Text: '%s'\n", dialogFlowResult.getQueryText());
+      System.out.format(
+          "Detected Intent: %s (confidence: %f)\n",
+          dialogFlowResult.getIntentName(), dialogFlowResult.getIntentConfidence());
+      System.out.format("Fulfillment Text: '%s'\n", dialogFlowResult.getFulfillmentText());
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return dialogFlowResult;
+  }
+
+  protected DialogFlow createDialogFlow(
+      String text, String languageCode, SessionsClient sessionsClient) {
+    return new DialogFlow(text, languageCode, sessionsClient);
   }
 }
