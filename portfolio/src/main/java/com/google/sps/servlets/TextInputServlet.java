@@ -16,7 +16,7 @@ package com.google.sps.servlets;
 
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
-import com.google.sps.data.DialogFlow;
+import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class TextInputServlet extends HttpServlet {
     String userQuestion = request.getParameter("request-input");
     String language = request.getParameter("language");
     String languageCode = AgentUtils.getLanguageCode(language);
-    DialogFlow result = detectIntentStream(userQuestion, languageCode);
+    DialogFlowClient result = detectIntentStream(userQuestion, languageCode);
 
     if (result == null) {
       response.getWriter().write(new Gson().toJson(null));
@@ -57,8 +57,8 @@ public class TextInputServlet extends HttpServlet {
     response.getWriter().write(json);
   }
 
-  private DialogFlow detectIntentStream(String text, String languageCode) {
-    DialogFlow dialogFlowResult = null;
+  public DialogFlowClient detectIntentStream(String text, String languageCode) {
+    DialogFlowClient dialogFlowResult = null;
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
       dialogFlowResult = createDialogFlow(text, languageCode, sessionsClient);
@@ -76,8 +76,8 @@ public class TextInputServlet extends HttpServlet {
     return dialogFlowResult;
   }
 
-  protected DialogFlow createDialogFlow(
+  protected DialogFlowClient createDialogFlow(
       String text, String languageCode, SessionsClient sessionsClient) {
-    return new DialogFlow(text, languageCode, sessionsClient);
+    return new DialogFlowClient(text, languageCode, sessionsClient);
   }
 }

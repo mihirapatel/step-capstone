@@ -4,14 +4,14 @@ package com.google.sps.utils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Value;
 import com.google.sps.agents.*;
-import com.google.sps.data.DialogFlow;
+import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
 import java.util.Map;
 
 /** Identifies agent from Dialogflow API Query result and creates Output object */
 public class AgentUtils {
 
-  public static Output getOutput(DialogFlow queryResult, String languageCode) {
+  public static Output getOutput(DialogFlowClient queryResult, String languageCode) {
     String fulfillment = null;
     String display = null;
     String redirect = null;
