@@ -20,77 +20,77 @@ import java.util.Map;
  */
 public class Maps implements Agent {
     
-    private final String intentName;
-    private String fulfillment = null;
-    private String display = null;
-    private String redirect = null;
-    private ArrayList<String> locationWords;
-    private String locationFormatted;
-    private Location location;
- 
-    public Maps(String intentName, Map<String, Value> parameters) {
-        this.intentName = intentName;
-        setParameters(parameters);
-    }
- 
-    @Override 
-    public void setParameters(Map<String, Value> parameters) {
-        locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
-        locationWords = LocationUtils.getLocationParameters("location", parameters);
-        if(intentName.contains("search")) {
-            mapsSearch(parameters);
-        }
-        
-    }
-    
-    @Override
-    public String getOutput() {
-        return fulfillment;
-    }
- 
-    @Override
-    public String getDisplay() {
-        return display;
-    }
- 
-    @Override
-    public String getRedirect() {
-        return redirect;
-    }
- 
-    private void mapsSearch(Map<String, Value> parameters) {
-        location = new Location(locationFormatted); 
-        fulfillment = "Here is the map for: " + locationFormatted;
+  private final String intentName;
+  private String fulfillment = null;
+  private String display = null;
+  private String redirect = null;
+  private ArrayList<String> locationWords;
+  private String locationFormatted;
+  private Location location;
 
-        Place place = new Place(location.getLng(), location.getLat());
-        display = place.toString();
+  public Maps(String intentName, Map<String, Value> parameters) {
+    this.intentName = intentName;
+    setParameters(parameters);
+  }
+
+  @Override 
+  public void setParameters(Map<String, Value> parameters) {
+    locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
+    locationWords = LocationUtils.getLocationParameters("location", parameters);
+    if(intentName.contains("search")) {
+        mapsSearch(parameters);
     }
- 
-    class Place {
-        String attractionQuery;
-        int limit = -1;
-        double lng;
-        double lat;
- 
-        Place(double longitude, double latitude) {
-            lng = longitude;
-            lat = latitude;
-        }
- 
-        Place(String query, double longitude, double latitude) {
-            attractionQuery = query;
-            lng = longitude;
-            lat = latitude;
-        }
- 
-        Place(String query, double longitude, double latitude, int limit) {
-            this(query, longitude, latitude);
-            this.limit = limit;
-        }
- 
-        public String toString() {
-            return new Gson().toJson(this);
-        }
+  }
+
+  @Override
+  public String getOutput() {
+    return fulfillment;
+  }
+
+  @Override
+  public String getDisplay() {
+    return display;
+  }
+
+  @Override
+  public String getRedirect() {
+    return redirect;
+  }
+
+  private void mapsSearch(Map<String, Value> parameters) {
+    location = new Location(locationFormatted); 
+    fulfillment = "Here is the map for: " + locationFormatted;
+
+    Place place = new Place(location.getLng(), location.getLat());
+    display = place.toString();
+  }
+
+  class Place {
+    String attractionQuery;
+    int limit = -1;
+    double lng;
+    double lat;
+
+    Place(double longitude, double latitude) {
+      lng = longitude;
+      lat = latitude;
     }
+
+    Place(String query, double longitude, double latitude) {
+      attractionQuery = query;
+      lng = longitude;
+      lat = latitude;
+    }
+
+    Place(String query, double longitude, double latitude, int limit) {
+      this(query, longitude, latitude);
+      this.limit = limit;
+    }
+
+    public String toString() {
+      return new Gson().toJson(this);
+    }
+   
+  }
 }
 
