@@ -18,12 +18,11 @@ import com.google.cloud.translate.*;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 import com.google.sps.agents.TranslateAgent;
-import com.google.sps.data.DialogFlow;
+import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.AudioUtils;
 import com.google.sps.utils.SpeechUtils;
-import com.google.sps.utils.TextUtils;
 import java.io.IOException;
 import java.util.*;
 import javax.servlet.ServletInputStream;
@@ -62,7 +61,7 @@ public class AudioInputServlet extends HttpServlet {
   }
 
   private Output handleEnglishQuery(ByteString bytestring, String languageCode) {
-    DialogFlow result = AudioUtils.detectIntentStream(bytestring);
+    DialogFlowClient result = AudioUtils.detectIntentStream(bytestring);
     if (result == null) {
       return null;
     }
@@ -88,8 +87,8 @@ public class AudioInputServlet extends HttpServlet {
       e.printStackTrace();
     }
 
-    DialogFlow englishOutput =
-        TextUtils.detectIntentStream(translatedInputText, englishLanguageCode);
+    DialogFlowClient englishOutput =
+        (new TextInputServlet()).detectIntentStream(translatedInputText, englishLanguageCode);
 
     // Google Translate API - convert input and fulfillment to appropriate language
     String userInput = englishOutput.getQueryText();
