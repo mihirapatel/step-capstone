@@ -11,7 +11,7 @@ public class TextUtils {
     DialogFlow dialogFlowResult = null;
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
-      dialogFlowResult = new DialogFlow(text, languageCode, sessionsClient);
+      dialogFlowResult = createDialogFlow(text, languageCode, sessionsClient);
 
       System.out.println("====================");
       System.out.format("Query Text: '%s'\n", dialogFlowResult.getQueryText());
@@ -24,5 +24,10 @@ public class TextUtils {
       e.printStackTrace();
     }
     return dialogFlowResult;
+  }
+
+  protected static DialogFlow createDialogFlow(
+      String text, String languageCode, SessionsClient sessionsClient) {
+    return new DialogFlow(text, languageCode, sessionsClient);
   }
 }
