@@ -22,6 +22,8 @@ public class TranslateAgent implements Agent {
     private String languageFrom;
     private String languageToCode;
     private String languageFromCode;
+    private String translatedString;
+    private String fulfillment;
  
     public TranslateAgent(String intentName, Map<String, Value> parameters) {
         this.intentName = intentName;
@@ -34,20 +36,21 @@ public class TranslateAgent implements Agent {
         text = parameters.get("text").getStringValue();
         languageTo = parameters.get("lang-to").getStringValue();
         languageFrom = parameters.get("lang-from").getStringValue();
- 
-        if (languageFrom == "") {
-            languageFrom = "English";
-        }
-
         languageToCode = AgentUtils.getLanguageCode(languageTo);
         languageFromCode = AgentUtils.getLanguageCode(languageFrom);
+        Translation translation = translate(text, languageFromCode, languageToCode);
+        translatedString = translation.getTranslatedText();
+
+        if (languageToCode == null || languageFromCode == null) {
+            fulfillment = null;
+        } else {
+            fulfillment = text + " in " + languageTo + " is: " + translatedString;
+        }
 	}
 	
 	@Override
 	public String getOutput() {
-        Translation translation = translate(text, languageFromCode, languageToCode);
-        String translatedString = translation.getTranslatedText();
-        return text + " in " + languageTo + " is: " + translatedString;
+        return fulfillment;
 	}
 
 	@Override

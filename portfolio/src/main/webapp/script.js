@@ -248,6 +248,8 @@ function getResponseFromText(){
 }
 
 function displayResponse(stream) {
+//   MAP
+  
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput, "convo-container");
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
@@ -259,6 +261,8 @@ function displayResponse(stream) {
         terminateTimer(allTimers[0]);
       }
       existingTimer = true;
+    } else if (outputAsJson.fulfillmentText.includes("Here is the map for")) {
+      displayMap(stream);
     }
   }
   outputAudio(stream);
@@ -368,7 +372,7 @@ function outputAudio(stream) {
     aud.onended = function() {
       if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
         initiateTimer(outputAsJson);
-      }
+      } 
     };
   }
 }
@@ -442,3 +446,32 @@ function play(src) {
     }
   }
 }
+
+
+var mapOutputAsJson;
+function displayMap(stream) {
+  mapOutputAsJson = JSON.parse(stream);
+  showMap();
+}
+
+function showMap() {
+  var jsonOutput = mapOutputAsJson;
+  var displayAsJson = JSON.parse(jsonOutput.display);
+
+  var myLatLng = {
+    lat: displayAsJson.lat,
+    lng: displayAsJson.lng
+  };
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+  });
+}
+
+google.maps.event.addDomListener(window, 'click', showMap);
