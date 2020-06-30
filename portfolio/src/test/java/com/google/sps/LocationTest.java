@@ -56,6 +56,13 @@ public final class LocationTest {
   }
 
   @Test
+  public void checkTimeZoneName() {
+    String actual = location.getTimeZoneName();
+    String expected = "Pacific Standard Time";
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
   public void checkTimeZone() {
     TimeZone actual = location.getTimeZone();
     TimeZone expected = TimeZone.getTimeZone("America/Los_Angeles");
@@ -100,6 +107,13 @@ public final class LocationTest {
   @Test
   public void checkBlankTimeZoneID() {
     String actual = blankLocation.getTimeZoneID();
+    String expected = null;
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
+  public void checkBlankTimeZoneName() {
+    String actual = blankLocation.getTimeZoneName();
     String expected = null;
     Assert.assertEquals(expected, actual);
   }
