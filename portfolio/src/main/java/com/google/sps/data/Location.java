@@ -29,7 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.TimeZone;
 
-/* Location object  */
+/* Location object */
 public class Location {
   private String address;
   private double latCoord;
