@@ -37,6 +37,7 @@ public class Location {
   private LatLng coords;
   private TimeZone timeZoneObj;
   private String timeZoneID;
+  private String timeZoneName;
   private String formattedAddress;
 
   public Location(String address) {
@@ -76,6 +77,7 @@ public class Location {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       this.timeZoneObj = results;
       this.timeZoneID = results.getID();
+      this.timeZoneName = results.getDisplayName();
     } catch (Exception e) {
       return;
     }
@@ -103,6 +105,10 @@ public class Location {
 
   public String getTimeZoneID() {
     return this.timeZoneID;
+  }
+
+  public String getTimeZoneName() {
+    return this.timeZoneName;
   }
 
   public TimeZone getTimeZone() {
