@@ -29,7 +29,7 @@ public class AgentUtils {
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
     try {
-      object = getAgent(agentName, intentName, parameterMap);
+      object = createAgent(agentName, intentName, parameterMap);
       fulfillment = object.getOutput();
       fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
       display = object.getDisplay();
@@ -49,7 +49,7 @@ public class AgentUtils {
     return output;
   }
 
-  private static Agent getAgent(
+  private static Agent createAgent(
       String agentName, String intentName, Map<String, Value> parameterMap) {
     switch (agentName) {
       case "calculator":
