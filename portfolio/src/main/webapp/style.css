@@ -70,10 +70,15 @@ h1 {
 }
 
 .timer-display {
-  background-color: rgba(255, 255, 255, 0.616);
-  color: rgb(58, 56, 56);
-  font-family: 'Open Sans', sans-serif;
-  font-size: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.616);
+    color: rgb(58, 56, 56);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5rem;
+}
+
+#map {
+    height: 300px;
+    width: 400px;
 }
  
 textarea {

@@ -18,6 +18,8 @@ public class Currency implements Agent {
     private String currencyFrom;
     private String currencyTo;
     private Double amount;
+    private String fulfillment;
+    private String redirect;
 
     public Currency(String intentName, Map<String, Value> parameters) {
         this.intentName = intentName;
@@ -29,22 +31,25 @@ public class Currency implements Agent {
         currencyFrom = parameters.get("currency-from").getStringValue();
         currencyTo = parameters.get("currency-to").getStringValue();
         amount = parameters.get("amount").getNumberValue();
+
+        fulfillment = "Redirecting for conversion";
+        String baseURL = "http://www.google.com/search?q=";
+        String endURL = String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo); 
+        redirect = baseURL + endURL;
     }
 
     @Override
     public String getOutput() {
-        return "Redirecting for conversion";
+        return fulfillment;
     }
 
     @Override
     public String getDisplay() {
-	return null;
+	    return null;
     }
 
     @Override
     public String getRedirect() {
-        String baseURL = "http://www.google.com/search?q=";
-        String endURL = String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo);
-	return baseURL + endURL;
+        return redirect;
     }
 }
