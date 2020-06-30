@@ -35,6 +35,7 @@ public class AgentUtils {
       display = object.getDisplay();
       redirect = object.getRedirect();
     } catch (Exception e) {
+      e.printStackTrace();
       fulfillment = queryResult.getFulfillmentText();
     }
 
@@ -48,6 +49,11 @@ public class AgentUtils {
     return output;
   }
 
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
+  }
+
   private static Agent createAgent(
       String agentName, String intentName, Map<String, Value> parameterMap) {
     switch (agentName) {
@@ -59,6 +65,8 @@ public class AgentUtils {
         return new Date(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
+      case "maps":
+        return new Maps(intentName, parameterMap);
       case "name":
         return new Name(intentName, parameterMap);
       case "reminders":
@@ -82,8 +90,9 @@ public class AgentUtils {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
-      intentName = intentList[1];
+      return intentList[1];
     }
+    return intentName;
   }
 
   public static Map<String, Value> getParameterMap(QueryResult queryResult) {
@@ -100,6 +109,7 @@ public class AgentUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return byteArray;
   }
 
   public static String getLanguageCode(String language) {
