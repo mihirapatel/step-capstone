@@ -1,9 +1,7 @@
 package com.google.sps.agents;
- 
+
 // Imports the Google Cloud client library
-import com.google.cloud.dialogflow.v2.QueryInput;
-import com.google.cloud.dialogflow.v2.QueryResult;
-import com.google.protobuf.Struct;
+import com.google.gson.Gson;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
 import com.google.sps.data.Place;
@@ -14,10 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
- 
-/**
- * Maps Agent
- */
+
+/** Maps Agent */
 public class Maps implements Agent {
     
   private final String intentName;
@@ -26,6 +22,7 @@ public class Maps implements Agent {
   private String redirect = null;
   private ArrayList<String> locationWords;
   private String locationFormatted;
+  private String locationDisplayed;
   private Location location;
 
   public Maps(String intentName, Map<String, Value> parameters) {
@@ -39,6 +36,8 @@ public class Maps implements Agent {
     locationWords = LocationUtils.getLocationParameters("location", parameters);
     if(intentName.contains("search")) {
         mapsSearch(parameters);
+    } else if (intentName.contains("find")) {
+        mapsFind(parameters);
     }
   }
 
@@ -64,5 +63,29 @@ public class Maps implements Agent {
     Place place = new Place(location.getLng(), location.getLat());
     display = place.toString();
   }
-}
 
+  private void mapsFind(Map<String, Value> parameters) {
+    String attraction = parameters.get("place-attraction").getStringValue();
+    location = new Location(locationFormatted);
+    Place place;
+    String limitDisplay = "";
+    int limit = (int) parameters.get("number").getNumberValue();
+    if (limit > 0) {
+      limitDisplay = String.valueOf(limit) + " ";
+      place = new Place(attraction, location.getLng(), location.getLat(), limit);
+    } else {
+      place = new Place(attraction, location.getLng(), location.getLat());
+    }
+
+    fulfillment =
+        "Here are the top "
+            + limitDisplay
+            + "results for "
+            + attraction
+            + " in "
+            + locationDisplayed
+            + ".";
+    display = place.toString();
+  }
+  
+}
