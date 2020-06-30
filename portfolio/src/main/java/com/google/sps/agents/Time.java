@@ -141,8 +141,7 @@ public class Time implements Agent {
     ZonedDateTime time = getCurrentTime(locationName);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
     timeZone = time.format(formatter);
-    String formattedZone = place.getTimeZoneName() + " (" + timeZone + ")";
-    return formattedZone;
+    return place.getTimeZoneName() + " (" + timeZone + ")";
   }
 
   public String getTimeDiff(String firstLocation, String secondLocation) {
