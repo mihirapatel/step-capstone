@@ -15,13 +15,13 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.Value;
 import java.util.Map;
 
-public class DialogFlow {
+public class DialogFlowClient {
 
   static SessionName session = SessionName.of("mihira-step-2020-3", "1");
   QueryResult queryResult;
 
   // Constructor for text inputs
-  public DialogFlow(String text, String languageCode, SessionsClient sessionsClient) {
+  public DialogFlowClient(String text, String languageCode, SessionsClient sessionsClient) {
     TextInput.Builder textInput =
         TextInput.newBuilder().setText(text).setLanguageCode(languageCode);
     QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
@@ -30,7 +30,8 @@ public class DialogFlow {
   }
 
   // Constructor for audio inputs
-  public DialogFlow(SessionsClient sessionsClient, ByteString bytestring, int sampleRate) {
+  public DialogFlowClient(
+      SessionsClient sessionsClient, ByteString audioBytestring, int sampleRate) {
     InputAudioConfig inputAudioConfig =
         InputAudioConfig.newBuilder()
             .setAudioEncoding(AudioEncoding.AUDIO_ENCODING_LINEAR_16)
@@ -40,14 +41,15 @@ public class DialogFlow {
     QueryInput queryInput = QueryInput.newBuilder().setAudioConfig(inputAudioConfig).build();
 
     BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream =
-        makeBidiStream(sessionsClient, queryInput, bytestring);
+        makeBidiStream(sessionsClient, queryInput, audioBytestring);
     for (StreamingDetectIntentResponse response : bidiStream) {
       queryResult = response.getQueryResult();
     }
   }
 
   private static BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse>
-      makeBidiStream(SessionsClient sessionsClient, QueryInput queryInput, ByteString bytestring) {
+      makeBidiStream(
+          SessionsClient sessionsClient, QueryInput queryInput, ByteString audioBytestring) {
     BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse> bidiStream =
         sessionsClient.streamingDetectIntentCallable().call();
     bidiStream.send(
@@ -55,7 +57,8 @@ public class DialogFlow {
             .setSession(session.toString())
             .setQueryInput(queryInput)
             .build());
-    bidiStream.send(StreamingDetectIntentRequest.newBuilder().setInputAudio(bytestring).build());
+    bidiStream.send(
+        StreamingDetectIntentRequest.newBuilder().setInputAudio(audioBytestring).build());
     bidiStream.closeSend();
     return bidiStream;
   }
