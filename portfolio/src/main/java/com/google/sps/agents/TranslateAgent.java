@@ -24,7 +24,7 @@ public class TranslateAgent implements Agent {
   private String languageFromCode;
   private String translatedString;
   private String fulfillment = null;
-  private String display = null
+  private String display = null;
   private String redirect = null;
 
   public TranslateAgent(String intentName, Map<String, Value> parameters) {

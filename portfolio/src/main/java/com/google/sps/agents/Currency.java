@@ -20,7 +20,7 @@ public class Currency implements Agent {
   private String currencyTo;
   private Double amount;
   private String fulfillment = null;;
-  private String diplay = null;
+  private String display = null;
   private String redirect = null;
 
   public Currency(String intentName, Map<String, Value> parameters) {
