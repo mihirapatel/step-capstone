@@ -3,89 +3,115 @@ package com.google.sps.servlets;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import com.google.cloud.dialogflow.v2.SessionsClient;
-import com.google.gson.Gson;
-import com.google.protobuf.Struct;
-import com.google.protobuf.Struct.Builder;
-import com.google.protobuf.Value;
-import com.google.protobuf.util.JsonFormat;
-import com.google.sps.data.DialogFlow;
 import com.google.sps.data.Output;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
-import org.json.JSONObject;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class RemindersTest {
 
-  @Mock DialogFlow dialogFlowMock;
+  @Test
+  public void testSnooze10Sec() throws Exception {
 
-  @InjectMocks TextInputServlet textInputServlet;
+    TestHelper tester =
+        new TestHelper(
+            // User input text
+            "Set a timer for 10 sec",
+            // Parameter JSON string (copy paste from dialogflow)
+            "{\"date-time\": {\"endDateTime\": \"2020-06-29T16:53:50-07:00\",\"startDateTime\": \"2020-06-29T16:53:40-07:00\"}}",
+            // Intent that you expect dialogflow to return based on your query
+            "reminders.snooze");
 
-  @Before
-  public void setupTests() {
-    dialogFlowMock = mock(DialogFlow.class);
+    Output output = tester.getOutput();
+
+    // Assertions
+    assertEquals("Starting a timer for 10 seconds now.", output.getFulfillmentText());
+    assertEquals("0:10", output.getDisplay());
   }
 
   @Test
-  public void testReminderSnooze() throws Exception {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
+  public void testSnooze1Min() throws Exception {
 
-    when(request.getParameter("request-input")).thenReturn("Set a timer for 10 sec");
-    String jsonString =
-        "{\"date-time\": {\"endDateTime\": \"2020-06-29T16:53:50-07:00\",\"startDateTime\": \"2020-06-29T16:53:40-07:00\"}}";
-    Map<String, Value> map = stringToMap(jsonString);
-    when(dialogFlowMock.getParameters()).thenReturn(map);
-    when(dialogFlowMock.getQueryText()).thenReturn("Set a timer for 10 sec");
-    when(dialogFlowMock.getIntentName()).thenReturn("reminders.snooze");
-    when(dialogFlowMock.getIntentConfidence()).thenReturn((float) 1.0);
-    when(dialogFlowMock.getFulfillmentText()).thenReturn("");
+    TestHelper tester =
+        new TestHelper(
+            "Set a timer for 1 min",
+            "{\"date-time\": {\"startDateTime\": \"2020-06-29T20:20:54-07:00\",\"endDateTime\": \"2020-06-29T20:21:54-07:00\"}}",
+            "reminders.snooze");
 
-    StringWriter stringWriter = new StringWriter();
-    PrintWriter writer = new PrintWriter(stringWriter);
-    when(response.getWriter()).thenReturn(writer);
+    Output output = tester.getOutput();
 
-    (new TestableTextInputServlet()).doPost(request, response);
-
-    verify(request, atLeast(1)).getParameter("request-input");
-    writer.flush();
-
-    System.out.println("What is this?");
-    System.out.println(stringWriter.toString());
-
-    Output output = new Gson().fromJson(stringWriter.toString(), Output.class);
-    System.out.println(output);
-    System.out.println(output.getFulfillmentText());
-
-    assertTrue(output.getFulfillmentText().equals("Starting a timer for 10 seconds now."));
+    assertEquals("Starting a timer for 1 minute now.", output.getFulfillmentText());
+    assertEquals("1:00", output.getDisplay());
   }
 
-  private class TestableTextInputServlet extends TextInputServlet {
-    @Override
-    public DialogFlow createDialogFlow(
-        String text, String languageCode, SessionsClient sessionsClient) {
-      return dialogFlowMock;
-    }
+  @Test
+  public void testSnooze10Hours() throws Exception {
+
+    TestHelper tester =
+        new TestHelper(
+            "Set a timer for 10 hours",
+            "{\"date-time\": {\"startDateTime\": \"2020-06-29T20:23:46-07:00\",\"endDateTime\": \"2020-06-30T06:23:46-07:00\"}}",
+            "reminders.snooze");
+
+    Output output = tester.getOutput();
+
+    assertEquals("Starting a timer for 10 hours now.", output.getFulfillmentText());
+    assertEquals("10:00:00", output.getDisplay());
   }
 
-  private Map<String, Value> stringToMap(String json) {
-    try {
-      JSONObject jsonObject = new JSONObject(json);
-      Builder structBuilder = Struct.newBuilder();
-      JsonFormat.parser().merge(jsonObject.toString(), structBuilder);
-      Struct struct = structBuilder.build();
-      return struct.getFieldsMap();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
+  @Test
+  public void testSnoozeComplex() throws Exception {
+
+    TestHelper tester =
+        new TestHelper(
+            "Set a timer for 15 hours, 37 min, and 4 sec",
+            "{\"date-time\": {\"startDateTime\": \"2020-06-29T20:45:24-07:00\",\"endDateTime\": \"2020-06-30T12:22:28-07:00\"}}",
+            "reminders.snooze");
+
+    Output output = tester.getOutput();
+
+    assertEquals(
+        "Starting a timer for 15 hours 37 minutes and 4 seconds now.", output.getFulfillmentText());
+    assertEquals("15:37:04", output.getDisplay());
+  }
+
+  @Test
+  public void testSnoozeFailure1() throws Exception {
+
+    TestHelper tester =
+        new TestHelper(
+            "Set a timer for 0 seconds.",
+            "{\"date-time\": {\"startDateTime\": \"2020-06-29T20:45:24-07:00\",\"endDateTime\": \"2020-06-29T20:45:24-07:00\"}}",
+            "reminders.snooze");
+
+    Output output = tester.getOutput();
+
+    assertNotEquals("Starting a timer for 0 seconds now.", output.getFulfillmentText());
+    assertNotEquals("0:00", output.getDisplay());
+    assertEquals(
+        "Sorry, unable to set a timer for less than 1 second or more than 1 day. Please try adding a reminder instead.",
+        output.getFulfillmentText());
+  }
+
+  @Test
+  public void testSnoozeFailure2() throws Exception {
+
+    TestHelper tester =
+        new TestHelper(
+            "Set a timer for 1 day and 1 second.",
+            "{\"date-time\": {\"startDateTime\": \"2020-06-29T21:03:43-07:00\",\"endDateTime\": \"2020-06-30T21:03:44-07:00\"}}",
+            "reminders.snooze");
+
+    Output output = tester.getOutput();
+
+    assertNotEquals("Starting a timer for 1 day and 1 second now.", output.getFulfillmentText());
+    assertNotEquals("24:00:01", output.getDisplay());
+    assertEquals(
+        "Sorry, unable to set a timer for less than 1 second or more than 1 day. Please try adding a reminder instead.",
+        output.getFulfillmentText());
   }
 }
