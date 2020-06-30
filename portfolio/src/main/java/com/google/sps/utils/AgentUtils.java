@@ -28,16 +28,20 @@ public class AgentUtils {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    object = getAgent(agentName, intentName, parameterMap);
-    if (object != null) {
+    try {
+      object = createAgent(agentName, intentName, parameterMap);
       fulfillment = object.getOutput();
       fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
       display = object.getDisplay();
       redirect = object.getRedirect();
-    } else {
+    } catch (Exception e) {
       fulfillment = queryResult.getFulfillmentText();
     }
     fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
+
+    if (fulfillment.equals("")) {
+      fulfillment = "Can you repeat that?";
+    }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output =
@@ -45,7 +49,8 @@ public class AgentUtils {
     return output;
   }
 
-  private static Agent getAgent(String agentName, String intentName, Map<String, Value> parameterMap) {
+  private static Agent createAgent(
+      String agentName, String intentName, Map<String, Value> parameterMap) {
     switch (agentName) {
       case "calculator":
         return new Tip(intentName, parameterMap);

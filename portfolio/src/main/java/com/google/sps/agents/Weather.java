@@ -15,11 +15,7 @@ public class Weather implements Agent {
 
   public Weather(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
-    try {
-      setParameters(parameters);
-    } catch (Exception e) {
-      return;
-    }
+    setParameters(parameters);
   }
 
   @Override
