@@ -12,6 +12,8 @@ import java.util.Map;
 /** Identifies agent from Dialogflow API Query result and creates Output object */
 public class AgentUtils {
 
+  public static String detectedInput;
+
   public static Output getOutput(QueryResult queryResult, String languageCode) {
     String fulfillment = null;
     String display = null;
@@ -24,8 +26,10 @@ public class AgentUtils {
     String intentName = getIntentName(detectedIntent);
 
     // Retrieve detected input from DialogFlow result.
-    String inputDetected = queryResult.getQueryText();
-    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
+    detectedInput = queryResult.getQueryText();
+    if (detectedInput.equals("")) {
+      detectedInput = " (null) ";
+    }
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
     try {
@@ -37,7 +41,6 @@ public class AgentUtils {
     } catch (Exception e) {
       fulfillment = queryResult.getFulfillmentText();
     }
-    fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
 
     if (fulfillment.equals("")) {
       fulfillment = "Can you repeat that?";
@@ -45,7 +48,7 @@ public class AgentUtils {
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output =
-        new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
+        new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect);
     return output;
   }
 
@@ -60,6 +63,8 @@ public class AgentUtils {
         return new Date(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
+      case "maps":
+        return new Maps(intentName, parameterMap);
       case "name":
         return new Name(intentName, parameterMap);
       case "reminders":
@@ -79,12 +84,22 @@ public class AgentUtils {
     }
   }
 
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
+  }
+
   private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
       intentName = intentList[1];
     }
+    return intentName;
+  }
+
+  public static String getUserInput() {
+    return detectedInput;
   }
 
   public static Map<String, Value> getParameterMap(QueryResult queryResult) {
@@ -101,13 +116,14 @@ public class AgentUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return byteArray;
   }
 
   public static String getLanguageCode(String language) {
     if (language == null) {
       return "en-US";
     }
-    
+
     switch (language) {
       case "Chinese":
         return "zh-CN";
