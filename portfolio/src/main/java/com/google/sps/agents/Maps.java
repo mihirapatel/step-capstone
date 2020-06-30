@@ -3,10 +3,10 @@ package com.google.sps.agents;
 // Imports the Google Cloud client library
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.QueryResult;
-import com.google.gson.Gson;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
+import com.google.sps.data.Place;
 import com.google.sps.data.Output;
 import com.google.sps.agents.Agent;
 import com.google.sps.utils.LocationUtils;
@@ -64,33 +64,6 @@ public class Maps implements Agent {
 
         Place place = new Place(location.getLng(), location.getLat());
         display = place.toString();
-    }
- 
-    class Place {
-        String attractionQuery;
-        int limit = -1;
-        double lng;
-        double lat;
- 
-        Place(double longitude, double latitude) {
-            lng = longitude;
-            lat = latitude;
-        }
- 
-        Place(String query, double longitude, double latitude) {
-            attractionQuery = query;
-            lng = longitude;
-            lat = latitude;
-        }
- 
-        Place(String query, double longitude, double latitude, int limit) {
-            this(query, longitude, latitude);
-            this.limit = limit;
-        }
- 
-        public String toString() {
-            return new Gson().toJson(this);
-        }
     }
 }
 
