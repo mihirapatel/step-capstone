@@ -25,11 +25,7 @@ public class Time implements Agent {
 
   public Time(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
-    try {
-      setParameters(parameters);
-    } catch (Exception e) {
-      return;
-    }
+    setParameters(parameters);
   }
 
   @Override
