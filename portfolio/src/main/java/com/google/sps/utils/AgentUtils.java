@@ -28,13 +28,13 @@ public class AgentUtils {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    object = getAgent(agentName, intentName, parameterMap);
-    if (object != null) {
+    try {
+      object = getAgent(agentName, intentName, parameterMap);
       fulfillment = object.getOutput();
       fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
       display = object.getDisplay();
       redirect = object.getRedirect();
-    } else {
+    } catch (Exception e) {
       fulfillment = queryResult.getFulfillmentText();
     }
     fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
