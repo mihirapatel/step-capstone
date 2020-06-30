@@ -64,33 +64,5 @@ public class Maps implements Agent {
     Place place = new Place(location.getLng(), location.getLat());
     display = place.toString();
   }
-
-  class Place {
-    String attractionQuery;
-    int limit = -1;
-    double lng;
-    double lat;
-
-    Place(double longitude, double latitude) {
-      lng = longitude;
-      lat = latitude;
-    }
-
-    Place(String query, double longitude, double latitude) {
-      attractionQuery = query;
-      lng = longitude;
-      lat = latitude;
-    }
-
-    Place(String query, double longitude, double latitude, int limit) {
-      this(query, longitude, latitude);
-      this.limit = limit;
-    }
-
-    public String toString() {
-      return new Gson().toJson(this);
-    }
-   
-  }
 }
 
