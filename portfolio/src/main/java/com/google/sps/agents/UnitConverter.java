@@ -18,6 +18,8 @@ public class UnitConverter implements Agent {
   	private String unitFrom;
     private String unitTo;
     private Double amount;
+    private String fulfillment;
+    private String redirect;
   
     public UnitConverter(String intentName, Map<String, Value> parameters) {
         this.intentName = intentName;
@@ -29,6 +31,11 @@ public class UnitConverter implements Agent {
         unitFrom = parameters.get("unit-from").getStringValue();
         unitTo = parameters.get("unit-to").getStringValue();
         amount = parameters.get("amount").getNumberValue();
+
+        fulfillment = "Redirecting for conversion";
+        String baseURL = "http://www.google.com/search?q=";
+        String endURL = String.join("+", "Convert", String.valueOf(amount), unitFrom, "to", unitTo);
+		redirect = baseURL + endURL;
 	}
 	
 	@Override
@@ -43,8 +50,6 @@ public class UnitConverter implements Agent {
 
 	@Override
 	public String getRedirect() {
-    String baseURL = "http://www.google.com/search?q=";
-    String endURL = String.join("+", "Convert", String.valueOf(amount), unitFrom, "to", unitTo);
-		return baseURL + endURL;
+        return redirect;
     }
 }
