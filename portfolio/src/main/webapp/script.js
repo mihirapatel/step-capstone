@@ -248,8 +248,6 @@ function getResponseFromText(){
 }
 
 function displayResponse(stream) {
-//   MAP
-  
   var outputAsJson = JSON.parse(stream);
   placeUserInput(outputAsJson.userInput, "convo-container");
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
