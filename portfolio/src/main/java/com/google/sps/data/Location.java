@@ -62,9 +62,9 @@ public class Location {
     try {
       GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      this.latCoord = results[0].geometry.location.lat;
-      this.lngCoord = results[0].geometry.location.lng;
-      this.coords = new LatLng(latCoord, lngCoord);
+      this.coords = new LatLng(results[0].geometry.location.lat, results[0].geometry.location.lng);
+      this.latCoord = coords.lat;
+      this.lngCoord = coords.lng;
       this.formattedAddress = results[0].formattedAddress;
     } catch (Exception e) {
       return;
