@@ -60,7 +60,7 @@ public class Maps implements Agent {
   private void mapsSearch(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
-    location = LocationUtils.getLocationObject(locationFormatted);
+    location = Location.create(locationFormatted);
     fulfillment = "Here is the map for: " + locationFormatted;
 
     Place place = new Place(location.getLng(), location.getLat());
@@ -71,7 +71,7 @@ public class Maps implements Agent {
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     String attraction = parameters.get("place-attraction").getStringValue();
-    location = LocationUtils.getLocationObject(locationFormatted);
+    location = Location.create(locationFormatted);
     Place place;
     String limitDisplay = "";
     int limit = (int) parameters.get("number").getNumberValue();

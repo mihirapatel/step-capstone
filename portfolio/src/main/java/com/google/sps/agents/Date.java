@@ -76,7 +76,7 @@ public class Date implements Agent {
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     ZonedDateTime currentTime = null;
-    Location place = LocationUtils.getLocationObject(locationName);
+    Location place = Location.create(locationName);
     String timeZoneID = place.getTimeZoneID();
     currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
     return currentTime;

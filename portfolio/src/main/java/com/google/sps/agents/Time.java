@@ -133,7 +133,7 @@ public class Time implements Agent {
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     ZonedDateTime currentTime = null;
-    Location place = LocationUtils.getLocationObject(locationName);
+    Location place = Location.create(locationName);
     String timeZoneID = place.getTimeZoneID();
     currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
     return currentTime;
@@ -143,7 +143,7 @@ public class Time implements Agent {
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     String timeZone = null;
-    Location place = LocationUtils.getLocationObject(locationName);
+    Location place = Location.create(locationName);
     ZonedDateTime time = getCurrentTime(locationName);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
     timeZone = time.format(formatter);
@@ -189,7 +189,7 @@ public class Time implements Agent {
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     ZonedDateTime timeIn = null;
-    Location placeTo = LocationUtils.getLocationObject(locationIn);
+    Location placeTo = Location.create(locationIn);
     String timeZoneID = placeTo.getTimeZoneID();
     timeIn = timeFromObject.withZoneSameInstant(ZoneId.of(timeZoneID));
     return timeIn;
@@ -218,7 +218,7 @@ public class Time implements Agent {
     LocalDateTime localTime = getTimeParameter(timeName, parameters);
     ZonedDateTime zonedTime = null;
     if (localTime != null) {
-      Location place = LocationUtils.getLocationObject(locationParameter);
+      Location place = Location.create(locationParameter);
       String timeZoneID = place.getTimeZoneID();
       zonedTime = ZonedDateTime.of(localTime, ZoneId.of(timeZoneID));
     }
