@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** Identifies agent from Dialogflow API Query result and creates Output object */
 public class AgentUtils {
-
+  
   public static String detectedInput;
 
   public static Output getOutput(QueryResult queryResult, String languageCode) {
@@ -26,6 +26,7 @@ public class AgentUtils {
     String intentName = getIntentName(detectedIntent);
 
     // Retrieve detected input from DialogFlow result.
+
     detectedInput = queryResult.getQueryText();
     if (detectedInput.equals("")) {
       detectedInput = " (null) ";
@@ -39,6 +40,7 @@ public class AgentUtils {
       display = object.getDisplay();
       redirect = object.getRedirect();
     } catch (Exception e) {
+      e.printStackTrace();
       fulfillment = queryResult.getFulfillmentText();
     }
 
@@ -50,6 +52,11 @@ public class AgentUtils {
     Output output =
         new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect);
     return output;
+  }
+
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
   }
 
   private static Agent createAgent(
@@ -90,6 +97,11 @@ public class AgentUtils {
     if (intentList.length > 1) {
       return intentList[1];
     }
+    return intentName;
+  }
+
+  public static String getUserInput() {
+    return inputDetected;
   }
 
   public static String getUserInput() {
@@ -110,6 +122,7 @@ public class AgentUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return byteArray;
   }
 
   public static String getLanguageCode(String language) {
