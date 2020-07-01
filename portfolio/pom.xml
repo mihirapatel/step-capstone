@@ -98,6 +98,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.google.appengine</groupId>
+      <artifactId>appengine-api-1.0-sdk</artifactId>
+      <version>1.9.59</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20180130</version>
@@ -126,7 +132,7 @@
         <version>2.18.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <!-- <skipTests>true</skipTests> -->
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
 

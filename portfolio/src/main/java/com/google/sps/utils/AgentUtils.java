@@ -27,16 +27,20 @@ public class AgentUtils {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = queryResult.getParameters();
 
-    object = getAgent(agentName, intentName, parameterMap);
-    if (object != null) {
+    try {
+      object = createAgent(agentName, intentName, parameterMap);
       fulfillment = object.getOutput();
       fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
       display = object.getDisplay();
       redirect = object.getRedirect();
-    } else {
+    } catch (Exception e) {
+      e.printStackTrace();
       fulfillment = queryResult.getFulfillmentText();
     }
-    fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
+
+    if (fulfillment.equals("")) {
+      fulfillment = "Can you repeat that?";
+    }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output =
@@ -44,7 +48,12 @@ public class AgentUtils {
     return output;
   }
 
-  private static Agent getAgent(
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
+  }
+
+  private static Agent createAgent(
       String agentName, String intentName, Map<String, Value> parameterMap) {
     switch (agentName) {
       case "calculator":
@@ -55,6 +64,8 @@ public class AgentUtils {
         return new Date(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
+      case "maps":
+        return new Maps(intentName, parameterMap);
       case "name":
         return new Name(intentName, parameterMap);
       case "reminders":
@@ -74,16 +85,11 @@ public class AgentUtils {
     }
   }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
   private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
-      intentName = intentList[1];
+      return intentList[1];
     }
     return intentName;
   }
@@ -103,6 +109,7 @@ public class AgentUtils {
     if (language == null) {
       return "en-US";
     }
+
     switch (language) {
       case "Chinese":
         return "zh-CN";
