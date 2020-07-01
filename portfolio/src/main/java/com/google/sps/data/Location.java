@@ -29,16 +29,33 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.TimeZone;
 
-/* Location object  */
+/*  Location object, always contains the following properties:
+ **    address: inputted address parameter passed to constructor
+ **
+ **  If Geocoding API call was successful, the following properties are valid
+ **  Otherwise, they remain uninitialized:
+ **    formattedAddress: Geocoding API formatted address
+ **    coords: Latitude, Longitude coordinates returned from Geocoding API
+ **    latCoord: Latitude coordinate returned from Geocoding API
+ **    lngCoord: Longitude, Longitude coordinates returned from Geocoding API
+ **    lngCoord: Longitude, Longitude coordinates returned from Geocoding API
+ **
+ **  If Timezone API call was successful, the following properties are valid
+ **  Otherwise, they remain uninitialized:
+ **    timeZoneObj: TimeZone Object for corresponding location
+ **    timeZoneID: Time zone ID for the corresponding location (ex. "America/Los_Angeles")
+ **    timeZoneName: Time zone name for corresponding location (ex. "Pacific Standard Time")
+ **    lngCoord: Longitude, Longitude coordinates returned from Geocoding API
+ */
 public class Location {
   private String address;
+  private String formattedAddress;
   private double latCoord;
   private double lngCoord;
   private LatLng coords;
   private TimeZone timeZoneObj;
   private String timeZoneID;
   private String timeZoneName;
-  private String formattedAddress;
 
   public Location(String address) {
     this.address = address;
