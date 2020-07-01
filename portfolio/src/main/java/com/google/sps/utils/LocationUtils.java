@@ -1,19 +1,101 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.TimeZoneApi;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TimeZone;
 
-/** Parses parameter locations to full name and display name */
 public class LocationUtils {
-  public static String getFormattedAddress(String parameterName, Map<String, Value> parameters) {
+
+  /** Returns location object, or throws exception if any parameters are invalid */
+  public static Location getLocationObject(String address)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    LatLng coords = getCoordinates(address);
+    String formattedAddress = getFullAddress(address);
+    TimeZone timeZoneObj = getTimeZone(coords);
+    Location location = new Location(address, coords, formattedAddress, timeZoneObj);
+    return location;
+  }
+
+  /** Returns a GeoApiContext and throws an exception otherwise */
+  public static GeoApiContext getGeoApiContext()
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    String apiKey =
+        new String(
+            Files.readAllBytes(
+                Paths.get(LocationUtils.class.getResource("/files/apikey.txt").getFile())));
+    GeoApiContext context = new GeoApiContext.Builder().apiKey(apiKey).build();
+    return context;
+  }
+
+  /**
+   * Returns coordinates from Geocoding API from address input, and throws an exception otherwise
+   */
+  public static LatLng getCoordinates(String address)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    GeoApiContext context = getGeoApiContext();
+    GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    Double latCoord = results[0].geometry.location.lat;
+    Double lngCoord = results[0].geometry.location.lng;
+    LatLng coords = new LatLng(latCoord, lngCoord);
+    return coords;
+  }
+
+  /**
+   * Returns a full address from Geocoding API from address input and throws an exception otherwise
+   */
+  public static String getFullAddress(String address)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    GeoApiContext context = getGeoApiContext();
+    GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    String formattedAddress = results[0].formattedAddress;
+    return formattedAddress;
+  }
+
+  /**
+   * Returns TimeZone object from Timezone API from LatLng location and throws an exception
+   * otherwise
+   */
+  public static TimeZone getTimeZone(LatLng location)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    GeoApiContext context = getGeoApiContext();
+    TimeZone results = TimeZoneApi.getTimeZone(context, location).await();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    TimeZone timeZoneObject = results;
+    return timeZoneObject;
+  }
+
+  /**
+   * Returns formatted address String from a Dialogflow parameter and throws an exception otherwise
+   */
+  public static String getFormattedAddress(String parameterName, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     String displayAddress = getDisplayAddress(parameterName, parameters);
     String formattedAddress = "";
     if (!displayAddress.isEmpty()) {
-      Location place = new Location(displayAddress);
+      Location place = getLocationObject(displayAddress);
       formattedAddress = place.getAddressFormatted();
     }
     return formattedAddress;
