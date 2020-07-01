@@ -12,7 +12,7 @@ import java.util.Map;
 /** Identifies agent from Dialogflow API Query result and creates Output object */
 public class AgentUtils {
 
-  public static String inputDetected;
+  public static String detectedInput;
 
   public static Output getOutput(QueryResult queryResult, String languageCode) {
     String fulfillment = null;
@@ -26,11 +26,13 @@ public class AgentUtils {
     String intentName = getIntentName(detectedIntent);
 
     // Retrieve detected input from DialogFlow result.
-    inputDetected = queryResult.getQueryText();
-    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
+    detectedInput = queryResult.getQueryText();
+    if (detectedInput.equals("")) {
+      detectedInput = " (null) ";
+    }
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    object = getAgent(agentName, intentName, parameterMap);
+    object = createAgent(agentName, intentName, parameterMap);
     if (object != null) {
       fulfillment = object.getOutput();
       fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
@@ -39,15 +41,17 @@ public class AgentUtils {
     } else {
       fulfillment = queryResult.getFulfillmentText();
     }
-    fulfillment = fulfillment.equals("") ? "Can you repeat that?" : fulfillment;
+    if (fulfillment.equals("")) {
+      fulfillment = "Can you repeat that?";
+    }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output =
-        new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
+        new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect);
     return output;
   }
 
-  private static Agent getAgent(
+  private static Agent createAgent(
       String agentName, String intentName, Map<String, Value> parameterMap) {
     switch (agentName) {
       case "calculator":
@@ -58,6 +62,8 @@ public class AgentUtils {
         return new Date(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
+      case "maps":
+        return new Maps(intentName, parameterMap);
       case "name":
         return new Name(intentName, parameterMap);
       case "reminders":
@@ -86,13 +92,13 @@ public class AgentUtils {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
-      intentName = intentList[1];
+      return intentList[1];
     }
     return intentName;
   }
 
   public static String getUserInput() {
-    return inputDetected;
+    return detectedInput;
   }
 
   public static Map<String, Value> getParameterMap(QueryResult queryResult) {

@@ -37,7 +37,7 @@ public class Currency implements Agent {
     if (userInput.contains("exchange")) {
       fulfillment = "Redirecting for exchange rate";
       searchText += "Exchange rate";
-      if (!amount.equals(0.0)) {
+      if (amount > 0.0) {
         searchText += " for " + String.valueOf(amount);
       }
       if (!currencyFrom.equals("")) {
@@ -52,10 +52,11 @@ public class Currency implements Agent {
       String[] individualWords = searchText.split(" ");
       endURL = String.join("+", individualWords);
 
+      // Searching for conversion
     } else {
       fulfillment = "Redirecting for conversion";
       searchText += "Convert";
-      if (!amount.equals(0.0)) {
+      if (amount > 0.0) {
         searchText += " " + String.valueOf(amount);
       }
       if (!currencyFrom.equals("")) {
