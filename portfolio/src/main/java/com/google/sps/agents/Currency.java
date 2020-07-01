@@ -30,7 +30,7 @@ public class Currency implements Agent {
     currencyFrom = parameters.get("currency-from").getStringValue();
     currencyTo = parameters.get("currency-to").getStringValue();
     amount = parameters.get("amount").getNumberValue();
-    userInput = AgentUtils.getUserInput();
+    userInput = AgentUtils.getUserInput().toLowerCase();
     baseURL = "http://www.google.com/search?q=";
 
     // Searching for exchange rate
@@ -67,11 +67,19 @@ public class Currency implements Agent {
         }
         searchText += " " + currencyTo;
       }
+      if (searchText.equals("")) {
+        searchText += " currency";
+      }
       String[] individualWords = searchText.split(" ");
       endURL = String.join("+", individualWords);
     }
 
     redirect = baseURL + endURL;
+    System.out.println("currencyFrom: " + currencyFrom);
+    System.out.println("currencyTo: " + currencyTo);
+    System.out.println("amount: " + amount);
+    System.out.println("fulfillment: " + fulfillment);
+    System.out.println("redirect: " + redirect);
   }
 
   @Override
