@@ -1,27 +1,21 @@
 package com.google.sps.utils;
 
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class TimeUtils {
 
-    public static Date stringToDate(String dateString) {
-        try {
-            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.ENGLISH);
-            Date parsed = parser.parse(dateString);
-            return parsed;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;   
-        }
-    }
+  public static Date stringToDate(String dateString) throws ParseException {
+    SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.ENGLISH);
+    Date parsed = parser.parse(dateString);
+    return parsed;
+  }
 
-  public static String timeToString(int duration) {
-    if (duration < 0) {
-      return null;
+  public static String secondsToHMSString(int duration) throws IllegalArgumentException {
+    if (duration < 1) {
+      throw new IllegalArgumentException("Duration input cannot be less than 1 second.");
     } else if (duration == 1) {
       return "1 second";
     } else if (duration < 60) {
@@ -29,19 +23,31 @@ public class TimeUtils {
     } else if (duration == 60) {
       return "1 minute";
     } else if (duration < 3600) {
-      return String.valueOf(duration / 60) + " minutes";
+      return String.valueOf(duration / 60)
+          + " minutes and "
+          + String.valueOf(duration % 60)
+          + " seconds";
     } else if (duration == 3600) {
       return "1 hour";
-    } else if (duration < 43200) {
-      return String.valueOf(duration / 720) + " hours";
     } else {
-      return null;
+      String remainder;
+      try {
+        remainder = secondsToHMSString(duration % 3600);
+        if (!remainder.contains("and")) {
+          remainder = "and " + remainder;
+        } else {
+          remainder = " " + remainder;
+        }
+      } catch (IllegalArgumentException e) {
+        remainder = "";
+      }
+      return String.valueOf(duration / 3600) + " hours" + remainder;
     }
   }
 
   public static String makeClockDisplay(int duration) {
     int hours = duration / 3600;
-    int min = (duration  - hours * 3600) / 60;
+    int min = (duration - hours * 3600) / 60;
     int sec = duration - hours * 3600 - min * 60;
     if (hours == 0) {
       return String.valueOf(min) + ":" + doubleDigitString(sec);
