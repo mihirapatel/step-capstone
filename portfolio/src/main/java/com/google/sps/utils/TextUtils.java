@@ -8,10 +8,7 @@ import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.TextInput;
 import java.io.IOException;
 
-/**
- * DialogFlow API Detects Intent with input text.
-**/
-
+/** DialogFlow API Detects Intent with input text. */
 public class TextUtils {
 
   static SessionName session = SessionName.of("mihira-step-2020-3", "1");
@@ -36,7 +33,6 @@ public class TextUtils {
             System.out.format("Detected Intent: %s (confidence: %f)\n",
                 queryResult.getIntent().getDisplayName(), queryResult.getIntentDetectionConfidence());
             System.out.format("Fulfillment Text: '%s'\n", queryResult.getFulfillmentText());
-
         } catch (IOException e) {
             e.printStackTrace();
         }

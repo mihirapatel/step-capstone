@@ -39,6 +39,7 @@ public class AgentUtils {
       display = object.getDisplay();
       redirect = object.getRedirect();
     } catch (Exception e) {
+      e.printStackTrace();
       fulfillment = queryResult.getFulfillmentText();
     }
 
@@ -50,6 +51,11 @@ public class AgentUtils {
     Output output =
         new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect);
     return output;
+  }
+
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
   }
 
   private static Agent createAgent(
@@ -84,16 +90,11 @@ public class AgentUtils {
     }
   }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
   private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
-      intentName = intentList[1];
+      return intentList[1];
     }
     return intentName;
   }

@@ -1,20 +1,12 @@
 package com.google.sps.agents;
- 
+
 // Imports the Google Cloud client library
-import com.google.cloud.dialogflow.v2.QueryInput;
-import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.translate.*;
-import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
-import com.google.sps.data.Output;
-import com.google.sps.agents.Agent;
 import com.google.sps.utils.AgentUtils;
-import java.io.IOException;
 import java.util.Map;
- 
-/**
- * Translate Agent
- */
+
+/** Translate Agent */
 public class TranslateAgent implements Agent {
   private final String intentName;
   private String text;
@@ -32,14 +24,14 @@ public class TranslateAgent implements Agent {
     setParameters(parameters);
   }
 
-  @Override 
+  @Override
   public void setParameters(Map<String, Value> parameters) {
     System.out.println(parameters);
     text = parameters.get("text").getStringValue();
     languageTo = parameters.get("lang-to").getStringValue();
     languageFrom = parameters.get("lang-from").getStringValue();
-    languageToCode = AgentUtils.getLanguageCode(languageTo);
-    languageFromCode = AgentUtils.getLanguageCode(languageFrom);
+    languageToCode = AgentUtils.getLanguageCode(languageTo).substring(0, 2);
+    languageFromCode = AgentUtils.getLanguageCode(languageFrom).substring(0, 2);
     Translation translation = translate(text, languageFromCode, languageToCode);
     translatedString = translation.getTranslatedText();
 
@@ -69,14 +61,14 @@ public class TranslateAgent implements Agent {
     Translate translate = TranslateOptions.getDefaultInstance().getService();
 
     Translation translation =
-    translate.translate(
-      text,
-      Translate.TranslateOption.sourceLanguage(languageFromCode),
-      Translate.TranslateOption.targetLanguage(languageToCode),
-      // Use "base" for standard edition, "nmt" for the premium model.
-      Translate.TranslateOption.model("nmt"));
+        translate.translate(
+            text,
+            Translate.TranslateOption.sourceLanguage(languageFromCode),
+            Translate.TranslateOption.targetLanguage(languageToCode),
+            // Use "base" for standard edition, "nmt" for the premium model.
+            Translate.TranslateOption.model("nmt"));
 
-    System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
+    System.out.printf("TranslatedText:\n", translation.getTranslatedText());
     return translation;
   }
 }
