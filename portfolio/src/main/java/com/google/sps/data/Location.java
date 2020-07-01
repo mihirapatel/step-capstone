@@ -69,7 +69,7 @@ public class Location {
       this.formattedAddress = results[0].formattedAddress;
       setTimeZone(context, coords);
     } catch (ApiException | IOException | InterruptedException | ArrayIndexOutOfBoundsException e) {
-      System.out.println("Error in setting coords");
+      System.out.println("Error in setting coordinates from Geocoding API.");
       return;
     }
   }
@@ -82,7 +82,7 @@ public class Location {
       this.timeZoneID = results.getID();
       this.timeZoneName = results.getDisplayName();
     } catch (ApiException | IOException | InterruptedException | ArrayIndexOutOfBoundsException e) {
-      System.out.println("Error in setting timezone");
+      System.out.println("Error in setting timezone from TimeZone API.");
       return;
     }
   }
