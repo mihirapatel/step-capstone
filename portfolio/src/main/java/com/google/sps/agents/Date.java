@@ -20,11 +20,7 @@ public class Date implements Agent {
 
   public Date(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
-    try {
-      setParameters(parameters);
-    } catch (Exception e) {
-      return;
-    }
+    setParameters(parameters);
   }
 
   @Override

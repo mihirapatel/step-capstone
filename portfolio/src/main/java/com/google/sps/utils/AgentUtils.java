@@ -32,15 +32,16 @@ public class AgentUtils {
     }
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    object = createAgent(agentName, intentName, parameterMap);
-    if (object != null) {
+    try {
+      object = createAgent(agentName, intentName, parameterMap);
       fulfillment = object.getOutput();
       fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
       display = object.getDisplay();
       redirect = object.getRedirect();
-    } else {
+    } catch (Exception e) {
       fulfillment = queryResult.getFulfillmentText();
     }
+
     if (fulfillment.equals("")) {
       fulfillment = "Can you repeat that?";
     }
@@ -83,18 +84,12 @@ public class AgentUtils {
     }
   }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
   private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
       return intentList[1];
     }
-    return intentName;
   }
 
   public static String getUserInput() {
@@ -115,7 +110,6 @@ public class AgentUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return byteArray;
   }
 
   public static String getLanguageCode(String language) {
