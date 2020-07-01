@@ -2,6 +2,7 @@ package com.google.sps.utils;
 
 // Imports the Google Cloud client library
 import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.cloud.translate.TranslateException;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
@@ -20,6 +21,7 @@ public class AgentUtils {
     Agent object = null;
 
     String detectedIntent = queryResult.getIntent().getDisplayName();
+    Boolean allParamsPresent = queryResult.getAllRequiredParamsPresent();
     String agentName = getAgentName(detectedIntent);
     String intentName = getIntentName(detectedIntent);
 
@@ -28,18 +30,23 @@ public class AgentUtils {
     inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
     Map<String, Value> parameterMap = getParameterMap(queryResult);
 
-    try {
-      object = createAgent(agentName, intentName, parameterMap);
-      fulfillment = object.getOutput();
-      fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
-      display = object.getDisplay();
-      redirect = object.getRedirect();
-    } catch (Exception e) {
-      fulfillment = queryResult.getFulfillmentText();
+    // Default fulfillment if all required parameters are not present
+    fulfillment = queryResult.getFulfillmentText();
+
+    // Set fulfillment if parameters are present, upon any exceptions return default
+    if (allParamsPresent) {
+      try {
+        object = createAgent(agentName, intentName, parameterMap);
+        fulfillment = object.getOutput();
+        fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
+        display = object.getDisplay();
+        redirect = object.getRedirect();
+      } catch (ArrayIndexOutOfBoundsException | NullPointerException | TranslateException e) {
+      }
     }
 
     if (fulfillment.equals("")) {
-      fulfillment = "Can you repeat that?";
+      fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
     }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
@@ -59,6 +66,8 @@ public class AgentUtils {
         return new Date(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
+      case "maps":
+        return new Maps(intentName, parameterMap);
       case "name":
         return new Name(intentName, parameterMap);
       case "reminders":
@@ -78,12 +87,18 @@ public class AgentUtils {
     }
   }
 
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
+  }
+
   private static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
       intentName = intentList[1];
     }
+    return intentName;
   }
 
   public static Map<String, Value> getParameterMap(QueryResult queryResult) {
@@ -100,13 +115,14 @@ public class AgentUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return byteArray;
   }
 
   public static String getLanguageCode(String language) {
     if (language == null) {
       return "en-US";
     }
-    
+
     switch (language) {
       case "Chinese":
         return "zh-CN";
