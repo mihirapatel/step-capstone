@@ -3,11 +3,13 @@ package com.google.sps.utils;
 // Imports the Google Cloud client library
 import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.translate.TranslateException;
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.agents.*;
 import com.google.sps.data.Output;
+import java.io.IOException;
 import java.util.Map;
 
 /** Identifies agent from Dialogflow API Query result and creates Output object */
@@ -41,7 +43,14 @@ public class AgentUtils {
         fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
         display = object.getDisplay();
         redirect = object.getRedirect();
-      } catch (ArrayIndexOutOfBoundsException | NullPointerException | TranslateException e) {
+      } catch (IllegalStateException
+          | IOException
+          | ApiException
+          | InterruptedException
+          | ArrayIndexOutOfBoundsException
+          | NullPointerException
+          | TranslateException e) {
+        System.out.println("Error in object creation.");
       }
     }
 
@@ -56,7 +65,9 @@ public class AgentUtils {
   }
 
   private static Agent createAgent(
-      String agentName, String intentName, Map<String, Value> parameterMap) {
+      String agentName, String intentName, Map<String, Value> parameterMap)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     switch (agentName) {
       case "calculator":
         return new Tip(intentName, parameterMap);
