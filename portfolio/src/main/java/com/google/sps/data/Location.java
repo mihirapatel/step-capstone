@@ -22,6 +22,7 @@ import com.google.gson.GsonBuilder;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.TimeZoneApi;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import java.io.IOException;
@@ -53,7 +54,6 @@ public class Location {
               Files.readAllBytes(Paths.get(getClass().getResource("/files/apikey.txt").getFile())));
       GeoApiContext context = new GeoApiContext.Builder().apiKey(apiKey).build();
       setCoordinates(context, address);
-      setTimeZone(context, coords);
     } catch (IOException e) {
       System.out.println("API key for maps not found.");
     }
@@ -67,7 +67,9 @@ public class Location {
       this.lngCoord = results[0].geometry.location.lng;
       this.coords = new LatLng(latCoord, lngCoord);
       this.formattedAddress = results[0].formattedAddress;
-    } catch (Exception e) {
+      setTimeZone(context, coords);
+    } catch (ApiException | IOException | InterruptedException | ArrayIndexOutOfBoundsException e) {
+      System.out.println("Error in setting coords");
       return;
     }
   }
@@ -79,7 +81,8 @@ public class Location {
       this.timeZoneObj = results;
       this.timeZoneID = results.getID();
       this.timeZoneName = results.getDisplayName();
-    } catch (Exception e) {
+    } catch (ApiException | IOException | InterruptedException | ArrayIndexOutOfBoundsException e) {
+      System.out.println("Error in setting timezone");
       return;
     }
   }
