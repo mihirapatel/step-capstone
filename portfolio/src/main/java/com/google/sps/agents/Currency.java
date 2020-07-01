@@ -74,6 +74,10 @@ public class Currency implements Agent {
       endURL = String.join("+", individualWords);
     }
 
+    fulfillment = "Redirecting for conversion";
+    String baseURL = "http://www.google.com/search?q=";
+    String endURL =
+        String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo);
     redirect = baseURL + endURL;
     System.out.println("currencyFrom: " + currencyFrom);
     System.out.println("currencyTo: " + currencyTo);

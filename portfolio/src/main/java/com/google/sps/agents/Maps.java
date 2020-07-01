@@ -17,7 +17,6 @@ public class Maps implements Agent {
   private String redirect = null;
   private ArrayList<String> locationWords;
   private String locationFormatted;
-  private String locationDisplayed;
   private Location location;
 
   public Maps(String intentName, Map<String, Value> parameters) {
@@ -81,5 +80,6 @@ public class Maps implements Agent {
             + locationFormatted
             + ".";
     display = place.toString();
+    System.out.println(display);
   }
 }

@@ -259,6 +259,8 @@ function displayResponse(stream) {
         terminateTimer(allTimers[0]);
       }
       existingTimer = true;
+    } else if (outputAsJson.fulfillmentText.includes("Changing your") && outputAsJson.fulfillmentText.includes("name")) {
+      updateName(outputAsJson.display);
     } else if (outputAsJson.fulfillmentText.includes("Here is the map for")) {
         mapContainer = locationMap(outputAsJson.display);
         placeMapDisplay(mapContainer, "convo-container");
@@ -461,11 +463,29 @@ function play(src) {
   }
 }
 
+function authSetup() {
+  fetch("/auth").then((response) => response.json()).then((displayText) => {
+    var authContainer = document.getElementsByClassName("auth-link")[0];
+    authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
+    updateName(displayText.displayName);
+  });
+}
+
+function updateName(name) {
+  var greetingContainer = document.getElementsByName("greeting")[0];
+  greetingContainer.innerHTML = "<h1>Hi " + name + ", what can I help you with?</h1>";
+}
+
+var mapOutputAsJson;
+function displayMap(stream) {
+  mapOutputAsJson = JSON.parse(stream);
+  showMap();
+}
+
 function locationMap(placeQuery) {
   var place = JSON.parse(placeQuery);
   var limit = place.limit;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
-
   let {mapDiv, newMap} = createMapDivs(limit);
 
   var map = new google.maps.Map(newMap, {
