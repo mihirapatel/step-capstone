@@ -1,17 +1,34 @@
 package com.google.sps.data;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
+import com.google.sps.utils.LocationUtils;
+import java.io.IOException;
 import java.util.TimeZone;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-/** */
+/** Tests for creating valid Location objects */
 @RunWith(JUnit4.class)
 public final class LocationTest {
-  Location location = new Location("Los Angeles");
-  Location blankLocation = new Location(" ");
+  Location location = null;
+  Location invalidLocation = null;
+
+  @Before
+  public void init() {
+    try {
+      location = LocationUtils.getLocationObject("Los Angeles");
+    } catch (IllegalStateException
+        | IOException
+        | ApiException
+        | InterruptedException
+        | ArrayIndexOutOfBoundsException e) {
+      System.out.println("Error in creating valid location object.");
+    }
+  }
 
   @Test
   public void checkAddressField() {
@@ -69,59 +86,20 @@ public final class LocationTest {
     Assert.assertEquals(expected, actual);
   }
 
+  /** Invalid location input should not create a location object */
   @Test
-  public void checkBlankAddressField() {
-    String actual = blankLocation.getAddress();
-    String expected = " ";
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankFormattedAddressField() {
-    String actual = blankLocation.getAddressFormatted();
-    String expected = null;
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankLatitude() {
-    Double actual = blankLocation.getLat();
-    Double expected = 0.0;
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankLongitude() {
-    Double actual = blankLocation.getLng();
-    Double expected = 0.0;
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankCoords() {
-    LatLng actual = blankLocation.getCoords();
-    LatLng expected = null;
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankTimeZoneID() {
-    String actual = blankLocation.getTimeZoneID();
-    String expected = null;
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankTimeZoneName() {
-    String actual = blankLocation.getTimeZoneName();
-    String expected = null;
-    Assert.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void checkBlankTimeZone() {
-    TimeZone actual = blankLocation.getTimeZone();
-    TimeZone expected = null;
+  public void checkInvalidLocation() {
+    try {
+      invalidLocation = LocationUtils.getLocationObject("gibberish location input");
+    } catch (IllegalStateException
+        | IOException
+        | ApiException
+        | InterruptedException
+        | ArrayIndexOutOfBoundsException e) {
+      System.out.println("Correct error in creating invalid location object.");
+    }
+    Location actual = invalidLocation;
+    Location expected = null;
     Assert.assertEquals(expected, actual);
   }
 }
