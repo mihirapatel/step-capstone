@@ -17,20 +17,25 @@
 package com.google.sps.data;
 
 // Imports the Google Cloud client library
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.TimeZoneApi;
-import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.TimeZone;
 
-/* Location object */
+/**
+ * A Location object contains the following properties: address: user-inputted location coords:
+ * coordinates for user-inputted address latCoord: latitude coordinate for location lngCoord:
+ * longitude coordinate for location formattedAddress: user-inputted location formatted by Geocoding
+ * API timeZoneObj: TimeZone object for corresponding LatLng coords timeZoneID: timezone ID for the
+ * location ("America/Los_Angeles") timeZoneName: Standard time zone name for location ("Pacific
+ * Standard Time")
+ *
+ * <p>A Location object is only created by LocationUtils.getLocationObject(), ensuring that an
+ * Location object is only created with valid parameters:
+ *
+ * @param address user-inputted location
+ * @param coords coordinates for user-inputted address from Geocoding API
+ * @param formattedAddress user-inputted location formatted by Geocoding API
+ * @param timezone TimeZone object for corresponding LatLng coords from TimeZone API
+ */
 public class Location {
 
   private String address;
@@ -42,49 +47,16 @@ public class Location {
   private String timeZoneName;
   private String formattedAddress;
 
-  public Location(String address) {
+  public Location(String address, LatLng coords, String formattedAddress, TimeZone timezone) {
     this.address = address;
-    setProperties();
-  }
+    this.coords = coords;
+    this.formattedAddress = formattedAddress;
+    this.timeZoneObj = timezone;
 
-  public void setProperties() {
-    try {
-      String apiKey =
-          new String(
-              Files.readAllBytes(Paths.get(getClass().getResource("/files/apikey.txt").getFile())));
-      GeoApiContext context = new GeoApiContext.Builder().apiKey(apiKey).build();
-      setCoordinates(context, address);
-    } catch (IOException e) {
-      System.out.println("API key for maps not found.");
-    }
-  }
-
-  public void setCoordinates(GeoApiContext context, String address) {
-    try {
-      GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      this.latCoord = results[0].geometry.location.lat;
-      this.lngCoord = results[0].geometry.location.lng;
-      this.coords = new LatLng(latCoord, lngCoord);
-      this.formattedAddress = results[0].formattedAddress;
-      setTimeZone(context, coords);
-    } catch (ApiException | IOException | InterruptedException | ArrayIndexOutOfBoundsException e) {
-      System.out.println("Error in setting coordinates from Geocoding API.");
-      return;
-    }
-  }
-
-  public void setTimeZone(GeoApiContext context, LatLng location) {
-    try {
-      TimeZone results = TimeZoneApi.getTimeZone(context, location).await();
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      this.timeZoneObj = results;
-      this.timeZoneID = results.getID();
-      this.timeZoneName = results.getDisplayName();
-    } catch (ApiException | IOException | InterruptedException | ArrayIndexOutOfBoundsException e) {
-      System.out.println("Error in setting timezone from TimeZone API.");
-      return;
-    }
+    this.latCoord = coords.lat;
+    this.lngCoord = coords.lng;
+    this.timeZoneName = timeZoneObj.getDisplayName();
+    this.timeZoneID = timeZoneObj.getID();
   }
 
   public String getAddress() {
