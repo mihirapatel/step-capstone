@@ -57,4 +57,8 @@ public final class Output {
   public String getDisplay() {
     return this.display;
   }
+
+  public String getRedirect() {
+    return this.redirect;
+  }
 }
