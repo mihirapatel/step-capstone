@@ -30,8 +30,8 @@ public class TranslateAgent implements Agent {
     text = parameters.get("text").getStringValue();
     languageTo = parameters.get("lang-to").getStringValue();
     languageFrom = parameters.get("lang-from").getStringValue();
-    languageToCode = AgentUtils.getLanguageCode(languageTo);
-    languageFromCode = AgentUtils.getLanguageCode(languageFrom);
+    languageToCode = AgentUtils.getLanguageCode(languageTo).substring(0, 2);
+    languageFromCode = AgentUtils.getLanguageCode(languageFrom).substring(0, 2);
     Translation translation = translate(text, languageFromCode, languageToCode);
     translatedString = translation.getTranslatedText();
 
@@ -68,7 +68,7 @@ public class TranslateAgent implements Agent {
             // Use "base" for standard edition, "nmt" for the premium model.
             Translate.TranslateOption.model("nmt"));
 
-    System.out.printf("TranslatedText:\nText: %s\n", translation.getTranslatedText());
+    System.out.printf("TranslatedText:\n", translation.getTranslatedText());
     return translation;
   }
 }
