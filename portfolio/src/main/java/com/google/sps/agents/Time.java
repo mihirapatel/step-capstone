@@ -133,10 +133,11 @@ public class Time implements Agent {
 
   public String getZone(String locationName) {
     String timeZone = null;
+    Location place = new Location(locationName);
     ZonedDateTime time = getCurrentTime(locationName);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
     timeZone = time.format(formatter);
-    return timeZone;
+    return place.getTimeZoneName() + " (" + timeZone + ")";
   }
 
   public String getTimeDiff(String firstLocation, String secondLocation) {
