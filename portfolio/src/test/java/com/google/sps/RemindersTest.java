@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package com.google.sps.agents;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;

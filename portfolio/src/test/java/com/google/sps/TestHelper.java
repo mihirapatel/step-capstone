@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package com.google.sps.agents;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -12,6 +12,7 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import com.google.sps.servlets.TextInputServlet;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
@@ -75,7 +76,7 @@ public class TestHelper {
     }
   }
 
-  private Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
+  public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
     JSONObject jsonObject = new JSONObject(json);
     Builder structBuilder = Struct.newBuilder();
     JsonFormat.parser().merge(jsonObject.toString(), structBuilder);

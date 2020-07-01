@@ -66,7 +66,7 @@ public class SpeechUtils {
       // Write the response to the output file.
       OutputStream out = new FileOutputStream("output.mp3");
       out.write(audioContents.toByteArray());
-      System.out.println("Audio content written to file \"output.mp3\"");
+      //   System.out.println("Audio content written to file \"output.mp3\"");
       return audioContents;
 
     } catch (Exception e) {
