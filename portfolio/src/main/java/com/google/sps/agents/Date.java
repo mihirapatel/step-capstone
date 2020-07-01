@@ -1,9 +1,11 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
 import com.google.sps.utils.LocationUtils;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -18,13 +20,17 @@ public class Date implements Agent {
   private String locationDisplay;
   private ZonedDateTime dateGiven;
 
-  public Date(String intentName, Map<String, Value> parameters) {
+  public Date(String intentName, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) {
+  public void setParameters(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     if (intentName.equals("get") || intentName.equals("context:date")) {
       this.locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
       this.locationDisplay = LocationUtils.getDisplayAddress("location", parameters);
@@ -66,15 +72,19 @@ public class Date implements Agent {
     return null;
   }
 
-  public ZonedDateTime getCurrentDate(String locationName) {
+  public ZonedDateTime getCurrentDate(String locationName)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     ZonedDateTime currentTime = null;
-    Location place = new Location(locationName);
+    Location place = LocationUtils.getLocationObject(locationName);
     String timeZoneID = place.getTimeZoneID();
     currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
     return currentTime;
   }
 
-  public String getCurrentDateString(String location) {
+  public String getCurrentDateString(String location)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     ZonedDateTime date = getCurrentDate(location);
     return zonedTimeToString(date);
   }
