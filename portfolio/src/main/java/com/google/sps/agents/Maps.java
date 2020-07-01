@@ -1,21 +1,18 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
-import com.google.gson.Gson;
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
 import com.google.sps.data.Place;
-import com.google.sps.data.Output;
-import com.google.sps.agents.Agent;
 import com.google.sps.utils.LocationUtils;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /** Maps Agent */
 public class Maps implements Agent {
-    
+
   private final String intentName;
   private String fulfillment = null;
   private String display = null;
@@ -25,19 +22,23 @@ public class Maps implements Agent {
   private String locationDisplayed;
   private Location location;
 
-  public Maps(String intentName, Map<String, Value> parameters) {
+  public Maps(String intentName, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
-  @Override 
-  public void setParameters(Map<String, Value> parameters) {
+  @Override
+  public void setParameters(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
     locationWords = LocationUtils.getLocationParameters("location", parameters);
-    if(intentName.contains("search")) {
-        mapsSearch(parameters);
+    if (intentName.contains("search")) {
+      mapsSearch(parameters);
     } else if (intentName.contains("find")) {
-        mapsFind(parameters);
+      mapsFind(parameters);
     }
   }
 
@@ -56,17 +57,21 @@ public class Maps implements Agent {
     return redirect;
   }
 
-  private void mapsSearch(Map<String, Value> parameters) {
-    location = new Location(locationFormatted); 
+  private void mapsSearch(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    location = LocationUtils.getLocationObject(locationFormatted);
     fulfillment = "Here is the map for: " + locationFormatted;
 
     Place place = new Place(location.getLng(), location.getLat());
     display = place.toString();
   }
 
-  private void mapsFind(Map<String, Value> parameters) {
+  private void mapsFind(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     String attraction = parameters.get("place-attraction").getStringValue();
-    location = new Location(locationFormatted);
+    location = LocationUtils.getLocationObject(locationFormatted);
     Place place;
     String limitDisplay = "";
     int limit = (int) parameters.get("number").getNumberValue();
@@ -87,5 +92,4 @@ public class Maps implements Agent {
             + ".";
     display = place.toString();
   }
-  
 }
