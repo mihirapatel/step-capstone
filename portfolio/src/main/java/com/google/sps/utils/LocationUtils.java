@@ -1,93 +1,22 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.TimeZoneApi;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.LatLng;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class LocationUtils {
-
-  /** Returns location object, or throws exception if any parameters are invalid */
-  public static Location getLocationObject(String address)
-      throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
-    LatLng coords = getCoordinates(address);
-    String formattedAddress = getFullAddress(address);
-    TimeZone timeZoneObj = getTimeZone(coords);
-    Location location = new Location(address, coords, formattedAddress, timeZoneObj);
-    return location;
-  }
-
-  /** Returns a GeoApiContext and throws an exception otherwise */
-  public static GeoApiContext getGeoApiContext()
-      throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
-    String apiKey =
-        new String(
-            Files.readAllBytes(
-                Paths.get(LocationUtils.class.getResource("/files/apikey.txt").getFile())));
-    GeoApiContext context = new GeoApiContext.Builder().apiKey(apiKey).build();
-    return context;
-  }
-
   /**
-   * Returns coordinates from Geocoding API from address input, and throws an exception otherwise
-   */
-  public static LatLng getCoordinates(String address)
-      throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
-    GeoApiContext context = getGeoApiContext();
-    GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    Double latCoord = results[0].geometry.location.lat;
-    Double lngCoord = results[0].geometry.location.lng;
-    LatLng coords = new LatLng(latCoord, lngCoord);
-    return coords;
-  }
-
-  /**
-   * Returns a full address from Geocoding API from address input and throws an exception otherwise
-   */
-  public static String getFullAddress(String address)
-      throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
-    GeoApiContext context = getGeoApiContext();
-    GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    String formattedAddress = results[0].formattedAddress;
-    return formattedAddress;
-  }
-
-  /**
-   * Returns TimeZone object from Timezone API from LatLng location and throws an exception
-   * otherwise
-   */
-  public static TimeZone getTimeZone(LatLng location)
-      throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
-    GeoApiContext context = getGeoApiContext();
-    TimeZone results = TimeZoneApi.getTimeZone(context, location).await();
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    TimeZone timeZoneObject = results;
-    return timeZoneObject;
-  }
-
-  /**
-   * Returns formatted address String from a Dialogflow parameter and throws an exception otherwise
+   * This function returns a valid formatted address from the Geocoding API based on the user
+   * inputted address, and throws an exception otherwise
+   *
+   * @param parameterName name of parameter to get address from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return String formatted address
    */
   public static String getFormattedAddress(String parameterName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -95,12 +24,19 @@ public class LocationUtils {
     String displayAddress = getDisplayAddress(parameterName, parameters);
     String formattedAddress = "";
     if (!displayAddress.isEmpty()) {
-      Location place = getLocationObject(displayAddress);
+      Location place = Location.create(displayAddress);
       formattedAddress = place.getAddressFormatted();
     }
     return formattedAddress;
   }
 
+  /**
+   * This function returns the address detected from Dialogflow based on the user inputted address.
+   *
+   * @param parameterName name of parameter to get address from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return String display address
+   */
   public static String getDisplayAddress(String parameterName, Map<String, Value> parameters) {
     ArrayList<String> locationNames = getLocationParameters(parameterName, parameters);
     String displayAddress = "";
@@ -118,6 +54,14 @@ public class LocationUtils {
     return displayAddress;
   }
 
+  /**
+   * This function returns a single field from the address detected from Dialogflow based on the
+   * user inputted address, which is used for brief responses
+   *
+   * @param parameterName name of parameter to get address from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return String brief address
+   */
   public static String getOneFieldAddress(String parameterName, Map<String, Value> parameters) {
     ArrayList<String> locationNames = getLocationParameters(parameterName, parameters);
     String displayAddress = "";
@@ -131,6 +75,14 @@ public class LocationUtils {
     return displayAddress;
   }
 
+  /**
+   * This function returns an ArrayList containing all location fields detected from Dialogflow
+   * based on the specified parameter name
+   *
+   * @param parameterName name of parameter to get location fields from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return ArrayList containing all location fields
+   */
   public static ArrayList<String> getLocationParameters(
       String parameterName, Map<String, Value> parameters) {
     Struct locationStruct = parameters.get(parameterName).getStructValue();
