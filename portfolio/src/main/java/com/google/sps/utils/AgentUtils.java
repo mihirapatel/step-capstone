@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** Identifies agent from Dialogflow API Query result and creates Output object */
 public class AgentUtils {
-  
+
   public static String detectedInput;
 
   public static Output getOutput(QueryResult queryResult, String languageCode) {
@@ -26,7 +26,6 @@ public class AgentUtils {
     String intentName = getIntentName(detectedIntent);
 
     // Retrieve detected input from DialogFlow result.
-
     detectedInput = queryResult.getQueryText();
     if (detectedInput.equals("")) {
       detectedInput = " (null) ";
@@ -101,7 +100,7 @@ public class AgentUtils {
   }
 
   public static String getUserInput() {
-    return inputDetected;
+    return detectedInput;
   }
 
   public static String getUserInput() {
