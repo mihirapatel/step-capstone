@@ -29,17 +29,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.TimeZone;
 
-/* Location object */
 public class Location {
 
   private String address;
+  private String formattedAddress;
   private double latCoord;
   private double lngCoord;
   private LatLng coords;
   private TimeZone timeZoneObj;
   private String timeZoneID;
   private String timeZoneName;
-  private String formattedAddress;
 
   public Location(String address) {
     this.address = address;
@@ -63,9 +62,9 @@ public class Location {
     try {
       GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      this.latCoord = results[0].geometry.location.lat;
-      this.lngCoord = results[0].geometry.location.lng;
-      this.coords = new LatLng(latCoord, lngCoord);
+      this.coords = new LatLng(results[0].geometry.location.lat, results[0].geometry.location.lng);
+      this.latCoord = coords.lat;
+      this.lngCoord = coords.lng;
       this.formattedAddress = results[0].formattedAddress;
     } catch (Exception e) {
       return;

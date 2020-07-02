@@ -7,11 +7,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-/** */
 @RunWith(JUnit4.class)
 public final class LocationTest {
   Location location = new Location("Los Angeles");
-  Location blankLocation = new Location(" ");
+  // Test for locations not recognized by Geocoding API
+  Location blankLocation = new Location("gibberish location input");
 
   @Test
   public void checkAddressField() {
@@ -72,7 +72,7 @@ public final class LocationTest {
   @Test
   public void checkBlankAddressField() {
     String actual = blankLocation.getAddress();
-    String expected = " ";
+    String expected = "gibberish location input";
     Assert.assertEquals(expected, actual);
   }
 
