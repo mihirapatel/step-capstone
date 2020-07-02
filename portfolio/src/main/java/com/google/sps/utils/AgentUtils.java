@@ -102,6 +102,16 @@ public class AgentUtils {
     return detectedInput;
   }
 
+  public static String getUserInput() {
+    return detectedInput;
+  }
+
+  public static Map<String, Value> getParameterMap(QueryResult queryResult) {
+    Struct paramStruct = queryResult.getParameters();
+    Map<String, Value> parameters = paramStruct.getFieldsMap();
+    return parameters;
+  }
+  
   public static byte[] getByteStringToByteArray(String fulfillment, String languageCode) {
     byte[] byteArray = null;
     try {

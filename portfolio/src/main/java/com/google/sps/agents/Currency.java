@@ -52,6 +52,7 @@ public class Currency implements Agent {
       String[] individualWords = searchText.split(" ");
       endURL = String.join("+", individualWords);
 
+      // Searching for conversion
     } else {
       fulfillment = "Redirecting for conversion";
       searchText += "Convert";
