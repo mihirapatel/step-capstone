@@ -30,6 +30,7 @@ import java.nio.file.Paths;
 import java.util.TimeZone;
 
 public class Location {
+
   private String address;
   private String formattedAddress;
   private double latCoord;
