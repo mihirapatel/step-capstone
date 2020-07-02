@@ -24,7 +24,7 @@ public final class LocationTest {
         | ApiException
         | InterruptedException
         | ArrayIndexOutOfBoundsException e) {
-      System.out.println("Error in creating valid location object.");
+      Assert.fail("Should not have thrown any exception");
     }
   }
 
@@ -85,7 +85,7 @@ public final class LocationTest {
   }
 
   /** Invalid location input should throw an exception */
-  @Test(expected = Exception.class)
+  @Test(expected = ArrayIndexOutOfBoundsException.class)
   public void checkInvalidLocation()
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
