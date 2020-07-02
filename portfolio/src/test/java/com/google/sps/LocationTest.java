@@ -27,7 +27,7 @@ public final class LocationTest {
       Assert.fail("Should not have thrown any exception");
     }
   }
-
+  
   @Test
   public void checkAddressField() {
     String actual = location.getAddress();

@@ -5,17 +5,19 @@ import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.translate.TranslateException;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.agents.*;
+import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
 import java.io.IOException;
 import java.util.Map;
 
 /** Identifies agent from Dialogflow API Query result and creates Output object */
 public class AgentUtils {
+  
+  public static String detectedInput;
 
-  public static Output getOutput(QueryResult queryResult, String languageCode) {
+  public static Output getOutput(DialogFlowClient queryResult, String languageCode) {
     String fulfillment = null;
     String display = null;
     String redirect = null;
@@ -28,9 +30,11 @@ public class AgentUtils {
     String intentName = getIntentName(detectedIntent);
 
     // Retrieve detected input from DialogFlow result.
-    String inputDetected = queryResult.getQueryText();
-    inputDetected = inputDetected.equals("") ? " (null) " : inputDetected;
-    Map<String, Value> parameterMap = getParameterMap(queryResult);
+    detectedInput = queryResult.getQueryText();
+    if (detectedInput.equals("")) {
+      detectedInput = " (null) ";
+    }
+    Map<String, Value> parameterMap = queryResult.getParameters();
 
     // Default fulfillment if all required parameters are not present
     fulfillment = queryResult.getFulfillmentText();
@@ -60,8 +64,13 @@ public class AgentUtils {
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output =
-        new Output(inputDetected, fulfillment, byteStringToByteArray, display, redirect);
+        new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect);
     return output;
+  }
+
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
   }
 
   private static Agent createAgent(
@@ -107,9 +116,13 @@ public class AgentUtils {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {
-      intentName = intentList[1];
+      return intentList[1];
     }
     return intentName;
+  }
+
+  public static String getUserInput() {
+    return detectedInput;
   }
 
   public static Map<String, Value> getParameterMap(QueryResult queryResult) {
@@ -117,7 +130,7 @@ public class AgentUtils {
     Map<String, Value> parameters = paramStruct.getFieldsMap();
     return parameters;
   }
-
+  
   public static byte[] getByteStringToByteArray(String fulfillment, String languageCode) {
     byte[] byteArray = null;
     try {

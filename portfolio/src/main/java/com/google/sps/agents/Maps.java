@@ -6,7 +6,6 @@ import com.google.protobuf.Value;
 import com.google.sps.data.Location;
 import com.google.sps.data.Place;
 import com.google.sps.utils.LocationUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -19,7 +18,6 @@ public class Maps implements Agent {
   private String redirect = null;
   private ArrayList<String> locationWords;
   private String locationFormatted;
-  private String locationDisplayed;
   private Location location;
 
   public Maps(String intentName, Map<String, Value> parameters)
@@ -88,8 +86,9 @@ public class Maps implements Agent {
             + "results for "
             + attraction
             + " in "
-            + locationDisplayed
+            + locationFormatted
             + ".";
     display = place.toString();
+    System.out.println(display);
   }
 }

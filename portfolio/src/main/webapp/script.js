@@ -259,8 +259,11 @@ function displayResponse(stream) {
         terminateTimer(allTimers[0]);
       }
       existingTimer = true;
+    } else if (outputAsJson.fulfillmentText.includes("Changing your") && outputAsJson.fulfillmentText.includes("name")) {
+      updateName(outputAsJson.display);
     } else if (outputAsJson.fulfillmentText.includes("Here is the map for")) {
-        displayMap(stream);
+        mapContainer = locationMap(outputAsJson.display);
+        placeMapDisplay(mapContainer, "convo-container");
     } else if (outputAsJson.fulfillmentText.includes("Here are the top")) {
       if (moreButton) {
         moreButton.style.display = "none";
@@ -460,33 +463,43 @@ function play(src) {
   }
 }
 
+function authSetup() {
+  fetch("/auth").then((response) => response.json()).then((displayText) => {
+    var authContainer = document.getElementsByClassName("auth-link")[0];
+    authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
+    updateName(displayText.displayName);
+  });
+}
+
+function updateName(name) {
+  var greetingContainer = document.getElementsByName("greeting")[0];
+  greetingContainer.innerHTML = "<h1>Hi " + name + ", what can I help you with?</h1>";
+}
+
 var mapOutputAsJson;
 function displayMap(stream) {
   mapOutputAsJson = JSON.parse(stream);
   showMap();
 }
 
-function showMap() {
-  var jsonOutput = mapOutputAsJson;
-  var displayAsJson = JSON.parse(jsonOutput.display);
+function locationMap(placeQuery) {
+  var place = JSON.parse(placeQuery);
+  var limit = place.limit;
+  var mapCenter = new google.maps.LatLng(place.lat, place.lng);
+  let {mapDiv, newMap} = createMapDivs(limit);
 
-  var myLatLng = {
-    lat: displayAsJson.lat,
-    lng: displayAsJson.lng
-  };
-
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(newMap, {
     zoom: 8,
-    center: myLatLng
+    center: mapCenter
   });
 
   var marker = new google.maps.Marker({
-    position: myLatLng,
+    position: mapCenter,
     map: map,
   });
-}
 
-google.maps.event.addDomListener(window, 'click', showMap);
+  return mapDiv;
+}
 
 var service;
 var infowindow;
@@ -502,7 +515,7 @@ function nearestPlacesMap(placeQuery) {
   limit = place.limit;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
 
-  let {mapDiv, newMap} = createMapDivs();
+  let {mapDiv, newMap} = createMapDivs(limit);
   
   var map = new google.maps.Map(newMap, {
     center: mapCenter,
@@ -550,26 +563,28 @@ function standardCallback(results, status) {
   }
 }
 
-function createMapDivs() {
+function createMapDivs(limit) {
   mapDiv = document.createElement('div');
   mapDiv.classList.add('media-display');
 
   newMap = document.createElement('div');
   newMap.id = 'map';
   mapDiv.append(newMap);
+  
+  if (limit > 0) {
+    rightPanel = document.createElement('div');
+    rightPanel.id = 'right-panel';
+    mapDiv.appendChild(rightPanel);
 
-  rightPanel = document.createElement('div');
-  rightPanel.id = 'right-panel';
-  mapDiv.appendChild(rightPanel);
+    resultTitle = document.createElement('h3');
+    resultText = document.createTextNode('Results');
+    resultTitle.appendChild(resultText);
+    rightPanel.appendChild(resultTitle);
 
-  resultTitle = document.createElement('h3');
-  resultText = document.createTextNode('Results');
-  resultTitle.appendChild(resultText);
-  rightPanel.appendChild(resultTitle);
-
-  placesList = document.createElement('ul');
-  placesList.id = 'places';
-  rightPanel.appendChild(placesList);
+    placesList = document.createElement('ul');
+    placesList.id = 'places';
+    rightPanel.appendChild(placesList);
+  }
 
   return {mapDiv, newMap};
 }
