@@ -18,8 +18,12 @@ import javax.servlet.http.*;
 import org.json.JSONObject;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestHelper {
+
+  private static Logger log = LoggerFactory.getLogger(TestHelper.class);
 
   @Mock DialogFlowClient dialogFlowMock;
 

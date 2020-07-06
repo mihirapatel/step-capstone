@@ -9,12 +9,14 @@ import java.util.*;
 import javax.servlet.http.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class CurrencyTest {
+
+  private static Logger log = LoggerFactory.getLogger(CurrencyTest.class);
 
   @Test
   public void testExchangeRate() throws Exception {
@@ -22,9 +24,9 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             // User input text
-            "What's the exchange rate for 10 Canadian dollars to US dollars",
+            "What's the exchange rate for 10 Canadian dollars to US dollars?",
             // Parameter JSON string (copy paste from dialogflow)
-            "{\"currency-from\": \"CAD\",\"currency-to\": \"USD\", \"amount\": \"10.0\"}",
+            "{\"currency-from\": \"CAD\",\"currency-to\": \"USD\", \"amount\": 10.0}",
             // Intent that you expect dialogflow to return based on your query
             "currency.convert");
 
@@ -42,7 +44,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "Exchange rate for Euros to US dollars",
-            "{\"currency-from\": \"EUR\",\"currency-to\": \"USD\", \"amount\": \"0.0\"}",
+            "{\"currency-from\": \"EUR\",\"currency-to\": \"USD\", \"amount\": 0.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -57,7 +59,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "Exchange rate for 10 Mexican Pesos",
-            "{\"currency-from\": \"MXN\",\"currency-to\": \"\", \"amount\": \"10.0\"}",
+            "{\"currency-from\": \"MXN\",\"currency-to\": \"\", \"amount\": 10.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -72,7 +74,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "Exchange rate Mexican Pesos",
-            "{\"currency-from\": \"\",\"currency-to\": \"MXN\", \"amount\": \"0.0\"}",
+            "{\"currency-from\": \"\",\"currency-to\": \"MXN\", \"amount\": 0.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -87,7 +89,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "Current exchange rate",
-            "{\"currency-from\": \"\",\"currency-to\": \"\", \"amount\": \"0.0\"}",
+            "{\"currency-from\": \"\",\"currency-to\": \"\", \"amount\": 0.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -102,7 +104,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "How much is 25 US dollars in Euros?",
-            "{\"currency-from\": \"USD\",\"currency-to\": \"EUR\", \"amount\": \"25.0\"}",
+            "{\"currency-from\": \"USD\",\"currency-to\": \"EUR\", \"amount\": 25.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -117,7 +119,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "Convert Jamaican dollars into Yen",
-            "{\"currency-from\": \"JMD\",\"currency-to\": \"JPY\", \"amount\": \"0.0\"}",
+            "{\"currency-from\": \"JMD\",\"currency-to\": \"JPY\", \"amount\": 0.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -132,7 +134,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "How much will I get for 1000 Indian rupees?",
-            "{\"currency-from\": \"INR\",\"currency-to\": \"\", \"amount\": \"1000.0\"}",
+            "{\"currency-from\": \"INR\",\"currency-to\": \"\", \"amount\": 1000.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
@@ -147,7 +149,7 @@ public class CurrencyTest {
     TestHelper tester =
         new TestHelper(
             "Can you convert currencies?",
-            "{\"currency-from\": \"\",\"currency-to\": \"\", \"amount\": \"0.0\"}",
+            "{\"currency-from\": \"\",\"currency-to\": \"\", \"amount\": 0.0}",
             "currency.convert");
 
     Output output = tester.getOutput();
