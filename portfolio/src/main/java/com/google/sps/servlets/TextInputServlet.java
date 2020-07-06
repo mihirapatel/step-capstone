@@ -14,6 +14,10 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.sps.data.DialogFlowClient;
@@ -35,6 +39,8 @@ import org.slf4j.LoggerFactory;
 public class TextInputServlet extends HttpServlet {
 
   private static Logger log = LoggerFactory.getLogger(TextInputServlet.class);
+  private DatastoreService datastore = createDatastore();
+  private UserService userService = createUserService();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -52,7 +58,7 @@ public class TextInputServlet extends HttpServlet {
     }
     Output output = null;
     try {
-      output = AgentUtils.getOutput(result, languageCode);
+      output = AgentUtils.getOutput(result, languageCode, userService, datastore);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -83,5 +89,13 @@ public class TextInputServlet extends HttpServlet {
   protected DialogFlowClient createDialogFlow(
       String text, String languageCode, SessionsClient sessionsClient) {
     return new DialogFlowClient(text, languageCode, sessionsClient);
+  }
+
+  protected UserService createUserService() {
+    return UserServiceFactory.getUserService();
+  }
+
+  protected DatastoreService createDatastore() {
+    return DatastoreServiceFactory.getDatastoreService();
   }
 }

@@ -3,6 +3,10 @@ package com.google.sps.servlets;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -18,10 +22,13 @@ import javax.servlet.http.*;
 import org.json.JSONObject;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestHelper {
 
   @Mock DialogFlowClient dialogFlowMock;
+  @Mock UserService userServiceMock;
 
   @InjectMocks TextInputServlet textInputServlet;
 
@@ -29,41 +36,69 @@ public class TestHelper {
   HttpServletResponse response;
   TextInputServlet servlet;
 
-  // Constructor for test that uses the real DialogFlow
-  // Use only for testing DialogFlow's response to training data or integration testing
-  public TestHelper(String inputText) {
+  private static Logger log = LoggerFactory.getLogger(TestHelper.class);
+  private final LocalServiceTestHelper helper =
+      new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+
+  /** Private constructor for TestHelper that sets up testing environment and empty mocks. */
+  private TestHelper() {
+    helper.setUp();
+    userServiceMock = mock(UserService.class);
     request = mock(HttpServletRequest.class);
-    when(request.getParameter("request-input")).thenReturn(inputText);
     response = mock(HttpServletResponse.class);
-    servlet = new TextInputServlet();
+    setLoggedIn();
   }
 
-  // Constructor for specific Agent unit tests
-  // DialogFlow is fully mocked in this version based on the parameters passed in.
+  /**
+   * TestHelper constructor that runs end-to-end testing of Dialogflow and agents. Use to test both
+   * Dialogflow's ability to detect the proper intent and verify agent fulfillment. Default has a
+   * logged in user. (Must set logged out user manually using set method).
+   *
+   * @param inputText Text input of user's intent sent to Dialogflow.
+   */
+  public TestHelper(String inputText) {
+    this();
+    servlet = new TestableDFTextInputServlet();
+    setInputText(inputText);
+  }
+
+  /**
+   * TestHelper constructor that mocks Dialogflow with expected intent detection. Use to test proper
+   * agent fulfillment given the correct Dialogflow output.
+   *
+   * @param inputText Text input of user's intent sent to Dialogflow.
+   * @param parameters String json that consists of expected parameters identified by Dialogflow.
+   * @param intentName String name of expected intent identified by Dialogflow.
+   */
   public TestHelper(String inputText, String parameters, String intentName)
       throws InvalidProtocolBufferException {
-    this(inputText);
+    this();
     servlet = new TestableTextInputServlet();
     dialogFlowMock = mock(DialogFlowClient.class);
-    Map<String, Value> map = stringToMap(parameters);
-    when(dialogFlowMock.getParameters()).thenReturn(map);
-    when(dialogFlowMock.getQueryText()).thenReturn(inputText);
-    when(dialogFlowMock.getIntentName()).thenReturn(intentName);
-    when(dialogFlowMock.getIntentConfidence()).thenReturn((float) 1.0);
-    when(dialogFlowMock.getFulfillmentText()).thenReturn("");
-    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(true);
+    setParameters(inputText, parameters, intentName);
   }
 
-  // Constructor for specific Agent unit tests
-  // Use for cases when specifying all required parameters present
+  /**
+   * TestHelper constructor that mocks Dialogflow with in case of insufficient intent detection. Use
+   * to test proper agent fulfillment given incomplete required parameters.
+   *
+   * @param inputText Text input of user's intent sent to Dialogflow.
+   * @param parameters String json that consists of expected parameters identified by Dialogflow.
+   * @param intentName String name of expected intent identified by Dialogflow.
+   * @param allParamsPresent Boolean indicating if all required parameters are present.
+   */
   public TestHelper(
       String inputText, String parameters, String intentName, Boolean allParamsPresent)
       throws InvalidProtocolBufferException {
     this(inputText, parameters, intentName);
-    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(allParamsPresent);
+    setParamsPresent(allParamsPresent);
   }
 
-  // Retrieves output in the same form as that which is passed to javascript
+  /**
+   * Gets the output object created by agent fulfillment after at the end of back-end process.
+   *
+   * @return Output object identical to that which is passed back to javascript.
+   */
   public Output getOutput() throws Exception {
     StringWriter stringWriter = new StringWriter();
     PrintWriter writer = new PrintWriter(stringWriter);
@@ -77,14 +112,92 @@ public class TestHelper {
     return output;
   }
 
+  /**
+   * Sets the input text to mock http request.
+   *
+   * @param inputText Text input of user's intent sent to Dialogflow.
+   */
+  public void setInputText(String inputText) {
+    when(request.getParameter("request-input")).thenReturn(inputText);
+  }
+
+  /**
+   * Sets the general return parameters to mock dialogflow.
+   *
+   * @param inputText Text input of user's intent sent to Dialogflow.
+   * @param parameters String json that consists of expected parameters identified by Dialogflow.
+   * @param intentName String name of expected intent identified by Dialogflow.
+   */
+  public void setParameters(String inputText, String parameters, String intentName)
+      throws InvalidProtocolBufferException {
+    setInputText(inputText);
+    Map<String, Value> map = stringToMap(parameters);
+    when(dialogFlowMock.getParameters()).thenReturn(map);
+    when(dialogFlowMock.getIntentName()).thenReturn(intentName);
+    when(dialogFlowMock.getQueryText()).thenReturn(inputText);
+    when(dialogFlowMock.getIntentConfidence()).thenReturn((float) 1.0);
+    when(dialogFlowMock.getFulfillmentText()).thenReturn("");
+    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(true);
+  }
+
+  /**
+   * Sets the mock returned for dialogflow all parameters present.
+   *
+   * @param allParamsPresent Boolean indicating if all required parameters are present.
+   */
+  public void setParamsPresent(boolean allParamsPresent) {
+    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(allParamsPresent);
+  }
+
+  /**
+   * Sets the mocks returned for a default logged-in user. Default user has: email:
+   * "test@example.com" user id: "1"
+   */
+  public void setLoggedIn() {
+    setUser("test@example.com", "1");
+  }
+
+  /** Sets the user service mock to return a logged-out user. */
+  public void setLoggedOut() {
+    when(userServiceMock.isUserLoggedIn()).thenReturn(false);
+  }
+
+  /**
+   * Creates a customized user.
+   *
+   * @param email String containing the user's email.
+   * @param id String containing the user's id number.
+   */
+  public void setUser(String email, String id) {
+    when(userServiceMock.isUserLoggedIn()).thenReturn(true);
+    when(userServiceMock.getCurrentUser()).thenReturn(new User(email, "authDomain", id));
+  }
+
   private class TestableTextInputServlet extends TextInputServlet {
     @Override
     public DialogFlowClient createDialogFlow(
         String text, String languageCode, SessionsClient sessionsClient) {
       return dialogFlowMock;
     }
+
+    @Override
+    public UserService createUserService() {
+      return userServiceMock;
+    }
   }
 
+  private class TestableDFTextInputServlet extends TextInputServlet {
+    @Override
+    public UserService createUserService() {
+      return userServiceMock;
+    }
+  }
+
+  /**
+   * Converts a json string into a map object
+   *
+   * @param json json string
+   */
   public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
     JSONObject jsonObject = new JSONObject(json);
     Builder structBuilder = Struct.newBuilder();

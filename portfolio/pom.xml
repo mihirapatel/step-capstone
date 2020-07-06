@@ -92,13 +92,6 @@
     </dependency>
 
     <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-api-1.0-sdk</artifactId>
-      <version>1.7.4</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-translate</artifactId>
     </dependency>
@@ -107,6 +100,7 @@
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
       <version>1.9.59</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -146,6 +140,7 @@
   </dependencies>
 
   <build>
+
     <plugins>
       <!-- Provides `mvn package appengine:run` for local testing
            and `mvn package appengine:deploy` for deploying. -->

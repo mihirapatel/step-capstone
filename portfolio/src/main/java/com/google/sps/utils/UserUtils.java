@@ -3,8 +3,18 @@ package com.google.sps.utils;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
+import com.google.sps.data.Pair;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,8 +59,7 @@ public class UserUtils {
    * @param name String containing the name to be saved
    */
   public static void saveName(
-      UserService userService, DatastoreService datastore, String nameType, String name) {
-    String userID = userService.getCurrentUser().getUserId();
+      String userID, DatastoreService datastore, String nameType, String name) {
     Entity entity;
     try {
       entity = datastore.get(KeyFactory.createKey("UserInfo", userID));
@@ -68,19 +77,60 @@ public class UserUtils {
    * @param userComment The comment written by the user.
    * @param assistantComment The fulfillment comment returned by the assistant.
    */
-  public static void saveComment(String userComment, String assistantComment) {
-    String userID = getUserID();
+  public static void saveComment(
+      String userID, DatastoreService datastore, String userComment, String assistantComment) {
     if (userID != null) {
-      makeCommentEntity(userID, userComment, true);
-      makeCommentEntity(userID, assistantComment, false);
+      makeCommentEntity(userID, datastore, userComment, true);
+      makeCommentEntity(userID, datastore, assistantComment, false);
     }
   }
 
-  private static void makeCommentEntity(String userID, String comment, boolean isUser) {
+  private static void makeCommentEntity(
+      String userID, DatastoreService datastore, String comment, boolean isUser) {
     Entity entity = new Entity("CommentHistory", String.valueOf(System.currentTimeMillis()));
     entity.setProperty("id", userID);
     entity.setProperty("isUser", isUser);
     entity.setProperty("comment", comment);
     datastore.put(entity);
+  }
+
+  /**
+   * Retrieves a list of (Entity, List<Entity>)-pairs where the Entity (pair key) is a datastore
+   * entity with a comment containing the desired keyword and the List<Entity> (pair value) is a
+   * list of datastore entities containing comments that are around the chosen Entity.
+   *
+   * @param userID The logged-in user's ID
+   * @param keyword The fulfillment comment returned by the assistant.
+   * @return List of pairs where key corresponds to identified entity with keyword and value is a
+   *     list of surrounding entities
+   */
+  public static List<Pair<Entity, List<Entity>>> getKeywordCommentEntities(
+      DatastoreService datastore, String userID, String keyword) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, userID);
+    Query query =
+        new Query("CommentHistory")
+            .setFilter(currentUserFilter)
+            .addSort("timestamp", SortDirection.ASCENDING);
+    PreparedQuery filteredQueries = datastore.prepare(query);
+
+    List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
+    List<Entity> results =
+        datastore.prepare(query.setKeysOnly()).asList(FetchOptions.Builder.withDefaults());
+    for (int i = 0; i < results.size(); i++) {
+      Entity entity = results.get(i);
+      String comment = (String) entity.getProperty("comment");
+      if (comment.contains(keyword)) {
+        keywordEntities.add(new Pair(entity, getSurroundingConversation(results, i)));
+      }
+    }
+    return keywordEntities;
+  }
+
+  private static List<Entity> getSurroundingConversation(List<Entity> results, int index) {
+    List<Entity> surroundingEntities = new ArrayList<>();
+    for (int i = Math.max(index - 6, 0); i < Math.min(index + 7, results.size()); i++) {
+      surroundingEntities.add(results.get(i));
+    }
+    return surroundingEntities;
   }
 }
