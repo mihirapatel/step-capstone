@@ -3,7 +3,7 @@ package com.google.sps.servlets;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import com.google.sps.data.DialogFlow;
+import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
 import java.io.*;
 import java.util.*;
@@ -17,7 +17,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class UnitConverterTest {
 
-  @Mock DialogFlow dialogFlowMock;
+  @Mock DialogFlowClient dialogFlowMock;
 
   @InjectMocks TextInputServlet textInputServlet;
 
