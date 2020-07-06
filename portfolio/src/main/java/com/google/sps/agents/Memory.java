@@ -26,8 +26,11 @@ public class Memory implements Agent {
       UserService userService,
       DatastoreService datastore) {
     this.intentName = intentName;
+<<<<<<< HEAD
     this.userService = userService;
     this.datastore = datastore;
+=======
+>>>>>>> Added memory agent
     setParameters(parameters);
   }
 
@@ -46,7 +49,11 @@ public class Memory implements Agent {
   private void findKeyword(Map<String, Value> parameters) {
     String word = parameters.get("keyword").getStringValue();
     List<Pair<Entity, List<Entity>>> conversationList =
+<<<<<<< HEAD
         UserUtils.getKeywordCommentEntities(datastore, userID, word.toLowerCase());
+=======
+        UserUtils.getKeywordCommentEntities(datastore, userID, word);
+>>>>>>> Added memory agent
     if (conversationList.isEmpty()) {
       fulfillment = "Sorry, unable to find any results including the keyword \"" + word + ".\"";
     } else {
@@ -63,7 +70,10 @@ public class Memory implements Agent {
 
   @Override
   public String getDisplay() {
+<<<<<<< HEAD
     System.out.println(display);
+=======
+>>>>>>> Added memory agent
     return display;
   }
 

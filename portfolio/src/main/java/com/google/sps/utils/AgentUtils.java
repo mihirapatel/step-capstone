@@ -1,6 +1,7 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
+import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.users.UserService;
 import com.google.cloud.translate.TranslateException;
