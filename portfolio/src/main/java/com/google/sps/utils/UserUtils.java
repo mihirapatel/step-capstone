@@ -121,17 +121,6 @@ public class UserUtils {
         new Query("CommentHistory")
             .setFilter(currentUserFilter)
             .addSort("timestamp", SortDirection.ASCENDING);
-<<<<<<< HEAD
-    PreparedQuery filteredQueries = datastore.prepare(query);
-
-    List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
-    List<Entity> results =
-        datastore.prepare(query.setKeysOnly()).asList(FetchOptions.Builder.withDefaults());
-    for (int i = 0; i < results.size(); i++) {
-      Entity entity = results.get(i);
-      String comment = (String) entity.getProperty("comment");
-      if (comment.contains(keyword)) {
-=======
 
     List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
@@ -139,7 +128,6 @@ public class UserUtils {
       Entity entity = results.get(i);
       String comment = (String) entity.getProperty("comment");
       if (comment.toLowerCase().contains(keyword)) {
->>>>>>> Working memory backend.
         keywordEntities.add(new Pair(entity, getSurroundingConversation(results, i)));
       }
     }
