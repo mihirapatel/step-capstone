@@ -63,7 +63,7 @@ public class DateTest {
 
     String actual = output.getFulfillmentText();
     String expected = "It is " + dateString + " in Los Angeles.";
-    assertEquals(actual, expected);
+    assertEquals(expected, actual);
   }
 
   @Test
