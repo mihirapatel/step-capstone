@@ -82,4 +82,8 @@ public class DialogFlowClient {
   public Map<String, Value> getParameters() {
     return queryResult.getParameters().getFieldsMap();
   }
+
+  public Boolean getAllRequiredParamsPresent() {
+    return queryResult.getAllRequiredParamsPresent();
+  }
 }
