@@ -1,11 +1,15 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
+import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.cloud.translate.TranslateException;
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Value;
 import com.google.sps.agents.*;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import java.io.IOException;
 import java.util.Map;
 
 /** Identifies agent from Dialogflow API Query result and creates Output object */
@@ -20,7 +24,8 @@ public class AgentUtils {
     byte[] byteStringToByteArray = null;
     Agent object = null;
 
-    String detectedIntent = queryResult.getIntentName();
+    String detectedIntent = queryResult.getIntent().getDisplayName();
+    Boolean allParamsPresent = queryResult.getAllRequiredParamsPresent();
     String agentName = getAgentName(detectedIntent);
     String intentName = getIntentName(detectedIntent);
 
@@ -31,19 +36,30 @@ public class AgentUtils {
     }
     Map<String, Value> parameterMap = queryResult.getParameters();
 
-    try {
-      object = createAgent(agentName, intentName, parameterMap);
-      fulfillment = object.getOutput();
-      fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
-      display = object.getDisplay();
-      redirect = object.getRedirect();
-    } catch (Exception e) {
-      e.printStackTrace();
-      fulfillment = queryResult.getFulfillmentText();
+    // Default fulfillment if all required parameters are not present
+    fulfillment = queryResult.getFulfillmentText();
+
+    // Set fulfillment if parameters are present, upon any exceptions return default
+    if (allParamsPresent) {
+      try {
+        object = createAgent(agentName, intentName, parameterMap);
+        fulfillment = object.getOutput();
+        fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
+        display = object.getDisplay();
+        redirect = object.getRedirect();
+      } catch (IllegalStateException
+          | IOException
+          | ApiException
+          | InterruptedException
+          | ArrayIndexOutOfBoundsException
+          | NullPointerException
+          | TranslateException e) {
+        System.out.println("Error in object creation.");
+      }
     }
 
     if (fulfillment.equals("")) {
-      fulfillment = "Can you repeat that?";
+      fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
     }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
@@ -58,7 +74,9 @@ public class AgentUtils {
   }
 
   private static Agent createAgent(
-      String agentName, String intentName, Map<String, Value> parameterMap) {
+      String agentName, String intentName, Map<String, Value> parameterMap)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     switch (agentName) {
       case "calculator":
         return new Tip(intentName, parameterMap);
@@ -87,6 +105,11 @@ public class AgentUtils {
       default:
         return null;
     }
+  }
+
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
   }
 
   private static String getIntentName(String detectedIntent) {

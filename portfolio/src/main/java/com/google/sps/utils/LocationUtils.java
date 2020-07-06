@@ -1,24 +1,42 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-/** Parses parameter locations to full name and display name */
 public class LocationUtils {
-  public static String getFormattedAddress(String parameterName, Map<String, Value> parameters) {
+  /**
+   * This function returns a valid formatted address from the Geocoding API based on the user
+   * inputted address, and throws an exception otherwise
+   *
+   * @param parameterName name of parameter to get address from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return String formatted address
+   */
+  public static String getFormattedAddress(String parameterName, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     String displayAddress = getDisplayAddress(parameterName, parameters);
     String formattedAddress = "";
     if (!displayAddress.isEmpty()) {
-      Location place = new Location(displayAddress);
+      Location place = Location.create(displayAddress);
       formattedAddress = place.getAddressFormatted();
     }
     return formattedAddress;
   }
 
+  /**
+   * This function returns the address detected from Dialogflow based on the user inputted address.
+   *
+   * @param parameterName name of parameter to get address from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return String display address
+   */
   public static String getDisplayAddress(String parameterName, Map<String, Value> parameters) {
     ArrayList<String> locationNames = getLocationParameters(parameterName, parameters);
     String displayAddress = "";
@@ -36,6 +54,14 @@ public class LocationUtils {
     return displayAddress;
   }
 
+  /**
+   * This function returns a single field from the address detected from Dialogflow based on the
+   * user inputted address, which is used for brief responses
+   *
+   * @param parameterName name of parameter to get address from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return String brief address
+   */
   public static String getOneFieldAddress(String parameterName, Map<String, Value> parameters) {
     ArrayList<String> locationNames = getLocationParameters(parameterName, parameters);
     String displayAddress = "";
@@ -49,6 +75,14 @@ public class LocationUtils {
     return displayAddress;
   }
 
+  /**
+   * This function returns an ArrayList containing all location fields detected from Dialogflow
+   * based on the specified parameter name
+   *
+   * @param parameterName name of parameter to get location fields from
+   * @param parameters map of parameters detected from Dialogflow
+   * @return ArrayList containing all location fields
+   */
   public static ArrayList<String> getLocationParameters(
       String parameterName, Map<String, Value> parameters) {
     Struct locationStruct = parameters.get(parameterName).getStructValue();
