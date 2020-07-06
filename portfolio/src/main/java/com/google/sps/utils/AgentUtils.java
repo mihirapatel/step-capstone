@@ -32,7 +32,7 @@ public class AgentUtils {
     // Retrieve detected input from DialogFlow result.
     detectedInput = queryResult.getQueryText();
     if (detectedInput.equals("")) {
-      detectedInput = " (null) ";
+      return null;
     }
     Map<String, Value> parameterMap = queryResult.getParameters();
 
@@ -61,7 +61,7 @@ public class AgentUtils {
     if (fulfillment.equals("")) {
       fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
     }
-
+    UserUtils.saveComment(detectedInput, fulfillment);
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
     Output output =
         new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect);

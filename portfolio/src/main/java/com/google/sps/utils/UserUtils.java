@@ -61,4 +61,26 @@ public class UserUtils {
     entity.setProperty(nameType, name);
     datastore.put(entity);
   }
+
+  /**
+   * Saves comment information into comment history database if the user is logged in.
+   *
+   * @param userComment The comment written by the user.
+   * @param assistantComment The fulfillment comment returned by the assistant.
+   */
+  public static void saveComment(String userComment, String assistantComment) {
+    String userID = getUserID();
+    if (userID != null) {
+      makeCommentEntity(userID, userComment, true);
+      makeCommentEntity(userID, assistantComment, false);
+    }
+  }
+
+  private static void makeCommentEntity(String userID, String comment, boolean isUser) {
+    Entity entity = new Entity("CommentHistory", String.valueOf(System.currentTimeMillis()));
+    entity.setProperty("id", userID);
+    entity.setProperty("isUser", isUser);
+    entity.setProperty("comment", comment);
+    datastore.put(entity);
+  }
 }
