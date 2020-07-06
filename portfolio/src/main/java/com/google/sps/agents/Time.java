@@ -1,9 +1,11 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
 import com.google.sps.utils.LocationUtils;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -23,13 +25,17 @@ public class Time implements Agent {
   private String locationFromDisplay;
   private ZonedDateTime timeFrom;
 
-  public Time(String intentName, Map<String, Value> parameters) {
+  public Time(String intentName, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) {
+  public void setParameters(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     if (intentName.equals("get") || intentName.equals("context:time")) {
       this.locationFormatted = LocationUtils.getFormattedAddress("location", parameters);
       this.locationDisplay = LocationUtils.getDisplayAddress("location", parameters);
@@ -123,24 +129,30 @@ public class Time implements Agent {
     return null;
   }
 
-  public ZonedDateTime getCurrentTime(String locationName) {
+  public ZonedDateTime getCurrentTime(String locationName)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     ZonedDateTime currentTime = null;
-    Location place = new Location(locationName);
+    Location place = Location.create(locationName);
     String timeZoneID = place.getTimeZoneID();
     currentTime = ZonedDateTime.now(ZoneId.of(timeZoneID));
     return currentTime;
   }
 
-  public String getZone(String locationName) {
+  public String getZone(String locationName)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     String timeZone = null;
-    Location place = new Location(locationName);
+    Location place = Location.create(locationName);
     ZonedDateTime time = getCurrentTime(locationName);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("z");
     timeZone = time.format(formatter);
     return place.getTimeZoneName() + " (" + timeZone + ")";
   }
 
-  public String getTimeDiff(String firstLocation, String secondLocation) {
+  public String getTimeDiff(String firstLocation, String secondLocation)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     ZonedDateTime firstZonedTime = getCurrentTime(firstLocation);
     ZonedDateTime secondZonedTime = getTimeIn(secondLocation, firstZonedTime);
     LocalDateTime firstLocalTime = firstZonedTime.toLocalDateTime();
@@ -173,15 +185,19 @@ public class Time implements Agent {
     return ret;
   }
 
-  public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject) {
+  public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     ZonedDateTime timeIn = null;
-    Location placeTo = new Location(locationIn);
+    Location placeTo = Location.create(locationIn);
     String timeZoneID = placeTo.getTimeZoneID();
     timeIn = timeFromObject.withZoneSameInstant(ZoneId.of(timeZoneID));
     return timeIn;
   }
 
-  public String getCurrentTimeString(String location) {
+  public String getCurrentTimeString(String location)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     ZonedDateTime time = getCurrentTime(location);
     return zonedTimeToString(time);
   }
@@ -196,11 +212,13 @@ public class Time implements Agent {
   }
 
   public static ZonedDateTime getZonedTime(
-      String timeName, String locationParameter, Map<String, Value> parameters) {
+      String timeName, String locationParameter, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     LocalDateTime localTime = getTimeParameter(timeName, parameters);
     ZonedDateTime zonedTime = null;
     if (localTime != null) {
-      Location place = new Location(locationParameter);
+      Location place = Location.create(locationParameter);
       String timeZoneID = place.getTimeZoneID();
       zonedTime = ZonedDateTime.of(localTime, ZoneId.of(timeZoneID));
     }
