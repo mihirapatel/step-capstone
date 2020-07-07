@@ -3,11 +3,8 @@ package com.google.sps.servlets;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-<<<<<<< HEAD
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
-=======
->>>>>>> Added memory agent
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
