@@ -9,9 +9,13 @@ import com.google.sps.utils.LocationUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Maps Agent */
 public class Maps implements Agent {
+
+  private static Logger log = LoggerFactory.getLogger(Maps.class);
 
   private final String intentName;
   private String fulfillment = null;
@@ -73,14 +77,21 @@ public class Maps implements Agent {
     location = Location.create(locationFormatted);
     Place place;
     String limitDisplay = "";
-    int limit = (int) parameters.get("number").getNumberValue();
-    if (limit > 0) {
-      limitDisplay = String.valueOf(limit) + " ";
-      place = new Place(attraction, location.getLng(), location.getLat(), limit);
-    } else {
+    if (parameters.get("number").getStringValue().equals("-1")) {
       place = new Place(attraction, location.getLng(), location.getLat());
+    } else {
+      int limit = (int) parameters.get("number").getNumberValue();
+      if (limit > 0 && limit < 20) {
+        limitDisplay = String.valueOf(limit) + " ";
+        place = new Place(attraction, location.getLng(), location.getLat(), limit);
+      } else {
+        fulfillment =
+            "Invalid input for number of "
+                + attraction
+                + ". Please try again with a positive integer between 1 and 20.";
+        return;
+      }
     }
-
     fulfillment =
         "Here are the top "
             + limitDisplay
@@ -90,6 +101,5 @@ public class Maps implements Agent {
             + locationFormatted
             + ".";
     display = place.toString();
-    System.out.println(display);
   }
 }

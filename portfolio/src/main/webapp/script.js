@@ -571,7 +571,7 @@ function createMapDivs(limit) {
   newMap.id = 'map';
   mapDiv.append(newMap);
   
-  if (limit > 0) {
+  if (limit < 0) {
     rightPanel = document.createElement('div');
     rightPanel.id = 'right-panel';
     mapDiv.appendChild(rightPanel);

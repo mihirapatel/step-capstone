@@ -24,6 +24,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Servlet that takes in user text input and retrieves * QueryResult from Dialogflow input string to
@@ -31,6 +33,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/text-input")
 public class TextInputServlet extends HttpServlet {
+
+  private static Logger log = LoggerFactory.getLogger(TextInputServlet.class);
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -62,6 +66,14 @@ public class TextInputServlet extends HttpServlet {
 
     try (SessionsClient sessionsClient = SessionsClient.create()) {
       dialogFlowResult = createDialogFlow(text, languageCode, sessionsClient);
+
+      log.info("====================");
+      log.info("Query Text: '%s'\n", dialogFlowResult.getQueryText());
+      log.info(
+          "Detected Intent: %s (confidence: %f)\n",
+          dialogFlowResult.getIntentName(), dialogFlowResult.getIntentConfidence());
+      log.info("Fulfillment Text: '%s'\n", dialogFlowResult.getFulfillmentText());
+
     } catch (IOException e) {
       e.printStackTrace();
     }

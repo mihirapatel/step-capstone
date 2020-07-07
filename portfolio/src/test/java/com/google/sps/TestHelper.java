@@ -85,7 +85,7 @@ public class TestHelper {
     }
   }
 
-  private Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
+  public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
     JSONObject jsonObject = new JSONObject(json);
     Builder structBuilder = Struct.newBuilder();
     JsonFormat.parser().merge(jsonObject.toString(), structBuilder);
