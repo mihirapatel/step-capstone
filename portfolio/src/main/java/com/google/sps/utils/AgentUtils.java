@@ -43,7 +43,7 @@ public class AgentUtils {
     }
 
     if (fulfillment.equals("")) {
-      fulfillment = "Can you repeat that?";
+      fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
     }
 
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);

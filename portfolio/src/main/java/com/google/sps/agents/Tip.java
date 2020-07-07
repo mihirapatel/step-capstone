@@ -43,55 +43,61 @@ public class Tip implements Agent {
       currencySymbol = "$";
     }
 
-    // Convert String to Doubles
-    tipPercentageString = tipPercentageString.substring(0, tipPercentageString.length() - 1);
-    tipPercentageDouble = Double.valueOf(tipPercentageString);
-    tipPercentageDouble = tipPercentageDouble / 100;
+    if (!tipPercentageString.equals("")) {
+      // Convert String to Doubles
+      tipPercentageString = tipPercentageString.substring(0, tipPercentageString.length() - 1);
+      tipPercentageDouble = Double.valueOf(tipPercentageString);
+      tipPercentageDouble = tipPercentageDouble / 100;
+      log.info(tipPercentageString);
+      log.info(String.valueOf(tipPercentageDouble));
 
-    tipAmount = tipPercentageDouble * amountWithoutTip;
-    DecimalFormat formatTipAmount = new DecimalFormat("#.##");
-    tipAmount = Double.valueOf(formatTipAmount.format(tipAmount));
+      tipAmount = tipPercentageDouble * amountWithoutTip;
+      DecimalFormat formatTipAmount = new DecimalFormat("#.##");
+      tipAmount = Double.valueOf(formatTipAmount.format(tipAmount));
+      log.info(String.valueOf(tipAmount));
 
-    // Tip without number of people
-    if (String.valueOf(peopleNumber).equals("0.0")) {
-      if (currencySymbol.equals("")) {
-        fulfillment = "The total tip is " + String.valueOf(tipAmount) + " " + currency;
+      // Tip without number of people
+      if (String.valueOf(peopleNumber).equals("0.0")) {
+        if (currencySymbol.equals("")) {
+          fulfillment = "The total tip is " + String.valueOf(tipAmount) + " " + currency;
+        } else {
+          fulfillment = "The total tip is " + currencySymbol + String.valueOf(tipAmount);
+        }
+
       } else {
-        fulfillment = "The total tip is " + currencySymbol + String.valueOf(tipAmount);
-      }
+        // Tip with percentage and people
+        tipAmountPerPerson = tipAmount / peopleNumber;
+        DecimalFormat formatTipAmountPerPerson = new DecimalFormat("#.##");
+        tipAmountPerPerson = Double.valueOf(formatTipAmountPerPerson.format(tipAmountPerPerson));
 
-    } else {
-      // Tip with percentage and people
-      tipAmountPerPerson = tipAmount / peopleNumber;
-      DecimalFormat formatTipAmountPerPerson = new DecimalFormat("#.##");
-      tipAmountPerPerson = Double.valueOf(formatTipAmountPerPerson.format(tipAmountPerPerson));
-
-      if (currencySymbol.equals("")) {
-        fulfillment =
-            "The total tip is "
-                + String.valueOf(tipAmount)
-                + " "
-                + currency
-                + ", coming out to "
-                + String.valueOf(tipAmountPerPerson)
-                + " "
-                + currency
-                + " per person";
-      } else {
-        fulfillment =
-            "The total tip is "
-                + currencySymbol
-                + String.valueOf(tipAmount)
-                + ", coming out to "
-                + currencySymbol
-                + String.valueOf(tipAmountPerPerson)
-                + " per person";
+        if (currencySymbol.equals("")) {
+          fulfillment =
+              "The total tip is "
+                  + String.valueOf(tipAmount)
+                  + " "
+                  + currency
+                  + ", coming out to "
+                  + String.valueOf(tipAmountPerPerson)
+                  + " "
+                  + currency
+                  + " per person";
+        } else {
+          fulfillment =
+              "The total tip is "
+                  + currencySymbol
+                  + String.valueOf(tipAmount)
+                  + ", coming out to "
+                  + currencySymbol
+                  + String.valueOf(tipAmountPerPerson)
+                  + " per person";
+        }
       }
     }
   }
 
   @Override
   public String getOutput() {
+    log.info(fulfillment);
     return fulfillment;
   }
 

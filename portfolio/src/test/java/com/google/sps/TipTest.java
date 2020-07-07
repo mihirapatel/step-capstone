@@ -59,7 +59,7 @@ public class TipTest {
   }
 
   @Test
-  public void testTipConversionWithoutTipPercentage() throws Exception {
+  public void testTipConversionWithoutTipPercentageMock() throws Exception {
 
     TestHelper tester =
         new TestHelper(
@@ -73,33 +73,25 @@ public class TipTest {
     Output output = tester.getOutput();
 
     // Assertions
+    String expected = "I'm sorry, I didn't catch that. Can you repeat that?";
+    String actual = output.getFulfillmentText();
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void testTipConversionWithoutTipPercentageReal() throws Exception {
+
+    TestHelper tester = new TestHelper("Calculate tip on 65.00 dollars");
+    Output output = tester.getOutput();
+
+    // Assertions
     String expected = "What percentage tip?";
     String actual = output.getFulfillmentText();
     assertEquals(expected, actual);
   }
 
   @Test
-  public void testTipConversionWithoutAmount() throws Exception {
-
-    TestHelper tester =
-        new TestHelper(
-            // User input text
-            "Calculate 15 percent tip",
-            // Parameter JSON string (copy paste from dialogflow)
-            "{\"tip-percentage\": \"15%\", \"amount-without-tip\": 0.0, \"currency\": \"\", \"people-number\": 0.0}",
-            // Intent that you expect dialogflow to return based on your query
-            "calculator.tips");
-
-    Output output = tester.getOutput();
-
-    // Assertions
-    String expected = "What is the amount without tip?";
-    String actual = output.getFulfillmentText();
-    assertEquals(expected, actual);
-  }
-
-  @Test
-  public void testTipConversionWithoutAmountandPercent() throws Exception {
+  public void testTipConversionWithoutAllParamsMock() throws Exception {
 
     TestHelper tester =
         new TestHelper(
@@ -108,8 +100,21 @@ public class TipTest {
             // Parameter JSON string (copy paste from dialogflow)
             "{\"tip-percentage\": \"\", \"amount-without-tip\": 0.0, \"currency\": \"\", \"people-number\": 0.0}",
             // Intent that you expect dialogflow to return based on your query
-            "calculator.tips");
+            "calculator.tips",
+            false);
 
+    Output output = tester.getOutput();
+
+    // Assertions
+    String expected = "I'm sorry, I didn't catch that. Can you repeat that?";
+    String actual = output.getFulfillmentText();
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void testTipConversionWithoutAllParamsReal() throws Exception {
+
+    TestHelper tester = new TestHelper("Calculate tip");
     Output output = tester.getOutput();
 
     // Assertions
