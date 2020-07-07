@@ -7,9 +7,13 @@ import com.google.sps.data.Place;
 import com.google.sps.utils.LocationUtils;
 import java.util.ArrayList;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Maps Agent */
 public class Maps implements Agent {
+
+  private static Logger log = LoggerFactory.getLogger(Maps.class);
 
   private final String intentName;
   private String fulfillment = null;
@@ -37,11 +41,13 @@ public class Maps implements Agent {
 
   @Override
   public String getOutput() {
+    log.info(fulfillment);
     return fulfillment;
   }
 
   @Override
   public String getDisplay() {
+    log.info(display);
     return display;
   }
 
@@ -53,7 +59,6 @@ public class Maps implements Agent {
   private void mapsSearch(Map<String, Value> parameters) {
     location = new Location(locationFormatted);
     fulfillment = "Here is the map for: " + locationFormatted;
-
     Place place = new Place(location.getLng(), location.getLat());
     display = place.toString();
   }
@@ -80,6 +85,5 @@ public class Maps implements Agent {
             + locationFormatted
             + ".";
     display = place.toString();
-    System.out.println(display);
   }
 }
