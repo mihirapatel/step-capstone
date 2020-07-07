@@ -121,21 +121,13 @@
       <version>20180130</version>
     </dependency>
 
-<<<<<<< HEAD
-     <dependency>
-=======
     <dependency>
->>>>>>> upstream/master
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-testing</artifactId>
       <version>1.9.64</version>
       <scope>test</scope>
     </dependency>
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> upstream/master
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-stubs</artifactId>
