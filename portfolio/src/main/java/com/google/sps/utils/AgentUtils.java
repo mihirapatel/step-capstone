@@ -1,7 +1,6 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
-import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.translate.TranslateException;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.ByteString;
@@ -18,6 +17,11 @@ public class AgentUtils {
   public static String detectedInput;
 
   public static Output getOutput(DialogFlowClient queryResult, String languageCode) {
+    try {
+      CivicUtils.getCurl();
+    } catch (Exception e) {
+      System.out.println("Exception caught in CURL");
+    }
     String fulfillment = null;
     String display = null;
     String redirect = null;
@@ -100,11 +104,6 @@ public class AgentUtils {
       default:
         return null;
     }
-  }
-
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
   }
 
   private static String getIntentName(String detectedIntent) {
