@@ -277,4 +277,44 @@ public class MapsSearchTest {
         output.getFulfillmentText(), "Here is the map for: Cairo, Cairo Governorate, Egypt");
     assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":31.2357116,\"lat\":30.0444196}");
   }
+
+  @Test
+  public void testMapsWithoutLocationMock() throws Exception {
+
+    TestHelper tester =
+        new TestHelper(
+            // User input text
+            "Show me a map",
+            // Parameter JSON string (copy paste from dialogflow)
+            "{\"location\": {"
+                + "\"country\": \"\","
+                + "\"zip-code\": \"\","
+                + "\"island\": \"\","
+                + "\"shortcut\": \"\","
+                + "\"business-name\": \"\","
+                + "\"subadmin-area\": \"\","
+                + "\"admin-area\": \"\","
+                + "\"street-address\": \"\","
+                + "\"city\": \"\"}}",
+            // Intent that you expect dialogflow to return based on your query
+            "maps.search",
+            false);
+
+    Output output = tester.getOutput();
+
+    // Assertions
+    assertEquals(
+        output.getFulfillmentText(), "I'm sorry, I didn't catch that. Can you repeat that?");
+  }
+
+  public void testMapsWithoutLocationReal() throws Exception {
+
+    TestHelper tester = new TestHelper("Show me a map");
+    Output output = tester.getOutput();
+
+    // Assertions
+    String expected = "What location?";
+    String actual = output.getFulfillmentText();
+    assertEquals(expected, actual);
+  }
 }
