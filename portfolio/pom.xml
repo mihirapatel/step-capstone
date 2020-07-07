@@ -180,7 +180,7 @@
         <version>2.19.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <skipTests>false</skipTests>
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
 
