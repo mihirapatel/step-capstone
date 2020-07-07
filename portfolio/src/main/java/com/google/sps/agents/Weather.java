@@ -1,8 +1,10 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.maps.errors.ApiException;
 import com.google.protobuf.Value;
 import com.google.sps.utils.LocationUtils;
+import java.io.IOException;
 import java.util.Map;
 
 /** Weather Agent */
@@ -13,13 +15,17 @@ public class Weather implements Agent {
   private String output = null;
   private String redirect = null;
 
-  public Weather(String intentName, Map<String, Value> parameters) {
+  public Weather(String intentName, Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) {
+  public void setParameters(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
     this.displayAddress = LocationUtils.getDisplayAddress("address", parameters);
     this.searchAddress = LocationUtils.getFormattedAddress("address", parameters);
     if (!displayAddress.isEmpty() && !searchAddress.isEmpty()) {

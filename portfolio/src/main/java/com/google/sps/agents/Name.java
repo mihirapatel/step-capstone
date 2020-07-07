@@ -1,35 +1,42 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.protobuf.Value;
 import com.google.sps.utils.UserUtils;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Name Agent */
 public class Name implements Agent {
-  private final String intentName;
+
+  private static Logger log = LoggerFactory.getLogger(Name.class);
+
+  private String intentName;
   String outputText;
   String userID;
   String userDisplayName;
+  DatastoreService datastore = createDatastore();
+  UserService userService = createUserService();
 
   public Name(String intentName, Map<String, Value> parameters) {
+    if (intentName == null) { // Required for my mock tests to run
+      return;
+    }
     this.intentName = intentName;
-    userID = UserUtils.getUserID();
-    if (userID == null) {
+    if (!userService.isUserLoggedIn()) {
       outputText = "Please login to modify your name.";
     } else {
-      try {
-        setParameters(parameters);
-      } catch (Exception e) {
-        return;
-      }
+      setParameters(parameters);
     }
   }
 
   @Override
   public void setParameters(Map<String, Value> parameters) {
-    System.out.println("Name parameters");
-    System.out.println(parameters);
     String nameType = parameters.get("type").getStringValue();
     String name = null;
     nameType = nameType.equals("") ? "first name" : nameType;
@@ -37,9 +44,9 @@ public class Name implements Agent {
     if (name.equals("")) {
       outputText = "I'm sorry, I didn't catch the name. Can you repeat that?";
     } else {
-      UserUtils.saveName(nameType, name);
-      outputText = "Changing your " + nameType + " to be " + name;
-      userDisplayName = UserUtils.getDisplayName();
+      UserUtils.saveName(userService, datastore, nameType, name);
+      outputText = "Changing your " + nameType + " to be " + name + ".";
+      userDisplayName = UserUtils.getDisplayName(userService, datastore);
     }
   }
 
@@ -53,7 +60,7 @@ public class Name implements Agent {
     } else if (nameType.equals("nickname")) {
       return parameters.get("nick-name").getStringValue();
     }
-    return null;
+    return "";
   }
 
   @Override
@@ -69,5 +76,13 @@ public class Name implements Agent {
   @Override
   public String getRedirect() {
     return null;
+  }
+
+  protected UserService createUserService() {
+    return UserServiceFactory.getUserService();
+  }
+
+  protected DatastoreService createDatastore() {
+    return DatastoreServiceFactory.getDatastoreService();
   }
 }

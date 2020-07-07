@@ -1,5 +1,7 @@
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthServlet extends HttpServlet {
 
   UserService userService = createUserService();
+  DatastoreService datastore = createDatastore();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,7 +32,7 @@ public class AuthServlet extends HttpServlet {
       String logoutUrl = userService.createLogoutURL("/index.html");
       String id = userService.getCurrentUser().getUserId();
       authText = logoutUrl;
-      displayName = UserUtils.getDisplayName();
+      displayName = UserUtils.getDisplayName(userService, datastore);
       logButton = "Logout";
     } else {
       authText = loginUrl;
@@ -45,6 +48,10 @@ public class AuthServlet extends HttpServlet {
 
   protected UserService createUserService() {
     return UserServiceFactory.getUserService();
+  }
+
+  protected DatastoreService createDatastore() {
+    return DatastoreServiceFactory.getDatastoreService();
   }
 
   class AuthOutput {
