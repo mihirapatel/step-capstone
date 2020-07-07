@@ -3,6 +3,8 @@ package com.google.sps.servlets;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
@@ -16,6 +18,7 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import com.google.sps.utils.UserUtils;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
@@ -37,17 +40,20 @@ public class TestHelper {
   HttpServletRequest request;
   HttpServletResponse response;
   TextInputServlet servlet;
+  DatastoreService customDatastore;
 
   private static Logger log = LoggerFactory.getLogger(TestHelper.class);
   private final LocalServiceTestHelper helper =
       new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
-  /** Private constructor for TestHelper that sets up testing environment and empty mocks. */
-  private TestHelper() {
+  /** Default constructor for TestHelper that sets up testing environment and empty mocks. */
+  public TestHelper() {
     helper.setUp();
+    customDatastore = DatastoreServiceFactory.getDatastoreService();
     userServiceMock = mock(UserService.class);
     request = mock(HttpServletRequest.class);
     response = mock(HttpServletResponse.class);
+    servlet = new TestableTextInputServlet();
     setLoggedIn();
   }
 
@@ -81,8 +87,8 @@ public class TestHelper {
   }
 
   /**
-   * TestHelper constructor that mocks Dialogflow with in case of insufficient intent detection. Use
-   * to test proper agent fulfillment given incomplete required parameters.
+   * TestHelper constructor that mocks Dialogflow in case of insufficient intent detection. Use to
+   * test proper agent fulfillment given incomplete required parameters.
    *
    * @param inputText Text input of user's intent sent to Dialogflow.
    * @param parameters String json that consists of expected parameters identified by Dialogflow.
@@ -175,6 +181,17 @@ public class TestHelper {
     when(userServiceMock.getCurrentUser()).thenReturn(new User(email, "authDomain", id));
   }
 
+  /**
+   * Populates customizes datastore with desired string comments.
+   *
+   * @param comments List of strings containing comments to be stored in custom database.
+   */
+  public void setCustomDatabase(List<String> comments) {
+    for (String comment : comments) {
+      UserUtils.makeCommentEntity("1", customDatastore, comment, true);
+    }
+  }
+
   private class TestableTextInputServlet extends TextInputServlet {
     @Override
     public DialogFlowClient createDialogFlow(
@@ -185,6 +202,11 @@ public class TestHelper {
     @Override
     public UserService createUserService() {
       return userServiceMock;
+    }
+
+    @Override
+    public DatastoreService createDatastore() {
+      return customDatastore;
     }
   }
 

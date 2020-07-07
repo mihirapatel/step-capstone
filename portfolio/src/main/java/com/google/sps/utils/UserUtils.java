@@ -85,7 +85,15 @@ public class UserUtils {
     }
   }
 
-  private static void makeCommentEntity(
+  /**
+   * Creates a comment entity and stores it in the given user's database
+   *
+   * @param userID The ID corresponding to user who made the comment
+   * @param datastore Database instance.
+   * @param comment String comment to be stored.
+   * @param isUser Boolean indicating whether the comment was said by user or assistant.
+   */
+  public static void makeCommentEntity(
       String userID, DatastoreService datastore, String comment, boolean isUser) {
     Entity entity = new Entity("CommentHistory", String.valueOf(System.currentTimeMillis()));
     entity.setProperty("id", userID);
