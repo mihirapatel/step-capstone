@@ -61,6 +61,7 @@ public class Memory implements Agent {
 
   @Override
   public String getDisplay() {
+    System.out.println(display);
     return display;
   }
 
