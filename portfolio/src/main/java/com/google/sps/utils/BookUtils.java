@@ -46,7 +46,7 @@ public class BookUtils {
     if (query.getType() != null) {
       if (query.getType().equals("ebooks") || query.getType().equals("free-ebooks")) {
         list.setFilter(query.getType());
-      } else if (query.getType.equals("magazines") || query.getType.equals("books")) {
+      } else if (query.getType().equals("magazines") || query.getType().equals("books")) {
         list.setPrintType(query.getType());
       }
     }
