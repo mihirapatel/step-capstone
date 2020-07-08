@@ -24,7 +24,7 @@ public class AgentUtils {
     byte[] byteStringToByteArray = null;
     Agent object = null;
 
-    String detectedIntent = queryResult.getIntent().getDisplayName();
+    String detectedIntent = queryResult.getIntentName();
     Boolean allParamsPresent = queryResult.getAllRequiredParamsPresent();
     String agentName = getAgentName(detectedIntent);
     String intentName = getIntentName(detectedIntent);

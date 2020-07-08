@@ -1,27 +1,35 @@
 package com.google.sps.utils;
 
 import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserUtils {
 
-  static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  static UserService userService = UserServiceFactory.getUserService();
+  private static Logger log = LoggerFactory.getLogger(UserUtils.class);
 
-  public static String getDisplayName() {
+  /**
+   * Returns a string containing the name we should use to address the user. The name returned is
+   * determined by info the user has provided in order of: 1. nickname 2. first name (if no
+   * nickname) 3. email (if no name is provided) This method assumes that the user is logged in.
+   *
+   * @return a string containing the name the conversational AI will use to address the user
+   */
+  public static String getDisplayName(UserService userService, DatastoreService datastore) {
     try {
-      Entity entity = datastore.get(KeyFactory.createKey("UserInfo", getUserID()));
-      return getProperName(entity);
-    } catch (Exception e) {
+      Entity entity =
+          datastore.get(KeyFactory.createKey("UserInfo", userService.getCurrentUser().getUserId()));
+      return getProperName(userService, entity);
+    } catch (EntityNotFoundException e) {
       return userService.getCurrentUser().getEmail();
     }
   }
 
-  private static String getProperName(Entity entity) {
+  private static String getProperName(UserService userService, Entity entity) {
     String name = (String) entity.getProperty("nickname");
     if (name == null) {
       name = (String) entity.getProperty("first name");
@@ -32,16 +40,17 @@ public class UserUtils {
     return name;
   }
 
-  public static String getUserID() {
-    if (userService.isUserLoggedIn()) {
-      return userService.getCurrentUser().getUserId();
-    } else {
-      return null;
-    }
-  }
-
-  public static void saveName(String nameType, String name) {
-    String userID = getUserID();
+  /**
+   * Saves name information into user database. This method assumes that the user is logged in or
+   * else it will throw an IllegalStateException error.
+   *
+   * @param nameType String that specifies which part of user's name the given name refers to:
+   *     "first name", "middle name", or "last name"
+   * @param name String containing the name to be saved
+   */
+  public static void saveName(
+      UserService userService, DatastoreService datastore, String nameType, String name) {
+    String userID = userService.getCurrentUser().getUserId();
     Entity entity;
     try {
       entity = datastore.get(KeyFactory.createKey("UserInfo", userID));

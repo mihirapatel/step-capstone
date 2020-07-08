@@ -55,6 +55,25 @@ public class TestHelper {
     when(dialogFlowMock.getIntentName()).thenReturn(intentName);
     when(dialogFlowMock.getIntentConfidence()).thenReturn((float) 1.0);
     when(dialogFlowMock.getFulfillmentText()).thenReturn("");
+    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(true);
+  }
+
+  // Constructor for specific Agent unit tests
+  // Use for cases when specifying all required parameters present
+  public TestHelper(
+      String inputText, String parameters, String intentName, Boolean allParamsPresent)
+      throws InvalidProtocolBufferException {
+    this(inputText, parameters, intentName);
+    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(allParamsPresent);
+  }
+
+  // Constructor for specific Agent unit tests
+  // Use for cases when specifying all required parameters present
+  public TestHelper(
+      String inputText, String parameters, String intentName, Boolean allParamsPresent)
+      throws InvalidProtocolBufferException {
+    this(inputText, parameters, intentName);
+    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(allParamsPresent);
   }
 
   // Retrieves output in the same form as that which is passed to javascript
@@ -79,7 +98,7 @@ public class TestHelper {
     }
   }
 
-  private Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
+  public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
     JSONObject jsonObject = new JSONObject(json);
     Builder structBuilder = Struct.newBuilder();
     JsonFormat.parser().merge(jsonObject.toString(), structBuilder);
