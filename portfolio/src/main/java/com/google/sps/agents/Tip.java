@@ -33,8 +33,7 @@ public class Tip implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters) {
-    log.info(String.valueOf(parameters));
-    tipPercentageString = String.valueOf(parameters.get("tip-percentage").getStringValue());
+    tipPercentageString = parameters.get("tip-percentage").getStringValue();
     amountWithoutTip = parameters.get("amount-without-tip").getNumberValue();
     currency = parameters.get("currency").getStringValue();
     peopleNumber = parameters.get("people-number").getNumberValue();
@@ -48,13 +47,10 @@ public class Tip implements Agent {
       tipPercentageString = tipPercentageString.substring(0, tipPercentageString.length() - 1);
       tipPercentageDouble = Double.valueOf(tipPercentageString);
       tipPercentageDouble = tipPercentageDouble / 100;
-      log.info(tipPercentageString);
-      log.info(String.valueOf(tipPercentageDouble));
 
       tipAmount = tipPercentageDouble * amountWithoutTip;
       DecimalFormat formatTipAmount = new DecimalFormat("#.##");
       tipAmount = Double.valueOf(formatTipAmount.format(tipAmount));
-      log.info(String.valueOf(tipAmount));
 
       // Tip without number of people
       if (String.valueOf(peopleNumber).equals("0.0")) {
@@ -97,7 +93,6 @@ public class Tip implements Agent {
 
   @Override
   public String getOutput() {
-    log.info(fulfillment);
     return fulfillment;
   }
 

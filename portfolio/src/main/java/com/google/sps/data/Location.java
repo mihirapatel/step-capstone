@@ -41,6 +41,7 @@ import java.util.TimeZone;
  * <p>A Location object is only created by create() function, ensuring that an Location object is
  * only created with valid parameters and all Location objects are valid.
  */
+
 public class Location {
 
   private String address;
