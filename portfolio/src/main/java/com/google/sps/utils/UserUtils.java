@@ -5,7 +5,6 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -95,10 +94,11 @@ public class UserUtils {
    */
   public static void makeCommentEntity(
       String userID, DatastoreService datastore, String comment, boolean isUser) {
-    Entity entity = new Entity("CommentHistory", String.valueOf(System.currentTimeMillis()));
+    Entity entity = new Entity("CommentHistory");
     entity.setProperty("id", userID);
     entity.setProperty("isUser", isUser);
     entity.setProperty("comment", comment);
+    entity.setProperty("timestamp", String.valueOf(System.currentTimeMillis()));
     datastore.put(entity);
   }
 
@@ -119,15 +119,13 @@ public class UserUtils {
         new Query("CommentHistory")
             .setFilter(currentUserFilter)
             .addSort("timestamp", SortDirection.ASCENDING);
-    PreparedQuery filteredQueries = datastore.prepare(query);
 
     List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
-    List<Entity> results =
-        datastore.prepare(query.setKeysOnly()).asList(FetchOptions.Builder.withDefaults());
+    List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
     for (int i = 0; i < results.size(); i++) {
       Entity entity = results.get(i);
       String comment = (String) entity.getProperty("comment");
-      if (comment.contains(keyword)) {
+      if (comment.toLowerCase().contains(keyword)) {
         keywordEntities.add(new Pair(entity, getSurroundingConversation(results, i)));
       }
     }

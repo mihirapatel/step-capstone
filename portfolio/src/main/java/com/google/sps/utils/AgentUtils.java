@@ -67,6 +67,7 @@ public class AgentUtils {
           | NullPointerException
           | TranslateException e) {
         log.info("Error in object creation.");
+        e.printStackTrace();
       }
     }
     if (fulfillment.equals("")) {

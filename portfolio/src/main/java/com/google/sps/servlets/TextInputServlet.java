@@ -74,11 +74,14 @@ public class TextInputServlet extends HttpServlet {
       dialogFlowResult = createDialogFlow(text, languageCode, sessionsClient);
 
       log.info("====================");
-      log.info("Query Text: '%s'\n", dialogFlowResult.getQueryText());
+      log.info("Query Text: '" + dialogFlowResult.getQueryText() + "'\n");
       log.info(
-          "Detected Intent: %s (confidence: %f)\n",
-          dialogFlowResult.getIntentName(), dialogFlowResult.getIntentConfidence());
-      log.info("Fulfillment Text: '%s'\n", dialogFlowResult.getFulfillmentText());
+          "Detected Intent: "
+              + dialogFlowResult.getIntentName()
+              + " (confidence: "
+              + dialogFlowResult.getIntentConfidence()
+              + ")\n");
+      log.info("Fulfillment Text: '" + dialogFlowResult.getFulfillmentText() + "'\n");
 
     } catch (IOException e) {
       e.printStackTrace();

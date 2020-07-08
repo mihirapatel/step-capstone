@@ -29,11 +29,9 @@ public class Name implements Agent {
     this.intentName = intentName;
     this.datastore = datastore;
     this.userService = userService;
-    log.info("logged in? " + userService.isUserLoggedIn());
     if (!userService.isUserLoggedIn()) {
       outputText = "Please login to modify your name.";
     } else {
-      log.info("logged in");
       userID = userService.getCurrentUser().getUserId();
       setParameters(parameters);
     }
@@ -41,12 +39,10 @@ public class Name implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters) {
-    log.info("parameters: " + parameters);
     String nameType = parameters.get("type").getStringValue();
     String name = null;
     nameType = nameType.equals("") ? "first name" : nameType;
     name = getSpecificName(parameters, nameType);
-    log.info("name: " + name);
     if (name.equals("")) {
       outputText = "I'm sorry, I didn't catch the name. Can you repeat that?";
     } else {
