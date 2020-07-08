@@ -8,28 +8,73 @@ import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volumes;
 import com.google.gson.*;
 import com.google.sps.data.Book;
+import com.google.sps.data.BookQuery;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class BookUtils {
+  /**
+   * This function returns an ArrayList of Book objects containing information from the Google Books
+   * API based on the user's request, and throws an exception otherwise
+   *
+   * @param query BookQuery object containing parameters for user requested query
+   * @param startIndex the index of the first result to return from Google Books API
+   * @return ArrayList<Book> containing results
+   */
+  public static ArrayList<Book> getRequestedBooks(BookQuery query, int startIndex)
+      throws IOException {
+    Volumes volumes = getVolumes(query, startIndex);
+    ArrayList<Book> results = volumesToBookList(volumes);
+    return results;
+  }
 
-  String filter = "";
-  String langRestrict = "";
-  String orderBy = "";
-  String printType = "";
-  String q = "";
+  /**
+   * This function returns a Volumes object containing the volumes from the Google Books API that
+   * match the parameters in the BookQuery object, and throws an exception otherwise
+   *
+   * @param query BookQuery object containing parameters for user requested query
+   * @param startIndex the index of the first result to return from Google Books API
+   * @return Volumes object of results
+   */
+  private static Volumes getVolumes(BookQuery query, int startIndex) throws IOException {
+    String queryString = query.getQueryString();
+    Books books = getBooksContext();
+    List list = books.volumes().list(queryString);
 
-  public static void getCurl() throws Exception {
-    // The fluent API relieves the user from having to deal with manual
-    // deallocation of system resources at the cost of having to buffer
-    // response content in memory in some cases.
+    if (query.getType() != null) {
+      if (query.getType().equals("ebooks") || query.getType().equals("free-ebooks")) {
+        list.setFilter(query.getType());
+      } else if (query.getType.equals("magazines") || query.getType.equals("books")) {
+        list.setPrintType(query.getType());
+      }
+    }
+
+    if (query.getOrder() != null && query.getOrder().equals("newest")) {
+      list.setOrderBy(query.getOrder());
+    }
+
+    if (query.getLanguage() != null) {
+      list.setLangRestrict(query.getLanguage());
+    }
+    list.setMaxResults(Long.valueOf(10));
+    list.setStartIndex(Long.valueOf(startIndex));
+
+    return list.execute();
+  }
+
+  /**
+   * This function builds and returns a Books object that can access a list of volumes the Google
+   * Books API and throws an exception otherwise
+   *
+   * @return Books object
+   */
+  private static Books getBooksContext() throws IOException {
     String apiKey =
         new String(
             Files.readAllBytes(
                 Paths.get(BookUtils.class.getResource("/files/apikey.txt").getFile())));
-
     GsonFactory gsonFactory = new GsonFactory();
     UrlFetchTransport transport = new UrlFetchTransport();
 
@@ -38,110 +83,17 @@ public class BookUtils {
             .setApplicationName("Test Application name")
             .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
             .build();
-
-    String bookQuery = String.join("+", "the fault in our stars".split(" "));
-
-    try {
-      List list = books.volumes().list(bookQuery);
-      list.setMaxResults(Long.valueOf(10));
-      list.setStartIndex(Long.valueOf(0));
-      // list.setFields("totalItems,items(volumeInfo(title,authors,publishedDate,description,averageRating,infoLink,imageLinks/thumbnail),id)");
-
-      Volumes volumes = list.execute();
-      ArrayList<Book> results = volumesToBookList(volumes);
-
-      System.out.println(results);
-    } catch (IOException e) {
-      System.out.println("Failed to retrieve volumes from Books API.");
-    }
-    /*
-    String bookQuery = String.join("+", "the fault in our stars".split(" "));
-
-    String filter = "";
-    String langRestrict = "";
-    String orderBy = "";
-    String printType = "";
-    String q = "";
-
-    int maxResults = 10;
-    int startIndex = 0;
-    System.out.println(bookQuery);
-    String bookCurl = "https://www.googleapis.com/books/v1/volumes?q="
-            + bookQuery
-            + "&key="
-            + apiKey;
-    HashMap<String, Object> responseMap =
-        new Gson()
-            .fromJson(
-                Request.Get(bookCurl).execute().returnContent().toString(), HashMap.class);
-    //System.out.println(responseMap);
-    System.out.println(responseMap.keySet());
-    System.out.println(responseMap.get("items").getClass());
-    //String itemsList = responseMap.get("items").toString();
-    //System.out.println(itemsList);
-
-    int numResults = (int)responseMap.get("totalItems");
-
-    //ArrayList<String> itemsList = new Gson().fromJson(responseMap.get("items").toString(), ArrayList.class);
-    System.out.println(itemsList);*/
-    /*
-    for (int i = 0; i < itemsList.size(); ++i){
-        HashMap<String, Object> itemMap = new Gson().fromJson(itemsList.get(i).toString(), HashMap.class);
-        HashMap<String, Object> volumeInfo = new Gson().fromJson(itemMap.get("volumeInfo").toString(), HashMap.class);
-        String title = volumeInfo.get("title").toString();
-
-        ArrayList<String> authors = new Gson().fromJson(volumeInfo.get("authors").toString(), ArrayList.class);;
-        String publishedDate = volumeInfo.get("publishedDate").toString();
-        String description = volumeInfo.get("description").toString();
-        String averageRating = volumeInfo.get("averageRating").toString();
-        String infoLink = volumeInfo.get("infoLink").toString();
-
-        String isbn13 = "";
-        String isbn10 = "";
-        //TODO: check if null first
-        if (volumeInfo.get("industryIdentifiers") != null){
-            ArrayList<String> industryIdentifiers = new Gson().fromJson(volumeInfo.get("industryIdentifiers").toString(), ArrayList.class);
-            for (int j = 0; j < industryIdentifiers.size(); ++j){
-                HashMap<String, String> identifierMap = new Gson().fromJson(industryIdentifiers.get(j).toString(), HashMap.class);
-                if (identifierMap.get("type").toString().equals("ISBN_13")){
-                    isbn13 = identifierMap.get("identifier").toString();
-                }
-                else if (identifierMap.get("type").toString().equals("ISBN_10")){
-                    isbn10 = identifierMap.get("identifier").toString();
-                }
-            }
-        }
-
-        String thumbnailLink = "";
-        if (volumeInfo.get("imageLinks") != null){
-            HashMap<String, String> imageLinks = new Gson().fromJson(volumeInfo.get("imageLinks").toString(), HashMap.class);
-            if (imageLinks.containsKey("thumbnail")){
-                thumbnailLink = imageLinks.get("thumbnail").toString();
-            }
-        }
-
-        HashMap<String, String> saleInfo = new Gson().fromJson(itemMap.get("saleInfo").toString(), HashMap.class);
-        String buyLink = saleInfo.get("buyLink").toString();
-
-        HashMap<String, String> accessInfo = new Gson().fromJson(itemMap.get("accessInfo").toString(), HashMap.class);
-        String embeddable = accessInfo.get("embeddable").toString();
-
-        HashMap<String, String> searchInfo = new Gson().fromJson(itemMap.get("searchInfo").toString(), HashMap.class);
-        String textSnippet = searchInfo.get("textSnippet").toString();
-
-        System.out.println(title);
-        System.out.println(authors);
-        System.out.println(description);
-        System.out.println(averageRating);
-        System.out.println(infoLink);
-        System.out.println(thumbnailLink);
-        System.out.println(buyLink);
-        System.out.println(embeddable);
-        System.out.println(textSnippet);
-        System.out.println(" ");
-    }*/
+    return books;
   }
 
+  /**
+   * This function returns an ArrayList of Book objects from a Volumes object
+   *
+   * <p>If no valid Book objects can be constructed, it returns an empty ArrayList
+   *
+   * @param volumes Volumes object from Google Books API
+   * @return ArrayList<Book>
+   */
   private static ArrayList<Book> volumesToBookList(Volumes volumes) {
     if (volumes != null && volumes.getItems() != null) {
       ArrayList<Volume> vols = new ArrayList<Volume>(volumes.getItems());
@@ -149,18 +101,8 @@ public class BookUtils {
       for (Volume vol : vols) {
         try {
           Book book = Book.create(vol);
-          System.out.println(book.getTitle());
-          System.out.println(book.getAuthors());
-          System.out.println(book.getPublishedDate());
-          System.out.println(book.getDescription());
-          System.out.println(book.getRating());
-          System.out.println(book.getInfoLink());
-          System.out.println(book.getThumbnailLink());
-          System.out.println(book.getBuyLink());
-          System.out.println(book.getEmbeddable());
-          System.out.println(book.getISBN());
           books.add(book);
-        } catch (IllegalArgumentException e) {
+        } catch (IOException e) {
           continue;
         }
       }
