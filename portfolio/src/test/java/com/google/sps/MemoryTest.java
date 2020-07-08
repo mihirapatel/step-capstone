@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.google.sps.data.Output;
 import com.google.sps.servlets.TestHelper;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -12,9 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
-public class NameTest {
+public class MemoryTest {
 
-  private static Logger log = LoggerFactory.getLogger(Name.class);
+  private static Logger log = LoggerFactory.getLogger(MemoryTest.class);
+  private TestHelper tester;
+
+  @Before
+  public void setUp() {
+    // Pre-populate database with some comments.
+    tester = new TestHelper("Hello.");
+  }
 
   @Test
   public void testNotLoggedIn() throws Exception {
@@ -24,7 +32,7 @@ public class NameTest {
             + "\"last-name\": \"\","
             + "\"given-name\": \"Tom\","
             + "\"type\": \"\"}";
-    TestHelper tester = new TestHelper("Change my name to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my name to Tom.", jsonParams, "name.change");
     tester.setLoggedOut();
 
     Output output = tester.getOutput();
@@ -41,7 +49,7 @@ public class NameTest {
             + "\"last-name\": \"\","
             + "\"given-name\": \"Tom\","
             + "\"type\": \"\"}";
-    TestHelper tester = new TestHelper("Change my name to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my name to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
@@ -57,7 +65,7 @@ public class NameTest {
             + "\"last-name\": \"\","
             + "\"given-name\": \"Tom\","
             + "\"type\": \"first name\"}";
-    TestHelper tester = new TestHelper("Change my first name to Tom.", jsonParams, "name.change");
+    tester = new TestHelper("Change my first name to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
@@ -73,7 +81,7 @@ public class NameTest {
             + "\"last-name\": \"\","
             + "\"given-name\": \"\","
             + "\"type\": \"nickname\"}";
-    TestHelper tester = new TestHelper("Change my nickname to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
@@ -89,7 +97,7 @@ public class NameTest {
             + "\"last-name\": \"\","
             + "\"given-name\": \"Tom\","
             + "\"type\": \"nickname\"}";
-    TestHelper tester = new TestHelper("Change my nickname to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
@@ -105,7 +113,7 @@ public class NameTest {
             + "\"last-name\": \"Tom\","
             + "\"given-name\": \"\","
             + "\"type\": \"last name\"}";
-    TestHelper tester = new TestHelper("Change my last name to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my last name to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
@@ -121,7 +129,7 @@ public class NameTest {
             + "\"last-name\": \"\","
             + "\"given-name\": \"\","
             + "\"type\": \"nickname\"}";
-    TestHelper tester = new TestHelper("Change my nickname to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
@@ -141,7 +149,7 @@ public class NameTest {
             + "\"given-name\": \"Tom\","
             + "\"type\": \"\"}";
 
-    TestHelper tester = new TestHelper("Change my name to Tom.", jsonParams, "name.change");
+    tester.setParameters("Change my name to Tom.", jsonParams, "name.change");
 
     Output output = tester.getOutput();
 
