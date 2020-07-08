@@ -50,7 +50,6 @@ public class TranslateAgent implements Agent {
 
   @Override
   public String getOutput() {
-    log.info(fulfillment);
     return fulfillment;
   }
 
