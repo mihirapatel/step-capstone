@@ -68,11 +68,6 @@ public class AgentUtils {
     return output;
   }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
   private static Agent createAgent(
       String agentName, String intentName, Map<String, Value> parameterMap)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
