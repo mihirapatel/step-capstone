@@ -42,8 +42,8 @@ public class MapsSearchTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Here is the map for: India");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":78.96288,\"lat\":20.593684}");
+    assertEquals("Here is the map for: India", output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":78.96288,\"lat\":20.593684}", output.getDisplay());
   }
 
   @Test
@@ -70,8 +70,8 @@ public class MapsSearchTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Here is the map for: London SW1A 1AA, UK");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":-0.1445783,\"lat\":51.502436}");
+    assertEquals("Here is the map for: London SW1A 1AA, UK", output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":-0.1445783,\"lat\":51.502436}", output.getDisplay());
   }
 
   @Test
@@ -99,10 +99,10 @@ public class MapsSearchTest {
 
     // Assertions
     assertEquals(
-        output.getFulfillmentText(),
-        "Here is the map for: Ko Tao, Ko Pha-ngan District, Surat Thani, Thailand");
+        "Here is the map for: Ko Tao, Ko Pha-ngan District, Surat Thani, Thailand", 
+        output.getFulfillmentText());
     assertEquals(
-        output.getDisplay(), "{\"limit\":-1,\"lng\":99.84039589999999,\"lat\":10.0956102}");
+        "{\"limit\":-1,\"lng\":99.84039589999999,\"lat\":10.0956102}", output.getDisplay());
   }
 
   @Test
@@ -129,9 +129,9 @@ public class MapsSearchTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Here is the map for: Mt. Whitney, California, USA");
+    assertEquals("Here is the map for: Mt. Whitney, California, USA", output.getFulfillmentText());
     assertEquals(
-        output.getDisplay(), "{\"limit\":-1,\"lng\":-118.29226,\"lat\":36.57849909999999}");
+        "{\"limit\":-1,\"lng\":-118.29226,\"lat\":36.57849909999999}", output.getDisplay());
   }
 
   @Test
@@ -158,8 +158,8 @@ public class MapsSearchTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Here is the map for: Brooklyn, NY, USA");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":-73.9441579,\"lat\":40.6781784}");
+    assertEquals("Here is the map for: Brooklyn, NY, USA", output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":-73.9441579,\"lat\":40.6781784}", output.getDisplay());
   }
 
   @Test
@@ -186,8 +186,8 @@ public class MapsSearchTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Here is the map for: California, USA");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":-119.4179324,\"lat\":36.778261}");
+    assertEquals("Here is the map for: California, USA", output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":-119.4179324,\"lat\":36.778261}", output.getDisplay());
   }
 
   @Test
@@ -215,9 +215,9 @@ public class MapsSearchTest {
 
     // Assertions
     assertEquals(
-        output.getFulfillmentText(),
-        "Here is the map for: Google Bldg 2930, 2930 Pearl St, Boulder, CO 80301, USA");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":-105.2545612,\"lat\":40.0216013}");
+        "Here is the map for: Google Bldg 2930, 2930 Pearl St, Boulder, CO 80301, USA", 
+        output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":-105.2545612,\"lat\":40.0216013}", output.getDisplay());
   }
 
   @Test
@@ -245,8 +245,8 @@ public class MapsSearchTest {
 
     // Assertions
     assertEquals(
-        output.getFulfillmentText(), "Here is the map for: 500 W 2nd St, Austin, TX 78701, USA");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":-97.7495642,\"lat\":30.2660754}");
+        "Here is the map for: 500 W 2nd St, Austin, TX 78701, USA", output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":-97.7495642,\"lat\":30.2660754}", output.getDisplay());
   }
 
   @Test
@@ -274,8 +274,8 @@ public class MapsSearchTest {
 
     // Assertions
     assertEquals(
-        output.getFulfillmentText(), "Here is the map for: Cairo, Cairo Governorate, Egypt");
-    assertEquals(output.getDisplay(), "{\"limit\":-1,\"lng\":31.2357116,\"lat\":30.0444196}");
+        "Here is the map for: Cairo, Cairo Governorate, Egypt", output.getFulfillmentText());
+    assertEquals("{\"limit\":-1,\"lng\":31.2357116,\"lat\":30.0444196}", output.getDisplay());
   }
 
   public void testMapsWithoutLocation() throws Exception {
