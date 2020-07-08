@@ -50,7 +50,7 @@ public class CurrencyTest {
     Output output = tester.getOutput();
 
     assertEquals("Redirecting for exchange rate", output.getFulfillmentText());
-    "http://www.google.com/search?q=Exchange+rate+EUR+to+USD", assertEquals(output.getRedirect());
+    assertEquals("http://www.google.com/search?q=Exchange+rate+EUR+to+USD", output.getRedirect());
   }
 
   @Test
