@@ -17,12 +17,6 @@ public class AgentUtils {
   public static String detectedInput;
 
   public static Output getOutput(DialogFlowClient queryResult, String languageCode) {
-    try {
-      BookUtils.getCurl();
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("Exception caught in CURL");
-    }
     String fulfillment = null;
     String display = null;
     String redirect = null;
@@ -47,7 +41,7 @@ public class AgentUtils {
     // Set fulfillment if parameters are present, upon any exceptions return default
     if (allParamsPresent) {
       try {
-        object = createAgent(agentName, intentName, parameterMap);
+        object = createAgent(agentName, intentName, detectedInput, parameterMap);
         fulfillment = object.getOutput();
         fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
         display = object.getDisplay();
@@ -59,6 +53,7 @@ public class AgentUtils {
           | ArrayIndexOutOfBoundsException
           | NullPointerException
           | TranslateException e) {
+        e.printStackTrace();
         System.out.println("Error in object creation.");
       }
     }
@@ -74,10 +69,12 @@ public class AgentUtils {
   }
 
   private static Agent createAgent(
-      String agentName, String intentName, Map<String, Value> parameterMap)
+      String agentName, String intentName, String queryText, Map<String, Value> parameterMap)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     switch (agentName) {
+      case "books":
+        return new Books(intentName, queryText, parameterMap);
       case "calculator":
         return new Tip(intentName, parameterMap);
       case "currency":
