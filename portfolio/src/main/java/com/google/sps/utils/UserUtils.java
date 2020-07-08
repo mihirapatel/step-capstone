@@ -40,6 +40,7 @@ public class UserUtils {
   }
 
   private static String getProperName(UserService userService, Entity entity) {
+    System.out.println("Nickname entity: " + entity);
     String name = (String) entity.getProperty("nickname");
     if (name == null) {
       name = (String) entity.getProperty("first name");
@@ -99,6 +100,10 @@ public class UserUtils {
     entity.setProperty("id", userID);
     entity.setProperty("isUser", isUser);
     entity.setProperty("comment", comment);
+<<<<<<< HEAD
+=======
+    entity.setProperty("timestamp", String.valueOf(System.currentTimeMillis()));
+>>>>>>> Working memory backend.
     datastore.put(entity);
   }
 
@@ -119,15 +124,13 @@ public class UserUtils {
         new Query("CommentHistory")
             .setFilter(currentUserFilter)
             .addSort("timestamp", SortDirection.ASCENDING);
-    PreparedQuery filteredQueries = datastore.prepare(query);
 
     List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
-    List<Entity> results =
-        datastore.prepare(query.setKeysOnly()).asList(FetchOptions.Builder.withDefaults());
+    List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
     for (int i = 0; i < results.size(); i++) {
       Entity entity = results.get(i);
       String comment = (String) entity.getProperty("comment");
-      if (comment.contains(keyword)) {
+      if (comment.toLowerCase().contains(keyword)) {
         keywordEntities.add(new Pair(entity, getSurroundingConversation(results, i)));
       }
     }

@@ -26,6 +26,8 @@ public class Memory implements Agent {
       UserService userService,
       DatastoreService datastore) {
     this.intentName = intentName;
+    this.userService = userService;
+    this.datastore = datastore;
     setParameters(parameters);
   }
 
@@ -44,7 +46,7 @@ public class Memory implements Agent {
   private void findKeyword(Map<String, Value> parameters) {
     String word = parameters.get("keyword").getStringValue();
     List<Pair<Entity, List<Entity>>> conversationList =
-        UserUtils.getKeywordCommentEntities(datastore, userID, word);
+        UserUtils.getKeywordCommentEntities(datastore, userID, word.toLowerCase());
     if (conversationList.isEmpty()) {
       fulfillment = "Sorry, unable to find any results including the keyword \"" + word + ".\"";
     } else {

@@ -1,7 +1,6 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
-import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.users.UserService;
 import com.google.cloud.translate.TranslateException;
@@ -68,6 +67,10 @@ public class AgentUtils {
           | NullPointerException
           | TranslateException e) {
         log.info("Error in object creation.");
+<<<<<<< HEAD
+=======
+        e.printStackTrace();
+>>>>>>> Working memory backend.
       }
     }
     if (fulfillment.equals("")) {
