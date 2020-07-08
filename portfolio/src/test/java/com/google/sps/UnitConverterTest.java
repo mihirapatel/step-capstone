@@ -33,8 +33,8 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+45.0+mi+to+cm");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+45.0+mi+to+cm", output.getRedirect());
   }
 
   @Test
@@ -52,8 +52,8 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+yd+to+m");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+yd+to+m", output.getRedirect());
   }
 
   @Test
@@ -71,8 +71,8 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+F+to+K");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+F+to+K", output.getRedirect());
   }
 
   @Test
@@ -90,8 +90,8 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+cup+to+oz");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+cup+to+oz", output.getRedirect());
   }
 
   @Test
@@ -109,8 +109,8 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+10.0+mi");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+10.0+mi", output.getRedirect());
   }
 
   @Test
@@ -128,8 +128,8 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+90.0+F");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+90.0+F", output.getRedirect());
   }
 
   @Test
@@ -147,7 +147,7 @@ public class UnitConverterTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+mi");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+mi", output.getRedirect());
   }
 }
