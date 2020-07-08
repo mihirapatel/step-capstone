@@ -59,27 +59,7 @@ public class TipTest {
   }
 
   @Test
-  public void testTipConversionWithoutTipPercentageMock() throws Exception {
-
-    TestHelper tester =
-        new TestHelper(
-            // User input text
-            "Calculate tip on 23.00 Euros",
-            // Parameter JSON string (copy paste from dialogflow)
-            "{\"tip-percentage\": \"\", \"amount-without-tip\": 23.00, \"currency\": \"EUR\", \"people-number\": 0.0}",
-            // Intent that you expect dialogflow to return based on your query
-            "calculator.tips");
-
-    Output output = tester.getOutput();
-
-    // Assertions
-    String expected = "I'm sorry, I didn't catch that. Can you repeat that?";
-    String actual = output.getFulfillmentText();
-    assertEquals(expected, actual);
-  }
-
-  @Test
-  public void testTipConversionWithoutTipPercentageReal() throws Exception {
+  public void testTipConversionWithoutTipPercentage() throws Exception {
 
     TestHelper tester = new TestHelper("Calculate tip on 65.00 dollars");
     Output output = tester.getOutput();
@@ -91,28 +71,7 @@ public class TipTest {
   }
 
   @Test
-  public void testTipConversionWithoutAllParamsMock() throws Exception {
-
-    TestHelper tester =
-        new TestHelper(
-            // User input text
-            "Calculate tip",
-            // Parameter JSON string (copy paste from dialogflow)
-            "{\"tip-percentage\": \"\", \"amount-without-tip\": 0.0, \"currency\": \"\", \"people-number\": 0.0}",
-            // Intent that you expect dialogflow to return based on your query
-            "calculator.tips",
-            false);
-
-    Output output = tester.getOutput();
-
-    // Assertions
-    String expected = "I'm sorry, I didn't catch that. Can you repeat that?";
-    String actual = output.getFulfillmentText();
-    assertEquals(expected, actual);
-  }
-
-  @Test
-  public void testTipConversionWithoutAllParamsReal() throws Exception {
+  public void testTipConversionWithoutAllParams() throws Exception {
 
     TestHelper tester = new TestHelper("Calculate tip");
     Output output = tester.getOutput();
