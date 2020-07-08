@@ -18,8 +18,9 @@ public class AgentUtils {
 
   public static Output getOutput(DialogFlowClient queryResult, String languageCode) {
     try {
-      CivicUtils.getCurl();
+      BookUtils.getCurl();
     } catch (Exception e) {
+      e.printStackTrace();
       System.out.println("Exception caught in CURL");
     }
     String fulfillment = null;
