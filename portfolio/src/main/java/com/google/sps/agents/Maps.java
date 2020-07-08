@@ -47,11 +47,13 @@ public class Maps implements Agent {
 
   @Override
   public String getOutput() {
+    log.info(fulfillment);
     return fulfillment;
   }
 
   @Override
   public String getDisplay() {
+    log.info(display);
     return display;
   }
 
@@ -65,7 +67,6 @@ public class Maps implements Agent {
           ArrayIndexOutOfBoundsException {
     location = Location.create(locationFormatted);
     fulfillment = "Here is the map for: " + locationFormatted;
-
     Place place = new Place(location.getLng(), location.getLat());
     display = place.toString();
   }

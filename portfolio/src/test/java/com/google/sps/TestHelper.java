@@ -18,8 +18,12 @@ import javax.servlet.http.*;
 import org.json.JSONObject;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestHelper {
+
+  private static Logger log = LoggerFactory.getLogger(TestHelper.class);
 
   @Mock DialogFlowClient dialogFlowMock;
 
@@ -52,6 +56,15 @@ public class TestHelper {
     when(dialogFlowMock.getIntentConfidence()).thenReturn((float) 1.0);
     when(dialogFlowMock.getFulfillmentText()).thenReturn("");
     when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(true);
+  }
+
+  // Constructor for specific Agent unit tests
+  // Use for cases when specifying all required parameters present
+  public TestHelper(
+      String inputText, String parameters, String intentName, Boolean allParamsPresent)
+      throws InvalidProtocolBufferException {
+    this(inputText, parameters, intentName);
+    when(dialogFlowMock.getAllRequiredParamsPresent()).thenReturn(allParamsPresent);
   }
 
   // Constructor for specific Agent unit tests

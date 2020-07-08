@@ -103,6 +103,12 @@
       <artifactId>google-cloud-translate</artifactId>
     </dependency>
 
+     <dependency> 
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.28</version>
+    </dependency>
+
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
@@ -121,7 +127,7 @@
       <version>1.9.64</version>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-stubs</artifactId>
@@ -166,8 +172,7 @@
         <version>2.19.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <!-- <skipTests>true</skipTests> -->
-          <!-- <useFile>false</useFile> -->
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
 
