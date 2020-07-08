@@ -33,9 +33,9 @@ public class CurrencyTest {
     Output output = tester.getOutput();
 
     // Assertions
-    assertEquals(output.getFulfillmentText(), "Redirecting for exchange rate");
+    assertEquals("Redirecting for exchange rate", output.getFulfillmentText());
     assertEquals(
-        output.getRedirect(), "http://www.google.com/search?q=Exchange+rate+for+10.0+CAD+to+USD");
+        "http://www.google.com/search?q=Exchange+rate+for+10.0+CAD+to+USD", output.getRedirect());
   }
 
   @Test
@@ -49,8 +49,8 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for exchange rate");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Exchange+rate+EUR+to+USD");
+    assertEquals("Redirecting for exchange rate", output.getFulfillmentText());
+    "http://www.google.com/search?q=Exchange+rate+EUR+to+USD", assertEquals(output.getRedirect());
   }
 
   @Test
@@ -64,8 +64,8 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for exchange rate");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Exchange+rate+for+10.0+MXN");
+    assertEquals("Redirecting for exchange rate", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Exchange+rate+for+10.0+MXN", output.getRedirect());
   }
 
   @Test
@@ -79,8 +79,8 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for exchange rate");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Exchange+rate+MXN");
+    assertEquals("Redirecting for exchange rate", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Exchange+rate+MXN", output.getRedirect());
   }
 
   @Test
@@ -94,8 +94,8 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for exchange rate");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Exchange+rate");
+    assertEquals("Redirecting for exchange rate", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Exchange+rate", output.getRedirect());
   }
 
   @Test
@@ -109,7 +109,7 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
     assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+25.0+USD+to+EUR");
   }
 
@@ -124,8 +124,8 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+JMD+to+JPY");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+JMD+to+JPY", output.getRedirect());
   }
 
   @Test
@@ -139,8 +139,8 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+1000.0+INR");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+1000.0+INR", output.getRedirect());
   }
 
   @Test
@@ -154,7 +154,7 @@ public class CurrencyTest {
 
     Output output = tester.getOutput();
 
-    assertEquals(output.getFulfillmentText(), "Redirecting for conversion");
-    assertEquals(output.getRedirect(), "http://www.google.com/search?q=Convert+currency");
+    assertEquals("Redirecting for conversion", output.getFulfillmentText());
+    assertEquals("http://www.google.com/search?q=Convert+currency", output.getRedirect());
   }
 }
