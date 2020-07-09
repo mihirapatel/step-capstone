@@ -19,7 +19,7 @@ public class MapsSearchTest {
   private static Logger log = LoggerFactory.getLogger(MapsSearchTest.class);
 
   @Test
-  public void testMapsSearchCountry() throws Exception {
+  public void testMapsSearchCountry() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -47,7 +47,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchZipCode() throws Exception {
+  public void testMapsSearchZipCode() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -75,7 +75,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchIsland() throws Exception {
+  public void testMapsSearchIsland() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -106,7 +106,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchBusinessName() throws Exception {
+  public void testMapsSearchBusinessName() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -135,7 +135,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchCounty() throws Exception {
+  public void testMapsSearchCounty() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -163,7 +163,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchState() throws Exception {
+  public void testMapsSearchState() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -191,7 +191,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchStreetAddress() throws Exception {
+  public void testMapsSearchStreetAddress() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -221,7 +221,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchStreetAddress2() throws Exception {
+  public void testMapsSearchStreetAddress2() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -250,7 +250,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchCity() throws Exception {
+  public void testMapsSearchCity() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -279,7 +279,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsWithoutLocationMock() throws Exception {
+  public void testMapsWithoutLocationMock() throws IOException {
 
     TestHelper tester =
         new TestHelper(
@@ -307,7 +307,7 @@ public class MapsSearchTest {
         output.getFulfillmentText(), "I'm sorry, I didn't catch that. Can you repeat that?");
   }
 
-  public void testMapsWithoutLocationReal() throws Exception {
+  public void testMapsWithoutLocationReal() throws IOException {
 
     TestHelper tester = new TestHelper("Show me a map");
     Output output = tester.getOutput();
