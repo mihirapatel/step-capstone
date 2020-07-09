@@ -67,7 +67,7 @@ public class BookQuery {
 
   /**
    * Private BookQuery constructor, can only be called by createBookQuery() if user input string is
-   * valid
+   * valid.
    *
    * <p>If Dialogflow does not detect certain parameters for a user request, then BookQuery
    * properties will remain null

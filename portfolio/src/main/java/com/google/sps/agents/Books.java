@@ -18,6 +18,8 @@ public class Books implements Agent {
   private String redirect;
   private BookQuery query;
   private int startIndex;
+  private int totalResults;
+  private int resultsReturned;
 
   public Books(String intentName, String userInput, Map<String, Value> parameters)
       throws IOException {
@@ -29,9 +31,51 @@ public class Books implements Agent {
   @Override
   public void setParameters(Map<String, Value> parameters) throws IOException {
     if (intentName.equals("search")) {
-      this.startIndex = 0;
+
+      // Create new BookQuery request, sets startIndex at 0
       BookQuery query = BookQuery.createBookQuery(this.userInput, parameters);
+
+      // Retrieve books
+      this.startIndex = 0;
       ArrayList<Book> results = BookUtils.getRequestedBooks(query, startIndex);
+      this.totalResults = BookUtils.getTotalVolumesFound(query, startIndex);
+      this.resultsReturned = results.size();
+      System.out.println(totalResults);
+      System.out.println(resultsReturned);
+
+      // Make output information
+
+      // Delete stored BookQuery, Book results, totalResults, resultsReturned
+      // Store BookQuery, Book results, totalResults, resultsReturned
+    } else if (intentName.equals("more")) {
+      // Load BookQuery, totalResults, resultsReturned
+
+      // Increment startIndex
+      // Retrieve books
+      // Make output information
+
+      // Delete stored BookQuery, Book results, totalResults, resultsReturned
+      // Store BookQuery, Book results, totalResults, resultsReturned
+    } else if (intentName.equals("about")) {
+      // Load Book results, totalResults, resultsReturned
+
+      // Get information about requested Book
+      // Make output information
+
+      // Don't change any stored information
+    } else if (intentName.equals("preview")) {
+      // Load Book results, totalResults, resultsReturned
+
+      // Get information about requested Book
+      // Make output information
+
+      // Don't change any stored information
+    } else if (intentName.equals("results")) {
+      // Load Book results, totalResults, resultsReturned
+
+      // Set display and fulfillment for original table
+
+      // Don't change any stored information
     }
   }
 
@@ -42,6 +86,7 @@ public class Books implements Agent {
 
   @Override
   public String getDisplay() {
+    this.display = "hello";
     return this.display;
   }
 
