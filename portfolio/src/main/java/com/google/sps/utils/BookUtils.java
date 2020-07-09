@@ -100,7 +100,7 @@ public class BookUtils {
       ArrayList<Book> books = new ArrayList<Book>();
       for (Volume vol : vols) {
         try {
-          Book book = Book.create(vol);
+          Book book = Book.createBook(vol);
           books.add(book);
         } catch (IOException e) {
           continue;

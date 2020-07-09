@@ -30,7 +30,7 @@ public class Books implements Agent {
   public void setParameters(Map<String, Value> parameters) throws IOException {
     if (intentName.equals("search")) {
       this.startIndex = 0;
-      BookQuery query = BookQuery.create(this.userInput, parameters);
+      BookQuery query = BookQuery.createBookQuery(this.userInput, parameters);
       ArrayList<Book> results = BookUtils.getRequestedBooks(query, startIndex);
     }
   }
