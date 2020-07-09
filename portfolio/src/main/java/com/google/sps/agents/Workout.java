@@ -37,17 +37,10 @@ public class Workout implements Agent {
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     log.info(String.valueOf(parameters));
-    Struct durationStruct = parameters.get("duration").getStructValue();
-    Map<String, Value> durationMap = durationStruct.getFieldsMap();
-    int amount = (int) durationMap.get("amount").getNumberValue();
-    String unit = durationMap.get("unit").getStringValue();
-    workoutLength = " " + String.valueOf(amount) + " " + unit;
-    workoutType = parameters.get("workout-type").getStringValue();
-    youtubeChannel = parameters.get("youtube-channel").getStringValue();
-
-    fulfillment = "Here are videos for:" + workoutLength + " " + workoutType + " workout";
-    if (!youtubeChannel.equals("")) {
-      fulfillment += " from " + youtubeChannel;
+    if (intentName.contains("find")) {
+      workoutFind(parameters);
+    } else if (intentName.contains("schedule")) {
+      workoutSchedule(parameters);
     }
   }
 
@@ -64,5 +57,29 @@ public class Workout implements Agent {
   @Override
   public String getRedirect() {
     return redirect;
+  }
+
+  private void workoutFind(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    Struct durationStruct = parameters.get("duration").getStructValue();
+    Map<String, Value> durationMap = durationStruct.getFieldsMap();
+    int amount = (int) durationMap.get("amount").getNumberValue();
+    String unit = durationMap.get("unit").getStringValue();
+
+    workoutLength = " " + String.valueOf(amount) + " " + unit;
+    workoutType = parameters.get("workout-type").getStringValue();
+    youtubeChannel = parameters.get("youtube-channel").getStringValue();
+
+    fulfillment = "Here are videos for:" + workoutLength + " " + workoutType + " workout";
+    if (!youtubeChannel.equals("")) {
+      fulfillment += " from " + youtubeChannel;
+    }
+  }
+
+  private void workoutFind(Map<String, Value> parameters)
+      throws IllegalStateException, IOException, ApiException, InterruptedException,
+          ArrayIndexOutOfBoundsException {
+    return;
   }
 }
