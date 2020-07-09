@@ -52,6 +52,7 @@ public class TestHelper {
     userServiceMock = mock(UserService.class);
     request = mock(HttpServletRequest.class);
     response = mock(HttpServletResponse.class);
+    dialogFlowMock = mock(DialogFlowClient.class);
     servlet = new TestableTextInputServlet();
     setLoggedIn();
   }
@@ -81,7 +82,6 @@ public class TestHelper {
       throws InvalidProtocolBufferException {
     this();
     servlet = new TestableTextInputServlet();
-    dialogFlowMock = mock(DialogFlowClient.class);
     setParameters(inputText, parameters, intentName);
   }
 

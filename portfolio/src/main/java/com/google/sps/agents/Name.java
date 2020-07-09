@@ -21,6 +21,17 @@ public class Name implements Agent {
   DatastoreService datastore;
   UserService userService;
 
+  /**
+   * Name agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   * @param userService UserService instance to access userID and other user info.
+   * @param datastore DatastoreService instance used to access past comments from the user's
+   *     database.
+   */
   public Name(
       String intentName,
       Map<String, Value> parameters,
@@ -29,11 +40,9 @@ public class Name implements Agent {
     this.intentName = intentName;
     this.datastore = datastore;
     this.userService = userService;
-    log.info("logged in? " + userService.isUserLoggedIn());
     if (!userService.isUserLoggedIn()) {
       outputText = "Please login to modify your name.";
     } else {
-      log.info("logged in");
       userID = userService.getCurrentUser().getUserId();
       setParameters(parameters);
     }

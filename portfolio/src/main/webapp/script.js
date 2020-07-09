@@ -248,7 +248,7 @@ function getResponseFromText(){
 }
 
 function displayResponse(stream) {
-  if (stream == "") {
+  if (stream === "") {
     return;
   }
   var outputAsJson = JSON.parse(stream);
