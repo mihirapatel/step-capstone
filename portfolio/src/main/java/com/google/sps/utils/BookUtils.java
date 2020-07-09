@@ -31,6 +31,19 @@ public class BookUtils {
   }
 
   /**
+   * This function returns the number of total volumes from the Google Books API that match the
+   * BookQuery request based on the user's input, and throws an exception otherwise
+   *
+   * @param query BookQuery object containing parameters for user requested query
+   * @param startIndex the index of the first result to return from Google Books API
+   * @return int total volumes found
+   */
+  public static int getTotalVolumesFound(BookQuery query, int startIndex) throws IOException {
+    Volumes volumes = getVolumes(query, startIndex);
+    return volumes.getTotalItems().intValue();
+  }
+
+  /**
    * This function returns a Volumes object containing the volumes from the Google Books API that
    * match the parameters in the BookQuery object, and throws an exception otherwise
    *
