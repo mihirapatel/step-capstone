@@ -666,15 +666,25 @@ function createVideoDivs(videos) {
   videos.id = 'videos';
   workoutDiv.append(videos);
 
-  var video ;
+  
   for (var i = 0; i < videos.length; i++) {
-    ";
+    
+    var video = document.createElement("a");
+    var thumbnail = document.createElement('img');
+    thumbnail.src = 'https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg';
+    a.appendChild(elem);
+    a.title = "my title text";
+    a.href = "https://en.wikipedia.org/wiki/Dog";
+    videos.appendChild(video);
+    
   }
   
   return workoutDiv;
 }
 
-
+// var element = document.createElement("div");
+//     element.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
+//     document.getElementById('lc').appendChild(element);
 
 //     rightPanel = document.createElement('div');
 //     rightPanel.id = 'right-panel';
