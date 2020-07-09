@@ -47,13 +47,11 @@ public class Maps implements Agent {
 
   @Override
   public String getOutput() {
-    log.info(fulfillment);
     return fulfillment;
   }
 
   @Override
   public String getDisplay() {
-    log.info(display);
     return display;
   }
 
