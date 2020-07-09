@@ -653,39 +653,47 @@ function isInfoWindowOpen(infoWindow) {
 function workoutVideos(videoQuery) {
   var videos = JSON.parse(videoQuery);
   console.log(videos);
-  let workoutDiv = createVideoDivs();
+  let workoutDiv = createVideoDivs(videos);
   return workoutDiv;
 }
 
-function createVideoDivs() {
+function createVideoDivs(videos) {
+  var 
   workoutDiv = document.createElement('div');
   workoutDiv.classList.add('media-display');
 
-  video = document.createElement('div');
-  video.id = 'video';
-  workoutDiv.append(video);
+  videos = document.createElement('div');
+  videos.id = 'videos';
+  workoutDiv.append(videos);
+
+  var video ;
+  for (var i = 0; i < videos.length; i++) {
+    ";
+  }
   
   return workoutDiv;
 }
 
-    rightPanel = document.createElement('div');
-    rightPanel.id = 'right-panel';
-    mapDiv.appendChild(rightPanel);
-
-    resultTitle = document.createElement('h3');
-    resultText = document.createTextNode('Results');
-    resultTitle.appendChild(resultText);
-    rightPanel.appendChild(resultTitle);
-
-    placesList = document.createElement('ul');
-    placesList.id = 'places';
-    rightPanel.appendChild(placesList);
 
 
+//     rightPanel = document.createElement('div');
+//     rightPanel.id = 'right-panel';
+//     mapDiv.appendChild(rightPanel);
 
-var elem = document.createElement("img");
-elem.src = 'images/hydrangeas.jpg';
-elem.setAttribute("height", "768");
-elem.setAttribute("width", "1024");
-elem.setAttribute("alt", "Flower");
-document.getElementById("placehere").appendChild(elem);
+//     resultTitle = document.createElement('h3');
+//     resultText = document.createTextNode('Results');
+//     resultTitle.appendChild(resultText);
+//     rightPanel.appendChild(resultTitle);
+
+//     placesList = document.createElement('ul');
+//     placesList.id = 'places';
+//     rightPanel.appendChild(placesList);
+
+
+
+// var elem = document.createElement("img");
+// elem.src = 'images/hydrangeas.jpg';
+// elem.setAttribute("height", "768");
+// elem.setAttribute("width", "1024");
+// elem.setAttribute("alt", "Flower");
+// document.getElementById("placehere").appendChild(elem);

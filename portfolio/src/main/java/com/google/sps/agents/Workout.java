@@ -89,19 +89,22 @@ public class Workout implements Agent {
             "MadFit",
             "15 min FULL BODY Fat Burn HIIT Workout (No Equipment)",
             "An equipment free, beginner friendly, full body, fat burning HIIT style workout to get you nice and sweaty!",
-            "https://i.ytimg.com/vi/dxA21IeBB8o/hqdefault.jpg");
+            "https://i.ytimg.com/vi/dxA21IeBB8o/hqdefault.jpg",
+            "dxA21IeBB8o");
     Video video2 =
         new Video(
             "MadFit",
             "FULL BODY FAT BURNING HIIT (15 min At Home Workout)",
             "An intense full body, fat burning, HIIT style, at home workout! No equipment needed, but the use one 2 light dumbbells will increase the intensity.",
-            "https://i.ytimg.com/vi/JMtE0rl21Fg/hqdefault.jpg");
+            "https://i.ytimg.com/vi/JMtE0rl21Fg/hqdefault.jpg",
+            "JMtE0rl21Fg");
     Video video3 =
         new Video(
             "MadFit",
             "FULL BODY FAT BURN HIIT (At Home No Equipment)",
             "An intense full body, fat burning, HIIT style, at home workout! No equipment needed.",
-            "https://i.ytimg.com/vi/Hc7V7MJCTc8/hqdefault.jpg");
+            "https://i.ytimg.com/vi/Hc7V7MJCTc8/hqdefault.jpg",
+            "Hc7V7MJCTc8");
 
     List<Video> videoList = new ArrayList<>();
     videoList.add(video1);
