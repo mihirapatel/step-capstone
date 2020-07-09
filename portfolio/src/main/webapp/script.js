@@ -270,6 +270,9 @@ function displayResponse(stream) {
       }
       mapContainer = nearestPlacesMap(outputAsJson.display);
       placeMapDisplay(mapContainer, "convo-container");
+    } else if (outputAsJson.fulfillmentText.includes("Here are videos for")) {
+      workoutContainer = workoutVideos(outputAsJson.display);
+      placeWorkoutDisplay(workoutContainer, "convo-container");
     }
   }
   outputAudio(stream);
@@ -638,4 +641,22 @@ function createMarkers(places, map, limit) {
 function isInfoWindowOpen(infoWindow) {
   var map = infoWindow.getMap();
   return (map !== null && typeof map !== "undefined");
+}
+
+function workoutVideos(videoQuery) {
+  var videos = JSON.parse(videoQuery);
+  console.log(videos);
+  let workoutDiv = createVideoDivs();
+  return workoutDiv;
+}
+
+function createVideoDivs() {
+  workoutDiv = document.createElement('div');
+  workoutDiv.classList.add('media-display');
+
+  video = document.createElement('div');
+  video.id = 'video';
+  workoutDiv.append(video);
+  
+  return workoutDiv;
 }
