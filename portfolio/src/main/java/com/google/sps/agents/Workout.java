@@ -4,7 +4,10 @@ package com.google.sps.agents;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import com.google.sps.data.Video;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +21,7 @@ public class Workout implements Agent {
   private static Logger log = LoggerFactory.getLogger(Workout.class);
 
   private final String intentName;
-  private String fulfillment = null;
+  private String output = null;
   private String display = null;
   private String redirect = null;
   private String workoutType;
@@ -46,7 +49,7 @@ public class Workout implements Agent {
 
   @Override
   public String getOutput() {
-    return fulfillment;
+    return output;
   }
 
   @Override
@@ -71,10 +74,39 @@ public class Workout implements Agent {
     workoutType = parameters.get("workout-type").getStringValue();
     youtubeChannel = parameters.get("youtube-channel").getStringValue();
 
-    fulfillment = "Here are videos for:" + workoutLength + " " + workoutType + " workout";
+    // Set output
+    output = "Here are videos for:" + workoutLength + " " + workoutType + " workout";
     if (!youtubeChannel.equals("")) {
-      fulfillment += " from " + youtubeChannel;
+      output += " from " + youtubeChannel;
     }
+
+    // TODO: make API call to WorkoutUtils to get json object of videos
+
+    // Set display
+    Video video1 =
+        new Video(
+            "MadFit",
+            "15 min FULL BODY Fat Burn HIIT Workout (No Equipment)",
+            "An equipment free, beginner friendly, full body, fat burning HIIT style workout to get you nice and sweaty!",
+            "https://i.ytimg.com/vi/dxA21IeBB8o/hqdefault.jpg");
+    Video video2 =
+        new Video(
+            "MadFit",
+            "FULL BODY FAT BURNING HIIT (15 min At Home Workout)",
+            "An intense full body, fat burning, HIIT style, at home workout! No equipment needed, but the use one 2 light dumbbells will increase the intensity.",
+            "https://i.ytimg.com/vi/JMtE0rl21Fg/hqdefault.jpg");
+    Video video3 =
+        new Video(
+            "MadFit",
+            "FULL BODY FAT BURN HIIT (At Home No Equipment)",
+            "An intense full body, fat burning, HIIT style, at home workout! No equipment needed.",
+            "https://i.ytimg.com/vi/Hc7V7MJCTc8/hqdefault.jpg");
+
+    List<Video> videoList = new ArrayList<>();
+    videoList.add(video1);
+    videoList.add(video2);
+    videoList.add(video3);
+    display = new Gson().toJson(videoList);
   }
 
   private void workoutFind(Map<String, Value> parameters)
