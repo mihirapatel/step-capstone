@@ -652,58 +652,37 @@ function isInfoWindowOpen(infoWindow) {
 
 function workoutVideos(videoQuery) {
   var videos = JSON.parse(videoQuery);
-  console.log(videos);
   let workoutDiv = createVideoDivs(videos);
   return workoutDiv;
 }
 
 function createVideoDivs(videos) {
-  var 
+  
   workoutDiv = document.createElement('div');
   workoutDiv.classList.add('media-display');
 
-  videos = document.createElement('div');
-  videos.id = 'videos';
-  workoutDiv.append(videos);
+  videosDiv = document.createElement('div');
+  videosDiv.id = 'videos';
+  workoutDiv.append(videosDiv);
 
-  
   for (var i = 0; i < videos.length; i++) {
-    
-    var video = document.createElement("a");
-    var thumbnail = document.createElement('img');
-    thumbnail.src = 'https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg';
-    a.appendChild(elem);
-    a.title = "my title text";
-    a.href = "https://en.wikipedia.org/wiki/Dog";
-    videos.appendChild(video);
-    
+    var video = videos[i];
+    var channelTitle = video.channelTitle;
+    var title = video.title;
+    var description = video.description;
+
+    var videoLink = document.createElement('a');
+    var thumbnailImage = document.createElement('img');
+    thumbnailImage.src = video.thumbnail;
+    thumbnailImage.setAttribute("width", "320");
+    thumbnailImage.setAttribute("height", "180");
+    videoLink.appendChild(thumbnailImage);
+    videoLink.title = title
+    videoLink.href = video.videoURL;
+
+    videosDiv.appendChild(videoLink);
   }
   
   return workoutDiv;
 }
 
-// var element = document.createElement("div");
-//     element.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
-//     document.getElementById('lc').appendChild(element);
-
-//     rightPanel = document.createElement('div');
-//     rightPanel.id = 'right-panel';
-//     mapDiv.appendChild(rightPanel);
-
-//     resultTitle = document.createElement('h3');
-//     resultText = document.createTextNode('Results');
-//     resultTitle.appendChild(resultText);
-//     rightPanel.appendChild(resultTitle);
-
-//     placesList = document.createElement('ul');
-//     placesList.id = 'places';
-//     rightPanel.appendChild(placesList);
-
-
-
-// var elem = document.createElement("img");
-// elem.src = 'images/hydrangeas.jpg';
-// elem.setAttribute("height", "768");
-// elem.setAttribute("width", "1024");
-// elem.setAttribute("alt", "Flower");
-// document.getElementById("placehere").appendChild(elem);
