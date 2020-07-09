@@ -4,9 +4,14 @@ package com.google.sps.agents;
 import com.google.protobuf.Value;
 import com.google.sps.utils.AgentUtils;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Currency Agent */
 public class Currency implements Agent {
+
+  private static Logger log = LoggerFactory.getLogger(Currency.class);
+
   private final String intentName;
   private String userInput;
   private String currencyFrom;
@@ -16,6 +21,7 @@ public class Currency implements Agent {
   private String display = null;
   private String redirect = null;
   private String searchText = "";
+  private String searchParameters = "";
   private String baseURL;
   private String endURL;
 
@@ -26,7 +32,6 @@ public class Currency implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters) {
-    System.out.println(parameters);
     currencyFrom = parameters.get("currency-from").getStringValue();
     currencyTo = parameters.get("currency-to").getStringValue();
     amount = parameters.get("amount").getNumberValue();
@@ -37,18 +42,21 @@ public class Currency implements Agent {
     if (userInput.contains("exchange")) {
       fulfillment = "Redirecting for exchange rate";
       searchText += "Exchange rate";
+
       if (amount > 0.0) {
-        searchText += " for " + String.valueOf(amount);
+        searchParameters += " for " + String.valueOf(amount);
       }
       if (!currencyFrom.equals("")) {
-        searchText += " " + currencyFrom;
+        searchParameters += " " + currencyFrom;
       }
       if (!currencyTo.equals("")) {
         if (!currencyFrom.equals("")) {
-          searchText += " to";
+          searchParameters += " to";
         }
-        searchText += " " + currencyTo;
+        searchParameters += " " + currencyTo;
       }
+
+      searchText += searchParameters;
       String[] individualWords = searchText.split(" ");
       endURL = String.join("+", individualWords);
 
@@ -56,35 +64,29 @@ public class Currency implements Agent {
     } else {
       fulfillment = "Redirecting for conversion";
       searchText += "Convert";
+
       if (amount > 0.0) {
-        searchText += " " + String.valueOf(amount);
+        searchParameters += " " + String.valueOf(amount);
       }
       if (!currencyFrom.equals("")) {
-        searchText += " " + currencyFrom;
+        searchParameters += " " + currencyFrom;
       }
       if (!currencyTo.equals("")) {
         if (!currencyFrom.equals("")) {
-          searchText += " to";
+          searchParameters += " to";
         }
-        searchText += " " + currencyTo;
+        searchParameters += " " + currencyTo;
       }
-      if (searchText.equals("")) {
-        searchText += " currency";
+      if (searchParameters.equals("")) {
+        searchParameters += " currency";
       }
+
+      searchText += searchParameters;
       String[] individualWords = searchText.split(" ");
       endURL = String.join("+", individualWords);
     }
 
-    fulfillment = "Redirecting for conversion";
-    String baseURL = "http://www.google.com/search?q=";
-    String endURL =
-        String.join("+", "Convert", String.valueOf(amount), currencyFrom, "to", currencyTo);
     redirect = baseURL + endURL;
-    System.out.println("currencyFrom: " + currencyFrom);
-    System.out.println("currencyTo: " + currencyTo);
-    System.out.println("amount: " + amount);
-    System.out.println("fulfillment: " + fulfillment);
-    System.out.println("redirect: " + redirect);
   }
 
   @Override

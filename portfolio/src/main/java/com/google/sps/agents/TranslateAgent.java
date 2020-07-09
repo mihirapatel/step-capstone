@@ -5,9 +5,14 @@ import com.google.cloud.translate.*;
 import com.google.protobuf.Value;
 import com.google.sps.utils.AgentUtils;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Translate Agent */
 public class TranslateAgent implements Agent {
+
+  private static Logger log = LoggerFactory.getLogger(TranslateAgent.class);
+
   private final String intentName;
   private String text;
   private String languageTo;
@@ -38,6 +43,7 @@ public class TranslateAgent implements Agent {
     if (languageToCode == null && languageFromCode == null) {
       fulfillment = null;
     } else {
+      text = text.substring(0, 1).toUpperCase() + text.substring(1);
       fulfillment = text + " in " + languageTo + " is: " + translatedString;
     }
   }

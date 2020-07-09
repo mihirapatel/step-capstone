@@ -1,6 +1,7 @@
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
+import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.translate.TranslateException;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.ByteString;
@@ -67,11 +68,6 @@ public class AgentUtils {
     return output;
   }
 
-  private static String getAgentName(String detectedIntent) {
-    String[] intentList = detectedIntent.split("\\.", 2);
-    return intentList[0];
-  }
-
   private static Agent createAgent(
       String agentName, String intentName, Map<String, Value> parameterMap)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -104,6 +100,11 @@ public class AgentUtils {
       default:
         return null;
     }
+  }
+
+  private static String getAgentName(String detectedIntent) {
+    String[] intentList = detectedIntent.split("\\.", 2);
+    return intentList[0];
   }
 
   private static String getIntentName(String detectedIntent) {
