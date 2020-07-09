@@ -86,4 +86,3 @@ function updateName(name) {
   var greetingContainer = document.getElementsByName("greeting")[0];
   greetingContainer.innerHTML = "<h1>Hi " + name + ", what can I help you with?</h1>";
 }
-
