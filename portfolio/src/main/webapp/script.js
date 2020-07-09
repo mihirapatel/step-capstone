@@ -372,6 +372,13 @@ function placeMapDisplay(mapDiv, container) {
   return container;
 }
 
+function placeWorkoutDisplay(workoutContainer, container) {
+  var container = document.getElementsByName(container)[0];
+  container.appendChild(workoutContainer);
+  updateScroll();
+  return container;
+}
+
 function updateScroll() {
   var element = document.getElementById("content");
   element.scrollTop = element.scrollHeight;
@@ -660,3 +667,25 @@ function createVideoDivs() {
   
   return workoutDiv;
 }
+
+    rightPanel = document.createElement('div');
+    rightPanel.id = 'right-panel';
+    mapDiv.appendChild(rightPanel);
+
+    resultTitle = document.createElement('h3');
+    resultText = document.createTextNode('Results');
+    resultTitle.appendChild(resultText);
+    rightPanel.appendChild(resultTitle);
+
+    placesList = document.createElement('ul');
+    placesList.id = 'places';
+    rightPanel.appendChild(placesList);
+
+
+
+var elem = document.createElement("img");
+elem.src = 'images/hydrangeas.jpg';
+elem.setAttribute("height", "768");
+elem.setAttribute("width", "1024");
+elem.setAttribute("alt", "Flower");
+document.getElementById("placehere").appendChild(elem);

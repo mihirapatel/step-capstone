@@ -1,6 +1,7 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
@@ -109,7 +110,7 @@ public class Workout implements Agent {
     display = new Gson().toJson(videoList);
   }
 
-  private void workoutFind(Map<String, Value> parameters)
+  private void workoutSchedule(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     return;
