@@ -23,6 +23,7 @@ import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.utils.AgentUtils;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ import java.util.Map;
  * have a valid userInput property, since this is the only field required to make a request to the
  * Google Books API.
  */
-public class BookQuery {
+public class BookQuery implements Serializable {
 
   private String userInput;
   private String type;
@@ -66,38 +67,6 @@ public class BookQuery {
   }
 
   /**
-   * Creates a BookQuery object from stored BookQuery object properties if queryString is not empty
-   * or null, throws an exception otherwise (queryString is only thing needed to perform a search)
-   *
-   * @param String type
-   * @param String categories
-   * @param String authors
-   * @param String title
-   * @param String order
-   * @param String language
-   * @param String queryString
-   * @param parameters parameter Map from Dialogflow
-   * @return BookQuery object
-   */
-  public static BookQuery createBookQuery(
-      String type,
-      String categories,
-      String authors,
-      String title,
-      String order,
-      String language,
-      String queryString)
-      throws IOException {
-    if (queryString == null || queryString.isEmpty()) {
-      throw new IOException();
-    } else {
-      BookQuery bookQuery =
-          new BookQuery(type, categories, authors, title, order, language, queryString);
-      return bookQuery;
-    }
-  }
-
-  /**
    * Private BookQuery constructor, can only be called by createBookQuery() if user input string is
    * valid.
    *
@@ -116,37 +85,6 @@ public class BookQuery {
     setOrder(parameters);
     setLanguage(parameters);
     setQueryString(parameters);
-  }
-
-  /**
-   * Private BookQuery constructor creates BookQuery object from all specified properties loaded
-   * from a previous BookQuery object
-   *
-   * @param String type
-   * @param String categories
-   * @param String authors
-   * @param String title
-   * @param String order
-   * @param String language
-   * @param String queryString
-   * @param parameters parameter Map from Dialogflow
-   */
-  private BookQuery(
-      String type,
-      String categories,
-      String authors,
-      String title,
-      String order,
-      String language,
-      String queryString) {
-    this.type = type;
-    this.categories = categories;
-    this.authors = authors;
-    this.title = title;
-    this.order = order;
-    this.language = language;
-    this.queryString = queryString;
-    this.userInput = userInput;
   }
 
   private void setType(Map<String, Value> parameters) {

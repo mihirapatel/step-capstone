@@ -22,6 +22,7 @@ import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,7 @@ import java.util.ArrayList;
  * created with valid parameters and that all Book objects have valid title and description
  * properties.
  */
-public class Book {
+public class Book implements Serializable {
 
   private String title;
   private ArrayList<String> authors;
