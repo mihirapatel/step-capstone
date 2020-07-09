@@ -679,7 +679,7 @@ function createVideoDivs(videos) {
     videoLink.appendChild(thumbnailImage);
     videoLink.title = title
     videoLink.href = video.videoURL;
-
+    videoLink.target = "_blank";
     videosDiv.appendChild(videoLink);
   }
   
