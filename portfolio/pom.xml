@@ -92,28 +92,21 @@
     </dependency>
 
     <dependency>
-      <groupId>com.google.cloud</groupId>
-      <artifactId>google-cloud-translate</artifactId>
+      <groupId>com.google.appengine</groupId>
+      <artifactId>appengine-api-1.0-sdk</artifactId>
+      <version>1.7.4</version>
+      <scope>provided</scope>
     </dependency>
 
-     <dependency> 
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.28</version>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-translate</artifactId>
     </dependency>
 
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
       <version>1.9.59</version>
-      <!-- <scope>provided</scope> -->
-    </dependency>
-
-    <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-api-1.0-sdk</artifactId>
-      <version>1.7.4</version>
-      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -128,7 +121,7 @@
       <version>1.9.64</version>
       <scope>test</scope>
     </dependency>
-
+    
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-stubs</artifactId>
@@ -153,7 +146,6 @@
   </dependencies>
 
   <build>
-
     <plugins>
       <!-- Provides `mvn package appengine:run` for local testing
            and `mvn package appengine:deploy` for deploying. -->
@@ -175,6 +167,7 @@
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
           <!-- <skipTests>true</skipTests> -->
+          <!-- <useFile>false</useFile> -->
         </configuration>
       </plugin>
 

@@ -42,7 +42,6 @@ public class TestHelper {
   TextInputServlet servlet;
   DatastoreService customDatastore;
 
-  private static Logger log = LoggerFactory.getLogger(TestHelper.class);
   private final LocalServiceTestHelper helper =
       new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 

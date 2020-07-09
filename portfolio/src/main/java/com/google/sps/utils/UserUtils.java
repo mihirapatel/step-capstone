@@ -5,7 +5,6 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -100,10 +99,7 @@ public class UserUtils {
     entity.setProperty("id", userID);
     entity.setProperty("isUser", isUser);
     entity.setProperty("comment", comment);
-<<<<<<< HEAD
-=======
     entity.setProperty("timestamp", String.valueOf(System.currentTimeMillis()));
->>>>>>> Working memory backend.
     datastore.put(entity);
   }
 
