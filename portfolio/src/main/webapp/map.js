@@ -8,7 +8,7 @@ function locationMap(placeQuery) {
   var place = JSON.parse(placeQuery);
   var limit = place.limit;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
-  let {mapDiv, newMap} = createMapDivs(limit);
+  let {mapDiv, newMap} = createMapDivs(limit, false);
 
   var map = new google.maps.Map(newMap, {
     zoom: 8,
@@ -37,7 +37,7 @@ function nearestPlacesMap(placeQuery) {
   limit = place.limit;
   var mapCenter = new google.maps.LatLng(place.lat, place.lng);
 
-  let {mapDiv, newMap} = createMapDivs(limit);
+  let {mapDiv, newMap} = createMapDivs(limit, true);
   
   var map = new google.maps.Map(newMap, {
     center: mapCenter,
@@ -85,7 +85,7 @@ function standardCallback(results, status) {
   }
 }
 
-function createMapDivs(limit) {
+function createMapDivs(limit, makePanel) {
   mapDiv = document.createElement('div');
   mapDiv.classList.add('media-display');
 
@@ -93,7 +93,7 @@ function createMapDivs(limit) {
   newMap.id = 'map';
   mapDiv.append(newMap);
   
-  if (limit < 0) {
+  if (makePanel) {
     rightPanel = document.createElement('div');
     rightPanel.id = 'right-panel';
     mapDiv.appendChild(rightPanel);

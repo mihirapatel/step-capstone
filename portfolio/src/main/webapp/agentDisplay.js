@@ -5,24 +5,24 @@ function displayResponse(stream) {
   placeUserInput(outputAsJson.userInput, "convo-container");
   placeFulfillmentResponse(outputAsJson.fulfillmentText);
   if (outputAsJson.display) {
-    if (outputAsJson.fulfillmentText.includes("Starting a timer")) {
+    if (outputAsJson.intent.includes("reminders.snooze")) {
       convoContainer = placeObjectContainer(outputAsJson.display, "media-display timer-display", "convo-container");
       var allTimers = document.getElementsByClassName("timer-display");
       if (existingTimer) {
         terminateTimer(allTimers[0]);
       }
       existingTimer = true;
-    } else if (outputAsJson.fulfillmentText.includes("Changing your") && outputAsJson.fulfillmentText.includes("name")) {
+    } else if (outputAsJson.intent.includes("name.user.change")) {
       updateName(outputAsJson.display);
-    } else if (outputAsJson.fulfillmentText.includes("Here is the map for")) {
+    } else if (outputAsJson.intent.includes("maps.search")) {
         mapContainer = locationMap(outputAsJson.display);
-        placeMapDisplay(mapContainer, "convo-container");
-    } else if (outputAsJson.fulfillmentText.includes("Here are the top")) {
+        appendDisplay(mapContainer);
+    } else if (outputAsJson.intent.includes("maps.find")) {
       if (moreButton) {
         moreButton.style.display = "none";
       }
       mapContainer = nearestPlacesMap(outputAsJson.display);
-      placeMapDisplay(mapContainer, "convo-container");
+      appendDisplay(mapContainer);
     }
   }
   outputAudio(stream);
@@ -70,9 +70,9 @@ function placeObjectContainer(text, type, container) {
   return container;
 }
 
-function placeMapDisplay(mapDiv, container) {
-  var container = document.getElementsByName(container)[0];
-  container.appendChild(mapDiv);
+function appendDisplay(div) {
+  var container = document.getElementsByName("convo-container")[0];
+  container.appendChild(div);
   updateScroll();
   return container;
 }
