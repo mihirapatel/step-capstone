@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * A Book object contains specific properties about a Volume object that will be used to create
  * output display and text for the user
  *
- * <p>A Book object is only created by create() function, ensuring that any Book object is only
+ * <p>A Book object is only created by createBook() function, ensuring that any Book object is only
  * created with valid parameters and that all Book objects have valid title and description
  * properties.
  */
@@ -54,7 +54,7 @@ public class Book {
    * @param volume Volume Object
    * @return Book object
    */
-  public static Book create(Volume volume) throws IOException {
+  public static Book createBook(Volume volume) throws IOException {
     if (volume == null || !hasValidParameters(volume)) {
       throw new IOException();
     } else {
@@ -64,8 +64,8 @@ public class Book {
   }
 
   /**
-   * Private Book constructor, can only be called by create() if Volume parameter is not null and
-   * Volume object has a valid title and description. The constructor will set neccessary fields
+   * Private Book constructor, can only be called by createBook() if Volume parameter is not null
+   * and Volume object has a valid title and description. The constructor will set neccessary fields
    * from the Volume object.
    *
    * <p>If Volume object is missing any other properties, the properties will be set to an empty
@@ -96,106 +96,86 @@ public class Book {
   }
 
   private void setAuthorList(Volume volume) {
-    try {
-      if (volume.getVolumeInfo().getAuthors() != null) {
-        this.authors = new ArrayList<String>(volume.getVolumeInfo().getAuthors());
-        return;
-      }
-    } catch (Exception e) {
+    if (volume.getVolumeInfo().getAuthors() != null) {
+      this.authors = new ArrayList<String>(volume.getVolumeInfo().getAuthors());
+    } else {
+      this.authors = new ArrayList<String>();
     }
-    this.authors = new ArrayList<String>();
   }
 
   private void setPublishedDate(Volume volume) {
-    try {
-      if (volume.getVolumeInfo().getPublishedDate() != null) {
-        this.publishedDate = volume.getVolumeInfo().getPublishedDate();
-        return;
-      }
-    } catch (Exception e) {
+    if (volume.getVolumeInfo().getPublishedDate() != null) {
+      this.publishedDate = volume.getVolumeInfo().getPublishedDate();
+    } else {
+      this.publishedDate = "";
     }
-    this.publishedDate = "";
   }
 
   private void setRating(Volume volume) {
-    try {
-      if (volume.getVolumeInfo().getAverageRating() != null) {
-        this.averageRating = String.valueOf(volume.getVolumeInfo().getAverageRating());
-        return;
-      }
-    } catch (Exception e) {
+    if (volume.getVolumeInfo().getAverageRating() != null) {
+      this.averageRating = String.valueOf(volume.getVolumeInfo().getAverageRating());
+    } else {
+      this.averageRating = "";
     }
-    this.averageRating = "";
   }
 
   private void setInfoLink(Volume volume) {
-    try {
-      if (volume.getVolumeInfo().getInfoLink() != null) {
-        this.infoLink = volume.getVolumeInfo().getInfoLink();
-        return;
-      }
-    } catch (Exception e) {
+    if (volume.getVolumeInfo().getInfoLink() != null) {
+      this.infoLink = volume.getVolumeInfo().getInfoLink();
+    } else {
+      this.infoLink = "";
     }
-    this.infoLink = "";
   }
 
   private void setThumbnailLink(Volume volume) {
-    try {
+    if (volume.getVolumeInfo().getImageLinks() != null) {
       if (volume.getVolumeInfo().getImageLinks().getThumbnail() != null) {
         this.thumbnailLink = volume.getVolumeInfo().getImageLinks().getThumbnail();
         return;
       }
-    } catch (Exception e) {
     }
     this.thumbnailLink = "";
   }
 
   private void setBuyLink(Volume volume) {
-    try {
+    if (hasValidSaleInfo(volume)) {
       if (volume.getSaleInfo().getBuyLink() != null) {
         this.buyLink = volume.getSaleInfo().getBuyLink();
         return;
       }
-    } catch (Exception e) {
     }
     this.buyLink = "";
   }
 
   private void setEmbeddable(Volume volume) {
-    try {
+    if (hasValidAccessInfo(volume)) {
       if (volume.getAccessInfo().getEmbeddable() != null) {
         this.embeddable = volume.getAccessInfo().getEmbeddable();
         return;
       }
-    } catch (Exception e) {
     }
     this.embeddable = false;
   }
 
   private void setISBN(Volume volume) {
-    try {
-      ArrayList<IndustryIdentifiers> industryIdentifiers =
-          new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
-      for (int i = 0; i < industryIdentifiers.size(); ++i) {
-        if (industryIdentifiers.get(i).getType().contains("ISBN")) {
-          if (industryIdentifiers.get(i).getIdentifier() != null) {
-            this.isbn = industryIdentifiers.get(i).getIdentifier();
-            return;
-          }
+    ArrayList<IndustryIdentifiers> industryIdentifiers =
+        new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
+    for (int i = 0; i < industryIdentifiers.size(); ++i) {
+      if (industryIdentifiers.get(i).getType() != null
+          && industryIdentifiers.get(i).getType().contains("ISBN")) {
+        if (industryIdentifiers.get(i).getIdentifier() != null) {
+          this.isbn = industryIdentifiers.get(i).getIdentifier();
+          return;
         }
       }
-    } catch (Exception e) {
     }
     this.isbn = "";
   }
 
   private void setTextSnippet(Volume volume) {
-    try {
-      if (volume.getSearchInfo().getTextSnippet() != null) {
-        this.textSnippet = volume.getSearchInfo().getTextSnippet();
-        return;
-      }
-    } catch (Exception e) {
+    if (hasValidSearchInfo(volume)) {
+      this.textSnippet = volume.getSearchInfo().getTextSnippet();
+      return;
     }
     this.textSnippet = "";
   }
@@ -259,6 +239,45 @@ public class Book {
       }
     } catch (Exception e) {
       return false;
+    }
+    return false;
+  }
+
+  /**
+   * Checks if Volume object has a valid accessInfo property
+   *
+   * @param volume Volume Object
+   * @return boolean
+   */
+  public static boolean hasValidAccessInfo(Volume volume) {
+    if (volume.getAccessInfo() != null) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Checks if Volume object has a valid saleInfo property
+   *
+   * @param volume Volume Object
+   * @return boolean
+   */
+  public static boolean hasValidSaleInfo(Volume volume) {
+    if (volume.getSaleInfo() != null) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Checks if Volume object has a valid searchInfo property
+   *
+   * @param volume Volume Object
+   * @return boolean
+   */
+  public static boolean hasValidSearchInfo(Volume volume) {
+    if (volume.getSearchInfo() != null) {
+      return true;
     }
     return false;
   }

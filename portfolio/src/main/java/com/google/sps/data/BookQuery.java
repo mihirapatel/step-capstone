@@ -30,10 +30,10 @@ import java.util.Map;
  * A BookQuery object contains parameters neccessary to make a call to the Google Books API that
  * will match users' requests to Dialogflow
  *
- * <p>A BookQuery object is only created by create() function, ensuring that any BookQuery object is
- * only created with valid parameters. Specifically, it ensures that all BookQuery objects have a
- * valid userInput property, since this is the only field required to make a request to the Google
- * Books API.
+ * <p>A BookQuery object is only created by createBookQuery() function, ensuring that any BookQuery
+ * object is only created with valid parameters. Specifically, it ensures that all BookQuery objects
+ * have a valid userInput property, since this is the only field required to make a request to the
+ * Google Books API.
  */
 public class BookQuery {
 
@@ -55,7 +55,7 @@ public class BookQuery {
    * @param parameters parameter Map from Dialogflow
    * @return BookQuery object
    */
-  public static BookQuery create(String userInput, Map<String, Value> parameters)
+  public static BookQuery createBookQuery(String userInput, Map<String, Value> parameters)
       throws IOException {
     if (userInput == null || userInput.isEmpty()) {
       throw new IOException();
@@ -66,7 +66,8 @@ public class BookQuery {
   }
 
   /**
-   * Private BookQuery constructor, can only be called by create() if user input string is valid
+   * Private BookQuery constructor, can only be called by createBookQuery() if user input string is
+   * valid
    *
    * <p>If Dialogflow does not detect certain parameters for a user request, then BookQuery
    * properties will remain null
@@ -86,32 +87,28 @@ public class BookQuery {
   }
 
   private void setType(Map<String, Value> parameters) {
-    try {
-      if (!parameters.get("type").getStringValue().isEmpty()) {
-        this.type = parameters.get("type").getStringValue();
-      }
-    } catch (Exception e) {
+    if (parameters.get("type") != null && !parameters.get("type").getStringValue().isEmpty()) {
+      this.type = parameters.get("type").getStringValue();
     }
   }
 
   private void setCategories(Map<String, Value> parameters) {
-    try {
-      if (!parameters.get("categories").getStringValue().isEmpty()) {
-        this.categories = parameters.get("categories").getStringValue();
-      }
-    } catch (Exception e) {
+    if (parameters.get("categories") != null
+        && !parameters.get("categories").getStringValue().isEmpty()) {
+      this.categories = parameters.get("categories").getStringValue();
     }
   }
 
   private void setAuthors(Map<String, Value> parameters) {
-    try {
+    if (parameters.get("authors") != null) {
       ArrayList<Value> valueList =
           new ArrayList<Value>(parameters.get("authors").getListValue().getValuesList());
       ArrayList<String> authorList = new ArrayList<String>();
       for (int i = 0; i < valueList.size(); ++i) {
         Struct personStruct = valueList.get(i).getStructValue();
         Map<String, Value> personFields = personStruct.getFieldsMap();
-        if (!personFields.get("name").getStringValue().isEmpty()) {
+        if (personFields.get("name") != null
+            && !personFields.get("name").getStringValue().isEmpty()) {
           String authorName =
               String.join("+", personFields.get("name").getStringValue().split(" "));
           authorList.add("inauthor:\"" + authorName + "\'");
@@ -120,38 +117,29 @@ public class BookQuery {
       if (!authorList.isEmpty()) {
         this.authors = String.join("+", authorList);
       }
-    } catch (Exception e) {
     }
   }
 
   private void setTitle(Map<String, Value> parameters) {
-    try {
-      if (!parameters.get("title").getStringValue().isEmpty()) {
-        this.title =
-            "intitle:\""
-                + String.join("+", parameters.get("title").getStringValue().split(" "))
-                + "\"";
-      }
-    } catch (Exception e) {
+    if (parameters.get("title") != null && !parameters.get("title").getStringValue().isEmpty()) {
+      this.title =
+          "intitle:\""
+              + String.join("+", parameters.get("title").getStringValue().split(" "))
+              + "\"";
     }
   }
 
   private void setOrder(Map<String, Value> parameters) {
-    try {
-      if (!parameters.get("order").getStringValue().isEmpty()) {
-        this.order = parameters.get("order").getStringValue();
-      }
-    } catch (Exception e) {
+    if (parameters.get("order") != null && !parameters.get("order").getStringValue().isEmpty()) {
+      this.order = parameters.get("order").getStringValue();
     }
   }
 
   private void setLanguage(Map<String, Value> parameters) {
-    try {
-      if (!parameters.get("language").getStringValue().isEmpty()) {
-        String languageName = parameters.get("language").getStringValue();
-        this.language = AgentUtils.getLanguageCode(languageName);
-      }
-    } catch (Exception e) {
+    if (parameters.get("language") != null
+        && !parameters.get("language").getStringValue().isEmpty()) {
+      String languageName = parameters.get("language").getStringValue();
+      this.language = AgentUtils.getLanguageCode(languageName);
     }
   }
 
