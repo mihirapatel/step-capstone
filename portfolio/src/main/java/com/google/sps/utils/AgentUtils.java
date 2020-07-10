@@ -55,6 +55,7 @@ public class AgentUtils {
           | TranslateException e) {
         e.printStackTrace();
         System.out.println("Error in object creation.");
+        e.printStackTrace();
       }
     }
 
