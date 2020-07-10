@@ -90,7 +90,7 @@ public class AgentUtils {
       fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
     }
     if (userService.isUserLoggedIn()) {
-      UserUtils.saveComment(
+      MemoryUtils.saveComment(
           userService.getCurrentUser().getUserId(), datastore, detectedInput, fulfillment);
     }
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
@@ -112,7 +112,7 @@ public class AgentUtils {
       case "currency":
         return new Currency(intentName, parameterMap);
       case "date":
-        return new Date(intentName, parameterMap);
+        return new DateAgent(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
       case "maps":

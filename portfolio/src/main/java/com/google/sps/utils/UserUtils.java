@@ -3,17 +3,8 @@ package com.google.sps.utils;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
-import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.Filter;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
-import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
-import com.google.sps.data.Pair;
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,6 +60,7 @@ public class UserUtils {
     entity.setProperty(nameType, name);
     datastore.put(entity);
   }
+<<<<<<< HEAD
 
   /**
    * Saves comment information into comment history database if the user is logged in.
@@ -139,4 +131,6 @@ public class UserUtils {
     }
     return surroundingEntities;
   }
+=======
+>>>>>>> Added time constraint in memory backend.
 }

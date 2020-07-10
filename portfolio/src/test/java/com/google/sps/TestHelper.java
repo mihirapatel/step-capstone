@@ -18,7 +18,7 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
-import com.google.sps.utils.UserUtils;
+import com.google.sps.utils.MemoryUtils;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
@@ -187,7 +187,7 @@ public class TestHelper {
    */
   public void setCustomDatabase(List<String> comments) {
     for (String comment : comments) {
-      UserUtils.makeCommentEntity("1", customDatastore, comment, true);
+      MemoryUtils.makeCommentEntity("1", customDatastore, comment, true);
     }
   }
 

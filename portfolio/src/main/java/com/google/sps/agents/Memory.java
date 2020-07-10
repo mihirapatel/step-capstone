@@ -4,10 +4,14 @@ package com.google.sps.agents;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.users.UserService;
+import com.google.gson.Gson;
 import com.google.protobuf.Value;
 import com.google.sps.data.ConversationOutput;
 import com.google.sps.data.Pair;
-import com.google.sps.utils.UserUtils;
+import com.google.sps.utils.MemoryUtils;
+import com.google.sps.utils.TimeUtils;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -51,20 +55,79 @@ public class Memory implements Agent {
     userID = userService.getCurrentUser().getUserId();
     if (intentName.contains("keyword")) {
       findKeyword(parameters);
+    } else if (intentName.contains("time")) {
+      findTimePeriodComments(parameters);
     }
   }
 
   private void findKeyword(Map<String, Value> parameters) {
     String word = parameters.get("keyword").getStringValue();
-    List<Pair<Entity, List<Entity>>> conversationList =
-        UserUtils.getKeywordCommentEntities(datastore, userID, word.toLowerCase());
-    if (conversationList.isEmpty()) {
-      fulfillment = "Sorry, there were no results matching the keyword \"" + word + ".\"";
-      return;
+    List<Pair<Entity, List<Entity>>> conversationList;
+    String timePeriodDisplay = "";
+    Value dateObject = parameters.get("date-time");
+    try {
+      if (dateObject != null) {
+        Pair<Long, Long> timeRange = getTimeRange(dateObject);
+        conversationList =
+            MemoryUtils.getKeywordCommentEntitiesWithTime(
+                datastore, userID, word.toLowerCase(), timeRange.getKey(), timeRange.getValue());
+        timePeriodDisplay = " from " + parameters.get("date-time-original").getStringValue();
+      } else {
+        conversationList =
+            MemoryUtils.getKeywordCommentEntities(datastore, userID, word.toLowerCase());
+      }
+      if (conversationList.isEmpty()) {
+        fulfillment = "Sorry, there were no results matching the keyword \"" + word + ".\"";
+      } else {
+        fulfillment =
+            "Here are all the results"
+                + timePeriodDisplay
+                + " including the keyword \""
+                + word
+                + ".\"";
+        ConversationOutput convoOutput = new ConversationOutput(word, conversationList);
+        display = convoOutput.toString();
+      }
+    } catch (ParseException e) {
+      e.printStackTrace();
     }
-    fulfillment = "Here are all the results including the keyword \"" + word + ".\"";
-    ConversationOutput convoOutput = new ConversationOutput(word, conversationList);
-    display = convoOutput.toString();
+  }
+
+  private void findTimePeriodComments(Map<String, Value> parameters) {
+    try {
+      Pair<Long, Long> timeRange = getTimeRange(parameters.get("date-time"));
+      List<Entity> conversationSnippet =
+          MemoryUtils.getTimePeriodCommentEntities(
+              datastore, userID, timeRange.getKey(), timeRange.getValue());
+      if (conversationSnippet.isEmpty()) {
+        fulfillment =
+            "Could not find any conversation from "
+                + parameters.get("date-time-original").getStringValue()
+                + ".";
+      } else {
+        fulfillment =
+            "Here are all the results from "
+                + parameters.get("date-time-original").getStringValue()
+                + ".";
+        display = new Gson().toJson(conversationSnippet);
+        ;
+      }
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private Pair<Long, Long> getTimeRange(Value dateObject) throws ParseException {
+    if (dateObject.hasStructValue()) {
+      Map<String, Value> durationMap = dateObject.getStructValue().getFieldsMap();
+      Date start = TimeUtils.stringToDate(durationMap.get("startDateTime").getStringValue());
+      Date end = TimeUtils.stringToDate(durationMap.get("endDateTime").getStringValue());
+      return new Pair(start.getTime(), end.getTime());
+    } else {
+      String dateString = dateObject.getStringValue();
+      Date dateTime = TimeUtils.stringToDate(dateString);
+      return new Pair(dateTime.getTime() - 300000, dateTime.getTime() + 300000);
+    }
   }
 
   @Override
