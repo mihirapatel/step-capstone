@@ -20,6 +20,17 @@ public class Memory implements Agent {
   private DatastoreService datastore;
   private UserService userService;
 
+  /**
+   * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   * @param userService UserService instance to access userID and other user info.
+   * @param datastore DatastoreService instance used to access past comments from the user's
+   *     database.
+   */
   public Memory(
       String intentName,
       Map<String, Value> parameters,
@@ -48,12 +59,12 @@ public class Memory implements Agent {
     List<Pair<Entity, List<Entity>>> conversationList =
         UserUtils.getKeywordCommentEntities(datastore, userID, word.toLowerCase());
     if (conversationList.isEmpty()) {
-      fulfillment = "Sorry, unable to find any results including the keyword \"" + word + ".\"";
-    } else {
-      fulfillment = "Here are all the results including the keyword \"" + word + ".\"";
-      ConversationOutput convoOutput = new ConversationOutput(word, conversationList);
-      display = convoOutput.toString();
+      fulfillment = "Sorry, there were no results matching the keyword \"" + word + ".\"";
+      return;
     }
+    fulfillment = "Here are all the results including the keyword \"" + word + ".\"";
+    ConversationOutput convoOutput = new ConversationOutput(word, conversationList);
+    display = convoOutput.toString();
   }
 
   @Override

@@ -39,7 +39,6 @@ public class UserUtils {
   }
 
   private static String getProperName(UserService userService, Entity entity) {
-    System.out.println("Nickname entity: " + entity);
     String name = (String) entity.getProperty("nickname");
     if (name == null) {
       name = (String) entity.getProperty("first name");
@@ -95,11 +94,11 @@ public class UserUtils {
    */
   public static void makeCommentEntity(
       String userID, DatastoreService datastore, String comment, boolean isUser) {
-    Entity entity = new Entity("CommentHistory", String.valueOf(System.currentTimeMillis()));
+    Entity entity = new Entity("CommentHistory");
     entity.setProperty("id", userID);
     entity.setProperty("isUser", isUser);
     entity.setProperty("comment", comment);
-    entity.setProperty("timestamp", String.valueOf(System.currentTimeMillis()));
+    entity.setProperty("timestamp", System.currentTimeMillis());
     datastore.put(entity);
   }
 

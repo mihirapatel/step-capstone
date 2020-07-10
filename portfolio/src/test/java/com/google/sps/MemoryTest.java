@@ -3,8 +3,11 @@ package com.google.sps.agents;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import com.google.protobuf.*;
 import com.google.sps.data.Output;
 import com.google.sps.servlets.TestHelper;
+import java.util.*;
+import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +20,7 @@ public class MemoryTest {
 
   private static Logger log = LoggerFactory.getLogger(MemoryTest.class);
   private TestHelper tester;
+  List<String> commentList;
 
   /**
    * Test setup which prepopulates the database with a bunch of default values to test database
@@ -48,35 +52,18 @@ public class MemoryTest {
   /** Checks that no display output or database query is made if the user is not logged in. */
   @Test
   public void testNotLoggedIn() throws Exception {
-
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"Tom\","
-            + "\"type\": \"\"}";
-    tester.setParameters("Change my name to Tom.", jsonParams, "name.change");
+    tester.setParameters(
+        "Search conversation history for the word hello.",
+        "{\"keyword\":\"hello\"}",
+        "memory.keyword");
     tester.setLoggedOut();
 
     Output output = tester.getOutput();
 
-    assertEquals("Please login to modify your name.", output.getFulfillmentText());
+    assertEquals("Please login to access conversation history.", output.getFulfillmentText());
     assertNull(output.getDisplay());
-  }
 
-  @Test
-  public void testGeneralName() throws Exception {
-
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"Tom\","
-            + "\"type\": \"\"}";
-    tester.setParameters("Change my name to Tom.", jsonParams, "name.change");
-
-    Output output = tester.getOutput();
-
-    assertEquals("Changing your first name to be Tom.", output.getFulfillmentText());
-    assertEquals("Tom", output.getDisplay());
+    tester.setLoggedIn();
   }
 
   /**
@@ -89,19 +76,44 @@ public class MemoryTest {
    * feature works and grabs 6 comments before and after identified comment
    */
   @Test
-  public void testFirstName() throws Exception {
+  public void testHello() throws Exception {
 
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"Tom\","
-            + "\"type\": \"first name\"}";
-    tester = new TestHelper("Change my first name to Tom.", jsonParams, "name.change");
+    tester.setParameters(
+        "Search conversation history for the word hello.",
+        "{\"keyword\":\"hello\"}",
+        "memory.keyword");
 
     Output output = tester.getOutput();
+    assertEquals(
+        "Here are all the results including the keyword \"hello.\"", output.getFulfillmentText());
 
-    assertEquals("Changing your first name to be Tom.", output.getFulfillmentText());
-    assertEquals("Tom", output.getDisplay());
+    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    List<Value> identifiedCommentList =
+        result.get("conversationList").getListValue().getValuesList();
+    assertEquals(3, identifiedCommentList.size());
+
+    List<List<String>> allComments = unpackAllComments(identifiedCommentList, "hello");
+
+    // "hello"
+    List<String> neighbors = allComments.get(0);
+    assertEquals(7, neighbors.size());
+    for (int i = 0; i < neighbors.size(); i++) {
+      assertEquals(commentList.get(i), neighbors.get(i));
+    }
+
+    // "Hello!"
+    neighbors = allComments.get(1);
+    assertEquals(8, neighbors.size());
+    for (int i = 0; i < neighbors.size(); i++) {
+      assertEquals(commentList.get(i), neighbors.get(i));
+    }
+
+    // "hello" (second)
+    neighbors = allComments.get(2);
+    assertEquals(13, neighbors.size());
+    for (int i = 0; i < neighbors.size(); i++) {
+      assertEquals(commentList.get(i + 1), neighbors.get(i));
+    }
   }
 
   /**
@@ -110,19 +122,37 @@ public class MemoryTest {
    * quotations (mainly that \" symbol doesn't break anything)
    */
   @Test
-  public void testNickName() throws Exception {
+  public void testApple() throws Exception {
 
-    String jsonParams =
-        "{\"nick-name\": \"Tom\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"\","
-            + "\"type\": \"nickname\"}";
-    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
+    tester.setParameters(
+        "Search conversation history for the word apple.",
+        "{\"keyword\":\"apple\"}",
+        "memory.keyword");
 
     Output output = tester.getOutput();
+    assertEquals(
+        "Here are all the results including the keyword \"apple.\"", output.getFulfillmentText());
 
-    assertEquals("Changing your nickname to be Tom.", output.getFulfillmentText());
-    assertEquals("Tom", output.getDisplay());
+    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    List<Value> identifiedCommentList =
+        result.get("conversationList").getListValue().getValuesList();
+    assertEquals(2, identifiedCommentList.size());
+
+    List<List<String>> allComments = unpackAllComments(identifiedCommentList, "apple");
+
+    // "apple" (first)
+    List<String> neighbors = allComments.get(0);
+    assertEquals(11, neighbors.size());
+    for (int i = 0; i < neighbors.size(); i++) {
+      assertEquals(commentList.get(i), neighbors.get(i));
+    }
+
+    // "apple" (second)
+    neighbors = allComments.get(1);
+    assertEquals(12, neighbors.size());
+    for (int i = 0; i < neighbors.size(); i++) {
+      assertEquals(commentList.get(i), neighbors.get(i));
+    }
   }
 
   /**
@@ -130,19 +160,31 @@ public class MemoryTest {
    * that program identifies only one comment even though keyword appears twice in that comment
    */
   @Test
-  public void testNickNameGiven() throws Exception {
+  public void testSentence() throws Exception {
 
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"Tom\","
-            + "\"type\": \"nickname\"}";
-    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
+    tester.setParameters(
+        "Search conversation history for the word sentence.",
+        "{\"keyword\":\"sentence\"}",
+        "memory.keyword");
 
     Output output = tester.getOutput();
+    assertEquals(
+        "Here are all the results including the keyword \"sentence.\"",
+        output.getFulfillmentText());
 
-    assertEquals("Changing your nickname to be Tom.", output.getFulfillmentText());
-    assertEquals("Tom", output.getDisplay());
+    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    List<Value> identifiedCommentList =
+        result.get("conversationList").getListValue().getValuesList();
+    assertEquals(1, identifiedCommentList.size());
+
+    List<List<String>> allComments = unpackAllComments(identifiedCommentList, "sentence");
+
+    // "sentence"
+    List<String> neighbors = allComments.get(0);
+    assertEquals(13, neighbors.size());
+    for (int i = 0; i < neighbors.size(); i++) {
+      assertEquals(commentList.get(i), neighbors.get(i));
+    }
   }
 
   /**
@@ -151,19 +193,31 @@ public class MemoryTest {
    * comments after it
    */
   @Test
-  public void testOnlyLastName() throws Exception {
+  public void testTest() throws Exception {
 
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"Tom\","
-            + "\"given-name\": \"\","
-            + "\"type\": \"last name\"}";
-    tester.setParameters("Change my last name to Tom.", jsonParams, "name.change");
+    tester.setParameters(
+        "Search conversation history for the word test.",
+        "{\"keyword\":\"test\"}",
+        "memory.keyword");
 
     Output output = tester.getOutput();
+    assertEquals(
+        "Here are all the results including the keyword \"test.\"", output.getFulfillmentText());
 
-    assertEquals("Changing your last name to be Tom.", output.getFulfillmentText());
-    assertEquals("test@example.com", output.getDisplay());
+    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    List<Value> identifiedCommentList =
+        result.get("conversationList").getListValue().getValuesList();
+    assertEquals(7, identifiedCommentList.size());
+
+    List<List<String>> allComments = unpackAllComments(identifiedCommentList, "test");
+
+    for (int i = 0; i < allComments.size(); i++) {
+      List<String> neighbors = allComments.get(i);
+      assertEquals(13 - i, neighbors.size());
+      for (int j = 0; j < neighbors.size(); j++) {
+        assertEquals(commentList.get(j + 2 + i), neighbors.get(j));
+      }
+    }
   }
 
   /**
@@ -171,98 +225,46 @@ public class MemoryTest {
    * conversation history return a search not found
    */
   @Test
-  public void testDidNotHearName() throws Exception {
+  public void testNonexistent() throws Exception {
 
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"\","
-            + "\"type\": \"nickname\"}";
-    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
+    tester.setParameters(
+        "Search conversation history for the word blueberry.",
+        "{\"keyword\":\"blueberry\"}",
+        "memory.keyword");
 
     Output output = tester.getOutput();
-
     assertEquals(
-        "I'm sorry, I didn't catch the name. Can you repeat that?", output.getFulfillmentText());
+        "Sorry, there were no results matching the keyword \"blueberry.\"",
+        output.getFulfillmentText());
     assertNull(output.getDisplay());
   }
 
-  @Test
-  public void testConsecutiveChanges() throws Exception {
+  private List<List<String>> unpackAllComments(List<Value> identifiedCommentList, String word) {
+    List<List<String>> allComments = new ArrayList<>();
 
-    // Set name to be Tom -- should output display name as Tom since first name change
+    for (Value listObject : identifiedCommentList) {
+      Map<String, Value> commentGroup = listObject.getStructValue().getFieldsMap();
+      String identifiedComment = getComment(commentGroup.get("key"));
+      assertTrue(identifiedComment.toLowerCase().contains(word.toLowerCase()));
 
-    String jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"Tom\","
-            + "\"type\": \"\"}";
+      List<Value> surroundingComments = commentGroup.get("value").getListValue().getValuesList();
+      List<String> comments =
+          surroundingComments.stream()
+              .map((surroundingCommentEntity) -> getComment(surroundingCommentEntity))
+              .collect(Collectors.toList());
+      allComments.add(comments);
+    }
+    return allComments;
+  }
 
-    tester.setParameters("Change my name to Tom.", jsonParams, "name.change");
-
-    Output output = tester.getOutput();
-
-    assertEquals("Changing your first name to be Tom.", output.getFulfillmentText());
-    assertEquals("Tom", output.getDisplay());
-
-    // Set nickname to be NicknameTom -- should output display name as NicknameTom since nickname >
-    // name
-
-    jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"NicknameTom\","
-            + "\"type\": \"nickname\"}";
-    tester.setParameters("Change my nickname to Tom.", jsonParams, "name.change");
-
-    output = tester.getOutput();
-
-    assertEquals("Changing your nickname to be NicknameTom.", output.getFulfillmentText());
-    assertEquals("NicknameTom", output.getDisplay());
-
-    // Set name to be NameTom -- should output display name as NicknameTom since nickname exists and
-    // nickname > name
-
-    jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"NameTom\","
-            + "\"type\": \"first name\"}";
-    tester.setParameters("Change my first name to NameTom.", jsonParams, "name.change");
-
-    output = tester.getOutput();
-
-    assertEquals("Changing your first name to be NameTom.", output.getFulfillmentText());
-    assertEquals("NicknameTom", output.getDisplay());
-
-    // Set last name to be LastNameTom -- should output display name as NicknameTom since last name
-    // never displayed
-
-    jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"LastNameTom\","
-            + "\"type\": \"last name\"}";
-    tester.setParameters("Change my first name to NameTom.", jsonParams, "name.change");
-
-    output = tester.getOutput();
-
-    assertEquals("Changing your last name to be LastNameTom.", output.getFulfillmentText());
-    assertEquals("NicknameTom", output.getDisplay());
-
-    // Set nickname to be NewNicknameTom -- should output display name as NicknameTom since nickname
-    // > name
-
-    jsonParams =
-        "{\"nick-name\": \"\","
-            + "\"last-name\": \"\","
-            + "\"given-name\": \"NewNicknameTom\","
-            + "\"type\": \"nickname\"}";
-    tester.setParameters("Change my nickname to NewNicknameTom.", jsonParams, "name.change");
-
-    output = tester.getOutput();
-
-    assertEquals("Changing your nickname to be NewNicknameTom.", output.getFulfillmentText());
-    assertEquals("NewNicknameTom", output.getDisplay());
+  private String getComment(Value commentEntity) {
+    return commentEntity
+        .getStructValue()
+        .getFieldsMap()
+        .get("propertyMap")
+        .getStructValue()
+        .getFieldsMap()
+        .get("comment")
+        .getStringValue();
   }
 }

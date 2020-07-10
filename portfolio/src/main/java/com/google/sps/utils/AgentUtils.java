@@ -23,6 +23,21 @@ public class AgentUtils {
   private static DatastoreService datastore;
   private static Logger log = LoggerFactory.getLogger(Name.class);
 
+  /**
+   * Method that creates and returns an Output object which is passed to frontend JS that
+   * fulfillment and display info for user requests. If no backend fulfillment is necessary for the
+   * given intent, it defaults to an Output object containing the standard Dialogflow response. If
+   * the intent cannot be understood, it returns an Output object with a default fulfillment stating
+   * that intent was not heard.
+   *
+   * @param queryResult DialogFlowClient object which contains all attributes of Dialogflow's intent
+   *     detection.
+   * @param languageCode String containing the language to use for the audio file returned in the
+   *     Output object.
+   * @param userServiceInput UserService instance to access userID and other user info if necessary.
+   * @param datastoreInput DatastoreService instance used to access past comments from the user's
+   *     database if necessary.
+   */
   public static Output getOutput(
       DialogFlowClient queryResult,
       String languageCode,
@@ -66,7 +81,6 @@ public class AgentUtils {
           | ArrayIndexOutOfBoundsException
           | NullPointerException
           | TranslateException e) {
-        e.printStackTrace();
         log.info("Error in object creation.");
         e.printStackTrace();
       }
