@@ -66,9 +66,9 @@ public class BooksAgent implements Agent {
     } else if (intentName.equals("more")) {
       // Load BookQuery, totalResults, resultsStored
       BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery();
-      int prevStartIndex = BooksMemoryUtils.getStoredStartIndex();
-      int resultsStored = BooksMemoryUtils.getStoredResultsNum();
-      int totalResults = BooksMemoryUtils.getStoredTotalResults();
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex");
+      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored");
+      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults");
 
       // Increment startIndex
       int startIndex = getNextStartIndex(prevStartIndex, totalResults);
@@ -107,9 +107,9 @@ public class BooksAgent implements Agent {
     } else if (intentName.equals("previous")) {
       // Load BookQuery, totalResults, resultsStored
       BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery();
-      int prevStartIndex = BooksMemoryUtils.getStoredStartIndex();
-      int resultsStored = BooksMemoryUtils.getStoredResultsNum();
-      int totalResults = BooksMemoryUtils.getStoredTotalResults();
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex");
+      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored");
+      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults");
 
       // Increment startIndex
       int startIndex = prevStartIndex - displayNum;
