@@ -22,7 +22,6 @@ import com.google.gson.*;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.utils.AgentUtils;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
@@ -57,9 +56,9 @@ public class BookQuery implements Serializable {
    * @return BookQuery object
    */
   public static BookQuery createBookQuery(String userInput, Map<String, Value> parameters)
-      throws IOException {
+      throws IllegalArgumentException {
     if (userInput == null || userInput.isEmpty()) {
-      throw new IOException();
+      throw new IllegalArgumentException();
     } else {
       BookQuery bookQuery = new BookQuery(userInput, parameters);
       return bookQuery;
