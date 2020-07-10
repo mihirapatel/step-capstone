@@ -62,6 +62,18 @@
     </dependency>
 
     <dependency>
+     <groupId>com.google.api-client</groupId>
+     <artifactId>google-api-client</artifactId>
+     <version>1.30.9</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.google.apis</groupId>
+        <artifactId>google-api-services-books</artifactId>
+        <version>v1-rev20200617-1.30.9</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-speech</artifactId>
     </dependency>
@@ -147,6 +159,12 @@
       <artifactId>google-api-client-appengine</artifactId>
       <version>1.23.0</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client-gson</artifactId>
+      <version>1.21.0</version>
     </dependency>
 
   </dependencies>
