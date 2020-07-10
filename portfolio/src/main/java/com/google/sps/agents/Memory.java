@@ -20,7 +20,11 @@ import org.slf4j.LoggerFactory;
 /** Memory Agent */
 public class Memory implements Agent {
 
+<<<<<<< HEAD
   private static Logger log = LoggerFactory.getLogger(Memory.class);
+=======
+  private static Logger log = LoggerFactory.getLogger(MemoryUtils.class);
+>>>>>>> Working memory tests for duration and keyword.
 
   private final String intentName;
   private String userID;
