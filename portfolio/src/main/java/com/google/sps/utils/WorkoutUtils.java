@@ -40,7 +40,7 @@ public class WorkoutUtils {
     String maxResults = "maxResults=" + String.valueOf(numVideos);
     String q = "q=" + String.join("+", workoutLength, workoutType, youtubeChannel);
     String type = "type=video";
-    String key = "key=AIzaSyBMMs48WLeVlD0aX2QPhpaiiIGsV_ntutA";
+    String key = "key=API_KEY_HERE";
     URL = String.join("&", URL, maxResults, q, type, key);
     System.out.println(URL);
     JSONObject json = readJsonFromUrl(URL);
