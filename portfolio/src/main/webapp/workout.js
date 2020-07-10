@@ -21,8 +21,7 @@ function createVideoDivs(videos) {
 
     var videoLink = document.createElement('a');
     var thumbnailImage = document.createElement('img');
-    console.log(video.thumbnail);
-    thumbnailImage.src = video.thumbnail;
+    thumbnailImage.src = video.thumbnail.replace(/"/g, '');
     thumbnailImage.setAttribute("width", "320");
     thumbnailImage.setAttribute("height", "180");
     videoLink.appendChild(thumbnailImage);
