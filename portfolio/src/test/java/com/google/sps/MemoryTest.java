@@ -76,7 +76,7 @@ public class MemoryTest {
    * feature works and grabs 6 comments before and after identified comment
    */
   @Test
-  public void testHello() throws Exception {
+  public void testGeneral() throws Exception {
 
     tester.setParameters(
         "Search conversation history for the word hello.",
@@ -122,7 +122,7 @@ public class MemoryTest {
    * quotations (mainly that \" symbol doesn't break anything)
    */
   @Test
-  public void testApple() throws Exception {
+  public void testQuoteAroundWord() throws Exception {
 
     tester.setParameters(
         "Search conversation history for the word apple.",
@@ -160,7 +160,7 @@ public class MemoryTest {
    * that program identifies only one comment even though keyword appears twice in that comment
    */
   @Test
-  public void testSentence() throws Exception {
+  public void testWordTwiceInOneSentence() throws Exception {
 
     tester.setParameters(
         "Search conversation history for the word sentence.",
@@ -193,7 +193,7 @@ public class MemoryTest {
    * comments after it
    */
   @Test
-  public void testTest() throws Exception {
+  public void testNoSurroundingCommentAfter() throws Exception {
 
     tester.setParameters(
         "Search conversation history for the word test.",
