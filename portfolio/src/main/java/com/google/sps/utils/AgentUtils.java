@@ -54,6 +54,7 @@ public class AgentUtils {
           | NullPointerException
           | TranslateException e) {
         System.out.println("Error in object creation.");
+        e.printStackTrace();
       }
     }
 
