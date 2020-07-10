@@ -18,8 +18,9 @@ public class BooksMemoryUtils {
    * Entity with the corresponding properties
    *
    * @param books ArrayList of Book objects to store
+   * @param startIndex index to start order at
    */
-  public static void storeBooks(ArrayList<Book> books) {
+  public static void storeBooks(ArrayList<Book> books, int startIndex) {
     for (int i = 0; i < books.size(); ++i) {
       long timestamp = System.currentTimeMillis();
       Book currentBook = books.get(i);
@@ -30,7 +31,7 @@ public class BooksMemoryUtils {
 
       bookEntity.setProperty("title", currentBook.getTitle());
       bookEntity.setProperty("book", bookBlob);
-      bookEntity.setProperty("order", i);
+      bookEntity.setProperty("order", i + startIndex);
       bookEntity.setProperty("timestamp", timestamp);
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(bookEntity);
@@ -61,14 +62,14 @@ public class BooksMemoryUtils {
    * corresponding properties
    *
    * @param startIndex index to start retrieving Volume objects from
-   * @param resultsReturned number of results returned by query
+   * @param resultsStored number of results stored
    * @param totalResults total matches in Google Book API
    */
-  public static void storeIndices(int startIndex, int resultsReturned, int totalResults) {
+  public static void storeIndices(int startIndex, int totalResults, int resultsStored) {
     long timestamp = System.currentTimeMillis();
     Entity indicesEntity = new Entity("Indices");
     indicesEntity.setProperty("startIndex", startIndex);
-    indicesEntity.setProperty("resultsReturned", resultsReturned);
+    indicesEntity.setProperty("resultsStored", resultsStored);
     indicesEntity.setProperty("totalResults", totalResults);
     indicesEntity.setProperty("timestamp", timestamp);
 
@@ -99,24 +100,27 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a list of Book objects of length numToRetrieve from the stored Book
-   * objects in Datastore
+   * objects in Datastore, starting at startIndex
    *
    * @param numToRetrieve number of Books to retrieve
+   * @param startIndex index to start retrieving results from
    * @return ArrayList<Book>
    */
-  public static ArrayList<Book> getStoredBooksList(int numToRetrieve) {
+  public static ArrayList<Book> getStoredBooksToDisplay(int numToRetrieve, int startIndex) {
     Query query = new Query("Book").addSort("order", SortDirection.ASCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<Book> books = new ArrayList<>();
-    int i = 0;
+    int added = 0;
     for (Entity entity : results.asIterable()) {
-      if (i < numToRetrieve) {
-        books.add(getBookFromEntity(entity));
-        ++i;
-      } else {
-        break;
+      if (getStoredBookIndex(entity) >= startIndex) {
+        if (added < numToRetrieve) {
+          books.add(getBookFromEntity(entity));
+          ++added;
+        } else {
+          break;
+        }
       }
     }
     return books;
@@ -132,6 +136,17 @@ public class BooksMemoryUtils {
     Blob bookBlob = (Blob) bookEntity.getProperty("book");
     Book book = SerializationUtils.deserialize(bookBlob.getBytes());
     return book;
+  }
+
+  /**
+   * This function returns the index of the the Book Entity parameter in Datastore
+   *
+   * @param bookEntity Entity in Datastore
+   * @return int index
+   */
+  public static int getStoredBookIndex(Entity bookEntity) {
+    Long lngValue = (Long) bookEntity.getProperty("order");
+    return lngValue.intValue();
   }
 
   /**
@@ -164,13 +179,13 @@ public class BooksMemoryUtils {
   /**
    * This function returns the number of results returned in the previous BookQuery request
    *
-   * @return int resultsReturned
+   * @return int resultsStored
    */
-  public static int getStoredResultsReturned() {
+  public static int getStoredResultsNum() {
     Query query = new Query("Indices");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Entity entity = datastore.prepare(query).asSingleEntity();
-    Long lngValue = (Long) entity.getProperty("resultsReturned");
+    Long lngValue = (Long) entity.getProperty("resultsStored");
     return lngValue.intValue();
   }
 
