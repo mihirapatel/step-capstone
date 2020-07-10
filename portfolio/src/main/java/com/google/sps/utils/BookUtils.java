@@ -93,7 +93,7 @@ public class BookUtils {
 
     Books books =
         new Books.Builder(transport, gsonFactory, null)
-            .setApplicationName("Test Application name")
+            .setApplicationName("APPNAME")
             .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
             .build();
     return books;
