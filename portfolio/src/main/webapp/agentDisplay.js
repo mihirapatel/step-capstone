@@ -23,6 +23,9 @@ function displayResponse(stream) {
       }
       mapContainer = nearestPlacesMap(outputAsJson.display);
       appendDisplay(mapContainer);
+    } else if (outputAsJson.intent.includes("workout.find")) {
+      workoutContainer = workoutVideos(outputAsJson.display);
+      appendDisplay(workoutContainer);
     }
   }
   outputAudio(stream);
