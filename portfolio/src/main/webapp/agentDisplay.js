@@ -36,7 +36,7 @@ function placeUserInput(text, container) {
     streamingContainer.innerHTML = "";
     streamingContainer.style.display = "none";
   }
-  if (text != " (null) "){
+  if (text){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
     placeObjectContainer("<p>" + formattedInput + "</p>", "user-side", container);
   }

@@ -186,8 +186,18 @@ public class TestHelper {
    * @param comments List of strings containing comments to be stored in custom database.
    */
   public void setCustomDatabase(List<String> comments) {
+    setCustomDatabase(comments, (new Date()).getTime());
+  }
+
+  /**
+   * Populates customizes datastore with desired string comments.
+   *
+   * @param comments List of strings containing comments to be stored in custom database.
+   */
+  public void setCustomDatabase(List<String> comments, long startTime) {
+    int increment = 0;
     for (String comment : comments) {
-      MemoryUtils.makeCommentEntity("1", customDatastore, comment, true);
+      MemoryUtils.makeCommentEntity("1", customDatastore, comment, true, startTime + (increment++));
     }
   }
 

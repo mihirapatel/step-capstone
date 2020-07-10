@@ -6,11 +6,16 @@ import java.util.List;
 
 public class ConversationOutput {
   private String keyword;
-  List<Pair<Entity, List<Entity>>> conversationList;
+  List<Pair<Entity, List<Entity>>> conversationPairList;
+  List<Entity> conversationList;
 
-  public ConversationOutput(String keyword, List<Pair<Entity, List<Entity>>> conversationList) {
-    this.keyword = keyword;
+  public ConversationOutput(List<Entity> conversationList) {
     this.conversationList = conversationList;
+  }
+
+  public ConversationOutput(String keyword, List<Pair<Entity, List<Entity>>> conversationPairList) {
+    this.keyword = keyword;
+    this.conversationPairList = conversationPairList;
   }
 
   public String toString() {

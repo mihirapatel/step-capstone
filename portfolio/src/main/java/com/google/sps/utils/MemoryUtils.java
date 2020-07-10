@@ -14,8 +14,13 @@ import com.google.sps.data.Pair;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MemoryUtils {
+
+  private static Logger log = LoggerFactory.getLogger(MemoryUtils.class);
+
   /**
    * Saves comment information into comment history database if the user is logged in.
    *
@@ -42,11 +47,26 @@ public class MemoryUtils {
    */
   public static void makeCommentEntity(
       String userID, DatastoreService datastore, String comment, boolean isUser) {
+    makeCommentEntity(userID, datastore, comment, isUser, System.currentTimeMillis());
+  }
+
+  /**
+   * Creates a comment entity with a given timestamp and stores it in the given user's database.
+   * Should only be called for testing purposes.
+   *
+   * @param userID The ID corresponding to user who made the comment
+   * @param datastore Database instance.
+   * @param comment String comment to be stored.
+   * @param isUser Boolean indicating whether the comment was said by user or assistant.
+   * @param timeMillis Timestamp to assign to the comment.
+   */
+  public static void makeCommentEntity(
+      String userID, DatastoreService datastore, String comment, boolean isUser, long timeMillis) {
     Entity entity = new Entity("CommentHistory");
     entity.setProperty("id", userID);
     entity.setProperty("isUser", isUser);
     entity.setProperty("comment", comment);
-    entity.setProperty("timestamp", String.valueOf(System.currentTimeMillis()));
+    entity.setProperty("timestamp", timeMillis);
     datastore.put(entity);
   }
 
@@ -83,22 +103,13 @@ public class MemoryUtils {
    */
   public static List<Pair<Entity, List<Entity>>> getKeywordCommentEntitiesWithTime(
       DatastoreService datastore, String userID, String keyword, long startTime, long endTime) {
-    Filter currentUserFilter =
-        new CompositeFilter(
-            CompositeFilterOperator.AND,
-            Arrays.asList(
-                new FilterPredicate("id", FilterOperator.EQUAL, userID),
-                new FilterPredicate("timestamp", FilterOperator.GREATER_THAN_OR_EQUAL, startTime),
-                new FilterPredicate("timestamp", FilterOperator.LESS_THAN_OR_EQUAL, endTime)));
+    Filter currentUserFilter = getDurationFilter(userID, startTime, endTime);
     return getCommentListHelper(datastore, currentUserFilter, keyword);
   }
 
   private static List<Pair<Entity, List<Entity>>> getCommentListHelper(
       DatastoreService datastore, Filter queryFilter, String keyword) {
-    Query query =
-        new Query("CommentHistory")
-            .setFilter(queryFilter)
-            .addSort("timestamp", SortDirection.ASCENDING);
+    Query query = new Query("CommentHistory").setFilter(queryFilter);
 
     List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
@@ -134,11 +145,22 @@ public class MemoryUtils {
    */
   public static List<Entity> getTimePeriodCommentEntities(
       DatastoreService datastore, String userID, long startTime, long endTime) {
-    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, userID);
+    Filter currentUserFilter = getDurationFilter(userID, startTime, endTime);
     Query query =
         new Query("CommentHistory")
             .setFilter(currentUserFilter)
             .addSort("timestamp", SortDirection.ASCENDING);
     return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+  }
+
+  private static Filter getDurationFilter(String userID, long startTime, long endTime) {
+    log.info("Duration start: " + startTime);
+    log.info("Duration end: " + endTime);
+    return new CompositeFilter(
+        CompositeFilterOperator.AND,
+        Arrays.asList(
+            new FilterPredicate("id", FilterOperator.EQUAL, userID),
+            new FilterPredicate("timestamp", FilterOperator.GREATER_THAN_OR_EQUAL, startTime),
+            new FilterPredicate("timestamp", FilterOperator.LESS_THAN_OR_EQUAL, endTime)));
   }
 }

@@ -2,6 +2,7 @@ package com.google.sps.utils;
 
 // Imports the Google Cloud client library
 import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.log.InvalidRequestException;
 import com.google.appengine.api.users.UserService;
 import com.google.cloud.translate.TranslateException;
 import com.google.maps.errors.ApiException;
@@ -81,7 +82,8 @@ public class AgentUtils {
           | IllegalArgumentException
           | ArrayIndexOutOfBoundsException
           | NullPointerException
-          | TranslateException e) {
+          | TranslateException
+          | InvalidRequestException e) {
         log.info("Error in object creation.");
         e.printStackTrace();
       }
@@ -103,7 +105,7 @@ public class AgentUtils {
   private static Agent createAgent(
       String agentName, String intentName, String queryText, Map<String, Value> parameterMap)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
+          ArrayIndexOutOfBoundsException, InvalidRequestException {
     switch (agentName) {
       case "books":
         return new BooksAgent(intentName, queryText, parameterMap);
