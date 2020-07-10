@@ -164,42 +164,17 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function returns the previous start index stored in Datastore
+   * This function returns the previous index specified by indexName stored in Datastore Indices
+   * Entity
    *
+   * @param indexName name of Indices: startIndex, resultsStored or
    * @return int startIndex
    */
-  public static int getStoredStartIndex() {
+  public static int getStoredIndices(String indexName) {
     Query query = new Query("Indices");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Entity entity = datastore.prepare(query).asSingleEntity();
-    Long lngValue = (Long) entity.getProperty("startIndex");
-    return lngValue.intValue();
-  }
-
-  /**
-   * This function returns the number of results returned in the previous BookQuery request
-   *
-   * @return int resultsStored
-   */
-  public static int getStoredResultsNum() {
-    Query query = new Query("Indices");
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Entity entity = datastore.prepare(query).asSingleEntity();
-    Long lngValue = (Long) entity.getProperty("resultsStored");
-    return lngValue.intValue();
-  }
-
-  /**
-   * This function returns the total number of results found by the Google Books API for the
-   * previous BookQuery request
-   *
-   * @return int totalResults
-   */
-  public static int getStoredTotalResults() {
-    Query query = new Query("Indices");
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Entity entity = datastore.prepare(query).asSingleEntity();
-    Long lngValue = (Long) entity.getProperty("totalResults");
+    Long lngValue = (Long) entity.getProperty(indexName);
     return lngValue.intValue();
   }
 }
