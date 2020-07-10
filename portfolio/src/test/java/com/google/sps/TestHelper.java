@@ -68,7 +68,7 @@ public class TestHelper {
   }
 
   // Retrieves output in the same form as that which is passed to javascript
-  public Output getOutput() throws Exception {
+  public Output getOutput() throws IOException {
     StringWriter stringWriter = new StringWriter();
     PrintWriter writer = new PrintWriter(stringWriter);
     when(response.getWriter()).thenReturn(writer);
