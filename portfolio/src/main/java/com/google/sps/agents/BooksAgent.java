@@ -11,8 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-/** Books Agent */
-public class Books implements Agent {
+/**
+ * Books Agent handles user's requests for books from Google Books API. It determines appropriate
+ * outputs and display information to send to the user interface based on Dialogflow's detected Book
+ * intent.
+ */
+public class BooksAgent implements Agent {
   private final String intentName;
   private final String userInput;
   private String output;
@@ -21,8 +25,8 @@ public class Books implements Agent {
   private BookQuery query;
   private int displayNum;
 
-  public Books(String intentName, String userInput, Map<String, Value> parameters)
-      throws IOException {
+  public BooksAgent(String intentName, String userInput, Map<String, Value> parameters)
+      throws IOException, IllegalArgumentException {
     this.displayNum = 5;
     this.intentName = intentName;
     this.userInput = userInput;
@@ -30,7 +34,8 @@ public class Books implements Agent {
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) throws IOException {
+  public void setParameters(Map<String, Value> parameters)
+      throws IOException, IllegalArgumentException {
     if (intentName.equals("search")) {
       // Create new BookQuery request, sets startIndex at 0
       BookQuery query = BookQuery.createBookQuery(this.userInput, parameters);
