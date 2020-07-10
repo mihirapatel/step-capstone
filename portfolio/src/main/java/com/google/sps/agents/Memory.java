@@ -5,6 +5,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.log.InvalidRequestException;
 import com.google.appengine.api.users.UserService;
+import com.google.gson.Gson;
 import com.google.protobuf.Value;
 import com.google.sps.data.ConversationOutput;
 import com.google.sps.data.Pair;
