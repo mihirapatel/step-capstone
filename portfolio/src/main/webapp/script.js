@@ -87,7 +87,6 @@ function startRecording() {
         //enable the record button if getUserMedia() fails
         record.disabled = false;
         stop.disabled = true;
-
     });
 }
 
@@ -674,6 +673,7 @@ function createVideoDivs(videos) {
 
     var videoLink = document.createElement('a');
     var thumbnailImage = document.createElement('img');
+    console.log(video.thumbnail);
     thumbnailImage.src = video.thumbnail;
     thumbnailImage.setAttribute("width", "320");
     thumbnailImage.setAttribute("height", "180");
