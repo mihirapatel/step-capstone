@@ -162,11 +162,10 @@ public class Book implements Serializable {
     if (volume.getVolumeInfo().getIndustryIdentifiers() != null) {
       ArrayList<IndustryIdentifiers> industryIdentifiers =
           new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
-      for (int i = 0; i < industryIdentifiers.size(); ++i) {
-        if (industryIdentifiers.get(i).getType() != null
-            && industryIdentifiers.get(i).getType().contains("ISBN")) {
-          if (industryIdentifiers.get(i).getIdentifier() != null) {
-            this.isbn = industryIdentifiers.get(i).getIdentifier();
+      for (IndustryIdentifiers id : industryIdentifiers) {
+        if (id.getType() != null && id.getType().contains("ISBN")) {
+          if (id.getIdentifier() != null) {
+            this.isbn = id.getIdentifier();
             return;
           }
         }
@@ -234,12 +233,8 @@ public class Book implements Serializable {
    * @return boolean
    */
   public static boolean hasValidParameters(Volume volume) {
-    try {
-      if (volume.getVolumeInfo().getTitle() != null) {
-        return true;
-      }
-    } catch (Exception e) {
-      return false;
+    if (volume.getVolumeInfo() != null && volume.getVolumeInfo().getTitle() != null) {
+      return true;
     }
     return false;
   }
