@@ -19,7 +19,6 @@
 const mainSection = document.querySelector('.main-controls');
 const formContainer = document.getElementsByName('input-form')[0];
 const textInputContainer = document.getElementById("text-input");
- 
 
 formContainer.onkeyup = function(e){
   if(e.keyCode == 13 && textInputContainer.value.length != 0) { //return key and non-empty input
