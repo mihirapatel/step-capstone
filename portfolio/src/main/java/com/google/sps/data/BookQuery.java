@@ -77,32 +77,30 @@ public class BookQuery implements Serializable {
    */
   private BookQuery(String userInput, Map<String, Value> parameters) {
     this.userInput = userInput;
-    setType(parameters);
-    setCategories(parameters);
-    setAuthors(parameters);
-    setTitle(parameters);
-    setOrder(parameters);
-    setLanguage(parameters);
-    setQueryString(parameters);
+    setType(parameters.get("type"));
+    setCategories(parameters.get("categories"));
+    setAuthors(parameters.get("authors"));
+    setTitle(parameters.get("title"));
+    setOrder(parameters.get("order"));
+    setLanguage(parameters.get("language"));
+    setQueryString();
   }
 
-  private void setType(Map<String, Value> parameters) {
-    if (parameters.get("type") != null && !parameters.get("type").getStringValue().isEmpty()) {
-      this.type = parameters.get("type").getStringValue();
+  private void setType(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      this.type = paramValue.getStringValue();
     }
   }
 
-  private void setCategories(Map<String, Value> parameters) {
-    if (parameters.get("categories") != null
-        && !parameters.get("categories").getStringValue().isEmpty()) {
-      this.categories = parameters.get("categories").getStringValue();
+  private void setCategories(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      this.categories = paramValue.getStringValue();
     }
   }
 
-  private void setAuthors(Map<String, Value> parameters) {
-    if (parameters.get("authors") != null) {
-      ArrayList<Value> valueList =
-          new ArrayList<Value>(parameters.get("authors").getListValue().getValuesList());
+  private void setAuthors(Value paramValue) {
+    if (paramValue != null) {
+      ArrayList<Value> valueList = new ArrayList<Value>(paramValue.getListValue().getValuesList());
       ArrayList<String> authorList = new ArrayList<String>();
       for (int i = 0; i < valueList.size(); ++i) {
         Struct personStruct = valueList.get(i).getStructValue();
@@ -120,30 +118,26 @@ public class BookQuery implements Serializable {
     }
   }
 
-  private void setTitle(Map<String, Value> parameters) {
-    if (parameters.get("title") != null && !parameters.get("title").getStringValue().isEmpty()) {
-      this.title =
-          "intitle:\""
-              + String.join("+", parameters.get("title").getStringValue().split(" "))
-              + "\"";
+  private void setTitle(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      this.title = "intitle:\"" + String.join("+", paramValue.getStringValue().split(" ")) + "\"";
     }
   }
 
-  private void setOrder(Map<String, Value> parameters) {
-    if (parameters.get("order") != null && !parameters.get("order").getStringValue().isEmpty()) {
-      this.order = parameters.get("order").getStringValue();
+  private void setOrder(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      this.order = paramValue.getStringValue();
     }
   }
 
-  private void setLanguage(Map<String, Value> parameters) {
-    if (parameters.get("language") != null
-        && !parameters.get("language").getStringValue().isEmpty()) {
-      String languageName = parameters.get("language").getStringValue();
+  private void setLanguage(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      String languageName = paramValue.getStringValue();
       this.language = AgentUtils.getLanguageCode(languageName);
     }
   }
 
-  private void setQueryString(Map<String, Value> parameters) {
+  private void setQueryString() {
     String queryText = String.join("+", this.userInput.split(" "));
     if (this.authors != null) {
       queryText += "+" + this.authors;
