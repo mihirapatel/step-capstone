@@ -121,25 +121,25 @@ public class Books implements Agent {
           BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
       this.display = bookListToString(booksToDisplay);
     } else if (intentName.equals("about")) {
-      // Load Book results, totalResults, resultsReturned
+      // TODO: Load Book results, totalResults, resultsReturned
 
-      // Get information about requested Book
-      // Make output information
+      // TODO: Get information about requested Book
+      // TODO: Make output information
 
-      // Don't change any stored information
+      // TODO: Don't change any stored information
     } else if (intentName.equals("preview")) {
-      // Load Book results, totalResults, resultsReturned
+      // TODO: Load Book results, totalResults, resultsReturned
 
-      // Get information about requested Book
-      // Make output information
+      // TODO: Get information about requested Book
+      // TODO: Make output information
 
-      // Don't change any stored information
+      // TODO: Don't change any stored information
     } else if (intentName.equals("results")) {
-      // Load Book results, totalResults, resultsReturned
+      // TODO: Load Book results, totalResults, resultsReturned
 
-      // Get output information from stored Book results
+      // TODO: Get output information from stored Book results
 
-      // Don't change any stored information
+      // TODO: Don't change any stored information
     }
   }
 
