@@ -116,7 +116,7 @@ public class BookUtils {
           Book book = Book.createBook(vol);
           books.add(book);
         } catch (IOException e) {
-          continue;
+          System.out.println("Result with invalid title was not added to list.");
         }
       }
       return books;
