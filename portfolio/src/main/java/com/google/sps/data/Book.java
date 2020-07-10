@@ -159,14 +159,16 @@ public class Book implements Serializable {
   }
 
   private void setISBN(Volume volume) {
-    ArrayList<IndustryIdentifiers> industryIdentifiers =
-        new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
-    for (int i = 0; i < industryIdentifiers.size(); ++i) {
-      if (industryIdentifiers.get(i).getType() != null
-          && industryIdentifiers.get(i).getType().contains("ISBN")) {
-        if (industryIdentifiers.get(i).getIdentifier() != null) {
-          this.isbn = industryIdentifiers.get(i).getIdentifier();
-          return;
+    if (volume.getVolumeInfo().getIndustryIdentifiers() != null) {
+      ArrayList<IndustryIdentifiers> industryIdentifiers =
+          new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
+      for (int i = 0; i < industryIdentifiers.size(); ++i) {
+        if (industryIdentifiers.get(i).getType() != null
+            && industryIdentifiers.get(i).getType().contains("ISBN")) {
+          if (industryIdentifiers.get(i).getIdentifier() != null) {
+            this.isbn = industryIdentifiers.get(i).getIdentifier();
+            return;
+          }
         }
       }
     }
@@ -226,16 +228,14 @@ public class Book implements Serializable {
   }
 
   /**
-   * Checks if Volume object has a valid title and description getTitle() and getDescription()
-   * return null if there isn't a title or description for the volume object
+   * Checks if Volume object has a valid title
    *
    * @param volume Volume Object
    * @return boolean
    */
   public static boolean hasValidParameters(Volume volume) {
     try {
-      if (volume.getVolumeInfo().getTitle() != null
-          && volume.getVolumeInfo().getDescription() != null) {
+      if (volume.getVolumeInfo().getTitle() != null) {
         return true;
       }
     } catch (Exception e) {

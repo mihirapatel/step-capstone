@@ -71,7 +71,7 @@ public class BookUtils {
     if (query.getLanguage() != null) {
       list.setLangRestrict(query.getLanguage());
     }
-    list.setMaxResults(Long.valueOf(10));
+    list.setMaxResults(Long.valueOf(40));
     list.setStartIndex(Long.valueOf(startIndex));
 
     return list.execute();

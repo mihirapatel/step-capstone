@@ -19,12 +19,11 @@ public class Books implements Agent {
   private String display;
   private String redirect;
   private BookQuery query;
-  private int startIndex;
-  private int totalResults;
-  private int resultsReturned;
+  private int displayNum;
 
   public Books(String intentName, String userInput, Map<String, Value> parameters)
       throws IOException {
+    this.displayNum = 5;
     this.intentName = intentName;
     this.userInput = userInput;
     setParameters(parameters);
@@ -33,44 +32,94 @@ public class Books implements Agent {
   @Override
   public void setParameters(Map<String, Value> parameters) throws IOException {
     if (intentName.equals("search")) {
-
       // Create new BookQuery request, sets startIndex at 0
       BookQuery query = BookQuery.createBookQuery(this.userInput, parameters);
 
       // Retrieve books
-      this.startIndex = 0;
+      int startIndex = 0;
       ArrayList<Book> results = BookUtils.getRequestedBooks(query, startIndex);
-      this.totalResults = BookUtils.getTotalVolumesFound(query, startIndex);
-      this.resultsReturned = results.size();
+      int totalResults = BookUtils.getTotalVolumesFound(query, startIndex);
+      int resultsReturned = results.size();
 
       if (resultsReturned > 0) {
         // Delete stored BookQuery, Book results, totalResults, resultsReturned
         BooksMemoryUtils.deleteAllStoredBookInformation();
 
         // Store BookQuery, Book results, totalResults, resultsReturned
-        BooksMemoryUtils.storeBooks(results);
+        BooksMemoryUtils.storeBooks(results, startIndex);
         BooksMemoryUtils.storeBookQuery(query);
-        BooksMemoryUtils.storeIndices(this.startIndex, this.totalResults, this.resultsReturned);
+        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsReturned);
 
-        // Get output information from stored Book results
-        this.display = bookListToString(BooksMemoryUtils.getStoredBooksList(resultsReturned));
-
-        // Set fulfillment
+        ArrayList<Book> booksToDisplay =
+            BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
+        this.display = bookListToString(booksToDisplay);
         this.output = "Here's what I found.";
       } else {
         this.output = "I couldn't find any results. Can you try again?";
       }
 
     } else if (intentName.equals("more")) {
-      // Load BookQuery, totalResults, resultsReturned
+      // Load BookQuery, totalResults, resultsStored
+      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery();
+      int prevStartIndex = BooksMemoryUtils.getStoredStartIndex();
+      int resultsStored = BooksMemoryUtils.getStoredResultsNum();
+      int totalResults = BooksMemoryUtils.getStoredTotalResults();
+
       // Increment startIndex
-      // Retrieve books
+      int startIndex = getNextStartIndex(prevStartIndex, totalResults);
+      if (startIndex == -1) {
+        this.output = "I'm sorry, there are no more results.";
+        return;
+      } else if (startIndex + displayNum <= resultsStored) {
+        // Replace indices
+        BooksMemoryUtils.deleteStoredEntities("Indices");
+        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsStored);
+      } else {
+        // Retrieve books
+        ArrayList<Book> results = BookUtils.getRequestedBooks(prevQuery, startIndex);
+        int resultsReturned = results.size();
+        int newResultsStored = resultsReturned + resultsStored;
 
-      // Delete stored BookQuery, Book results, totalResults, resultsReturned
-      // Store BookQuery, Book results, totalResults, resultsReturned
+        // Even though there are more results, if Volume objects don't have a title
+        // then we don't create any Book objects, so we still have to check for an empty Book list
+        if (resultsReturned == 0) {
+          this.output = "I'm sorry, there are no more results.";
+          return;
+        } else {
+          // Delete stored Book results and indices
+          BooksMemoryUtils.deleteStoredEntities("Indices");
 
-      // Get output information from stored Book results
+          // Store Book results and indices
+          BooksMemoryUtils.storeBooks(results, startIndex);
+          BooksMemoryUtils.storeIndices(startIndex, totalResults, newResultsStored);
+        }
+      }
+      ArrayList<Book> booksToDisplay =
+          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
+      this.display = bookListToString(booksToDisplay);
+      this.output = "Here's the next page of results";
 
+    } else if (intentName.equals("previous")) {
+      // Load BookQuery, totalResults, resultsStored
+      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery();
+      int prevStartIndex = BooksMemoryUtils.getStoredStartIndex();
+      int resultsStored = BooksMemoryUtils.getStoredResultsNum();
+      int totalResults = BooksMemoryUtils.getStoredTotalResults();
+
+      // Increment startIndex
+      int startIndex = prevStartIndex - displayNum;
+      if (startIndex < -1) {
+        this.output = "This is the first page of results.";
+        startIndex = 0;
+      } else {
+        // Replace indices
+        BooksMemoryUtils.deleteStoredEntities("Indices");
+        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsStored);
+        this.output = "Here's the previous page of results";
+      }
+      ArrayList<Book> booksToDisplay =
+          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
+      this.display = bookListToString(booksToDisplay);
     } else if (intentName.equals("about")) {
       // Load Book results, totalResults, resultsReturned
 
@@ -107,6 +156,14 @@ public class Books implements Agent {
   @Override
   public String getRedirect() {
     return this.redirect;
+  }
+
+  private int getNextStartIndex(int prevIndex, int total) {
+    int nextIndex = prevIndex + displayNum;
+    if (nextIndex < total) {
+      return nextIndex;
+    }
+    return -1;
   }
 
   private String bookListToString(ArrayList<Book> books) {
