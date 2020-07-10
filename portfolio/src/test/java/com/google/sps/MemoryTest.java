@@ -18,12 +18,34 @@ public class MemoryTest {
   private static Logger log = LoggerFactory.getLogger(MemoryTest.class);
   private TestHelper tester;
 
+  /**
+   * Test setup which prepopulates the database with a bunch of default values to test database
+   * retrieval for different keywords and time durations.
+   */
   @Before
   public void setUp() {
-    // Pre-populate database with some comments.
-    tester = new TestHelper("Hello.");
+    commentList =
+        Arrays.asList(
+            "hello",
+            "Hello!",
+            "tell me a joke",
+            "A bus is a vehicle that runs twice as fast when you are after it as when you are in it.",
+            "search conversation history for the word apple",
+            "Sorry, unable to find any results including the keyword \"apple.\"",
+            "Here is a sentence with two words in the same SENTENCE",
+            "hello",
+            "test1",
+            "test2",
+            "test3",
+            "test4",
+            "test5",
+            "test6",
+            "test7");
+    tester = new TestHelper();
+    tester.setCustomDatabase(commentList);
   }
 
+  /** Checks that no display output or database query is made if the user is not logged in. */
   @Test
   public void testNotLoggedIn() throws Exception {
 
@@ -57,6 +79,15 @@ public class MemoryTest {
     assertEquals("Tom", output.getDisplay());
   }
 
+  /**
+   * Tests a search for the keyword hello: - should identify the first hello at index 0 and
+   * surrounding conversation of comments at indices 0 - 6 - verifies that surrounding conversation
+   * feature works if there are no comments before identified comment - should identify the second
+   * hello at index 1 and surrounding conversation at indices 0 - 7 - verifies that program
+   * identifies keywords even if capitalization is different - should identiy the third hello at
+   * index 7 and surrounding conversation at indices 1 - 14 - verifies that surrounding conversation
+   * feature works and grabs 6 comments before and after identified comment
+   */
   @Test
   public void testFirstName() throws Exception {
 
@@ -73,6 +104,11 @@ public class MemoryTest {
     assertEquals("Tom", output.getDisplay());
   }
 
+  /**
+   * Tests a search for the keyword apple: - should identify the first apple at index 4 - should
+   * identify the second apple at index 5 - verifies that program identifies keywords inside
+   * quotations (mainly that \" symbol doesn't break anything)
+   */
   @Test
   public void testNickName() throws Exception {
 
@@ -89,6 +125,10 @@ public class MemoryTest {
     assertEquals("Tom", output.getDisplay());
   }
 
+  /**
+   * Tests a search for the keyword sentence: - should identify the comment at line 6 - verifies
+   * that program identifies only one comment even though keyword appears twice in that comment
+   */
   @Test
   public void testNickNameGiven() throws Exception {
 
@@ -105,6 +145,11 @@ public class MemoryTest {
     assertEquals("Tom", output.getDisplay());
   }
 
+  /**
+   * Tests a search for the keyword test: - should identify all comments after line 8 - verifies
+   * that surrounding conversation feature works for identified comments that have no surrounding
+   * comments after it
+   */
   @Test
   public void testOnlyLastName() throws Exception {
 
@@ -121,6 +166,10 @@ public class MemoryTest {
     assertEquals("test@example.com", output.getDisplay());
   }
 
+  /**
+   * Tests a search for the keyword blueberry: - verifies that a keyword that doesn't exist in
+   * conversation history return a search not found
+   */
   @Test
   public void testDidNotHearName() throws Exception {
 
