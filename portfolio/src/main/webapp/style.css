@@ -114,10 +114,12 @@ p {
  
 .user-side {
   text-align: right;
+  width: 75%;
 }
  
 .assistant-side {
   text-align: left;
+  width: 75%;
 }
  
 .media-display {
@@ -360,15 +362,20 @@ ul {
 }
 
 li {
-    background-color: #f1f1f1;
+    background-color: #fcfcfc;
     padding: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    border: 2px solid white;
 }
 
-li:nth-child(odd) {
-    background-color: #fcfcfc;
+.patterned:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+.active {
+    background-color: #e6e6e6;
 }
 
 #more {
@@ -384,4 +391,36 @@ li:nth-child(odd) {
    pointer-events: none;
    background-color: gray;
    color: black;
+}
+
+.memory {
+    background-color: white;
+    height: 400px;
+}
+
+.timestamp {
+    color: #999;
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.keyword-screen, .conversation-screen {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    vertical-align:top
+}
+
+.conversation-screen {
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.comment-text {
+    color: black;
+    font-size: 15px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
