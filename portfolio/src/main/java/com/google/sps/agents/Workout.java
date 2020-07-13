@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * Workout Agent: finds relevant workout videos through Youtube and schedules workout plans. Also
  * tracks workouts for user.
  */
-public class Workout implements Agent {
+public class WorkoutAgent implements Agent {
 
   private static Logger log = LoggerFactory.getLogger(Workout.class);
 
@@ -74,8 +74,15 @@ public class Workout implements Agent {
     return redirect;
   }
 
+  /**
+   * Private workoutFind method, that displays workouts specified by user request. Method sets
+   * parameters for workoutLength, workoutType, and youtubeChannel based on Dialogflow detection and
+   * makes calls to set display and set output. parameters map needs to include duration struct to
+   * set String workoutLength, String workoutType, and String youtubeChannel
+   *
+   * @param parameters parameter Map from Dialogflow
+   */
   private void workoutFind(Map<String, Value> parameters) throws IOException {
-    log.info(String.valueOf(parameters));
     String duration = parameters.get("duration").getStringValue();
     if (!duration.equals("")) {
       Struct durationStruct = parameters.get("duration").getStructValue();
@@ -95,6 +102,10 @@ public class Workout implements Agent {
     setWorkoutFindDisplay();
   }
 
+  /**
+   * Private setworkoutFindOutput method, that sets the agent output based on set parameters for
+   * workoutLength, workoutType, and youtubeChannel from workoutFind method
+   */
   private void setWorkoutFindOutput() {
     output = "Here are videos for: " + workoutLength + " " + workoutType + " workouts";
     if (!youtubeChannel.equals("")) {
@@ -102,6 +113,10 @@ public class Workout implements Agent {
     }
   }
 
+  /**
+   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by makifn YT
+   * Data API call from WorkoutUtils to get passed into workout.js
+   */
   private void setWorkoutFindDisplay() throws IOException {
     // Make API call to WorkoutUtils to get json object of videos
     workoutLength = workoutLength.replaceAll("\\s", "");
@@ -137,6 +152,11 @@ public class Workout implements Agent {
     thumbnail = new Gson().toJson(thumbnailURL.get("url"));
   }
 
+  /**
+   * TODO: Private workoutSchedule method
+   *
+   * @param parameters parameter Map from Dialogflow
+   */
   private void workoutSchedule(Map<String, Value> parameters) {
     return;
   }
