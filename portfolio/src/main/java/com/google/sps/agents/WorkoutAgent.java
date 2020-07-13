@@ -40,6 +40,7 @@ public class WorkoutAgent implements Agent {
   private String description;
   private String thumbnail;
   private String videoId;
+  private String channelId;
 
   public WorkoutAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -135,7 +136,7 @@ public class WorkoutAgent implements Agent {
     for (int i = 0; i < videos.length(); i++) {
       String videoString = new Gson().toJson(videos.get(i));
       setVideoParameters(videoString);
-      video = new Video(channelTitle, title, description, thumbnail, videoId);
+      video = new Video(channelTitle, title, description, thumbnail, videoId, channelId);
       videoList.add(video);
     }
 
@@ -147,9 +148,10 @@ public class WorkoutAgent implements Agent {
     JSONObject id = videoJSONObject.getJSONObject("id").getJSONObject("map");
     videoId = new Gson().toJson(id.get("videoId"));
     JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
-    description = new Gson().toJson(snippet.get("description"));
     title = new Gson().toJson(snippet.get("title"));
+    description = new Gson().toJson(snippet.get("description"));
     channelTitle = new Gson().toJson(snippet.get("channelTitle"));
+    channelId = new Gson().toJson(snippet.get("channelId"));
     JSONObject thumbnailJSONObject =
         snippet.getJSONObject("thumbnails").getJSONObject("map").getJSONObject("medium");
     JSONObject thumbnailURL = thumbnailJSONObject.getJSONObject("map");

@@ -10,14 +10,21 @@ public final class Video {
   private String description;
   private String thumbnail;
   private String videoURL = "https://www.youtube.com/watch?v=";
+  private String channelURL = "https://www.youtube.com/channel/";
 
   public Video(
-      String channelTitle, String title, String description, String thumbnail, String videoId) {
+      String channelTitle,
+      String title,
+      String description,
+      String thumbnail,
+      String videoId,
+      String channelId) {
     this.channelTitle = channelTitle;
     this.title = title;
     this.description = description;
     this.thumbnail = thumbnail;
     videoURL += videoId;
+    channelURL += channelId;
   }
 
   public String toString() {
