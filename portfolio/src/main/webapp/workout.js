@@ -27,6 +27,13 @@ function createVideoDivs(videos) {
     var videoThumbnail = document.createElement('div');
     videoThumbnail.classList = 'video-thumbnail';
 
+    var videoContainer = document.createElement('div');
+    videoContainer.classList = 'video-container';
+
+    //Video Thumbnail
+    var videoThumbnail = document.createElement('div');
+    videoThumbnail.classList = 'video-thumbnail';
+
     var videoLink = document.createElement('a');
     videoLink.title = title;
     videoLink.href = video.videoURL.replace(/"/g, '');

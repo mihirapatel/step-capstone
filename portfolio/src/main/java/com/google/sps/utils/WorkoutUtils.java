@@ -49,7 +49,6 @@ public class WorkoutUtils {
     String type = "type=video";
     String key = "key=" + apiKey;
     URL = String.join("&", URL, maxResults, q, type, key);
-    System.out.println(URL);
     JSONObject json = readJsonFromUrl(URL);
     return json;
   }
