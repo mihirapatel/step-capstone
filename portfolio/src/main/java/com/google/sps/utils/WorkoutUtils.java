@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,11 +38,16 @@ public class WorkoutUtils {
   public static JSONObject getJSONObject(
       String workoutLength, String workoutType, String youtubeChannel, int numVideos)
       throws IOException, JSONException {
+    String apiKey =
+        new String(
+            Files.readAllBytes(
+                Paths.get(WorkoutUtils.class.getResource("/files/youtubeAPIKey.txt").getFile())));
+
     String URL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     String maxResults = "maxResults=" + String.valueOf(numVideos);
     String q = "q=" + String.join("+", workoutLength, workoutType, youtubeChannel);
     String type = "type=video";
-    String key = "key=API_KEY_HERE";
+    String key = "key=" + apiKey;
     URL = String.join("&", URL, maxResults, q, type, key);
     System.out.println(URL);
     JSONObject json = readJsonFromUrl(URL);
