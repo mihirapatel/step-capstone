@@ -102,7 +102,7 @@ public class AgentUtils {
       case "web":
         return new WebSearch(intentName, parameterMap);
       case "workout":
-        return new Workout(intentName, parameterMap);
+        return new WorkoutAgent(intentName, parameterMap);
       default:
         return null;
     }

@@ -45,7 +45,7 @@ public class WorkoutUtils {
 
     String URL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     String maxResults = "maxResults=" + String.valueOf(numVideos);
-    String q = "q=" + String.join("+", workoutLength, workoutType, youtubeChannel);
+    String q = "q=" + String.join("+", workoutLength, workoutType, youtubeChannel, "workout");
     String type = "type=video";
     String key = "key=" + apiKey;
     URL = String.join("&", URL, maxResults, q, type, key);

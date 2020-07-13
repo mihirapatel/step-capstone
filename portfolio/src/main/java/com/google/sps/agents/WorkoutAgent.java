@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 public class WorkoutAgent implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Workout.class);
+  private static Logger log = LoggerFactory.getLogger(WorkoutAgent.class);
 
   private final String intentName;
   private String output = null;
@@ -31,7 +31,7 @@ public class WorkoutAgent implements Agent {
   private String workoutType = "";
   private String workoutLength = "";
   private String youtubeChannel = "";
-  private final int numVideos = 5;
+  private final int numVideosDisplayed = 5;
   private String amount = "";
   private String unit = "";
   private Video video;
@@ -41,7 +41,7 @@ public class WorkoutAgent implements Agent {
   private String thumbnail;
   private String videoId;
 
-  public Workout(String intentName, Map<String, Value> parameters)
+  public WorkoutAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
@@ -83,8 +83,9 @@ public class WorkoutAgent implements Agent {
    * @param parameters parameter Map from Dialogflow
    */
   private void workoutFind(Map<String, Value> parameters) throws IOException {
-    String duration = parameters.get("duration").getStringValue();
-    if (!duration.equals("")) {
+    log.info(String.valueOf(parameters));
+
+    if (parameters.get("duration").hasStructValue()) {
       Struct durationStruct = parameters.get("duration").getStructValue();
       Map<String, Value> durationMap = durationStruct.getFieldsMap();
       amount = String.valueOf(Math.round(durationMap.get("amount").getNumberValue()));
@@ -118,17 +119,20 @@ public class WorkoutAgent implements Agent {
    * Data API call from WorkoutUtils to get passed into workout.js
    */
   private void setWorkoutFindDisplay() throws IOException {
-    // Make API call to WorkoutUtils to get json object of videos
+
+    // Removing white space so search URL does not have spaces
     workoutLength = workoutLength.replaceAll("\\s", "");
     workoutType = workoutType.replaceAll("\\s", "");
     youtubeChannel = youtubeChannel.replaceAll("\\s", "");
+
+    // Make API call to WorkoutUtils to get json object of videos
     JSONObject json =
-        WorkoutUtils.getJSONObject(workoutLength, workoutType, youtubeChannel, numVideos);
+        WorkoutUtils.getJSONObject(workoutLength, workoutType, youtubeChannel, numVideosDisplayed);
     JSONArray videos = json.getJSONArray("items");
 
     List<Video> videoList = new ArrayList<>();
 
-    for (int i = 0; i < numVideos; i++) {
+    for (int i = 0; i < videos.length(); i++) {
       String videoString = new Gson().toJson(videos.get(i));
       setVideoParameters(videoString);
       video = new Video(channelTitle, title, description, thumbnail, videoId);
