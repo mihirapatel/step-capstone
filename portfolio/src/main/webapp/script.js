@@ -19,7 +19,7 @@
 const mainSection = document.querySelector('.main-controls');
 const formContainer = document.getElementsByName('input-form')[0];
 const textInputContainer = document.getElementById("text-input");
- 
+var sessionId = "";
 
 formContainer.onkeyup = function(e){
   if(e.keyCode == 13 && textInputContainer.value.length != 0) { //return key and non-empty input
@@ -54,7 +54,7 @@ function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
  
-  fetch('/audio-input' + '?language=' + getLanguage(), {
+  fetch('/audio-input' + '?language=' + getLanguage(), + '&sessionID=' + sessionId, {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => displayResponse(stream));
@@ -62,10 +62,10 @@ function getResponseFromAudio(blob) {
  
 function getResponseFromText(){
   var input = textInputContainer.value;
-  fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
+  fetch('/text-input?request-input=' + input + '&language=' + getLanguage() 
+      + '&sessionID=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
- 
   formContainer.reset(); 
 }
 
@@ -87,13 +87,24 @@ function updateName(name) {
 }
 
 function getBooksFromButton(request){
-  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), 
+      + '&sessionID=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
 }
 
 function getBookInformation(request){
-  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), 
+      + '&sessionID=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBookInfo(stream));
+}
+
+/**
+ * Returns userID, if user is logged in, or guestID for the session otherwise
+ */
+function getSessionID(){
+  fetch('/id').then(response => response.text()).then((id) => {
+      window.sessionId = id;
+  });
 }
