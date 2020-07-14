@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
-import com.google.sps.data.Video;
+import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.WorkoutUtils;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class WorkoutAgent implements Agent {
   private final int numVideosDisplayed = 5;
   private String amount = "";
   private String unit = "";
-  private Video video;
+  private YouTubeVideo video;
   private String channelTitle;
   private String title;
   private String description;
@@ -131,12 +131,12 @@ public class WorkoutAgent implements Agent {
         WorkoutUtils.getJSONObject(workoutLength, workoutType, youtubeChannel, numVideosDisplayed);
     JSONArray videos = json.getJSONArray("items");
 
-    List<Video> videoList = new ArrayList<>();
+    List<YouTubeVideo> videoList = new ArrayList<>();
 
     for (int i = 0; i < videos.length(); i++) {
       String videoString = new Gson().toJson(videos.get(i));
       setVideoParameters(videoString);
-      video = new Video(channelTitle, title, description, thumbnail, videoId, channelId);
+      video = new YouTubeVideo(channelTitle, title, description, thumbnail, videoId);
       videoList.add(video);
     }
 
@@ -163,7 +163,7 @@ public class WorkoutAgent implements Agent {
    *
    * @param parameters parameter Map from Dialogflow
    */
-  private void workoutSchedule(Map<String, Value> parameters) {
+  private void workoutSchedule(Map<String, Value> parameters) throws UnsupportedOperationException {
     return;
   }
 }

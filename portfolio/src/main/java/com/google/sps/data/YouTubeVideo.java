@@ -2,9 +2,11 @@ package com.google.sps.data;
 
 import com.google.gson.Gson;
 
-// Video class for Workout agent
-
-public final class Video {
+/**
+ * YouTubeVideo class for Workout agent that has channel name and id of channel that posted video on
+ * YouTube and title, description, thumbnail, id of video
+ */
+public final class YouTubeVideo {
   private String channelTitle;
   private String title;
   private String description;
@@ -12,13 +14,8 @@ public final class Video {
   private String videoURL = "https://www.youtube.com/watch?v=";
   private String channelURL = "https://www.youtube.com/channel/";
 
-  public Video(
-      String channelTitle,
-      String title,
-      String description,
-      String thumbnail,
-      String videoId,
-      String channelId) {
+  public YouTubeVideo(
+      String channelTitle, String title, String description, String thumbnail, String videoId,  String channelId) {
     this.channelTitle = channelTitle;
     this.title = title;
     this.description = description;
