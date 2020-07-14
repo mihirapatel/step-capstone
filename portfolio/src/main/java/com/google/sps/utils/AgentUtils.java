@@ -78,6 +78,7 @@ public class AgentUtils {
           | IOException
           | ApiException
           | InterruptedException
+          | IllegalArgumentException
           | ArrayIndexOutOfBoundsException
           | NullPointerException
           | TranslateException e) {
@@ -105,7 +106,7 @@ public class AgentUtils {
           ArrayIndexOutOfBoundsException {
     switch (agentName) {
       case "books":
-        return new Books(intentName, queryText, parameterMap);
+        return new BooksAgent(intentName, queryText, parameterMap);
       case "calculator":
         return new Tip(intentName, parameterMap);
       case "currency":
