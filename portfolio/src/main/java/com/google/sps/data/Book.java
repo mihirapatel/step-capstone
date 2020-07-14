@@ -246,10 +246,7 @@ public class Book implements Serializable {
    * @return boolean
    */
   public static boolean hasValidAccessInfo(Volume volume) {
-    if (volume.getAccessInfo() != null) {
-      return true;
-    }
-    return false;
+    return volume.getAccessInfo() != null;
   }
 
   /**
@@ -259,10 +256,7 @@ public class Book implements Serializable {
    * @return boolean
    */
   public static boolean hasValidSaleInfo(Volume volume) {
-    if (volume.getSaleInfo() != null) {
-      return true;
-    }
-    return false;
+    return volume.getSaleInfo() != null;
   }
 
   /**
@@ -272,9 +266,6 @@ public class Book implements Serializable {
    * @return boolean
    */
   public static boolean hasValidSearchInfo(Volume volume) {
-    if (volume.getSearchInfo() != null) {
-      return true;
-    }
-    return false;
+    return volume.getSearchInfo() != null;
   }
 }
