@@ -136,7 +136,7 @@ public class WorkoutAgent implements Agent {
     for (int i = 0; i < videos.length(); i++) {
       String videoString = new Gson().toJson(videos.get(i));
       setVideoParameters(videoString);
-      video = new YouTubeVideo(channelTitle, title, description, thumbnail, videoId);
+      video = new YouTubeVideo(channelTitle, title, description, thumbnail, videoId, channelId);
       videoList.add(video);
     }
 
