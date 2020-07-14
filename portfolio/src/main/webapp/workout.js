@@ -1,6 +1,10 @@
+indexStart = 0;
+indexEnd = 5;
+numTotalVideos = 25;
+
 function workoutVideos(videoQuery) {
-  var videos = JSON.parse(videoQuery);
-  let workoutDiv = createVideoDivs(videos);
+  videos = JSON.parse(videoQuery);
+  let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
   return workoutDiv;
 }
 
@@ -8,23 +12,33 @@ function workoutVideos(videoQuery) {
 * Creates video page divs and adds extra video pages if possible
 *
 * @param videos JSON object of all videos
+* @param indexStart index of first video on page
+* @param indexEnd index of last video on page + 1
 */
-function createVideoDivs(videos) {
+function createVideoDivs(videos, indexStart, indexEnd) {
   
-  workoutDiv = document.createElement('div');
-  workoutDiv.classList.add('media-display');
+  workoutDiv = document.createElement("div");
+  workoutDiv.classList.add("media-display");
 
-  videosDiv = document.createElement('div');
-  videosDiv.id = 'videos';
+  videosDiv = document.createElement("div");
+  videosDiv.id = "videos";
   workoutDiv.appendChild(videosDiv);
 
-  //Creating more button 
-  moreButton = document.createElement("BUTTON");
-  moreButton.classList = "video-more-button";
-  var buttonText = document.createTextNode("More");
-  moreButton.appendChild(buttonText);
+  //Creating previous button
+  previousButton = document.createElement("BUTTON");
+  previousButton.classList.add("video-buttons");
+  previousButton.classList.add("video-previous-button");
+  var buttonText = document.createTextNode("Previous");
+  previousButton.appendChild(buttonText); 
 
-  for (var i = 0; i < 5; i++) {
+  //Creating next button 
+  nextButton = document.createElement("BUTTON");
+  nextButton.classList.add("video-buttons");
+  nextButton.classList.add("video-next-button");
+  var buttonText = document.createTextNode("Next");
+  nextButton.appendChild(buttonText);
+
+  for (var i = indexStart; i < indexEnd; i++) {
     video = videos[i];
     channelName = video.channelTitle;
     title = video.title;
@@ -35,27 +49,27 @@ function createVideoDivs(videos) {
     totalPages = video.totalPages;
     replaceUnicode();
 
-    var videoContainer = document.createElement('div');
-    videoContainer.classList = 'video-container';
+    var videoContainer = document.createElement("div");
+    videoContainer.classList = "video-container";
 
     //Video Thumbnail
-    var videoThumbnail = document.createElement('div');
-    videoThumbnail.classList = 'video-thumbnail';
+    var videoThumbnail = document.createElement("div");
+    videoThumbnail.classList = "video-thumbnail";
 
-    var videoContainer = document.createElement('div');
-    videoContainer.classList = 'video-container';
+    var videoContainer = document.createElement("div");
+    videoContainer.classList = "video-container";
 
     //Video Thumbnail
-    var videoThumbnail = document.createElement('div');
-    videoThumbnail.classList = 'video-thumbnail';
+    var videoThumbnail = document.createElement("div");
+    videoThumbnail.classList = "video-thumbnail";
 
-    var videoLink = document.createElement('a');
+    var videoLink = document.createElement("a");
     videoLink.title = title;
-    videoLink.href = video.videoURL.replace(/"/g, '');
+    videoLink.href = video.videoURL.replace(/"/g, "");
     videoLink.target = "_blank";    
 
-    var thumbnailImage = document.createElement('img');
-    thumbnailImage.src = video.thumbnail.replace(/"/g, '');
+    var thumbnailImage = document.createElement("img");
+    thumbnailImage.src = video.thumbnail.replace(/"/g, "");
     thumbnailImage.setAttribute("width", "320");
     thumbnailImage.setAttribute("height", "180");
     videoLink.appendChild(thumbnailImage);
@@ -64,53 +78,76 @@ function createVideoDivs(videos) {
     videoContainer.appendChild(videoThumbnail);
 
     //Video Information
-    var videoInfo = document.createElement('div');
-    videoInfo.classList = 'video-info';
+    var videoInfo = document.createElement("div");
+    videoInfo.classList = "video-info";
 
-    var videoTitleLink = document.createElement('a');
+    var videoTitleLink = document.createElement("a");
     videoTitleLink.title = title;
-    videoTitleLink.href = video.videoURL.replace(/"/g, '');
+    videoTitleLink.href = video.videoURL.replace(/"/g, "");
     videoTitleLink.target = "_blank"; 
 
-    var videoTitle = document.createElement('h3');
-    videoTitle.classList = 'video-title';
-    videoTitle.innerHTML = title.replace(/"/g, '');
+    var videoTitle = document.createElement("h3");
+    videoTitle.classList = "video-title";
+    videoTitle.innerHTML = title.replace(/"/g, "");
     videoTitleLink.appendChild(videoTitle);
     videoInfo.appendChild(videoTitleLink);
 
-    var channelLink = document.createElement('a');
+    var channelLink = document.createElement("a");
     channelLink.title = channelName;
-    channelLink.href = video.channelURL.replace(/"/g, '');
+    channelLink.href = video.channelURL.replace(/"/g, "");
     channelLink.target = "_blank"; 
 
-    var channelTitle = document.createElement('p');
-    channelTitle.classList = 'channel-title';
-    channelTitle.innerHTML = channelName.replace(/"/g, '');
+    var channelTitle = document.createElement("p");
+    channelTitle.classList = "channel-title";
+    channelTitle.innerHTML = channelName.replace(/"/g, "");
     channelLink.appendChild(channelTitle)
     videoInfo.appendChild(channelLink);
 
-    var videoDescription = document.createElement('p');
-    videoDescription.classList = 'video-description';
-    videoDescription.innerHTML = description.replace(/"/g, '');
+    var videoDescription = document.createElement("p");
+    videoDescription.classList = "video-description";
+    videoDescription.innerHTML = description.replace(/"/g, "");
     videoInfo.appendChild(videoDescription);
 
     videoContainer.appendChild(videoInfo);
     videosDiv.appendChild(videoContainer);
 
-    //Check if more button should be displayed
-    console.log("currentIndex: " + currentIndex);
-    console.log("currentPage: " + currentPage);
-    
-    displayMoreButton = (currentPage != totalPages) && ((currentIndex + 1) % videosDisplayedPerPage == 0);
-    console.log(displayMoreButton);
+    //Check if previous button should be displayed
+    displayPreviousButton = (currentPage != 1) && ((currentIndex + 1) % videosDisplayedPerPage == 0);
 
-    //Display more button if not on last page
-    if (displayMoreButton) {
-      videosDiv.appendChild(moreButton);
+    //Display previous button if not on first page
+    if (displayPreviousButton) {
+      videosDiv.appendChild(previousButton);
+      videosDiv.getElementsByClassName("video-buttons video-previous-button").item(0).onclick = function() {showNewVideosPage(-5)};
+    }
+
+    //Check if next button should be displayed
+    displayNextButton = (currentPage != totalPages) && ((currentIndex + 1) % videosDisplayedPerPage == 0);
+    
+    //Display next button if not on last page
+    if (displayNextButton) {
+      videosDiv.appendChild(nextButton);
+      videosDiv.getElementsByClassName("video-buttons video-next-button").item(0).onclick = function() {showNewVideosPage(5)};
     }
   }
 
   return workoutDiv;
+}
+
+function showNewVideosPage(numShiftIndex) {
+
+  //Remove existing divs 
+  var mediaDisplayDivs = document.getElementsByClassName('media-display');
+  var mediaDiv;
+  for (mediaDiv of mediaDisplayDivs) {
+      while (mediaDiv.firstChild) {
+        mediaDiv.removeChild(mediaDiv.firstChild);
+      }
+  }
+  
+  indexStart += numShiftIndex
+  indexEnd += numShiftIndex
+  let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
+  appendDisplay(workoutDiv);
 }
 
 /** Replaces unicode strings with actual characters */
@@ -123,6 +160,6 @@ function replaceUnicode() {
 
     //Properly format ampersands
     channelName = channelName.replace("\\u0026", "&").replace("\\u0026amp;", "&");
-    title = title.replace("\\u0026", "&").replace("\\u0026amp;", "&");;
+    title = title.replace("\\u0026", "&").replace("\\u0026amp;", "&");
     description = description.replace("\\u0026", "&").replace("\\u0026amp;", "&");
 }
