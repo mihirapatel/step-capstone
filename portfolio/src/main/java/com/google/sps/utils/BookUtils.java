@@ -31,6 +31,19 @@ public class BookUtils {
   }
 
   /**
+   * This function returns the number of total volumes from the Google Books API that match the
+   * BookQuery request based on the user's input, and throws an exception otherwise
+   *
+   * @param query BookQuery object containing parameters for user requested query
+   * @param startIndex the index of the first result to return from Google Books API
+   * @return int total volumes found
+   */
+  public static int getTotalVolumesFound(BookQuery query, int startIndex) throws IOException {
+    Volumes volumes = getVolumes(query, startIndex);
+    return volumes.getTotalItems().intValue();
+  }
+
+  /**
    * This function returns a Volumes object containing the volumes from the Google Books API that
    * match the parameters in the BookQuery object, and throws an exception otherwise
    *
@@ -58,7 +71,7 @@ public class BookUtils {
     if (query.getLanguage() != null) {
       list.setLangRestrict(query.getLanguage());
     }
-    list.setMaxResults(Long.valueOf(10));
+    list.setMaxResults(Long.valueOf(40));
     list.setStartIndex(Long.valueOf(startIndex));
 
     return list.execute();
@@ -80,7 +93,7 @@ public class BookUtils {
 
     Books books =
         new Books.Builder(transport, gsonFactory, null)
-            .setApplicationName("Test Application name")
+            .setApplicationName("APPNAME")
             .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
             .build();
     return books;
@@ -103,7 +116,7 @@ public class BookUtils {
           Book book = Book.createBook(vol);
           books.add(book);
         } catch (IOException e) {
-          continue;
+          System.out.println("Result with invalid title was not added to list.");
         }
       }
       return books;
