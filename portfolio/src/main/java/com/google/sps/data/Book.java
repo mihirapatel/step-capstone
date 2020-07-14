@@ -22,6 +22,7 @@ import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,7 @@ import java.util.ArrayList;
  * created with valid parameters and that all Book objects have valid title and description
  * properties.
  */
-public class Book {
+public class Book implements Serializable {
 
   private String title;
   private ArrayList<String> authors;
@@ -158,14 +159,15 @@ public class Book {
   }
 
   private void setISBN(Volume volume) {
-    ArrayList<IndustryIdentifiers> industryIdentifiers =
-        new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
-    for (int i = 0; i < industryIdentifiers.size(); ++i) {
-      if (industryIdentifiers.get(i).getType() != null
-          && industryIdentifiers.get(i).getType().contains("ISBN")) {
-        if (industryIdentifiers.get(i).getIdentifier() != null) {
-          this.isbn = industryIdentifiers.get(i).getIdentifier();
-          return;
+    if (volume.getVolumeInfo().getIndustryIdentifiers() != null) {
+      ArrayList<IndustryIdentifiers> industryIdentifiers =
+          new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
+      for (IndustryIdentifiers id : industryIdentifiers) {
+        if (id.getType() != null && id.getType().contains("ISBN")) {
+          if (id.getIdentifier() != null) {
+            this.isbn = id.getIdentifier();
+            return;
+          }
         }
       }
     }
@@ -225,20 +227,14 @@ public class Book {
   }
 
   /**
-   * Checks if Volume object has a valid title and description getTitle() and getDescription()
-   * return null if there isn't a title or description for the volume object
+   * Checks if Volume object has a valid title
    *
    * @param volume Volume Object
    * @return boolean
    */
   public static boolean hasValidParameters(Volume volume) {
-    try {
-      if (volume.getVolumeInfo().getTitle() != null
-          && volume.getVolumeInfo().getDescription() != null) {
-        return true;
-      }
-    } catch (Exception e) {
-      return false;
+    if (volume.getVolumeInfo() != null && volume.getVolumeInfo().getTitle() != null) {
+      return true;
     }
     return false;
   }
@@ -250,10 +246,7 @@ public class Book {
    * @return boolean
    */
   public static boolean hasValidAccessInfo(Volume volume) {
-    if (volume.getAccessInfo() != null) {
-      return true;
-    }
-    return false;
+    return volume.getAccessInfo() != null;
   }
 
   /**
@@ -263,10 +256,7 @@ public class Book {
    * @return boolean
    */
   public static boolean hasValidSaleInfo(Volume volume) {
-    if (volume.getSaleInfo() != null) {
-      return true;
-    }
-    return false;
+    return volume.getSaleInfo() != null;
   }
 
   /**
@@ -276,9 +266,6 @@ public class Book {
    * @return boolean
    */
   public static boolean hasValidSearchInfo(Volume volume) {
-    if (volume.getSearchInfo() != null) {
-      return true;
-    }
-    return false;
+    return volume.getSearchInfo() != null;
   }
 }
