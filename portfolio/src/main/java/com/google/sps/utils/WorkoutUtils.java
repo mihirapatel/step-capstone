@@ -56,10 +56,10 @@ public class WorkoutUtils {
    * @param numVideos for number of videos to get from search
    */
   public static JSONObject getJSONObject(
-      String workoutLength, String workoutType, String youtubeChannel, int numVideos)
+      String workoutLength, String workoutType, String youtubeChannel, int videosDisplayedTotal)
       throws IOException, JSONException {
 
-    maxResults = setMaxResults(numVideos);
+    maxResults = setMaxResults(videosDisplayedTotal);
     q = setQ(workoutLength, workoutType, youtubeChannel);
     type = setType();
     key = setKey();
@@ -68,8 +68,8 @@ public class WorkoutUtils {
     return json;
   }
 
-  private static String setMaxResults(int numVideos) {
-    return "maxResults=" + String.valueOf(numVideos);
+  private static String setMaxResults(int videosDisplayedTotal) {
+    return "maxResults=" + String.valueOf(videosDisplayedTotal);
   }
 
   private static String setQ(String workoutLength, String workoutType, String youtubeChannel) {

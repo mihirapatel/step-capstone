@@ -15,7 +15,7 @@ body {
 
 #videos {
     width: 100%;
-    height: 1200px;
+    height: 12550px;
     background-color: white;
 }
 
@@ -55,6 +55,27 @@ body {
    color: #333333;
    padding: 15px;
    text-align: left;
+}
+
+.video-more-button {
+    background-color: white;
+    color: #333333;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    padding: 5px 16px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 15px 25px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    float: right;
+}
+
+.video-more-button:hover {
+    background-color: #e7e7e7;
 }
 
 .video-info a {
@@ -190,16 +211,11 @@ canvas {
   padding: 1rem;
   min-width: 50px;
   min-height: 50px;
-}
- 
-button {
-  font-size: 1rem;
   background: rgba(255, 255, 255, 0);
   text-align: center;
   color: white;
   border: none;
   transition: all 0.2s;
-  padding: 0.5rem;
 }
  
 .record {
