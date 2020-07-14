@@ -35,6 +35,9 @@ function displayResponse(stream) {
     } else if (outputAsJson.intent.includes("books.preview")) {
       previewContainer = createBookInfoContainer(outputAsJson.display, "preview");
       placeBookDisplay(previewContainer, "convo-container");
+    } else if (outputAsJson.intent.includes("workout.find")) {
+      workoutContainer = workoutVideos(outputAsJson.display);
+      appendDisplay(workoutContainer);
     }
   }
   outputAudio(stream);
