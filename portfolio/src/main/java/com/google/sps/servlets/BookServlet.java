@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/** Retrieves indices information about previous Book request */
 @WebServlet("/book")
 public class BookServlet extends HttpServlet {
   @Override

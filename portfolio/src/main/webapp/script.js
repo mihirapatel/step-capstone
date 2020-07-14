@@ -24,6 +24,8 @@ var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
+var sessionId = "";
+
 /**
 * Function triggered with each character typed in the text input container that handles 
 * submitting the text input on the RETURN key, getting the command used before with the 
@@ -100,7 +102,7 @@ function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
  
-  fetch('/audio-input' + '?language=' + getLanguage(), {
+  fetch('/audio-input' + '?language=' + getLanguage(), + '&sessionID=' + sessionId, {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => displayResponse(stream));
@@ -115,10 +117,10 @@ function getResponseFromText(){
   var input = textInputContainer.value;
   saveCommand(input);
   unsentLastCommand = null;
-  fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
+  fetch('/text-input?request-input=' + input + '&language=' + getLanguage() 
+      + '&sessionID=' + sessionId, {
       method: 'POST'
-  }).then(response => response.text()).then(stream => displayResponse(stream));
- 
+  }).then(response => response.text()).then(stream => displayResponse(stream));
   formContainer.reset(); 
 }
 
@@ -172,13 +174,24 @@ function isEmptyString(text) {
 }
 
 function getBooksFromButton(request){
-  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), 
+      + '&sessionID=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
 }
 
 function getBookInformation(request){
-  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), 
+      + '&sessionID=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBookInfo(stream));
+}
+
+/**
+ * Returns userID, if user is logged in, or guestID for the session otherwise
+ */
+function getSessionID(){
+  fetch('/id').then(response => response.text()).then((id) => {
+      window.sessionId = id;
+  });
 }
