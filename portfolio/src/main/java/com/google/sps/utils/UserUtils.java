@@ -55,7 +55,7 @@ public class UserUtils {
       entity = datastore.get(KeyFactory.createKey("UserInfo", userID));
     } catch (Exception e) {
       entity = new Entity("UserInfo", userID);
-      entity.setProperty("id", userID);
+      entity.setProperty("userID", userID);
     }
     entity.setProperty(nameType, name);
     datastore.put(entity);
