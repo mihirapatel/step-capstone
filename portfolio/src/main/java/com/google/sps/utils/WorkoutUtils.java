@@ -29,6 +29,11 @@ public class WorkoutUtils {
     return sb.toString();
   }
 
+  /**
+   * Creates JSON object from url passed in from getJSONObject
+   *
+   * @param url for YouTube Data API search by keyword
+   */
   private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
     InputStream is = new URL(url).openStream();
     try {
@@ -41,6 +46,15 @@ public class WorkoutUtils {
     }
   }
 
+  /**
+   * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
+   * readJsonFromURL
+   *
+   * @param workoutLength for workout video length
+   * @param workoutType for workout video type
+   * @param youtubeChannel for workout channel
+   * @param numVideos for number of videos to get from search
+   */
   public static JSONObject getJSONObject(
       String workoutLength, String workoutType, String youtubeChannel, int numVideos)
       throws IOException, JSONException {
