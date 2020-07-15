@@ -222,3 +222,4 @@ function deleteSessionInformation(){
   });
   return null;
 }
+
