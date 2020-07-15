@@ -4,6 +4,7 @@ import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
@@ -23,8 +24,11 @@ public class BooksMemoryUtils {
   public static void storeBooks(ArrayList<Book> books, int startIndex) {
     for (int i = 0; i < books.size(); ++i) {
       long timestamp = System.currentTimeMillis();
-      Book currentBook = books.get(i);
       Entity bookEntity = new Entity("Book");
+      Key key = bookEntity.getKey();
+
+      Book currentBook = books.get(i);
+      currentBook.setOrder(i + startIndex);
 
       byte[] bookData = SerializationUtils.serialize(currentBook);
       Blob bookBlob = new Blob(bookData);
@@ -64,13 +68,16 @@ public class BooksMemoryUtils {
    * @param startIndex index to start retrieving Volume objects from
    * @param resultsStored number of results stored
    * @param totalResults total matches in Google Book API
+   * @param displayNum number of results displayed request
    */
-  public static void storeIndices(int startIndex, int totalResults, int resultsStored) {
+  public static void storeIndices(
+      int startIndex, int totalResults, int resultsStored, int displayNum) {
     long timestamp = System.currentTimeMillis();
     Entity indicesEntity = new Entity("Indices");
     indicesEntity.setProperty("startIndex", startIndex);
     indicesEntity.setProperty("resultsStored", resultsStored);
     indicesEntity.setProperty("totalResults", totalResults);
+    indicesEntity.setProperty("displayNum", displayNum);
     indicesEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -167,7 +174,7 @@ public class BooksMemoryUtils {
    * This function returns the previous index specified by indexName stored in Datastore Indices
    * Entity
    *
-   * @param indexName name of Indices: startIndex, resultsStored or
+   * @param indexName name of Indices: startIndex, resultsStored, totalResults, or displayNum
    * @return int startIndex
    */
   public static int getStoredIndices(String indexName) {
@@ -176,5 +183,27 @@ public class BooksMemoryUtils {
     Entity entity = datastore.prepare(query).asSingleEntity();
     Long lngValue = (Long) entity.getProperty(indexName);
     return lngValue.intValue();
+  }
+
+  /**
+   * This function returns the stored Book object that matches the parameter orderNum from Datastore
+   * and throws an exception if the requested Book doesn't exist
+   *
+   * @param orderNum order number of book to retrieve
+   * @param startIndex index to start retrieving results from
+   * @return Book object
+   */
+  public static Book getBookFromOrderNum(int orderNum, int startIndex)
+      throws IllegalArgumentException {
+    Query query = new Query("Book").addSort("order", SortDirection.ASCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      if (getStoredBookIndex(entity) == orderNum) {
+        return getBookFromEntity(entity);
+      }
+    }
+    throw new IllegalArgumentException();
   }
 }

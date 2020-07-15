@@ -36,7 +36,7 @@ import java.util.ArrayList;
 public class Book implements Serializable {
 
   private String title;
-  private ArrayList<String> authors;
+  private String authors;
   private String publishedDate;
   private String description;
   private String averageRating;
@@ -46,6 +46,7 @@ public class Book implements Serializable {
   private Boolean embeddable;
   private String isbn;
   private String textSnippet;
+  private int order;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -76,7 +77,7 @@ public class Book implements Serializable {
    */
   private Book(Volume volume) {
     setTitle(volume);
-    setAuthorList(volume);
+    setAuthors(volume);
     setPublishedDate(volume);
     setDescription(volume);
     setRating(volume);
@@ -88,6 +89,10 @@ public class Book implements Serializable {
     setTextSnippet(volume);
   }
 
+  public void setOrder(int order) {
+    this.order = order;
+  }
+
   private void setTitle(Volume volume) {
     this.title = volume.getVolumeInfo().getTitle();
   }
@@ -96,17 +101,19 @@ public class Book implements Serializable {
     this.description = volume.getVolumeInfo().getDescription();
   }
 
-  private void setAuthorList(Volume volume) {
+  private void setAuthors(Volume volume) {
     if (volume.getVolumeInfo().getAuthors() != null) {
-      this.authors = new ArrayList<String>(volume.getVolumeInfo().getAuthors());
+      ArrayList<String> authors = new ArrayList<String>(volume.getVolumeInfo().getAuthors());
+      this.authors = String.join(", ", authors);
     } else {
-      this.authors = new ArrayList<String>();
+      this.authors = "";
     }
   }
 
   private void setPublishedDate(Volume volume) {
     if (volume.getVolumeInfo().getPublishedDate() != null) {
-      this.publishedDate = volume.getVolumeInfo().getPublishedDate();
+      String fullDate = volume.getVolumeInfo().getPublishedDate();
+      this.publishedDate = fullDate.split("-")[0];
     } else {
       this.publishedDate = "";
     }
@@ -182,11 +189,15 @@ public class Book implements Serializable {
     this.textSnippet = "";
   }
 
+  public int getOrder() {
+    return this.order;
+  }
+
   public String getTitle() {
     return this.title;
   }
 
-  public ArrayList<String> getAuthors() {
+  public String getAuthors() {
     return this.authors;
   }
 
