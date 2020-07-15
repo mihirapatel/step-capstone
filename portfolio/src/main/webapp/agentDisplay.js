@@ -31,11 +31,13 @@ function displayResponse(stream) {
 
       bookContainer = createBookContainer(outputAsJson.display);
       placeBookDisplay(bookContainer, "convo-container");
-
     } else if (outputAsJson.intent.includes("books.description") ||
         outputAsJson.intent.includes("books.preview")) {
       infoContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent);
       placeBookDisplay(infoContainer, "convo-container");
+    } else if (outputAsJson.intent.includes("workout.find")) {
+      workoutContainer = workoutVideos(outputAsJson.display);
+      appendDisplay(workoutContainer);
     }
   }
   outputAudio(stream);
