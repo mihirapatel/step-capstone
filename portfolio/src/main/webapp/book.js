@@ -43,50 +43,35 @@ function createTableFooter() {
   const footerRow = document.createElement('tr');
   footerRow.className = "book-row";
   fetch('/book-indices'+ '?session-id=' + sessionId).then(response => response.json()).then((indices) => {
-    const prevColumn = createPrevColumn(indices);
+    const prevColumn = createColumn("previous", indices.hasPrev);
     const pageColumn = createPageColumn(indices);
-    const moreColumn = createMoreColumn(indices);
+    const moreColumn = createColumn("more", indices.hasMore);
     footerRow.innerHTML = prevColumn + pageColumn + moreColumn;
   });
   return footerRow;
 }
 
 /**
- * This function creates a <td></td> element containing a previous button
- * if there are previous results
+ * This function creates a <td></td> element containing a button (previous or more)
+ * specified by the parameter type if makeColumn is True
  *
- * @param indices Indices object
+ * @param type column type to make
+ * @param makeColumn boolean specifying if column is appropriate to make
  * @return prevText of <td></td> element
  */
-function createPrevColumn(indices) {
-  var hasPrev = indices.hasPrev;
+function createColumn(type, makeColumn) {
+  const column = document.createElement('td');
 
-  const prevColumn = document.createElement('td');
-  prevColumn.className = "prev-column";
-
-  if (hasPrev){
+  if (type == "previous" && makeColumn){
+    column.className = "prev-column";
     htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.previous\')"> Previous </button>';
-    prevColumn.insertAdjacentHTML('afterbegin', htmlString);
-  }
-  return prevColumn.outerHTML;
-}
-
-/**
- * This function creates a <td></td> element containing a more button
- * if there are more results
- *
- * @param indices Indices object
- * @return moreText of <td></td> element
- */
-function createMoreColumn(indices) {
-  var hasMore = indices.hasMore;
-  const moreColumn = document.createElement('td');
-  moreColumn.className = "more-column";
-  if (hasMore){
+    column.insertAdjacentHTML('afterbegin', htmlString);
+  } else if (type == "more" && makeColumn) {
+    column.className = "more-column";
     htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.more\')"> More </button>';  
-    moreColumn.insertAdjacentHTML('afterbegin', htmlString);
+    column.insertAdjacentHTML('afterbegin', htmlString);
   }
-  return moreColumn.outerHTML;
+  return column.outerHTML;
 }
 
 /**
@@ -239,10 +224,10 @@ function displayBookInfo(stream) {
 
   if (outputAsJson.display) {
       if (outputAsJson.intent.includes("description")){
-        descriptionContainer = createBookInfoContainer(outputAsJson.display, "description");
+        descriptionContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent);
         placeBookDisplay(descriptionContainer, "convo-container");
       } else if (outputAsJson.intent.includes("preview")) {
-        previewContainer = createBookInfoContainer(outputAsJson.display, "preview");
+        previewContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent);
         placeBookDisplay(previewContainer, "convo-container");
         loadPreview(outputAsJson.display);
       }
@@ -256,10 +241,10 @@ function displayBookInfo(stream) {
  * Dialogflow
  *
  * @param bookResult JSON Book returned from Dialogflow
- * @param infoType String specifying type of info to display
+ * @param intent String specifying intent 
  * @return infoDiv div element containing information table
  */
-function createBookInfoContainer(bookResult, infoType){
+function createBookInfoContainer(bookResult, intent){
   var book = JSON.parse(bookResult);
 
   infoDiv = document.createElement("div"); 
@@ -267,7 +252,7 @@ function createBookInfoContainer(bookResult, infoType){
   infoTable = document.createElement("table"); 
   infoTable.className = "book-table";
 
-  infoTable.appendChild(createInfoRow(book, infoType));
+  infoTable.appendChild(createInfoRow(book, intent));
   infoTable.appendChild(createBookRow(book));
   infoTable.appendChild(createInfoFooter());
   infoDiv.appendChild(infoTable);
@@ -281,19 +266,19 @@ function createBookInfoContainer(bookResult, infoType){
  * (either "description" or "preview") 
  *
  * @param bookResult JSON Book returned from Dialogflow
- * @param infoType String specifying type of info to display
+ * @param intent String specifying intent
  * @return infoRow <tr></tr> element for info table
  */
-function createInfoRow(book, infoType){
+function createInfoRow(book, intent){
   infoRow = document.createElement('tr');
   infoCol = document.createElement('td');
   infoCol.colSpan = "3";
   infoRow.className = "book-row";
 
-  if (infoType == "description") {
+  if (intent.includes("books.description")) {
     infoCol.innerHTML = '<b> Description </b><br> <p class = "description">' + book.description + '</p><hr>';
   }
-  else if (infoType == "preview") {
+  else if (intent.includes("books.preview")) {
     infoCol.innerHTML = '<b> Preview </b><br>';
     infoCol.appendChild(getViewerDiv());
     infoCol.insertAdjacentHTML('beforeend', '<hr>');
