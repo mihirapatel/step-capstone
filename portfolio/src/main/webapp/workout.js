@@ -1,6 +1,6 @@
-indexStart = 0;
-indexEnd = 5;
-numTotalVideos = 25;
+var indexStart = 0;
+var indexEnd = 5;
+var numTotalVideos = 25;
 
 function workoutVideos(videoQuery) {
   videos = JSON.parse(videoQuery);

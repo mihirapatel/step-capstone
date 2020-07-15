@@ -53,7 +53,7 @@ public class WorkoutUtils {
    * @param workoutLength for workout video length
    * @param workoutType for workout video type
    * @param youtubeChannel for workout channel
-   * @param numVideos for number of videos to get from search
+   * @param videosDisplayedTotal for number of videos to get from search
    */
   public static JSONObject getJSONObject(
       String workoutLength, String workoutType, String youtubeChannel, int videosDisplayedTotal)
