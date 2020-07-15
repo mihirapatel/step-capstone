@@ -29,6 +29,11 @@ public class WorkoutUtils {
     return sb.toString();
   }
 
+  /**
+   * Creates JSON object from url passed in from getJSONObject
+   *
+   * @param url for YouTube Data API search by keyword
+   */
   private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
     InputStream is = new URL(url).openStream();
     try {
@@ -41,11 +46,20 @@ public class WorkoutUtils {
     }
   }
 
+  /**
+   * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
+   * readJsonFromURL
+   *
+   * @param workoutLength for workout video length
+   * @param workoutType for workout video type
+   * @param youtubeChannel for workout channel
+   * @param videosDisplayedTotal for number of videos to get from search
+   */
   public static JSONObject getJSONObject(
-      String workoutLength, String workoutType, String youtubeChannel, int numVideos)
+      String workoutLength, String workoutType, String youtubeChannel, int videosDisplayedTotal)
       throws IOException, JSONException {
 
-    maxResults = setMaxResults(numVideos);
+    maxResults = setMaxResults(videosDisplayedTotal);
     q = setQ(workoutLength, workoutType, youtubeChannel);
     type = setType();
     key = setKey();
@@ -54,8 +68,8 @@ public class WorkoutUtils {
     return json;
   }
 
-  private static String setMaxResults(int numVideos) {
-    return "maxResults=" + String.valueOf(numVideos);
+  private static String setMaxResults(int videosDisplayedTotal) {
+    return "maxResults=" + String.valueOf(videosDisplayedTotal);
   }
 
   private static String setQ(String workoutLength, String workoutType, String youtubeChannel) {
