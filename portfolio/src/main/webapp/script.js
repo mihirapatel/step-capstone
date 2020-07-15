@@ -13,7 +13,8 @@
 // limitations under the License.
  
 /**
- * Starts listening to user input and fetches user input string
+ * Starts listening to user input and fetches user input string.
+ * Defines sessionId global variable and function to call when window closes.
  */
  
 const mainSection = document.querySelector('.main-controls');
@@ -25,6 +26,7 @@ var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
 var sessionId = "";
+window.onbeforeunload = deleteSessionInformation;
 
 /**
 * Function triggered with each character typed in the text input container that handles 
@@ -101,8 +103,7 @@ function getAudioStream(blob) {
 function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
- 
-  fetch('/audio-input' + '?language=' + getLanguage(), + '&sessionID=' + sessionId, {
+  fetch('/audio-input' + '?language=' + getLanguage() + '&session-id=' + sessionId, {
     method: 'POST',
     body: blob
   }).then(response => response.text()).then(stream => displayResponse(stream));
@@ -117,8 +118,7 @@ function getResponseFromText(){
   var input = textInputContainer.value;
   saveCommand(input);
   unsentLastCommand = null;
-  fetch('/text-input?request-input=' + input + '&language=' + getLanguage() 
-      + '&sessionID=' + sessionId, {
+  fetch('/text-input?request-input=' + input + '&language=' + getLanguage() + '&session-id=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
   formContainer.reset(); 
@@ -132,6 +132,7 @@ function authSetup() {
     var authContainer = document.getElementsByClassName("auth-link")[0];
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
+    getSessionID();
   });
 }
 
@@ -173,16 +174,29 @@ function isEmptyString(text) {
   return text == null || text.trim() === "";
 }
 
-function getBooksFromButton(request){
-  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), 
-      + '&sessionID=' + sessionId, {
+/**
+ * Retrieves Output object created by BookAgent for specified intent 
+ * triggered by a button the display 
+ * 
+ * @param intent name of book intent
+ */
+function getBooksFromButton(intent){
+  fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
 }
 
-function getBookInformation(request){
-  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), 
-      + '&sessionID=' + sessionId, {
+/**
+ * Retrieves Output object created by BookAgent for specified information intent 
+ * triggered by a button the display. Number parameter specifies the Book object 
+ * number to retrieve.
+ * 
+ * @param intent name of book intent
+ * @param number index of book to retrieve information for
+ */
+function getBookInformation(intent, number){
+  fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId +
+    '&number=' + number, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBookInfo(stream));
 }
@@ -194,4 +208,17 @@ function getSessionID(){
   fetch('/id').then(response => response.text()).then((id) => {
       window.sessionId = id;
   });
+}
+
+/**
+ * Deletes all stored Entitys that match current sessionID before
+ * users close the page
+ */
+function deleteSessionInformation(){
+  fetch('/id' + '?session-id=' + sessionId, {
+      method: 'POST'
+  }).then(response => response.text()).then(() => {
+      console.log('Deleted comments for ' + sessionId)
+  });
+  return null;
 }

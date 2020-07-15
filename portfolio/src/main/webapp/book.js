@@ -42,7 +42,7 @@ function createBookContainer(bookResults) {
 function createTableFooter() {
   const footerRow = document.createElement('tr');
   footerRow.className = "book-row";
-  fetch('/book').then(response => response.json()).then((indices) => {
+  fetch('/book-indices'+ '?session-id=' + sessionId).then(response => response.json()).then((indices) => {
     const prevColumn = createPrevColumn(indices);
     const pageColumn = createPageColumn(indices);
     const moreColumn = createMoreColumn(indices);
@@ -65,7 +65,7 @@ function createPrevColumn(indices) {
   prevColumn.className = "prev-column";
 
   if (hasPrev){
-    htmlString = '<button class="book-button" onclick="getBooksFromButton(\'Show previous\')"> Previous </button>';
+    htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.previous\')"> Previous </button>';
     prevColumn.insertAdjacentHTML('afterbegin', htmlString);
   }
   return prevColumn.outerHTML;
@@ -83,7 +83,7 @@ function createMoreColumn(indices) {
   const moreColumn = document.createElement('td');
   moreColumn.className = "more-column";
   if (hasMore){
-    htmlString = '<button class="book-button" onclick="getBooksFromButton(\'Show more\')"> More </button>';
+    htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.more\')"> More </button>';  
     moreColumn.insertAdjacentHTML('afterbegin', htmlString);
   }
   return moreColumn.outerHTML;
@@ -177,8 +177,7 @@ function createInfoColumn(book) {
       descriptionButton.className = "book-button";
       descriptionButton.insertAdjacentHTML('afterbegin', "Description");
       descriptionButton.addEventListener("click", function () {
-        var request = 'description ' + book.order;
-        getBookInformation(request);
+        getBookInformation('books.description', book.order);
       });
       infoColumn.appendChild(descriptionButton);
   }
@@ -187,8 +186,7 @@ function createInfoColumn(book) {
       previewButton.className = "book-button";
       previewButton.insertAdjacentHTML('afterbegin', "Preview");
       previewButton.addEventListener("click", function () {
-        var request = 'preview ' + book.order;
-        getBookInformation(request);
+        getBookInformation('books.preview', book.order);
       });
       infoColumn.appendChild(previewButton);
   }
@@ -208,11 +206,9 @@ function createLinkColumn(book) {
 
   if (book.infoLink || book.buyLink){
       linkHTML = '<p class = "book">';
-      if (book.buyLink){
-          linkHTML += '<a class = "book-link"  target="_blank" href = "' + book.buyLink + '">Buy It</a><br>';
-      }
       if (book.infoLink){
-          linkHTML += '<a class = "book-link"  target="_blank" href = "' + book.infoLink + '">Go to Page</a>';
+          redirectLogo = '<img class = "redirect-logo" alt="Redirect" src= "images/redirect.png" >';
+          linkHTML += '<a class = "book-link"  target="_blank" href = "' + book.infoLink + '">' + redirectLogo + 'Go to Page</a>';
       }
       linkHTML += '</p>';
   }
@@ -318,7 +314,7 @@ function createInfoFooter(){
   const footerRow = document.createElement('tr');
   footerRow.className = "book-row";
   
-  htmlString = '<button class="book-button" onclick="getBooksFromButton(\'back to results\')"> Go Back </button>';
+  htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.results\')"> Go Back </button>';
   footerRow.insertAdjacentHTML('afterbegin', htmlString);
   return footerRow;
 }
