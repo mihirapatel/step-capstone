@@ -53,7 +53,7 @@ public class BooksAgent implements Agent {
         // Store BookQuery, Book results, totalResults, resultsReturned
         BooksMemoryUtils.storeBooks(results, startIndex);
         BooksMemoryUtils.storeBookQuery(query);
-        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsReturned);
+        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsReturned, displayNum);
 
         ArrayList<Book> booksToDisplay =
             BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
@@ -78,7 +78,7 @@ public class BooksAgent implements Agent {
       } else if (startIndex + displayNum <= resultsStored) {
         // Replace indices
         BooksMemoryUtils.deleteStoredEntities("Indices");
-        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsStored);
+        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsStored, displayNum);
       } else {
         // Retrieve books
         ArrayList<Book> results = BookUtils.getRequestedBooks(prevQuery, startIndex);
@@ -96,13 +96,13 @@ public class BooksAgent implements Agent {
 
           // Store Book results and indices
           BooksMemoryUtils.storeBooks(results, startIndex);
-          BooksMemoryUtils.storeIndices(startIndex, totalResults, newResultsStored);
+          BooksMemoryUtils.storeIndices(startIndex, totalResults, newResultsStored, displayNum);
         }
       }
       ArrayList<Book> booksToDisplay =
           BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
       this.display = bookListToString(booksToDisplay);
-      this.output = "Here's the next page of results";
+      this.output = "Here's the next page of results.";
 
     } else if (intentName.equals("previous")) {
       // Load BookQuery, totalResults, resultsStored
@@ -119,32 +119,50 @@ public class BooksAgent implements Agent {
       } else {
         // Replace indices
         BooksMemoryUtils.deleteStoredEntities("Indices");
-        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsStored);
-        this.output = "Here's the previous page of results";
+        BooksMemoryUtils.storeIndices(startIndex, totalResults, resultsStored, displayNum);
+        this.output = "Here's the previous page of results.";
       }
       ArrayList<Book> booksToDisplay =
           BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex);
       this.display = bookListToString(booksToDisplay);
-    } else if (intentName.equals("about")) {
-      // TODO: Load Book results, totalResults, resultsReturned
 
-      // TODO: Get information about requested Book
-      // TODO: Make output information
+    } else if (intentName.equals("description")) {
+      // Get requested order number from parameters
+      int orderNum = (int) parameters.get("number").getNumberValue();
 
-      // TODO: Don't change any stored information
+      // Retrieve requested book
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex");
+      Book requestedBook = BooksMemoryUtils.getBookFromOrderNum(orderNum, prevStartIndex);
+
+      // Set output and display information
+      this.output = "Here's a description for " + requestedBook.getTitle() + ".";
+      this.display = bookToString(requestedBook);
+      // Don't change any stored information
     } else if (intentName.equals("preview")) {
-      // TODO: Load Book results, totalResults, resultsReturned
+      // Get requested order number from parameters
+      int orderNum = (int) parameters.get("number").getNumberValue();
 
-      // TODO: Get information about requested Book
-      // TODO: Make output information
+      // Retrieve requested book
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex");
+      Book requestedBook = BooksMemoryUtils.getBookFromOrderNum(orderNum, prevStartIndex);
 
-      // TODO: Don't change any stored information
+      // Set output and display information
+      this.output = "Here's a preview of " + requestedBook.getTitle() + ".";
+      this.display = bookToString(requestedBook);
+      // Don't change any stored information
+
     } else if (intentName.equals("results")) {
-      // TODO: Load Book results, totalResults, resultsReturned
+      // Load Book results, totalResults, resultsReturned
+      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery();
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex");
+      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored");
+      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults");
+      ArrayList<Book> booksToDisplay =
+          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, prevStartIndex);
 
-      // TODO: Get output information from stored Book results
-
-      // TODO: Don't change any stored information
+      this.display = bookListToString(booksToDisplay);
+      this.output = "Here are the results.";
+      // Don't change any stored information
     }
   }
 
@@ -169,6 +187,11 @@ public class BooksAgent implements Agent {
       return nextIndex;
     }
     return -1;
+  }
+
+  private String bookToString(Book book) {
+    Gson gson = new Gson();
+    return gson.toJson(book);
   }
 
   private String bookListToString(ArrayList<Book> books) {

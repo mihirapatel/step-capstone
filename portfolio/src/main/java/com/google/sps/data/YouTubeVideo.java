@@ -13,13 +13,30 @@ public final class YouTubeVideo {
   private String thumbnail;
   private String videoURL = "https://www.youtube.com/watch?v=";
   private String channelURL = "https://www.youtube.com/channel/";
+  private int currentIndex;
+  private int videosDisplayedPerPage;
+  private int currentPage;
+  private int totalPages;
 
   public YouTubeVideo(
-      String channelTitle, String title, String description, String thumbnail, String videoId,  String channelId) {
+      String channelTitle,
+      String title,
+      String description,
+      String thumbnail,
+      String videoId,
+      String channelId,
+      int currentIndex,
+      int videosDisplayedPerPage,
+      int currentPage,
+      int totalPages) {
     this.channelTitle = channelTitle;
     this.title = title;
     this.description = description;
     this.thumbnail = thumbnail;
+    this.currentIndex = currentIndex;
+    this.videosDisplayedPerPage = videosDisplayedPerPage;
+    this.currentPage = currentPage;
+    this.totalPages = totalPages;
     videoURL += videoId;
     channelURL += channelId;
   }

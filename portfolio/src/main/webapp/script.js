@@ -103,8 +103,7 @@ function getResponseFromAudio(blob) {
   fetch('/audio-input' + '?language=' + getLanguage(), {
     method: 'POST',
     body: blob
-  }).then(response => response.text()).then(stream => displayResponse(stream));
-
+  }).then(response => response.text()).then(stream => displayResponse(stream));
 }
 
 /**
@@ -170,4 +169,16 @@ function loadCommands() {
 
 function isEmptyString(text) {
   return text == null || text.trim() === "";
+}
+
+function getBooksFromButton(request){
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+      method: 'POST'
+  }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
+}
+
+function getBookInformation(request){
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+      method: 'POST'
+  }).then(response => response.text()).then(stream =>displayBookInfo(stream));
 }

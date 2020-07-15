@@ -15,7 +15,7 @@ body {
 
 #videos {
     width: 100%;
-    height: 1200px;
+    height: 1250px;
     background-color: white;
 }
 
@@ -57,8 +57,44 @@ body {
    text-align: left;
 }
 
+.video-buttons {
+    background-color: white;
+    color: #333333;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.video-buttons:hover {
+    background-color: #e7e7e7;
+}
+
+.video-next-button {
+    padding: 5px 16px;
+    margin: 15px 25px;
+    float: right;
+}
+
+.video-previous-button {
+    padding: 5px 16px;
+    margin: 15px 25px;
+    float: left;
+}
+
+
 .video-info a {
     text-decoration: none;
+}
+
+.video-page-number {
+    color: #333333;
+    display: inline-block;
+    padding-top: 20px;
 }
 
 h1 {
@@ -105,8 +141,8 @@ p {
  
 #content {
   position:absolute; 
-  top: 200px; 
-  bottom: 200px; 
+  top: 150px; 
+  bottom: 150px; 
   overflow: auto;
   width: 90%;
   max-width: 850px;
@@ -185,6 +221,7 @@ canvas {
 #buttons {
   display: flex;
   justify-content: center;
+  height: 55px;
 }
  
 #buttons button {
@@ -192,16 +229,11 @@ canvas {
   padding: 1rem;
   min-width: 50px;
   min-height: 50px;
-}
- 
-button {
-  font-size: 1rem;
   background: rgba(255, 255, 255, 0);
   text-align: center;
   color: white;
   border: none;
   transition: all 0.2s;
-  padding: 0.5rem;
 }
  
 .record {
@@ -423,4 +455,106 @@ li {
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.book-table {
+  background-color: rgba(255, 255, 255, 50%);
+  color: rgb(58, 56, 56);
+}
+
+.book-div {
+  background-color: rgba(255, 255, 255);
+  color: rgb(58, 56, 56);
+}
+
+.book-row {
+  background-color: rgba(255, 255, 255);
+  color: rgb(58, 56, 56);
+}
+
+td.book-thumbnail {
+  width: 10px;
+  padding: 5px;
+}
+
+td.book-about {
+  padding: 10px;
+  width:1%;
+  white-space:nowrap;
+}
+
+td.book-info {
+  padding: 10px;
+  text-align: left;
+}
+
+td.book-links {
+  padding: 10px;
+  width:1%;
+  white-space:nowrap;
+  text-align: left;
+}
+
+img.thumbnail {
+  max-height: 100px;
+}
+
+p.book {
+  color: hsl(0, 2%, 22%);
+  font-size: 14px;
+}
+
+button.book-button {
+  color: hsl(0, 2%, 30%);
+  border-color: hsl(0, 2%, 70%);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 3px;
+  font-size: 12px;
+}
+
+button.book-button:hover,button.book-button:focus {
+  background: none;
+  color: hsl(0, 2%, 22%);
+  border-color: #4c8bf5;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
+}
+
+a.book-link {
+  background: none;
+  color: hsl(0, 2%, 22%);
+}
+
+a.book-link:hover,a.book-link:focus {
+  background: none;
+  color: #4c8bf5;
+}
+
+td.prev-column {
+  text-align: left;
+  padding-left: 10px;
+}
+
+td.more-column {
+  text-align: right;
+  padding-right: 10px;
+}
+
+td.page-count {
+  text-align: center;
+  padding: 5px;
+}
+
+p.description {
+  color: hsl(0, 2%, 22%);
+  font-size: 14px;
+  text-align: left;
+  padding: 10px;
+}
+
+.book-viewer {
+  width: 600px;
+  height: 400px;
+  text-align: center;
 }
