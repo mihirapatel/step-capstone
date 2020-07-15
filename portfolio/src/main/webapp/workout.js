@@ -41,8 +41,17 @@ function createVideoDivs(videos, indexStart, indexEnd) {
   for (var i = indexStart; i < indexEnd; i++) {
     video = videos[i];
     channelName = video.channelTitle;
+
     title = video.title;
+    if (title.length > 80) { 
+        title = title.substring(0, 80) + "..."; 
+    }
+
     description = video.description;
+    if (description.length > 170) {
+        description = description.substring(0, 170) + "...";
+    }
+
     currentIndex = video.currentIndex;
     videosDisplayedPerPage = video.videosDisplayedPerPage;
     currentPage = video.currentPage;
@@ -50,18 +59,11 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     replaceUnicode();
 
     var videoContainer = document.createElement("div");
-    videoContainer.classList = "video-container";
+    videoContainer.classList.add("video-container");
 
     //Video Thumbnail
     var videoThumbnail = document.createElement("div");
-    videoThumbnail.classList = "video-thumbnail";
-
-    var videoContainer = document.createElement("div");
-    videoContainer.classList = "video-container";
-
-    //Video Thumbnail
-    var videoThumbnail = document.createElement("div");
-    videoThumbnail.classList = "video-thumbnail";
+    videoThumbnail.classList.add("video-thumbnail");
 
     var videoLink = document.createElement("a");
     videoLink.title = title;
@@ -79,7 +81,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     //Video Information
     var videoInfo = document.createElement("div");
-    videoInfo.classList = "video-info";
+    videoInfo.classList.add("video-info");
 
     var videoTitleLink = document.createElement("a");
     videoTitleLink.title = title;
@@ -87,7 +89,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     videoTitleLink.target = "_blank"; 
 
     var videoTitle = document.createElement("h3");
-    videoTitle.classList = "video-title";
+    videoTitle.classList.add("video-title");
     videoTitle.innerHTML = title.replace(/"/g, "");
     videoTitleLink.appendChild(videoTitle);
     videoInfo.appendChild(videoTitleLink);
@@ -98,35 +100,43 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     channelLink.target = "_blank"; 
 
     var channelTitle = document.createElement("p");
-    channelTitle.classList = "channel-title";
+    channelTitle.classList.add("channel-title");
     channelTitle.innerHTML = channelName.replace(/"/g, "");
     channelLink.appendChild(channelTitle)
     videoInfo.appendChild(channelLink);
 
     var videoDescription = document.createElement("p");
-    videoDescription.classList = "video-description";
+    videoDescription.classList.add("video-description");
     videoDescription.innerHTML = description.replace(/"/g, "");
     videoInfo.appendChild(videoDescription);
 
     videoContainer.appendChild(videoInfo);
     videosDiv.appendChild(videoContainer);
 
-    //Check if previous button should be displayed
-    displayPreviousButton = (currentPage != 1) && ((currentIndex + 1) % videosDisplayedPerPage == 0);
 
-    //Display previous button if not on first page
-    if (displayPreviousButton) {
-      videosDiv.appendChild(previousButton);
-      videosDiv.getElementsByClassName("video-buttons video-previous-button").item(0).onclick = function() {showNewVideosPage(-5)};
-    }
+    footerDisplay = ((currentIndex + 1) % videosDisplayedPerPage == 0);
+    //Create footer with page numbers and buttons under correct video div
+    if (footerDisplay) {
+        footer = document.createElement("div");
+        footer.classList.add("footer");
+        videosDiv.appendChild(footer);
+        
+        //Add page numbers to footer
+        var pageNumbers = document.createElement("p");
+        pageNumbers.classList.add("video-page-number");
+        pageNumbers.innerHTML = currentPage + "/" + totalPages;
+        footer.appendChild(pageNumbers);
 
-    //Check if next button should be displayed
-    displayNextButton = (currentPage != totalPages) && ((currentIndex + 1) % videosDisplayedPerPage == 0);
-    
-    //Display next button if not on last page
-    if (displayNextButton) {
-      videosDiv.appendChild(nextButton);
-      videosDiv.getElementsByClassName("video-buttons video-next-button").item(0).onclick = function() {showNewVideosPage(5)};
+        //Display previous button if not on first page
+        if (currentPage != 1) {
+          footer.appendChild(previousButton);
+          footer.getElementsByClassName("video-buttons video-previous-button").item(0).onclick = function() {showNewVideosPage(-5)};
+        }
+        //Display next button if not on last page
+        if (currentPage != totalPages) {
+          footer.appendChild(nextButton);
+          footer.getElementsByClassName("video-buttons video-next-button").item(0).onclick = function() {showNewVideosPage(5)};
+        }
     }
   }
 
