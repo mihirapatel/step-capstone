@@ -499,6 +499,10 @@ img.thumbnail {
   max-height: 100px;
 }
 
+img.redirect-logo {
+  width: 10px;
+}
+
 p.book {
   color: hsl(0, 2%, 22%);
   font-size: 14px;
