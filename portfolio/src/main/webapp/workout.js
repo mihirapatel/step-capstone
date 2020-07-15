@@ -143,6 +143,11 @@ function createVideoDivs(videos, indexStart, indexEnd) {
   return workoutDiv;
 }
 
+/**
+* Creates new video display pages depending on whether previous or next button clicked
+*
+* @param numShiftIndex shifts index to show correct set of 5 videos depending on previous or next button clicked
+*/
 function showNewVideosPage(numShiftIndex) {
 
   //Remove existing divs 
