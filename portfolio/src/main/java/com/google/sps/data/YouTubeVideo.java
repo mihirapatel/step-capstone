@@ -15,7 +15,12 @@ public final class YouTubeVideo {
   private String channelURL = "https://www.youtube.com/channel/";
 
   public YouTubeVideo(
-      String channelTitle, String title, String description, String thumbnail, String videoId,  String channelId) {
+      String channelTitle,
+      String title,
+      String description,
+      String thumbnail,
+      String videoId,
+      String channelId) {
     this.channelTitle = channelTitle;
     this.title = title;
     this.description = description;
