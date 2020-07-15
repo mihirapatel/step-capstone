@@ -2,7 +2,9 @@ package com.google.sps.utils;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilter;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -17,6 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.tartarus.snowball.SnowballStemmer;
+import org.tartarus.snowball.ext.englishStemmer;
 
 public class MemoryUtils {
 
@@ -175,6 +179,7 @@ public class MemoryUtils {
    */
   public static void allocateList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
+    saveAggregateData(datastore, userID, listName, items);
     List<Entity> existingList = fetchExistingListQuery(datastore, userID, listName);
     if (!existingList.isEmpty()) {
       Entity existingEntity = existingList.get(0);
@@ -210,8 +215,8 @@ public class MemoryUtils {
    */
   public static boolean addToList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
+    saveAggregateData(datastore, userID, listName, items);
     List<Entity> existingList = fetchExistingListQuery(datastore, userID, listName);
-    log.info("EXISTING LIST: " + existingList);
     if (existingList.isEmpty()) {
       addListItems(datastore, userID, items, listName);
       return false;
@@ -266,5 +271,48 @@ public class MemoryUtils {
                 new FilterPredicate("listName", FilterOperator.EQUAL, listName)));
     Query query = new Query("List").setFilter(filter);
     return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+  }
+
+  private static void saveAggregateData(
+      DatastoreService datastore, String userID, String listName, List<String> items) {
+    saveAggregateListData(datastore, userID, "ListAggregate", items);
+    saveAggregateListData(
+        datastore, userID, "ListAggregate-" + stemmed(listName).toLowerCase(), items);
+  }
+
+  private static void saveAggregateListData(
+      DatastoreService datastore, String userID, String keyName, List<String> items) {
+    Entity entity;
+    try {
+      entity = datastore.get(KeyFactory.createKey(keyName, userID));
+      for (String item : items) {
+        String stemmedItem = stemmed(item);
+        long prevValue =
+            entity.getProperty(stemmedItem) == null ? 0 : (long) entity.getProperty(stemmedItem);
+        entity.setProperty(stemmedItem, prevValue + 1);
+      }
+    } catch (EntityNotFoundException e) {
+      entity = new Entity(keyName, userID);
+      entity.setProperty("userID", userID);
+      for (String item : items) {
+        String stemmedItem = stemmed(item);
+        entity.setProperty(stemmedItem, 1);
+      }
+    }
+    entity.setProperty("timestamp", System.currentTimeMillis());
+    datastore.put(entity);
+  }
+
+  /**
+   * Reduces words to their stems for word correlation.
+   *
+   * @param word Word to be reduced
+   * @return The stem of the inputted word.
+   */
+  public static String stemmed(String word) {
+    SnowballStemmer snowballStemmer = new englishStemmer();
+    snowballStemmer.setCurrent(word);
+    snowballStemmer.stem();
+    return snowballStemmer.getCurrent();
   }
 }

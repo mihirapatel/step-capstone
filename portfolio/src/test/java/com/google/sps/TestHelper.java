@@ -225,7 +225,20 @@ public class TestHelper {
    * @return A list of entity objects returned by datastore.
    */
   public List<Entity> fetchDatastoreEntities(String category) {
-    Filter filter = new FilterPredicate("userID", FilterOperator.EQUAL, "1");
+    return fetchDatastoreEntities(category, "1");
+  }
+
+  /**
+   * Retrieves a list of entity objects from the given query for testing purposes to ensure that
+   * result in datastore match the expected.
+   *
+   * @param category String containing the type of entity we are querying for.
+   * @param userID String representing the user ID number for getting specific info about other
+   *     users
+   * @return A list of entity objects returned by datastore.
+   */
+  public List<Entity> fetchDatastoreEntities(String category, String userID) {
+    Filter filter = new FilterPredicate("userID", FilterOperator.EQUAL, userID);
     Query query =
         new Query(category).setFilter(filter).addSort("timestamp", SortDirection.DESCENDING);
     ;

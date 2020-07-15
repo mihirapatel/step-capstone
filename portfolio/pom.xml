@@ -167,6 +167,12 @@
       <version>1.21.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.rholder</groupId>
+      <artifactId>snowball-stemmer</artifactId>
+      <version>1.3.0.581.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -190,7 +196,7 @@
         <version>2.19.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <skipTests>true</skipTests>
+          <!-- <skipTests>true</skipTests> -->
         </configuration>
       </plugin>
 
