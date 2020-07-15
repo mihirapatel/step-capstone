@@ -7,6 +7,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.sps.data.Book;
 import com.google.sps.data.BookQuery;
@@ -20,8 +23,9 @@ public class BooksMemoryUtils {
    *
    * @param books ArrayList of Book objects to store
    * @param startIndex index to start order at
+   * @param sessionID unique id of session to store
    */
-  public static void storeBooks(ArrayList<Book> books, int startIndex) {
+  public static void storeBooks(ArrayList<Book> books, int startIndex, String sessionID) {
     for (int i = 0; i < books.size(); ++i) {
       long timestamp = System.currentTimeMillis();
       Entity bookEntity = new Entity("Book");
@@ -33,6 +37,7 @@ public class BooksMemoryUtils {
       byte[] bookData = SerializationUtils.serialize(currentBook);
       Blob bookBlob = new Blob(bookData);
 
+      bookEntity.setProperty("id", sessionID);
       bookEntity.setProperty("title", currentBook.getTitle());
       bookEntity.setProperty("book", bookBlob);
       bookEntity.setProperty("order", i + startIndex);
@@ -47,14 +52,16 @@ public class BooksMemoryUtils {
    * corresponding properties
    *
    * @param query BookQuery object to store
+   * @param sessionID unique id of session to store
    */
-  public static void storeBookQuery(BookQuery query) {
+  public static void storeBookQuery(BookQuery query, String sessionID) {
     long timestamp = System.currentTimeMillis();
     Entity bookQueryEntity = new Entity("BookQuery");
 
     byte[] bookQueryData = SerializationUtils.serialize(query);
     Blob bookQueryBlob = new Blob(bookQueryData);
 
+    bookQueryEntity.setProperty("id", sessionID);
     bookQueryEntity.setProperty("bookQuery", bookQueryBlob);
     bookQueryEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -69,11 +76,14 @@ public class BooksMemoryUtils {
    * @param resultsStored number of results stored
    * @param totalResults total matches in Google Book API
    * @param displayNum number of results displayed request
+   * @param sessionID unique id of session to store
    */
   public static void storeIndices(
-      int startIndex, int totalResults, int resultsStored, int displayNum) {
+      int startIndex, int totalResults, int resultsStored, int displayNum, String sessionID) {
     long timestamp = System.currentTimeMillis();
     Entity indicesEntity = new Entity("Indices");
+
+    indicesEntity.setProperty("id", sessionID);
     indicesEntity.setProperty("startIndex", startIndex);
     indicesEntity.setProperty("resultsStored", resultsStored);
     indicesEntity.setProperty("totalResults", totalResults);
@@ -84,22 +94,31 @@ public class BooksMemoryUtils {
     datastore.put(indicesEntity);
   }
 
-  /** This function deletes all Entitys in Datastore of type BookQuery, Book, and Indices */
-  public static void deleteAllStoredBookInformation() {
-    deleteStoredEntities("BookQuery");
-    deleteStoredEntities("Book");
-    deleteStoredEntities("Indices");
+  /**
+   * This function deletes all Entitys in Datastore of type BookQuery, Book, and Indices for the
+   * specified session id
+   *
+   * @param sessionID unique id of session to delete from
+   */
+  public static void deleteAllStoredBookInformation(String sessionID) {
+    deleteStoredEntities("BookQuery", sessionID);
+    deleteStoredEntities("Book", sessionID);
+    deleteStoredEntities("Indices", sessionID);
   }
 
   /**
    * This function deletes all Entitys in Datastore of type specified by parameter
    *
    * @param entityName name of Entity to delete
+   * @param sessionID unique id of session to delete entities from
    */
-  public static void deleteStoredEntities(String entityName) {
-    Query query = new Query(entityName).addSort("timestamp", SortDirection.DESCENDING);
+  public static void deleteStoredEntities(String entityName, String sessionID) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, sessionID);
+
+    Query query = new Query(entityName).setFilter(currentUserFilter);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
+
     for (Entity entity : results.asIterable()) {
       datastore.delete(entity.getKey());
     }
@@ -111,10 +130,15 @@ public class BooksMemoryUtils {
    *
    * @param numToRetrieve number of Books to retrieve
    * @param startIndex index to start retrieving results from
+   * @param sessionID unique id of session to retrieve from
    * @return ArrayList<Book>
    */
-  public static ArrayList<Book> getStoredBooksToDisplay(int numToRetrieve, int startIndex) {
-    Query query = new Query("Book").addSort("order", SortDirection.ASCENDING);
+  public static ArrayList<Book> getStoredBooksToDisplay(
+      int numToRetrieve, int startIndex, String sessionID) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, sessionID);
+    Query query =
+        new Query("Book").setFilter(currentUserFilter).addSort("order", SortDirection.ASCENDING);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
@@ -157,13 +181,15 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function returns the BookQuery object stored in Datastore, storing the parameters for
+   * This function returns the BookQuery object stored in Datastore that stores the parameters for
    * previous BookQuery
    *
+   * @param sessionID unique id of session to retrieve from
    * @return BookQuery object
    */
-  public static BookQuery getStoredBookQuery() {
-    Query query = new Query("BookQuery");
+  public static BookQuery getStoredBookQuery(String sessionID) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, sessionID);
+    Query query = new Query("BookQuery").setFilter(currentUserFilter);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Entity entity = datastore.prepare(query).asSingleEntity();
     Blob bookQueryBlob = (Blob) entity.getProperty("bookQuery");
@@ -175,10 +201,12 @@ public class BooksMemoryUtils {
    * Entity
    *
    * @param indexName name of Indices: startIndex, resultsStored, totalResults, or displayNum
+   * @param sessionID unique id of session to retrieve from
    * @return int startIndex
    */
-  public static int getStoredIndices(String indexName) {
-    Query query = new Query("Indices");
+  public static int getStoredIndices(String indexName, String sessionID) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, sessionID);
+    Query query = new Query("Indices").setFilter(currentUserFilter);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Entity entity = datastore.prepare(query).asSingleEntity();
     Long lngValue = (Long) entity.getProperty(indexName);
@@ -191,11 +219,14 @@ public class BooksMemoryUtils {
    *
    * @param orderNum order number of book to retrieve
    * @param startIndex index to start retrieving results from
+   * @param sessionID unique id of session to retrieve from
    * @return Book object
    */
-  public static Book getBookFromOrderNum(int orderNum, int startIndex)
+  public static Book getBookFromOrderNum(int orderNum, int startIndex, String sessionID)
       throws IllegalArgumentException {
-    Query query = new Query("Book").addSort("order", SortDirection.ASCENDING);
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, sessionID);
+    Query query =
+        new Query("Book").setFilter(currentUserFilter).addSort("order", SortDirection.ASCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
@@ -205,5 +236,62 @@ public class BooksMemoryUtils {
       }
     }
     throw new IllegalArgumentException();
+  }
+
+  /**
+   * This function replaces all id properties for Book, BookQuery, and Indices entities stored in
+   * Datastore under parameter oldID with parameter newID
+   *
+   * @param oldID session ID to retrieve stored Entities
+   * @param newID new user ID to replace oldID with
+   */
+  public static void replaceStoredInformationIDs(String oldID, String newID) {
+    replaceEntityID(oldID, newID, "Book");
+    replaceEntityID(oldID, newID, "BookQuery");
+    replaceEntityID(oldID, newID, "Indices");
+  }
+
+  /**
+   * This function replaces the ID property for the specified Entitiy in Datastore with parameter
+   * oldID with parameter newID
+   *
+   * @param oldID session ID to retrieve stored Entities
+   * @param newID new user ID to replace oldID with
+   */
+  public static void replaceEntityID(String oldID, String newID, String entityName) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, oldID);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query = new Query(entityName);
+    PreparedQuery pq = datastore.prepare(query);
+    for (Entity entity : pq.asIterable()) {
+      entity.removeProperty("id");
+      entity.setProperty("id", newID);
+      datastore.put(entity);
+    }
+  }
+
+  /**
+   * This function deletes all Entitys in Datastore of type BookQuery, Book, and Indices for any
+   * session id
+   */
+  public static void deleteAllStoredBookInformation() {
+    deleteStoredEntities("BookQuery");
+    deleteStoredEntities("Book");
+    deleteStoredEntities("Indices");
+  }
+
+  /**
+   * This function deletes all Entitys in Datastore of type specified by parameter
+   *
+   * @param entityName name of Entity to delete
+   */
+  public static void deleteStoredEntities(String entityName) {
+    Query query = new Query(entityName);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      datastore.delete(entity.getKey());
+    }
   }
 }
