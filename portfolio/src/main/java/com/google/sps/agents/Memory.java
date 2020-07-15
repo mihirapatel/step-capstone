@@ -28,6 +28,7 @@ public class Memory implements Agent {
   private String display;
   private DatastoreService datastore;
   private UserService userService;
+  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user

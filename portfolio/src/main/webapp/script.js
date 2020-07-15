@@ -20,10 +20,40 @@ const mainSection = document.querySelector('.main-controls');
 const formContainer = document.getElementsByName('input-form')[0];
 const textInputContainer = document.getElementById("text-input");
  
+var pastCommands = loadCommands();
+var commandIndex = pastCommands.length;
+var unsentLastCommand;
 
+/**
+* Function triggered with each character typed in the text input container that handles 
+* submitting the text input on the RETURN key, getting the command used before with the 
+* UP key, and getting the command used after with the DOWN key (same basic functionality 
+* as in terminal).
+* 
+* @param e The key pressed.
+*/
 formContainer.onkeyup = function(e){
-  if(e.keyCode == 13 && textInputContainer.value.length != 0) { //return key and non-empty input
+  if(e.keyCode == 13 && !isEmptyString(textInputContainer.value)) { //return key and non-empty input
     getResponseFromText();
+  } else if(e.keyCode == 38) { //up arrow key
+    if (commandIndex == 0) {
+      return;
+    }
+    if (commandIndex == pastCommands.length) {
+      unsentLastCommand = textInputContainer.value;
+    }
+    commandIndex --;
+    textInputContainer.value = pastCommands[commandIndex].trim();
+  } else if(e.keyCode == 40) { //down arrow key
+    if (commandIndex == pastCommands.length) {
+      return;
+    }
+    commandIndex ++;
+    if (commandIndex == pastCommands.length) {
+      textInputContainer.value = (unsentLastCommand == null) ? "" : unsentLastCommand;
+    } else {
+      textInputContainer.value = pastCommands[commandIndex].trim();
+    }
   }
 };
 
@@ -33,12 +63,21 @@ window.onresize = function() {
  
 window.onresize();
 
-function getLanguage() {
-  var language = window.sessionStorage.getItem("language");
-  language = language == null ? "English" : language;
-  return language;
+/**
+* Retrives the saved language from session storage or English as default.
+*/
+function getLanguage() {
+  var language = window.sessionStorage.getItem("language");
+  language = language == null ? "English" : language;
+  return language;
 }
 
+/**
+* Backend call to speech-to-text that handles streaming inputs while the user 
+* is talking and converts them to text.
+* 
+* @param blob Mini audio file containing a subset of the user's entire speech.
+*/
 function getAudioStream(blob) {
   fetch('/audio-stream' + '?language=' + getLanguage(), {
     method: 'POST',
@@ -49,7 +88,14 @@ function getAudioStream(blob) {
     placeUserInput(stream + "...", "streaming");
   });
 }
- 
+
+/**
+* Backend call to dialogflow that handles recognizing the user's intent and 
+* accomplishing the necessary backend fulfillment to carry out the user's request.
+* Creates an audio output and handles making any displays that are necessary.
+* 
+* @param blob Audio file containing the user's entire speech from start to stop recording.
+*/
 function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
@@ -57,23 +103,28 @@ function getResponseFromAudio(blob) {
   fetch('/audio-input' + '?language=' + getLanguage(), {
     method: 'POST',
     body: blob
-  }).then(response => response.text()).then(stream => displayResponse(stream));
-
+  }).then(response => response.text()).then(stream => displayResponse(stream));
 }
- 
+
+/**
+* Backend call to dialogflow that takes the user's text input from the form container and 
+* accomplishes the necessary backend fulfillment to carry out the user's request.
+* Creates an audio output and handles making any displays that are necessary.
+*/
 function getResponseFromText(){
   var input = textInputContainer.value;
-  fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
+  saveCommand(input);
+  unsentLastCommand = null;
+  fetch('/text-input?request-input=' + input + '&language=' + getLanguage(), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
  
   formContainer.reset(); 
 }
 
-function sendRedirect(URL){
-  window.open(URL);
-}
-
+/**
+* Backend call to UserServices to determine if user is logged in and display a personalized greeting.
+*/
 function authSetup() {
   fetch("/auth").then((response) => response.json()).then((displayText) => {
     var authContainer = document.getElementsByClassName("auth-link")[0];
@@ -82,7 +133,52 @@ function authSetup() {
   });
 }
 
-function updateName(name) {
-  var greetingContainer = document.getElementsByName("greeting")[0];
-  greetingContainer.innerHTML = "<h1>Hi " + name + ", what can I help you with?</h1>";
+/**
+* Saves each command made by the user into a string in session storage so that the user 
+* can use the UP/DOWN arrows to access recently used commands.
+*
+* @param text The string command typed by the user.
+*/
+function saveCommand(text) {
+  if (isEmptyString(text)) {
+    return;
+  }
+  var commandHistory = window.sessionStorage.getItem("commandHistory");
+  if (commandHistory == null) {
+    commandHistory = text;
+  } else {
+    commandHistory += text;
+  }
+  pastCommands.push(text);
+  commandIndex = pastCommands.length;
+  window.sessionStorage.setItem("commandHistory", commandHistory);
+}
+
+/**
+* Loads all past commands from the previous session so that user initially
+* has access to their recent past commands.
+*/
+function loadCommands() {
+  var commandHistory = window.sessionStorage.getItem("commandHistory");
+  if (commandHistory == null) {
+    return [];
+  }
+  commandHistory = commandHistory.trim();
+  return commandHistory.split("\n");
+}
+
+function isEmptyString(text) {
+  return text == null || text.trim() === "";
+}
+
+function getBooksFromButton(request){
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+      method: 'POST'
+  }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
+}
+
+function getBookInformation(request){
+  fetch('/text-input?request-input=' + request + '&language=' + getLanguage(), {
+      method: 'POST'
+  }).then(response => response.text()).then(stream =>displayBookInfo(stream));
 }
