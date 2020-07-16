@@ -85,11 +85,13 @@ public class BookAgentServlet extends HttpServlet {
     byte[] byteStringToByteArray = null;
     String intentName = AgentUtils.getIntentName(intent);
     String detectedInput = "Button pressed for: " + intentName;
-    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID);
+    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID, datastore);
     String userInput = query.getUserInput();
     String fulfillment = "";
     try {
-      BooksAgent agent = new BooksAgent(intentName, userInput, parameterMap, sessionID, queryID);
+      BooksAgent agent =
+          new BooksAgent(
+              intentName, userInput, parameterMap, sessionID, userService, datastore, queryID);
       fulfillment = agent.getOutput();
       display = agent.getDisplay();
       redirect = agent.getRedirect();

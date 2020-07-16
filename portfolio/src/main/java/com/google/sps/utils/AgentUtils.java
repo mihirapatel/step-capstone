@@ -115,7 +115,8 @@ public class AgentUtils {
           ArrayIndexOutOfBoundsException, InvalidRequestException {
     switch (agentName) {
       case "books":
-        return new BooksAgent(intentName, queryText, parameterMap, sessionID);
+        return new BooksAgent(
+            intentName, queryText, parameterMap, sessionID, userService, datastore);
       case "calculator":
         return new Tip(intentName, parameterMap);
       case "currency":

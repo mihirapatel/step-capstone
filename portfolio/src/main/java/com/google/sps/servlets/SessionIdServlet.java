@@ -62,7 +62,7 @@ public class SessionIdServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String sessionID = request.getParameter("session-id");
-    BooksMemoryUtils.deleteAllStoredBookInformation(sessionID);
+    BooksMemoryUtils.deleteAllStoredBookInformation(sessionID, datastore);
   }
 
   protected UserService createUserService() {
