@@ -204,9 +204,9 @@ public class VideoUtils {
     return createVideoList(json);
   }
 
-  /** Set paramters for YouTube Data API search */
-  private static String setMaxResults(int videosDisplayedTotal) {
-    return "maxResults=" + String.valueOf(videosDisplayedTotal);
+  /** Set parameters for YouTube Data API search */
+  private static String setMaxResults(int maxResultAmount) {
+    return "maxResults=" + String.valueOf(maxResultAmount);
   }
 
   private static String setVideoQ(String workoutLength, String workoutType, String youtubeChannel) {
