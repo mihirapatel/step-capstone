@@ -26,6 +26,7 @@ var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
 var sessionId = "";
+var queryNumber = 0;
 window.onbeforeunload = deleteSessionInformation;
 
 /**
@@ -133,6 +134,8 @@ function authSetup() {
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
     getSessionID();
+    // Clears any stored information in Datastore for this session upon loading
+    deleteSessionInformation();
   });
 }
 
@@ -179,9 +182,11 @@ function isEmptyString(text) {
  * triggered by a button the display 
  * 
  * @param intent name of book intent
+ * @param queryID queryID for div that triggered button
  */
-function getBooksFromButton(intent){
-  fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId, {
+function getBooksFromButton(intent, queryID){
+  fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId + 
+    '&query-id=' + queryID, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
 }
@@ -193,10 +198,11 @@ function getBooksFromButton(intent){
  * 
  * @param intent name of book intent
  * @param number index of book to retrieve information for
+ * @param queryID queryID for div that triggered button for information
  */
-function getBookInformation(intent, number){
+function getBookInformation(intent, number, queryID){
   fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId +
-    '&number=' + number, {
+    '&number=' + number + '&query-id=' + queryID, {
       method: 'POST'
   }).then(response => response.text()).then(stream =>displayBookInfo(stream));
 }

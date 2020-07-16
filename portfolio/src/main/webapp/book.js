@@ -1,14 +1,20 @@
+
 /**
  * This function places a book div element in the container specified by the 
  * parameter and updates the scroll to the top of the table displayed
  *
  * @param bookDiv element containing book table
- * @param query container to place book table in
+ * @param container container to place book display in
+ * @param queryID appropriate queryID for results in this element
  */
-function placeBookDisplay(bookDiv, container) {
+function placeBookDisplay(bookDiv, container, queryID) {
   var container = document.getElementsByName(container)[0];
-  container.appendChild(bookDiv);
-  updateBookScroll();
+  var bookContainer = document.createElement('div');
+  bookContainer.className = queryID;
+  bookContainer.appendChild(bookDiv);
+  bookContainer.insertAdjacentHTML('beforeend', '<br>');
+  container.appendChild(bookContainer)
+  updateBookScroll(queryID);
 }
 
 /**
@@ -17,18 +23,19 @@ function placeBookDisplay(bookDiv, container) {
  * json bookResults parameter
  *
  * @param bookResults json ArrayList<Book> objects
+ * @param queryID appropriate queryID for results in this element
  * @return booksDiv element containing a book results table 
  */
-function createBookContainer(bookResults) {
+function createBookContainer(bookResults, queryID) {
     var booksList = JSON.parse(bookResults);
     var booksDiv = document.createElement("div"); 
     booksDiv.className = "book-div";
     var bookTable = document.createElement("table"); 
     bookTable.className = "book-table";
     booksList.forEach((book) => {
-      bookTable.appendChild(createBookRow(book));
+      bookTable.appendChild(createBookRow(book, queryID));
     });
-    bookTable.appendChild(createTableFooter());
+    bookTable.appendChild(createTableFooter(queryID));
     booksDiv.appendChild(bookTable);
     return booksDiv;
 }
@@ -37,16 +44,19 @@ function createBookContainer(bookResults) {
  * This function creates a table footer <tr></tr> element containing current 
  * page index and previous and next buttons (if applicable)
  *
+ * @param queryID appropriate queryID for results in this element
  * @return footerRow element to be added to the bottom of table
  */
-function createTableFooter() {
+function createTableFooter(queryID) {
   const footerRow = document.createElement('tr');
   footerRow.className = "book-row";
-  fetch('/book-indices'+ '?session-id=' + sessionId).then(response => response.json()).then((indices) => {
-    const prevColumn = createColumn("previous", indices.hasPrev);
+  fetch('/book-indices'+ '?session-id=' + sessionId + '&query-id=' + queryID).then(response => response.json()).then((indices) => {
+    const prevColumn = createColumn("previous", indices.hasPrev, queryID);
     const pageColumn = createPageColumn(indices);
-    const moreColumn = createColumn("more", indices.hasMore);
-    footerRow.innerHTML = prevColumn + pageColumn + moreColumn;
+    const moreColumn = createColumn("more", indices.hasMore, queryID);
+    footerRow.appendChild(prevColumn);
+    footerRow.appendChild(pageColumn);
+    footerRow.appendChild(moreColumn);
   });
   return footerRow;
 }
@@ -57,21 +67,33 @@ function createTableFooter() {
  *
  * @param type column type to make
  * @param makeColumn boolean specifying if column is appropriate to make
+ * @param queryID appropriate queryID for results in this element
  * @return prevText of <td></td> element
  */
-function createColumn(type, makeColumn) {
+function createColumn(type, makeColumn, queryID) {
   const column = document.createElement('td');
 
   if (type == "previous" && makeColumn){
     column.className = "prev-column";
-    htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.previous\')"> Previous </button>';
-    column.insertAdjacentHTML('afterbegin', htmlString);
+    var prevButton = document.createElement("button");
+    prevButton.className = "book-button-" + queryID;
+    prevButton.insertAdjacentHTML('afterbegin', "Previous");
+    prevButton.addEventListener("click", function () {
+      getBooksFromButton('books.previous', queryID)
+    });
+    column.appendChild(prevButton);
+
   } else if (type == "more" && makeColumn) {
     column.className = "more-column";
-    htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.more\')"> More </button>';  
-    column.insertAdjacentHTML('afterbegin', htmlString);
+    var moreButton = document.createElement("button");
+    moreButton.className = "book-button-" + queryID;
+    moreButton.insertAdjacentHTML('afterbegin', "More");
+    moreButton.addEventListener("click", function () {
+      getBooksFromButton('books.more', queryID)
+    });
+    column.appendChild(moreButton);
   }
-  return column.outerHTML;
+  return column;
 }
 
 /**
@@ -87,7 +109,7 @@ function createPageColumn(indices) {
   const pageColumn = document.createElement('td');
   pageColumn.className = "page-count";
   pageColumn.innerHTML = 'Page ' + currentPage + ' / ' + totalPages;
-  return pageColumn.outerHTML;
+  return pageColumn;
 }
 
 /**
@@ -95,14 +117,15 @@ function createPageColumn(indices) {
  * parameter book object to be added to the book table
  *
  * @param book Book object
+ * @param queryID appropriate queryID for results in this element
  * @return bookRow element to be added to table
  */
-function createBookRow(book) {
+function createBookRow(book, queryID) {
   const bookRow = document.createElement('tr');
   bookRow.className = "book-row";
 
   const picColumn = createPictureColumn(book);
-  const infoColumn = createInfoColumn(book);
+  const infoColumn = createInfoColumn(book, queryID);
   const linkColumn = createLinkColumn(book);
 
   bookRow.appendChild(picColumn);
@@ -135,9 +158,10 @@ function createPictureColumn(book) {
  * about the parameter book object
  *
  * @param book Book object
+ * @param queryID appropriate queryID for results in this element
  * @return infoText of <td></td> element
  */
-function createInfoColumn(book) {
+function createInfoColumn(book, queryID) {
   const infoColumn = document.createElement('td');
   infoColumn.className = "book-info";
   var titleHTML = '<b>' + book.title +'</b>';
@@ -159,19 +183,19 @@ function createInfoColumn(book) {
 
   if (book.description){
       var descriptionButton = document.createElement("button");
-      descriptionButton.className = "book-button";
+      descriptionButton.className = "book-button-" + queryID;
       descriptionButton.insertAdjacentHTML('afterbegin', "Description");
       descriptionButton.addEventListener("click", function () {
-        getBookInformation('books.description', book.order);
+        getBookInformation('books.description', book.order, queryID);
       });
       infoColumn.appendChild(descriptionButton);
   }
   if (book.embeddable == true && book.isbn){
       var previewButton = document.createElement("button");
-      previewButton.className = "book-button";
+      previewButton.className = "book-button-" + queryID;
       previewButton.insertAdjacentHTML('afterbegin', "Preview");
       previewButton.addEventListener("click", function () {
-        getBookInformation('books.preview', book.order);
+        getBookInformation('books.preview', book.order, queryID);
       });
       infoColumn.appendChild(previewButton);
   }
@@ -204,9 +228,11 @@ function createLinkColumn(book) {
 /**
  * This function updates the scroll of content object to 
  * be set at the top of the book table returned by the assistant 
+ *
+ * @param queryID ID of assistant response to scroll to
  */
-function updateBookScroll() {
-  var recentResponse = document.getElementsByClassName("assistant-side")[document.getElementsByClassName("assistant-side").length - 1];
+function updateBookScroll(queryID) {
+  var recentResponse = document.getElementsByClassName("assistant-side-" + queryID)[document.getElementsByClassName("assistant-side-" + queryID).length - 1];
   var topPos = recentResponse.offsetTop;
   var element = document.getElementById("content");
   element.scrollTop = topPos;
@@ -220,17 +246,20 @@ function updateBookScroll() {
  */
 function displayBookInfo(stream) {
   var outputAsJson = JSON.parse(stream);
-  placeFulfillmentResponse(outputAsJson.fulfillmentText);
 
   if (outputAsJson.display) {
-      if (outputAsJson.intent.includes("description")){
-        descriptionContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent);
-        placeBookDisplay(descriptionContainer, "convo-container");
-      } else if (outputAsJson.intent.includes("preview")) {
-        previewContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent);
-        placeBookDisplay(previewContainer, "convo-container");
-        loadPreview(outputAsJson.display);
-      }
+    clearPreviousDisplay(outputAsJson.redirect);
+
+    placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
+    placeBooksFulfillment(outputAsJson.fulfillmentText, outputAsJson.redirect);
+    infoContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent, outputAsJson.redirect);
+    placeBookDisplay(infoContainer, "convo-container", outputAsJson.redirect);
+    
+    if (outputAsJson.intent.includes("preview")) {
+      loadPreview(outputAsJson.display);
+    }
+  } else {
+    placeFulfillmentResponse(outputAsJson.fulfillmentText);
   }
   outputAudio(stream);
 }
@@ -242,9 +271,10 @@ function displayBookInfo(stream) {
  *
  * @param bookResult JSON Book returned from Dialogflow
  * @param intent String specifying intent 
+ * @param queryID appropriate queryID for results in this element
  * @return infoDiv div element containing information table
  */
-function createBookInfoContainer(bookResult, intent){
+function createBookInfoContainer(bookResult, intent, queryID){
   var book = JSON.parse(bookResult);
 
   infoDiv = document.createElement("div"); 
@@ -253,8 +283,8 @@ function createBookInfoContainer(bookResult, intent){
   infoTable.className = "book-table";
 
   infoTable.appendChild(createInfoRow(book, intent));
-  infoTable.appendChild(createBookRow(book));
-  infoTable.appendChild(createInfoFooter());
+  infoTable.appendChild(createBookRow(book, queryID));
+  infoTable.appendChild(createInfoFooter(queryID));
   infoDiv.appendChild(infoTable);
 
   return infoDiv;
@@ -291,16 +321,21 @@ function createInfoRow(book, intent){
  * Creates a footer row for information table that includes a "Go Back"
  * button which will return users to the results display
  *
- * @param bookResult JSON Book returned from Dialogflow
- * @param infoType String specifying type of info to display
+ * @param queryID appropriate queryID for results in this element
  * @return footerRow <tr></tr> element for info table
  */
-function createInfoFooter(){
+function createInfoFooter(queryID){
   const footerRow = document.createElement('tr');
   footerRow.className = "book-row";
   
-  htmlString = '<button class="book-button" onclick="getBooksFromButton(\'books.results\')"> Go Back </button>';
-  footerRow.insertAdjacentHTML('afterbegin', htmlString);
+  var backButton = document.createElement("button");
+  backButton.className = "book-button-" + queryID;
+  backButton.insertAdjacentHTML('afterbegin', "Go Back");
+  backButton.addEventListener("click", function () {
+    getBooksFromButton('books.results', queryID);
+  });
+
+  footerRow.appendChild(backButton);
   return footerRow;
 }
 
@@ -343,12 +378,52 @@ function alertNotFound() {
  */
 function displayBooksFromButton(stream) {
   var outputAsJson = JSON.parse(stream);
-  placeFulfillmentResponse(outputAsJson.fulfillmentText);
   if (outputAsJson.intent.includes("books.more") ||
         outputAsJson.intent.includes("books.previous") ||
         outputAsJson.intent.includes("books.results")){
-    bookContainer = createBookContainer(outputAsJson.display);
-    placeBookDisplay(bookContainer, "convo-container");
+    clearPreviousDisplay(outputAsJson.redirect);
+    placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
+    placeBooksFulfillment(outputAsJson.fulfillmentText, outputAsJson.redirect);
+    bookContainer = createBookContainer(outputAsJson.display, outputAsJson.redirect);
+    placeBookDisplay(bookContainer, "convo-container", outputAsJson.redirect);
+  } else {
+    placeFulfillmentResponse(outputAsJson.fulfillmentText);
   }
   outputAudio(stream);
+}
+
+/**
+ * This function clears the last container specified by parameter
+ *
+ * @param className class name of container to be cleared
+ */
+function clearLastDiv(className) {
+  lastElement = document.getElementsByClassName(className)[document.getElementsByClassName(className).length - 1];
+  lastElement.parentNode.removeChild(lastElement);
+}
+
+/**
+ * This function clears the last comment made by either the user
+ * or the assistant side
+ *
+ * @param className class name of comment to be cleared
+ */
+function clearLastComment(className) {
+  lastElement = document.getElementsByClassName(className)[document.getElementsByClassName(className).length - 1];
+  parentContainer = lastElement.parentNode;
+  parentContainer.removeChild(lastElement);
+  parentContainer.parentNode.removeChild(parentContainer);
+}
+
+/**
+ * This function clears the last comment made by the user
+ * and the assistant along with the previous books display that 
+ * matches the queryID
+ *
+ * @param queryID ID of results for query to be cleared
+ */
+function clearPreviousDisplay(queryID) {
+  clearLastComment("user-side-" + queryID);
+  clearLastComment("assistant-side-" + queryID);
+  clearLastDiv(queryID);
 }
