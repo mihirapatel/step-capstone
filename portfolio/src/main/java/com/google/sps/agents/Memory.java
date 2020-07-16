@@ -10,6 +10,8 @@ import com.google.sps.data.Pair;
 import com.google.sps.utils.UserUtils;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Memory Agent */
 public class Memory implements Agent {
@@ -19,6 +21,7 @@ public class Memory implements Agent {
   private String display;
   private DatastoreService datastore;
   private UserService userService;
+  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
@@ -44,6 +47,7 @@ public class Memory implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters) {
+    log.info("Parameters: " + parameters);
     if (!userService.isUserLoggedIn()) {
       fulfillment = "Please login to access conversation history.";
       return;

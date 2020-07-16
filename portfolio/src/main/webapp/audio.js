@@ -233,3 +233,7 @@ function play(src) {
     }
   }
 }
+
+function sendRedirect(URL){
+  window.open(URL);
+}
