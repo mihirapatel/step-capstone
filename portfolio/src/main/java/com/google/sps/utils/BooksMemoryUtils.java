@@ -284,7 +284,6 @@ public class BooksMemoryUtils {
     Query query = new Query(entityName).setFilter(currentUserFilter);
     PreparedQuery pq = datastore.prepare(query);
     for (Entity entity : pq.asIterable()) {
-      entity.removeProperty("id");
       entity.setProperty("id", newID);
       datastore.put(entity);
     }

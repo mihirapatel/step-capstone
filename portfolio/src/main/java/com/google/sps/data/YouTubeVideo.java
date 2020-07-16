@@ -24,7 +24,6 @@ public final class YouTubeVideo {
       String description,
       String thumbnail,
       String videoId,
-      String channelId) {
       String channelId,
       int currentIndex,
       int videosDisplayedPerPage,
