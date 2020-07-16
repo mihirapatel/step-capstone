@@ -109,7 +109,10 @@ public class MemoryUtils {
 
   private static List<Pair<Entity, List<Entity>>> getCommentListHelper(
       DatastoreService datastore, Filter queryFilter, String keyword) {
-    Query query = new Query("CommentHistory").setFilter(queryFilter);
+    Query query =
+        new Query("CommentHistory")
+            .setFilter(queryFilter)
+            .addSort("timestamp", SortDirection.ASCENDING);
 
     List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
@@ -154,8 +157,6 @@ public class MemoryUtils {
   }
 
   private static Filter getDurationFilter(String userID, long startTime, long endTime) {
-    log.info("Duration start: " + startTime);
-    log.info("Duration end: " + endTime);
     return new CompositeFilter(
         CompositeFilterOperator.AND,
         Arrays.asList(

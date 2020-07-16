@@ -20,8 +20,6 @@ import org.slf4j.LoggerFactory;
 /** Memory Agent */
 public class Memory implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
-
   private final String intentName;
   private String userID;
   private String fulfillment;
@@ -72,8 +70,8 @@ public class Memory implements Agent {
     List<Pair<Entity, List<Entity>>> conversationList;
     String timePeriodDisplay = "";
     try {
-      Value dateObject = parameters.get("date-time");
-      if (dateObject != null) {
+      Value dateObject = parameters.get("date-time-enhanced");
+      if (dateObject != null && dateObject.hasStructValue()) {
         Pair<Long, Long> timeRange = getTimeRange(dateObject);
         conversationList =
             MemoryUtils.getKeywordCommentEntitiesWithTime(
@@ -104,7 +102,7 @@ public class Memory implements Agent {
   private void findTimePeriodComments(Map<String, Value> parameters)
       throws InvalidRequestException {
     try {
-      Pair<Long, Long> timeRange = getTimeRange(parameters.get("date-time"));
+      Pair<Long, Long> timeRange = getTimeRange(parameters.get("date-time-enhanced"));
       List<Entity> conversationSnippet =
           MemoryUtils.getTimePeriodCommentEntities(
               datastore, userID, timeRange.getKey(), timeRange.getValue());
@@ -130,8 +128,9 @@ public class Memory implements Agent {
   private Pair<Long, Long> getTimeRange(Value dateObject) throws ParseException {
     String startDateString;
     String endDateString;
-    if (dateObject.hasStructValue()) {
-      Map<String, Value> durationMap = dateObject.getStructValue().getFieldsMap();
+    Value dateTimeObject = dateObject.getStructValue().getFieldsMap().get("date-time");
+    if (dateTimeObject.hasStructValue()) {
+      Map<String, Value> durationMap = dateTimeObject.getStructValue().getFieldsMap();
       if (durationMap.get("date-time") != null) {
         // Case where user specifies a specific date and time (should return a 10 min period
         // centered around the time)
@@ -143,9 +142,9 @@ public class Memory implements Agent {
       endDateString = durationMap.get("endDate").getStringValue();
     } else {
       // Case where user asks for a date but no time (should return a full day period)
-      String dateString = dateObject.getStringValue();
+      String dateString = dateTimeObject.getStringValue();
       startDateString = dateString.replaceAll("T([0-9]{2}:){2}[0-9]{2}", "T00:00:00");
-      endDateString = dateString.replaceAll("T([0-9]{2}:){2}[0-9]{2}", "T11:59:59");
+      endDateString = dateString.replaceAll("T([0-9]{2}:){2}[0-9]{2}", "T23:59:59");
     }
     Date start = TimeUtils.stringToDate(startDateString);
     Date end = TimeUtils.stringToDate(endDateString);
