@@ -18,7 +18,7 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
-import com.google.sps.utils.UserUtils;
+import com.google.sps.utils.MemoryUtils;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
@@ -186,8 +186,18 @@ public class TestHelper {
    * @param comments List of strings containing comments to be stored in custom database.
    */
   public void setCustomDatabase(List<String> comments) {
+    setCustomDatabase(comments, (new Date()).getTime());
+  }
+
+  /**
+   * Populates customizes datastore with desired string comments.
+   *
+   * @param comments List of strings containing comments to be stored in custom database.
+   */
+  public void setCustomDatabase(List<String> comments, long startTime) {
+    int increment = 0;
     for (String comment : comments) {
-      UserUtils.makeCommentEntity("1", customDatastore, comment, true);
+      MemoryUtils.makeCommentEntity("1", customDatastore, comment, true, startTime + (increment++));
     }
   }
 
