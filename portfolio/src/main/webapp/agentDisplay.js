@@ -2,8 +2,10 @@ const streamingContainer = document.getElementsByName('streaming')[0];
 
 function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
-  placeUserInput(outputAsJson.userInput, "convo-container");
-  placeFulfillmentResponse(outputAsJson.fulfillmentText);
+  if (!outputAsJson.intent.includes("books")) {
+    placeUserInput(outputAsJson.userInput, "convo-container");
+    placeFulfillmentResponse(outputAsJson.fulfillmentText);
+  }
   if (outputAsJson.display) {
     if (outputAsJson.intent.includes("reminders.snooze")) {
       convoContainer = placeObjectContainer(outputAsJson.display, "media-display timer-display", "convo-container");
@@ -27,14 +29,24 @@ function displayResponse(stream) {
     } else if (outputAsJson.intent.includes("books.search") ||
         outputAsJson.intent.includes("books.more") ||
         outputAsJson.intent.includes("books.previous") ||
-        outputAsJson.intent.includes("books.results")){
+        outputAsJson.intent.includes("books.results")) {
+      if (!outputAsJson.intent.includes("books.search")){
+        clearPreviousDisplay(outputAsJson.redirect);
+      }
+      placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
+      placeBooksFulfillment(outputAsJson.fulfillmentText, outputAsJson.redirect);
+      bookContainer = createBookContainer(outputAsJson.display, outputAsJson.redirect);
+      placeBookDisplay(bookContainer, "convo-container", outputAsJson.redirect);
 
-      bookContainer = createBookContainer(outputAsJson.display);
-      placeBookDisplay(bookContainer, "convo-container");
     } else if (outputAsJson.intent.includes("books.description") ||
         outputAsJson.intent.includes("books.preview")) {
-      infoContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent);
-      placeBookDisplay(infoContainer, "convo-container");
+      clearPreviousDisplay(outputAsJson.redirect);
+
+      placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
+      placeBooksFulfillment(outputAsJson.fulfillmentText, outputAsJson.redirect);
+      infoContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent, outputAsJson.redirect);
+      placeBookDisplay(infoContainer, "convo-container", outputAsJson.redirect);
+
     } else if (outputAsJson.intent.includes("workout.find")) {
       workoutContainer = workoutVideos(outputAsJson.display);
       appendDisplay(workoutContainer);
@@ -53,7 +65,26 @@ function placeUserInput(text, container) {
     placeObjectContainer("<p>" + formattedInput + "</p>", "user-side", container);
   }
 }
- 
+
+function placeBooksUserInput(text, container, queryID) {
+  if (container == "convo-container") {
+    streamingContainer.innerHTML = "";
+    streamingContainer.style.display = "none";
+  }
+  if (text != " (null) "){
+    var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
+    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side-" + queryID, container);
+  }
+}
+
+function placeBooksFulfillment(text, queryID) {
+  placeObjectContainer("<p>" + text + "</p>", "assistant-side-" + queryID, "convo-container");
+  if (text.includes("Switching conversation language")) {
+    window.sessionStorage.setItem("language", getLastWord(text));
+  }
+}
+
+
 function placeFulfillmentResponse(text) {
   placeObjectContainer("<p>" + text + "</p>", "assistant-side", "convo-container");
   console.log(text);

@@ -175,7 +175,9 @@ function outputAudio(stream) {
   if (outputAsJson.redirect != null) {
     var aud = document.getElementById("sound-player");
     aud.onended = function() {
-      sendRedirect(outputAsJson.redirect);
+      if (!outputAsJson.intent.includes("books")) {
+        sendRedirect(outputAsJson.redirect);
+      }
     };
   } else {
     var aud = document.getElementById("sound-player");
