@@ -25,14 +25,34 @@ public class BooksAgent implements Agent {
   private BookQuery query;
   private int displayNum;
   private String sessionID;
+  private String queryID;
 
+  /**
+   * BooksAgent constructor without queryID sets queryID property to the most recent queryID for the
+   * specified sessionID
+   */
   public BooksAgent(
       String intentName, String userInput, Map<String, Value> parameters, String sessionID)
+      throws IOException, IllegalArgumentException {
+    this(intentName, userInput, parameters, sessionID, null);
+  }
+
+  /** BooksAgent constructor with queryID */
+  public BooksAgent(
+      String intentName,
+      String userInput,
+      Map<String, Value> parameters,
+      String sessionID,
+      String queryID)
       throws IOException, IllegalArgumentException {
     this.displayNum = 5;
     this.intentName = intentName;
     this.userInput = userInput;
     this.sessionID = sessionID;
+    this.queryID = queryID;
+    if (queryID == null) {
+      this.queryID = getMostRecentQueryID(sessionID);
+    }
     setParameters(parameters);
   }
 
@@ -50,18 +70,19 @@ public class BooksAgent implements Agent {
       int resultsReturned = results.size();
 
       if (resultsReturned > 0) {
-        // Delete stored BookQuery, Book results, totalResults, resultsReturned
-        BooksMemoryUtils.deleteAllStoredBookInformation(sessionID);
+        // Set new queryID
+        this.queryID = getNextQueryID(sessionID);
 
         // Store BookQuery, Book results, totalResults, resultsReturned
-        BooksMemoryUtils.storeBooks(results, startIndex, sessionID);
-        BooksMemoryUtils.storeBookQuery(query, sessionID);
+        BooksMemoryUtils.storeBooks(results, startIndex, sessionID, queryID);
+        BooksMemoryUtils.storeBookQuery(query, sessionID, queryID);
         BooksMemoryUtils.storeIndices(
-            startIndex, totalResults, resultsReturned, displayNum, sessionID);
+            startIndex, totalResults, resultsReturned, displayNum, sessionID, queryID);
 
         ArrayList<Book> booksToDisplay =
-            BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex, sessionID);
+            BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex, sessionID, queryID);
         this.display = bookListToString(booksToDisplay);
+        this.redirect = queryID;
         this.output = "Here's what I found.";
       } else {
         this.output = "I couldn't find any results. Can you try again?";
@@ -69,10 +90,10 @@ public class BooksAgent implements Agent {
 
     } else if (intentName.equals("more")) {
       // Load BookQuery, totalResults, resultsStored
-      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery(sessionID);
-      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID);
-      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored", sessionID);
-      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults", sessionID);
+      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID);
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID);
+      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored", sessionID, queryID);
+      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults", sessionID, queryID);
 
       // Increment startIndex
       int startIndex = getNextStartIndex(prevStartIndex, totalResults);
@@ -81,9 +102,9 @@ public class BooksAgent implements Agent {
         return;
       } else if (startIndex + displayNum <= resultsStored) {
         // Replace indices
-        BooksMemoryUtils.deleteStoredEntities("Indices", sessionID);
+        BooksMemoryUtils.deleteStoredEntities("Indices", sessionID, queryID);
         BooksMemoryUtils.storeIndices(
-            startIndex, totalResults, resultsStored, displayNum, sessionID);
+            startIndex, totalResults, resultsStored, displayNum, sessionID, queryID);
       } else {
         // Retrieve books
         ArrayList<Book> results = BookUtils.getRequestedBooks(prevQuery, startIndex);
@@ -97,25 +118,26 @@ public class BooksAgent implements Agent {
           return;
         } else {
           // Delete stored Book results and indices
-          BooksMemoryUtils.deleteStoredEntities("Indices", sessionID);
+          BooksMemoryUtils.deleteStoredEntities("Indices", sessionID, queryID);
 
           // Store Book results and indices
-          BooksMemoryUtils.storeBooks(results, startIndex, sessionID);
+          BooksMemoryUtils.storeBooks(results, startIndex, sessionID, queryID);
           BooksMemoryUtils.storeIndices(
-              startIndex, totalResults, newResultsStored, displayNum, sessionID);
+              startIndex, totalResults, newResultsStored, displayNum, sessionID, queryID);
         }
       }
       ArrayList<Book> booksToDisplay =
-          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex, sessionID);
+          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex, sessionID, queryID);
       this.display = bookListToString(booksToDisplay);
+      this.redirect = queryID;
       this.output = "Here's the next page of results.";
 
     } else if (intentName.equals("previous")) {
       // Load BookQuery, totalResults, resultsStored
-      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery(sessionID);
-      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID);
-      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored", sessionID);
-      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults", sessionID);
+      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID);
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID);
+      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored", sessionID, queryID);
+      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults", sessionID, queryID);
 
       // Increment startIndex
       int startIndex = prevStartIndex - displayNum;
@@ -124,53 +146,57 @@ public class BooksAgent implements Agent {
         startIndex = 0;
       } else {
         // Replace indices
-        BooksMemoryUtils.deleteStoredEntities("Indices", sessionID);
+        BooksMemoryUtils.deleteStoredEntities("Indices", sessionID, queryID);
         BooksMemoryUtils.storeIndices(
-            startIndex, totalResults, resultsStored, displayNum, sessionID);
+            startIndex, totalResults, resultsStored, displayNum, sessionID, queryID);
         this.output = "Here's the previous page of results.";
       }
       ArrayList<Book> booksToDisplay =
-          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex, sessionID);
+          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, startIndex, sessionID, queryID);
       this.display = bookListToString(booksToDisplay);
+      this.redirect = queryID;
 
     } else if (intentName.equals("description")) {
       // Get requested order number from parameters
       int orderNum = (int) parameters.get("number").getNumberValue();
 
       // Retrieve requested book
-      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID);
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID);
       Book requestedBook =
-          BooksMemoryUtils.getBookFromOrderNum(orderNum, prevStartIndex, sessionID);
+          BooksMemoryUtils.getBookFromOrderNum(orderNum, prevStartIndex, sessionID, queryID);
 
       // Set output and display information
       this.output = "Here's a description for " + requestedBook.getTitle() + ".";
       this.display = bookToString(requestedBook);
+      this.redirect = queryID;
       // Don't change any stored information
     } else if (intentName.equals("preview")) {
       // Get requested order number from parameters
       int orderNum = (int) parameters.get("number").getNumberValue();
 
       // Retrieve requested book
-      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID);
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID);
       Book requestedBook =
-          BooksMemoryUtils.getBookFromOrderNum(orderNum, prevStartIndex, sessionID);
+          BooksMemoryUtils.getBookFromOrderNum(orderNum, prevStartIndex, sessionID, queryID);
 
       // Set output and display information
       this.output = "Here's a preview of " + requestedBook.getTitle() + ".";
       this.display = bookToString(requestedBook);
+      this.redirect = queryID;
       // Don't change any stored information
 
     } else if (intentName.equals("results")) {
       // Load Book results, totalResults, resultsReturned
-      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery(sessionID);
-      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID);
-      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored", sessionID);
-      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults", sessionID);
+      BookQuery prevQuery = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID);
+      int prevStartIndex = BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID);
+      int resultsStored = BooksMemoryUtils.getStoredIndices("resultsStored", sessionID, queryID);
+      int totalResults = BooksMemoryUtils.getStoredIndices("totalResults", sessionID, queryID);
       ArrayList<Book> booksToDisplay =
-          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, prevStartIndex, sessionID);
+          BooksMemoryUtils.getStoredBooksToDisplay(displayNum, prevStartIndex, sessionID, queryID);
 
       this.display = bookListToString(booksToDisplay);
       this.output = "Here are the results.";
+      this.redirect = queryID;
       // Don't change any stored information
     }
   }
@@ -206,5 +232,17 @@ public class BooksAgent implements Agent {
   private String bookListToString(ArrayList<Book> books) {
     Gson gson = new Gson();
     return gson.toJson(books);
+  }
+
+  private String getMostRecentQueryID(String sessionID) {
+    int queryNum = BooksMemoryUtils.getNumQueryStored(sessionID);
+    String queryID = "query-" + Integer.toString(queryNum);
+    return queryID;
+  }
+
+  private String getNextQueryID(String sessionID) {
+    int queryNum = BooksMemoryUtils.getNumQueryStored(sessionID) + 1;
+    String queryID = "query-" + Integer.toString(queryNum);
+    return queryID;
   }
 }
