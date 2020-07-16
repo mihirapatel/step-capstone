@@ -1,5 +1,10 @@
 const streamingContainer = document.getElementsByName('streaming')[0];
 
+/**
+* Creates all frontend display for user and assistant comments and specialized displays for each agent.
+*
+* @param stream JSON output from dialogflow containing all necessary display information.
+*/
 function displayResponse(stream) {
   var outputAsJson = JSON.parse(stream);
   if (!outputAsJson.intent.includes("books")) {
@@ -17,8 +22,8 @@ function displayResponse(stream) {
     } else if (outputAsJson.intent.includes("name.user.change")) {
       updateName(outputAsJson.display);
     } else if (outputAsJson.intent.includes("maps.search")) {
-        mapContainer = locationMap(outputAsJson.display);
-        appendDisplay(mapContainer);
+      mapContainer = locationMap(outputAsJson.display);
+      appendDisplay(mapContainer);
     } else if (outputAsJson.intent.includes("maps.find")) {
       if (moreButton) {
         moreButton.style.display = "none";
@@ -50,6 +55,10 @@ function displayResponse(stream) {
     } else if (outputAsJson.intent.includes("workout.find")) {
       workoutContainer = workoutVideos(outputAsJson.display);
       appendDisplay(workoutContainer);
+    } else if (outputAsJson.intent.includes("memory.keyword")) {
+      memoryContainer = createKeywordContainer(outputAsJson.display);
+      appendDisplay(memoryContainer);
+      addDisplayListeners(memoryContainer);
     }
   }
   outputAudio(stream);
@@ -99,31 +108,13 @@ function getLastWord(words) {
     return split[split.length - 1];
 }
 
-function placeDisplay(text) {
-  placeObjectContainer(text, "media-display", "convo-container");
-}
- 
-function placeDisplay(text, type) {
-  placeObjectContainer(text, type, "convo-container");
-}
-
-function placeObjectContainer(text, type, container) {
-  var container = document.getElementsByName(container)[0];
-  var newDiv = document.createElement('div');
-  newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div><br>";
-  container.appendChild(newDiv);
-  updateScroll();
-  return container;
-}
-
-function appendDisplay(div) {
-  var container = document.getElementsByName("convo-container")[0];
-  container.appendChild(div);
-  updateScroll();
-  return container;
-}
-
-function updateScroll() {
-  var element = document.getElementById("content");
-  element.scrollTop = element.scrollHeight;
+/**
+* Updates the frontend javascript to include the user's name (or nickname) in the title.
+*
+* @param name The name used to refer to the user.
+*/
+function updateName(name) {
+  var greetingContainer = document.getElementsByName("greeting")[0];
+  name = " " + name;
+  greetingContainer.innerHTML = "<h1>Hi" + name + ", what can I help you with?</h1>";
 }
