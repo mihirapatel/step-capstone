@@ -20,6 +20,9 @@
 const mainSection = document.querySelector('.main-controls');
 const formContainer = document.getElementsByName('input-form')[0];
 const textInputContainer = document.getElementById("text-input");
+var sessionId = "";
+var queryNumber = 0;
+window.onbeforeunload = deleteSessionInformation;
  
 var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
@@ -228,4 +231,3 @@ function deleteSessionInformation(){
   });
   return null;
 }
-
