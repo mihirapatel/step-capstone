@@ -108,7 +108,6 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     var videoDescription = document.createElement("p");
     videoDescription.classList.add("video-description");
     videoDescription.innerHTML = description.replace(/"/g, "");
-    console.log(description);
     videoInfo.appendChild(videoDescription);
 
     videoContainer.appendChild(videoInfo);

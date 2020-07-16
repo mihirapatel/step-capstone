@@ -111,8 +111,8 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by makifn YT
-   * Data API call from WorkoutUtils to get passed into workout.js
+   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by making YT
+   * Data API call from VideoUtils to get passed into workout.js
    */
   private void setWorkoutFindDisplay() throws IOException {
 
@@ -164,16 +164,16 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutFindOutput method, that sets the agent output based on set parameters for
-   * workoutLength, workoutType, and youtubeChannel from workoutFind method
+   * Private setworkoutPLanOutput method, that sets the agent output based on set parameters for
+   * planLength and workoutType from workoutPlan method
    */
   private void setWorkoutPlanOutput() {
     output = "Here is your " + planLength + " day " + workoutType + " workout plan:";
   }
 
   /**
-   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by makifn YT
-   * Data API call from WorkoutUtils to get passed into workout.js
+   * Private setworkoutPLanDisplay method, that sets the agent display to JSON string by making YT
+   * Data API call from VideoUtils to get passed into workout.js
    */
   private void setWorkoutPlanDisplay() throws IOException {
 
