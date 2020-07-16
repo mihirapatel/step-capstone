@@ -6,13 +6,10 @@ import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.YouTubeVideo;
-import com.google.sps.utils.WorkoutUtils;
+import com.google.sps.utils.VideoUtils;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,8 +55,8 @@ public class WorkoutAgent implements Agent {
           ArrayIndexOutOfBoundsException {
     if (intentName.contains("find")) {
       workoutFind(parameters);
-    } else if (intentName.contains("schedule")) {
-      workoutSchedule(parameters);
+    } else if (intentName.contains("plan")) {
+      workoutPlan(parameters);
     }
   }
 
@@ -130,64 +127,15 @@ public class WorkoutAgent implements Agent {
     youtubeChannel = youtubeChannel.replaceAll("\\s", "");
 
     // Make API call to WorkoutUtils to get json object of videos
-    JSONObject json =
-        WorkoutUtils.getJSONObject(
-            workoutLength, workoutType, youtubeChannel, videosDisplayedTotal);
-    JSONArray videos = json.getJSONArray("items");
-
-    List<YouTubeVideo> videoList = new ArrayList<>();
-
-    for (int index = 0; index < videos.length(); index++) {
-      String videoString = new Gson().toJson(videos.get(index));
-      setVideoParameters(videoString);
-      if (index % videosDisplayedPerPage == 0) {
-        currentPage += 1;
-      }
-      video =
-          new YouTubeVideo(
-              channelTitle,
-              title,
-              description,
-              thumbnail,
-              videoId,
-              channelId,
-              index,
-              videosDisplayedPerPage,
-              currentPage,
-              totalPages);
-      videoList.add(video);
-    }
+    List<YouTubeVideo> videoList =
+        VideoUtils.getVideoList(
+            workoutLength, workoutType, youtubeChannel, videosDisplayedTotal, "video");
 
     display = new Gson().toJson(videoList);
   }
 
-  /**
-   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
-   * video object
-   *
-   * @param videoString JSON string of YouTube video from API call
-   */
-  private void setVideoParameters(String videoString) {
-    JSONObject videoJSONObject = new JSONObject(videoString).getJSONObject("map");
-    JSONObject id = videoJSONObject.getJSONObject("id").getJSONObject("map");
-    videoId = new Gson().toJson(id.get("videoId"));
-    JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
-    title = new Gson().toJson(snippet.get("title"));
-    description = new Gson().toJson(snippet.get("description"));
-    channelTitle = new Gson().toJson(snippet.get("channelTitle"));
-    channelId = new Gson().toJson(snippet.get("channelId"));
-    JSONObject thumbnailJSONObject =
-        snippet.getJSONObject("thumbnails").getJSONObject("map").getJSONObject("medium");
-    JSONObject thumbnailURL = thumbnailJSONObject.getJSONObject("map");
-    thumbnail = new Gson().toJson(thumbnailURL.get("url"));
-  }
-
-  /**
-   * TODO: Private workoutSchedule method
-   *
-   * @param parameters parameter Map from Dialogflow
-   */
-  private void workoutSchedule(Map<String, Value> parameters) throws UnsupportedOperationException {
+  /** @param parameters parameter Map from Dialogflow */
+  private void workoutPlan(Map<String, Value> parameters) throws UnsupportedOperationException {
     return;
   }
 }
