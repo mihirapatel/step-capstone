@@ -150,12 +150,12 @@ p {
  
 [class*="user-side"] {
   text-align: right;
-  width: 75%;
+  margin-left: 25%;
 }
  
 [class*="assistant-side"] {
   text-align: left;
-  width: 75%;
+  margin-right: 25%;
 }
  
 .media-display {
