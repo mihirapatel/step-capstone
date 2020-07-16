@@ -31,7 +31,8 @@ public class WorkoutAgent implements Agent {
   private String workoutType = "";
   private String workoutLength = "";
   private String youtubeChannel = "";
-  private final int numVideosDisplayed = 5;
+  private final int videosDisplayedTotal = 25;
+  private final int videosDisplayedPerPage = 5;
   private String amount = "";
   private String unit = "";
   private YouTubeVideo video;
@@ -41,6 +42,8 @@ public class WorkoutAgent implements Agent {
   private String thumbnail;
   private String videoId;
   private String channelId;
+  private int currentPage = 0;
+  private int totalPages = videosDisplayedTotal / videosDisplayedPerPage;
 
   public WorkoutAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -128,21 +131,42 @@ public class WorkoutAgent implements Agent {
 
     // Make API call to WorkoutUtils to get json object of videos
     JSONObject json =
-        WorkoutUtils.getJSONObject(workoutLength, workoutType, youtubeChannel, numVideosDisplayed);
+        WorkoutUtils.getJSONObject(
+            workoutLength, workoutType, youtubeChannel, videosDisplayedTotal);
     JSONArray videos = json.getJSONArray("items");
 
     List<YouTubeVideo> videoList = new ArrayList<>();
 
-    for (int i = 0; i < videos.length(); i++) {
-      String videoString = new Gson().toJson(videos.get(i));
+    for (int index = 0; index < videos.length(); index++) {
+      String videoString = new Gson().toJson(videos.get(index));
       setVideoParameters(videoString);
-      video = new YouTubeVideo(channelTitle, title, description, thumbnail, videoId, channelId);
+      if (index % videosDisplayedPerPage == 0) {
+        currentPage += 1;
+      }
+      video =
+          new YouTubeVideo(
+              channelTitle,
+              title,
+              description,
+              thumbnail,
+              videoId,
+              channelId,
+              index,
+              videosDisplayedPerPage,
+              currentPage,
+              totalPages);
       videoList.add(video);
     }
 
     display = new Gson().toJson(videoList);
   }
 
+  /**
+   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
+   * video object
+   *
+   * @param videoString JSON string of YouTube video from API call
+   */
   private void setVideoParameters(String videoString) {
     JSONObject videoJSONObject = new JSONObject(videoString).getJSONObject("map");
     JSONObject id = videoJSONObject.getJSONObject("id").getJSONObject("map");
