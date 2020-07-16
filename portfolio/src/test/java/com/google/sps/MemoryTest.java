@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.google.protobuf.*;
 import com.google.sps.data.Output;
+import com.google.sps.servlets.BookAgentServlet;
 import com.google.sps.servlets.TestHelper;
 import com.google.sps.utils.TimeUtils;
 import java.text.ParseException;
@@ -109,7 +110,7 @@ public class MemoryTest {
     assertEquals(
         "Here are all the results including the keyword \"hello.\"", output.getFulfillmentText());
 
-    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    Map<String, Value> result = BookAgentServlet.stringToMap(output.getDisplay());
     List<Value> identifiedCommentList =
         result.get("conversationPairList").getListValue().getValuesList();
     assertEquals(3, identifiedCommentList.size());
@@ -155,7 +156,7 @@ public class MemoryTest {
     assertEquals(
         "Here are all the results including the keyword \"apple.\"", output.getFulfillmentText());
 
-    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    Map<String, Value> result = BookAgentServlet.stringToMap(output.getDisplay());
     List<Value> identifiedCommentList =
         result.get("conversationPairList").getListValue().getValuesList();
     assertEquals(2, identifiedCommentList.size());
@@ -194,7 +195,7 @@ public class MemoryTest {
         "Here are all the results including the keyword \"sentence.\"",
         output.getFulfillmentText());
 
-    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    Map<String, Value> result = BookAgentServlet.stringToMap(output.getDisplay());
     List<Value> identifiedCommentList =
         result.get("conversationPairList").getListValue().getValuesList();
     assertEquals(1, identifiedCommentList.size());
@@ -226,7 +227,7 @@ public class MemoryTest {
     assertEquals(
         "Here are all the results including the keyword \"test.\"", output.getFulfillmentText());
 
-    Map<String, Value> result = TestHelper.stringToMap(output.getDisplay());
+    Map<String, Value> result = BookAgentServlet.stringToMap(output.getDisplay());
     List<Value> identifiedCommentList =
         result.get("conversationPairList").getListValue().getValuesList();
     assertEquals(7, identifiedCommentList.size());

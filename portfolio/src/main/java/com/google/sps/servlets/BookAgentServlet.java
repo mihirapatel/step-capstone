@@ -16,7 +16,6 @@ import com.google.sps.data.BookQuery;
 import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.BooksMemoryUtils;
-import com.google.sps.utils.UserUtils;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.annotation.WebServlet;
@@ -102,10 +101,6 @@ public class BookAgentServlet extends HttpServlet {
     }
     if (fulfillment.equals("")) {
       fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
-    }
-    if (userService.isUserLoggedIn()) {
-      UserUtils.saveComment(
-          userService.getCurrentUser().getUserId(), datastore, detectedInput, fulfillment);
     }
     byteStringToByteArray = AgentUtils.getByteStringToByteArray(fulfillment, languageCode);
     Output output =
