@@ -12,8 +12,10 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import com.google.sps.agents.*;
 import com.google.sps.agents.BooksAgent;
+import com.google.sps.data.BookQuery;
 import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
+import com.google.sps.utils.BooksMemoryUtils;
 import com.google.sps.utils.UserUtils;
 import java.io.IOException;
 import java.util.Map;
@@ -45,6 +47,7 @@ public class BookAgentServlet extends HttpServlet {
     String intent = request.getParameter("intent");
     String sessionID = request.getParameter("session-id");
     String language = request.getParameter("language");
+    String queryID = request.getParameter("query-id");
     String languageCode = AgentUtils.getLanguageCode(language);
     Map<String, Value> parameterMap = null;
     Output output = null;
@@ -53,7 +56,7 @@ public class BookAgentServlet extends HttpServlet {
       if (request.getParameter("number") != null) {
         parameterMap = stringToMap("{\"number\": " + request.getParameter("number") + "}");
       }
-      output = getOutputFromBookAgent(intent, sessionID, parameterMap, languageCode);
+      output = getOutputFromBookAgent(intent, sessionID, parameterMap, languageCode, queryID);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -67,21 +70,27 @@ public class BookAgentServlet extends HttpServlet {
    *
    * @param intent intent String passed as parameter to Servlet
    * @param sessionID unique ID for current session
+   * @param queryID unique ID (within sessionID) for current query
    * @param parameterMap map containing parameters needed, if any, by BookAgent
    * @param languageCode language code
    * @return Output object to be sent to frontend
    */
   public Output getOutputFromBookAgent(
-      String intent, String sessionID, Map<String, Value> parameterMap, String languageCode) {
+      String intent,
+      String sessionID,
+      Map<String, Value> parameterMap,
+      String languageCode,
+      String queryID) {
     String display = null;
     String redirect = null;
     byte[] byteStringToByteArray = null;
     String intentName = AgentUtils.getIntentName(intent);
     String detectedInput = "Button pressed for: " + intentName;
-    String userInput = "";
+    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID);
+    String userInput = query.getUserInput();
     String fulfillment = "";
     try {
-      BooksAgent agent = new BooksAgent(intentName, userInput, parameterMap, sessionID);
+      BooksAgent agent = new BooksAgent(intentName, userInput, parameterMap, sessionID, queryID);
       fulfillment = agent.getOutput();
       display = agent.getDisplay();
       redirect = agent.getRedirect();
@@ -100,7 +109,7 @@ public class BookAgentServlet extends HttpServlet {
     }
     byteStringToByteArray = AgentUtils.getByteStringToByteArray(fulfillment, languageCode);
     Output output =
-        new Output(detectedInput, fulfillment, byteStringToByteArray, display, redirect, intent);
+        new Output(userInput, fulfillment, byteStringToByteArray, display, redirect, intent);
     return output;
   }
 
