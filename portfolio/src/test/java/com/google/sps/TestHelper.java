@@ -309,14 +309,26 @@ public class TestHelper {
   }
 
   /**
-   * Retrieves a list of entity objects from the given query for testing purposes to ensure that
-   * result in datastore match the expected.
+   * Retrieves a list of entity objects for the default user from the given query for testing
+   * purposes to ensure that result in datastore match the expected.
    *
    * @param category String containing the type of entity we are querying for.
    * @return A list of entity objects returned by datastore.
    */
   public List<Entity> fetchDatastoreEntities(String category) {
     return fetchDatastoreEntities(category, "1");
+  }
+
+  /**
+   * Retrieves a list of entity objects for all users from the given query for testing purposes to
+   * ensure that result in datastore match the expected.
+   *
+   * @param category String containing the type of entity we are querying for.
+   * @return A list of entity objects returned by datastore.
+   */
+  public List<Entity> fetchDatastoreAllUsers(String category) {
+    Query query = new Query(category);
+    return customDatastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 
   /**
@@ -330,9 +342,20 @@ public class TestHelper {
    */
   public List<Entity> fetchDatastoreEntities(String category, String userID) {
     Filter filter = new FilterPredicate("userID", FilterOperator.EQUAL, userID);
+    return fetchDatastoreEntities(category, filter);
+  }
+
+  /**
+   * Retrieves a list of entity objects from the given query for testing purposes to ensure that
+   * result in datastore match the expected.
+   *
+   * @param category String containing the type of entity we are querying for.
+   * @param filter Filter for query results.
+   * @return A list of entity objects returned by datastore.
+   */
+  public List<Entity> fetchDatastoreEntities(String category, Filter filter) {
     Query query =
         new Query(category).setFilter(filter).addSort("timestamp", SortDirection.DESCENDING);
-    ;
     return customDatastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 

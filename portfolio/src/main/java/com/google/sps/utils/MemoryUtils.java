@@ -14,9 +14,7 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.sps.data.Pair;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tartarus.snowball.SnowballStemmer;
@@ -182,7 +180,7 @@ public class MemoryUtils {
    */
   public static void allocateList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
-    saveAggregateData(datastore, userID, listName, items);
+    saveAggregateData(datastore, userID, listName, items, true);
     List<Entity> existingList = fetchExistingListQuery(datastore, userID, listName);
     if (!existingList.isEmpty()) {
       Entity existingEntity = existingList.get(0);
@@ -218,12 +216,13 @@ public class MemoryUtils {
    */
   public static boolean addToList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
-    saveAggregateData(datastore, userID, listName, items);
     List<Entity> existingList = fetchExistingListQuery(datastore, userID, listName);
     if (existingList.isEmpty()) {
       addListItems(datastore, userID, items, listName);
+      saveAggregateData(datastore, userID, listName, items, true);
       return false;
     }
+    saveAggregateData(datastore, userID, listName, items, false);
     Entity existingEntity = existingList.get(0);
     ArrayList<String> existingItems = (ArrayList<String>) existingEntity.getProperty("items");
     if (existingItems == null) {
@@ -276,18 +275,51 @@ public class MemoryUtils {
     return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 
+  /**
+   * Asynchronously stores aggregated data in the background.
+   *
+   * @param userID The ID corresponding to user who made the comment
+   * @param datastore Database instance.
+   * @param listName The name of the list being created.
+   * @param items List of strings containing items to add to list
+   * @param timeString Timestamp to assign to the comment.
+   */
   private static void saveAggregateData(
-      DatastoreService datastore, String userID, String listName, List<String> items) {
-    saveAggregateListData(datastore, userID, "ListAggregate", items);
+      DatastoreService datastore,
+      String userID,
+      String listName,
+      List<String> items,
+      boolean newList) {
+    final DatastoreService datastoreService = datastore;
+    final String userId = userID;
+    final String name = listName;
+    final List<String> listItems = items;
+    final boolean isNewList = newList;
+    // new Thread(
+    //         () -> {
     saveAggregateListData(
-        datastore, userID, "ListAggregate-" + stemmed(listName).toLowerCase(), items);
+        datastoreService, userId, stemmed(name).toLowerCase(), listItems, isNewList);
+    //     })
+    // .start();
   }
 
+  /**
+   * Stores the integer aggregate count of number of times user has placed a given item in a list.
+   *
+   * @param keyName The name of the entity key to store that data in.
+   * @param userID The logged-in user's ID
+   * @param datastore Database entity to retrieve data from
+   * @param items List of strings containing items to add to list
+   */
   private static void saveAggregateListData(
-      DatastoreService datastore, String userID, String keyName, List<String> items) {
+      DatastoreService datastore,
+      String userID,
+      String listName,
+      List<String> items,
+      boolean newList) {
     Entity entity;
     try {
-      entity = datastore.get(KeyFactory.createKey(keyName, userID));
+      entity = datastore.get(KeyFactory.createKey(listName, userID));
       for (String item : items) {
         String stemmedItem = stemmed(item);
         long prevValue =
@@ -295,15 +327,49 @@ public class MemoryUtils {
         entity.setProperty(stemmedItem, prevValue + 1);
       }
     } catch (EntityNotFoundException e) {
-      entity = new Entity(keyName, userID);
+      entity = new Entity(listName, userID);
       entity.setProperty("userID", userID);
       for (String item : items) {
         String stemmedItem = stemmed(item);
-        entity.setProperty(stemmedItem, 1);
+        long value = 1;
+        entity.setProperty(stemmedItem, value);
       }
     }
     entity.setProperty("timestamp", System.currentTimeMillis());
+    if (newList) {
+      Object countObject = entity.getProperty("count");
+      long count = countObject == null ? 1 : ((long) countObject) + 1;
+      entity.setProperty("count", count);
+    }
+    entity.setProperty("listName", listName);
     datastore.put(entity);
+    List<String> entityIDProperties = Arrays.asList("userID", "timestamp", "count", "listName");
+    updateFractionalAggregation(datastore, userID, entity, entityIDProperties);
+  }
+
+  /**
+   * Stores the fractional integer aggregate count of number of times user has placed a given item
+   * in a list.
+   *
+   * @param keyName The name of the entity key to store that data in.
+   * @param userID The logged-in user's ID
+   * @param datastore Database entity to retrieve data from
+   * @param entity Original entity reference.
+   */
+  private static void updateFractionalAggregation(
+      DatastoreService datastore, String userID, Entity entity, List<String> entityIDProperties) {
+    Entity fracEntity = new Entity("Frac-" + (String) entity.getProperty("listName"), userID);
+    Long total = (Long) entity.getProperty("count");
+    for (String item : entity.getProperties().keySet()) {
+      if (entityIDProperties.contains(item)) {
+        continue;
+      }
+      fracEntity.setProperty(item, ((Long) entity.getProperty(item)) / total.doubleValue());
+    }
+    for (String name : entityIDProperties) {
+      fracEntity.setProperty(name, entity.getProperty(name));
+    }
+    datastore.put(fracEntity);
   }
 
   /**
