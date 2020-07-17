@@ -104,9 +104,17 @@ public class WorkoutAgent implements Agent {
    * workoutLength, workoutType, and youtubeChannel from workoutFind method
    */
   private void setWorkoutFindOutput() {
-    output = "Here are videos for: " + workoutLength + " " + workoutType + " workouts";
+
+    output = "Here are videos for: ";
+    if (!workoutLength.equals(" ")) {
+      output += workoutLength + " ";
+    }
+    if (!workoutType.equals("")) {
+      output += workoutType + " ";
+    }
+    output += "workouts ";
     if (!youtubeChannel.equals("")) {
-      output += " from " + youtubeChannel;
+      output += "from " + youtubeChannel;
     }
   }
 
