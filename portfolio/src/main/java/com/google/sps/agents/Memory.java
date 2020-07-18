@@ -3,6 +3,7 @@ package com.google.sps.agents;
 // Imports the Google Cloud client library
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.log.InvalidRequestException;
 import com.google.appengine.api.users.UserService;
 import com.google.protobuf.Value;
@@ -56,7 +57,7 @@ public class Memory implements Agent {
       Map<String, Value> parameters,
       UserService userService,
       DatastoreService datastore)
-      throws InvalidRequestException {
+      throws InvalidRequestException, EntityNotFoundException {
     this.intentName = intentName;
     this.userService = userService;
     this.datastore = datastore;
@@ -64,7 +65,8 @@ public class Memory implements Agent {
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) throws InvalidRequestException {
+  public void setParameters(Map<String, Value> parameters)
+      throws InvalidRequestException, EntityNotFoundException {
     if (!userService.isUserLoggedIn()) {
       fulfillment = "Please login to access user history.";
       return;
@@ -84,7 +86,6 @@ public class Memory implements Agent {
       String subListIntent = subIntents[subIntents.length - 1];
       if (subListIntent.contains("make")) {
         makeList(parameters);
-        makePastRecommendations();
       } else if (subListIntent.contains("show")) {
         showList(parameters);
       } else if (subListIntent.contains("custom") || subListIntent.contains("add")) {
@@ -203,14 +204,15 @@ public class Memory implements Agent {
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void makeList(Map<String, Value> parameters) {
+  private void makeList(Map<String, Value> parameters) throws EntityNotFoundException {
     unpackObjects(parameters);
-    MemoryUtils.allocateList(listName, userID, datastore, items);
+    log.info("ITEMS: " + items);
     if (items.isEmpty()) {
-      fulfillment = "Created! What are some items to add to your new " + listName + " list?";
-      return;
+      fulfillment = MemoryUtils.makePastRecommendations(userID, datastore, listName);
+    } else {
+      fulfillment = "Created! Anything else you would like to add?";
     }
-    fulfillment = "Created! Anything else you would like to add?";
+    MemoryUtils.allocateList(listName, userID, datastore, items);
   }
 
   private void showList(Map<String, Value> parameters) {
@@ -235,15 +237,6 @@ public class Memory implements Agent {
       return;
     }
     fulfillment = "Updated!";
-  }
-
-  /**
-   * Makes recommendations for items to intialize a list when the user requsts to make a new list.
-   * Since there are no list items, recommendations are made based on the user's list history. If
-   * the user does not have any lists of the same name, then no recommendations are made.
-   */
-  private void makePastRecommendations() {
-    return;
   }
 
   /**
@@ -277,6 +270,7 @@ public class Memory implements Agent {
 
   @Override
   public String getOutput() {
+    log.info("FULFILLMENT: " + fulfillment);
     return fulfillment;
   }
 
