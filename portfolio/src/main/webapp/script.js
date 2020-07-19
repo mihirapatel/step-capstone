@@ -28,6 +28,10 @@ var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
+var sessionId = "";
+var queryNumber = 0;
+window.onbeforeunload = deleteSessionInformation;
+
 /**
 * Function triggered with each character typed in the text input container that handles 
 * submitting the text input on the RETURN key, getting the command used before with the 

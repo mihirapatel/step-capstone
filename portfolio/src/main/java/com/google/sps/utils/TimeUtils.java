@@ -8,6 +8,7 @@ import java.util.Locale;
 public class TimeUtils {
 
   public static Date stringToDate(String dateString) throws ParseException {
+    dateString = dateString.replaceAll("[0-9]{2}:[0-9]{2}$", "00:00");
     SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.ENGLISH);
     Date parsed = parser.parse(dateString);
     return parsed;

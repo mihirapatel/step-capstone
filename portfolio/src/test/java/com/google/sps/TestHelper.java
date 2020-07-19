@@ -12,17 +12,13 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Struct;
-import com.google.protobuf.Struct.Builder;
 import com.google.protobuf.Value;
-import com.google.protobuf.util.JsonFormat;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
-import com.google.sps.utils.UserUtils;
+import com.google.sps.utils.MemoryUtils;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
-import org.json.JSONObject;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.slf4j.Logger;
@@ -138,7 +134,7 @@ public class TestHelper {
   public void setParameters(String inputText, String parameters, String intentName)
       throws InvalidProtocolBufferException {
     setInputText(inputText);
-    Map<String, Value> map = stringToMap(parameters);
+    Map<String, Value> map = BookAgentServlet.stringToMap(parameters);
     when(dialogFlowMock.getParameters()).thenReturn(map);
     when(dialogFlowMock.getIntentName()).thenReturn(intentName);
     when(dialogFlowMock.getQueryText()).thenReturn(inputText);
@@ -186,8 +182,18 @@ public class TestHelper {
    * @param comments List of strings containing comments to be stored in custom database.
    */
   public void setCustomDatabase(List<String> comments) {
+    setCustomDatabase(comments, (new Date()).getTime());
+  }
+
+  /**
+   * Populates customizes datastore with desired string comments.
+   *
+   * @param comments List of strings containing comments to be stored in custom database.
+   */
+  public void setCustomDatabase(List<String> comments, long startTime) {
+    int increment = 0;
     for (String comment : comments) {
-      UserUtils.makeCommentEntity("1", customDatastore, comment, true);
+      MemoryUtils.makeCommentEntity("1", customDatastore, comment, true, startTime + (increment++));
     }
   }
 
@@ -214,18 +220,5 @@ public class TestHelper {
     public UserService createUserService() {
       return userServiceMock;
     }
-  }
-
-  /**
-   * Converts a json string into a map object
-   *
-   * @param json json string
-   */
-  public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
-    JSONObject jsonObject = new JSONObject(json);
-    Builder structBuilder = Struct.newBuilder();
-    JsonFormat.parser().merge(jsonObject.toString(), structBuilder);
-    Struct struct = structBuilder.build();
-    return struct.getFieldsMap();
   }
 }

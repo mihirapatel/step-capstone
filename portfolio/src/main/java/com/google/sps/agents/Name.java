@@ -50,16 +50,14 @@ public class Name implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters) {
-    log.info("parameters: " + parameters);
     String nameType = parameters.get("type").getStringValue();
     String name = null;
     nameType = nameType.equals("") ? "first name" : nameType;
     name = getSpecificName(parameters, nameType);
-    log.info("name: " + name);
     if (name.equals("")) {
       outputText = "I'm sorry, I didn't catch the name. Can you repeat that?";
     } else {
-      UserUtils.saveName(userService.getCurrentUser().getUserId(), datastore, nameType, name);
+      UserUtils.saveName(userID, datastore, nameType, name);
       outputText = "Changing your " + nameType + " to be " + name + ".";
       userDisplayName = UserUtils.getDisplayName(userService, datastore);
     }

@@ -13,14 +13,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /** Date Agent */
-public class Date implements Agent {
+public class DateAgent implements Agent {
   private final String intentName;
   private String output = null;
   private String locationFormatted;
   private String locationDisplay;
   private ZonedDateTime dateGiven;
 
-  public Date(String intentName, Map<String, Value> parameters)
+  public DateAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;

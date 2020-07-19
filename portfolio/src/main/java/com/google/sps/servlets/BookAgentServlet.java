@@ -16,7 +16,6 @@ import com.google.sps.data.BookQuery;
 import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.BooksMemoryUtils;
-import com.google.sps.utils.UserUtils;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.annotation.WebServlet;
@@ -86,11 +85,13 @@ public class BookAgentServlet extends HttpServlet {
     byte[] byteStringToByteArray = null;
     String intentName = AgentUtils.getIntentName(intent);
     String detectedInput = "Button pressed for: " + intentName;
-    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID);
+    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID, datastore);
     String userInput = query.getUserInput();
     String fulfillment = "";
     try {
-      BooksAgent agent = new BooksAgent(intentName, userInput, parameterMap, sessionID, queryID);
+      BooksAgent agent =
+          new BooksAgent(
+              intentName, userInput, parameterMap, sessionID, userService, datastore, queryID);
       fulfillment = agent.getOutput();
       display = agent.getDisplay();
       redirect = agent.getRedirect();
@@ -102,10 +103,6 @@ public class BookAgentServlet extends HttpServlet {
     }
     if (fulfillment.equals("")) {
       fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
-    }
-    if (userService.isUserLoggedIn()) {
-      UserUtils.saveComment(
-          userService.getCurrentUser().getUserId(), datastore, detectedInput, fulfillment);
     }
     byteStringToByteArray = AgentUtils.getByteStringToByteArray(fulfillment, languageCode);
     Output output =
