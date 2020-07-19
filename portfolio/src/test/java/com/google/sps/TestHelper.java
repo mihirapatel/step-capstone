@@ -5,6 +5,13 @@ import static org.mockito.Mockito.*;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
@@ -195,6 +202,43 @@ public class TestHelper {
     for (String comment : comments) {
       MemoryUtils.makeCommentEntity("1", customDatastore, comment, true, startTime + (increment++));
     }
+  }
+
+  /**
+   * Populates customizes datastore with desired list attributes.
+   *
+   * @param comments List of strings containing comments to be stored in custom database.
+   */
+  public void setCustomDatabase(String listName, ArrayList<String> items, long startTime) {
+    MemoryUtils.makeListEntity(customDatastore, "1", items, listName, startTime);
+  }
+
+  /**
+   * Retrieves a list of entity objects from the given query for testing purposes to ensure that
+   * result in datastore match the expected.
+   *
+   * @param category String containing the type of entity we are querying for.
+   * @return A list of entity objects returned by datastore.
+   */
+  public List<Entity> fetchDatastoreEntities(String category) {
+    return fetchDatastoreEntities(category, "1");
+  }
+
+  /**
+   * Retrieves a list of entity objects from the given query for testing purposes to ensure that
+   * result in datastore match the expected.
+   *
+   * @param category String containing the type of entity we are querying for.
+   * @param userID String representing the user ID number for getting specific info about other
+   *     users
+   * @return A list of entity objects returned by datastore.
+   */
+  public List<Entity> fetchDatastoreEntities(String category, String userID) {
+    Filter filter = new FilterPredicate("userID", FilterOperator.EQUAL, userID);
+    Query query =
+        new Query(category).setFilter(filter).addSort("timestamp", SortDirection.DESCENDING);
+    ;
+    return customDatastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 
   private class TestableTextInputServlet extends TextInputServlet {

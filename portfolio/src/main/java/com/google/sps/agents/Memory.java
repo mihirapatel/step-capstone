@@ -11,11 +11,11 @@ import com.google.sps.data.Pair;
 import com.google.sps.utils.MemoryUtils;
 import com.google.sps.utils.TimeUtils;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /** Memory Agent */
 public class Memory implements Agent {
@@ -26,7 +26,8 @@ public class Memory implements Agent {
   private String display;
   private DatastoreService datastore;
   private UserService userService;
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
+  private String listName;
+  private ArrayList<String> items = new ArrayList<>();;
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
@@ -52,8 +53,7 @@ public class Memory implements Agent {
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) {
-    log.info("Parameters: " + parameters);
+  public void setParameters(Map<String, Value> parameters) throws InvalidRequestException {
     if (!userService.isUserLoggedIn()) {
       fulfillment = "Please login to access conversation history.";
       return;
@@ -63,6 +63,23 @@ public class Memory implements Agent {
       findKeyword(parameters);
     } else if (intentName.contains("time")) {
       findTimePeriodComments(parameters);
+    } else if (intentName.contains("list")) {
+      listName = parameters.get("list-name").getStringValue();
+      if (listName.isEmpty()) {
+        fulfillment = "What would you like to name the list?";
+        return;
+      }
+      String[] subIntents = intentName.split("-");
+      String subListIntent = subIntents[subIntents.length - 1];
+      if (subListIntent.contains("make")) {
+        makeList(parameters);
+      } else if (subListIntent.contains("show")) {
+        showList(parameters);
+      } else if (subListIntent.contains("custom") || subListIntent.contains("add")) {
+        updateList(parameters);
+      } else if (subListIntent.contains("yes")) {
+        makeMoreRecommendations();
+      }
     }
   }
 
@@ -149,6 +166,56 @@ public class Memory implements Agent {
     Date start = TimeUtils.stringToDate(startDateString);
     Date end = TimeUtils.stringToDate(endDateString);
     return new Pair(start.getTime(), end.getTime());
+  }
+
+  private void makeList(Map<String, Value> parameters) {
+    unpackObjects(parameters);
+    MemoryUtils.allocateList(listName, userID, datastore, items);
+    log.info("items: " + items);
+    log.info("empty items: " + items.isEmpty());
+    log.info("size items: " + items.size());
+    if (items.isEmpty()) {
+      fulfillment = "Created! What are some items to add to your new " + listName + " list?";
+      return;
+    }
+    fulfillment = "Created! Anything else you would like to add?";
+  }
+
+  private void showList(Map<String, Value> parameters) {
+    // TODO
+    fulfillment = "no display yet sorry";
+  }
+
+  private void updateList(Map<String, Value> parameters) {
+    unpackObjects(parameters);
+    boolean listExists = MemoryUtils.addToList(listName, userID, datastore, items);
+    if (!listExists) {
+      fulfillment =
+          "Your "
+              + listName
+              + " list has not been created yet, so a new list was created with those items.";
+      return;
+    }
+    fulfillment = "Updated!";
+  }
+
+  private void makeMoreRecommendations() {
+    fulfillment = "sorry not yet.";
+  }
+
+  private void unpackObjects(Map<String, Value> parameters) {
+    log.info("PARAMETERS: " + parameters);
+    String listObjects = parameters.get("list-objects").getStringValue();
+    if (listObjects.isEmpty()) {
+      return;
+    }
+    String[] commaSplit = listObjects.split(",[\\s]*[and]*[\\s]+");
+    if (commaSplit.length > 0) {
+      String[] finalSplit = commaSplit[commaSplit.length - 1].split("[\\s]+and[\\s]+");
+      items = new ArrayList<>(Arrays.asList(commaSplit));
+      items.remove(commaSplit.length - 1);
+      items.addAll(new ArrayList<String>(Arrays.asList(finalSplit)));
+    }
   }
 
   @Override
