@@ -176,6 +176,10 @@ function isEmptyString(text) {
   return text == null || text.trim() === "";
 }
 
+function isEmptyString(text) {
+  return text == null || text.trim() === "";
+}
+
 /**
  * Retrieves Output object created by BookAgent for specified intent 
  * triggered by a button the display 

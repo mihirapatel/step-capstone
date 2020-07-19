@@ -2,6 +2,7 @@ package com.google.sps.utils;
 
 // Imports the Google Cloud client library
 import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.log.InvalidRequestException;
 import com.google.appengine.api.users.UserService;
 import com.google.cloud.translate.TranslateException;
 import com.google.maps.errors.ApiException;
@@ -84,7 +85,8 @@ public class AgentUtils {
           | IllegalArgumentException
           | ArrayIndexOutOfBoundsException
           | NullPointerException
-          | TranslateException e) {
+          | TranslateException
+          | InvalidRequestException e) {
         log.info("Error in object creation.");
         e.printStackTrace();
       }
@@ -93,7 +95,7 @@ public class AgentUtils {
       fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
     }
     if (userService.isUserLoggedIn()) {
-      UserUtils.saveComment(
+      MemoryUtils.saveComment(
           userService.getCurrentUser().getUserId(), datastore, detectedInput, fulfillment);
     }
     byteStringToByteArray = getByteStringToByteArray(fulfillment, languageCode);
@@ -110,7 +112,7 @@ public class AgentUtils {
       Map<String, Value> parameterMap,
       String sessionID)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException {
+          ArrayIndexOutOfBoundsException, InvalidRequestException {
     switch (agentName) {
       case "books":
         return new BooksAgent(intentName, queryText, parameterMap, sessionID);
@@ -119,7 +121,7 @@ public class AgentUtils {
       case "currency":
         return new Currency(intentName, parameterMap);
       case "date":
-        return new Date(intentName, parameterMap);
+        return new DateAgent(intentName, parameterMap);
       case "language":
         return new Language(intentName, parameterMap);
       case "maps":
