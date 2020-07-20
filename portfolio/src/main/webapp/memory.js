@@ -9,7 +9,7 @@ var commentDivToEntity = new Map();
 function createKeywordContainer(jsonOutput) {
   var conversationOutputObject = JSON.parse(jsonOutput);
   var keyword = conversationOutputObject.keyword;
-  var conversationPairList = conversationOutputObject.conversationList;
+  var conversationPairList = conversationOutputObject.conversationPairList;
   let keywordComments = conversationPairList.map(function(conversationObject) {
     comment = conversationObject.key.propertyMap;
     var surroundingConvo = conversationObject.value.map(function(entity) {
@@ -55,7 +55,7 @@ function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryC
   conversationContainer.classList.add('conversation-screen');
   memoryContainer.appendChild(conversationContainer);
   $(firstCommentDiv).addClass('active');
-  populateConversationScreen(firstCommentDiv);
+  getConversationScreen(firstCommentDiv);
 }
 
 /**
@@ -65,13 +65,36 @@ function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryC
 * @param commentDiv Selected commentDiv that contains the identified comment used to determine the surrounding conversation
 * to be displayed on the conversation side of the display.
 */
-function populateConversationScreen(commentDiv) {
+function getConversationScreen(commentDiv) {
   var keywordEntity = commentDivToEntity.get(commentDiv);
   var conversationList = commentToConvo.get(keywordEntity);
   var conversationDiv = commentDiv.parentElement.nextSibling;
   conversationDiv.innerHTML = "";
+  populateConversationScreen(conversationDiv, conversationList, keywordEntity);
+}
+
+function makeConversationDiv(jsonOutput) {
+  var conversationOutputList = JSON.parse(jsonOutput).conversationList;
+  var conversationList = conversationOutputList.map(function(entity) {
+      return entity.propertyMap;
+    });
+  var conversationContainer = document.createElement('div');
+  conversationContainer.classList.add('memory');
+  var conversationDiv = document.createElement('div');
+  conversationDiv.classList.add('conversation-div');
+  populateConversationScreen(conversationDiv, conversationList, null);
+  conversationContainer.appendChild(conversationDiv);
+  return conversationContainer;
+}
+
+function populateConversationScreen(conversationDiv, conversationList, keywordEntity) {
   var commentEntity;
+  var prevTime = 0;
   for (commentEntity of conversationList) {
+    if (commentEntity.timestamp - prevTime > 300000) {  // 5 minute difference
+        makeTimestamp(commentEntity.timestamp, conversationDiv);
+    }
+    prevTime = commentEntity.timestamp;
     var conversationCommentDiv = document.createElement('div');
     var className = commentEntity.isUser ? 'user-side' : 'assistant-side';
     conversationCommentDiv.classList.add(className);
@@ -82,6 +105,13 @@ function populateConversationScreen(commentDiv) {
     }
     conversationDiv.appendChild(conversationCommentDiv);
   }
+}
+
+function makeTimestamp(time, conversationDiv) {
+    var timeString = new Date(time).toLocaleString()
+    timeDiv = document.createElement('div');
+    timeDiv.innerHTML = "<p class='time-centered'>" + timeString + "</p>";
+    conversationDiv.appendChild(timeDiv);
 }
 
 /**
@@ -104,6 +134,6 @@ function addDisplayListeners(memoryContainer) {
     $(keywordScreenDiv).on('click', 'li', function() {
       $('li').removeClass('active');
       $(this).addClass('active');
-      populateConversationScreen(this);
+      getConversationScreen(this);
     });
 }

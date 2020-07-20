@@ -114,7 +114,10 @@ public class MemoryUtils {
 
   private static List<Pair<Entity, List<Entity>>> getCommentListHelper(
       DatastoreService datastore, Filter queryFilter, String keyword) {
-    Query query = new Query("CommentHistory").setFilter(queryFilter);
+    Query query =
+        new Query("CommentHistory")
+            .setFilter(queryFilter)
+            .addSort("timestamp", SortDirection.ASCENDING);
 
     List<Pair<Entity, List<Entity>>> keywordEntities = new ArrayList<>();
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());

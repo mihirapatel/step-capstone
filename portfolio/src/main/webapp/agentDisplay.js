@@ -47,6 +47,9 @@ function displayResponse(stream) {
       memoryContainer = createKeywordContainer(outputAsJson.display);
       appendDisplay(memoryContainer);
       addDisplayListeners(memoryContainer);
+    } else if (outputAsJson.intent.includes("memory.time")) {
+      memoryTimeContainer = makeConversationDiv(outputAsJson.display);
+      appendDisplay(memoryTimeContainer);
     }
   }
   outputAudio(stream);

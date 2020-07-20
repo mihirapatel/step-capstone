@@ -305,7 +305,7 @@ public class MemoryTest {
   public void testDayDuration() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 11 2014.",
-        "{\"date-time\": \"2014-02-11T12:00:00-08:00\","
+        "{\"date-time-enhanced\": {\"date-time\": \"2014-02-11T12:00:00-08:00\"},"
             + "\"date-time-original\": February 11 2014}",
         "memory.time");
 
@@ -331,7 +331,7 @@ public class MemoryTest {
   public void testDayStart928() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 11 2014 at 9:28 AM.",
-        "{\"date-time\": {\"date-time\": \"2014-02-11T9:28:00-08:00\"},"
+        "{\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T9:28:00-08:00\"}},"
             + "\"date-time-original\": \"February 11 2014 at 9:28 AM\"}",
         "memory.time");
 
@@ -358,7 +358,7 @@ public class MemoryTest {
   public void testDayStart931() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 11 2014 at 9:31 AM.",
-        "{\"date-time\": {\"date-time\": \"2014-02-11T9:31:00-08:00\"},"
+        "{\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T9:31:00-08:00\"}},"
             + "\"date-time-original\": \"February 11 2014 at 9:31 AM\"}",
         "memory.time");
 
@@ -387,7 +387,7 @@ public class MemoryTest {
   public void testDayStart934() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 11 2014 at 9:34 AM.",
-        "{\"date-time\": {\"date-time\": \"2014-02-11T9:34:00-08:00\"},"
+        "{\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T9:34:00-08:00\"}},"
             + "\"date-time-original\": \"February 11 2014 at 9:34 AM\"}",
         "memory.time");
 
@@ -414,7 +414,7 @@ public class MemoryTest {
   public void testDayStart937() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 11 2014 at 9:34 AM.",
-        "{\"date-time\": {\"date-time\": \"2014-02-11T9:34:00-08:00\"},"
+        "{\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T9:34:00-08:00\"}},"
             + "\"date-time-original\": \"February 11 2014 at 9:34 AM\"}",
         "memory.time");
 
@@ -441,7 +441,7 @@ public class MemoryTest {
   public void testDayNoInterval() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 11 2014 at 10:00 AM.",
-        "{\"date-time\": {\"date-time\": \"2014-02-11T10:00:00-08:00\"},"
+        "{\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T10:00:00-08:00\"}},"
             + "\"date-time-original\": \"February 11 2014 at 10:00 AM\"}",
         "memory.time");
 
@@ -456,7 +456,7 @@ public class MemoryTest {
   public void testMonth() throws Exception {
     tester.setParameters(
         "Show me conversation history from February 2014.",
-        "{\"date-time\": { \"startDate\": \"2014-02-01T00:00:00-08:00\", \"endDate\": \"2014-02-28T23:59:59-08:00\" },"
+        "{\"date-time-enhanced\": {\"date-time\": { \"startDate\": \"2014-02-01T00:00:00-08:00\", \"endDate\": \"2014-02-28T23:59:59-08:00\" }},"
             + "\"date-time-original\": \"February 2014\"}",
         "memory.time");
 
@@ -483,7 +483,7 @@ public class MemoryTest {
     tester.setParameters(
         "Show me all mentions of camel from February 2014.",
         "{\"keyword\": \"camel\","
-            + "\"date-time\": { \"startDate\": \"2014-02-01T00:00:00-08:00\", \"endDate\": \"2014-02-28T23:59:59-08:00\" },"
+            + "\"date-time-enhanced\": {\"date-time\": { \"startDate\": \"2014-02-01T00:00:00-08:00\", \"endDate\": \"2014-02-28T23:59:59-08:00\" }},"
             + "\"date-time-original\": \"February 2014\"}",
         "memory.keyword");
 
@@ -519,7 +519,7 @@ public class MemoryTest {
     tester.setParameters(
         "Show me all mentions of camel from February 11, 2014.",
         "{\"keyword\": \"camel\","
-            + "\"date-time\": \"2014-02-11T12:00:00-08:00\","
+            + "\"date-time-enhanced\": {\"date-time\": \"2014-02-11T12:00:00-08:00\"},"
             + "\"date-time-original\": \"February 11, 2014\"}",
         "memory.keyword");
 
@@ -548,7 +548,7 @@ public class MemoryTest {
     tester.setParameters(
         "Show me all mentions of camel from February 11, 2014 at 9:30 AM.",
         "{\"keyword\": \"camel\","
-            + "\"date-time\": {\"date-time\": \"2014-02-11T9:30:00-08:00\"},"
+            + "\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T9:30:00-08:00\"}},"
             + "\"date-time-original\": \"February 11, 2014 at 9:30 AM\"}",
         "memory.keyword");
 
@@ -577,7 +577,7 @@ public class MemoryTest {
     tester.setParameters(
         "Show me all mentions of camel from February 11, 2014 at 9:34 AM.",
         "{\"keyword\": \"camel\","
-            + "\"date-time\": {\"date-time\": \"2014-02-11T9:34:00-08:00\"},"
+            + "\"date-time-enhanced\": {\"date-time\": {\"date-time\": \"2014-02-11T9:34:00-08:00\"}},"
             + "\"date-time-original\": \"February 11, 2014 at 9:34 AM\"}",
         "memory.keyword");
 
