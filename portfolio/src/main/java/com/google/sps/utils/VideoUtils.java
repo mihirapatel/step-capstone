@@ -232,9 +232,10 @@ public class VideoUtils {
   private static List<YouTubeVideo> getPlaylistVideos(
       String searchType, String playlistId, int planLength) throws IOException {
     String baseURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
+    maxResults = setMaxResults(planLength);
     playlistId = setPlaylistID(playlistId);
     key = setKey();
-    URL = setURL(baseURL, null, null, playlistId, key, null);
+    URL = setURL(baseURL, maxResults, null, playlistId, key, null);
     JSONObject json = readJsonFromUrl(URL);
     return createVideoList(json, searchType);
   }
