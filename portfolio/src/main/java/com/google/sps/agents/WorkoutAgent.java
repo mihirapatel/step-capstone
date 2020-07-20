@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import com.google.sps.data.Partition;
 import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.TimeUtils;
 import com.google.sps.utils.VideoUtils;
@@ -193,7 +194,7 @@ public class WorkoutAgent implements Agent {
     // Make API call to WorkoutUtils to get json object of videos
     List<YouTubeVideo> videoList =
         VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
-
-    display = new Gson().toJson(videoList);
+    List<List<YouTubeVideo>> listOfVideoLists = Partition.ofSize(videoList, 7);
+    display = new Gson().toJson(listOfVideoLists);
   }
 }

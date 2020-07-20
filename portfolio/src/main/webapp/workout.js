@@ -172,8 +172,13 @@ function showNewVideosPage(numShiftIndex) {
 }
 
 function createWorkoutPlanTable(videos) {
+  console.log(videos);
   workoutPlannerDiv = document.createElement("div");
   workoutPlannerDiv.classList.add("media-display");
+
+  plannerDiv = document.createElement("div");
+  plannerDiv.id = "workout-planner";
+  workoutPlannerDiv.appendChild(plannerDiv);
 
 //   for (var i = indexStart; i < indexEnd; i++) {
 //     video = videos[i];
@@ -183,7 +188,27 @@ function createWorkoutPlanTable(videos) {
 //     videosDisplayedPerPage = video.videosDisplayedPerPage;
 //     currentPage = video.currentPage;
 //     totalPages = video.totalPages;
+
 //   }
+
+  return workoutPlannerDiv;
+}
+
+function createNewPlanTable(index) {
+
+  var plannerTable = document.createElement("table");
+  plannerTable.className = "workout-planner-table";
+  plannerDiv.appendChild(plannerTable);
+
+  var headingTableRow = document.createElement("tr");
+  headingTableRow.className = "planner-table-row-heading";
+  plannerTable.appendChild(headingTableRow);
+
+  var dataTableRow = document.createElement("tr");
+  dataTableRow.className = "planner-table-row-data";
+  plannerTable.appendChild(dataTableRow);
+
+
 }
 
 /** Replaces unicode strings with actual characters */
