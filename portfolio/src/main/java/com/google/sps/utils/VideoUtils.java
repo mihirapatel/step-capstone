@@ -83,15 +83,15 @@ public class VideoUtils {
       int numVideosSearched,
       String searchType)
       throws IOException, JSONException {
-
+    String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(numVideosSearched);
     order = setOrder();
     q = setVideoQ(workoutLength, workoutType, youtubeChannel);
     type = setType(searchType);
     key = setKey();
-    URL = setURL(maxResults, order, q, type, key);
+    URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    return createVideoList(json);
+    return createVideoList(json, searchType);
   }
 
   /**
@@ -106,15 +106,17 @@ public class VideoUtils {
   public static List<YouTubeVideo> getPlaylistVideoList(
       int maxPlaylistResults, int planLength, String workoutType, String searchType)
       throws IOException, JSONException {
+    String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(maxPlaylistResults);
     order = setOrder();
     q = setPlaylistQ(planLength, workoutType);
     type = setType(searchType);
     key = setKey();
-    URL = setURL(maxResults, order, q, type, key);
+    URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
     System.out.println(URL);
-    List<YouTubeVideo> listVids = createPlaylistVideoList(json, maxPlaylistResults, planLength);
+    List<YouTubeVideo> listVids =
+        createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
     System.out.println(URL);
     return listVids;
   }
@@ -125,14 +127,19 @@ public class VideoUtils {
    * @param json JSONObject from YouTube Data API call
    * @return List<YouTubeVideo> list of YouTube videos
    */
-  private static List<YouTubeVideo> createVideoList(JSONObject json) {
+  private static List<YouTubeVideo> createVideoList(JSONObject json, String searchType) {
     JSONArray videos = json.getJSONArray("items");
 
     List<YouTubeVideo> videoList = new ArrayList<>();
 
     for (int index = 0; index < videos.length(); index++) {
       String videoString = new Gson().toJson(videos.get(index));
-      setVideoParameters(videoString);
+      if (searchType.equals("video")) {
+        setVideoParameters(videoString);
+      } else if (searchType.equals("playlist")) {
+        setPlaylistVideoParameters(videoString);
+      }
+
       if (index % videosDisplayedPerPage == 0) {
         currentPage += 1;
       }
@@ -176,6 +183,27 @@ public class VideoUtils {
   }
 
   /**
+   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
+   * video object from playlists
+   *
+   * @param playlistVideoString JSON string of YouTube videos in playlist from API call
+   */
+  private static void setPlaylistVideoParameters(String playlistVideoString) {
+    JSONObject videoJSONObject = new JSONObject(playlistVideoString).getJSONObject("map");
+    JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
+    title = new Gson().toJson(snippet.get("title"));
+    description = new Gson().toJson(snippet.get("description"));
+    channelTitle = new Gson().toJson(snippet.get("channelTitle"));
+    channelId = new Gson().toJson(snippet.get("channelId"));
+    JSONObject thumbnailJSONObject =
+        snippet.getJSONObject("thumbnails").getJSONObject("map").getJSONObject("medium");
+    JSONObject thumbnailURL = thumbnailJSONObject.getJSONObject("map");
+    thumbnail = new Gson().toJson(thumbnailURL.get("url"));
+    JSONObject resourceId = snippet.getJSONObject("resourceId").getJSONObject("map");
+    videoId = new Gson().toJson(resourceId.get("videoId"));
+  }
+
+  /**
    * Gets playlistId from JSONObject and passes that into getPlaylistVideos
    *
    * @param json JSONObject from initial YouTube Data API call for playlists
@@ -183,14 +211,15 @@ public class VideoUtils {
    * @return List<YouTubeVideo> list of YouTube videos from playlist
    */
   private static List<YouTubeVideo> createPlaylistVideoList(
-      JSONObject json, int maxPlaylistResults, int planLength) throws IOException {
+      JSONObject json, String searchType, int maxPlaylistResults, int planLength)
+      throws IOException {
     int randomInt = getRandomNumberInRange(0, maxPlaylistResults);
     JSONArray playlist = json.getJSONArray("items");
     String playlistString = new Gson().toJson(playlist.get(randomInt));
     JSONObject playlistJSONObject = new JSONObject(playlistString).getJSONObject("map");
     JSONObject id = playlistJSONObject.getJSONObject("id").getJSONObject("map");
     String playlistId = new Gson().toJson(id.get("playlistId"));
-    return getPlaylistVideos(playlistId, planLength);
+    return getPlaylistVideos(searchType, playlistId, planLength);
   }
 
   /**
@@ -200,15 +229,14 @@ public class VideoUtils {
    * @param planLength length of workout plan in days
    * @return List<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> getPlaylistVideos(String playlistId, int planLength)
-      throws IOException {
-    URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
-    maxResults = setMaxResults(planLength);
+  private static List<YouTubeVideo> getPlaylistVideos(
+      String searchType, String playlistId, int planLength) throws IOException {
+    String baseURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
     playlistId = setPlaylistID(playlistId);
     key = setKey();
-    URL = setURL(maxResults, null, playlistId, key, null);
+    URL = setURL(baseURL, null, null, playlistId, key, null);
     JSONObject json = readJsonFromUrl(URL);
-    return createVideoList(json);
+    return createVideoList(json, searchType);
   }
 
   /** Set parameters for YouTube Data API search */
@@ -246,8 +274,8 @@ public class VideoUtils {
     return "key=" + apiKey;
   }
 
-  private static String setURL(String maxResults, String order, String q, String type, String key) {
-    String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
+  private static String setURL(
+      String baseURL, String maxResults, String order, String q, String type, String key) {
     return String.join("&", baseURL, maxResults, order, q, type, key);
   }
 
