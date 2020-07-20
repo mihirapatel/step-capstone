@@ -138,7 +138,11 @@ public class BookQuery implements Serializable {
   }
 
   private void setQueryString() {
-    String queryText = String.join("+", this.userInput.split(" "));
+    String queryInput = this.userInput;
+    if (this.userInput.toLowerCase().startsWith("show me ")) {
+      queryInput = userInput.substring(8);
+    }
+    String queryText = String.join("+", queryInput.split(" "));
     if (this.authors != null) {
       queryText += "+" + this.authors;
     }

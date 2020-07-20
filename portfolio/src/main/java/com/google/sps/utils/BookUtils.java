@@ -51,7 +51,7 @@ public class BookUtils {
    * @param startIndex the index of the first result to return from Google Books API
    * @return Volumes object of results
    */
-  private static Volumes getVolumes(BookQuery query, int startIndex) throws IOException {
+  public static Volumes getVolumes(BookQuery query, int startIndex) throws IOException {
     String queryString = query.getQueryString();
     Books books = getBooksContext();
     List list = books.volumes().list(queryString);

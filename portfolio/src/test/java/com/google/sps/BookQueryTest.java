@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class runs JUnit tests to test BookQuery object creation, given a map of parameters and user
- * inpu
+ * inputs.
  */
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class BookQueryTest {
@@ -58,7 +58,7 @@ public class BookQueryTest {
               + "\"language\" : \"\"}";
       emptyQuery =
           BookQuery.createBookQuery(
-              "show me an empty search", BookAgentServlet.stringToMap(emptyParameters));
+              "Show me an empty search", BookAgentServlet.stringToMap(emptyParameters));
     } catch (IllegalArgumentException e) {
       Assert.fail("Should not have thrown any exception in set up");
     }
@@ -82,7 +82,7 @@ public class BookQueryTest {
   @Test
   public void checkUserInput() throws Exception {
     assertEquals("show me newest books about love", fullQuery.getUserInput());
-    assertEquals("show me an empty search", emptyQuery.getUserInput());
+    assertEquals("Show me an empty search", emptyQuery.getUserInput());
   }
 
   /**
@@ -92,9 +92,9 @@ public class BookQueryTest {
   @Test
   public void checkQueryString() throws Exception {
     assertEquals(
-        "show+me+newest+books+about+love+inauthor:\"michael+mapes\"+inauthor:\"abby+mapes\"+intitle:\"the+fault+in+our+stars\"",
+        "newest+books+about+love+inauthor:\"michael+mapes\"+inauthor:\"abby+mapes\"+intitle:\"the+fault+in+our+stars\"",
         fullQuery.getQueryString());
-    assertEquals("show+me+an+empty+search", emptyQuery.getQueryString());
+    assertEquals("an+empty+search", emptyQuery.getQueryString());
   }
 
   /**
