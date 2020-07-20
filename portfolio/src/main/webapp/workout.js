@@ -8,6 +8,12 @@ function workoutVideos(videoQuery) {
   return workoutDiv;
 }
 
+function workoutPlanner(videoQuery) {
+  videos = JSON.parse(videoQuery);
+  let workoutDiv = createWorkoutPlanTable(videos);
+  return workoutDiv;
+}
+
 /**
 * Creates video page divs and adds extra video pages if possible
 *
@@ -163,6 +169,21 @@ function showNewVideosPage(numShiftIndex) {
   indexEnd += numShiftIndex
   let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
   appendDisplay(workoutDiv);
+}
+
+function createWorkoutPlanTable(videos) {
+  workoutPlannerDiv = document.createElement("div");
+  workoutPlannerDiv.classList.add("media-display");
+
+//   for (var i = indexStart; i < indexEnd; i++) {
+//     video = videos[i];
+//     channelName = video.channelTitle;
+//     title = video.title;
+//     currentIndex = video.currentIndex;
+//     videosDisplayedPerPage = video.videosDisplayedPerPage;
+//     currentPage = video.currentPage;
+//     totalPages = video.totalPages;
+//   }
 }
 
 /** Replaces unicode strings with actual characters */

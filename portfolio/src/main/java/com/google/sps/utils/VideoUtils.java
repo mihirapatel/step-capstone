@@ -21,6 +21,7 @@ public class VideoUtils {
 
   private static String URL;
   private static String maxResults;
+  private static String order;
   private static String q;
   private static String type;
   private static String key;
@@ -84,10 +85,11 @@ public class VideoUtils {
       throws IOException, JSONException {
 
     maxResults = setMaxResults(numVideosSearched);
+    order = setOrder();
     q = setVideoQ(workoutLength, workoutType, youtubeChannel);
     type = setType(searchType);
     key = setKey();
-    URL = setURL(maxResults, q, type, key);
+    URL = setURL(maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
     return createVideoList(json);
   }
@@ -102,15 +104,19 @@ public class VideoUtils {
    * @return List<YouTubeVideo> videoList list of YouTube videos for playlist
    */
   public static List<YouTubeVideo> getPlaylistVideoList(
-      int planLength, String workoutType, String searchType) throws IOException, JSONException {
-
-    maxResults = setMaxResults(planLength);
+      int maxPlaylistResults, int planLength, String workoutType, String searchType)
+      throws IOException, JSONException {
+    maxResults = setMaxResults(maxPlaylistResults);
+    order = setOrder();
     q = setPlaylistQ(planLength, workoutType);
     type = setType(searchType);
     key = setKey();
-    URL = setURL(maxResults, q, type, key);
+    URL = setURL(maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    return createPlaylistVideoList(json, planLength);
+    System.out.println(URL);
+    List<YouTubeVideo> listVids = createPlaylistVideoList(json, maxPlaylistResults, planLength);
+    System.out.println(URL);
+    return listVids;
   }
 
   /**
@@ -176,10 +182,11 @@ public class VideoUtils {
    * @param planLength length of workout plan in days
    * @return List<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> createPlaylistVideoList(JSONObject json, int planLength)
-      throws IOException {
+  private static List<YouTubeVideo> createPlaylistVideoList(
+      JSONObject json, int maxPlaylistResults, int planLength) throws IOException {
+    int randomInt = getRandomNumberInRange(0, maxPlaylistResults);
     JSONArray playlist = json.getJSONArray("items");
-    String playlistString = new Gson().toJson(playlist.get(0));
+    String playlistString = new Gson().toJson(playlist.get(randomInt));
     JSONObject playlistJSONObject = new JSONObject(playlistString).getJSONObject("map");
     JSONObject id = playlistJSONObject.getJSONObject("id").getJSONObject("map");
     String playlistId = new Gson().toJson(id.get("playlistId"));
@@ -199,7 +206,7 @@ public class VideoUtils {
     maxResults = setMaxResults(planLength);
     playlistId = setPlaylistID(playlistId);
     key = setKey();
-    URL = setURL(maxResults, playlistId, key, null);
+    URL = setURL(maxResults, null, playlistId, key, null);
     JSONObject json = readJsonFromUrl(URL);
     return createVideoList(json);
   }
@@ -209,16 +216,22 @@ public class VideoUtils {
     return "maxResults=" + String.valueOf(maxResultAmount);
   }
 
+  private static String setOrder() {
+    return "order=relevance";
+  }
+
   private static String setVideoQ(String workoutLength, String workoutType, String youtubeChannel) {
     return "q=" + String.join("+", workoutLength, workoutType, youtubeChannel, "workout");
   }
 
   private static String setPlaylistQ(int planLength, String workoutType) {
-    return "q=" + String.join("+", String.valueOf(planLength), workoutType, "workout", "challenge");
+    System.out.println(workoutType);
+    return "q="
+        + String.join("+", String.valueOf(planLength), "day", workoutType, "workout", "challenge");
   }
 
   private static String setPlaylistID(String playlistId) {
-    return "playlistId=" + playlistId;
+    return "playlistId=" + playlistId.replaceAll("\"", "");
   }
 
   private static String setType(String searchType) {
@@ -233,8 +246,16 @@ public class VideoUtils {
     return "key=" + apiKey;
   }
 
-  private static String setURL(String maxResults, String q, String type, String key) {
+  private static String setURL(String maxResults, String order, String q, String type, String key) {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
-    return String.join("&", baseURL, maxResults, q, type, key);
+    return String.join("&", baseURL, maxResults, order, q, type, key);
+  }
+
+  /** Gets random int in range [min, max) */
+  private static int getRandomNumberInRange(int min, int max) {
+    if (min >= max) {
+      throw new IllegalArgumentException("Max must be greater than min");
+    }
+    return (int) (Math.random() * (max - min)) + min;
   }
 }
