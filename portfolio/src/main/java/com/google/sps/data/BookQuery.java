@@ -109,7 +109,7 @@ public class BookQuery implements Serializable {
             && !personFields.get("name").getStringValue().isEmpty()) {
           String authorName =
               String.join("+", personFields.get("name").getStringValue().split(" "));
-          authorList.add("inauthor:\"" + authorName + "\'");
+          authorList.add("inauthor:\"" + authorName + "\"");
         }
       }
       if (!authorList.isEmpty()) {

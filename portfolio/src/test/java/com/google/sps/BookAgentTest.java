@@ -9,8 +9,10 @@ import com.google.sps.data.BookQuery;
 import com.google.sps.data.Output;
 import com.google.sps.servlets.BookAgentServlet;
 import com.google.sps.servlets.TestHelper;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,84 +38,89 @@ public class BookAgentTest {
    */
   @Before
   public void setUp() throws ParseException, InvalidProtocolBufferException {
-    parameters =
-        "{\"number\" : 3,"
-            + "\"order\" : \"\","
-            + "\"title\" : \"\","
-            + "\"type\" : \"book\","
-            + "\"authors\" : [],"
-            + "\"categories\" : \"love\","
-            + "\"language\" : \"\"}";
-    BookQuery query =
-        BookQuery.createBookQuery("Books about love", BookAgentServlet.stringToMap(parameters));
-    tester = new TestHelper();
+    try {
+      parameters =
+          "{\"number\" : 3,"
+              + "\"order\" : \"\","
+              + "\"title\" : \"\","
+              + "\"type\" : \"book\","
+              + "\"authors\" : [],"
+              + "\"categories\" : \"love\","
+              + "\"language\" : \"\"}";
+      BookQuery query =
+          BookQuery.createBookQuery("Books about love", BookAgentServlet.stringToMap(parameters));
+      tester = new TestHelper();
 
-    // Pre-populate database for testSession1, testQuery1: invalid previous and valid more
-    tester.setCustomDatabase( // startIndex
-        0,
-        // totalResults
-        15,
-        // resultsStored
-        10,
-        // displayNum
-        5,
-        // sessionID
-        "testSession1",
-        // queryID
-        "testQuery1");
-    tester.setCustomDatabase(query, "testSession1", "testQuery1");
+      // Pre-populate database for testSession1, testQuery1: invalid previous and valid more
+      tester.setCustomDatabase( // startIndex
+          0,
+          // totalResults
+          15,
+          // resultsStored
+          10,
+          // displayNum
+          5,
+          // sessionID
+          "testSession1",
+          // queryID
+          "testQuery1");
+      tester.setCustomDatabase(query, "testSession1", "testQuery1");
 
-    // Pre-populate database for testSession2, testQuery2: valid previous and invalid more
-    tester.setCustomDatabase( // startIndex
-        10,
-        // totalResults
-        10,
-        // resultsStored
-        10,
-        // displayNum
-        5,
-        // sessionID
-        "testSession2",
-        // queryID
-        "testQuery2");
-    tester.setCustomDatabase(query, "testSession2", "testQuery2");
+      // Pre-populate database for testSession2, testQuery2: valid previous and invalid more
+      tester.setCustomDatabase( // startIndex
+          10,
+          // totalResults
+          10,
+          // resultsStored
+          10,
+          // displayNum
+          5,
+          // sessionID
+          "testSession2",
+          // queryID
+          "testQuery2");
+      tester.setCustomDatabase(query, "testSession2", "testQuery2");
 
-    // Pre-populate database for testSession2, testQuery3: valid previous and valid more
-    tester.setCustomDatabase( // startIndex
-        8,
-        // totalResults
-        200,
-        // resultsStored
-        10,
-        // displayNum
-        5,
-        // sessionID
-        "testSession1",
-        // queryID
-        "testQuery3");
-    tester.setCustomDatabase(query, "testSession1", "testQuery3");
+      // Pre-populate database for testSession2, testQuery3: valid previous and valid more
+      tester.setCustomDatabase( // startIndex
+          8,
+          // totalResults
+          200,
+          // resultsStored
+          10,
+          // displayNum
+          5,
+          // sessionID
+          "testSession1",
+          // queryID
+          "testQuery3");
+      tester.setCustomDatabase(query, "testSession1", "testQuery3");
 
-    // Pre-populate database with Books for testSession3, testSession2
-    tester.setCustomDatabase( // startIndex
-        0,
-        // totalResults
-        5,
-        // resultsStored
-        5,
-        // displayNum
-        5,
-        // sessionID
-        "testSession3",
-        // queryID
-        "testQuery1");
-    tester.setCustomDatabase(query, "testSession3", "testQuery1");
-    books = new ArrayList<Book>();
-    books.add(new Book("Title 0", "Author 0a, Author 0b", "Description 0", true, "isbn0"));
-    books.add(new Book("Title 1", "Author 1a, Author 1b", "Description 1", true, "isbn1"));
-    books.add(new Book("Title 2", "Author 2a, Author 2b", "Description 2", true, "isbn2"));
-    books.add(new Book("Title 3", "Author 3a, Author 3b", "Description 3", true, "isbn3"));
-    books.add(new Book("Title 4", "Author 4a, Author 4b", "Description 4", true, "isbn4"));
-    tester.setCustomDatabase(books, 0, "testSession3", "testQuery1");
+      // Pre-populate database with Books for testSession3, testSession2
+      tester.setCustomDatabase( // startIndex
+          0,
+          // totalResults
+          5,
+          // resultsStored
+          5,
+          // displayNum
+          5,
+          // sessionID
+          "testSession3",
+          // queryID
+          "testQuery1");
+      tester.setCustomDatabase(query, "testSession3", "testQuery1");
+      books = new ArrayList<Book>();
+      books.add(new Book("Title 0", "Author 0a, Author 0b", "Description 0", true, "isbn0"));
+      books.add(new Book("Title 1", "Author 1a, Author 1b", "Description 1", true, "isbn1"));
+      books.add(new Book("Title 2", "Author 2a, Author 2b", "Description 2", true, "isbn2"));
+      books.add(new Book("Title 3", "Author 3a, Author 3b", "Description 3", true, "isbn3"));
+      books.add(new Book("Title 4", "Author 4a, Author 4b", "Description 4", true, "isbn4"));
+      tester.setCustomDatabase(books, 0, "testSession3", "testQuery1");
+    } catch (IOException | IllegalArgumentException e) {
+      Assert.fail(
+          "Should not have thrown any exception in set up valid BookQuery, Books and Indices set up.");
+    }
   }
 
   /**
