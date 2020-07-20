@@ -206,7 +206,7 @@ function createNewPlanTable(videos) {
   for (var i = 0; i < videos.length; i++) {
       video = videos[i];
       channelName = video.channelTitle;
-      title = video.title.replace(/"/g, "")
+      title = video.title.replace(/"/g, "");
       if (title.length > 43) {
           title = title.substring(0, 43) + "...";
       }
