@@ -6,13 +6,13 @@ import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.data.YouTubeVideo;
-import com.google.sps.utils.WorkoutUtils;
+import com.google.sps.utils.TimeUtils;
+import com.google.sps.utils.VideoUtils;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,19 +31,11 @@ public class WorkoutAgent implements Agent {
   private String workoutType = "";
   private String workoutLength = "";
   private String youtubeChannel = "";
-  private final int videosDisplayedTotal = 25;
-  private final int videosDisplayedPerPage = 5;
+  private int planLength;
   private String amount = "";
   private String unit = "";
-  private YouTubeVideo video;
-  private String channelTitle;
-  private String title;
-  private String description;
-  private String thumbnail;
-  private String videoId;
-  private String channelId;
-  private int currentPage = 0;
-  private int totalPages = videosDisplayedTotal / videosDisplayedPerPage;
+  private static final int videosDisplayedTotal = 25;
+  private static final int videosDisplayedPerPage = 5;
 
   public WorkoutAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -58,8 +50,8 @@ public class WorkoutAgent implements Agent {
           ArrayIndexOutOfBoundsException {
     if (intentName.contains("find")) {
       workoutFind(parameters);
-    } else if (intentName.contains("schedule")) {
-      workoutSchedule(parameters);
+    } else if (intentName.contains("plan")) {
+      workoutPlan(parameters);
     }
   }
 
@@ -119,8 +111,8 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by makifn YT
-   * Data API call from WorkoutUtils to get passed into workout.js
+   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by making YT
+   * Data API call from VideoUtils to get passed into workout.js
    */
   private void setWorkoutFindDisplay() throws IOException {
 
@@ -130,64 +122,68 @@ public class WorkoutAgent implements Agent {
     youtubeChannel = youtubeChannel.replaceAll("\\s", "");
 
     // Make API call to WorkoutUtils to get json object of videos
-    JSONObject json =
-        WorkoutUtils.getJSONObject(
-            workoutLength, workoutType, youtubeChannel, videosDisplayedTotal);
-    JSONArray videos = json.getJSONArray("items");
-
-    List<YouTubeVideo> videoList = new ArrayList<>();
-
-    for (int index = 0; index < videos.length(); index++) {
-      String videoString = new Gson().toJson(videos.get(index));
-      setVideoParameters(videoString);
-      if (index % videosDisplayedPerPage == 0) {
-        currentPage += 1;
-      }
-      video =
-          new YouTubeVideo(
-              channelTitle,
-              title,
-              description,
-              thumbnail,
-              videoId,
-              channelId,
-              index,
-              videosDisplayedPerPage,
-              currentPage,
-              totalPages);
-      videoList.add(video);
-    }
+    List<YouTubeVideo> videoList =
+        VideoUtils.getVideoList(
+            workoutLength, workoutType, youtubeChannel, videosDisplayedTotal, "video");
 
     display = new Gson().toJson(videoList);
   }
 
   /**
-   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
-   * video object
-   *
-   * @param videoString JSON string of YouTube video from API call
-   */
-  private void setVideoParameters(String videoString) {
-    JSONObject videoJSONObject = new JSONObject(videoString).getJSONObject("map");
-    JSONObject id = videoJSONObject.getJSONObject("id").getJSONObject("map");
-    videoId = new Gson().toJson(id.get("videoId"));
-    JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
-    title = new Gson().toJson(snippet.get("title"));
-    description = new Gson().toJson(snippet.get("description"));
-    channelTitle = new Gson().toJson(snippet.get("channelTitle"));
-    channelId = new Gson().toJson(snippet.get("channelId"));
-    JSONObject thumbnailJSONObject =
-        snippet.getJSONObject("thumbnails").getJSONObject("map").getJSONObject("medium");
-    JSONObject thumbnailURL = thumbnailJSONObject.getJSONObject("map");
-    thumbnail = new Gson().toJson(thumbnailURL.get("url"));
-  }
-
-  /**
-   * TODO: Private workoutSchedule method
+   * Private workoutPLan method, makes and displays a workout specified by user request. Method sets
+   * parameters for planLength and workoutType based on Dialogflow detection and makes calls to set
+   * display and set output. parameters map needs to include duration struct to set int planLength
+   * and String workoutType
    *
    * @param parameters parameter Map from Dialogflow
    */
-  private void workoutSchedule(Map<String, Value> parameters) throws UnsupportedOperationException {
-    return;
+  private void workoutPlan(Map<String, Value> parameters) throws IOException {
+    log.info(String.valueOf(parameters));
+
+    Struct durationStruct = parameters.get("date-time").getStructValue();
+    Map<String, Value> durationMap = durationStruct.getFieldsMap();
+    try {
+      Date start = TimeUtils.stringToDate(durationMap.get("startDateTime").getStringValue());
+      Date end = TimeUtils.stringToDate(durationMap.get("endDateTime").getStringValue());
+      // Convert milliseconds to days
+      planLength = (int) ((end.getTime() - start.getTime()) / 86400000);
+
+      if (planLength < 1 || planLength > 30) {
+        output =
+            "Sorry, unable to make a workout plan for less than 1 day or more than 30 days. Please try again.";
+      } else {
+        // Set output
+        setWorkoutPlanOutput();
+
+        // Set display
+        setWorkoutPlanDisplay();
+      }
+    } catch (ParseException e) {
+      System.err.println("Unable to parse date format.");
+    }
+  }
+
+  /**
+   * Private setworkoutPLanOutput method, that sets the agent output based on set parameters for
+   * planLength and workoutType from workoutPlan method
+   */
+  private void setWorkoutPlanOutput() {
+    output = "Here is your " + planLength + " day " + workoutType + " workout plan:";
+  }
+
+  /**
+   * Private setworkoutPLanDisplay method, that sets the agent display to JSON string by making YT
+   * Data API call from VideoUtils to get passed into workout.js
+   */
+  private void setWorkoutPlanDisplay() throws IOException {
+
+    // Removing white space so search URL does not have spaces
+    workoutType = workoutType.replaceAll("\\s", "");
+
+    // Make API call to WorkoutUtils to get json object of videos
+    List<YouTubeVideo> videoList =
+        VideoUtils.getPlaylistVideoList(planLength, workoutType, "playlist");
+
+    display = "TODO";
   }
 }
