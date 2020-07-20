@@ -34,9 +34,9 @@ public class WorkoutAgent implements Agent {
   private int planLength;
   private String amount = "";
   private String unit = "";
-  private static final int maxPlaylistResults = 5;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
+  private static final int maxPlaylistResults = 5;
 
   public WorkoutAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
