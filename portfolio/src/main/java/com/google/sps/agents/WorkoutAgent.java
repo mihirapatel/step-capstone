@@ -34,6 +34,7 @@ public class WorkoutAgent implements Agent {
   private int planLength;
   private String amount = "";
   private String unit = "";
+  private static final int maxPlaylistResults = 5;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
 
@@ -130,7 +131,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private workoutPLan method, makes and displays a workout specified by user request. Method sets
+   * Private workoutPlan method, makes and displays a workout specified by user request. Method sets
    * parameters for planLength and workoutType based on Dialogflow detection and makes calls to set
    * display and set output. parameters map needs to include duration struct to set int planLength
    * and String workoutType
@@ -139,7 +140,7 @@ public class WorkoutAgent implements Agent {
    */
   private void workoutPlan(Map<String, Value> parameters) throws IOException {
     log.info(String.valueOf(parameters));
-
+    workoutType = parameters.get("workout-type").getStringValue();
     Struct durationStruct = parameters.get("date-time").getStructValue();
     Map<String, Value> durationMap = durationStruct.getFieldsMap();
     try {
@@ -164,7 +165,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPLanOutput method, that sets the agent output based on set parameters for
+   * Private setworkoutPlanOutput method, that sets the agent output based on set parameters for
    * planLength and workoutType from workoutPlan method
    */
   private void setWorkoutPlanOutput() {
@@ -172,7 +173,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPLanDisplay method, that sets the agent display to JSON string by making YT
+   * Private setworkoutPlanDisplay method, that sets the agent display to JSON string by making YT
    * Data API call from VideoUtils to get passed into workout.js
    */
   private void setWorkoutPlanDisplay() throws IOException {
@@ -182,8 +183,8 @@ public class WorkoutAgent implements Agent {
 
     // Make API call to WorkoutUtils to get json object of videos
     List<YouTubeVideo> videoList =
-        VideoUtils.getPlaylistVideoList(planLength, workoutType, "playlist");
+        VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
 
-    display = "TODO";
+    display = new Gson().toJson(videoList);
   }
 }
