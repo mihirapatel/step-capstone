@@ -10,6 +10,7 @@ function workoutVideos(videoQuery) {
 }
 
 function workoutPlanner(videoQuery) {
+  workoutPlanDay = 1;
   videos = JSON.parse(videoQuery);
   let workoutDiv = createWorkoutPlanTable(videos);
   return workoutDiv;
