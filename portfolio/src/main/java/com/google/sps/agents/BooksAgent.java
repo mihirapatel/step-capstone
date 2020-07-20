@@ -101,7 +101,6 @@ public class BooksAgent implements Agent {
   @Override
   public void setParameters(Map<String, Value> parameters)
       throws IOException, IllegalArgumentException {
-
     // Intents that do not require user to be authenticated
     if (intentName.equals("search")) {
       this.query = BookQuery.createBookQuery(this.userInput, parameters);
@@ -125,10 +124,11 @@ public class BooksAgent implements Agent {
       this.startIndex = getNextStartIndex(prevStartIndex, totalResults);
 
       if (startIndex == -1) {
-        this.output = "I'm sorry, there are no more results.";
-        return;
+        this.output = "I'm sorry, this is the last page of results.";
+        this.startIndex = prevStartIndex;
       } else if (startIndex + displayNum <= resultsStored) {
         replaceIndices(sessionID, queryID);
+        this.output = "Here's the next page of results.";
       } else {
         // Retrieve books from stored query at startIndex
         this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
@@ -137,23 +137,23 @@ public class BooksAgent implements Agent {
         this.resultsStored = newResultsStored;
 
         if (resultsReturned == 0) {
-          this.output = "I'm sorry, there are no more results.";
-          return;
+          this.output = "I'm sorry, this is the last page of results.";
+          this.startIndex = prevStartIndex;
         } else {
           // Store Book results and new indices
           BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
           replaceIndices(sessionID, queryID);
+          this.output = "Here's the next page of results.";
         }
       }
       setBookListDisplay();
       this.redirect = queryID;
-      this.output = "Here's the next page of results.";
 
     } else if (intentName.equals("previous")) {
       loadBookQueryInfo(sessionID, queryID);
       this.startIndex = prevStartIndex - displayNum;
 
-      if (startIndex < -1) {
+      if (startIndex <= -1) {
         this.output = "This is the first page of results.";
         startIndex = 0;
       } else {
@@ -269,12 +269,12 @@ public class BooksAgent implements Agent {
     return -1;
   }
 
-  private String bookToString(Book book) {
+  public static String bookToString(Book book) {
     Gson gson = new Gson();
     return gson.toJson(book);
   }
 
-  private String bookListToString(ArrayList<Book> books) {
+  public static String bookListToString(ArrayList<Book> books) {
     Gson gson = new Gson();
     return gson.toJson(books);
   }
