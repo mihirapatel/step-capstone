@@ -27,6 +27,7 @@ public class VideoUtils {
   private static String key;
   private static String playlistId;
   private static List<YouTubeVideo> playlistVids;
+  private static int randomInt;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
   private static YouTubeVideo video;
@@ -115,9 +116,16 @@ public class VideoUtils {
     key = setKey();
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    playlistVids = createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
-    while (playlistVids.size() != 30) {
-      playlistVids = createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
+    randomInt = getRandomNumberInRange(0, maxPlaylistResults);
+    playlistVids =
+        createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
+
+    // If current playlist does not have at least planLength videos, it will choose the next
+    // playlist in the list
+    if (playlistVids.size() < planLength) {
+      randomInt = (randomInt + 1) % planLength;
+      playlistVids =
+          createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
     }
     return playlistVids;
   }
@@ -211,10 +219,9 @@ public class VideoUtils {
    * @param planLength length of workout plan in days
    * @return List<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> createPlaylistVideoList(
-      JSONObject json, String searchType, int maxPlaylistResults, int planLength)
+  private static List<YouTubeVideo> createPlaylistVideosList(
+      JSONObject json, String searchType, int maxPlaylistResults, int planLength, int randomInt)
       throws IOException {
-    int randomInt = getRandomNumberInRange(0, maxPlaylistResults);
     JSONArray playlist = json.getJSONArray("items");
     String playlistString = new Gson().toJson(playlist.get(randomInt));
     JSONObject playlistJSONObject = new JSONObject(playlistString).getJSONObject("map");
