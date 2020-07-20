@@ -16,6 +16,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Memory Agent */
 public class Memory implements Agent {
@@ -27,7 +29,8 @@ public class Memory implements Agent {
   private DatastoreService datastore;
   private UserService userService;
   private String listName;
-  private ArrayList<String> items = new ArrayList<>();;
+  private ArrayList<String> items = new ArrayList<>();
+  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user

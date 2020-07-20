@@ -30,7 +30,6 @@ function displayResponse(stream) {
       }
       mapContainer = nearestPlacesMap(outputAsJson.display);
       appendDisplay(mapContainer);
-
     } else if (outputAsJson.intent.includes("books.search") ||
         outputAsJson.intent.includes("books.more") ||
         outputAsJson.intent.includes("books.previous") ||

@@ -13,6 +13,7 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.common.collect.Iterables;
 import com.google.sps.data.Book;
 import com.google.sps.data.BookQuery;
 import java.util.ArrayList;
@@ -271,40 +272,6 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function replaces all id properties for Book, BookQuery, and Indices entities stored in
-   * Datastore under parameter oldID with parameter newID
-   *
-   * @param oldID session ID to retrieve stored Entities
-   * @param newID new user ID to replace oldID with
-   * @param datastore DatastoreService instance used to access Book info from database
-   */
-  public static void replaceStoredInformationIDs(
-      String oldID, String newID, DatastoreService datastore) {
-    replaceEntityID(oldID, newID, "Book", datastore);
-    replaceEntityID(oldID, newID, "BookQuery", datastore);
-    replaceEntityID(oldID, newID, "Indices", datastore);
-  }
-
-  /**
-   * This function replaces the ID property for the specified Entitiy in Datastore with parameter
-   * oldID with parameter newID
-   *
-   * @param oldID session ID to retrieve stored Entities
-   * @param newID new user ID to replace oldID with
-   * @param datastore DatastoreService instance used to access Book info from database
-   */
-  public static void replaceEntityID(
-      String oldID, String newID, String entityName, DatastoreService datastore) {
-    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, oldID);
-    Query query = new Query(entityName).setFilter(currentUserFilter);
-    PreparedQuery pq = datastore.prepare(query);
-    for (Entity entity : pq.asIterable()) {
-      entity.setProperty("id", newID);
-      datastore.put(entity);
-    }
-  }
-
-  /**
    * This function deletes all Entitys in Datastore of type BookQuery, Book, and Indices for any
    * session id
    */
@@ -339,11 +306,7 @@ public class BooksMemoryUtils {
     Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, sessionID);
     Query query = new Query("BookQuery").setFilter(currentUserFilter);
     PreparedQuery pq = datastore.prepare(query);
-    int num = 0;
-    for (Entity entity : pq.asIterable()) {
-      num += 1;
-    }
-    return num;
+    return Iterables.size(pq.asIterable());
   }
 
   /**
