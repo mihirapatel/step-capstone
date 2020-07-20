@@ -206,6 +206,9 @@ function createNewPlanTable(videos) {
       video = videos[i];
       channelName = video.channelTitle;
       title = video.title.replace(/"/g, "")
+      if (title.length > 43) {
+          title = title.substring(0, 43) + "...";
+      }
 
       var tableHeading = document.createElement("th");
       tableHeading.innerHTML = "Day " + workoutPlanDay;
@@ -216,6 +219,7 @@ function createNewPlanTable(videos) {
       dataTableRow.appendChild(tableData);
 
       var tableVideoLink = document.createElement("a");
+      tableVideoLink.className = "table-video-link";
       tableVideoLink.title = title;
       tableVideoLink.href = video.videoURL.replace(/"/g, "");
       tableVideoLink.target = "_blank";
