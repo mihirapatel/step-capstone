@@ -26,7 +26,7 @@ public class VideoUtils {
   private static String type;
   private static String key;
   private static String playlistId;
-  private List<YouTubeVideo> playlistVids;
+  private static List<YouTubeVideo> playlistVids;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
   private static YouTubeVideo video;
@@ -116,10 +116,10 @@ public class VideoUtils {
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
     playlistVids = createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
-    while (playlistVids.length != 30) {
+    while (playlistVids.size() != 30) {
       playlistVids = createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
     }
-    return listVids;
+    return playlistVids;
   }
 
   /**
