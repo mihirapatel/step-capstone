@@ -1,6 +1,7 @@
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
+var workoutPlanDay = 1;
 
 function workoutVideos(videoQuery) {
   videos = JSON.parse(videoQuery);
@@ -48,7 +49,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     video = videos[i];
     channelName = video.channelTitle;
 
-    title = video.title;
+    title = video.title.replace(/"/g, "")
     if (title.length > 80) { 
         title = title.substring(0, 80) + "..."; 
     }
@@ -96,7 +97,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     var videoTitle = document.createElement("h3");
     videoTitle.classList.add("video-title");
-    videoTitle.innerHTML = title.replace(/"/g, "");
+    videoTitle.innerHTML = title;
     videoTitleLink.appendChild(videoTitle);
     videoInfo.appendChild(videoTitleLink);
 
@@ -180,21 +181,14 @@ function createWorkoutPlanTable(videos) {
   plannerDiv.id = "workout-planner";
   workoutPlannerDiv.appendChild(plannerDiv);
 
-//   for (var i = indexStart; i < indexEnd; i++) {
-//     video = videos[i];
-//     channelName = video.channelTitle;
-//     title = video.title;
-//     currentIndex = video.currentIndex;
-//     videosDisplayedPerPage = video.videosDisplayedPerPage;
-//     currentPage = video.currentPage;
-//     totalPages = video.totalPages;
-
-//   }
+  for (var i = 0; i < videos.length; i++) {
+    createNewPlanTable(videos[i]);
+  }
 
   return workoutPlannerDiv;
 }
 
-function createNewPlanTable(index) {
+function createNewPlanTable(videos) {
 
   var plannerTable = document.createElement("table");
   plannerTable.className = "workout-planner-table";
@@ -208,6 +202,31 @@ function createNewPlanTable(index) {
   dataTableRow.className = "planner-table-row-data";
   plannerTable.appendChild(dataTableRow);
 
+  for (var i = 0; i < videos.length; i++) {
+      video = videos[i];
+      channelName = video.channelTitle;
+      title = video.title.replace(/"/g, "")
+
+      var tableHeading = document.createElement("th");
+      tableHeading.innerHTML = "Day " + workoutPlanDay;
+      workoutPlanDay += 1;
+      headingTableRow.appendChild(tableHeading);
+
+      var tableData = document.createElement("td");
+      dataTableRow.appendChild(tableData);
+
+      var tableVideoLink = document.createElement("a");
+      tableVideoLink.title = title;
+      tableVideoLink.href = video.videoURL.replace(/"/g, "");
+      tableVideoLink.target = "_blank";
+
+      var tableVideoTitle = document.createElement("p");
+      tableVideoTitle.className = "table-video-title";
+      tableVideoTitle.innerHTML = title;
+      tableVideoLink.appendChild(tableVideoTitle);
+      tableData.appendChild(tableVideoLink);
+
+  }
 
 }
 
