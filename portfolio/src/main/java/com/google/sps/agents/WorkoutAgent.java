@@ -194,7 +194,7 @@ public class WorkoutAgent implements Agent {
     // Make API call to WorkoutUtils to get json object of videos
     List<YouTubeVideo> videoList =
         VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
-    List<List<YouTubeVideo>> listOfVideoLists = Partition.ofSize(videoList, 7);
+    List<List<YouTubeVideo>> listOfVideoLists = Partition.ofSize(videoList, 5);
     display = new Gson().toJson(listOfVideoLists);
   }
 }
