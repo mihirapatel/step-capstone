@@ -20,8 +20,11 @@ import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
+import com.google.sps.data.Book;
+import com.google.sps.data.BookQuery;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import com.google.sps.utils.BooksMemoryUtils;
 import com.google.sps.utils.MemoryUtils;
 import java.io.*;
 import java.util.*;
@@ -44,6 +47,7 @@ public class TestHelper {
   HttpServletResponse response;
   TextInputServlet servlet;
   DatastoreService customDatastore;
+  String sessionID;
 
   private final LocalServiceTestHelper helper =
       new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
@@ -57,6 +61,7 @@ public class TestHelper {
     response = mock(HttpServletResponse.class);
     dialogFlowMock = mock(DialogFlowClient.class);
     servlet = new TestableTextInputServlet();
+    sessionID = "fallbackTestingID";
     setLoggedIn();
   }
 
@@ -105,6 +110,21 @@ public class TestHelper {
   }
 
   /**
+   * TestHelper constructor that mocks Dialogflow in case of insufficient intent detection and sets
+   * up session ID for current "session". Use to test proper agent fulfillment given a sessionID.
+   *
+   * @param inputText Text input of user's intent sent to Dialogflow.
+   * @param parameters String json that consists of expected parameters identified by Dialogflow.
+   * @param intentName String name of expected intent identified by Dialogflow.
+   * @param id String unique ID for current session
+   */
+  public TestHelper(String inputText, String parameters, String intentName, String id)
+      throws InvalidProtocolBufferException {
+    this(inputText, parameters, intentName);
+    sessionID = id;
+  }
+
+  /**
    * Gets the output object created by agent fulfillment after at the end of back-end process.
    *
    * @return Output object identical to that which is passed back to javascript.
@@ -119,6 +139,28 @@ public class TestHelper {
     verify(request, atLeast(1)).getParameter("request-input");
     writer.flush();
     Output output = new Gson().fromJson(stringWriter.toString(), Output.class);
+    return output;
+  }
+
+  /**
+   * Populates customizes datastore with desired Indices object.
+   *
+   * @param intent intent String passed as parameter to Servlet
+   * @param sessionID unique ID for current session
+   * @param parameterMap String containing parameters needed, if any, by BookAgent
+   * @param queryID unique ID (within sessionID) for current query
+   */
+  public Output getOutput(String intent, String sessionID, String parameterMap, String queryID)
+      throws InvalidProtocolBufferException {
+    BookAgentServlet bookServlet = new BookAgentServlet();
+    Output output =
+        bookServlet.getOutputFromBookAgent(
+            intent,
+            sessionID,
+            BookAgentServlet.stringToMap(parameterMap),
+            "en-US",
+            queryID,
+            customDatastore);
     return output;
   }
 
@@ -141,6 +183,7 @@ public class TestHelper {
   public void setParameters(String inputText, String parameters, String intentName)
       throws InvalidProtocolBufferException {
     setInputText(inputText);
+    setSessionID();
     Map<String, Value> map = BookAgentServlet.stringToMap(parameters);
     when(dialogFlowMock.getParameters()).thenReturn(map);
     when(dialogFlowMock.getIntentName()).thenReturn(intentName);
@@ -170,6 +213,11 @@ public class TestHelper {
   /** Sets the user service mock to return a logged-out user. */
   public void setLoggedOut() {
     when(userServiceMock.isUserLoggedIn()).thenReturn(false);
+  }
+
+  /** Sets the sessionID for testing */
+  public void setSessionID() {
+    when(request.getParameter("session-id")).thenReturn(sessionID);
   }
 
   /**
@@ -211,6 +259,51 @@ public class TestHelper {
    */
   public void setCustomDatabase(String listName, ArrayList<String> items, long startTime) {
     MemoryUtils.makeListEntity(customDatastore, "1", items, listName, startTime);
+  }
+
+  /**
+   * Populates customizes datastore with desired BookQuery object.
+   *
+   * @param query BookQuery object to store
+   * @param sessionID unique id of session to store
+   * @param queryID unique id (within sessionID) of query to store
+   */
+  public void setCustomDatabase(BookQuery query, String sessionID, String queryID) {
+    BooksMemoryUtils.storeBookQuery(query, sessionID, queryID, customDatastore);
+  }
+
+  /**
+   * Populates customizes datastore with desired Indices object.
+   *
+   * @param startIndex index to start retrieving Volume objects from
+   * @param resultsStored number of results stored
+   * @param totalResults total matches in Google Book API
+   * @param displayNum number of results displayed request
+   * @param sessionID unique id of session to store
+   * @param queryID unique id (within sessionID) of query to store
+   */
+  public void setCustomDatabase(
+      int startIndex,
+      int totalResults,
+      int resultsStored,
+      int displayNum,
+      String sessionID,
+      String queryID) {
+    BooksMemoryUtils.storeIndices(
+        startIndex, totalResults, resultsStored, displayNum, sessionID, queryID, customDatastore);
+  }
+
+  /**
+   * Populates customizes datastore with desired Indices object.
+   *
+   * @param books ArrayList of Book objects to store
+   * @param startIndex index to start order at
+   * @param sessionID unique id of session to store
+   * @param queryID unique id (within sessionID) of query to store
+   */
+  public void setCustomDatabase(
+      ArrayList<Book> books, int startIndex, String sessionID, String queryID) {
+    BooksMemoryUtils.storeBooks(books, startIndex, sessionID, queryID, customDatastore);
   }
 
   /**
