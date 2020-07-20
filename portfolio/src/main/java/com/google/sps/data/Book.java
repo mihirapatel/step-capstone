@@ -71,7 +71,7 @@ public class Book implements Serializable {
    * from the Volume object.
    *
    * <p>If Volume object is missing any other properties, the properties will be set to an empty
-   * String or ArrayList<String>
+   * String.
    *
    * @param volume Volume Object
    */
@@ -87,6 +87,30 @@ public class Book implements Serializable {
     setEmbeddable(volume);
     setISBN(volume);
     setTextSnippet(volume);
+  }
+
+  /**
+   * Public Book constructor, used for testing purposes. The constructor will set the following
+   * fields from the parameters. The rest of the properties will be set to an Empty String.
+   *
+   * @param title String title of book
+   * @param authors String authors of book
+   * @param description String description of book
+   * @param embeddable Bool indicating whether book is embeddable
+   * @param ISBN String unique ISBN number
+   */
+  public Book(String title, String authors, String description, Boolean embeddable, String ISBN) {
+    this.title = title;
+    this.authors = authors;
+    this.description = description;
+    this.embeddable = embeddable;
+    this.isbn = isbn;
+    this.publishedDate = "";
+    this.averageRating = "";
+    this.infoLink = "";
+    this.thumbnailLink = "";
+    this.buyLink = "";
+    this.textSnippet = "";
   }
 
   public void setOrder(int order) {
