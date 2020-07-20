@@ -116,7 +116,7 @@ public class VideoUtils {
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
     playlistVids = createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
-    while (playlistVids.size() != 30) {
+    while (playlistVids.size() < 30) {
       playlistVids = createPlaylistVideoList(json, searchType, maxPlaylistResults, planLength);
     }
     return playlistVids;
