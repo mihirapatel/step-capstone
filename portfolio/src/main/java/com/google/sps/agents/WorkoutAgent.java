@@ -104,9 +104,17 @@ public class WorkoutAgent implements Agent {
    * workoutLength, workoutType, and youtubeChannel from workoutFind method
    */
   private void setWorkoutFindOutput() {
-    output = "Here are videos for: " + workoutLength + " " + workoutType + " workouts";
+
+    output = "Here are videos for: ";
+    if (!workoutLength.equals(" ")) {
+      output += workoutLength + " ";
+    }
+    if (!workoutType.equals("")) {
+      output += workoutType + " ";
+    }
+    output += "workouts ";
     if (!youtubeChannel.equals("")) {
-      output += " from " + youtubeChannel;
+      output += "from " + youtubeChannel;
     }
   }
 
@@ -148,9 +156,10 @@ public class WorkoutAgent implements Agent {
       // Convert milliseconds to days
       planLength = (int) ((end.getTime() - start.getTime()) / 86400000);
 
-      if (planLength < 1 || planLength > 30) {
-        output =
-            "Sorry, unable to make a workout plan for less than 1 day or more than 30 days. Please try again.";
+      if (planLength < 1) {
+        output = "Sorry, unable to make a workout plan for less than 1 day. Please try again.";
+      } else if (planLength > 30) {
+        output = "Sorry, unable to make a workout plan for more than 30 days. Please try again.";
       } else {
         // Set output
         setWorkoutPlanOutput();
