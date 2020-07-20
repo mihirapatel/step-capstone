@@ -116,9 +116,6 @@ public class VideoUtils {
     key = setKey();
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    randomInt = getRandomNumberInRange(0, maxPlaylistResults);
-    playlistVids =
-        createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
 
     // If current playlist does not have at least planLength videos, it will choose the next
     // playlist in the list
