@@ -3,12 +3,14 @@ var indexEnd = 5;
 var numTotalVideos = 25;
 var workoutPlanDay = 1;
 
+/** Creates workout videos div that gets passed into appendDisplay method */
 function workoutVideos(videoQuery) {
   videos = JSON.parse(videoQuery);
   let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
   return workoutDiv;
 }
 
+/** Creates workout planner div that gets passed into appendDisplay method */
 function workoutPlanner(videoQuery) {
   workoutPlanDay = 1;
   videos = JSON.parse(videoQuery);
@@ -173,6 +175,11 @@ function showNewVideosPage(numShiftIndex) {
   appendDisplay(workoutDiv);
 }
 
+/**
+* Creates workout planner div with a table with the workout plan
+*
+* @param videos JSON object of a list of lists of videos in chunks of 5
+*/
 function createWorkoutPlanTable(videos) {
   console.log(videos);
   workoutPlannerDiv = document.createElement("div");
@@ -188,6 +195,12 @@ function createWorkoutPlanTable(videos) {
 
   return workoutPlannerDiv;
 }
+
+/**
+* Creates a new row in the workout planner table (display shows new row, this creates new table)
+*
+* @param videos JSON object of videos in chunks of 5 videos
+*/
 
 function createNewPlanTable(videos) {
 
@@ -206,16 +219,18 @@ function createNewPlanTable(videos) {
   for (var i = 0; i < videos.length; i++) {
       video = videos[i];
       channelName = video.channelTitle;
-      title = video.title.replace(/"/g, "")
+      title = video.title.replace(/"/g, "");
       if (title.length > 43) {
           title = title.substring(0, 43) + "...";
       }
 
+      //Table Headings: Day xx
       var tableHeading = document.createElement("th");
       tableHeading.innerHTML = "Day " + workoutPlanDay;
       workoutPlanDay += 1;
       headingTableRow.appendChild(tableHeading);
 
+      //Table Data: Workout Video Link
       var tableData = document.createElement("td");
       dataTableRow.appendChild(tableData);
 
