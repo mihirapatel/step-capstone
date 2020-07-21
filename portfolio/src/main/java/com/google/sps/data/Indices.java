@@ -78,4 +78,12 @@ public class Indices {
   public int getTotalPages() {
     return this.totalPages;
   }
+
+  public boolean getHasMore() {
+    return this.hasMore;
+  }
+
+  public boolean getHasPrev() {
+    return this.hasPrev;
+  }
 }
