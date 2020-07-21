@@ -5,20 +5,18 @@ function placeUserInput(text, container) {
   }
   if (text != " (null) "){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side", container);
+    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side talk-bubble speech-border tri-right round right-in", container);
   }
 }
 
 function placeFulfillmentResponseContainer(text, container) {
-    console.log("the correct fulfillment");
-  placeObjectContainer("<p>" + text + "</p>", "assistant-side", container);
+  placeObjectContainer("<p>" + text + "</p>", "assistant-side talk-bubble speech-border tri-right round left-in", container);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
   }
 }
  
 function placeFulfillmentResponse(text) {
-  console.log("call the other fulfillment");
   placeFulfillmentResponseContainer(text, "convo-container");
 }
 

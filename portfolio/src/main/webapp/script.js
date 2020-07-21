@@ -90,7 +90,7 @@ function getAudioStream(blob) {
 }
 
 /**
-* Backend call to dialogflow that handles recognizing the user's intent and 
+* Backend call to Dialogflow that handles recognizing the user's intent and 
 * accomplishing the necessary backend fulfillment to carry out the user's request.
 * Creates an audio output and handles making any displays that are necessary.
 * 

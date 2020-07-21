@@ -1,8 +1,5 @@
 body {
-    background: rgb(42, 42, 42);
-    background: linear-gradient(90deg, rgba(42,42,42,1) 0%, 
-                                        rgba(85,85,85,1) 50%, 
-                                        rgba(42,42,42,1) 100%);
+    background:white;
     font-weight: 300;
     height: 100vh;
     margin: 0;
@@ -10,7 +7,71 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family:'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* CSS talk bubble */
+.talk-bubble {
+  margin: 20px;
+  display: inline-block;
+  position: relative;
+  width: 300px;
+  height: auto;
+  background-color: white;
+}
+
+.speech-border {
+  border: 1px solid black;
+}
+
+.round {
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+
+}
+
+.tri-right.border.left-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: -40px;
+	right: auto;
+    top: 30px;
+	bottom: auto;
+}
+.tri-right.left-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: -20px;
+	right: auto;
+    top: 38px;
+	bottom: auto;
+}
+
+/* Right triangle, right side slightly down*/
+.tri-right.border.right-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: auto;
+	right: -40px;
+    top: 30px;
+	bottom: auto;
+}
+.tri-right.right-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: auto;
+	right: -20px;
+    top: 38px;
+	bottom: auto;
 }
 
 #videos {
@@ -101,11 +162,11 @@ h1 {
     font-weight: 200;
     font-style: 26px;
     margin: 10px;
-    color: white;
+    color: #333333;
 }
 
 p {
-    color: white;
+    color: #333333;
     margin: 5px;
 }
 
@@ -115,8 +176,8 @@ p {
 }
 
 #header {
-  position:absolute; 
-  top:0px; 
+  position: absolute; 
+top: 0px; 
   height: fit-content;
   overflow:hidden; 
   width: 90%; 
