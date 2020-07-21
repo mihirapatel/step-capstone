@@ -118,7 +118,6 @@ public class VideoUtils {
     type = setType(searchType);
     key = setKey();
     URL = setURL(baseURL, maxResults, order, q, type, key);
-    System.out.println(URL);
     JSONObject json = readJsonFromUrl(URL);
 
     randomInt = getRandomNumberInRange(0, maxPlaylistResults);
@@ -131,9 +130,6 @@ public class VideoUtils {
     }
 
     sortByPlaylistSize(listOfPlaylists);
-    for (List<YouTubeVideo> lst : listOfPlaylists) {
-      System.out.println(lst.size());
-    }
 
     return listOfPlaylists.get(0);
   }
