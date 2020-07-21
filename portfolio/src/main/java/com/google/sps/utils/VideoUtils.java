@@ -120,6 +120,12 @@ public class VideoUtils {
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
 
+    // First finds random playlist and then adds rest of playlists to the listOfPlaylists
+    // Finding random so when the list gets sorted by size, if the first random playlist found had
+    // the correct number of videos, it will get returned
+    // If the first playlist found did not have the correct number of videos, it will return the
+    // next playlist with the correct number of videos (aka the playlist with the largest amount of
+    // videos)
     randomInt = getRandomNumberInRange(0, maxPlaylistResults);
     listOfPlaylists = new ArrayList<>();
     for (int i = 0; i < maxPlaylistResults; i++) {
@@ -129,6 +135,7 @@ public class VideoUtils {
       randomInt = (randomInt + 1) % maxPlaylistResults;
     }
 
+    // Sorts list of playlists by playlist size
     sortByPlaylistSize(listOfPlaylists);
 
     return listOfPlaylists.get(0);
@@ -294,6 +301,8 @@ public class VideoUtils {
   /**
    * Sorts playlists by number of videos in playlist to ensure the right amount of playlist videos
    * get returned
+   *
+   * @param listOfPlaylists List of lists that need to be sorted by size
    */
   private static void sortByPlaylistSize(List<List<YouTubeVideo>> listOfPlaylists) {
     Collections.sort(
