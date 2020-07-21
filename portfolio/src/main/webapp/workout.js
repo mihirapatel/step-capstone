@@ -6,16 +6,14 @@ var workoutPlanDay = 1;
 /** Creates workout videos div that gets passed into appendDisplay method */
 function workoutVideos(videoQuery) {
   videos = JSON.parse(videoQuery);
-  let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
-  return workoutDiv;
+  return createVideoDivs(videos, indexStart, indexEnd);
 }
 
 /** Creates workout planner div that gets passed into appendDisplay method */
 function workoutPlanner(videoQuery) {
   workoutPlanDay = 1;
   videos = JSON.parse(videoQuery);
-  let workoutDiv = createWorkoutPlanTable(videos);
-  return workoutDiv;
+  return createWorkoutPlanTable(videos);
 }
 
 /**
@@ -189,6 +187,10 @@ function createWorkoutPlanTable(videos) {
   plannerDiv.id = "workout-planner";
   workoutPlannerDiv.appendChild(plannerDiv);
 
+  plannerTable = document.createElement("div");
+  plannerTable.className = "planner-table";
+  plannerDiv.appendChild(plannerTable);
+
   for (var i = 0; i < videos.length; i++) {
     createNewPlanTable(videos[i]);
   }
@@ -204,25 +206,28 @@ function createWorkoutPlanTable(videos) {
 
 function createNewPlanTable(videos) {
 
-  var plannerTable = document.createElement("table");
-  plannerTable.className = "workout-planner-table";
-  plannerDiv.appendChild(plannerTable);
+  var plannerTableRow = document.createElement("table");
+  plannerTableRow.className = "planner-heading-data";
+  plannerTable.appendChild(plannerTableRow);
 
   var headingTableRow = document.createElement("tr");
   headingTableRow.className = "planner-table-row-heading";
-  plannerTable.appendChild(headingTableRow);
+  plannerTableRow.appendChild(headingTableRow);
 
   var dataTableRow = document.createElement("tr");
   dataTableRow.className = "planner-table-row-data";
-  plannerTable.appendChild(dataTableRow);
+  plannerTableRow.appendChild(dataTableRow);
 
   for (var i = 0; i < videos.length; i++) {
       video = videos[i];
       channelName = video.channelTitle;
       title = video.title.replace(/"/g, "");
+      description = video.description.replace(/"/g, "");
       if (title.length > 43) {
           title = title.substring(0, 43) + "...";
       }
+
+      replaceUnicode();
 
       //Table Headings: Day xx
       var tableHeading = document.createElement("th");

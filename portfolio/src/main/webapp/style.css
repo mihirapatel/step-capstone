@@ -103,12 +103,18 @@ body {
     background-color: white;
 }
 
+.planner-table {
+    padding: 20px;
+}
+
 .table-video-title {
     color: #333333;
 }
 
 table {
   border-collapse: collapse;
+  border-radius:6px;
+  -moz-border-radius:6px;
 }
 
 table, th, td {
@@ -117,6 +123,11 @@ table, th, td {
 
 th {
     background-color: #e7e7e7;
+}
+
+td {
+    font-size: 15px;
+    padding: 10px;
 }
 
 h1 {
@@ -186,8 +197,8 @@ a {
 }
  
 .media-display {
-  margin-left:auto; 
-  margin-right:auto;
+  margin-left: auto; 
+  margin-right: auto;
   text-align: center;
 }
 

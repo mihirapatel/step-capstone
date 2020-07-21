@@ -12,6 +12,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,7 @@ public class VideoUtils {
   private static String key;
   private static String playlistId;
   private static List<YouTubeVideo> playlistVids;
+  private static List<List<YouTubeVideo>> listOfPlaylists;
   private static int randomInt;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
@@ -87,7 +90,7 @@ public class VideoUtils {
       throws IOException, JSONException {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(numVideosSearched);
-    order = setOrder();
+    order = setOrderRelevance();
     q = setVideoQ(workoutLength, workoutType, youtubeChannel);
     type = setType(searchType);
     key = setKey();
@@ -110,24 +113,29 @@ public class VideoUtils {
       throws IOException, JSONException {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(maxPlaylistResults);
-    order = setOrder();
+    order = setOrderRelevance();
     q = setPlaylistQ(planLength, workoutType);
     type = setType(searchType);
     key = setKey();
     URL = setURL(baseURL, maxResults, order, q, type, key);
+    System.out.println(URL);
     JSONObject json = readJsonFromUrl(URL);
 
-    playlistVids =
-        createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
-
-    // If current playlist does not have at least planLength videos, it will choose the next
-    // playlist in the list
-    if (playlistVids.size() < planLength) {
-      randomInt = (randomInt + 1) % planLength;
+    randomInt = getRandomNumberInRange(0, maxPlaylistResults);
+    listOfPlaylists = new ArrayList<>();
+    for (int i = 0; i < maxPlaylistResults; i++) {
       playlistVids =
           createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
+      listOfPlaylists.add(playlistVids);
+      randomInt = (randomInt + 1) % maxPlaylistResults;
     }
-    return playlistVids;
+
+    sortByPlaylistSize(listOfPlaylists);
+    for (List<YouTubeVideo> lst : listOfPlaylists) {
+      System.out.println(lst.size());
+    }
+
+    return listOfPlaylists.get(0);
   }
 
   /**
@@ -253,7 +261,7 @@ public class VideoUtils {
     return "maxResults=" + String.valueOf(maxResultAmount);
   }
 
-  private static String setOrder() {
+  private static String setOrderRelevance() {
     return "order=relevance";
   }
 
@@ -262,7 +270,6 @@ public class VideoUtils {
   }
 
   private static String setPlaylistQ(int planLength, String workoutType) {
-    System.out.println(workoutType);
     return "q="
         + String.join("+", String.valueOf(planLength), "day", workoutType, "workout", "challenge");
   }
@@ -286,6 +293,20 @@ public class VideoUtils {
   private static String setURL(
       String baseURL, String maxResults, String order, String q, String type, String key) {
     return String.join("&", baseURL, maxResults, order, q, type, key);
+  }
+
+  /**
+   * Sorts playlists by number of videos in playlist to ensure the right amount of playlist videos
+   * get returned
+   */
+  private static void sortByPlaylistSize(List<List<YouTubeVideo>> listOfPlaylists) {
+    Collections.sort(
+        listOfPlaylists,
+        new Comparator<List>() {
+          public int compare(List a1, List a2) {
+            return a2.size() - a1.size();
+          }
+        });
   }
 
   /** Gets random int in range [min, max) */
