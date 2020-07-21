@@ -1,11 +1,19 @@
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
+var workoutPlanDay = 1;
 
+/** Creates workout videos div that gets passed into appendDisplay method */
 function workoutVideos(videoQuery) {
   videos = JSON.parse(videoQuery);
-  let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
-  return workoutDiv;
+  return createVideoDivs(videos, indexStart, indexEnd);
+}
+
+/** Creates workout planner div that gets passed into appendDisplay method */
+function workoutPlanner(videoQuery) {
+  workoutPlanDay = 1;
+  videos = JSON.parse(videoQuery);
+  return createWorkoutPlanTable(videos);
 }
 
 /**
@@ -42,7 +50,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     video = videos[i];
     channelName = video.channelTitle;
 
-    title = video.title;
+    title = video.title.replace(/"/g, "")
     if (title.length > 80) { 
         title = title.substring(0, 80) + "..."; 
     }
@@ -90,7 +98,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     var videoTitle = document.createElement("h3");
     videoTitle.classList.add("video-title");
-    videoTitle.innerHTML = title.replace(/"/g, "");
+    videoTitle.innerHTML = title;
     videoTitleLink.appendChild(videoTitle);
     videoInfo.appendChild(videoTitleLink);
 
@@ -163,6 +171,90 @@ function showNewVideosPage(numShiftIndex) {
   indexEnd += numShiftIndex
   let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
   appendDisplay(workoutDiv);
+}
+
+/**
+* Creates workout planner div with a table with the workout plan
+*
+* @param videos JSON object of a list of lists of videos in chunks of 5
+*/
+function createWorkoutPlanTable(videos) {
+  console.log(videos);
+  workoutPlannerDiv = document.createElement("div");
+  workoutPlannerDiv.classList.add("media-display");
+
+  plannerDiv = document.createElement("div");
+  plannerDiv.id = "workout-planner";
+  var plannerDivHeight =  videos.length * 135;
+  plannerDiv.style.height = plannerDivHeight.toString() + "px";
+  workoutPlannerDiv.appendChild(plannerDiv);
+
+  plannerTable = document.createElement("div");
+  plannerTable.className = "planner-table";
+  plannerDiv.appendChild(plannerTable);
+
+  for (var i = 0; i < videos.length; i++) {
+    createNewPlanTable(videos[i]);
+  }
+
+  return workoutPlannerDiv;
+}
+
+/**
+* Creates a new row in the workout planner table (display shows new row, this creates new table)
+*
+* @param videos JSON object of videos in chunks of 5 videos
+*/
+
+function createNewPlanTable(videos) {
+
+  var plannerTableRow = document.createElement("table");
+  plannerTableRow.className = "planner-heading-data";
+  plannerTable.appendChild(plannerTableRow);
+
+  var headingTableRow = document.createElement("tr");
+  headingTableRow.className = "planner-table-row-heading";
+  plannerTableRow.appendChild(headingTableRow);
+
+  var dataTableRow = document.createElement("tr");
+  dataTableRow.className = "planner-table-row-data";
+  plannerTableRow.appendChild(dataTableRow);
+
+  for (var i = 0; i < videos.length; i++) {
+      video = videos[i];
+      channelName = video.channelTitle;
+      title = video.title.replace(/"/g, "");
+      description = video.description.replace(/"/g, "");
+      if (title.length > 43) {
+          title = title.substring(0, 43) + "...";
+      }
+
+      replaceUnicode();
+
+      //Table Headings: Day xx
+      var tableHeading = document.createElement("th");
+      tableHeading.innerHTML = "Day " + workoutPlanDay;
+      workoutPlanDay += 1;
+      headingTableRow.appendChild(tableHeading);
+
+      //Table Data: Workout Video Link
+      var tableData = document.createElement("td");
+      dataTableRow.appendChild(tableData);
+
+      var tableVideoLink = document.createElement("a");
+      tableVideoLink.className = "table-video-link";
+      tableVideoLink.title = title;
+      tableVideoLink.href = video.videoURL.replace(/"/g, "");
+      tableVideoLink.target = "_blank";
+
+      var tableVideoTitle = document.createElement("p");
+      tableVideoTitle.className = "table-video-title";
+      tableVideoTitle.innerHTML = title;
+      tableVideoLink.appendChild(tableVideoTitle);
+      tableData.appendChild(tableVideoLink);
+
+  }
+
 }
 
 /** Replaces unicode strings with actual characters */

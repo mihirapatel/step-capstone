@@ -54,6 +54,9 @@ function displayResponse(stream) {
     } else if (outputAsJson.intent.includes("workout.find")) {
       workoutContainer = workoutVideos(outputAsJson.display);
       appendDisplay(workoutContainer);
+    } else if (outputAsJson.intent.includes("workout.plan")) {
+      workoutPlanContainer = workoutPlanner(outputAsJson.display);
+      appendDisplay(workoutPlanContainer);
     } else if (outputAsJson.intent.includes("memory.keyword")) {
       memoryContainer = createKeywordContainer(outputAsJson.display);
       appendDisplay(memoryContainer);

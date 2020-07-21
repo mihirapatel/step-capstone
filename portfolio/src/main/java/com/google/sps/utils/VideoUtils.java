@@ -12,6 +12,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,10 +23,14 @@ public class VideoUtils {
 
   private static String URL;
   private static String maxResults;
+  private static String order;
   private static String q;
   private static String type;
   private static String key;
   private static String playlistId;
+  private static List<YouTubeVideo> playlistVids;
+  private static List<List<YouTubeVideo>> listOfPlaylists;
+  private static int randomInt;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
   private static YouTubeVideo video;
@@ -82,14 +88,15 @@ public class VideoUtils {
       int numVideosSearched,
       String searchType)
       throws IOException, JSONException {
-
+    String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(numVideosSearched);
+    order = setOrderRelevance();
     q = setVideoQ(workoutLength, workoutType, youtubeChannel);
     type = setType(searchType);
     key = setKey();
-    URL = setURL(maxResults, q, type, key);
+    URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    return createVideoList(json);
+    return createVideoList(json, searchType);
   }
 
   /**
@@ -102,15 +109,36 @@ public class VideoUtils {
    * @return List<YouTubeVideo> videoList list of YouTube videos for playlist
    */
   public static List<YouTubeVideo> getPlaylistVideoList(
-      int planLength, String workoutType, String searchType) throws IOException, JSONException {
-
-    maxResults = setMaxResults(planLength);
+      int maxPlaylistResults, int planLength, String workoutType, String searchType)
+      throws IOException, JSONException {
+    String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
+    maxResults = setMaxResults(maxPlaylistResults);
+    order = setOrderRelevance();
     q = setPlaylistQ(planLength, workoutType);
     type = setType(searchType);
     key = setKey();
-    URL = setURL(maxResults, q, type, key);
+    URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    return createPlaylistVideoList(json, planLength);
+
+    // First finds random playlist and then adds rest of playlists to the listOfPlaylists
+    // Finding random so when the list gets sorted by size, if the first random playlist found had
+    // the correct number of videos, it will get returned
+    // If the first playlist found did not have the correct number of videos, it will return the
+    // next playlist with the correct number of videos (aka the playlist with the largest amount of
+    // videos)
+    randomInt = getRandomNumberInRange(0, maxPlaylistResults);
+    listOfPlaylists = new ArrayList<>();
+    for (int i = 0; i < maxPlaylistResults; i++) {
+      playlistVids =
+          createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
+      listOfPlaylists.add(playlistVids);
+      randomInt = (randomInt + 1) % maxPlaylistResults;
+    }
+
+    // Sorts list of playlists by playlist size
+    sortByPlaylistSize(listOfPlaylists);
+
+    return listOfPlaylists.get(0);
   }
 
   /**
@@ -119,14 +147,19 @@ public class VideoUtils {
    * @param json JSONObject from YouTube Data API call
    * @return List<YouTubeVideo> list of YouTube videos
    */
-  private static List<YouTubeVideo> createVideoList(JSONObject json) {
+  private static List<YouTubeVideo> createVideoList(JSONObject json, String searchType) {
     JSONArray videos = json.getJSONArray("items");
 
     List<YouTubeVideo> videoList = new ArrayList<>();
 
     for (int index = 0; index < videos.length(); index++) {
       String videoString = new Gson().toJson(videos.get(index));
-      setVideoParameters(videoString);
+      if (searchType.equals("video")) {
+        setVideoParameters(videoString);
+      } else if (searchType.equals("playlist")) {
+        setPlaylistVideoParameters(videoString);
+      }
+
       if (index % videosDisplayedPerPage == 0) {
         currentPage += 1;
       }
@@ -170,20 +203,42 @@ public class VideoUtils {
   }
 
   /**
+   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
+   * video object from playlists
+   *
+   * @param playlistVideoString JSON string of YouTube videos in playlist from API call
+   */
+  private static void setPlaylistVideoParameters(String playlistVideoString) {
+    JSONObject videoJSONObject = new JSONObject(playlistVideoString).getJSONObject("map");
+    JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
+    title = new Gson().toJson(snippet.get("title"));
+    description = new Gson().toJson(snippet.get("description"));
+    channelTitle = new Gson().toJson(snippet.get("channelTitle"));
+    channelId = new Gson().toJson(snippet.get("channelId"));
+    JSONObject thumbnailJSONObject =
+        snippet.getJSONObject("thumbnails").getJSONObject("map").getJSONObject("medium");
+    JSONObject thumbnailURL = thumbnailJSONObject.getJSONObject("map");
+    thumbnail = new Gson().toJson(thumbnailURL.get("url"));
+    JSONObject resourceId = snippet.getJSONObject("resourceId").getJSONObject("map");
+    videoId = new Gson().toJson(resourceId.get("videoId"));
+  }
+
+  /**
    * Gets playlistId from JSONObject and passes that into getPlaylistVideos
    *
    * @param json JSONObject from initial YouTube Data API call for playlists
    * @param planLength length of workout plan in days
    * @return List<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> createPlaylistVideoList(JSONObject json, int planLength)
+  private static List<YouTubeVideo> createPlaylistVideosList(
+      JSONObject json, String searchType, int maxPlaylistResults, int planLength, int randomInt)
       throws IOException {
     JSONArray playlist = json.getJSONArray("items");
-    String playlistString = new Gson().toJson(playlist.get(0));
+    String playlistString = new Gson().toJson(playlist.get(randomInt));
     JSONObject playlistJSONObject = new JSONObject(playlistString).getJSONObject("map");
     JSONObject id = playlistJSONObject.getJSONObject("id").getJSONObject("map");
     String playlistId = new Gson().toJson(id.get("playlistId"));
-    return getPlaylistVideos(playlistId, planLength);
+    return getPlaylistVideos(searchType, playlistId, planLength);
   }
 
   /**
@@ -193,15 +248,15 @@ public class VideoUtils {
    * @param planLength length of workout plan in days
    * @return List<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> getPlaylistVideos(String playlistId, int planLength)
-      throws IOException {
-    URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
+  private static List<YouTubeVideo> getPlaylistVideos(
+      String searchType, String playlistId, int planLength) throws IOException {
+    String baseURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
     maxResults = setMaxResults(planLength);
     playlistId = setPlaylistID(playlistId);
     key = setKey();
-    URL = setURL(maxResults, playlistId, key, null);
+    URL = setURL(baseURL, maxResults, null, playlistId, key, null);
     JSONObject json = readJsonFromUrl(URL);
-    return createVideoList(json);
+    return createVideoList(json, searchType);
   }
 
   /** Set parameters for YouTube Data API search */
@@ -209,16 +264,21 @@ public class VideoUtils {
     return "maxResults=" + String.valueOf(maxResultAmount);
   }
 
+  private static String setOrderRelevance() {
+    return "order=relevance";
+  }
+
   private static String setVideoQ(String workoutLength, String workoutType, String youtubeChannel) {
     return "q=" + String.join("+", workoutLength, workoutType, youtubeChannel, "workout");
   }
 
   private static String setPlaylistQ(int planLength, String workoutType) {
-    return "q=" + String.join("+", String.valueOf(planLength), workoutType, "workout", "challenge");
+    return "q="
+        + String.join("+", String.valueOf(planLength), "day", workoutType, "workout", "challenge");
   }
 
   private static String setPlaylistID(String playlistId) {
-    return "playlistId=" + playlistId;
+    return "playlistId=" + playlistId.replaceAll("\"", "");
   }
 
   private static String setType(String searchType) {
@@ -233,8 +293,32 @@ public class VideoUtils {
     return "key=" + apiKey;
   }
 
-  private static String setURL(String maxResults, String q, String type, String key) {
-    String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
-    return String.join("&", baseURL, maxResults, q, type, key);
+  private static String setURL(
+      String baseURL, String maxResults, String order, String q, String type, String key) {
+    return String.join("&", baseURL, maxResults, order, q, type, key);
+  }
+
+  /**
+   * Sorts playlists by number of videos in playlist to ensure the right amount of playlist videos
+   * get returned
+   *
+   * @param listOfPlaylists List of lists that need to be sorted by size
+   */
+  private static void sortByPlaylistSize(List<List<YouTubeVideo>> listOfPlaylists) {
+    Collections.sort(
+        listOfPlaylists,
+        new Comparator<List>() {
+          public int compare(List a1, List a2) {
+            return a2.size() - a1.size();
+          }
+        });
+  }
+
+  /** Gets random int in range [min, max) */
+  private static int getRandomNumberInRange(int min, int max) {
+    if (min >= max) {
+      throw new IllegalArgumentException("Max must be greater than min");
+    }
+    return (int) (Math.random() * (max - min)) + min;
   }
 }

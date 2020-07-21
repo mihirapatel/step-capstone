@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import com.google.sps.data.Partition;
 import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.TimeUtils;
 import com.google.sps.utils.VideoUtils;
@@ -36,6 +37,7 @@ public class WorkoutAgent implements Agent {
   private String unit = "";
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
+  private static final int maxPlaylistResults = 5;
 
   public WorkoutAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -138,7 +140,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private workoutPLan method, makes and displays a workout specified by user request. Method sets
+   * Private workoutPlan method, makes and displays a workout specified by user request. Method sets
    * parameters for planLength and workoutType based on Dialogflow detection and makes calls to set
    * display and set output. parameters map needs to include duration struct to set int planLength
    * and String workoutType
@@ -147,7 +149,7 @@ public class WorkoutAgent implements Agent {
    */
   private void workoutPlan(Map<String, Value> parameters) throws IOException {
     log.info(String.valueOf(parameters));
-
+    workoutType = parameters.get("workout-type").getStringValue();
     Struct durationStruct = parameters.get("date-time").getStructValue();
     Map<String, Value> durationMap = durationStruct.getFieldsMap();
     try {
@@ -173,7 +175,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPLanOutput method, that sets the agent output based on set parameters for
+   * Private setworkoutPlanOutput method, that sets the agent output based on set parameters for
    * planLength and workoutType from workoutPlan method
    */
   private void setWorkoutPlanOutput() {
@@ -181,7 +183,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPLanDisplay method, that sets the agent display to JSON string by making YT
+   * Private setworkoutPlanDisplay method, that sets the agent display to JSON string by making YT
    * Data API call from VideoUtils to get passed into workout.js
    */
   private void setWorkoutPlanDisplay() throws IOException {
@@ -191,8 +193,8 @@ public class WorkoutAgent implements Agent {
 
     // Make API call to WorkoutUtils to get json object of videos
     List<YouTubeVideo> videoList =
-        VideoUtils.getPlaylistVideoList(planLength, workoutType, "playlist");
-
-    display = "TODO";
+        VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
+    List<List<YouTubeVideo>> listOfVideoLists = Partition.ofSize(videoList, 5);
+    display = new Gson().toJson(listOfVideoLists);
   }
 }
