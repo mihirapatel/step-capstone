@@ -104,7 +104,7 @@ public class Book implements Serializable {
     this.authors = authors;
     this.description = description;
     this.embeddable = embeddable;
-    this.isbn = isbn;
+    this.isbn = ISBN;
     this.publishedDate = "";
     this.averageRating = "";
     this.infoLink = "";

@@ -29,7 +29,7 @@ public class Memory implements Agent {
   private DatastoreService datastore;
   private UserService userService;
   private String listName;
-  private ArrayList<String> items = new ArrayList<>();;
+  private ArrayList<String> items = new ArrayList<>();
   private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
