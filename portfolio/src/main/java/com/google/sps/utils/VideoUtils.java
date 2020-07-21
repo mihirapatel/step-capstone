@@ -117,6 +117,9 @@ public class VideoUtils {
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
 
+    playlistVids =
+        createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
+
     // If current playlist does not have at least planLength videos, it will choose the next
     // playlist in the list
     if (playlistVids.size() < planLength) {
