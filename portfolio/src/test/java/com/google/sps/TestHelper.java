@@ -8,6 +8,8 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilter;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
@@ -20,14 +22,12 @@ import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
-import com.google.sps.data.Book;
-import com.google.sps.data.BookQuery;
-import com.google.sps.data.DialogFlowClient;
-import com.google.sps.data.Output;
-import com.google.sps.utils.BooksMemoryUtils;
-import com.google.sps.utils.MemoryUtils;
+import com.google.protobuf.util.JsonFormat;
+import com.google.sps.data.*;
+import com.google.sps.utils.*;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 import javax.servlet.http.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -345,6 +345,7 @@ public class TestHelper {
     return fetchDatastoreEntities(category, filter);
   }
 
+
   /**
    * Retrieves a list of entity objects from the given query for testing purposes to ensure that
    * result in datastore match the expected.
@@ -357,6 +358,162 @@ public class TestHelper {
     Query query =
         new Query(category).setFilter(filter).addSort("timestamp", SortDirection.DESCENDING);
     return customDatastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+  }
+
+  /**
+  * Helper method for list database verification.
+  */
+  public void checkDatabaseItems(
+      int size, String listName, List<String> expectedItems) {
+    checkDatabaseItems(size, "1", listName, expectedItems);
+  }
+
+  /**
+  * Helper method for list database verification.
+  */
+  public void checkDatabaseItems(
+      int size, String listName, List<String> expectedItems, boolean isEmpty) {
+    checkDatabaseItems(size, "1", listName, expectedItems);
+  }
+
+  /**
+  * Methods for database verification. Checks that database entries are equal to expected.
+  *
+  * @param size Number of items expected in user's list
+  * @param userID Current user's ID
+  * @param listName Name of the list being checked
+  * @param expectedItems List of strings containing the name of all items expected to be in the user's list database
+  */
+  public void checkDatabaseItems(
+      int size,
+      String userID,
+      String listName,
+      List<String> expectedItems) {
+    List<Entity> databaseQuery = fetchDatastoreEntities("List", userID);
+    assertEquals(size, databaseQuery.size());
+    Entity entity = databaseQuery.get(0);
+    assertEquals(listName, (String) entity.getProperty("listName"));
+    ArrayList<String> items = (ArrayList<String>) entity.getProperty("items");
+    if (expectedItems.isEmpty()) {
+      assertNull(items);
+      return;
+    }
+    for (int i = 0; i < items.size(); i++) {
+      assertEquals(expectedItems.get(i), items.get(i));
+    }
+  }
+
+  /**
+  * Helper method for aggregate list database verification.
+  */
+  public void checkAggregate(
+      String fetchName,
+      List<String> expectedItems,
+      List<Integer> expectedCounts) {
+    checkAggregate(fetchName, "1", expectedItems, expectedCounts);
+  }
+
+  /**
+  * Methods for aggregate database verification. Checks that database entries are equal to expected.
+  *
+  * @param fetchName Category name used to fetch subcategory from datastore
+  * @param userID Current user's ID
+  * @param expectedItems List of strings containing the name of all items expected to be in the user's list database
+  * @param expectedCount List of integers containing expected counts for each expected item of the corresponding index.
+  */
+  public void checkAggregate(
+      String fetchName,
+      String userID,
+      List<String> expectedItems,
+      List<Integer> expectedCounts) {
+    Filter filter =
+        new CompositeFilter(
+            CompositeFilterOperator.AND,
+            Arrays.asList(
+                new FilterPredicate("userID", FilterOperator.EQUAL, userID),
+                new FilterPredicate("listName", FilterOperator.EQUAL, fetchName)));
+    List<Entity> databaseQuery = fetchDatastoreEntities(fetchName, filter);
+    assertEquals(1, databaseQuery.size());
+    Entity entity = databaseQuery.get(0);
+    for (int i = 0; i < expectedItems.size(); i++) {
+      assertEquals(
+          (long) expectedCounts.get(i),
+          (long) entity.getProperty(StemUtils.stemmed(expectedItems.get(i))));
+    }
+  }
+
+  /**
+  * Helper method for fractional aggregate list database verification.
+  */
+  public void checkFracAggregate(
+      String fetchName,
+      List<String> expectedItems,
+      List<Double> expectedCounts) {
+    checkFracAggregate(fetchName, "1", expectedItems, expectedCounts);
+  }
+
+  /**
+  * Methods for aggregate database verification. Checks that database entries are equal to expected.
+  *
+  * @param fetchName Category name used to fetch subcategory from datastore
+  * @param userID Current user's ID
+  * @param expectedItems List of strings containing the name of all items expected to be in the user's list database
+  * @param expectedCount List of doubles containing expected fractional values for each expected item of the corresponding index.
+  */
+  public void checkFracAggregate(
+      String fetchName,
+      String userID,
+      List<String> expectedItems,
+      List<Double> expectedCounts) {
+    Filter filter =
+        new CompositeFilter(
+            CompositeFilterOperator.AND,
+            Arrays.asList(
+                new FilterPredicate("userID", FilterOperator.EQUAL, userID),
+                new FilterPredicate("listName", FilterOperator.EQUAL, fetchName)));
+    List<Entity> databaseQuery = fetchDatastoreEntities("Frac-" + fetchName, filter);
+    assertEquals(1, databaseQuery.size());
+    Entity entity = databaseQuery.get(0);
+    for (int i = 0; i < expectedItems.size(); i++) {
+      double itemFreq =
+          entity.getProperty(StemUtils.stemmed(expectedItems.get(i))) == null
+              ? 0.0
+              : (double) entity.getProperty(StemUtils.stemmed(expectedItems.get(i)));
+      assertEquals(expectedCounts.get(i), itemFreq, 0.001);
+    }
+  }
+
+/**
+  * Populates a user list database with the given items and frequencies out of the total number of 
+  * lists created.
+  *
+  * @param userID Current user's ID
+  * @param size Number of lists of the same name created by the user
+  * @param items List of pairs of strings containing the name of all items expected and integer containing the number of times added to past grocery lists.
+  */
+  public void makeUserList(
+       String userID, int size, List<Pair<String, Integer>> items)
+      throws InvalidProtocolBufferException, IOException {
+    setUser("test@example.com", userID);
+    for (int i = 0; i < size; i++) {
+      List<Pair<String, Integer>> itemsList = new ArrayList<>((List<Pair<String, Integer>>) items);
+      final int temp = i;
+      List<Pair<String, Integer>> filteredPairs =
+          itemsList.stream().filter(e -> e.getValue() > temp).collect(Collectors.toList());
+      List<String> filteredStrings =
+          filteredPairs.stream().map(e -> e.getKey()).collect(Collectors.toList());
+      String stringItems = String.join(", ", filteredStrings);
+      setParameters(
+          "Start a grocery list.",
+          "{\"list-name\":\"grocery\", "
+              + "\"list-objects\":\""
+              + stringItems
+              + "\","
+              + "\"new-list\": \"\","
+              + "\"generic-list\": \"\"}",
+          "memory.list - make");
+      getOutput();
+    }
   }
 
   private class TestableTextInputServlet extends TextInputServlet {

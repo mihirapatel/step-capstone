@@ -39,7 +39,6 @@ public class Memory implements Agent {
   private UserService userService;
   private String listName;
   private ArrayList<String> items = new ArrayList<>();
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
@@ -82,6 +81,7 @@ public class Memory implements Agent {
         fulfillment = "What would you like to name the list?";
         return;
       }
+      unpackObjects(parameters);
       String[] subIntents = intentName.split("-");
       String subListIntent = subIntents[subIntents.length - 1];
       if (subListIntent.contains("make")) {
@@ -205,14 +205,16 @@ public class Memory implements Agent {
    * @param parameters Map containing the detected entities in the user's intent.
    */
   private void makeList(Map<String, Value> parameters) throws EntityNotFoundException {
-    unpackObjects(parameters);
-    log.info("ITEMS: " + items);
     if (items.isEmpty()) {
       fulfillment = MemoryUtils.makePastRecommendations(userID, datastore, listName);
-    } else {
-      fulfillment = "Created! Anything else you would like to add?";
+      MemoryUtils.allocateList(listName, userID, datastore, items);
+      MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
+      return;
     }
     MemoryUtils.allocateList(listName, userID, datastore, items);
+    MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
+    fulfillment = "Created!";
+    makeMoreRecommendations();
   }
 
   private void showList(Map<String, Value> parameters) {
@@ -226,8 +228,7 @@ public class Memory implements Agent {
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void updateList(Map<String, Value> parameters) {
-    unpackObjects(parameters);
+  private void updateList(Map<String, Value> parameters) throws EntityNotFoundException {
     boolean listExists = MemoryUtils.addToList(listName, userID, datastore, items);
     if (!listExists) {
       fulfillment =
@@ -237,6 +238,7 @@ public class Memory implements Agent {
       return;
     }
     fulfillment = "Updated!";
+    makeMoreRecommendations();
   }
 
   /**
@@ -246,7 +248,17 @@ public class Memory implements Agent {
    * trends.
    */
   private void makeMoreRecommendations() {
-    fulfillment = "sorry not yet.";
+    try {
+      String suggestedItems = MemoryUtils.makeUserRecommendations(userID, datastore, listName);
+      fulfillment +=
+          " Based on your list item history, you might be interested in adding "
+              + suggestedItems
+              + " to your "
+              + listName
+              + " list.";
+    } catch (IllegalStateException | EntityNotFoundException e) {
+      log.error("User recommendation error", e);
+    }
   }
 
   /**
@@ -270,7 +282,6 @@ public class Memory implements Agent {
 
   @Override
   public String getOutput() {
-    log.info("FULFILLMENT: " + fulfillment);
     return fulfillment;
   }
 

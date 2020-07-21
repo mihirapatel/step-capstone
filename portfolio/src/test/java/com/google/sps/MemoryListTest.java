@@ -64,7 +64,7 @@ public class MemoryListTest {
             "memory.list - make");
 
     Output output = tester.getOutput();
-    assertEquals("Created! Anything else you would like to add?", output.getFulfillmentText());
+    assertEquals("Created!", output.getFulfillmentText());
 
     List<Entity> databaseQuery = tester.fetchDatastoreEntities("List");
     assertEquals(1, databaseQuery.size());
@@ -143,7 +143,7 @@ public class MemoryListTest {
         "shopping", otherListItems, TimeUtils.stringToDate("2020-02-11T09:00:00-00:00").getTime());
 
     Output output = tester.getOutput();
-    assertEquals("Created! Anything else you would like to add?", output.getFulfillmentText());
+    assertEquals("Created!", output.getFulfillmentText());
 
     List<Entity> databaseQuery = tester.fetchDatastoreEntities("List");
     assertEquals(3, databaseQuery.size());
