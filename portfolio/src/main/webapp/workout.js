@@ -187,8 +187,6 @@ function createWorkoutPlanTable(videos) {
   plannerDiv.id = "workout-planner";
   var plannerDivHeight =  videos.length * 135;
   plannerDiv.style.height = plannerDivHeight.toString() + "px";
-  console.log(videos.length);
-  console.log(plannerDivHeight);
   workoutPlannerDiv.appendChild(plannerDiv);
 
   plannerTable = document.createElement("div");
