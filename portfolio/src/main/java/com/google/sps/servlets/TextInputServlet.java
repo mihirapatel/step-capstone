@@ -48,6 +48,7 @@ public class TextInputServlet extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
 
     String userQuestion = request.getParameter("request-input");
+    String sessionID = request.getParameter("session-id");
     String language = request.getParameter("language");
     String languageCode = AgentUtils.getLanguageCode(language);
     DialogFlowClient result = detectIntentStream(userQuestion, languageCode);
@@ -58,7 +59,7 @@ public class TextInputServlet extends HttpServlet {
     }
     Output output = null;
     try {
-      output = AgentUtils.getOutput(result, languageCode, userService, datastore);
+      output = AgentUtils.getOutput(result, languageCode, userService, datastore, sessionID);
     } catch (Exception e) {
       e.printStackTrace();
     }

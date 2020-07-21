@@ -38,12 +38,15 @@ public class AgentUtils {
    * @param userServiceInput UserService instance to access userID and other user info if necessary.
    * @param datastoreInput DatastoreService instance used to access past comments from the user's
    *     database if necessary.
+   * @param sessionID unique sessionID for current session of AIssistant running used to store
+   *     BookQuery and book results for users who are not logged in
    */
   public static Output getOutput(
       DialogFlowClient queryResult,
       String languageCode,
       UserService userServiceInput,
-      DatastoreService datastoreInput) {
+      DatastoreService datastoreInput,
+      String sessionID) {
     String fulfillment = null;
     String display = null;
     String redirect = null;
@@ -70,7 +73,7 @@ public class AgentUtils {
     // Set fulfillment if parameters are present, upon any exceptions return default
     if (allParamsPresent) {
       try {
-        object = createAgent(agentName, intentName, detectedInput, parameterMap);
+        object = createAgent(agentName, intentName, detectedInput, parameterMap, sessionID);
         fulfillment = object.getOutput();
         fulfillment = fulfillment == null ? queryResult.getFulfillmentText() : fulfillment;
         display = object.getDisplay();
@@ -103,12 +106,17 @@ public class AgentUtils {
   }
 
   private static Agent createAgent(
-      String agentName, String intentName, String queryText, Map<String, Value> parameterMap)
+      String agentName,
+      String intentName,
+      String queryText,
+      Map<String, Value> parameterMap,
+      String sessionID)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException, InvalidRequestException {
     switch (agentName) {
       case "books":
-        return new BooksAgent(intentName, queryText, parameterMap);
+        return new BooksAgent(
+            intentName, queryText, parameterMap, sessionID, userService, datastore);
       case "calculator":
         return new Tip(intentName, parameterMap);
       case "currency":
@@ -147,7 +155,7 @@ public class AgentUtils {
     return intentList[0];
   }
 
-  private static String getIntentName(String detectedIntent) {
+  public static String getIntentName(String detectedIntent) {
     String[] intentList = detectedIntent.split("\\.", 2);
     String intentName = detectedIntent;
     if (intentList.length > 1) {

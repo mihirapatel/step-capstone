@@ -52,19 +52,11 @@ public class Indices {
   }
 
   private void setHasPrev() {
-    if (startIndex - displayNum >= 0) {
-      this.hasPrev = true;
-    } else {
-      this.hasPrev = false;
-    }
+    this.hasPrev = (startIndex - displayNum >= 0);
   }
 
   private void setHasMore() {
-    if (startIndex + displayNum < totalResults) {
-      this.hasMore = true;
-    } else {
-      this.hasMore = false;
-    }
+    this.hasMore = (startIndex + displayNum < totalResults);
   }
 
   public int getStartIndex() {
@@ -85,5 +77,13 @@ public class Indices {
 
   public int getTotalPages() {
     return this.totalPages;
+  }
+
+  public boolean getHasMore() {
+    return this.hasMore;
+  }
+
+  public boolean getHasPrev() {
+    return this.hasPrev;
   }
 }

@@ -50,14 +50,15 @@ public class AudioInputServlet extends HttpServlet {
     // Convert input stream into bytestring for DialogFlow API input
     ServletInputStream stream = request.getInputStream();
     ByteString bytestring = ByteString.readFrom(stream);
+    String sessionID = request.getParameter("session-id");
     String language = request.getParameter("language");
     Output output = null;
 
     if (language.equals("English")) {
-      output = handleEnglishQuery(bytestring, null);
+      output = handleEnglishQuery(bytestring, null, sessionID);
     } else {
       try {
-        output = handleForeignQuery(bytestring, language);
+        output = handleForeignQuery(bytestring, language, sessionID);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -67,15 +68,15 @@ public class AudioInputServlet extends HttpServlet {
     response.getWriter().write(json);
   }
 
-  private Output handleEnglishQuery(ByteString bytestring, String languageCode) {
+  private Output handleEnglishQuery(ByteString bytestring, String languageCode, String sessionID) {
     DialogFlowClient result = AudioUtils.detectIntentStream(bytestring);
     if (result == null) {
       return null;
     }
-    return AgentUtils.getOutput(result, languageCode, userService, datastore);
+    return AgentUtils.getOutput(result, languageCode, userService, datastore, sessionID);
   }
 
-  private Output handleForeignQuery(ByteString bytestring, String language) {
+  private Output handleForeignQuery(ByteString bytestring, String language, String sessionID) {
     String languageCode = AgentUtils.getLanguageCode(language);
     String detectedUserInputString =
         AudioUtils.detectSpeechLanguage(bytestring.toByteArray(), languageCode);
@@ -106,7 +107,11 @@ public class AudioInputServlet extends HttpServlet {
     byte[] byteArray = AgentUtils.getByteStringToByteArray(fulfillmentTranslation, languageCode);
     Output languageOutput =
         new Output(
-            userInputTranslation, fulfillmentTranslation, byteArray, englishOutput.getIntentName());
+            userInputTranslation,
+            fulfillmentTranslation,
+            byteArray,
+            englishOutput.getIntentName(),
+            sessionID);
     return languageOutput;
   }
 }
