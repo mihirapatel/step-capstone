@@ -109,7 +109,7 @@ public class BookQuery implements Serializable {
             && !personFields.get("name").getStringValue().isEmpty()) {
           String authorName =
               String.join("+", personFields.get("name").getStringValue().split(" "));
-          authorList.add("inauthor:\"" + authorName + "\'");
+          authorList.add("inauthor:\"" + authorName + "\"");
         }
       }
       if (!authorList.isEmpty()) {
@@ -138,7 +138,11 @@ public class BookQuery implements Serializable {
   }
 
   private void setQueryString() {
-    String queryText = String.join("+", this.userInput.split(" "));
+    String queryInput = this.userInput;
+    if (this.userInput.toLowerCase().startsWith("show me ")) {
+      queryInput = userInput.substring(8);
+    }
+    String queryText = String.join("+", queryInput.split(" "));
     if (this.authors != null) {
       queryText += "+" + this.authors;
     }

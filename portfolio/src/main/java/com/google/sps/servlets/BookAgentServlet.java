@@ -55,7 +55,8 @@ public class BookAgentServlet extends HttpServlet {
       if (request.getParameter("number") != null) {
         parameterMap = stringToMap("{\"number\": " + request.getParameter("number") + "}");
       }
-      output = getOutputFromBookAgent(intent, sessionID, parameterMap, languageCode, queryID);
+      output =
+          getOutputFromBookAgent(intent, sessionID, parameterMap, languageCode, queryID, datastore);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -69,9 +70,10 @@ public class BookAgentServlet extends HttpServlet {
    *
    * @param intent intent String passed as parameter to Servlet
    * @param sessionID unique ID for current session
-   * @param queryID unique ID (within sessionID) for current query
    * @param parameterMap map containing parameters needed, if any, by BookAgent
    * @param languageCode language code
+   * @param queryID unique ID (within sessionID) for current query
+   * @param datastore DataStore service to use
    * @return Output object to be sent to frontend
    */
   public Output getOutputFromBookAgent(
@@ -79,14 +81,14 @@ public class BookAgentServlet extends HttpServlet {
       String sessionID,
       Map<String, Value> parameterMap,
       String languageCode,
-      String queryID) {
+      String queryID,
+      DatastoreService datastore) {
     String display = null;
     String redirect = null;
     byte[] byteStringToByteArray = null;
     String intentName = AgentUtils.getIntentName(intent);
     String detectedInput = "Button pressed for: " + intentName;
-    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID, datastore);
-    String userInput = query.getUserInput();
+    String userInput = loadUserInput(sessionID, queryID, datastore);
     String fulfillment = "";
     try {
       BooksAgent agent =
@@ -122,5 +124,10 @@ public class BookAgentServlet extends HttpServlet {
     JsonFormat.parser().merge(jsonObject.toString(), structBuilder);
     Struct struct = structBuilder.build();
     return struct.getFieldsMap();
+  }
+
+  public static String loadUserInput(String sessionID, String queryID, DatastoreService datastore) {
+    BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID, datastore);
+    return query.getUserInput();
   }
 }
