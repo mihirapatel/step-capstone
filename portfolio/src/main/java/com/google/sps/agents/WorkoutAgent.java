@@ -7,14 +7,13 @@ import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
-import com.google.sps.data.Partition;
 import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.TimeUtils;
 import com.google.sps.utils.VideoUtils;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -157,7 +156,7 @@ public class WorkoutAgent implements Agent {
     youtubeChannel = youtubeChannel.replaceAll("\\s", "");
 
     // Make API call to WorkoutUtils to get json object of videos
-    List<YouTubeVideo> videoList =
+    ArrayList<YouTubeVideo> videoList =
         VideoUtils.getVideoList(
             workoutLength, workoutType, youtubeChannel, videosDisplayedTotal, "video");
 
@@ -217,9 +216,9 @@ public class WorkoutAgent implements Agent {
     workoutType = workoutType.replaceAll("\\s", "");
 
     // Make API call to WorkoutUtils to get json object of videos
-    List<YouTubeVideo> videoList =
+    ArrayList<YouTubeVideo> videoList =
         VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
-    List<List<YouTubeVideo>> listOfVideoLists = Partition.ofSize(videoList, 5);
+    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists = VideoUtils.partitionOfSize(videoList, 5);
     display = new Gson().toJson(listOfVideoLists);
   }
 }

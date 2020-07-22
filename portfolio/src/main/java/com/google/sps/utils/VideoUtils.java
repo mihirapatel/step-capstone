@@ -42,8 +42,8 @@ public class VideoUtils {
   private static String type;
   private static String key;
   private static String playlistId;
-  private static List<YouTubeVideo> playlistVids;
-  private static List<List<YouTubeVideo>> listOfPlaylists;
+  private static ArrayList<YouTubeVideo> playlistVids;
+  private static ArrayList<ArrayList<YouTubeVideo>> listOfPlaylists;
   private static int randomInt;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
@@ -93,9 +93,9 @@ public class VideoUtils {
    * @param youtubeChannel for workout channel
    * @param numVideosSearched for number of videos to get from search
    * @param searchType type of search on YouTube (video or playlist)
-   * @return List<YouTubeVideo> videoList list of YouTube videos
+   * @return ArrayList<YouTubeVideo> videoList list of YouTube videos
    */
-  public static List<YouTubeVideo> getVideoList(
+  public static ArrayList<YouTubeVideo> getVideoList(
       String workoutLength,
       String workoutType,
       String youtubeChannel,
@@ -120,9 +120,9 @@ public class VideoUtils {
    * @param planLength for workout plan length
    * @param workoutType for workout video/playlist muscle/type
    * @param searchType type of search on YouTube (video or playlist)
-   * @return List<YouTubeVideo> videoList list of YouTube videos for playlist
+   * @return ArrayList<YouTubeVideo> videoList list of YouTube videos for playlist
    */
-  public static List<YouTubeVideo> getPlaylistVideoList(
+  public static ArrayList<YouTubeVideo> getPlaylistVideoList(
       int maxPlaylistResults, int planLength, String workoutType, String searchType)
       throws IOException, JSONException {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
@@ -159,12 +159,12 @@ public class VideoUtils {
    * Created list of videos from JSONObject
    *
    * @param json JSONObject from YouTube Data API call
-   * @return List<YouTubeVideo> list of YouTube videos
+   * @return ArrayList<YouTubeVideo> list of YouTube videos
    */
-  private static List<YouTubeVideo> createVideoList(JSONObject json, String searchType) {
+  private static ArrayList<YouTubeVideo> createVideoList(JSONObject json, String searchType) {
     JSONArray videos = json.getJSONArray("items");
 
-    List<YouTubeVideo> videoList = new ArrayList<>();
+    ArrayList<YouTubeVideo> videoList = new ArrayList<>();
 
     for (int index = 0; index < videos.length(); index++) {
       String videoString = new Gson().toJson(videos.get(index));
@@ -242,9 +242,9 @@ public class VideoUtils {
    *
    * @param json JSONObject from initial YouTube Data API call for playlists
    * @param planLength length of workout plan in days
-   * @return List<YouTubeVideo> list of YouTube videos from playlist
+   * @return ArrayList<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> createPlaylistVideosList(
+  private static ArrayList<YouTubeVideo> createPlaylistVideosList(
       JSONObject json, String searchType, int maxPlaylistResults, int planLength, int randomInt)
       throws IOException {
     JSONArray playlist = json.getJSONArray("items");
@@ -260,9 +260,9 @@ public class VideoUtils {
    *
    * @param json JSONObject from initial YouTube Data API call for playlists
    * @param planLength length of workout plan in days
-   * @return List<YouTubeVideo> list of YouTube videos from playlist
+   * @return ArrayList<YouTubeVideo> list of YouTube videos from playlist
    */
-  private static List<YouTubeVideo> getPlaylistVideos(
+  private static ArrayList<YouTubeVideo> getPlaylistVideos(
       String searchType, String playlistId, int planLength) throws IOException {
     String baseURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
     maxResults = setMaxResults(planLength);
@@ -313,12 +313,38 @@ public class VideoUtils {
   }
 
   /**
+   * Splits ArrayList of YouTubeVideos into chunks of ArrayLists of YouTube videos to return an
+   * ArrayList of ArrayLists This helps make the frontend code to display workout plans much less
+   * repetitive
+   *
+   * @param videoList ArrayList of all YouTube videos in workout plan
+   * @param chunkSize int of how large the smaller ArrayLists should be
+   * @return ArrayList<ArrayList<YouTubeVideo> ArrayList of ArrayLists of size at most chunkSize
+   *     containing workout plan YouTubeVideos
+   */
+  public static ArrayList<ArrayList<YouTubeVideo>> partitionOfSize(
+      ArrayList<YouTubeVideo> videoList, int chunkSize) {
+    ArrayList<ArrayList<YouTubeVideo>> listOfLists = new ArrayList<>();
+    int startIndex = 0;
+    int endIndex = chunkSize;
+
+    for (int i = 0; i < videoList.size(); i++) {
+      ArrayList<YouTubeVideo> chunkedList = new ArrayList(videoList.subList(startIndex, endIndex));
+      listOfLists.add(chunkedList);
+      startIndex += chunkSize;
+      endIndex += chunkSize;
+    }
+
+    return listOfLists;
+  }
+
+  /**
    * Sorts playlists by number of videos in playlist to ensure the right amount of playlist videos
    * get returned
    *
    * @param listOfPlaylists List of lists that need to be sorted by size
    */
-  private static void sortByPlaylistSize(List<List<YouTubeVideo>> listOfPlaylists) {
+  private static void sortByPlaylistSize(ArrayList<ArrayList<YouTubeVideo>> listOfPlaylists) {
     Collections.sort(
         listOfPlaylists,
         new Comparator<List>() {
@@ -341,10 +367,10 @@ public class VideoUtils {
    *
    * @param userID The current logged-in user's ID number
    * @param datastore Datastore instance to retrieve data from
-   * @param workoutPlan List<List<<YouTubeVideo>> workout plan videos user wants to save
+   * @param workoutPlan ArrayList<ArrayList<<YouTubeVideo>> workout plan videos user wants to save
    */
   public static void saveWorkoutPlan(
-      String userId, DatastoreService datastore, List<List<YouTubeVideo>> workoutPlan) {
+      String userId, DatastoreService datastore, ArrayList<ArrayList<YouTubeVideo>> workoutPlan) {
     long timestamp = System.currentTimeMillis();
     Entity workoutPlanEntity = new Entity("WorkoutPlan");
 
@@ -357,7 +383,7 @@ public class VideoUtils {
     datastore.put(workoutPlanEntity);
   }
 
-  public static List<WorkoutPlan> getWorkoutPlans(String userId, DatastoreService datastore) {
+  public static ArrayList<WorkoutPlan> getWorkoutPlans(String userId, DatastoreService datastore) {
 
     Filter userFilter = createUserIdFilter(userId);
     Query query =
@@ -366,7 +392,7 @@ public class VideoUtils {
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    List<WorkoutPlan> workoutPlans = new ArrayList<>();
+    ArrayList<WorkoutPlan> workoutPlans = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
 
       long timestamp = (long) entity.getProperty("timestamp");

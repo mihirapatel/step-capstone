@@ -2,15 +2,15 @@ package com.google.sps.data;
 
 import com.google.gson.Gson;
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 /** WorkoutPlan class that stores userId and corresponding workout plan */
 public class WorkoutPlan implements Serializable {
 
   private String userId;
-  private List<List<YouTubeVideo>> workoutPlanPlaylist;
+  private ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist;
 
-  public WorkoutPlan(String userId, List<List<YouTubeVideo>> workoutPlanPlaylist) {
+  public WorkoutPlan(String userId, ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist) {
     this.userId = userId;
     this.workoutPlanPlaylist = workoutPlanPlaylist;
   }
@@ -19,7 +19,7 @@ public class WorkoutPlan implements Serializable {
     return this.userId;
   }
 
-  public List<List<YouTubeVideo>> getWorkoutPlanPlaylist() {
+  public ArrayList<ArrayList<YouTubeVideo>> getWorkoutPlanPlaylist() {
     return this.workoutPlanPlaylist;
   }
 
