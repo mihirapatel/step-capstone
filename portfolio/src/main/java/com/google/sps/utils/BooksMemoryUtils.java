@@ -14,8 +14,12 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.common.collect.Iterables;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.sps.agents.BooksAgent;
 import com.google.sps.data.Book;
 import com.google.sps.data.BookQuery;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.apache.commons.lang3.SerializationUtils;
@@ -83,6 +87,26 @@ public class BooksMemoryUtils {
   }
 
   /**
+   * This function stores a list of bookshelf names in DataStore as Bookshelves Entity for a given
+   * authenticated user
+   *
+   * @param bookshelvesNames list of bookshelf names to store
+   * @param userID unique id of user
+   * @param datastore DatastoreService instance used to access Book info from database
+   */
+  public static void storeBookshelfNames(
+      ArrayList<String> bookshelvesNames, String userID, DatastoreService datastore) {
+    long timestamp = System.currentTimeMillis();
+    Entity bookshelfEntity = new Entity("Bookshelves");
+    String listJson = BooksAgent.listToJson(bookshelvesNames);
+
+    bookshelfEntity.setProperty("id", userID);
+    bookshelfEntity.setProperty("names", listJson);
+    bookshelfEntity.setProperty("timestamp", timestamp);
+    datastore.put(bookshelfEntity);
+  }
+
+  /**
    * This function stores a the parameter integers in DataStore as a Indices Entity with the
    * corresponding properties
    *
@@ -126,6 +150,7 @@ public class BooksMemoryUtils {
     deleteStoredEntities("BookQuery", sessionID, datastore);
     deleteStoredEntities("Book", sessionID, datastore);
     deleteStoredEntities("Indices", sessionID, datastore);
+    deleteStoredEntities("Bookshelves", sessionID, datastore);
   }
 
   /**
@@ -226,6 +251,27 @@ public class BooksMemoryUtils {
   }
 
   /**
+   * This function returns the list of bookshelf names stored in Datastore for the specified user
+   *
+   * @param userID unique id of user
+   * @param datastore DatastoreService instance used to access Book info from database
+   * @return ArrayList<String> of bookshelf names
+   */
+  public static ArrayList<String> getStoredBookshelfNames(
+      String userID, DatastoreService datastore) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, userID);
+    Query query = new Query("Bookshelves").setFilter(currentUserFilter);
+
+    Entity entity = datastore.prepare(query).asSingleEntity();
+    String listJson = (String) entity.getProperty("names");
+    Gson gson = new Gson();
+    Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+    ArrayList<String> names = gson.fromJson(listJson, listType);
+
+    return names;
+  }
+
+  /**
    * This function returns the previous index specified by indexName stored in Datastore Indices
    * Entity
    *
@@ -307,6 +353,20 @@ public class BooksMemoryUtils {
     Query query = new Query("BookQuery").setFilter(currentUserFilter);
     PreparedQuery pq = datastore.prepare(query);
     return Iterables.size(pq.asIterable());
+  }
+
+  /**
+   * This function returns a boolean value indicating whether the authenticated user has Bookshelves
+   * Entities stored in Datastore
+   *
+   * @param userID user ID to retrieve stored Entities
+   * @param datastore DatastoreService instance used to access Book info from database
+   */
+  public static boolean hasBookshelvesStored(String userID, DatastoreService datastore) {
+    Filter currentUserFilter = new FilterPredicate("id", FilterOperator.EQUAL, userID);
+    Query query = new Query("Bookshelves").setFilter(currentUserFilter);
+    PreparedQuery pq = datastore.prepare(query);
+    return (Iterables.size(pq.asIterable()) > 0);
   }
 
   /**

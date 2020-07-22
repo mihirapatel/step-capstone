@@ -1,6 +1,7 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.users.UserService;
 import com.google.gson.Gson;
@@ -205,42 +206,85 @@ public class BooksAgent implements Agent {
         return;
       }
       String userID = userService.getCurrentUser().getUserId();
+      if (!hasBookAuthentication(userID)) {
+        // Get valid authentication
+        this.output = "Please allow me to access your Google Books account first.";
+        this.redirect =
+            "https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev/oauth2";
+        return;
+      }
+      ArrayList<String> shelvesNames;
+
+      // Retrieve stored or store bookshelf names for current user
+      if (BooksMemoryUtils.hasBookshelvesStored(userID, datastore)) {
+        shelvesNames = BooksMemoryUtils.getStoredBookshelfNames(userID, datastore);
+      } else {
+        shelvesNames = BookUtils.getBookshelvesNames(userID);
+        BooksMemoryUtils.storeBookshelfNames(shelvesNames, userID, datastore);
+      }
+      ArrayList<String> checkNames = allLowerCaseList(shelvesNames);
 
       if (intentName.equals("library")) {
-        if (!hasBookAuthentication(userID)) {
-          // Get valid authentication
-          this.output = "Please allow me to access your Google Books account first.";
-          this.redirect =
-              "https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev/oauth2";
-          return;
-        }
-        ArrayList<String> shelvesNames = BookUtils.getBookshelvesNames(userID);
-        ArrayList<String> checkNames = allLowerCaseList(shelvesNames);
-
-        // If unspecified bookshelf, or invalid bookshelf name
+        // Check for valid bookshelf parameter
         if (parameters.get("bookshelf") == null
             || !checkNames.contains(parameters.get("bookshelf").getStringValue().toLowerCase())) {
           ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
           this.output = "Which bookshelf would you like to see?";
           this.display = listToJson(shelvesNames);
           return;
-        } else {
-          // Create BookQuery
-          this.query = BookQuery.createBookQuery(this.userInput, parameters);
-          this.startIndex = 0;
-
-          // Retrieve books from BookQuery
-          this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
-          this.totalResults = BookUtils.getTotalShelfVolumesFound(query, startIndex, userID);
-          this.resultsReturned = bookResults.size();
-
-          if (resultsReturned > 0) {
-            handleNewQuerySuccess();
-            this.output = "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
-          } else {
-            this.output = "There are no books in your " + query.getBookshelfName() + " bookshelf.";
-          }
         }
+        // Create BookQuery
+        this.query = BookQuery.createBookQuery(this.userInput, parameters);
+        this.startIndex = 0;
+
+        // Retrieve books from BookQuery
+        this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
+        this.totalResults = BookUtils.getTotalShelfVolumesFound(query, startIndex, userID);
+        this.resultsReturned = bookResults.size();
+
+        if (resultsReturned > 0) {
+          handleNewQuerySuccess();
+          this.output = "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
+        } else {
+          this.output = "There are no books in your " + query.getBookshelfName() + " bookshelf.";
+        }
+      } else if (intentName.equals("add")) {
+        int bookNumber = (int) parameters.get("number").getNumberValue();
+        this.prevStartIndex =
+            BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
+        Book requestedBook =
+            BooksMemoryUtils.getBookFromOrderNum(
+                bookNumber, prevStartIndex, sessionID, queryID, datastore);
+
+        // Check for valid bookshelf parameter
+        if (parameters.get("bookshelf") == null
+            || !checkNames.contains(parameters.get("bookshelf").getStringValue().toLowerCase())) {
+          ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
+          this.output =
+              "Which bookshelf would you like to add " + requestedBook.getTitle() + " to?";
+          this.display = listToJson(getValidAddShelves(shelvesNames, requestedBook));
+          return;
+        }
+        String bookshelfName = parameters.get("bookshelf").getStringValue();
+        String volumeId = requestedBook.getVolumeId();
+        try {
+          BookUtils.addToBookshelf(bookshelfName, userID, volumeId);
+          this.output =
+              "I've added "
+                  + requestedBook.getTitle()
+                  + " to your "
+                  + bookshelfName
+                  + " bookshelf.";
+        } catch (GoogleJsonResponseException e) {
+          this.output =
+              "I'm sorry. I couldn't add "
+                  + requestedBook.getTitle()
+                  + " to your "
+                  + bookshelfName
+                  + " bookshelf.";
+        }
+        this.display = bookToString(requestedBook);
+        this.redirect = queryID;
       }
     }
   }
@@ -353,7 +397,27 @@ public class BooksAgent implements Agent {
     return lowerCaseList;
   }
 
-  public static String listToJson(ArrayList<?> list) {
+  /**
+   * Returns a list of valid shelves to add Book object to, based on type of book and access type of
+   * generic Google Books shelves
+   *
+   * @param shelves list of all user's shelves
+   * @param bookToAdd Book to add
+   * @return ArrayList<String> valid shelves
+   */
+  private static ArrayList<String> getValidAddShelves(ArrayList<String> shelves, Book bookToAdd) {
+    shelves.remove("Purchased");
+    shelves.remove("Reviewed");
+    shelves.remove("Recently viewed");
+    shelves.remove("Browsing history");
+    shelves.remove("Books for you");
+    if (!bookToAdd.isEbook()) {
+      shelves.remove("My Google eBooks");
+    }
+    return shelves;
+  }
+
+  public static String listToJson(ArrayList<String> list) {
     Gson gson = new Gson();
     return gson.toJson(list);
   }
