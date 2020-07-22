@@ -189,6 +189,7 @@
       <groupId>com.google.oauth-client</groupId>
       <artifactId>google-oauth-client-servlet</artifactId>
       <version>1.30.4</version>
+    </dependency>
 
     <dependency>
       <groupId>org.ejml</groupId>
@@ -219,7 +220,7 @@
         <version>2.19.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <!--<skipTests>true</skipTests>-->
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
 

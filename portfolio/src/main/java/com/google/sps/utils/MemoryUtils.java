@@ -12,6 +12,8 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.log.InvalidRequestException;
+import com.google.protobuf.Value;
 import com.google.sps.data.Pair;
 import com.google.sps.data.Recommender;
 import java.text.ParseException;
@@ -20,6 +22,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -174,6 +177,53 @@ public class MemoryUtils {
             new FilterPredicate("userID", FilterOperator.EQUAL, userID),
             new FilterPredicate("timestamp", FilterOperator.GREATER_THAN_OR_EQUAL, startTime),
             new FilterPredicate("timestamp", FilterOperator.LESS_THAN_OR_EQUAL, endTime)));
+  }
+
+  public static List<Entity> getPastUserLists(DatastoreService datastore, String userID, Map<String, Value> parameters) {
+      Filter filter = makeFilters(parameters, userID, true);
+      List<Entity> listQuery = pastListHelper(datastore, filter);
+      if (listQuery.size() == 0) {
+          filter = makeFilters(parameters, userID, false);
+          listQuery = pastListHelper(datastore, filter);
+      }
+      String maxValue = parameters.get("number").getStringValue();
+      if (!maxValue.equals("-1")) {
+          return listQuery.subList(0, Math.min(listQuery.size(), (int) parameters.get("number").getNumberValue()));
+      }
+      return listQuery;
+  }
+
+  private static Filter makeFilters(Map<String, Value> parameters, String userID, boolean tryName) throws InvalidRequestException {
+      List<Filter> filters = new ArrayList<>();
+      filters.add(new FilterPredicate("userID", FilterOperator.EQUAL, userID));
+      String listNameValue = parameters.get("list-name").getStringValue();
+      if (tryName && !listNameValue.isEmpty()) {
+          filters.add(new FilterPredicate("stemmedListName", FilterOperator.EQUAL, StemUtils.stemmed(listNameValue)));
+      }
+      Value durationValue = parameters.get("date-time-enhanced");
+      if (durationValue.hasStructValue()) {
+          try {
+              Pair<Long, Long> timeRange = TimeUtils.getTimeRange(durationValue);
+              filters.add(new FilterPredicate("timestamp", FilterOperator.GREATER_THAN_OR_EQUAL, timeRange.getKey()));
+              filters.add(new FilterPredicate("timestamp", FilterOperator.LESS_THAN_OR_EQUAL, timeRange.getValue()));
+          } catch (ParseException e) {
+            log.error("Parse error in date-time parameter", e);
+            throw new InvalidRequestException("Parse error in date-time parameter");
+          }
+      }
+      if (filters.size() == 1) {
+          return filters.get(0);
+      } else {
+          return new CompositeFilter(CompositeFilterOperator.AND, filters);
+      }
+  }
+
+  private static List<Entity> pastListHelper(DatastoreService datastore, Filter filter) {
+      Query query =
+        new Query("List")
+            .setFilter(filter)
+            .addSort("timestamp", SortDirection.DESCENDING);
+      return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 
   /**
