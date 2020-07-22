@@ -31,7 +31,7 @@ public class WorkoutAgent implements Agent {
   private String output = null;
   private String display = null;
   private String redirect = null;
-  private String userID;
+  private String userId;
   private DatastoreService datastore;
   private UserService userService;
   private String workoutType = "";
@@ -51,15 +51,15 @@ public class WorkoutAgent implements Agent {
    *
    * @param intentName String containing the specific workout agent intent requeste by user
    * @param parameters Map containing the detected entities in the user's intent
-   * @param userService UserService instance to access userID and other user info
+   * @param userService UserService instance to access userId and other user info
    * @param datastore DatastoreService instance used to access saved workout plans from the user's
    *     database
    */
   public WorkoutAgent(
       String intentName,
       Map<String, Value> parameters,
-      DatastoreService datastore,
-      UserService userService)
+      UserService userService,
+      DatastoreService datastore)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
@@ -75,8 +75,8 @@ public class WorkoutAgent implements Agent {
     if (intentName.contains("find")) {
       workoutFind(parameters);
     } else if (intentName.contains("plan")) {
-      if (userService.isLoggedIn()) {
-        userID = userService.getCurrentUser().getUserId();
+      if (userService.isUserLoggedIn()) {
+        userId = userService.getCurrentUser().getUserId();
       }
       workoutPlan(parameters);
     }

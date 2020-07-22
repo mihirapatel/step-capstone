@@ -1,6 +1,18 @@
 package com.google.sps.utils;
 
+import com.google.appengine.api.datastore.Blob;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilter;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.WorkoutPlan;
 import com.google.sps.data.YouTubeVideo;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,9 +24,11 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import org.apache.commons.lang3.SerializationUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -327,26 +341,46 @@ public class VideoUtils {
    *
    * @param userID The current logged-in user's ID number
    * @param datastore Datastore instance to retrieve data from
-   * @param workoutPlan List<List<YouTubeVideo>> workout plan videos user wants to save
+   * @param workoutPlan List<List<<YouTubeVideo>> workout plan videos user wants to save
    */
   public static void saveWorkoutPlan(
-      String userID, Datastore datastore, List<List<YouTubeVideo>> workoutPlan) {
+      String userId, DatastoreService datastore, List<List<YouTubeVideo>> workoutPlan) {
     long timestamp = System.currentTimeMillis();
+    Entity workoutPlanEntity = new Entity("WorkoutPlan");
 
-    Entity entity = new Entity("SavedWorkoutPlans");
-    entity.setProperty("userID", userID);
-    entity.setProperty("workoutPlan", workoutPlan);
-    entity.setProperty("timestamp", timestamp);
-    datastore.put(entity);
+    byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
+    Blob workoutPlanBlob = new Blob(workoutPlanData);
+
+    workoutPlanEntity.setProperty("userId", userId);
+    workoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
+    workoutPlanEntity.setProperty("timestamp", timestamp);
+    datastore.put(workoutPlanEntity);
   }
 
-  public static List<List<YouTubeVideo>> getWorkoutPlan(Datastore datastore) {
+  public static List<WorkoutPlan> getWorkoutPlans(String userId, DatastoreService datastore) {
 
-    Query query = new Query("SavedWorkoutPlans").addSort("timestamp", SortDirection.DESCENDING);
+    Filter userFilter = createUserIdFilter(userId);
+    Query query =
+        new Query("WorkoutPlan")
+            .setFilter(userFilter)
+            .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    String userName = (String) entity.getProperty("userID");
-    String userComment = (String) entity.getProperty("workoutPlan");
-    long timestamp = (long) entity.getProperty("timestamp");
+    List<WorkoutPlan> workoutPlans = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+
+      long timestamp = (long) entity.getProperty("timestamp");
+      Blob workoutPlanBlob = (Blob) entity.getProperty("workoutPlan");
+      WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
+      workoutPlans.add(workoutPlan);
+    }
+
+    return workoutPlans;
+  }
+
+  private static Filter createUserIdFilter(String userId) {
+    return new CompositeFilter(
+        CompositeFilterOperator.AND,
+        Arrays.asList(new FilterPredicate("userId", FilterOperator.EQUAL, userId)));
   }
 }
