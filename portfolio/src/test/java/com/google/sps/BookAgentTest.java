@@ -239,7 +239,7 @@ public class BookAgentTest {
   public void testBookDescription() throws Exception {
     Output output = tester.getOutput("books.description", "testSession3", parameters, "testQuery1");
     assertEquals("Here's a description of Title 3.", output.getFulfillmentText());
-    assertEquals(BooksAgent.bookToString(books.get(3)), output.getDisplay());
+    assertEquals(BooksAgent.bookToJson(books.get(3)), output.getDisplay());
     assertEquals("testQuery1", output.getRedirect());
   }
 
@@ -248,7 +248,7 @@ public class BookAgentTest {
   public void testBookPreview() throws Exception {
     Output output = tester.getOutput("books.preview", "testSession3", parameters, "testQuery1");
     assertEquals("Here's a preview of Title 3.", output.getFulfillmentText());
-    assertEquals(BooksAgent.bookToString(books.get(3)), output.getDisplay());
+    assertEquals(BooksAgent.bookToJson(books.get(3)), output.getDisplay());
     assertEquals("testQuery1", output.getRedirect());
   }
 
@@ -259,7 +259,7 @@ public class BookAgentTest {
   public void testBookResults() throws Exception {
     Output output = tester.getOutput("books.results", "testSession3", parameters, "testQuery1");
     assertEquals("Here are the results.", output.getFulfillmentText());
-    assertEquals(BooksAgent.bookListToString(books), output.getDisplay());
+    assertEquals(BooksAgent.bookListToJson(books), output.getDisplay());
     assertEquals("testQuery1", output.getRedirect());
   }
 }

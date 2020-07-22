@@ -70,11 +70,10 @@ public class BookAgentServlet extends HttpServlet {
    *
    * @param intent intent String passed as parameter to Servlet
    * @param sessionID unique ID for current session
-   * @param queryID unique ID (within sessionID) for current query
    * @param parameterMap map containing parameters needed, if any, by BookAgent
    * @param languageCode language code
+   * @param queryID unique ID (within sessionID) for current query
    * @param datastore DataStore service to use
-   * @param userService UserService to use
    * @return Output object to be sent to frontend
    */
   public Output getOutputFromBookAgent(

@@ -172,7 +172,7 @@ public class BooksAgent implements Agent {
           BooksMemoryUtils.getBookFromOrderNum(
               bookNumber, prevStartIndex, sessionID, queryID, datastore);
 
-      this.display = bookToString(requestedBook);
+      this.display = bookToJson(requestedBook);
       this.redirect = queryID;
       this.output = "Here's a " + intentName + " of " + requestedBook.getTitle() + ".";
 
@@ -244,7 +244,7 @@ public class BooksAgent implements Agent {
     ArrayList<Book> booksToDisplay =
         BooksMemoryUtils.getStoredBooksToDisplay(
             displayNum, startIndex, sessionID, queryID, datastore);
-    this.display = bookListToString(booksToDisplay);
+    this.display = bookListToJson(booksToDisplay);
   }
 
   /**
@@ -269,12 +269,12 @@ public class BooksAgent implements Agent {
     return -1;
   }
 
-  public static String bookToString(Book book) {
+  public static String bookToJson(Book book) {
     Gson gson = new Gson();
     return gson.toJson(book);
   }
 
-  public static String bookListToString(ArrayList<Book> books) {
+  public static String bookListToJson(ArrayList<Book> books) {
     Gson gson = new Gson();
     return gson.toJson(books);
   }

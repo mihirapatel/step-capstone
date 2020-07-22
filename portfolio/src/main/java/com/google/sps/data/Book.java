@@ -85,7 +85,7 @@ public class Book implements Serializable {
     setThumbnailLink(volume);
     setBuyLink(volume);
     setEmbeddable(volume);
-    setISBN(volume);
+    setIsbn(volume);
     setTextSnippet(volume);
   }
 
@@ -97,14 +97,14 @@ public class Book implements Serializable {
    * @param authors String authors of book
    * @param description String description of book
    * @param embeddable Bool indicating whether book is embeddable
-   * @param ISBN String unique ISBN number
+   * @param isbn String unique ISBN number
    */
-  public Book(String title, String authors, String description, Boolean embeddable, String ISBN) {
+  public Book(String title, String authors, String description, Boolean embeddable, String isbn) {
     this.title = title;
     this.authors = authors;
     this.description = description;
     this.embeddable = embeddable;
-    this.isbn = ISBN;
+    this.isbn = isbn;
     this.publishedDate = "";
     this.averageRating = "";
     this.infoLink = "";
@@ -189,7 +189,7 @@ public class Book implements Serializable {
     this.embeddable = false;
   }
 
-  private void setISBN(Volume volume) {
+  private void setIsbn(Volume volume) {
     if (volume.getVolumeInfo().getIndustryIdentifiers() != null) {
       ArrayList<IndustryIdentifiers> industryIdentifiers =
           new ArrayList<IndustryIdentifiers>(volume.getVolumeInfo().getIndustryIdentifiers());
@@ -253,7 +253,7 @@ public class Book implements Serializable {
     return this.embeddable;
   }
 
-  public String getISBN() {
+  public String getIsbn() {
     return this.isbn;
   }
 

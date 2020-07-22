@@ -162,9 +162,7 @@ public class BookCreationTest {
     Volumes volumes = utils.getVolumes(query, 0);
     ArrayList<Volume> vols = new ArrayList<Volume>(volumes.getItems());
     for (Volume vol : vols) {
-      assertTrue(
-          (vol.getSaleInfo().getListPrice() == null)
-              || (vol.getSaleInfo().getListPrice().getAmount() == 0.0));
+      assertTrue(vol.getSaleInfo().getIsEbook());
     }
   }
 

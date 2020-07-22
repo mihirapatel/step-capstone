@@ -143,12 +143,13 @@ public class TestHelper {
   }
 
   /**
-   * Populates customizes datastore with desired Indices object.
+   * Gets the output object created by agent fulfillment after at the end of back-end process.
    *
    * @param intent intent String passed as parameter to Servlet
    * @param sessionID unique ID for current session
    * @param parameterMap String containing parameters needed, if any, by BookAgent
    * @param queryID unique ID (within sessionID) for current query
+   * @return Output object identical to that which is passed back to javascript.
    */
   public Output getOutput(String intent, String sessionID, String parameterMap, String queryID)
       throws InvalidProtocolBufferException {
@@ -273,7 +274,8 @@ public class TestHelper {
   }
 
   /**
-   * Populates customizes datastore with desired Indices object.
+   * Populates customizes datastore with desired Indices parameters, used to construct an indices
+   * object.
    *
    * @param startIndex index to start retrieving Volume objects from
    * @param resultsStored number of results stored
@@ -294,7 +296,7 @@ public class TestHelper {
   }
 
   /**
-   * Populates customizes datastore with desired Indices object.
+   * Populates customizes datastore with desired Books, starting at startIndex.
    *
    * @param books ArrayList of Book objects to store
    * @param startIndex index to start order at
