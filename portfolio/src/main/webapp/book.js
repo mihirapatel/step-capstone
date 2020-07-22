@@ -172,7 +172,7 @@ function createBookRow(book, queryID) {
 
   const picColumn = createPictureColumn(book);
   const infoColumn = createInfoColumn(book, queryID);
-  const linkColumn = createLinkColumn(book);
+  const linkColumn = createLinkColumn(book, queryID);
 
   bookRow.appendChild(picColumn);
   bookRow.appendChild(infoColumn);
@@ -253,21 +253,31 @@ function createInfoColumn(book, queryID) {
  * buying links of parameter book object
  *
  * @param book Book object
+ * @param queryID appropriate queryID for results in this element
  * @return linkText of <td></td> element
  */
-function createLinkColumn(book) {
+function createLinkColumn(book, queryID) {
   const linkColumn = document.createElement('td');
   linkColumn.className = "book-links";
+  const paragraph = document.createElement('p');
+  paragraph.className = "book";
 
   if (book.infoLink){
-      linkHTML = '<p class = "book">';
-      if (book.infoLink){
-          redirectLogo = '<img class = "redirect-logo" alt="Redirect" src= "images/redirect.png" >';
-          linkHTML += '<a class = "book-link"  target="_blank" href = "' + book.infoLink + '">' + redirectLogo + 'Go to Page</a>';
-      }
-      linkHTML += '</p>';
+    redirectLogo = '<img class = "redirect-logo" alt="Redirect" src= "images/redirect.png" >';
+    linkHTML = '<a class = "book-link"  target="_blank" href = "' + book.infoLink + '">' + redirectLogo + 'Go to Page</a><br>';
+    paragraph.insertAdjacentHTML('afterbegin', linkHTML);
   }
-  linkColumn.innerHTML = linkHTML;
+  addLogo = '<img class = "redirect-logo" alt="Redirect" src= "images/redirect.png" >';
+  paragraph.insertAdjacentHTML('beforeend', addLogo);
+
+  var libraryLink = document.createElement('a');
+  libraryLink.className = "book-link";
+  libraryLink.insertAdjacentHTML('afterbegin', "Add to My Library");
+  libraryLink.addEventListener("click", function () {
+    getBookshelfNamesFromButton('books.add', book.order, queryID);
+  });
+  paragraph.appendChild(libraryLink);
+  linkColumn.appendChild(paragraph);
   return linkColumn;
 }
 
@@ -416,6 +426,76 @@ function alertNotFound() {
 }
 
 /**
+ * Displays bookshelf names when the user requests to add a book
+ * to their library
+ *
+ * @param stream output object stream from Dialogflow
+ * @param bookIndex Book number to display
+ * @param queryID queryID for div that triggered button
+ */
+function displayBookshelvesToAdd(stream, bookIndex, queryID) {
+  var outputAsJson = JSON.parse(stream);
+  clearPreviousDisplay(queryID);
+  placeBooksUserInput(outputAsJson.userInput, "convo-container", queryID);
+  placeBooksFulfillment(outputAsJson.fulfillmentText, queryID);
+  bookShelfAddContainer = createBookshelfAddContainer(outputAsJson.display, bookIndex, queryID);
+  placeBookDisplay(bookShelfAddContainer, "convo-container", queryID);
+}
+
+/**
+ * This function creates a Book container containing a 
+ * <table></table> element with information about Bookshelf names from the 
+ * json bookResults parameter, along with the requested book number and queryID
+ * indicating which volume to add to bookshelf
+ *
+ * @param bookResults json ArrayList<String> bookshelf names
+ * @param bookIndex Book number to display
+ * @param queryID queryID for div that triggered button
+ * @return booksDiv element containing a book results table 
+ */
+function createBookshelfAddContainer(bookResults, bookIndex, queryID) {
+  var bookshelfList = JSON.parse(bookResults);
+  var booksDiv = document.createElement("div"); 
+  booksDiv.className = "book-div";
+  var bookTable = document.createElement("table"); 
+  bookTable.className = "book-table";
+  bookshelfList.forEach((bookName) => {
+    bookTable.appendChild(createBookShelfAddRow(bookName, bookIndex, queryID));
+  });
+  bookTable.appendChild(createInfoFooter(queryID));
+  booksDiv.appendChild(bookTable);
+  return booksDiv;
+}
+
+/**
+ * This function creates a row <tr></tr> element containing information from the
+ * parameter bookshelf name to be added to the book table, along with the 
+ * neccessary metadata for book to add to the bookshelf on click
+ *
+ * @param bookshelfName name of bookshelf
+ * @param bookIndex Book number to display
+ * @param queryID queryID for div that triggered button
+ * @return bookRow element to be added to table
+ */
+function createBookShelfAddRow(bookshelfName, bookIndex, queryID) {
+  const bookRow = document.createElement('tr');
+  bookRow.className = "book-row";
+
+  const bookshelfColumn = document.createElement('td');
+  bookshelfColumn.className = "bookshelf-name";
+
+  var bookshelfButton = document.createElement("button");
+  bookshelfButton.className = "bookshelf-button";
+  bookshelfButton.insertAdjacentHTML('afterbegin', bookshelfName);
+  bookshelfButton.addEventListener("click", function () {
+    addToBookshelf('books.add', bookshelfName, bookIndex, queryID);
+  });
+  bookshelfColumn.appendChild(bookshelfButton);
+  bookRow.appendChild(bookshelfColumn);
+  return bookRow;
+}
+
+/**
  * Displays book results without user input text when one of the  
  * buttons in the display has been pressed, triggering a book results
  * display 
@@ -430,10 +510,7 @@ function displayBooksFromButton(stream) {
         outputAsJson.intent.includes("books.library")){
     clearPreviousDisplay(outputAsJson.redirect);
 
-    if (!outputAsJson.intent.includes("books.library")) {
-      placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
-    }
-
+    placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
     placeBooksFulfillment(outputAsJson.fulfillmentText, outputAsJson.redirect);
     bookContainer = createBookContainer(outputAsJson.display, outputAsJson.redirect);
     placeBookDisplay(bookContainer, "convo-container", outputAsJson.redirect);

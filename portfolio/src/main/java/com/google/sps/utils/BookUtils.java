@@ -262,4 +262,29 @@ public class BookUtils {
     Volumes volumes = getBookShelfVolumes(query, startIndex, userID);
     return volumes.getTotalItems().intValue();
   }
+
+  /**
+   * This function adds the specified volume to the user's specified bookshelf, and throws an
+   * exception otherwise
+   *
+   * @param bookshelfName name of bookshelf to add volume to
+   * @param userID unique userID
+   * @param volumeId unique id of volume to add
+   */
+  public static void addToBookshelf(String bookshelfName, String userID, String volumeId)
+      throws IOException, GoogleJsonResponseException {
+    OAuthHelper helper = new OAuthHelper();
+    Credential credential = helper.loadUpdatedCredential(userID);
+
+    Books books = getBooksContext(credential);
+    Bookshelf bookshelf = getBookshelf(bookshelfName, userID);
+    String shelfId = Integer.toString(bookshelf.getId());
+
+    Books.Mylibrary.Bookshelves.AddVolume request =
+        books.mylibrary().bookshelves().addVolume(shelfId).setVolumeId(volumeId);
+    request.setAccessToken(credential.getAccessToken());
+    request.set$Xgafv("");
+    request.execute();
+    return;
+  }
 }

@@ -47,6 +47,7 @@ public class Book implements Serializable {
   private String textSnippet;
   private int order;
   private String volumeId;
+  private Boolean ebook = false;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -88,6 +89,13 @@ public class Book implements Serializable {
     setIsbn(volume);
     setTextSnippet(volume);
     setVolumeId(volume);
+    setEbook(volume);
+  }
+
+  public void setEbook(Volume volume) {
+    if (hasValidSaleInfo(volume)) {
+      this.ebook = volume.getSaleInfo().getIsEbook();
+    }
   }
 
   /**
@@ -271,6 +279,9 @@ public class Book implements Serializable {
     return this.textSnippet;
   }
 
+  public Boolean isEbook() {
+    return this.ebook;
+  }
   /**
    * Checks if Volume object has a valid title
    *
