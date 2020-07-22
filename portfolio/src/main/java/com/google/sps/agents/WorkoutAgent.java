@@ -1,6 +1,8 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.users.UserService;
 import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
@@ -29,20 +31,40 @@ public class WorkoutAgent implements Agent {
   private String output = null;
   private String display = null;
   private String redirect = null;
+  private String userID;
+  private DatastoreService datastore;
+  private UserService userService;
   private String workoutType = "";
   private String workoutLength = "";
   private String youtubeChannel = "";
   private int planLength;
+  private String userSaved = "";
   private String amount = "";
   private String unit = "";
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
   private static final int maxPlaylistResults = 5;
 
-  public WorkoutAgent(String intentName, Map<String, Value> parameters)
+  /**
+   * Workout agent constructor that uses intent and parameters to determnine fulfillment and display
+   * for user request
+   *
+   * @param intentName String containing the specific workout agent intent requeste by user
+   * @param parameters Map containing the detected entities in the user's intent
+   * @param userService UserService instance to access userID and other user info
+   * @param datastore DatastoreService instance used to access saved workout plans from the user's
+   *     database
+   */
+  public WorkoutAgent(
+      String intentName,
+      Map<String, Value> parameters,
+      DatastoreService datastore,
+      UserService userService)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
+    this.datastore = datastore;
+    this.userService = userService;
     setParameters(parameters);
   }
 
@@ -53,6 +75,9 @@ public class WorkoutAgent implements Agent {
     if (intentName.contains("find")) {
       workoutFind(parameters);
     } else if (intentName.contains("plan")) {
+      if (userService.isLoggedIn()) {
+        userID = userService.getCurrentUser().getUserId();
+      }
       workoutPlan(parameters);
     }
   }

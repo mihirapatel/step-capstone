@@ -321,4 +321,32 @@ public class VideoUtils {
     }
     return (int) (Math.random() * (max - min)) + min;
   }
+
+  /**
+   * Saves workout plan if user if logged in
+   *
+   * @param userID The current logged-in user's ID number
+   * @param datastore Datastore instance to retrieve data from
+   * @param workoutPlan List<List<YouTubeVideo>> workout plan videos user wants to save
+   */
+  public static void saveWorkoutPlan(
+      String userID, Datastore datastore, List<List<YouTubeVideo>> workoutPlan) {
+    long timestamp = System.currentTimeMillis();
+
+    Entity entity = new Entity("SavedWorkoutPlans");
+    entity.setProperty("userID", userID);
+    entity.setProperty("workoutPlan", workoutPlan);
+    entity.setProperty("timestamp", timestamp);
+    datastore.put(entity);
+  }
+
+  public static List<List<YouTubeVideo>> getWorkoutPlan(Datastore datastore) {
+
+    Query query = new Query("SavedWorkoutPlans").addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    String userName = (String) entity.getProperty("userID");
+    String userComment = (String) entity.getProperty("workoutPlan");
+    long timestamp = (long) entity.getProperty("timestamp");
+  }
 }
