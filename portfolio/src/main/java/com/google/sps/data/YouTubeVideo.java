@@ -7,7 +7,7 @@ import java.io.Serializable;
  * YouTubeVideo class for Workout agent that has channel name and id of channel that posted video on
  * YouTube and title, description, thumbnail, id of video
  */
-public final class YouTubeVideo implements Serializable {
+public class YouTubeVideo implements Serializable {
   private String channelTitle;
   private String title;
   private String description;
