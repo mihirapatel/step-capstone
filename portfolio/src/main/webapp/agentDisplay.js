@@ -62,6 +62,10 @@ function displayResponse(stream) {
 */
 function updateName(name) {
   var greetingContainer = document.getElementsByName("greeting")[0];
-  name = " " + name;
-  greetingContainer.innerHTML = "<h1>Hi" + name + ", what can I help you with?</h1>";
+  if (name.length > 1) {
+      greetingContainer.innerHTML = "<h1>Hi " + name + ", how can I help you?</h1>";
+  } else {
+      greetingContainer.innerHTML = "<h1>Hi, how can I help you?</h1>";
+  }
+  
 }

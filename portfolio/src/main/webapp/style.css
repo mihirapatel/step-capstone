@@ -212,12 +212,12 @@ top: 0px;
  
 .user-side {
   text-align: right;
-  margin-left: 25%;
+  margin-left: 40%;
 }
  
 .assistant-side {
   text-align: left;
-  margin-right: 25%;
+  margin-right: 40%;
 }
  
 .media-display {
@@ -229,32 +229,54 @@ top: 0px;
 .timer-display {
   background-color: rgba(255, 255, 255, 0.616);
   color: rgb(58, 56, 56);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 2.5rem;
 }
  
+button {
+  font-family: 'Roboto', sans-serif;
+}
+ 
+input {
+  font-family: 'Roboto', sans-serif;
+  height: 35px;
+  font-size: 16px;
+  color: #444343;
+  background-color: #eeeded;
+  border: none;
+  border-radius: 3px;
+} 
+
+input:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
+}
+ 
+* {
+  box-sizing: border-box;
+}
+
+form {
+	display: flex;
+    justify-content: center;
+}
+
 textarea {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   padding: 5px 5px 5px 8px;
   text-align: left;
-  width: 80%;
+  width: 90%;
   max-width: 500px;
   height: 35px;
+  display: inline-block;
+  
+  resize: none;
 }
- 
-button {
-  font-family:'Open Sans', sans-serif;
-}
- 
-input {
-  font-family:'Open Sans', sans-serif;
-} 
- 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+#submit {
+  display: inline-block;
+  width: 10%;
 }
  
 html, body {
@@ -303,34 +325,24 @@ canvas {
   background-color: white;
   border: 1px solid #cccccc;
 }
- 
-.record {
-   border-radius: 50%;
+
+#buttons button:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
 }
+
  
 .microphone {
-  max-height: 35px;
+    height: 33px;
+    padding-bottom: 3px;
 }
- 
-button:hover, button:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: rgb(158, 158, 158);
-}
+
  
 .box {
     width: 25px;
     height: 25px;
     background-color: #d95240;
     border-radius: 5px;
-}
-.box:hover, .box:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: #DB4437;
-}
- 
-button:active {
-  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
-  transform: translateY(2px);
 }
 
 .input-form {
@@ -340,6 +352,7 @@ button:active {
 .text-input {
   border-color: #cccccc;
   border-radius: 8px;
+  margin-right: 1.5%;
 }
  
 section, article {
@@ -399,21 +412,20 @@ input[type=checkbox]:checked ~ aside {
   top: 5px;
   right: 5px;
   border-radius: 10px;
-  background-color:  rgba(255, 255, 255, 0.156);
+  background-color: rgba(146, 142, 142, 0.156);
   padding: 10px;
-  padding-top: 5px;
-  margin: 10px;
+  margin: 15px;
 }
 
 .auth-link:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.356);
+  background-color: rgba(133, 132, 132, 0.356);
 }
 
 a.link {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-decoration: none;
-  color: white;
+  color: gray;
   font-size: 1.3rem;
 }
  
@@ -429,7 +441,7 @@ a.link {
 }
 
 #right-panel {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: absolute;
     color: black;
     right: 0px;
