@@ -21,7 +21,7 @@ body {
 }
 
 .speech-border {
-  border: 1px solid black;
+  border: 1px solid #cccccc;
 }
 
 .round {
@@ -167,7 +167,7 @@ h1 {
 
 p {
     color: #333333;
-    margin: 5px;
+    margin: 10px;
 }
 
 #map {
@@ -186,7 +186,7 @@ top: 0px;
  
 #footer {
   position:absolute; 
-  bottom:0px; 
+  bottom: 5%; 
   height: fit-content; 
   overflow:hidden; 
   width: 90%; 
@@ -202,12 +202,12 @@ top: 0px;
 }
  
 #content {
-  position:absolute; 
-  top: 150px; 
-  bottom: 150px; 
-  overflow: auto;
-  width: 90%;
-  max-width: 850px;
+    position: absolute;
+    top: 170px;
+    bottom: 200px;
+    overflow: auto;
+    width: 90%;
+    max-width: 850px;
 }
  
 .user-side {
@@ -267,7 +267,7 @@ h1, h2 {
   font-size: 2rem;
   text-align: center;
   font-weight: normal;
-  padding: 0.5rem 0 0 0;
+  padding: 5% 0 0 0;
 }
  
 .main-controls {
@@ -312,11 +312,11 @@ button:hover, button:focus {
 }
  
 .box {
-  width: 25px;
-  height: 25px;
-  background-color: #DB4437;
+    width: 25px;
+    height: 25px;
+    background-color: #d95240;
+    border-radius: 5px;
 }
- 
 .box:hover, .box:focus {
   box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
   background: #DB4437;
