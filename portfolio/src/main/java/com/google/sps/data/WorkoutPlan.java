@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /** WorkoutPlan class that stores userId and corresponding workout plan */
-public final class WorkoutPlan implements Serializable {
+public class WorkoutPlan implements Serializable {
 
   private String userId;
   private List<List<YouTubeVideo>> workoutPlanPlaylist;
