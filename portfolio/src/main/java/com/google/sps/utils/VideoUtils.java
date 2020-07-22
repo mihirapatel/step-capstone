@@ -327,12 +327,19 @@ public class VideoUtils {
     ArrayList<ArrayList<YouTubeVideo>> listOfLists = new ArrayList<>();
     int startIndex = 0;
     int endIndex = chunkSize;
+    int listSize = videoList.size();
+    int numLists = listSize / chunkSize + 1;
 
-    for (int i = 0; i < videoList.size(); i++) {
+    for (int i = 0; i < numLists; i++) {
       ArrayList<YouTubeVideo> chunkedList = new ArrayList(videoList.subList(startIndex, endIndex));
       listOfLists.add(chunkedList);
       startIndex += chunkSize;
-      endIndex += chunkSize;
+
+      if (endIndex + chunkSize > listSize) {
+        endIndex = listSize;
+      } else {
+        endIndex += chunkSize;
+      }
     }
 
     return listOfLists;
