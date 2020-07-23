@@ -28,9 +28,7 @@ var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
-var sessionId = "";
-var queryNumber = 0;
-window.onbeforeunload = deleteSessionInformation;
+var isUserLoggedIn = false;
 
 /**
 * Function triggered with each character typed in the text input container that handles 
@@ -136,9 +134,22 @@ function authSetup() {
     var authContainer = document.getElementsByClassName("auth-link")[0];
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
+    //Checks if user is logged in or not
+    if (displayText.authText == "Logout") {
+        isUserLoggedIn = true;
+    }
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
     deleteSessionInformation();
+  });
+}
+
+/**
+* Backend call to WorkoutProfileServlet to display specific information is user is logged in
+*/
+function workoutUserProfileSetup() {
+  fetch("/workout-user-profile").then((response) => response.json()).then((workoutProfile) => {
+
   });
 }
 
@@ -232,6 +243,20 @@ function deleteSessionInformation(){
       method: 'POST'
   }).then(response => response.text()).then(() => {
       console.log('Deleted comments for ' + sessionId)
+  });
+  return null;
+}
+
+/** Saves workout plan using SaveWorkoutServlet for current user
+ *
+ * @param workoutPlan workout plan table div passed in from workout script
+ */
+
+function saveWorkoutPlan(workoutPlanVideos){
+  fetch('/save-workouts' + '?workout-plan-videos=' + workoutPlanVideos, {
+      method: 'POST'
+  }).then(response => response.text()).then(() => {
+      console.log('Saved workout plan');
   });
   return null;
 }
