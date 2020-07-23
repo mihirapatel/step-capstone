@@ -11,6 +11,7 @@ import com.google.sps.data.WorkoutPlan;
 import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.TimeUtils;
 import com.google.sps.utils.VideoUtils;
+import com.google.sps.utils.WorkoutProfileUtils;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -219,7 +220,7 @@ public class WorkoutAgent implements Agent {
         VideoUtils.getWorkoutPlan(
             userService, maxPlaylistResults, planLength, workoutType, "playlist");
     if (userService.isUserLoggedIn()) {
-      storeWorkoutPlan(userId, datastore, workoutPlan);
+      WorkoutProfileUtils.storeWorkoutPlan(userId, datastore, workoutPlan);
     }
     display = new Gson().toJson(workoutPlan);
   }
