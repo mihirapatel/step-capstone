@@ -28,7 +28,6 @@ var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
-var isUserLoggedIn = false;
 
 /**
 * Function triggered with each character typed in the text input container that handles 
@@ -135,7 +134,8 @@ function authSetup() {
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
     //Checks if user is logged in or not
-    if (displayText.authText == "Logout") {
+    console.log(displayText.authText);
+    if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
     }
     getSessionID();

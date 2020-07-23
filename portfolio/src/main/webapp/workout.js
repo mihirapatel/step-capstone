@@ -1,3 +1,4 @@
+var isUserLoggedIn = false;
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
@@ -276,7 +277,8 @@ function createWorkoutPlanFooter() {
     saveWorkoutPlanButton.classList.add("save-workout-plan-button");
     var buttonText = document.createTextNode("Save Workout Plan");
     saveWorkoutPlanButton.appendChild(buttonText); 
-
+    workoutPlanFooter.appendChild(saveWorkoutPlanButton);
+    
     workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(videos)};
 }
 
