@@ -10,9 +10,10 @@ function workoutVideos(videoQuery) {
 }
 
 /** Creates workout planner div that gets passed into appendDisplay method */
-function workoutPlanner(videoQuery) {
+function workoutPlanner(workoutPlanQuery) {
   workoutPlanDay = 1;
-  videos = JSON.parse(videoQuery);
+  workoutPlan = JSON.parse(workoutPlanQuery);
+  videos = workoutPlan.workoutPlanPlaylist;
   return createWorkoutPlanTable(videos);
 }
 
@@ -197,7 +198,9 @@ function createWorkoutPlanTable(videos) {
     createNewPlanTable(videos[i]);
   }
 
+  console.log(isUserLoggedIn);
   if (isUserLoggedIn) {
+      console.log("hello");
       createWorkoutPlanFooter(videos);
   }
 
