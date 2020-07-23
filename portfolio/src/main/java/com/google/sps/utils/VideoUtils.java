@@ -9,6 +9,7 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserService;
 import com.google.gson.Gson;
 import com.google.sps.data.WorkoutPlan;
 import com.google.sps.data.YouTubeVideo;
@@ -39,6 +40,7 @@ public class VideoUtils {
   private static String type;
   private static String key;
   private static String playlistId;
+  private static WorkoutPlan workoutPlan;
   private static ArrayList<YouTubeVideo> playlistVids;
   private static ArrayList<ArrayList<YouTubeVideo>> listOfPlaylists;
   private static int randomInt;
@@ -114,12 +116,44 @@ public class VideoUtils {
    * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
    * readJsonFromURL
    *
+   * @param userService UserService to get userId if user is logged in
+   * @param maxPlayListResults number of playlists to search for
    * @param planLength for workout plan length
    * @param workoutType for workout video/playlist muscle/type
    * @param searchType type of search on YouTube (video or playlist)
    * @return ArrayList<YouTubeVideo> videoList list of YouTube videos for playlist
    */
-  public static ArrayList<ArrayList<YouTubeVideo>> getPlaylistVideoList(
+  public static WorkoutPlan getWorkoutPlan(
+      UserService userService,
+      int maxPlaylistResults,
+      int planLength,
+      String workoutType,
+      String searchType)
+      throws IOException, JSONException {
+    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
+        getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
+
+    if (userService.isUserLoggedIn()) {
+      String userId = userService.getCurrentUser().getUserId();
+      workoutPlan = new WorkoutPlan(userId, listOfVideoLists);
+    } else {
+      workoutPlan = new WorkoutPlan(listOfVideoLists);
+    }
+
+    return workoutPlan;
+  }
+
+  /**
+   * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
+   * readJsonFromURL
+   *
+   * @param maxPlayListResults number of playlists to search for
+   * @param planLength for workout plan length
+   * @param workoutType for workout video/playlist muscle/type
+   * @param searchType type of search on YouTube (video or playlist)
+   * @return ArrayList<YouTubeVideo> videoList list of YouTube videos for playlist
+   */
+  private static ArrayList<ArrayList<YouTubeVideo>> getPlaylistVideoList(
       int maxPlaylistResults, int planLength, String workoutType, String searchType)
       throws IOException, JSONException {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
@@ -382,7 +416,7 @@ public class VideoUtils {
    * @param workoutPlan ArrayList<ArrayList<<YouTubeVideo>> workout plan videos user wants to save
    */
   public static void saveWorkoutPlan(
-      String userId, DatastoreService datastore, ArrayList<ArrayList<YouTubeVideo>> workoutPlan) {
+      String userId, DatastoreService datastore, WorkoutPlan workoutPlan) {
     long timestamp = System.currentTimeMillis();
     Entity workoutPlanEntity = new Entity("WorkoutPlan");
 
@@ -395,7 +429,8 @@ public class VideoUtils {
     datastore.put(workoutPlanEntity);
   }
 
-  public static ArrayList<WorkoutPlan> getWorkoutPlans(String userId, DatastoreService datastore) {
+  public static ArrayList<WorkoutPlan> getWorkoutPlansList(
+      String userId, DatastoreService datastore) {
 
     Filter userFilter = new FilterPredicate("userId", FilterOperator.EQUAL, userId);
     Query query =
@@ -409,8 +444,7 @@ public class VideoUtils {
 
       long timestamp = (long) entity.getProperty("timestamp");
       Blob workoutPlanBlob = (Blob) entity.getProperty("workoutPlan");
-      WorkoutPlan workoutPlan =
-          new WorkoutPlan(userId, SerializationUtils.deserialize(workoutPlanBlob.getBytes()));
+      WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
       workoutPlans.add(workoutPlan);
     }
 

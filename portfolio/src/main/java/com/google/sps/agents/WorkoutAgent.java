@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import com.google.sps.data.WorkoutPlan;
 import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.TimeUtils;
 import com.google.sps.utils.VideoUtils;
@@ -37,6 +38,7 @@ public class WorkoutAgent implements Agent {
   private String workoutLength = "";
   private String youtubeChannel = "";
   private int planLength;
+  private WorkoutPlan workoutPlan;
   private String userSaved = "";
   private String amount = "";
   private String unit = "";
@@ -74,9 +76,6 @@ public class WorkoutAgent implements Agent {
     if (intentName.contains("find")) {
       workoutFind(parameters);
     } else if (intentName.contains("plan")) {
-      if (userService.isUserLoggedIn()) {
-        userId = userService.getCurrentUser().getUserId();
-      }
       workoutPlan(parameters);
     }
   }
@@ -215,13 +214,10 @@ public class WorkoutAgent implements Agent {
     // Removing white space so search URL does not have spaces
     workoutType = workoutType.replaceAll("\\s", "");
 
-    // Make API call to WorkoutUtils to get json object of videos
-    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
-        VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
-    display = new Gson().toJson(listOfVideoLists);
-
-    if (!userId.equals("")) {
-      VideoUtils.saveWorkoutPlan(userId, datastore, listOfVideoLists);
-    }
+    // Make API call to VideoUtils to get WorkoutPlan object
+    WorkoutPlan workoutPlan =
+        VideoUtils.getWorkoutPlan(
+            userService, maxPlaylistResults, planLength, workoutType, "playlist");
+    display = new Gson().toJson(workoutPlan);
   }
 }

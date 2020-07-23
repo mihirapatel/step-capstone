@@ -10,6 +10,10 @@ public class WorkoutPlan implements Serializable {
   private String userId;
   private ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist;
 
+  public WorkoutPlan(ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist) {
+    this.workoutPlanPlaylist = workoutPlanPlaylist;
+  }
+
   public WorkoutPlan(String userId, ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist) {
     this.userId = userId;
     this.workoutPlanPlaylist = workoutPlanPlaylist;
