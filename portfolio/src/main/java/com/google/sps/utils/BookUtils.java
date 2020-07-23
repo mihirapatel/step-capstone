@@ -287,4 +287,29 @@ public class BookUtils {
     request.execute();
     return;
   }
+
+  /**
+   * This function deletes the specified volume to the user's specified bookshelf, and throws an
+   * exception otherwise
+   *
+   * @param bookshelfName name of bookshelf to delete volume from
+   * @param userID unique userID
+   * @param volumeId unique id of volume to delete
+   */
+  public static void deleteFromBookshelf(String bookshelfName, String userID, String volumeId)
+      throws IOException, GoogleJsonResponseException {
+    OAuthHelper helper = new OAuthHelper();
+    Credential credential = helper.loadUpdatedCredential(userID);
+
+    Books books = getBooksContext(credential);
+    Bookshelf bookshelf = getBookshelf(bookshelfName, userID);
+    String shelfId = Integer.toString(bookshelf.getId());
+
+    Books.Mylibrary.Bookshelves.RemoveVolume request =
+        books.mylibrary().bookshelves().removeVolume(shelfId).setVolumeId(volumeId);
+    request.setAccessToken(credential.getAccessToken());
+    request.set$Xgafv("");
+    request.execute();
+    return;
+  }
 }

@@ -325,4 +325,12 @@ public class Book implements Serializable {
   public static boolean hasValidSearchInfo(Volume volume) {
     return volume.getSearchInfo() != null;
   }
+
+  public void clearDescription() {
+    this.description = "";
+  }
+
+  public void clearPreview() {
+    this.embeddable = false;
+  }
 }

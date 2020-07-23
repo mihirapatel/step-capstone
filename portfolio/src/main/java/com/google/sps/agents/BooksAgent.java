@@ -40,6 +40,7 @@ public class BooksAgent implements Agent {
   private int resultsReturned;
   private int prevStartIndex;
   private int resultsStored;
+  private String userID;
 
   /**
    * BooksAgent constructor without queryID sets queryID property to the most recent queryID for the
@@ -114,7 +115,7 @@ public class BooksAgent implements Agent {
       this.resultsReturned = bookResults.size();
 
       if (resultsReturned > 0) {
-        handleNewQuerySuccess();
+        handleNewQuerySuccess("search");
         this.output = "Here's what I found.";
       } else {
         this.output = "I couldn't find any results. Can you try again?";
@@ -124,14 +125,14 @@ public class BooksAgent implements Agent {
       // Load BookQuery, totalResults, resultsStored and increment startIndex
       loadBookQueryInfo(sessionID, queryID);
       this.startIndex = getNextStartIndex(prevStartIndex, totalResults);
-
+      String ending = getFulfillmentEnding(query);
       if (startIndex == -1) {
-        this.output = "This is the last page of results.";
+        this.output = "This is the last page of " + ending;
         this.startIndex = prevStartIndex;
       } else if (startIndex + displayNum <= resultsStored
           || startIndex + displayNum >= totalResults) {
         replaceIndices(sessionID, queryID);
-        this.output = "Here's the next page of results.";
+        this.output = "Here's the next page of " + ending;
       } else {
         // Make public book search from stored query parameters at startIndex
         if (!query.isMyLibrary()) {
@@ -150,13 +151,13 @@ public class BooksAgent implements Agent {
         this.resultsStored = newResultsStored;
 
         if (resultsReturned == 0) {
-          this.output = "This is the last page of results.";
+          this.output = "This is the last page of " + ending;
           this.startIndex = prevStartIndex;
         } else {
           // Store Book results and new indices
           BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
           replaceIndices(sessionID, queryID);
-          this.output = "Here's the next page of results.";
+          this.output = "Here's the next page of " + ending;
         }
       }
       setBookListDisplay();
@@ -165,13 +166,14 @@ public class BooksAgent implements Agent {
     } else if (intentName.equals("previous")) {
       loadBookQueryInfo(sessionID, queryID);
       this.startIndex = prevStartIndex - displayNum;
+      String ending = getFulfillmentEnding(query);
 
       if (startIndex <= -1) {
-        this.output = "This is the first page of results.";
+        this.output = "This is the first page of " + ending;
         startIndex = 0;
       } else {
         replaceIndices(sessionID, queryID);
-        this.output = "Here's the previous page of results.";
+        this.output = "Here's the previous page of " + ending;
       }
       setBookListDisplay();
       this.redirect = queryID;
@@ -191,11 +193,19 @@ public class BooksAgent implements Agent {
 
     } else if (intentName.equals("results")) {
       loadBookQueryInfo(sessionID, queryID);
-      this.startIndex = prevStartIndex;
-      setBookListDisplay();
       if (query.isMyLibrary()) {
-        this.output = "Here's your " + query.getBookshelfName() + " bookshelf.";
+        this.userID = userService.getCurrentUser().getUserId();
+        refreshBookshelf();
+        if (resultsReturned == 0) {
+          this.output =
+              "There are no more books in your " + query.getBookshelfName() + " bookshelf.";
+        } else {
+          setBookListDisplay();
+          this.output = "Here's your " + query.getBookshelfName() + " bookshelf.";
+        }
       } else {
+        this.startIndex = prevStartIndex;
+        setBookListDisplay();
         this.output = "Here are the results.";
       }
       this.redirect = queryID;
@@ -205,7 +215,7 @@ public class BooksAgent implements Agent {
         this.output = "Please login first.";
         return;
       }
-      String userID = userService.getCurrentUser().getUserId();
+      this.userID = userService.getCurrentUser().getUserId();
       if (!hasBookAuthentication(userID)) {
         // Get valid authentication
         this.output = "Please allow me to access your Google Books account first.";
@@ -231,10 +241,11 @@ public class BooksAgent implements Agent {
           ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
           this.output = "Which bookshelf would you like to see?";
           this.display = listToJson(shelvesNames);
+          this.redirect = "bookshelf-names";
           return;
         }
         // Create BookQuery
-        this.query = BookQuery.createBookQuery(this.userInput, parameters);
+        this.query = BookQuery.createBookQuery(this.userInput, parameters, true);
         this.startIndex = 0;
 
         // Retrieve books from BookQuery
@@ -243,7 +254,7 @@ public class BooksAgent implements Agent {
         this.resultsReturned = bookResults.size();
 
         if (resultsReturned > 0) {
-          handleNewQuerySuccess();
+          handleNewQuerySuccess("library");
           this.output = "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
         } else {
           this.output = "There are no books in your " + query.getBookshelfName() + " bookshelf.";
@@ -275,6 +286,8 @@ public class BooksAgent implements Agent {
                   + " to your "
                   + bookshelfName
                   + " bookshelf.";
+          this.display = bookToString(requestedBook);
+          this.redirect = queryID;
         } catch (GoogleJsonResponseException e) {
           this.output =
               "I'm sorry. I couldn't add "
@@ -283,8 +296,36 @@ public class BooksAgent implements Agent {
                   + bookshelfName
                   + " bookshelf.";
         }
-        this.display = bookToString(requestedBook);
-        this.redirect = queryID;
+      } else if (intentName.equals("delete")) {
+        // Load bookshelf name from stored BookQuery
+        loadBookQueryInfo(sessionID, queryID);
+        String shelfName = query.getBookshelfName();
+        // Retrieve requested book
+        int bookNumber = (int) parameters.get("number").getNumberValue();
+        this.prevStartIndex =
+            BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
+        Book requestedBook =
+            BooksMemoryUtils.getBookFromOrderNum(
+                bookNumber, prevStartIndex, sessionID, queryID, datastore);
+        String volumeId = requestedBook.getVolumeId();
+        try {
+          BookUtils.deleteFromBookshelf(shelfName, userID, volumeId);
+          this.output =
+              "I've deleted "
+                  + requestedBook.getTitle()
+                  + " from your "
+                  + shelfName
+                  + " bookshelf.";
+          this.display = bookToString(requestedBook);
+          this.redirect = queryID;
+        } catch (GoogleJsonResponseException e) {
+          this.output =
+              "I'm sorry. I couldn't delete "
+                  + requestedBook.getTitle()
+                  + " from your "
+                  + shelfName
+                  + " bookshelf.";
+        }
       }
     }
   }
@@ -322,16 +363,19 @@ public class BooksAgent implements Agent {
    * <p>Retrieves the next unique queryID, stores BookQuery, Book results, and Indices for the
    * corresponding sessionID and queryID of the new query. Retrieves the list of books to display.
    * Sets the display and queryID redirect.
+   *
+   * @param intent detected intent for query
    */
-  private void handleNewQuerySuccess() {
+  private void handleNewQuerySuccess(String intent) {
     this.queryID = getNextQueryID(sessionID);
-
+    if (intent.equals("library")) {
+      this.queryID += "-shelf";
+    }
     // Store BookQuery, Book results, totalResults, resultsReturned
     BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
     BooksMemoryUtils.storeBookQuery(query, sessionID, queryID, datastore);
     BooksMemoryUtils.storeIndices(
         startIndex, totalResults, resultsReturned, displayNum, sessionID, queryID, datastore);
-
     setBookListDisplay();
     this.redirect = queryID;
   }
@@ -363,8 +407,22 @@ public class BooksAgent implements Agent {
   }
 
   /**
+   * Replaces stored books and indices information in datastore for a user's bookshelf after the
+   * user edited the contents of the bookshelf via the interface.
+   */
+  private void refreshBookshelf() throws IOException {
+    this.startIndex = 0;
+    this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
+    this.totalResults = BookUtils.getTotalShelfVolumesFound(query, startIndex, userID);
+    this.resultsReturned = bookResults.size();
+    BooksMemoryUtils.deleteStoredEntities("Book", sessionID, queryID, datastore);
+    BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
+    replaceIndices(sessionID, queryID);
+  }
+
+  /**
    * Replaces previous Indices Entity stored in Datastore with the new startIndex, totalResults,
-   * resultsSTored, displayNum for the Indices Entity that matches the current sessionID and queryID
+   * resultsStored, displayNum for the Indices Entity that matches the current sessionID and queryID
    * for the request
    *
    * @param sessionID ID of current user / session
@@ -432,5 +490,15 @@ public class BooksAgent implements Agent {
     int queryNum = BooksMemoryUtils.getNumQueryStored(sessionID, datastore) + 1;
     String queryID = "query-" + Integer.toString(queryNum);
     return queryID;
+  }
+
+  private String getFulfillmentEnding(BookQuery query) {
+    String ending = "";
+    if (query.isMyLibrary()) {
+      ending = " your " + query.getBookshelfName() + " bookshelf.";
+    } else {
+      ending = "results.";
+    }
+    return ending;
   }
 }
