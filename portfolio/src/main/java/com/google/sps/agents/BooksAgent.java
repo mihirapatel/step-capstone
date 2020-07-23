@@ -286,7 +286,7 @@ public class BooksAgent implements Agent {
                   + " to your "
                   + bookshelfName
                   + " bookshelf.";
-          this.display = bookToString(requestedBook);
+          this.display = bookToJson(requestedBook);
           this.redirect = queryID;
         } catch (GoogleJsonResponseException e) {
           this.output =
@@ -316,7 +316,7 @@ public class BooksAgent implements Agent {
                   + " from your "
                   + shelfName
                   + " bookshelf.";
-          this.display = bookToString(requestedBook);
+          this.display = bookToJson(requestedBook);
           this.redirect = queryID;
         } catch (GoogleJsonResponseException e) {
           this.output =
@@ -475,7 +475,7 @@ public class BooksAgent implements Agent {
     return shelves;
   }
 
-  public static String listToJson(ArrayList<String> list) {
+  public static String listToJson(ArrayList<?> list) {
     Gson gson = new Gson();
     return gson.toJson(list);
   }
