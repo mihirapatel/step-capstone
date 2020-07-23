@@ -39,7 +39,6 @@ public class WorkoutAgent implements Agent {
   private String workoutLength = "";
   private String youtubeChannel = "";
   private int planLength;
-  private WorkoutPlan workoutPlan;
   private String userSaved = "";
   private String amount = "";
   private String unit = "";
@@ -77,7 +76,7 @@ public class WorkoutAgent implements Agent {
     if (intentName.contains("find")) {
       workoutFind(parameters);
     } else if (intentName.contains("plan")) {
-      workoutPlan(parameters);
+      workoutPlanner(parameters);
     }
   }
 
@@ -164,14 +163,14 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private workoutPlan method, makes and displays a workout specified by user request. Method sets
-   * parameters for planLength and workoutType based on Dialogflow detection and makes calls to set
-   * display and set output. parameters map needs to include duration struct to set int planLength
-   * and String workoutType
+   * Private workoutPlanner method, makes and displays a workout specified by user request. Method
+   * sets parameters for planLength and workoutType based on Dialogflow detection and makes calls to
+   * set display and set output. parameters map needs to include duration struct to set int
+   * planLength and String workoutType
    *
    * @param parameters parameter Map from Dialogflow
    */
-  private void workoutPlan(Map<String, Value> parameters) throws IOException {
+  private void workoutPlanner(Map<String, Value> parameters) throws IOException {
     log.info(String.valueOf(parameters));
     workoutType = parameters.get("workout-type").getStringValue();
     Struct durationStruct = parameters.get("date-time").getStructValue();
@@ -188,10 +187,10 @@ public class WorkoutAgent implements Agent {
         output = "Sorry, unable to make a workout plan for more than 30 days. Please try again.";
       } else {
         // Set output
-        setWorkoutPlanOutput();
+        setWorkoutPlannerOutput();
 
         // Set display
-        setWorkoutPlanDisplay();
+        setWorkoutPlannerDisplay();
       }
     } catch (ParseException e) {
       System.err.println("Unable to parse date format.");
@@ -199,18 +198,18 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPlanOutput method, that sets the agent output based on set parameters for
-   * planLength and workoutType from workoutPlan method
+   * Private setworkoutPlannerOutput method, that sets the agent output based on set parameters for
+   * planLength and workoutType from workoutPlanner method
    */
-  private void setWorkoutPlanOutput() {
+  private void setWorkoutPlannerOutput() {
     output = "Here is your " + planLength + " day " + workoutType + " workout plan:";
   }
 
   /**
-   * Private setworkoutPlanDisplay method, that sets the agent display to JSON string by making YT
-   * Data API call from VideoUtils to get passed into workout.js
+   * Private setworkoutPlannerDisplay method, that sets the agent display to JSON string by making
+   * YT Data API call from VideoUtils to get passed into workout.js
    */
-  private void setWorkoutPlanDisplay() throws IOException {
+  private void setWorkoutPlannerDisplay() throws IOException {
 
     // Removing white space so search URL does not have spaces
     workoutType = workoutType.replaceAll("\\s", "");
@@ -218,7 +217,7 @@ public class WorkoutAgent implements Agent {
     // Make API call to VideoUtils to get WorkoutPlan object
     WorkoutPlan workoutPlan =
         VideoUtils.getWorkoutPlan(
-            userService, maxPlaylistResults, planLength, workoutType, "playlist");
+            userService, datastore, maxPlaylistResults, planLength, workoutType, "playlist");
     if (userService.isUserLoggedIn()) {
       WorkoutProfileUtils.storeWorkoutPlan(userId, datastore, workoutPlan);
     }

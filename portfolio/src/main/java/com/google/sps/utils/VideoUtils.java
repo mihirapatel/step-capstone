@@ -1,5 +1,6 @@
 package com.google.sps.utils;
 
+import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.users.UserService;
 import com.google.gson.Gson;
 import com.google.sps.data.WorkoutPlan;
@@ -107,6 +108,7 @@ public class VideoUtils {
    * readJsonFromURL
    *
    * @param userService UserService to get userId if user is logged in
+   * @param datastore DatastoreService to get stored workout plans if user is logged in
    * @param maxPlayListResults number of playlists to search for
    * @param planLength for workout plan length
    * @param workoutType for workout video/playlist muscle/type
@@ -115,6 +117,7 @@ public class VideoUtils {
    */
   public static WorkoutPlan getWorkoutPlan(
       UserService userService,
+      DatastoreService datastore,
       int maxPlaylistResults,
       int planLength,
       String workoutType,
@@ -125,7 +128,8 @@ public class VideoUtils {
 
     if (userService.isUserLoggedIn()) {
       String userId = userService.getCurrentUser().getUserId();
-      workoutPlan = new WorkoutPlan(userId, listOfVideoLists);
+      int workoutPlanId = WorkoutProfileUtils.getWorkoutPlanId(userId, datastore);
+      workoutPlan = new WorkoutPlan(userId, listOfVideoLists, workoutPlanId);
     } else {
       workoutPlan = new WorkoutPlan(listOfVideoLists);
     }
