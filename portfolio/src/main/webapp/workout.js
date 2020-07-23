@@ -15,7 +15,7 @@ function workoutPlanner(workoutPlanQuery) {
   workoutPlanDay = 1;
   workoutPlan = JSON.parse(workoutPlanQuery);
   videos = workoutPlan.workoutPlanPlaylist;
-  return createWorkoutPlanTable(videos);
+  return createWorkoutPlanTable(workoutPlan, videos);
 }
 
 /**
@@ -180,8 +180,7 @@ function showNewVideosPage(numShiftIndex) {
 *
 * @param videos JSON object of a list of lists of videos in chunks of 5
 */
-function createWorkoutPlanTable(videos) {
-  console.log(videos);
+function createWorkoutPlanTable(workoutPlan, videos) {
   workoutPlannerDiv = document.createElement("div");
   workoutPlannerDiv.classList.add("media-display");
 
@@ -199,10 +198,8 @@ function createWorkoutPlanTable(videos) {
     createNewPlanTable(videos[i]);
   }
 
-  console.log(isUserLoggedIn);
   if (isUserLoggedIn) {
-      console.log("hello");
-      createWorkoutPlanFooter(videos);
+      createWorkoutPlanFooter(workoutPlan);
   }
 
   return workoutPlannerDiv;
@@ -278,8 +275,8 @@ function createWorkoutPlanFooter() {
     var buttonText = document.createTextNode("Save Workout Plan");
     saveWorkoutPlanButton.appendChild(buttonText); 
     workoutPlanFooter.appendChild(saveWorkoutPlanButton);
-    
-    workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(videos)};
+
+    workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(workoutPlan)};
 }
 
 /** Replaces unicode strings with actual characters */
