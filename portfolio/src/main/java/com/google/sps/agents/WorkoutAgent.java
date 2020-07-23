@@ -32,7 +32,6 @@ public class WorkoutAgent implements Agent {
   private String output = null;
   private String display = null;
   private String redirect = null;
-  private String userId = "";
   private DatastoreService datastore;
   private UserService userService;
   private String workoutType = "";
@@ -219,6 +218,7 @@ public class WorkoutAgent implements Agent {
         VideoUtils.getWorkoutPlan(
             userService, datastore, maxPlaylistResults, planLength, workoutType, "playlist");
     if (userService.isUserLoggedIn()) {
+      String userId = userService.getCurrentUser().getUserId();
       WorkoutProfileUtils.storeWorkoutPlan(userId, datastore, workoutPlan);
     }
     display = new Gson().toJson(workoutPlan);
