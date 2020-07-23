@@ -575,11 +575,34 @@ p.book {
 a.book-link {
   background: none;
   color: hsl(0, 2%, 22%);
+  text-decoration: none;
 }
 
 a.book-link:hover,a.book-link:focus {
   background: none;
   color: #4c8bf5;
+}
+
+a.add-link {
+  background: none;
+  color: hsl(0, 2%, 22%);
+  text-decoration: none;
+}
+
+a.add-link:hover,a.add-link:focus {
+  background: none;
+  color: #1aa260;
+}
+
+a.delete-link {
+  background: none;
+  color: hsl(0, 2%, 22%);
+  text-decoration: none;
+}
+
+a.delete-link:hover,a.delete-link:focus {
+  background: none;
+  color: #de5246;
 }
 
 td.prev-column {
