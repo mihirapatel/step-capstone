@@ -6,6 +6,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.WorkoutPlan;
+import com.google.sps.data.WorkoutProfile;
 import com.google.sps.utils.VideoUtils;
 import java.io.IOException;
 import java.util.ArrayList;
