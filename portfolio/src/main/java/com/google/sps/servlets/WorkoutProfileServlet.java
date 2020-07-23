@@ -28,7 +28,7 @@ public class WorkoutProfileServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
     String userId = userService.getCurrentUser().getUserId();
-    ArrayList<WorkoutPlan> workoutPlans = VideoUtils.getWorkoutPlans(userId, datastore);
+    ArrayList<WorkoutPlan> workoutPlans = VideoUtils.getWorkoutPlansList(userId, datastore);
     WorkoutProfile workoutProfile = new WorkoutProfile(userId, workoutPlans);
 
     String json = new Gson().toJson(workoutProfile);
