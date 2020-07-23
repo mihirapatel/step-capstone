@@ -5,8 +5,6 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
-import com.google.sps.data.WorkoutPlan;
-import com.google.sps.utils.VideoUtils;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +22,13 @@ public class SaveWorkoutsServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
     String userId = userService.getCurrentUser().getUserId();
-    String workoutPlanString = request.getParameter("workout-plan-videos");
-    WorkoutPlan workoutPlan = new Gson().fromJson(workoutPlanString, WorkoutPlan.class);
+    // String workoutPlanString = request.getParameter("workout-plan-videos");
+    String wp = request.getParameter("workout-plan-videos");
+    // System.out.println(wp);
+    String json = new Gson().toJson(wp);
+    System.out.println(json);
+    // WorkoutPlan workoutPlan = new Gson().fromJson(wp, WorkoutPlan.class);
 
-    VideoUtils.saveWorkoutPlan(userId, datastore, workoutPlan);
+    // VideoUtils.saveWorkoutPlan(userId, datastore, workoutPlan);
   }
 }

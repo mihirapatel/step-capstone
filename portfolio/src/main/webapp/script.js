@@ -149,7 +149,7 @@ function authSetup() {
 */
 function workoutUserProfileSetup() {
   fetch("/workout-user-profile").then((response) => response.json()).then((workoutProfile) => {
-
+      //TODO
   });
 }
 
@@ -249,13 +249,15 @@ function deleteSessionInformation(){
 
 /** Saves workout plan using SaveWorkoutServlet for current user
  *
- * @param workoutPlan workout plan table div passed in from workout script
+ * @param workoutPlanVideos workoutPlanVideos string 
  */
 
 function saveWorkoutPlan(workoutPlanVideos){
-  fetch('/save-workouts' + '?workout-plan-videos=' + workoutPlanVideos, {
+  var myJSON = JSON.stringify(workoutPlanVideos);
+  fetch('/save-workouts' + '?workout-plan-videos=' + myJSON, {
       method: 'POST'
   }).then(response => response.text()).then(() => {
+      console.log(myJSON);
       console.log('Saved workout plan');
   });
   return null;
