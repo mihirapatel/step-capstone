@@ -17,7 +17,6 @@
 package com.google.sps.data;
 
 // Imports the Google Cloud client library
-import com.google.api.services.books.v1.*;
 import com.google.api.services.books.v1.model.Volume;
 import com.google.api.services.books.v1.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
