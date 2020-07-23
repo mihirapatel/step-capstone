@@ -198,7 +198,7 @@ function createWorkoutPlanTable(videos) {
   }
 
   if (isUserLoggedIn) {
-      createWorkoutPlanFooter();
+      createWorkoutPlanFooter(videos);
   }
 
   return workoutPlannerDiv;
@@ -274,7 +274,7 @@ function createWorkoutPlanFooter() {
     var buttonText = document.createTextNode("Save Workout Plan");
     saveWorkoutPlanButton.appendChild(buttonText); 
 
-    workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(plannerTable)};
+    workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(videos)};
 }
 
 /** Replaces unicode strings with actual characters */
