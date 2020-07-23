@@ -26,7 +26,6 @@ public class WorkoutProfileUtils {
   public static void storeWorkoutPlan(
       String userId, DatastoreService datastore, WorkoutPlan workoutPlan) {
     long timestamp = System.currentTimeMillis();
-    int workoutPlanId = getNumWorkoutPlanStored(userId, datastore) + 1;
     Entity workoutPlanEntity = new Entity("WorkoutPlan");
 
     byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
@@ -34,7 +33,7 @@ public class WorkoutProfileUtils {
 
     workoutPlanEntity.setProperty("userId", userId);
     workoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
-    workoutPlanEntity.setProperty("workoutPlanId", workoutPlanId);
+    workoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
     workoutPlanEntity.setProperty("timestamp", timestamp);
     datastore.put(workoutPlanEntity);
   }
@@ -45,13 +44,13 @@ public class WorkoutProfileUtils {
    *
    * @param userId The current logged-in user's ID number
    * @param datastore Datastore instance to retrieve WorkoutPlan information from database
-   * @return number of workout plans created by userId
+   * @return number of workout plans created by userId + 1 to create unique id for new workout plan
    */
-  private static int getNumWorkoutPlanStored(String userId, DatastoreService datastore) {
+  public static int getWorkoutPlanId(String userId, DatastoreService datastore) {
     Filter userFilter = new FilterPredicate("userId", FilterOperator.EQUAL, userId);
     Query query = new Query("WorkoutPlan").setFilter(userFilter);
-    PreparedQuery pq = datastore.prepare(query);
-    return Iterables.size(pq.asIterable());
+    PreparedQuery results = datastore.prepare(query);
+    return Iterables.size(results.asIterable()) + 1;
   }
 
   /**
