@@ -218,6 +218,9 @@ public class WorkoutAgent implements Agent {
     WorkoutPlan workoutPlan =
         VideoUtils.getWorkoutPlan(
             userService, maxPlaylistResults, planLength, workoutType, "playlist");
+    if (userService.isUserLoggedIn()) {
+      storeWorkoutPlan(userId, datastore, workoutPlan);
+    }
     display = new Gson().toJson(workoutPlan);
   }
 }
