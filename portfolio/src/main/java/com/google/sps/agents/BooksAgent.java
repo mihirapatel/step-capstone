@@ -11,6 +11,7 @@ import com.google.sps.data.BookQuery;
 import com.google.sps.utils.BookUtils;
 import com.google.sps.utils.BooksMemoryUtils;
 import com.google.sps.utils.OAuthHelper;
+import com.google.sps.utils.PeopleUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -147,6 +148,8 @@ public class BooksAgent implements Agent {
         handleAddIntent(parameters);
       } else if (intentName.equals("delete")) {
         handleDeleteIntent(parameters);
+      } else if (intentName.equals("friends")) {
+        System.out.println(PeopleUtils.getFriends(userID));
       }
     }
   }
@@ -385,6 +388,7 @@ public class BooksAgent implements Agent {
    * @param parameters Map of parameters from Dialogflow
    */
   private void handleDeleteIntent(Map<String, Value> parameters) throws IOException {
+
     // Load bookshelf name from stored BookQuery
     loadBookQueryInfo(sessionID, queryID);
     String shelfName = query.getBookshelfName();
