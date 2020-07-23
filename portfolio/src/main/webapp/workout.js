@@ -197,6 +197,10 @@ function createWorkoutPlanTable(videos) {
     createNewPlanTable(videos[i]);
   }
 
+  if (isUserLoggedIn) {
+      createWorkoutPlanFooter();
+  }
+
   return workoutPlannerDiv;
 }
 
@@ -255,6 +259,22 @@ function createNewPlanTable(videos) {
 
   }
 
+}
+
+/** Created a footer with buttons to save workout plan and  */
+function createWorkoutPlanFooter() {
+    //Footer
+    var workoutPlanFooter = document.createElement("div");
+    workoutPlanFooter.className = "workout-plan-footer";
+    plannerDiv.appendChild(workoutPlanFooter);
+
+    //Save Workout Plan Button
+    saveWorkoutPlanButton = document.createElement("BUTTON");
+    saveWorkoutPlanButton.classList.add("save-workout-plan-button");
+    var buttonText = document.createTextNode("Save Workout Plan");
+    saveWorkoutPlanButton.appendChild(buttonText); 
+
+    workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(plannerTable)};
 }
 
 /** Replaces unicode strings with actual characters */

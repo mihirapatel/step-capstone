@@ -5,8 +5,6 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.CompositeFilter;
-import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
@@ -24,7 +22,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -122,7 +119,7 @@ public class VideoUtils {
    * @param searchType type of search on YouTube (video or playlist)
    * @return ArrayList<YouTubeVideo> videoList list of YouTube videos for playlist
    */
-  public static ArrayList<YouTubeVideo> getPlaylistVideoList(
+  public static ArrayList<ArrayList<YouTubeVideo>> getPlaylistVideoList(
       int maxPlaylistResults, int planLength, String workoutType, String searchType)
       throws IOException, JSONException {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
@@ -152,7 +149,10 @@ public class VideoUtils {
     // Sorts list of playlists by playlist size
     sortByPlaylistSize(listOfPlaylists);
 
-    return listOfPlaylists.get(0);
+    // Gets the first playlist from the list of playlists
+    // Breaks up the ArrayList into chunks of 5 and puts that into one ArrayList to make an
+    // ArrayList of ArrayLists
+    return VideoUtils.partitionOfSize(listOfPlaylists.get(0), 5);
   }
 
   /**
@@ -397,7 +397,7 @@ public class VideoUtils {
 
   public static ArrayList<WorkoutPlan> getWorkoutPlans(String userId, DatastoreService datastore) {
 
-    Filter userFilter = createUserIdFilter(userId);
+    Filter userFilter = new FilterPredicate("userId", FilterOperator.EQUAL, userId);
     Query query =
         new Query("WorkoutPlan")
             .setFilter(userFilter)
@@ -409,16 +409,11 @@ public class VideoUtils {
 
       long timestamp = (long) entity.getProperty("timestamp");
       Blob workoutPlanBlob = (Blob) entity.getProperty("workoutPlan");
-      WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
+      WorkoutPlan workoutPlan =
+          new WorkoutPlan(userId, SerializationUtils.deserialize(workoutPlanBlob.getBytes()));
       workoutPlans.add(workoutPlan);
     }
 
     return workoutPlans;
-  }
-
-  private static Filter createUserIdFilter(String userId) {
-    return new CompositeFilter(
-        CompositeFilterOperator.AND,
-        Arrays.asList(new FilterPredicate("userId", FilterOperator.EQUAL, userId)));
   }
 }

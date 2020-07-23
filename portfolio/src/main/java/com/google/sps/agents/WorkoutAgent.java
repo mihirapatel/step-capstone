@@ -30,7 +30,7 @@ public class WorkoutAgent implements Agent {
   private String output = null;
   private String display = null;
   private String redirect = null;
-  private String userId;
+  private String userId = "";
   private DatastoreService datastore;
   private UserService userService;
   private String workoutType = "";
@@ -216,9 +216,12 @@ public class WorkoutAgent implements Agent {
     workoutType = workoutType.replaceAll("\\s", "");
 
     // Make API call to WorkoutUtils to get json object of videos
-    ArrayList<YouTubeVideo> videoList =
+    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
         VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
-    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists = VideoUtils.partitionOfSize(videoList, 5);
     display = new Gson().toJson(listOfVideoLists);
+
+    if (!userId.equals("")) {
+      VideoUtils.saveWorkoutPlan(userId, datastore, listOfVideoLists);
+    }
   }
 }

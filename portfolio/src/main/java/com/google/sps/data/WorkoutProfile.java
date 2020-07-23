@@ -1,6 +1,7 @@
 package com.google.sps.data;
 
 import com.google.gson.Gson;
+import java.util.ArrayList;
 
 /**
  * WorkoutProfile that has information about everything related to the Workout Agent User
