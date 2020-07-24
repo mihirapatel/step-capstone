@@ -4,12 +4,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gson.Gson;
-import com.google.sps.data.WorkoutPlan;
-import com.google.sps.data.WorkoutProfile;
-import com.google.sps.utils.WorkoutProfileUtils;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +23,6 @@ public class WorkoutProfileServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
     String userId = userService.getCurrentUser().getUserId();
-    ArrayList<WorkoutPlan> workoutPlans =
-        WorkoutProfileUtils.getWorkoutPlansList(userId, datastore);
-    WorkoutProfile workoutProfile = new WorkoutProfile(userId, workoutPlans);
-
-    String json = new Gson().toJson(workoutProfile);
-    response.getWriter().write(json);
+    // TODO
   }
 }

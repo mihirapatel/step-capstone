@@ -5,13 +5,14 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilter;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
-import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.common.collect.Iterables;
 import com.google.sps.data.WorkoutPlan;
-import java.util.ArrayList;
+import java.util.Arrays;
 import org.apache.commons.lang3.SerializationUtils;
 
 public class WorkoutProfileUtils {
@@ -39,6 +40,52 @@ public class WorkoutProfileUtils {
   }
 
   /**
+   * Retrieves stored WorkoutPlan that user wants to save
+   *
+   * @param userID The current logged-in user's ID number
+   * @param workoutPlanId The id for the workout they want to save
+   * @param datastore Datastore instance to retrieve WorkoutPlan from database
+   * @return ArrayList of WorkoutPlan objects that user saved
+   */
+  public static WorkoutPlan getStoredWorkoutPlan(
+      String userId, int workoutPlanId, DatastoreService datastore) {
+
+    Filter storedWorkoutPlanFilter = createStoredWorkoutPlanFilter(userId, workoutPlanId);
+    Query query = new Query("WorkoutPlan").setFilter(storedWorkoutPlanFilter);
+    PreparedQuery results = datastore.prepare(query);
+
+    Entity workoutPlanEntity = results.asSingleEntity();
+
+    long timestamp = (long) workoutPlanEntity.getProperty("timestamp");
+    Blob workoutPlanBlob = (Blob) workoutPlanEntity.getProperty("workoutPlan");
+    WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
+
+    return workoutPlan;
+  }
+
+  /**
+   * Saved WorkoutPlan when requested by user
+   *
+   * @param userID The current logged-in user's ID number
+   * @param datastore Datastore instance to save WorkoutPlan in database
+   * @param workoutPlan WorkoutPlan object to save in database
+   */
+  public static void saveWorkoutPlan(
+      String userId, DatastoreService datastore, WorkoutPlan workoutPlan) {
+    long timestamp = System.currentTimeMillis();
+    Entity savedWorkoutPlanEntity = new Entity("SavedWorkoutPlan");
+
+    byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
+    Blob workoutPlanBlob = new Blob(workoutPlanData);
+
+    savedWorkoutPlanEntity.setProperty("userId", userId);
+    savedWorkoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
+    savedWorkoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
+    savedWorkoutPlanEntity.setProperty("timestamp", timestamp);
+    datastore.put(savedWorkoutPlanEntity);
+  }
+
+  /**
    * Returns number of WorkoutPlans created and saved in Datastore by current user (specified by
    * userId)
    *
@@ -54,31 +101,18 @@ public class WorkoutProfileUtils {
   }
 
   /**
-   * Retrieves WorkoutPlans saved by current user
+   * Retuns a composite filter for Query to retrieve WorkoutPlan Entity corresponding to userId and
+   * workoutPlanId
    *
-   * @param userID The current logged-in user's ID number
-   * @param datastore Datastore instance to retrieve WorkoutPlan from database
-   * @return ArrayList of WorkoutPlan objects that user saved
+   * @param userId unique id of session to delete entities from
+   * @param workoutPlanId unique id (within session) to delete entities from
+   * @return CompositeFilter with proper filters
    */
-  public static ArrayList<WorkoutPlan> getWorkoutPlansList(
-      String userId, DatastoreService datastore) {
-
-    Filter userFilter = new FilterPredicate("userId", FilterOperator.EQUAL, userId);
-    Query query =
-        new Query("WorkoutPlan")
-            .setFilter(userFilter)
-            .addSort("timestamp", SortDirection.DESCENDING);
-    PreparedQuery results = datastore.prepare(query);
-
-    ArrayList<WorkoutPlan> workoutPlans = new ArrayList<>();
-    for (Entity entity : results.asIterable()) {
-
-      long timestamp = (long) entity.getProperty("timestamp");
-      Blob workoutPlanBlob = (Blob) entity.getProperty("workoutPlan");
-      WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
-      workoutPlans.add(workoutPlan);
-    }
-
-    return workoutPlans;
+  public static Filter createStoredWorkoutPlanFilter(String userId, int workoutPlanId) {
+    return new CompositeFilter(
+        CompositeFilterOperator.AND,
+        Arrays.asList(
+            new FilterPredicate("userId", FilterOperator.EQUAL, userId),
+            new FilterPredicate("workoutPlanId", FilterOperator.EQUAL, workoutPlanId)));
   }
 }
