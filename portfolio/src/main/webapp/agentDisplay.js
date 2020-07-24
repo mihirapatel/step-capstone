@@ -32,15 +32,22 @@ function displayResponse(stream) {
       appendDisplay(mapContainer);
     } else if (outputAsJson.intent.includes("books.search") ||
         outputAsJson.intent.includes("books.more") ||
-        outputAsJson.intent.includes("books.previous") ||
+        outputAsJson.intent.includes("books.previous") || 
+        outputAsJson.intent.includes("books.library") ||
         outputAsJson.intent.includes("books.results")) {
-      if (!outputAsJson.intent.includes("books.search")){
+      if (!outputAsJson.intent.includes("books.search") && 
+         !outputAsJson.intent.includes("books.library")){
         clearPreviousDisplay(outputAsJson.redirect);
       }
       placeBooksUserInput(outputAsJson.userInput, "convo-container", outputAsJson.redirect);
       placeBooksFulfillment(outputAsJson.fulfillmentText, outputAsJson.redirect);
-      bookContainer = createBookContainer(outputAsJson.display, outputAsJson.redirect);
-      placeBookDisplay(bookContainer, "convo-container", outputAsJson.redirect);
+      if (outputAsJson.fulfillmentText.includes("Which bookshelf would you like to see?")) {
+        bookShelfContainer = createBookshelfContainer(outputAsJson.display);
+        placeBookDisplay(bookShelfContainer, "convo-container", "bookshelf-names");
+      } else {
+        bookContainer = createBookContainer(outputAsJson.display, outputAsJson.redirect);
+        placeBookDisplay(bookContainer, "convo-container", outputAsJson.redirect);
+      }
 
     } else if (outputAsJson.intent.includes("books.description") ||
         outputAsJson.intent.includes("books.preview")) {
@@ -104,7 +111,11 @@ function placeFulfillmentResponse(text) {
   console.log(text);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
-  }
+  } else if (text.includes("Please allow me to access your Google Books account first.")) {
+    fetch("/auth", {
+      method: 'POST',
+      mode: 'no-cors'});
+  }
 }
 
 function getLastWord(words) {

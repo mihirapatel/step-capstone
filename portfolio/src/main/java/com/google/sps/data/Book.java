@@ -17,9 +17,8 @@
 package com.google.sps.data;
 
 // Imports the Google Cloud client library
-import com.google.api.services.books.*;
-import com.google.api.services.books.model.Volume;
-import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
+import com.google.api.services.books.v1.model.Volume;
+import com.google.api.services.books.v1.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,6 +46,7 @@ public class Book implements Serializable {
   private String isbn;
   private String textSnippet;
   private int order;
+  private String volumeId;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -87,6 +87,7 @@ public class Book implements Serializable {
     setEmbeddable(volume);
     setIsbn(volume);
     setTextSnippet(volume);
+    setVolumeId(volume);
   }
 
   /**
@@ -111,10 +112,15 @@ public class Book implements Serializable {
     this.thumbnailLink = "";
     this.buyLink = "";
     this.textSnippet = "";
+    this.volumeId = "";
   }
 
   public void setOrder(int order) {
     this.order = order;
+  }
+
+  private void setVolumeId(Volume volume) {
+    this.volumeId = volume.getId();
   }
 
   private void setTitle(Volume volume) {
@@ -215,6 +221,10 @@ public class Book implements Serializable {
 
   public int getOrder() {
     return this.order;
+  }
+
+  public String getVolumeId() {
+    return this.volumeId;
   }
 
   public String getTitle() {

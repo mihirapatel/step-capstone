@@ -9,6 +9,7 @@ import com.google.sps.data.Book;
 import com.google.sps.data.BookQuery;
 import com.google.sps.utils.BookUtils;
 import com.google.sps.utils.BooksMemoryUtils;
+import com.google.sps.utils.OAuthHelper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -124,20 +125,31 @@ public class BooksAgent implements Agent {
       this.startIndex = getNextStartIndex(prevStartIndex, totalResults);
 
       if (startIndex == -1) {
-        this.output = "I'm sorry, this is the last page of results.";
+        this.output = "This is the last page of results.";
         this.startIndex = prevStartIndex;
-      } else if (startIndex + displayNum <= resultsStored) {
+      } else if (startIndex + displayNum <= resultsStored
+          || startIndex + displayNum >= totalResults) {
         replaceIndices(sessionID, queryID);
         this.output = "Here's the next page of results.";
       } else {
-        // Retrieve books from stored query at startIndex
-        this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
+        // Make public book search from stored query parameters at startIndex
+        if (!query.isMyLibrary()) {
+          this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
+        } else {
+          // Make book search from Bookshelf
+          if (!userService.isUserLoggedIn()) {
+            this.output = "Please login first.";
+            return;
+          }
+          String userID = userService.getCurrentUser().getUserId();
+          this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
+        }
         int resultsReturned = bookResults.size();
         int newResultsStored = resultsReturned + resultsStored;
         this.resultsStored = newResultsStored;
 
         if (resultsReturned == 0) {
-          this.output = "I'm sorry, this is the last page of results.";
+          this.output = "This is the last page of results.";
           this.startIndex = prevStartIndex;
         } else {
           // Store Book results and new indices
@@ -180,8 +192,56 @@ public class BooksAgent implements Agent {
       loadBookQueryInfo(sessionID, queryID);
       this.startIndex = prevStartIndex;
       setBookListDisplay();
-      this.output = "Here are the results.";
+      if (query.isMyLibrary()) {
+        this.output = "Here's your " + query.getBookshelfName() + " bookshelf.";
+      } else {
+        this.output = "Here are the results.";
+      }
       this.redirect = queryID;
+    } else {
+      // All other intents require users to be logged in
+      if (!userService.isUserLoggedIn()) {
+        this.output = "Please login first.";
+        return;
+      }
+      String userID = userService.getCurrentUser().getUserId();
+
+      if (intentName.equals("library")) {
+        if (!hasBookAuthentication(userID)) {
+          // Get valid authentication
+          this.output = "Please allow me to access your Google Books account first.";
+          this.redirect =
+              "https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev/oauth2";
+          return;
+        }
+        ArrayList<String> shelvesNames = BookUtils.getBookshelvesNames(userID);
+        ArrayList<String> checkNames = allLowerCaseList(shelvesNames);
+
+        // If unspecified bookshelf, or invalid bookshelf name
+        if (parameters.get("bookshelf") == null
+            || !checkNames.contains(parameters.get("bookshelf").getStringValue().toLowerCase())) {
+          ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
+          this.output = "Which bookshelf would you like to see?";
+          this.display = listToJson(shelvesNames);
+          return;
+        } else {
+          // Create BookQuery
+          this.query = BookQuery.createBookQuery(this.userInput, parameters);
+          this.startIndex = 0;
+
+          // Retrieve books from BookQuery
+          this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
+          this.totalResults = BookUtils.getTotalShelfVolumesFound(query, startIndex, userID);
+          this.resultsReturned = bookResults.size();
+
+          if (resultsReturned > 0) {
+            handleNewQuerySuccess();
+            this.output = "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
+          } else {
+            this.output = "There are no books in your " + query.getBookshelfName() + " bookshelf.";
+          }
+        }
+      }
     }
   }
 
@@ -198,6 +258,17 @@ public class BooksAgent implements Agent {
   @Override
   public String getRedirect() {
     return this.redirect;
+  }
+
+  /**
+   * This function determines if the current user has stored book credentials
+   *
+   * @param userID ID of current user logged in
+   * @return boolean indicating if user has book credentials
+   */
+  private boolean hasBookAuthentication(String userID) throws IOException {
+    OAuthHelper helper = new OAuthHelper();
+    return (helper.loadUserCredential(userID) != null);
   }
 
   /**
@@ -244,7 +315,7 @@ public class BooksAgent implements Agent {
     ArrayList<Book> booksToDisplay =
         BooksMemoryUtils.getStoredBooksToDisplay(
             displayNum, startIndex, sessionID, queryID, datastore);
-    this.display = bookListToJson(booksToDisplay);
+    this.display = listToJson(booksToDisplay);
   }
 
   /**
@@ -274,9 +345,17 @@ public class BooksAgent implements Agent {
     return gson.toJson(book);
   }
 
-  public static String bookListToJson(ArrayList<Book> books) {
+  private ArrayList<String> allLowerCaseList(ArrayList<String> list) {
+    ArrayList<String> lowerCaseList = new ArrayList<String>();
+    for (String word : list) {
+      lowerCaseList.add(word.toLowerCase());
+    }
+    return lowerCaseList;
+  }
+
+  public static String listToJson(ArrayList<?> list) {
     Gson gson = new Gson();
-    return gson.toJson(books);
+    return gson.toJson(list);
   }
 
   private String getMostRecentQueryID(String sessionID) {
