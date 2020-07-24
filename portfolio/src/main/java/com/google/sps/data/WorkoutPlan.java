@@ -34,7 +34,7 @@ public class WorkoutPlan implements Serializable {
     return this.workoutPlanId;
   }
 
-  public String toString() {
+  public String toGson() {
     return new Gson().toJson(this);
   }
 }

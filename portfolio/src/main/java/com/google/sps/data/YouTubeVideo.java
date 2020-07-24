@@ -42,7 +42,7 @@ public class YouTubeVideo implements Serializable {
     channelURL += channelId;
   }
 
-  public String toString() {
+  public String toGson() {
     return new Gson().toJson(this);
   }
 }

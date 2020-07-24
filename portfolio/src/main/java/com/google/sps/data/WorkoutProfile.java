@@ -41,7 +41,7 @@ public class WorkoutProfile {
     return this.vidoesWatched;
   }
 
-  public String toString() {
+  public String toGson() {
     return new Gson().toJson(this);
   }
 }
