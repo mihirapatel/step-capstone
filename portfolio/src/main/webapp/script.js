@@ -98,7 +98,7 @@ function getAudioStream(blob) {
 }
 
 /**
-* Backend call to dialogflow that handles recognizing the user's intent and 
+* Backend call to Dialogflow that handles recognizing the user's intent and 
 * accomplishing the necessary backend fulfillment to carry out the user's request.
 * Creates an audio output and handles making any displays that are necessary.
 * 
@@ -214,6 +214,12 @@ function getBookInformation(intent, number, queryID){
   }).then(response => response.text()).then(stream =>displayBookInfo(stream));
 }
 
+function getBookshelfInformation(intent, bookshelfName) {
+  fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId +
+    '&bookshelf=' + bookshelfName, {
+      method: 'POST'
+  }).then(response => response.text()).then(stream =>displayBooksFromButton(stream));
+}
 /**
  * Returns userID, if user is logged in, or guestID for the session otherwise
  */

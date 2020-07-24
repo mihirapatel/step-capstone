@@ -1,8 +1,5 @@
 body {
-    background: rgb(42, 42, 42);
-    background: linear-gradient(90deg, rgba(42,42,42,1) 0%, 
-                                        rgba(85,85,85,1) 50%, 
-                                        rgba(42,42,42,1) 100%);
+    background:white;
     font-weight: 300;
     height: 100vh;
     margin: 0;
@@ -10,7 +7,71 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family:'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* CSS talk bubble */
+.talk-bubble {
+  margin: 20px;
+  display: inline-block;
+  position: relative;
+  width: 300px;
+  height: auto;
+  background-color: white;
+}
+
+.speech-border {
+  border: 1px solid #cccccc;
+}
+
+.round {
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+
+}
+
+.tri-right.border.left-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: -40px;
+	right: auto;
+    top: 30px;
+	bottom: auto;
+}
+.tri-right.left-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: -20px;
+	right: auto;
+    top: 38px;
+	bottom: auto;
+}
+
+/* Right triangle, right side slightly down*/
+.tri-right.border.right-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: auto;
+	right: -40px;
+    top: 30px;
+	bottom: auto;
+}
+.tri-right.right-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: auto;
+	right: -20px;
+    top: 38px;
+	bottom: auto;
 }
 
 #videos {
@@ -133,12 +194,12 @@ h1 {
     font-weight: 200;
     font-style: 26px;
     margin: 10px;
-    color: white;
+    color: #333333;
 }
 
 p {
-    color: white;
-    margin: 5px;
+    color: #333333;
+    margin: 10px;
 }
 
 a {
@@ -151,8 +212,8 @@ a {
 }
 
 #header {
-  position:absolute; 
-  top:0px; 
+  position: absolute; 
+top: 0px; 
   height: fit-content;
   overflow:hidden; 
   width: 90%; 
@@ -161,7 +222,7 @@ a {
  
 #footer {
   position:absolute; 
-  bottom:0px; 
+  bottom: 5%; 
   height: fit-content; 
   overflow:hidden; 
   width: 90%; 
@@ -177,22 +238,22 @@ a {
 }
  
 #content {
-  position:absolute; 
-  top: 150px; 
-  bottom: 150px; 
-  overflow: auto;
-  width: 90%;
-  max-width: 850px;
+    position: absolute;
+    top: 170px;
+    bottom: 200px;
+    overflow: auto;
+    width: 90%;
+    max-width: 850px;
 }
  
 [class*="user-side"] {
   text-align: right;
-  margin-left: 25%;
+  margin-left: 40%;
 }
  
 [class*="assistant-side"] {
   text-align: left;
-  margin-right: 25%;
+  margin-right: 40%;
 }
  
 .media-display {
@@ -204,30 +265,54 @@ a {
 .timer-display {
   background-color: rgba(255, 255, 255, 0.616);
   color: rgb(58, 56, 56);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 2.5rem;
 }
  
-textarea {
-  font-family:'Open Sans', sans-serif;
-  text-align: center;
-  width: 80%;
-  max-width: 650px;
-  height: 30px;
-}
- 
 button {
-  font-family:'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
  
 input {
-  font-family:'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  height: 35px;
+  font-size: 16px;
+  color: #444343;
+  background-color: #eeeded;
+  border: none;
+  border-radius: 3px;
 } 
+
+input:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
+}
  
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+
+form {
+	display: flex;
+    justify-content: center;
+}
+
+textarea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  padding: 5px 5px 5px 8px;
+  text-align: left;
+  width: 90%;
+  max-width: 500px;
+  height: 35px;
+  display: inline-block;
+  
+  resize: none;
+}
+
+#submit {
+  display: inline-block;
+  width: 10%;
 }
  
 html, body {
@@ -242,7 +327,7 @@ h1, h2 {
   font-size: 2rem;
   text-align: center;
   font-weight: normal;
-  padding: 0.5rem 0 0 0;
+  padding: 5% 0 0 0;
 }
  
 .main-controls {
@@ -264,42 +349,46 @@ canvas {
 #buttons button {
   font-size: 1rem;
   padding: 1rem;
-  min-width: 50px;
-  min-height: 50px;
+  margin: 5px;
+  width: 60px;
+  height: 60px;
   background: rgba(255, 255, 255, 0);
   text-align: center;
   color: white;
-  border: none;
   transition: all 0.2s;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  background-color: white;
+  border: 1px solid #cccccc;
 }
+
+#buttons button:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
+}
+
  
-.record {
-   border-radius: 50%;
+.microphone {
+    height: 33px;
+    padding-bottom: 3px;
 }
- 
-.microphone{
-  max-height: 35px;
-}
- 
-button:hover, button:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: rgb(158, 158, 158);
-}
+
  
 .box {
-  width: 25px;
-  height: 25px;
-  background-color: #DB4437;
+    width: 25px;
+    height: 25px;
+    background-color: #d95240;
+    border-radius: 5px;
 }
- 
-.box:hover, .box:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: #DB4437;
+
+.input-form {
+    padding: 2.5%;
 }
- 
-button:active {
-  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
-  transform: translateY(2px);
+
+.text-input {
+  border-color: #cccccc;
+  border-radius: 8px;
+  margin-right: 1.5%;
 }
  
 section, article {
@@ -359,21 +448,20 @@ input[type=checkbox]:checked ~ aside {
   top: 5px;
   right: 5px;
   border-radius: 10px;
-  background-color:  rgba(255, 255, 255, 0.156);
+  background-color: rgba(146, 142, 142, 0.156);
   padding: 10px;
-  padding-top: 5px;
-  margin: 10px;
+  margin: 15px;
 }
 
 .auth-link:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.356);
+  background-color: rgba(133, 132, 132, 0.356);
 }
 
 a.link {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-decoration: none;
-  color: white;
+  color: gray;
   font-size: 1.3rem;
 }
  
@@ -389,7 +477,7 @@ a.link {
 }
 
 #right-panel {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: absolute;
     color: black;
     right: 0px;
@@ -567,7 +655,7 @@ p.book {
 
 [class*="book-button"]:hover, [class*="book-button"]:focus {
   background: none;
-  color: hsl(0, 2%, 22%);
+  color: #4c8bf5;
   border-color: #4c8bf5;
   box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
 }
@@ -615,4 +703,26 @@ p.description {
     color: gray;
     font-size: 10px;
     margin-top: 20px;
+}
+
+td.bookshelf-name {
+  width: 10px;
+  padding: 5px;
+}
+
+button.bookshelf-button {
+  color: hsl(0, 2%, 30%);
+  border-color: hsl(0, 2%, 70%);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 3px;
+  font-size: 14px;
+}
+
+button.bookshelf-button:hover,button.bookshelf-button:focus {
+  background: none;
+  color: #4c8bf5;
+  border-color: #4c8bf5;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
 }

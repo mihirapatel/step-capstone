@@ -3,6 +3,7 @@ package com.google.sps.agents;
 // Imports the Google Cloud client library
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.log.InvalidRequestException;
 import com.google.appengine.api.users.UserService;
 import com.google.protobuf.Value;
@@ -16,13 +17,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/** Memory Agent */
+/**
+ * Memory Agent Handles storing user info from past conversation history to user lists and providing
+ * the user with this stored information on request. Only works if the user is logged in.
+ * Conversation history is automatically updated every time the user converses with the assistant
+ * and storing/updating lists and notes occurs on user voice command. Finally, with sufficient user
+ * data history, provides recommendations for additional list items to add to list.
+ */
 public class Memory implements Agent {
-
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   private final String intentName;
   private String userID;
@@ -32,7 +35,6 @@ public class Memory implements Agent {
   private UserService userService;
   private String listName;
   private ArrayList<String> items = new ArrayList<>();
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
@@ -50,7 +52,7 @@ public class Memory implements Agent {
       Map<String, Value> parameters,
       UserService userService,
       DatastoreService datastore)
-      throws InvalidRequestException {
+      throws InvalidRequestException, EntityNotFoundException {
     this.intentName = intentName;
     this.userService = userService;
     this.datastore = datastore;
@@ -58,9 +60,10 @@ public class Memory implements Agent {
   }
 
   @Override
-  public void setParameters(Map<String, Value> parameters) throws InvalidRequestException {
+  public void setParameters(Map<String, Value> parameters)
+      throws InvalidRequestException, EntityNotFoundException {
     if (!userService.isUserLoggedIn()) {
-      fulfillment = "Please login to access conversation history.";
+      fulfillment = "Please login to access user history.";
       return;
     }
     userID = userService.getCurrentUser().getUserId();
@@ -74,6 +77,7 @@ public class Memory implements Agent {
         fulfillment = "What would you like to name the list?";
         return;
       }
+      unpackObjects(parameters);
       String[] subIntents = intentName.split("-");
       String subListIntent = subIntents[subIntents.length - 1];
       if (subListIntent.contains("make")) {
@@ -88,6 +92,11 @@ public class Memory implements Agent {
     }
   }
 
+  /**
+   * Handles request for conversation history search for a key word.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void findKeyword(Map<String, Value> parameters) throws InvalidRequestException {
     String word = parameters.get("keyword").getStringValue();
     List<Pair<Entity, List<Entity>>> conversationList;
@@ -122,6 +131,11 @@ public class Memory implements Agent {
     }
   }
 
+  /**
+   * Handles request for conversation history search for a duration.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void findTimePeriodComments(Map<String, Value> parameters)
       throws InvalidRequestException {
     try {
@@ -148,6 +162,13 @@ public class Memory implements Agent {
     }
   }
 
+  /**
+   * Retrieves the time range for a duration request.
+   *
+   * @param datObject Value corresponding to the parameter's 'date-time-enhanced' attribute which
+   *     contains date/time info
+   * @return A pair where the key is the start time and value is the end time.
+   */
   private Pair<Long, Long> getTimeRange(Value dateObject) throws ParseException {
     String startDateString;
     String endDateString;
@@ -174,17 +195,22 @@ public class Memory implements Agent {
     return new Pair(start.getTime(), end.getTime());
   }
 
-  private void makeList(Map<String, Value> parameters) {
-    unpackObjects(parameters);
-    MemoryUtils.allocateList(listName, userID, datastore, items);
-    log.info("items: " + items);
-    log.info("empty items: " + items.isEmpty());
-    log.info("size items: " + items.size());
+  /**
+   * Creates a new list that is stored in datastore.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
+  private void makeList(Map<String, Value> parameters) throws EntityNotFoundException {
     if (items.isEmpty()) {
-      fulfillment = "Created! What are some items to add to your new " + listName + " list?";
+      fulfillment = MemoryUtils.makePastRecommendations(userID, datastore, listName);
+      MemoryUtils.allocateList(listName, userID, datastore, items);
+      MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
       return;
     }
-    fulfillment = "Created! Anything else you would like to add?";
+    MemoryUtils.allocateList(listName, userID, datastore, items);
+    MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
+    fulfillment = "Created!";
+    makeMoreRecommendations();
   }
 
   private void showList(Map<String, Value> parameters) {
@@ -192,8 +218,13 @@ public class Memory implements Agent {
     fulfillment = "no display yet sorry";
   }
 
-  private void updateList(Map<String, Value> parameters) {
-    unpackObjects(parameters);
+  /**
+   * Updates an existing list with new items. If list doesn't exist, creates a brand new list in
+   * datastore.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
+  private void updateList(Map<String, Value> parameters) throws EntityNotFoundException {
     boolean listExists = MemoryUtils.addToList(listName, userID, datastore, items);
     if (!listExists) {
       fulfillment =
@@ -203,14 +234,35 @@ public class Memory implements Agent {
       return;
     }
     fulfillment = "Updated!";
+    makeMoreRecommendations();
   }
 
+  /**
+   * Makes recommendations for items to add to a list when a list is partially populated.
+   * Recommendations are made by finding expected item interest among other users with the same list
+   * type and recommending those that align most closely with the current user based on other user's
+   * trends.
+   */
   private void makeMoreRecommendations() {
-    fulfillment = "sorry not yet.";
+    try {
+      String suggestedItems = MemoryUtils.makeUserRecommendations(userID, datastore, listName);
+      fulfillment +=
+          " Based on your list item history, you might be interested in adding "
+              + suggestedItems
+              + " to your "
+              + listName
+              + " list.";
+    } catch (IllegalStateException | EntityNotFoundException e) {
+      log.error("User recommendation error", e);
+    }
   }
 
+  /**
+   * Converts a string of list items into a list of strings representing each item.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void unpackObjects(Map<String, Value> parameters) {
-    log.info("PARAMETERS: " + parameters);
     String listObjects = parameters.get("list-objects").getStringValue();
     if (listObjects.isEmpty()) {
       return;

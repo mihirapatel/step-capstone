@@ -21,9 +21,6 @@ public class OAuthServlet extends AbstractAuthorizationCodeServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // System.out.println("Got to do get");
-    // OAuthHelper helper = new OAuthHelper();
-    // System.out.println(helper.loadUserCredential(userService.getCurrentUser().getUserId()).getAccessToken());
     response.sendRedirect("/");
   }
 
@@ -34,7 +31,8 @@ public class OAuthServlet extends AbstractAuthorizationCodeServlet {
 
   @Override
   protected AuthorizationCodeFlow initializeFlow() throws IOException {
-    return OAuthHelper.createFlow();
+    String userID = userService.getCurrentUser().getUserId();
+    return OAuthHelper.createFlow(userID);
   }
 
   @Override

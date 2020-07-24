@@ -2,13 +2,15 @@ package com.google.sps.utils;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.appengine.http.UrlFetchTransport;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.books.*;
-import com.google.api.services.books.Books;
-import com.google.api.services.books.Books.Volumes.List;
-import com.google.api.services.books.model.Bookshelves;
-import com.google.api.services.books.model.Volume;
-import com.google.api.services.books.model.Volumes;
+import com.google.api.services.books.v1.*;
+import com.google.api.services.books.v1.Books;
+import com.google.api.services.books.v1.Books.Volumes.List;
+import com.google.api.services.books.v1.model.Bookshelf;
+import com.google.api.services.books.v1.model.Bookshelves;
+import com.google.api.services.books.v1.model.Volume;
+import com.google.api.services.books.v1.model.Volumes;
 import com.google.gson.*;
 import com.google.sps.data.Book;
 import com.google.sps.data.BookQuery;
@@ -57,8 +59,8 @@ public class BookUtils {
   public static Volumes getVolumes(BookQuery query, int startIndex) throws IOException {
     String queryString = query.getQueryString();
     Books books = getBooksContext();
-    List list = books.volumes().list(queryString);
-
+    List list = books.volumes().list();
+    list.setQ(queryString);
     if (query.getType() != null) {
       if (query.getType().equals("ebooks") || query.getType().equals("free-ebooks")) {
         list.setFilter(query.getType());
@@ -93,12 +95,27 @@ public class BookUtils {
                 Paths.get(BookUtils.class.getResource("/files/apikey.txt").getFile())));
     GsonFactory gsonFactory = new GsonFactory();
     UrlFetchTransport transport = new UrlFetchTransport();
-
     Books books =
         new Books.Builder(transport, gsonFactory, null)
             .setApplicationName("APPNAME")
             .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
             .build();
+    return books;
+  }
+
+  /**
+   * This function builds and returns a Books object that can access a list of volumes the Google
+   * Books API from the Credential for the authenticated user and throws an exception otherwise
+   *
+   * @param credential Valid credential for authenticated user
+   * @return Books object
+   */
+  private static Books getBooksContext(Credential credential)
+      throws IOException, GoogleJsonResponseException {
+    GsonFactory gsonFactory = new GsonFactory();
+    UrlFetchTransport transport = new UrlFetchTransport();
+    Books books =
+        new Books.Builder(transport, gsonFactory, credential).setApplicationName("APPNAME").build();
     return books;
   }
 
@@ -132,25 +149,117 @@ public class BookUtils {
    * that match the authenticated user's bookshelves and throws an exception otherwise
    *
    * @param userID unique userID
-   * @return Volumes object of results
+   * @return Bookshelves object of results
    */
-  public static void getBookshelves(String userID) throws IOException {
+  public static Bookshelves getBookshelves(String userID)
+      throws IOException, GoogleJsonResponseException {
     OAuthHelper helper = new OAuthHelper();
-    Credential credential = helper.loadUserCredential(userID);
-    if (credential.getExpiresInSeconds() <= 0) {
-      if (credential.refreshToken()) {
-        continue;
+    Credential credential = helper.loadUpdatedCredential(userID);
+    Books books = getBooksContext(credential);
+    Books.Mylibrary.Bookshelves.List list = books.mylibrary().bookshelves().list();
+    list.setOauthToken(credential.getAccessToken());
+    list.set$Xgafv("");
+    return list.execute();
+  }
+
+  /**
+   * This function returns a list of the names of the authenticated user's bookshelves from the
+   * Google Books API and throws an exception otherwise
+   *
+   * @param userID unique userID
+   * @return ArrayList<String> list of bookshelf names
+   */
+  public static ArrayList<String> getBookshelvesNames(String userID)
+      throws IOException, GoogleJsonResponseException {
+    Bookshelves bookshelves = getBookshelves(userID);
+
+    if (bookshelves != null && bookshelves.getItems() != null) {
+      ArrayList<Bookshelf> shelves = new ArrayList<Bookshelf>(bookshelves.getItems());
+      ArrayList<String> names = new ArrayList<String>();
+      for (Bookshelf shelf : shelves) {
+        names.add(shelf.getTitle());
+      }
+      return names;
+    }
+    return new ArrayList<>();
+  }
+
+  /**
+   * This function returns a Bookshelf object of the authenticated user's specified bookshelf from
+   * the Google Books API and throws an exception otherwise
+   *
+   * @param userID unique userID
+   * @param bookshelfName bookshelf to retrieve
+   * @return Bookshelf object
+   */
+  public static Bookshelf getBookshelf(String bookshelfName, String userID)
+      throws IOException, GoogleJsonResponseException {
+    Bookshelves bookshelves = getBookshelves(userID);
+
+    if (bookshelves != null && bookshelves.getItems() != null) {
+      ArrayList<Bookshelf> shelves = new ArrayList<Bookshelf>(bookshelves.getItems());
+      for (Bookshelf shelf : shelves) {
+        if (shelf.getTitle().toLowerCase().equals(bookshelfName.toLowerCase())) {
+          return shelf;
+        }
       }
     }
-    System.out.println(credential.getMethod());
-    System.out.println(credential.getAccessToken());
-    System.out.println(credential.getExpiresInSeconds());
-    System.out.println(credential.getTokenServerEncodedUrl());
-    System.out.println(credential.getRefreshToken());
+    return new Bookshelf();
+  }
 
-    Books books = getBooksContext();
-    Bookshelves bookshelves =
-        books.mylibrary().bookshelves().list().setOauthToken(credential.getAccessToken()).execute();
-    System.out.println(bookshelves);
+  /**
+   * This function returns the volumes contained in the authenticated user's specified bookshelf
+   * from the Google Books API and throws an exception otherwise
+   *
+   * @param userID unique userID
+   * @param startIndex the index of the first result to return from Google Books API
+   * @param query BookQuery object containing parameters for user requested query
+   * @return Volumes object
+   */
+  public static Volumes getBookShelfVolumes(BookQuery query, int startIndex, String userID)
+      throws IOException, GoogleJsonResponseException {
+    OAuthHelper helper = new OAuthHelper();
+    // Credential credential = helper.loadUserCredential(userID);
+    Credential credential = helper.loadUpdatedCredential(userID);
+    Books books = getBooksContext(credential);
+    Bookshelf bookshelf = getBookshelf(query.getBookshelfName(), userID);
+    String shelfId = Integer.toString(bookshelf.getId());
+    Books.Mylibrary.Bookshelves.Volumes.List list =
+        books.mylibrary().bookshelves().volumes().list(shelfId);
+    list.setAccessToken(credential.getAccessToken());
+    list.set$Xgafv("");
+    list.setMaxResults(Long.valueOf(40));
+    list.setStartIndex(Long.valueOf(startIndex));
+    return list.execute();
+  }
+
+  /**
+   * This function returns the volumes contained in the authenticated user's specified bookshelf
+   * from the Google Books API and throws an exception otherwise
+   *
+   * @param userID unique userID
+   * @param startIndex the index of the first result to return from Google Books API
+   * @param query BookQuery object containing parameters for user requested query
+   * @return Volumes object
+   */
+  public static ArrayList<Book> getBookShelfBooks(BookQuery query, int startIndex, String userID)
+      throws IOException, GoogleJsonResponseException {
+    Volumes volumes = getBookShelfVolumes(query, startIndex, userID);
+    return volumesToBookList(volumes);
+  }
+
+  /**
+   * This function returns the number of total volumes from the Google Books API that match the
+   * BookQuery bookshelf request, and throws an exception otherwise
+   *
+   * @param query BookQuery object containing parameters for user requested query
+   * @param startIndex the index of the first result to return from Google Books API
+   * @param query BookQuery object containing parameters for user requested query
+   * @return int total volumes found
+   */
+  public static int getTotalShelfVolumesFound(BookQuery query, int startIndex, String userID)
+      throws IOException, GoogleJsonResponseException {
+    Volumes volumes = getBookShelfVolumes(query, startIndex, userID);
+    return volumes.getTotalItems().intValue();
   }
 }

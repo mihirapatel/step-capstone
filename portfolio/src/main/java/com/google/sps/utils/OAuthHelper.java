@@ -2,6 +2,7 @@ package com.google.sps.utils;
 
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.DataStoreCredentialRefreshListener;
 import com.google.api.client.auth.oauth2.StoredCredential;
 import com.google.api.client.extensions.appengine.datastore.AppEngineDataStoreFactory;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -19,11 +20,29 @@ public class OAuthHelper {
   /**
    * Loads stored Credential for userID, or null if one does not exist
    *
+   * @param userID current unique user ID
    * @return Credential object for current user
    */
   public static Credential loadUserCredential(String userID) throws IOException {
-    AuthorizationCodeFlow flow = createFlow();
+    AuthorizationCodeFlow flow = createFlow(userID);
     return flow.loadCredential(userID);
+  }
+
+  /**
+   * Loads and updates stored Credential for userID if needed , or returns null if one does not
+   * exist
+   *
+   * @param userID current unique user ID
+   * @return Credential object for current user
+   */
+  public static Credential loadUpdatedCredential(String userID) throws IOException {
+    Credential credential = loadUserCredential(userID);
+    if (credential.getExpiresInSeconds() <= 60) {
+      credential.refreshToken();
+      String refreshToken = credential.getRefreshToken();
+      credential = credential.setRefreshToken(refreshToken);
+    }
+    return credential;
   }
 
   /**
@@ -41,18 +60,10 @@ public class OAuthHelper {
   /**
    * Creates an AuthorizationCodeFlow to handle OAuth access tokens
    *
+   * @param userID current unique user ID
    * @return AuthorizationCodeFlow
    */
-  public static AuthorizationCodeFlow createFlow() throws IOException {
-    /*return new AuthorizationCodeFlow.Builder(BearerToken.authorizationHeaderAccessMethod(),
-        new NetHttpTransport(),
-        new JacksonFactory(),
-        new GenericUrl("https://oauth2.googleapis.com/token"),
-        new BasicAuthentication(getClientID(), getClientSecret()),
-        getClientID(),
-        "https://accounts.google.com/o/oauth2/auth").setScopes(BooksScopes.all()).setCredentialDataStore(
-            StoredCredential.getDefaultDataStore(AppEngineDataStoreFactory.getDefaultInstance())).build();
-    */
+  public static AuthorizationCodeFlow createFlow(String userID) throws IOException {
     return new GoogleAuthorizationCodeFlow.Builder(
             new NetHttpTransport(),
             JacksonFactory.getDefaultInstance(),
@@ -60,8 +71,14 @@ public class OAuthHelper {
             getClientSecret(),
             BooksScopes.all())
         .setAccessType("offline")
+        .setApprovalPrompt("force")
         .setCredentialDataStore(
             StoredCredential.getDefaultDataStore(AppEngineDataStoreFactory.getDefaultInstance()))
+        .addRefreshListener(
+            new DataStoreCredentialRefreshListener(
+                userID,
+                StoredCredential.getDefaultDataStore(
+                    AppEngineDataStoreFactory.getDefaultInstance())))
         .build();
   }
 

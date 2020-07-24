@@ -83,7 +83,7 @@ public class MemoryTest {
 
     Output output = tester.getOutput();
 
-    assertEquals("Please login to access conversation history.", output.getFulfillmentText());
+    assertEquals("Please login to access user history.", output.getFulfillmentText());
     assertNull(output.getDisplay());
 
     tester.setLoggedIn();

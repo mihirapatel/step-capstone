@@ -14,18 +14,20 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet("/oauth2callback")
 public class OAuthCallbackServlet extends AbstractAuthorizationCodeCallbackServlet {
   UserService userService = UserServiceFactory.getUserService();
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private static Logger log = LoggerFactory.getLogger(OAuthCallbackServlet.class);
 
   @Override
   protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential)
       throws ServletException, IOException {
-    System.out.println("Success callback servlet");
-    System.out.println("Callback servlet: onSuccess");
-    System.out.println("Credential: " + credential.getAccessToken());
+    log.info("Success callback servlet");
+    log.info("Credential: " + credential.getAccessToken());
     resp.sendRedirect("/");
   }
 
@@ -33,7 +35,7 @@ public class OAuthCallbackServlet extends AbstractAuthorizationCodeCallbackServl
   protected void onError(
       HttpServletRequest req, HttpServletResponse resp, AuthorizationCodeResponseUrl errorResponse)
       throws ServletException, IOException {
-    System.out.println("Callback servlet OAuth error occured.");
+    log.error("Callback servlet OAuth error occured.");
     resp.sendRedirect("/");
   }
 
@@ -44,7 +46,8 @@ public class OAuthCallbackServlet extends AbstractAuthorizationCodeCallbackServl
 
   @Override
   protected AuthorizationCodeFlow initializeFlow() throws IOException {
-    return OAuthHelper.createFlow();
+    String userID = userService.getCurrentUser().getUserId();
+    return OAuthHelper.createFlow(userID);
   }
 
   @Override

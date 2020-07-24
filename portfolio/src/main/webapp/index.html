@@ -6,6 +6,7 @@
     <title>AI-ssistant</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
@@ -18,36 +19,35 @@
   <body onload="authSetup()">
     <div class="auth-link"></div>
     <div id="header">
-      <div name="greeting"><h1>Hi, what can I help you with?</h1></div>
+      <div name="greeting"><h1>Hi, how can I help you?</h1></div>
       <section class="main-controls">
         <canvas class="visualizer" height="40px"></canvas>
       </section>
     </div> 
       
-    <div id = "content">
-       <div name = "convo-container"></div>
-       <div name = "streaming" style="display: none"></div>
+    <div id="content">
+       <div name="convo-container"></div>
+       <div name="streaming" style="display: none"></div>
     </div>
     
     <div id="footer" >
       <section class="main-controls">
         <div id="buttons">
-          <button class="record"><img src = "images/googlemic.jpg" class = 'microphone' alt = "Record"></button>
+          <button class="record"><img src="images/googlemic.jpg" class="microphone" alt="Record"></button>
           <br>
-          <button class="stop"><div class = 'box' alt = "Stop recording"></div> </button>
+          <button class="stop"><div class="box" alt="Stop recording"></div> </button>
         </div>
       </section>
       
-      <form name = 'input-form' onsubmit = "getResponseFromText(); return false">
-        <textarea id = "text-input" placeholder= "Type Your Question"></textarea>
-        <br>
+      <form class="input-form" name="input-form" onsubmit="getResponseFromText(); return false">
+        <textarea class="text-input" id="text-input" placeholder="Type here"></textarea>
         <input type="submit"/>
         <br><br>
       </form>
  
     </div>
      
-    <audio id="sound-player" autoplay preload = "auto"></audio>
+    <audio id="sound-player" autoplay preload="auto"></audio>
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="workout.js"></script>
     <script src="placeDisplays.js"></script>
