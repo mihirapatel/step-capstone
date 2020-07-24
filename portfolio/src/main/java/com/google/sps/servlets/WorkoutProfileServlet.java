@@ -24,12 +24,5 @@ public class WorkoutProfileServlet extends HttpServlet {
     response.setContentType("application/json");
     String userId = userService.getCurrentUser().getUserId();
     // TODO
-
-    // ArrayList<WorkoutPlan> workoutPlans =
-    //    WorkoutProfileUtils.getWorkoutPlansList(userId, datastore);
-    // WorkoutProfile workoutProfile = new WorkoutProfile(userId, workoutPlans);
-
-    // String json = new Gson().toJson(workoutProfile);
-    // response.getWriter().write(json);
   }
 }

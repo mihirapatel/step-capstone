@@ -1,3 +1,4 @@
+var isUserLoggedIn = false;
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
