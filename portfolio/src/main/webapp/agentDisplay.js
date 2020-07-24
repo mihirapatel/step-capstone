@@ -67,10 +67,14 @@ function displayResponse(stream) {
     } else if (outputAsJson.intent.includes("memory.keyword")) {
       memoryContainer = createKeywordContainer(outputAsJson.display);
       appendDisplay(memoryContainer);
-      addDisplayListeners(memoryContainer);
+      addDisplayListeners(memoryContainer, getConversationScreen);
     } else if (outputAsJson.intent.includes("memory.time")) {
       memoryTimeContainer = makeConversationDiv(outputAsJson.display);
       appendDisplay(memoryTimeContainer);
+    } else if (outputAsJson.intent.includes("memory.list - show")) {
+      listContainer = makeListContainer(JSON.parse(outputAsJson.display));
+      appendDisplay(listContainer);
+      addDisplayListeners(listContainer, getListContentScreen);
     }
   }
   outputAudio(stream);

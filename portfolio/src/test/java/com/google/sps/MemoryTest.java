@@ -57,19 +57,19 @@ public class MemoryTest {
     ArrayList<String> addOns =
         new ArrayList<>(Arrays.asList("febDate1", "febDate2", "camel2", "febDate3"));
     commentList.addAll(addOns);
-    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-11T09:30:00-00:00").getTime());
+    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-11T09:30:00-08:00").getTime());
 
     addOns = new ArrayList<>(Arrays.asList("febDate4", "febDate5", "febDate6"));
     commentList.addAll(addOns);
-    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-11T09:34:00-00:00").getTime());
+    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-11T09:34:00-08:00").getTime());
 
     addOns = new ArrayList<>(Arrays.asList("febDate7", "febDate8", "febDate9"));
     commentList.addAll(addOns);
-    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-11T09:36:00-00:00").getTime());
+    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-11T09:36:00-08:00").getTime());
 
     addOns = new ArrayList<>(Arrays.asList("febDate7", "febDate8", "camel3", "febDate9"));
     commentList.addAll(addOns);
-    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-12T12:00:00-00:00").getTime());
+    tester.setCustomDatabase(addOns, TimeUtils.stringToDate("2014-02-12T12:00:00-08:00").getTime());
   }
 
   /** Checks that no display output or database query is made if the user is not logged in. */

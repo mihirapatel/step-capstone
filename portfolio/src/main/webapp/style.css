@@ -571,17 +571,18 @@ li {
     margin-bottom: 10px;
 }
 
-.keyword-screen, .conversation-screen {
+.left-panel, .content-panel {
     display: inline-block;
     width: 50%;
     height: 100%;
     vertical-align:top
 }
 
-.conversation-screen {
+.content-panel {
     padding: 10px;
     padding-top: 0px;
     overflow-y: auto;
+    text-align: left;
 }
 
 .comment-text {

@@ -1,5 +1,6 @@
 var commentToConvo = new Map();
 var commentDivToEntity = new Map();
+var listNameDivToEntity = new Map();
 
 /**
 * Creates the media container for memory.keyword display.
@@ -36,7 +37,7 @@ function createKeywordContainer(jsonOutput) {
 function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryContainer) {
   var comment;
   var keywordCommentContainer = document.createElement('ul');
-  keywordCommentContainer.classList.add('keyword-screen');
+  keywordCommentContainer.classList.add('left-panel');
   var firstCommentDiv = null;
   for (commentEntity of keywordComments) {
     var commentString = commentEntity.comment;
@@ -52,7 +53,7 @@ function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryC
   }
   memoryContainer.appendChild(keywordCommentContainer);
   var conversationContainer = document.createElement('div');
-  conversationContainer.classList.add('conversation-screen');
+  conversationContainer.classList.add('content-panel');
   memoryContainer.appendChild(conversationContainer);
   $(firstCommentDiv).addClass('active');
   getConversationScreen(firstCommentDiv);
@@ -125,15 +126,70 @@ function makeBold(text, boldedWord) {
 }
 
 /**
-* Creates on-click listeners for each bulleted element in the identified comments list.
+* Creates on-click listeners for each bulleted element in the left-side panel.
 *
-* @param memoryContainer The div containing the media display to be populated with click listeners.
+* @param container The div containing the media display to be populated with click listeners.
 */
-function addDisplayListeners(memoryContainer) {
-    var keywordScreenDiv = memoryContainer.firstChild;
-    $(keywordScreenDiv).on('click', 'li', function() {
+function addDisplayListeners(container, displayFunction) {
+    var menuDiv = container.firstChild;
+    $(menuDiv).on('click', 'li', function() {
       $('li').removeClass('active');
       $(this).addClass('active');
-      getConversationScreen(this);
+      displayFunction(this);
     });
+}
+
+function makeListContainer(listDisplayObject) {
+    var memoryContainer = document.createElement('div');
+    memoryContainer.classList.add('memory');
+    var listContentContainer = document.createElement('div');
+    listContentContainer.classList.add('content-panel');
+    if (listDisplayObject.multiList) {
+        var userLists = listDisplayObject.allLists;
+        var listNameContainer = document.createElement('ul');
+        listNameContainer.classList.add('left-panel');
+        var firstListObject = null;
+        var firstListNameDiv = null;
+        for (lst of userLists) {
+            var listNameDiv = document.createElement('li');
+            if (firstListNameDiv == null) {
+                firstListObject = lst;
+                firstListNameDiv = listNameDiv;
+            }
+            listNameDivToEntity.set(listNameDiv, lst);
+            listNameDiv.innerHTML = "<p class='comment-text'>" + lst.listName + "</p>";
+            listNameContainer.appendChild(listNameDiv);
+        }
+        memoryContainer.appendChild(listNameContainer);
+        $(firstListNameDiv).addClass('active');
+        populateListContentScreen(firstListObject, listContentContainer);
+    } else {
+        populateListContentScreen(listDisplayObject, listContentContainer);
+    }
+    memoryContainer.appendChild(listContentContainer);
+    return memoryContainer;
+}
+
+function populateListContentScreen(listDisplayObject, listContentContainer) {
+    var headerContainer = document.createElement('div');
+    headerContainer.innerHTML = "<h1 style='color: black'>" + listDisplayObject.listName + " list</h1>";
+    listContentContainer.appendChild(headerContainer);
+    if (listDisplayObject.items) {
+        for (listItem of listDisplayObject.items) {
+            listContentContainer.appendChild(makeBulletedElement(listItem));
+        }
+    }
+}
+
+function getListContentScreen(listNameDiv) {
+  var listEntity = listNameDivToEntity.get(listNameDiv);
+  var listContentDiv = listNameDiv.parentElement.nextSibling;
+  listContentDiv.innerHTML = "";
+  populateListContentScreen(listEntity, listContentDiv);
+}
+
+function makeBulletedElement(itemString) {
+    var bulletDiv = document.createElement('li');
+    bulletDiv.innerHTML = itemString;
+    return bulletDiv;
 }
