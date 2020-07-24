@@ -145,15 +145,6 @@ function authSetup() {
 }
 
 /**
-* Backend call to WorkoutProfileServlet to display specific information is user is logged in
-*/
-function workoutUserProfileSetup() {
-  fetch("/workout-user-profile").then((response) => response.json()).then((workoutProfile) => {
-      //TODO
-  });
-}
-
-/**
 * Saves each command made by the user into a string in session storage so that the user 
 * can use the UP/DOWN arrows to access recently used commands.
 *
@@ -249,15 +240,21 @@ function deleteSessionInformation(){
 
 /** Saves workout plan using SaveWorkoutServlet for current user
  *
- * @param workoutPlanVideos workoutPlanVideos string 
+ * @param workoutPlan workoutPlan string with userId, workoutPlanPlaylist, workoutPlanId 
  */
 
-function saveWorkoutPlan(workoutPlanVideos){
-  var myJSON = JSON.stringify(workoutPlanVideos);
-  fetch('/save-workouts' + '?workout-plan-videos=' + myJSON, {
+function saveWorkoutPlan(workoutPlan){
+  console.log(workoutPlan);
+  //Create new JSON oject for workout plan to be saved
+  var savedWorkoutPlan = new Object();
+  savedWorkoutPlan.userId = workoutPlan.userId;
+  savedWorkoutPlan.workoutPlanId  = workoutPlan.workoutPlanId;
+  var workoutPlanString= JSON.stringify(savedWorkoutPlan);
+
+  fetch('/save-workouts' + '?workout-plan=' + workoutPlanString, {
       method: 'POST'
   }).then(response => response.text()).then(() => {
-      console.log(myJSON);
+      console.log(workoutPlanString);
       console.log('Saved workout plan');
   });
   return null;
