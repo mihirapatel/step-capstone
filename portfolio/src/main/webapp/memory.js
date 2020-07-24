@@ -2,6 +2,8 @@ var commentToConvo = new Map();
 var commentDivToEntity = new Map();
 var listNameDivToEntity = new Map();
 
+var textFile = null;
+
 /**
 * Creates the media container for memory.keyword display.
 * 
@@ -179,6 +181,29 @@ function populateListContentScreen(listDisplayObject, listContentContainer) {
         listContentContainer.appendChild(makeBulletedElement(listItem));
     }
   }
+  var downloadButton = document.createElement('a');
+  downloadButton.classList.add('download');
+  downloadButton.innerHTML = "<img src = \"images/download.png\" class=\"download-image\" alt = \"Download\">";
+  downloadButton.addEventListener("click", function() {
+    var contentDiv = this.parentNode;
+    var regexp1 = /<[a-z]*?>(.*?)<\/[a-z]*?>/g;
+    var regexp2 = /<.*?>(.*?)<.*?>/g;
+    var listItems = [...contentDiv.innerHTML.matchAll(regexp1)];
+    var title = [...listItems[0][1].matchAll(regexp2)][0][1];
+    var listText = title + "\n\n";
+    for (var i = 1; i < listItems.length; i++) {
+        listText += "- " + listItems[i][1] + "\n";
+    }
+    var blob = new Blob([listText], {type : "text/plain;charset=utf-8"});
+    if (textFile !== null) {
+        window.URL.revokeObjectURL(textFile);
+    }
+    textFile = window.URL.createObjectURL(blob);
+
+    this.setAttribute("href", textFile);
+    this.download = title + ".txt";
+  })
+  listContentContainer.appendChild(downloadButton);
 }
 
 function getListContentScreen(listNameDiv) {
