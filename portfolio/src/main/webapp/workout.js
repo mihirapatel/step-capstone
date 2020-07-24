@@ -1,4 +1,3 @@
-var isUserLoggedIn = false;
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
@@ -36,14 +35,14 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
   //Creating previous button
   previousButton = document.createElement("BUTTON");
-  previousButton.classList.add("video-buttons");
+  previousButton.classList.add("workout-buttons");
   previousButton.classList.add("video-previous-button");
   var buttonText = document.createTextNode("Previous");
   previousButton.appendChild(buttonText); 
 
   //Creating next button 
   nextButton = document.createElement("BUTTON");
-  nextButton.classList.add("video-buttons");
+  nextButton.classList.add("workout-buttons");
   nextButton.classList.add("video-next-button");
   var buttonText = document.createTextNode("Next");
   nextButton.appendChild(buttonText);
@@ -186,7 +185,7 @@ function createWorkoutPlanTable(workoutPlan, videos) {
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
-  var plannerDivHeight =  videos.length * 135;
+  var plannerDivHeight =  (videos.length * 135) + 45;
   plannerDiv.style.height = plannerDivHeight.toString() + "px";
   workoutPlannerDiv.appendChild(plannerDiv);
 
@@ -272,6 +271,7 @@ function createWorkoutPlanFooter() {
     //Save Workout Plan Button
     saveWorkoutPlanButton = document.createElement("BUTTON");
     saveWorkoutPlanButton.classList.add("save-workout-plan-button");
+    saveWorkoutPlanButton.classList.add("workout-buttons");
     var buttonText = document.createTextNode("Save Workout Plan");
     saveWorkoutPlanButton.appendChild(buttonText); 
     workoutPlanFooter.appendChild(saveWorkoutPlanButton);
