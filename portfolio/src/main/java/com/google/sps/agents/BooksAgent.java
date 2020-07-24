@@ -41,6 +41,8 @@ public class BooksAgent implements Agent {
   private int prevStartIndex;
   private int resultsStored;
   private String userID;
+  private ArrayList<String> shelvesNames;
+  private ArrayList<String> lowerShelvesNames;
 
   /**
    * BooksAgent constructor without queryID sets queryID property to the most recent queryID for the
@@ -106,109 +108,15 @@ public class BooksAgent implements Agent {
       throws IOException, IllegalArgumentException {
     // Intents that do not require user to be authenticated
     if (intentName.equals("search")) {
-      this.query = BookQuery.createBookQuery(this.userInput, parameters);
-      this.startIndex = 0;
-
-      // Retrieve books from BookQuery
-      this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
-      this.totalResults = BookUtils.getTotalVolumesFound(query, startIndex);
-      this.resultsReturned = bookResults.size();
-
-      if (resultsReturned > 0) {
-        handleNewQuerySuccess("search");
-        this.output = "Here's what I found.";
-      } else {
-        this.output = "I couldn't find any results. Can you try again?";
-      }
-
+      handleSearchIntent(parameters);
     } else if (intentName.equals("more")) {
-      // Load BookQuery, totalResults, resultsStored and increment startIndex
-      loadBookQueryInfo(sessionID, queryID);
-      this.startIndex = getNextStartIndex(prevStartIndex, totalResults);
-      String ending = getFulfillmentEnding(query);
-      if (startIndex == -1) {
-        this.output = "This is the last page of " + ending;
-        this.startIndex = prevStartIndex;
-      } else if (startIndex + displayNum <= resultsStored
-          || startIndex + displayNum >= totalResults) {
-        replaceIndices(sessionID, queryID);
-        this.output = "Here's the next page of " + ending;
-      } else {
-        // Make public book search from stored query parameters at startIndex
-        if (!query.isMyLibrary()) {
-          this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
-        } else {
-          // Make book search from Bookshelf
-          if (!userService.isUserLoggedIn()) {
-            this.output = "Please login first.";
-            return;
-          }
-          String userID = userService.getCurrentUser().getUserId();
-          this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
-        }
-        int resultsReturned = bookResults.size();
-        int newResultsStored = resultsReturned + resultsStored;
-        this.resultsStored = newResultsStored;
-
-        if (resultsReturned == 0) {
-          this.output = "This is the last page of " + ending;
-          this.startIndex = prevStartIndex;
-        } else {
-          // Store Book results and new indices
-          BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
-          replaceIndices(sessionID, queryID);
-          this.output = "Here's the next page of " + ending;
-        }
-      }
-      setBookListDisplay();
-      this.redirect = queryID;
-
+      handleMoreIntent();
     } else if (intentName.equals("previous")) {
-      loadBookQueryInfo(sessionID, queryID);
-      this.startIndex = prevStartIndex - displayNum;
-      String ending = getFulfillmentEnding(query);
-
-      if (startIndex <= -1) {
-        this.output = "This is the first page of " + ending;
-        startIndex = 0;
-      } else {
-        replaceIndices(sessionID, queryID);
-        this.output = "Here's the previous page of " + ending;
-      }
-      setBookListDisplay();
-      this.redirect = queryID;
-
+      handlePreviousIntent();
     } else if (intentName.equals("description") || intentName.equals("preview")) {
-      int bookNumber = (int) parameters.get("number").getNumberValue();
-
-      this.prevStartIndex =
-          BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
-      Book requestedBook =
-          BooksMemoryUtils.getBookFromOrderNum(
-              bookNumber, prevStartIndex, sessionID, queryID, datastore);
-
-      this.display = bookToJson(requestedBook);
-      this.redirect = queryID;
-      this.output = "Here's a " + intentName + " of " + requestedBook.getTitle() + ".";
-
+      handleBookInfoIntents(parameters);
     } else if (intentName.equals("results")) {
-      loadBookQueryInfo(sessionID, queryID);
-      if (query.isMyLibrary()) {
-        this.userID = userService.getCurrentUser().getUserId();
-        refreshBookshelf();
-        if (resultsReturned == 0) {
-          this.output =
-              "There are no more books in your " + query.getBookshelfName() + " bookshelf.";
-        } else {
-          setBookListDisplay();
-          this.output = "Here's your " + query.getBookshelfName() + " bookshelf.";
-        }
-      } else {
-        this.startIndex = prevStartIndex;
-        setBookListDisplay();
-        this.output = "Here are the results.";
-      }
-      this.redirect = queryID;
+      handleResultsIntent();
     } else {
       // All other intents require users to be logged in
       if (!userService.isUserLoggedIn()) {
@@ -223,109 +131,22 @@ public class BooksAgent implements Agent {
             "https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev/oauth2";
         return;
       }
-      ArrayList<String> shelvesNames;
 
       // Retrieve stored or store bookshelf names for current user
       if (BooksMemoryUtils.hasBookshelvesStored(userID, datastore)) {
-        shelvesNames = BooksMemoryUtils.getStoredBookshelfNames(userID, datastore);
+        this.shelvesNames = BooksMemoryUtils.getStoredBookshelfNames(userID, datastore);
       } else {
-        shelvesNames = BookUtils.getBookshelvesNames(userID);
+        this.shelvesNames = BookUtils.getBookshelvesNames(userID);
         BooksMemoryUtils.storeBookshelfNames(shelvesNames, userID, datastore);
       }
-      ArrayList<String> checkNames = allLowerCaseList(shelvesNames);
+      this.lowerShelvesNames = allLowerCaseList(shelvesNames);
 
       if (intentName.equals("library")) {
-        // Check for valid bookshelf parameter
-        if (parameters.get("bookshelf") == null
-            || !checkNames.contains(parameters.get("bookshelf").getStringValue().toLowerCase())) {
-          ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
-          this.output = "Which bookshelf would you like to see?";
-          this.display = listToJson(shelvesNames);
-          this.redirect = "bookshelf-names";
-          return;
-        }
-        // Create BookQuery
-        this.query = BookQuery.createBookQuery(this.userInput, parameters, true);
-        this.startIndex = 0;
-
-        // Retrieve books from BookQuery
-        this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
-        this.totalResults = BookUtils.getTotalShelfVolumesFound(query, startIndex, userID);
-        this.resultsReturned = bookResults.size();
-
-        if (resultsReturned > 0) {
-          handleNewQuerySuccess("library");
-          this.output = "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
-        } else {
-          this.output = "There are no books in your " + query.getBookshelfName() + " bookshelf.";
-        }
+        handleLibraryIntent(parameters);
       } else if (intentName.equals("add")) {
-        int bookNumber = (int) parameters.get("number").getNumberValue();
-        this.prevStartIndex =
-            BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
-        Book requestedBook =
-            BooksMemoryUtils.getBookFromOrderNum(
-                bookNumber, prevStartIndex, sessionID, queryID, datastore);
-
-        // Check for valid bookshelf parameter
-        if (parameters.get("bookshelf") == null
-            || !checkNames.contains(parameters.get("bookshelf").getStringValue().toLowerCase())) {
-          ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
-          this.output =
-              "Which bookshelf would you like to add " + requestedBook.getTitle() + " to?";
-          this.display = listToJson(getValidAddShelves(shelvesNames, requestedBook));
-          return;
-        }
-        String bookshelfName = parameters.get("bookshelf").getStringValue();
-        String volumeId = requestedBook.getVolumeId();
-        try {
-          BookUtils.addToBookshelf(bookshelfName, userID, volumeId);
-          this.output =
-              "I've added "
-                  + requestedBook.getTitle()
-                  + " to your "
-                  + bookshelfName
-                  + " bookshelf.";
-          this.display = bookToJson(requestedBook);
-          this.redirect = queryID;
-        } catch (GoogleJsonResponseException e) {
-          this.output =
-              "I'm sorry. I couldn't add "
-                  + requestedBook.getTitle()
-                  + " to your "
-                  + bookshelfName
-                  + " bookshelf.";
-        }
+        handleAddIntent(parameters);
       } else if (intentName.equals("delete")) {
-        // Load bookshelf name from stored BookQuery
-        loadBookQueryInfo(sessionID, queryID);
-        String shelfName = query.getBookshelfName();
-        // Retrieve requested book
-        int bookNumber = (int) parameters.get("number").getNumberValue();
-        this.prevStartIndex =
-            BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
-        Book requestedBook =
-            BooksMemoryUtils.getBookFromOrderNum(
-                bookNumber, prevStartIndex, sessionID, queryID, datastore);
-        String volumeId = requestedBook.getVolumeId();
-        try {
-          BookUtils.deleteFromBookshelf(shelfName, userID, volumeId);
-          this.output =
-              "I've deleted "
-                  + requestedBook.getTitle()
-                  + " from your "
-                  + shelfName
-                  + " bookshelf.";
-          this.display = bookToJson(requestedBook);
-          this.redirect = queryID;
-        } catch (GoogleJsonResponseException e) {
-          this.output =
-              "I'm sorry. I couldn't delete "
-                  + requestedBook.getTitle()
-                  + " from your "
-                  + shelfName
-                  + " bookshelf.";
-        }
+        handleDeleteIntent(parameters);
       }
     }
   }
@@ -343,6 +164,252 @@ public class BooksAgent implements Agent {
   @Override
   public String getRedirect() {
     return this.redirect;
+  }
+
+  /**
+   * Handles book search intents by: creating BookQuery, retrieving appropriate Books, and handling
+   * a new query storage and display if the request is successful.
+   *
+   * @param parameters Map of parameters from Dialogflow
+   */
+  private void handleSearchIntent(Map<String, Value> parameters) throws IOException {
+    this.query = BookQuery.createBookQuery(this.userInput, parameters);
+    this.startIndex = 0;
+
+    // Retrieve books from BookQuery
+    this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
+    this.totalResults = BookUtils.getTotalVolumesFound(query, startIndex);
+    this.resultsReturned = bookResults.size();
+
+    if (resultsReturned > 0) {
+      handleNewQuerySuccess("search");
+      this.output = "Here's what I found.";
+    } else {
+      this.output = "I couldn't find any results. Can you try again?";
+    }
+  }
+
+  /**
+   * Handles book more intents by: loading previous BookQuery, determining whether more books need
+   * to be retrieved from Google Books API based on the next start index, and setting display to
+   * next page of results if appropriate.
+   */
+  private void handleMoreIntent() throws IOException {
+    // Loads query, prevStartIndex totalResults, resultsStored and increment startIndex
+    loadBookQueryInfo(sessionID, queryID);
+    this.startIndex = getNextStartIndex(prevStartIndex, totalResults);
+    String ending = getFulfillmentEnding(query);
+
+    if (startIndex == -1) {
+      this.output = "This is the last page of " + ending;
+      this.startIndex = prevStartIndex;
+    } else if (nextPageOfBooksIsStored()) {
+      replaceIndices(sessionID, queryID);
+      this.output = "Here's the next page of " + ending;
+    } else {
+      // Make public book search from stored query parameters at startIndex
+      if (!query.isMyLibrary()) {
+        this.bookResults = BookUtils.getRequestedBooks(query, startIndex);
+      } else {
+        // Make private bookshelf search for userID from query parameters at startIndex
+        if (!userService.isUserLoggedIn()) {
+          this.output = "Please login first.";
+          return;
+        }
+        String userID = userService.getCurrentUser().getUserId();
+        this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
+      }
+      int resultsReturned = bookResults.size();
+      int newResultsStored = resultsReturned + resultsStored;
+      this.resultsStored = newResultsStored;
+
+      if (resultsReturned == 0) {
+        this.output = "This is the last page of " + ending;
+        this.startIndex = prevStartIndex;
+      } else {
+        // Store Book results and new indices
+        BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
+        replaceIndices(sessionID, queryID);
+        this.output = "Here's the next page of " + ending;
+      }
+    }
+    setBookListDisplay();
+    this.redirect = queryID;
+  }
+
+  /**
+   * Handles previous intents by: loading previous BookQuery, retrieving the previously displayed
+   * stored Books and setting display.
+   */
+  private void handlePreviousIntent() throws IOException {
+    // Loads query, prevStartIndex totalResults, resultsStored and increment startIndex
+    loadBookQueryInfo(sessionID, queryID);
+    this.startIndex = prevStartIndex - displayNum;
+    String ending = getFulfillmentEnding(query);
+
+    if (startIndex <= -1) {
+      this.output = "This is the first page of " + ending;
+      startIndex = 0;
+    } else {
+      replaceIndices(sessionID, queryID);
+      this.output = "Here's the previous page of " + ending;
+    }
+    setBookListDisplay();
+    this.redirect = queryID;
+  }
+
+  /**
+   * Handles preview and description intents by: retrieving requested Book and setting display
+   * output.
+   *
+   * @param parameters Map of parameters from Dialogflow
+   */
+  private void handleBookInfoIntents(Map<String, Value> parameters) throws IOException {
+    int bookNumber = (int) parameters.get("number").getNumberValue();
+
+    this.prevStartIndex =
+        BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
+    Book requestedBook =
+        BooksMemoryUtils.getBookFromOrderNum(
+            bookNumber, prevStartIndex, sessionID, queryID, datastore);
+
+    this.display = bookToJson(requestedBook);
+    this.redirect = queryID;
+    this.output = "Here's a " + intentName + " of " + requestedBook.getTitle() + ".";
+  }
+
+  /**
+   * Handles results intent by: loading previous BookQuery for sessionID and queryID, refreshing
+   * bookshelf is necessary, and setting display for stored book objects from previous start index.
+   */
+  private void handleResultsIntent() throws IOException {
+    // Loads query, prevStartIndex totalResults, resultsStored and increment startIndex
+    loadBookQueryInfo(sessionID, queryID);
+    if (query.isMyLibrary()) {
+      this.userID = userService.getCurrentUser().getUserId();
+      refreshBookshelf();
+      if (resultsReturned == 0) {
+        this.output = "There are no more books in your " + query.getBookshelfName() + " bookshelf.";
+      } else {
+        setBookListDisplay();
+        this.output = "Here's your " + query.getBookshelfName() + " bookshelf.";
+      }
+    } else {
+      this.startIndex = prevStartIndex;
+      setBookListDisplay();
+      this.output = "Here are the results.";
+    }
+    this.redirect = queryID;
+  }
+
+  /**
+   * Handles library intent by: retrieving valid bookshelf name from parameters, creating book query
+   * object if parameters are valid and retrieving books from bookshelf in user's library. If
+   * retrieval is successful, sets display to retrieved books.
+   *
+   * @param parameters Map of parameters from Dialogflow
+   */
+  private void handleLibraryIntent(Map<String, Value> parameters) throws IOException {
+    // Check for valid bookshelf parameter
+    if (parameters.get("bookshelf") == null
+        || !lowerShelvesNames.contains(
+            parameters.get("bookshelf").getStringValue().toLowerCase())) {
+      ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
+      this.output = "Which bookshelf would you like to see?";
+      this.display = listToJson(shelvesNames);
+      this.redirect = "bookshelf-names";
+      return;
+    }
+    // Create BookQuery
+    this.query = BookQuery.createBookQuery(userInput, parameters, true);
+    this.startIndex = 0;
+
+    // Retrieve books from BookQuery
+    this.bookResults = BookUtils.getBookShelfBooks(query, startIndex, userID);
+    this.totalResults = BookUtils.getTotalShelfVolumesFound(query, startIndex, userID);
+    this.resultsReturned = bookResults.size();
+
+    if (resultsReturned > 0) {
+      handleNewQuerySuccess("library");
+      this.output = "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
+    } else {
+      this.output = "There are no books in your " + query.getBookshelfName() + " bookshelf.";
+    }
+  }
+
+  /**
+   * Handles add intent by: retrieving requested book to add to bookshelf, retrieving bookshelf
+   * name, and adding book to bookshelf. If successful, sets display to the Book that was added.
+   *
+   * @param parameters Map of parameters from Dialogflow
+   */
+  private void handleAddIntent(Map<String, Value> parameters) throws IOException {
+    int bookNumber = (int) parameters.get("number").getNumberValue();
+    this.prevStartIndex =
+        BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
+    Book requestedBook =
+        BooksMemoryUtils.getBookFromOrderNum(
+            bookNumber, prevStartIndex, sessionID, queryID, datastore);
+
+    // Check for valid bookshelf parameter
+    if (parameters.get("bookshelf") == null
+        || !lowerShelvesNames.contains(
+            parameters.get("bookshelf").getStringValue().toLowerCase())) {
+      ArrayList<String> displayNames = BookUtils.getBookshelvesNames(userID);
+      this.output = "Which bookshelf would you like to add " + requestedBook.getTitle() + " to?";
+      this.display = listToJson(getValidAddShelves(shelvesNames, requestedBook));
+      return;
+    }
+    String bookshelfName = parameters.get("bookshelf").getStringValue();
+    String volumeId = requestedBook.getVolumeId();
+    try {
+      BookUtils.addToBookshelf(bookshelfName, userID, volumeId);
+      this.output =
+          "I've added " + requestedBook.getTitle() + " to your " + bookshelfName + " bookshelf.";
+      this.display = bookToJson(requestedBook);
+      this.redirect = queryID;
+    } catch (GoogleJsonResponseException e) {
+      this.output =
+          "I'm sorry. I couldn't add "
+              + requestedBook.getTitle()
+              + " to your "
+              + bookshelfName
+              + " bookshelf.";
+    }
+  }
+
+  /**
+   * Handles delete intent by: retrieving requested book to delete from bookshelf, deleting the book
+   * from the user's bookshelf. If successful, sets display to the Book that was deleted.
+   *
+   * @param parameters Map of parameters from Dialogflow
+   */
+  private void handleDeleteIntent(Map<String, Value> parameters) throws IOException {
+    // Load bookshelf name from stored BookQuery
+    loadBookQueryInfo(sessionID, queryID);
+    String shelfName = query.getBookshelfName();
+    // Retrieve requested book
+    int bookNumber = (int) parameters.get("number").getNumberValue();
+    this.prevStartIndex =
+        BooksMemoryUtils.getStoredIndices("startIndex", sessionID, queryID, datastore);
+    Book requestedBook =
+        BooksMemoryUtils.getBookFromOrderNum(
+            bookNumber, prevStartIndex, sessionID, queryID, datastore);
+    String volumeId = requestedBook.getVolumeId();
+    try {
+      BookUtils.deleteFromBookshelf(shelfName, userID, volumeId);
+      this.output =
+          "I've deleted " + requestedBook.getTitle() + " from your " + shelfName + " bookshelf.";
+      this.display = bookToJson(requestedBook);
+      this.redirect = queryID;
+    } catch (GoogleJsonResponseException e) {
+      this.output =
+          "I'm sorry. I couldn't delete "
+              + requestedBook.getTitle()
+              + " from your "
+              + shelfName
+              + " bookshelf.";
+    }
   }
 
   /**
@@ -500,5 +567,9 @@ public class BooksAgent implements Agent {
       ending = "results.";
     }
     return ending;
+  }
+
+  private boolean nextPageOfBooksIsStored() {
+    return (startIndex + displayNum <= resultsStored || startIndex + displayNum >= totalResults);
   }
 }

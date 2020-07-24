@@ -219,7 +219,6 @@ public class BookUtils {
   public static Volumes getBookShelfVolumes(BookQuery query, int startIndex, String userID)
       throws IOException, GoogleJsonResponseException {
     OAuthHelper helper = new OAuthHelper();
-    // Credential credential = helper.loadUserCredential(userID);
     Credential credential = helper.loadUpdatedCredential(userID);
     Books books = getBooksContext(credential);
     Bookshelf bookshelf = getBookshelf(query.getBookshelfName(), userID);
