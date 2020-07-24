@@ -137,6 +137,7 @@ function authSetup() {
     console.log(displayText.authText);
     if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
+        createWorkoutDashboardButton();
     }
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
@@ -244,7 +245,6 @@ function deleteSessionInformation(){
  */
 
 function saveWorkoutPlan(workoutPlan){
-  console.log(workoutPlan);
   //Create new JSON oject for workout plan to be saved
   var savedWorkoutPlan = new Object();
   savedWorkoutPlan.userId = workoutPlan.userId;
@@ -254,8 +254,8 @@ function saveWorkoutPlan(workoutPlan){
   fetch('/save-workouts' + '?workout-plan=' + workoutPlanString, {
       method: 'POST'
   }).then(response => response.text()).then(() => {
-      console.log(workoutPlanString);
       console.log('Saved workout plan');
   });
   return null;
 }
+
