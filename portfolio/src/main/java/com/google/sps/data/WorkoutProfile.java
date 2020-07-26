@@ -5,20 +5,22 @@ import java.util.ArrayList;
 
 /**
  * WorkoutProfile that has information about everything related to the Workout Agent User
- * information: Name, email Workout information: Workout plans, workout videos completed, minutes
- * worked out
+ * information: Name, email, id Workout information: Workout plans, workout videos completed,
+ * minutes worked out
  */
 public class WorkoutProfile {
 
   private String userId;
-  private String userName = ""; // TODO
-  private String userEmail = ""; // TODO
-  private ArrayList<WorkoutPlan> workoutPlans;
+  private String userName;
+  private String userEmail;
+  private ArrayList<WorkoutPlan> workoutPlans = null; // TODO
   private ArrayList<YouTubeVideo> vidoesWatched = null; // TODO
 
-  public WorkoutProfile(String userId, ArrayList<WorkoutPlan> workoutPlans) {
+  // User Info Constructor
+  public WorkoutProfile(String userId, String userName, String userEmail) {
     this.userId = userId;
-    this.workoutPlans = workoutPlans;
+    this.userName = userName;
+    this.userEmail = userEmail;
   }
 
   public String getUserId() {
