@@ -14,10 +14,13 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import org.apache.commons.text.WordUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -123,13 +126,27 @@ public class VideoUtils {
       String workoutType,
       String searchType)
       throws IOException, JSONException {
+
+    // Get workout plan playlist with user specified parameters
     ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
         getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
 
     if (userService.isUserLoggedIn()) {
+
       String userId = userService.getCurrentUser().getUserId();
+
+      // Capitalize first letter of each word in workoutType string
+      workoutType = WordUtils.capitalize(workoutType, null);
+      String workoutPlanName = String.valueOf(planLength) + " Day " + workoutType + " Workout Plan";
       int workoutPlanId = WorkoutProfileUtils.getWorkoutPlanId(userId, datastore);
-      workoutPlan = new WorkoutPlan(userId, listOfVideoLists, workoutPlanId);
+
+      // Create formatted dateCreated String
+      SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+      Date date = new Date(System.currentTimeMillis());
+      String dateCreated = "Created: " + formatter.format(date).toString();
+
+      workoutPlan =
+          new WorkoutPlan(userId, workoutPlanName, listOfVideoLists, workoutPlanId, dateCreated);
     } else {
       workoutPlan = new WorkoutPlan(listOfVideoLists);
     }

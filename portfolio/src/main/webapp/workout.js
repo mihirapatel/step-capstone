@@ -28,7 +28,7 @@ function workoutPlanner(workoutPlanQuery) {
 function createVideoDivs(videos, indexStart, indexEnd) {
   
   workoutDiv = document.createElement("div");
-  workoutDiv.classList.add("media-display");
+  workoutDiv.className = "media-display";
 
   videosDiv = document.createElement("div");
   videosDiv.id = "videos";
@@ -69,11 +69,11 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     replaceUnicode();
 
     var videoContainer = document.createElement("div");
-    videoContainer.classList.add("video-container");
+    videoContainer.className = "video-container";
 
     //Video Thumbnail
     var videoThumbnail = document.createElement("div");
-    videoThumbnail.classList.add("video-thumbnail");
+    videoThumbnail.className = "video-thumbnail";
 
     var videoLink = document.createElement("a");
     videoLink.title = title;
@@ -91,7 +91,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     //Video Information
     var videoInfo = document.createElement("div");
-    videoInfo.classList.add("video-info");
+    videoInfo.className = "video-info";
 
     var videoTitleLink = document.createElement("a");
     videoTitleLink.title = title;
@@ -99,7 +99,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     videoTitleLink.target = "_blank"; 
 
     var videoTitle = document.createElement("h3");
-    videoTitle.classList.add("video-title");
+    videoTitle.className = "video-title";
     videoTitle.innerHTML = title;
     videoTitleLink.appendChild(videoTitle);
     videoInfo.appendChild(videoTitleLink);
@@ -110,13 +110,13 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     channelLink.target = "_blank"; 
 
     var channelTitle = document.createElement("p");
-    channelTitle.classList.add("channel-title");
+    channelTitle.className = "channel-title";
     channelTitle.innerHTML = channelName.replace(/"/g, "");
     channelLink.appendChild(channelTitle)
     videoInfo.appendChild(channelLink);
 
     var videoDescription = document.createElement("p");
-    videoDescription.classList.add("video-description");
+    videoDescription.className = "video-description";
     videoDescription.innerHTML = description.replace(/"/g, "");
     videoInfo.appendChild(videoDescription);
 
@@ -128,12 +128,12 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     //Create footer with page numbers and buttons under correct video div
     if (footerDisplay) {
         footer = document.createElement("div");
-        footer.classList.add("footer");
+        footer.className = "footer";
         videosDiv.appendChild(footer);
         
         //Add page numbers to footer
         var pageNumbers = document.createElement("p");
-        pageNumbers.classList.add("video-page-number");
+        pageNumbers.className = "video-page-number";
         pageNumbers.innerHTML = currentPage + "/" + totalPages;
         footer.appendChild(pageNumbers);
 
@@ -182,7 +182,7 @@ function showNewVideosPage(numShiftIndex) {
 */
 function createWorkoutPlanTable(workoutPlan, videos) {
   workoutPlannerDiv = document.createElement("div");
-  workoutPlannerDiv.classList.add("media-display");
+  workoutPlannerDiv.className = "media-display";
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";

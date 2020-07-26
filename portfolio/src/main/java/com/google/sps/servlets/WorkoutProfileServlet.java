@@ -31,7 +31,6 @@ public class WorkoutProfileServlet extends HttpServlet {
 
     WorkoutProfile profile = new WorkoutProfile(userId, userName, userEmail);
     String json = new Gson().toJson(profile);
-    System.out.println(json);
     response.getWriter().write(json);
   }
 }

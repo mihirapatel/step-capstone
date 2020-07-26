@@ -236,6 +236,29 @@ td {
 	width: 45%;
 }
 
+.workout-plan-card {
+    height: 120px;
+    width: 200px;
+    background-color: #e7e7e7;
+    margin: 5%;
+    padding: 7%;
+    font-size: 17px;
+}
+
+.workout-plan-card a {
+    color: #333333
+}
+
+.workout-plan-card a:visited {
+    color: #333333
+}
+
+.workout-plan-card {
+    font-size: 14px;
+    margin-top: 25px;
+
+}
+
 /* Workout Agent Styling End */
 
 h1 {
