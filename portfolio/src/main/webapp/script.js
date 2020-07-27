@@ -134,7 +134,6 @@ function authSetup() {
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
     //Checks if user is logged in or not
-    console.log(displayText.authText);
     if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
     }
@@ -244,7 +243,7 @@ function deleteSessionInformation(){
  */
 
 function saveWorkoutPlan(workoutPlan){
-  console.log(workoutPlan);
+
   //Create new JSON oject for workout plan to be saved
   var savedWorkoutPlan = new Object();
   savedWorkoutPlan.userId = workoutPlan.userId;
@@ -254,8 +253,6 @@ function saveWorkoutPlan(workoutPlan){
   fetch('/save-workouts' + '?workout-plan=' + workoutPlanString, {
       method: 'POST'
   }).then(response => response.text()).then(() => {
-      console.log(workoutPlanString);
       console.log('Saved workout plan');
   });
-  return null;
 }
