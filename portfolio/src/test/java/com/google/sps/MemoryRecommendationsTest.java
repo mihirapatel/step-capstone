@@ -94,7 +94,7 @@ public class MemoryRecommendationsTest {
     tester.checkFracAggregate(
         "groceri",
         Arrays.asList("apples", "bananas", "ice cream", "pineapple"),
-        Arrays.asList(1.5, 0.5, 0.5, 1.0));
+        Arrays.asList(1.6, 0.6, 0.6, 1.0));
 
     // 4) updates that list
 
@@ -118,7 +118,7 @@ public class MemoryRecommendationsTest {
     tester.checkFracAggregate(
         "groceri",
         Arrays.asList("apples", "bananas", "ice cream", "pineapple", "chocolate"),
-        Arrays.asList(1.5, 0.5, 1.0, 1.0, 0.5));
+        Arrays.asList(1.6, 0.6, 1.0, 1.0, 0.4));
 
     // 5) creates a list for user 2
 
@@ -184,11 +184,11 @@ public class MemoryRecommendationsTest {
     tester.checkFracAggregate(
         "groceri",
         Arrays.asList("apples", "bananas", "ice cream", "pineapple", "chocolate"),
-        Arrays.asList(4.0 / 3, 1.0 / 3, 1.0, 2.0 / 3, 1.0 / 3));
+        Arrays.asList(1.36, 0.36, 1.0, 0.6, 0.24));
 
     // 9) Create a 4th empty grocery list for user 1 and check past recommendations
     tester.setParameters(
-        "Start a grocery list.",
+        "Start a grocery list 4.",
         "{\"list-name\":\"grocery\", "
             + "\"list-objects\":\"\","
             + "\"new-list\": \"\","
@@ -208,37 +208,27 @@ public class MemoryRecommendationsTest {
     tester.checkFracAggregate(
         "groceri",
         Arrays.asList("apples", "bananas", "ice cream", "pineapple", "chocolate"),
-        Arrays.asList(1.0, 1.0 / 4, 3.0 / 4, 0.5, 1.0 / 4));
+        Arrays.asList(1.36, 0.36, 1.0, 0.6, 0.24));
 
-    // 10) Create a 5th empty grocery list for user 1 and check past recommendations (should now
+    // 10) Create a 5th grocery list for user 1 and check past recommendations (should now
     // only have 2 recommendations)
     tester.setParameters(
-        "Start a grocery list.",
+        "Update a grocery list with apple.",
         "{\"list-name\":\"grocery\", "
-            + "\"list-objects\":\"\","
+            + "\"list-objects\":\"apple\","
             + "\"new-list\": \"\","
             + "\"generic-list\": \"\"}",
-        "memory.list - make");
+        "memory.list - add");
 
     output = tester.getOutput();
     assertEquals(
-        "Created! Based on your previous lists, would you like to add apple and ice cream?",
+        "Updated!",
         output.getFulfillmentText());
-
-    tester.checkDatabaseItems(5, "grocery", new ArrayList<String>());
-    tester.checkAggregate(
-        "groceri",
-        Arrays.asList("apples", "bananas", "ice cream", "pineapple", "chocolate"),
-        Arrays.asList(4, 1, 3, 2, 1));
-    tester.checkFracAggregate(
-        "groceri",
-        Arrays.asList("apples", "bananas", "ice cream", "pineapple", "chocolate"),
-        Arrays.asList(0.8, 0.2, 0.6, 0.4, 0.2));
 
     // 10) Create a 6th and 7th empty grocery list for user 1 and check past recommendations (last
     // one should now only have 1 recommendation)
     tester.setParameters(
-        "Start a grocery list.",
+        "Start a grocery list 6.",
         "{\"list-name\":\"grocery\", "
             + "\"list-objects\":\"\","
             + "\"new-list\": \"\","
@@ -251,7 +241,20 @@ public class MemoryRecommendationsTest {
         output.getFulfillmentText());
 
     tester.setParameters(
-        "Start a grocery list.",
+        "Add apple to my grocery list.",
+        "{\"list-name\":\"grocery\", "
+            + "\"list-objects\":\"apple\","
+            + "\"new-list\": \"\","
+            + "\"generic-list\": \"\"}",
+        "memory.list - add");
+
+    output = tester.getOutput();
+    assertEquals(
+        "Updated!",
+        output.getFulfillmentText());
+
+    tester.setParameters(
+        "Start a grocery list 6.",
         "{\"list-name\":\"grocery\", "
             + "\"list-objects\":\"\","
             + "\"new-list\": \"\","
@@ -279,7 +282,7 @@ public class MemoryRecommendationsTest {
         (List<Pair<String, Integer>>)
             Arrays.asList(
                 new Pair<String, Integer>("apple", 4),
-                new Pair<String, Integer>("banana", 3),
+                new Pair<String, Integer>("banana", 2),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 1)));
     tester.makeUserList(
@@ -321,21 +324,22 @@ public class MemoryRecommendationsTest {
 
     tester.setUser("test@example.com", "1");
     tester.setParameters(
-        "Update grocery list with apple.",
+        "Update grocery list with apple and banana.",
         "{\"list-name\":\"grocery\", "
-            + "\"list-objects\":\"apple\","
+            + "\"list-objects\":\"apple and banana\","
             + "\"new-list\": \"\","
             + "\"generic-list\": \"\"}",
         "memory.list - add");
+    log.info("Testing User 1's recommendations. Should be nothing");
     Output output = tester.getOutput();
     assertEquals(
-        "Updated! Based on your list item history, you might be interested in adding banana to your grocery list.",
+        "Updated!",
         output.getFulfillmentText());
   }
 
   /**
    * Tests recommendations against other users: 1) create 5 users, 2) make new user 2's list, and 3)
-   * assert that no recommendations are returned for user 2.
+   * assert that correct recommendation of banana is returned for user 2.
    */
   @Test
   public void testUser2Recommendations() throws Exception {
@@ -344,10 +348,10 @@ public class MemoryRecommendationsTest {
     // Creates User 1 with history: 1 for item 1, 0.6 for item 2, and 0.2 for item 4.
     tester.makeUserList(
         "1",
-        5,
+        4,
         (List<Pair<String, Integer>>)
             Arrays.asList(
-                new Pair<String, Integer>("apple", 5),
+                new Pair<String, Integer>("apple", 4),
                 new Pair<String, Integer>("banana", 3),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 1)));
@@ -396,13 +400,14 @@ public class MemoryRecommendationsTest {
             + "\"new-list\": \"\","
             + "\"generic-list\": \"\"}",
         "memory.list - make");
+    log.info("Testing User 2's recommendations. Should be banana");
     Output output = tester.getOutput();
-    assertEquals("Created!", output.getFulfillmentText());
+    assertEquals("Created! Based on your list item history, you might be interested in adding banana to your grocery list.", output.getFulfillmentText());
   }
 
   /**
    * Tests recommendations against other users: 1) create 5 users, 2) make a new list, and 3) assert
-   * that 2 correct recommendations are being returned for user 4.
+   * that correct recommendation for carrot and donut is returned for user 4.
    */
   @Test
   public void testUser4Recommendations() throws Exception {
@@ -441,7 +446,7 @@ public class MemoryRecommendationsTest {
         4,
         (List<Pair<String, Integer>>)
             Arrays.asList(
-                new Pair<String, Integer>("apple", 0),
+                new Pair<String, Integer>("apple", 1),
                 new Pair<String, Integer>("banana", 0),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 4)));
@@ -457,13 +462,14 @@ public class MemoryRecommendationsTest {
 
     tester.setUser("test@example.com", "4");
     tester.setParameters(
-        "Make a new grocery list with apple.",
+        "Make a new grocery list with egg.",
         "{\"list-name\":\"grocery\", "
-            + "\"list-objects\":\"apple\","
+            + "\"list-objects\":\"egg\","
             + "\"new-list\": \"\","
             + "\"generic-list\": \"\"}",
         "memory.list - make");
     Output output = tester.getOutput();
+    log.info("Testing User 4's recommendations. Should be carrot and donut??.");
     assertEquals(
         "Created! Based on your list item history, you might be interested in adding carrot and donut to your grocery list.",
         output.getFulfillmentText());
