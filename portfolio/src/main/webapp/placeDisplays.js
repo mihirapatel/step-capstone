@@ -1,3 +1,5 @@
+var isUserLoggedIn = false;
+
 function placeUserInput(text, container) {
   if (container == "convo-container") {
     streamingContainer.innerHTML = "";

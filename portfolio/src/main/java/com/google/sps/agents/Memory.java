@@ -30,8 +30,6 @@ import org.slf4j.LoggerFactory;
  */
 public class Memory implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Name.class);
-
   private final String intentName;
   private String userID;
   private String fulfillment;
