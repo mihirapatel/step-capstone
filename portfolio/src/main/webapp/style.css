@@ -805,17 +805,22 @@ button.bookshelf-button:hover,button.bookshelf-button:focus {
 }
 
 .list-container {
-    display: inline-block;
-    border: 2px solid lightgrey;
-    width: auto;
-    max-height: 350px;
-    padding: 20px;
-    padding-top: 0px;
     overflow-y: auto;
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+    width: calc(100% - 50px);
+    margin: 20px;
 }
 
 .list-content {
     display: inline-block;
-    width: 100%;
+    width: auto;
     text-align: left;
+    position: relative;
+    padding: 50px;
+    padding-top: 0px;
+    padding-right: 75px;
+    border: 2px solid lightgrey;
+    float: left;
 }
