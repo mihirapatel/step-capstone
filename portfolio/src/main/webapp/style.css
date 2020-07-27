@@ -149,7 +149,7 @@ body {
     float: left;
 }
 
-.save-workout-plan-button {
+.workout-plan-footer-buttons {
     padding: 1%;
 }
 
@@ -236,16 +236,24 @@ td {
 	width: 45%;
 }
 
+.workout-plan {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .workout-plan-card {
     height: 120px;
     width: 200px;
     background-color: #e7e7e7;
     margin: 5%;
     padding: 7%;
-    font-size: 17px;
+    
 }
 
 .workout-plan-card a {
+    font-size: 17px;
     color: #333333
 }
 
@@ -253,10 +261,13 @@ td {
     color: #333333
 }
 
-.workout-plan-card {
+.workout-plan-card p {
     font-size: 14px;
     margin-top: 25px;
+}
 
+.mark-completed-button {
+    margin: 5%;
 }
 
 /* Workout Agent Styling End */

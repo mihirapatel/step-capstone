@@ -101,7 +101,6 @@ function placeBooksFulfillment(text, queryID) {
 
 function placeFulfillmentResponse(text) {
   placeObjectContainer("<p>" + text + "</p>", "assistant-side", "convo-container");
-  console.log(text);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
   }

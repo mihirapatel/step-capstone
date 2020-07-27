@@ -19,7 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.text.WordUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,10 +35,11 @@ public class VideoUtils {
   private static String q;
   private static String type;
   private static String key;
-  private static String playlistId;
   private static WorkoutPlan workoutPlan;
+  private static String playlistId;
   private static ArrayList<YouTubeVideo> playlistVids;
   private static ArrayList<ArrayList<YouTubeVideo>> listOfPlaylists;
+  private static Map<ArrayList<YouTubeVideo>, String> playlistToId;
   private static int randomInt;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
@@ -49,33 +52,6 @@ public class VideoUtils {
   private static String channelId;
   private static int currentPage = 0;
   private static int totalPages = videosDisplayedTotal / videosDisplayedPerPage;
-
-  private static String readAll(Reader rd) throws IOException {
-    StringBuilder sb = new StringBuilder();
-    int cp;
-    while ((cp = rd.read()) != -1) {
-      sb.append((char) cp);
-    }
-    return sb.toString();
-  }
-
-  /**
-   * Creates JSON object from url passed in from getJSONObject
-   *
-   * @param url for YouTube Data API search by keyword
-   * @return JSONObject json from YouTube Data API search URL
-   */
-  private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-    InputStream is = new URL(url).openStream();
-    try {
-      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-      String jsonText = readAll(rd);
-      JSONObject json = new JSONObject(jsonText);
-      return json;
-    } finally {
-      is.close();
-    }
-  }
 
   /**
    * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
@@ -127,6 +103,9 @@ public class VideoUtils {
       String searchType)
       throws IOException, JSONException {
 
+    // Initialize map to populate with function call to getPlayistVideoList
+    playlistToId = new HashMap<>();
+
     // Get workout plan playlist with user specified parameters
     ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
         getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
@@ -146,9 +125,10 @@ public class VideoUtils {
       String dateCreated = "Created: " + formatter.format(date).toString();
 
       workoutPlan =
-          new WorkoutPlan(userId, workoutPlanName, listOfVideoLists, workoutPlanId, dateCreated);
+          new WorkoutPlan(
+              userId, workoutPlanName, listOfVideoLists, workoutPlanId, dateCreated, planLength);
     } else {
-      workoutPlan = new WorkoutPlan(listOfVideoLists);
+      workoutPlan = new WorkoutPlan(listOfVideoLists, playlistId);
     }
 
     return workoutPlan;
@@ -197,7 +177,9 @@ public class VideoUtils {
     // Gets the first playlist from the list of playlists
     // Breaks up the ArrayList into chunks of 5 and puts that into one ArrayList to make an
     // ArrayList of ArrayLists
-    return VideoUtils.partitionOfSize(listOfPlaylists.get(0), 5);
+    ArrayList<YouTubeVideo> playlistVideos = listOfPlaylists.get(0);
+    playlistId = playlistToId.get(playlistVideos);
+    return VideoUtils.partitionOfSize(playlistVideos, 5);
   }
 
   /**
@@ -268,6 +250,8 @@ public class VideoUtils {
    * @param playlistVideoString JSON string of YouTube videos in playlist from API call
    */
   private static void setPlaylistVideoParameters(String playlistVideoString) {
+
+    // Set parameters from JSONObject
     JSONObject videoJSONObject = new JSONObject(playlistVideoString).getJSONObject("map");
     JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
     title = new Gson().toJson(snippet.get("title"));
@@ -292,12 +276,21 @@ public class VideoUtils {
   private static ArrayList<YouTubeVideo> createPlaylistVideosList(
       JSONObject json, String searchType, int maxPlaylistResults, int planLength, int randomInt)
       throws IOException {
+
+    // Set parameters from JSONObject
     JSONArray playlist = json.getJSONArray("items");
     String playlistString = new Gson().toJson(playlist.get(randomInt));
     JSONObject playlistJSONObject = new JSONObject(playlistString).getJSONObject("map");
     JSONObject id = playlistJSONObject.getJSONObject("id").getJSONObject("map");
     String playlistId = new Gson().toJson(id.get("playlistId"));
-    return getPlaylistVideos(searchType, playlistId, planLength);
+
+    // Make function call to get videos in playlist
+    ArrayList<YouTubeVideo> playlistVideos = getPlaylistVideos(searchType, playlistId, planLength);
+
+    // Store playlist and playlistId in map
+    playlistToId.put(playlistVideos, playlistId);
+
+    return playlistVideos;
   }
 
   /**
@@ -409,6 +402,39 @@ public class VideoUtils {
             return a2.size() - a1.size();
           }
         });
+  }
+
+  /**
+   * Creates JSON object from url passed in from getJSONObject
+   *
+   * @param url for YouTube Data API search by keyword
+   * @return JSONObject json from YouTube Data API search URL
+   */
+  private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+    InputStream is = new URL(url).openStream();
+    try {
+      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+      String jsonText = readAll(rd);
+      JSONObject json = new JSONObject(jsonText);
+      return json;
+    } finally {
+      is.close();
+    }
+  }
+
+  /**
+   * Creates JSON string by reading from URL text
+   *
+   * @param rd Reader that is created in call to readJsonFromUrl
+   * @return json String that can be made into a JSONObject
+   */
+  private static String readAll(Reader rd) throws IOException {
+    StringBuilder sb = new StringBuilder();
+    int cp;
+    while ((cp = rd.read()) != -1) {
+      sb.append((char) cp);
+    }
+    return sb.toString();
   }
 
   /** Gets random int in range [min, max) */

@@ -240,7 +240,7 @@ function deleteSessionInformation(){
 
 /** Saves workout plan using SaveWorkoutServlet for current user
  *
- * @param workoutPlan workoutPlan string with userId, workoutPlanPlaylist, workoutPlanId 
+ * @param workoutPlan workoutPlan string with userId and workoutPlanId 
  */
 
 function saveWorkoutPlan(workoutPlan){
@@ -255,6 +255,8 @@ function saveWorkoutPlan(workoutPlan){
   }).then(response => response.text()).then(() => {
       console.log('Saved workout plan');
   });
-  return null;
 }
 
+function getUserLoginStatus() {
+    return isUserLoggedIn;
+}

@@ -50,8 +50,8 @@ public class WorkoutProfileUtils {
       String userId, int workoutPlanId, DatastoreService datastore) {
 
     // Create Filter to retrieve WorkoutPlan entities based on userId and workoutPlanId
-    Filter storedWorkoutPlanFilter = createStoredWorkoutPlanFilter(userId, workoutPlanId);
-    Query query = new Query("WorkoutPlan").setFilter(storedWorkoutPlanFilter);
+    Filter workoutPlanFilter = createWorkoutPlanFilter(userId, workoutPlanId);
+    Query query = new Query("WorkoutPlan").setFilter(workoutPlanFilter);
     PreparedQuery results = datastore.prepare(query);
 
     Entity workoutPlanEntity = results.asSingleEntity();
@@ -80,6 +80,7 @@ public class WorkoutProfileUtils {
     savedWorkoutPlanEntity.setProperty("userId", workoutPlan.getUserId());
     savedWorkoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
     savedWorkoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
+    savedWorkoutPlanEntity.setProperty("numWorkoutDaysCompleted", 0);
     datastore.put(savedWorkoutPlanEntity);
   }
 
@@ -112,6 +113,39 @@ public class WorkoutProfileUtils {
   }
 
   /**
+   * Updates SavedWorkoutPlan with the number of workout plan days the user has completed
+   *
+   * @param userID The current logged-in user's ID number
+   * @param workoutPlanId The id for the workout they want to save
+   * @param numWorkoutDaysCompleted The number of workout plan days the user has completed
+   * @param datastore Datastore instance to retrieve WorkoutPlan from database
+   */
+  public static void updateSavedWorkoutPlan(
+      String userId, int workoutPlanId, int numWorkoutDaysCompleted, DatastoreService datastore) {
+
+    // Create Filter to retrieve SavedWorkoutPlan entities based on userId and workoutPlanId
+    Filter workoutPlanFilter = createWorkoutPlanFilter(userId, workoutPlanId);
+    Query query = new Query("SavedWorkoutPlan").setFilter(workoutPlanFilter);
+    PreparedQuery results = datastore.prepare(query);
+
+    Entity workoutPlanEntity = results.asSingleEntity();
+
+    // Updating Workout Plan with correct number of workout plan days user has completed
+    Blob workoutPlanBlob = (Blob) workoutPlanEntity.getProperty("workoutPlan");
+    WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
+    workoutPlan.setNumWorkoutDaysCompleted(numWorkoutDaysCompleted);
+    byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
+    workoutPlanBlob = new Blob(workoutPlanData);
+
+    // Updating entity and storing it back into datastore
+    workoutPlanEntity.setProperty("userId", workoutPlan.getUserId());
+    workoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
+    workoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
+    workoutPlanEntity.setProperty("numWorkoutDaysCompleted", numWorkoutDaysCompleted);
+    datastore.put(workoutPlanEntity);
+  }
+
+  /**
    * Returns number of WorkoutPlans created and saved in Datastore by current user (specified by
    * userId)
    *
@@ -134,7 +168,7 @@ public class WorkoutProfileUtils {
    * @param workoutPlanId unique id (within session) to delete entities from
    * @return CompositeFilter with proper filters
    */
-  public static Filter createStoredWorkoutPlanFilter(String userId, int workoutPlanId) {
+  public static Filter createWorkoutPlanFilter(String userId, int workoutPlanId) {
     return new CompositeFilter(
         CompositeFilterOperator.AND,
         Arrays.asList(

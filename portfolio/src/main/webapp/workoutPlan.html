@@ -9,19 +9,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <script src="placeDisplays.js"></script>
-    <script src="agentDisplay.js"></script>
-    <script src="audio.js"></script>
-    <script src="script.js"></script>    
+    <script src="script.js"></script>
     <script src="workout.js"></script>
     <script src="workoutDashboard.js"></script>
+    <script src="agentDisplay.js"></script>
+    
   </head>
 
-  <body onload="dashboardSetup()">
-    
-    <div class="user-info"></div>
-    <div class="saved-workouts"></div>
-    <div class="completed-workout-videos"><div>
-    <div class="activity-progress"><div>
+  <body onload=displayWorkoutPlan()>
+    <div class="workout-plan-header"></div>
+    <div class="workout-plan-progress"></div>
+    <div class="workout-plan"></div>
 
   </body>
 </html>
