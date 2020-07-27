@@ -38,18 +38,22 @@ import java.util.Map;
 public class BookQuery implements Serializable {
 
   private String userInput;
+  private String intent;
   private String type;
   private String categories;
   private String authors;
   private String title;
   private String order;
   private String language;
+  private String bookshelfName;
   private String queryString;
+  private boolean isMyLibrary;
 
   /**
-   * Creates a BookQuery object the detected parameters from Dialogflow that will be used to
-   * retrieve appropriate Volumes from the Google Books API that match a user input, or throws an
-   * exception if the userInput is empty
+   * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
+   * retrieve appropriate Volumes from the Google Books API that match a user input for user
+   * requests that do not require user Authentication, or throws an exception if the userInput is
+   * empty
    *
    * @param String userInput
    * @param parameters parameter Map from Dialogflow
@@ -57,10 +61,26 @@ public class BookQuery implements Serializable {
    */
   public static BookQuery createBookQuery(String userInput, Map<String, Value> parameters)
       throws IllegalArgumentException {
+    return createBookQuery(userInput, parameters, false);
+  }
+
+  /**
+   * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
+   * retrieve appropriate Volumes from the Google Books API that match a user input, or throws an
+   * exception if the userInput is empty
+   *
+   * @param String userInput
+   * @param parameters parameter Map from Dialogflow
+   * @param requiresAuth determines whether request requires user authentication
+   * @return BookQuery object
+   */
+  public static BookQuery createBookQuery(
+      String userInput, Map<String, Value> parameters, Boolean requiresAuth)
+      throws IllegalArgumentException {
     if (userInput == null || userInput.isEmpty()) {
       throw new IllegalArgumentException();
     } else {
-      BookQuery bookQuery = new BookQuery(userInput, parameters);
+      BookQuery bookQuery = new BookQuery(userInput, parameters, requiresAuth);
       return bookQuery;
     }
   }
@@ -75,14 +95,16 @@ public class BookQuery implements Serializable {
    * @param userInput detected input string
    * @param parameters parameter Map from Dialogflow
    */
-  private BookQuery(String userInput, Map<String, Value> parameters) {
+  private BookQuery(String userInput, Map<String, Value> parameters, Boolean requiresAuth) {
     this.userInput = userInput;
+    this.isMyLibrary = requiresAuth;
     setType(parameters.get("type"));
     setCategories(parameters.get("categories"));
     setAuthors(parameters.get("authors"));
     setTitle(parameters.get("title"));
     setOrder(parameters.get("order"));
     setLanguage(parameters.get("language"));
+    setBookshelf(parameters.get("bookshelf"));
     setQueryString();
   }
 
@@ -152,6 +174,17 @@ public class BookQuery implements Serializable {
     this.queryString = queryText;
   }
 
+  private void setBookshelf(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      String name = paramValue.getStringValue();
+      this.bookshelfName = name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+  }
+
+  public String getBookshelfName() {
+    return this.bookshelfName;
+  }
+
   public String getTitle() {
     return this.title;
   }
@@ -182,5 +215,9 @@ public class BookQuery implements Serializable {
 
   public String getQueryString() {
     return this.queryString;
+  }
+
+  public Boolean isMyLibrary() {
+    return this.isMyLibrary;
   }
 }
