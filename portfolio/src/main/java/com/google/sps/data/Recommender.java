@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 public class Recommender {
 
   private static Logger log = LoggerFactory.getLogger(Recommender.class);
-
   private int K;
   private final int STEPS = 10000;
   private final double ALPHA_START = 0.1;

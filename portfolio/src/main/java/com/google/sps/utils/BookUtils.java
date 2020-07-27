@@ -219,7 +219,6 @@ public class BookUtils {
   public static Volumes getBookShelfVolumes(BookQuery query, int startIndex, String userID)
       throws IOException, GoogleJsonResponseException {
     OAuthHelper helper = new OAuthHelper();
-    // Credential credential = helper.loadUserCredential(userID);
     Credential credential = helper.loadUpdatedCredential(userID);
     Books books = getBooksContext(credential);
     Bookshelf bookshelf = getBookshelf(query.getBookshelfName(), userID);
@@ -261,5 +260,55 @@ public class BookUtils {
       throws IOException, GoogleJsonResponseException {
     Volumes volumes = getBookShelfVolumes(query, startIndex, userID);
     return volumes.getTotalItems().intValue();
+  }
+
+  /**
+   * This function adds the specified volume to the user's specified bookshelf, and throws an
+   * exception otherwise
+   *
+   * @param bookshelfName name of bookshelf to add volume to
+   * @param userID unique userID
+   * @param volumeId unique id of volume to add
+   */
+  public static void addToBookshelf(String bookshelfName, String userID, String volumeId)
+      throws IOException, GoogleJsonResponseException {
+    OAuthHelper helper = new OAuthHelper();
+    Credential credential = helper.loadUpdatedCredential(userID);
+
+    Books books = getBooksContext(credential);
+    Bookshelf bookshelf = getBookshelf(bookshelfName, userID);
+    String shelfId = Integer.toString(bookshelf.getId());
+
+    Books.Mylibrary.Bookshelves.AddVolume request =
+        books.mylibrary().bookshelves().addVolume(shelfId).setVolumeId(volumeId);
+    request.setAccessToken(credential.getAccessToken());
+    request.set$Xgafv("");
+    request.execute();
+    return;
+  }
+
+  /**
+   * This function deletes the specified volume to the user's specified bookshelf, and throws an
+   * exception otherwise
+   *
+   * @param bookshelfName name of bookshelf to delete volume from
+   * @param userID unique userID
+   * @param volumeId unique id of volume to delete
+   */
+  public static void deleteFromBookshelf(String bookshelfName, String userID, String volumeId)
+      throws IOException, GoogleJsonResponseException {
+    OAuthHelper helper = new OAuthHelper();
+    Credential credential = helper.loadUpdatedCredential(userID);
+
+    Books books = getBooksContext(credential);
+    Bookshelf bookshelf = getBookshelf(bookshelfName, userID);
+    String shelfId = Integer.toString(bookshelf.getId());
+
+    Books.Mylibrary.Bookshelves.RemoveVolume request =
+        books.mylibrary().bookshelves().removeVolume(shelfId).setVolumeId(volumeId);
+    request.setAccessToken(credential.getAccessToken());
+    request.set$Xgafv("");
+    request.execute();
+    return;
   }
 }
