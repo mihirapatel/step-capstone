@@ -17,9 +17,8 @@
 package com.google.sps.data;
 
 // Imports the Google Cloud client library
-import com.google.api.services.books.*;
-import com.google.api.services.books.model.Volume;
-import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
+import com.google.api.services.books.v1.model.Volume;
+import com.google.api.services.books.v1.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,6 +46,8 @@ public class Book implements Serializable {
   private String isbn;
   private String textSnippet;
   private int order;
+  private String volumeId;
+  private Boolean ebook = false;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -87,6 +88,14 @@ public class Book implements Serializable {
     setEmbeddable(volume);
     setIsbn(volume);
     setTextSnippet(volume);
+    setVolumeId(volume);
+    setEbook(volume);
+  }
+
+  public void setEbook(Volume volume) {
+    if (hasValidSaleInfo(volume)) {
+      this.ebook = volume.getSaleInfo().getIsEbook();
+    }
   }
 
   /**
@@ -111,10 +120,15 @@ public class Book implements Serializable {
     this.thumbnailLink = "";
     this.buyLink = "";
     this.textSnippet = "";
+    this.volumeId = "";
   }
 
   public void setOrder(int order) {
     this.order = order;
+  }
+
+  private void setVolumeId(Volume volume) {
+    this.volumeId = volume.getId();
   }
 
   private void setTitle(Volume volume) {
@@ -217,6 +231,10 @@ public class Book implements Serializable {
     return this.order;
   }
 
+  public String getVolumeId() {
+    return this.volumeId;
+  }
+
   public String getTitle() {
     return this.title;
   }
@@ -261,6 +279,9 @@ public class Book implements Serializable {
     return this.textSnippet;
   }
 
+  public Boolean isEbook() {
+    return this.ebook;
+  }
   /**
    * Checks if Volume object has a valid title
    *
@@ -302,5 +323,13 @@ public class Book implements Serializable {
    */
   public static boolean hasValidSearchInfo(Volume volume) {
     return volume.getSearchInfo() != null;
+  }
+
+  public void clearDescription() {
+    this.description = "";
+  }
+
+  public void clearPreview() {
+    this.embeddable = false;
   }
 }
