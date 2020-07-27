@@ -46,7 +46,7 @@ public class Indices {
     this.totalResults = totalResults;
     this.displayNum = displayNum;
     this.currentPage = startIndex / displayNum + 1;
-    this.totalPages = totalResults / displayNum;
+    this.totalPages = getTotalPages(totalResults, displayNum);
     setHasPrev();
     setHasMore();
   }
@@ -85,5 +85,9 @@ public class Indices {
 
   public boolean getHasPrev() {
     return this.hasPrev;
+  }
+
+  private int getTotalPages(int totalResults, int displayNum) {
+    return (int) Math.ceil((double) totalResults / displayNum);
   }
 }
