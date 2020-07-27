@@ -82,7 +82,7 @@ function placeUserInput(text, container) {
   }
   if (text != " (null) "){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side", container);
+    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side talk-bubble-user round", "right", document.getElementsByName("convo-container")[0]);
   }
 }
 
@@ -106,7 +106,7 @@ function placeBooksFulfillment(text, queryID) {
 
 
 function placeFulfillmentResponse(text) {
-  placeObjectContainer("<p>" + text + "</p>", "assistant-side", "convo-container");
+  placeChatContainer("<p>" + text + "</p>", "assistant-side talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0]);
   console.log(text);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
@@ -115,12 +115,6 @@ function placeFulfillmentResponse(text) {
       method: 'POST',
       mode: 'no-cors'});
   }
-}
-
-function getLastWord(words) {
-    var split = words.split(/[ ]+/);
-    console.log(split);
-    return split[split.length - 1];
 }
 
 /**
@@ -135,7 +129,6 @@ function updateName(name) {
   } else {
       greetingContainer.innerHTML = "<h1>Hi, how can I help you?</h1>";
   }
-  
 }
 
 function isBooksIntent(intentName) {

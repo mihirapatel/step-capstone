@@ -45,6 +45,7 @@ function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryC
     var commentString = commentEntity.comment;
     var boldedCommentString = makeBold(commentString, keyword);
     var commentDiv = document.createElement('li');
+    commentDiv.classList.add('clickable');
     if (firstCommentDiv == null) {
         firstCommentDiv = commentDiv;
     }
@@ -98,15 +99,21 @@ function populateConversationScreen(conversationDiv, conversationList, keywordEn
       makeTimestamp(commentEntity.timestamp, conversationDiv);
     }
     prevTime = commentEntity.timestamp;
-    var conversationCommentDiv = document.createElement('div');
-    var className = commentEntity.isUser ? 'user-side' : 'assistant-side';
-    conversationCommentDiv.classList.add(className);
+    var text;
     if (_.isEqual(keywordEntity, commentEntity)) {
-      conversationCommentDiv.innerHTML = "<p style='color: black'><span style='background-color: yellow'>" + commentEntity.comment + "</span></p>";
+      text = "<p style='color: black'><span style='background-color: yellow'>" + commentEntity.comment + "</span></p>";
     } else {
-      conversationCommentDiv.innerHTML = "<p style='color: black'>" + commentEntity.comment + "</p>";
+      if (commentEntity.isUser) {
+        text = "<p style='color: white'>" + commentEntity.comment + "</p>";
+      } else {
+        text = "<p style='color: black'>" + commentEntity.comment + "</p>";
+      }
     }
-    conversationDiv.appendChild(conversationCommentDiv);
+    if (commentEntity.isUser) {
+      placeChatContainer(text, "user-side talk-bubble-user round", "right", conversationDiv);
+    } else {
+      placeChatContainer(text, "assistant-side talk-bubble-assistant round", "left", conversationDiv);
+    }
   }
 }
 
@@ -133,43 +140,50 @@ function makeBold(text, boldedWord) {
 * @param container The div containing the media display to be populated with click listeners.
 */
 function addDisplayListeners(container, displayFunction) {
-  var menuDiv = container.firstChild;
-  $(menuDiv).on('click', 'li', function() {
-    $('li').removeClass('active');
-    $(this).addClass('active');
-    displayFunction(this);
-  });
+    if ($(container).children().length < 2) {
+      return;
+    }
+    var menuDiv = container.firstChild;
+    $(menuDiv).on('click', 'li', function() {
+      $('li').removeClass('active');
+      $(this).addClass('active');
+      displayFunction(this);
+    });
 }
 
 function makeListContainer(listDisplayObject) {
-  var memoryContainer = document.createElement('div');
-  memoryContainer.classList.add('memory');
-  var listContentContainer = document.createElement('div');
-  listContentContainer.classList.add('content-panel');
-  if (listDisplayObject.multiList) {
-    var userLists = listDisplayObject.allLists;
-    var listNameContainer = document.createElement('ul');
-    listNameContainer.classList.add('left-panel');
-    var firstListObject = null;
-    var firstListNameDiv = null;
-    for (lst of userLists) {
-      var listNameDiv = document.createElement('li');
-      if (firstListNameDiv == null) {
-        firstListObject = lst;
-        firstListNameDiv = listNameDiv;
-      }
-      listNameDivToEntity.set(listNameDiv, lst);
-      listNameDiv.innerHTML = "<p class='comment-text'>" + lst.listName + "</p>";
-      listNameContainer.appendChild(listNameDiv);
+    var memoryContainer = document.createElement('div');
+    if (listDisplayObject.multiList) {
+        memoryContainer.classList.add('memory');
+        var listContentContainer = document.createElement('div');
+        listContentContainer.classList.add('content-panel');
+        var userLists = listDisplayObject.allLists;
+        var listNameContainer = document.createElement('ul');
+        listNameContainer.classList.add('left-panel');
+        var firstListObject = null;
+        var firstListNameDiv = null;
+        for (lst of userLists) {
+            var listNameDiv = document.createElement('li');
+            listNameDiv.classList.add('clickable');
+            if (firstListNameDiv == null) {
+                firstListObject = lst;
+                firstListNameDiv = listNameDiv;
+            }
+            listNameDivToEntity.set(listNameDiv, lst);
+            listNameDiv.innerHTML = "<p class='comment-text'>" + lst.listName + "</p>";
+            listNameContainer.appendChild(listNameDiv);
+        }
+        memoryContainer.appendChild(listNameContainer);
+        $(firstListNameDiv).addClass('active');
+        populateListContentScreen(firstListObject, listContentContainer);
+    } else {
+        memoryContainer.classList.add('list-container');
+        var listContentContainer = document.createElement('div');
+        listContentContainer.classList.add('list-content');
+        populateListContentScreen(listDisplayObject, listContentContainer);
     }
-    memoryContainer.appendChild(listNameContainer);
-    $(firstListNameDiv).addClass('active');
-    populateListContentScreen(firstListObject, listContentContainer);
-  } else {
-    populateListContentScreen(listDisplayObject, listContentContainer);
-  }
-  memoryContainer.appendChild(listContentContainer);
-  return memoryContainer;
+    memoryContainer.appendChild(listContentContainer);
+    return memoryContainer;
 }
 
 function populateListContentScreen(listDisplayObject, listContentContainer) {
@@ -214,7 +228,8 @@ function getListContentScreen(listNameDiv) {
 }
 
 function makeBulletedElement(itemString) {
-  var bulletDiv = document.createElement('li');
-  bulletDiv.innerHTML = itemString;
-  return bulletDiv;
+    var bulletDiv = document.createElement('li');
+    bulletDiv.classList.add('plain');
+    bulletDiv.innerHTML = itemString;
+    return bulletDiv;
 }
