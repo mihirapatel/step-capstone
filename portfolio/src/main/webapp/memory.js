@@ -2,6 +2,8 @@ var commentToConvo = new Map();
 var commentDivToEntity = new Map();
 var listNameDivToEntity = new Map();
 
+var textFile = null;
+
 /**
 * Creates the media container for memory.keyword display.
 * 
@@ -93,7 +95,7 @@ function populateConversationScreen(conversationDiv, conversationList, keywordEn
   var prevTime = 0;
   for (commentEntity of conversationList) {
     if (commentEntity.timestamp - prevTime > 300000) {  // 5 minute difference
-        makeTimestamp(commentEntity.timestamp, conversationDiv);
+      makeTimestamp(commentEntity.timestamp, conversationDiv);
     }
     prevTime = commentEntity.timestamp;
     var conversationCommentDiv = document.createElement('div');
@@ -109,10 +111,10 @@ function populateConversationScreen(conversationDiv, conversationList, keywordEn
 }
 
 function makeTimestamp(time, conversationDiv) {
-    var timeString = new Date(time).toLocaleString()
-    timeDiv = document.createElement('div');
-    timeDiv.innerHTML = "<p class='time-centered'>" + timeString + "</p>";
-    conversationDiv.appendChild(timeDiv);
+  var timeString = new Date(time).toLocaleString()
+  timeDiv = document.createElement('div');
+  timeDiv.innerHTML = "<p class='time-centered'>" + timeString + "</p>";
+  conversationDiv.appendChild(timeDiv);
 }
 
 /**
@@ -122,7 +124,7 @@ function makeTimestamp(time, conversationDiv) {
 * @param boldedWord keyword to be bolded
 */
 function makeBold(text, boldedWord) {
-    return text.replace(new RegExp("(" + boldedWord + ")",'ig'), '<b>$1</b>');
+  return text.replace(new RegExp("(" + boldedWord + ")",'ig'), '<b>$1</b>');
 }
 
 /**
@@ -131,54 +133,77 @@ function makeBold(text, boldedWord) {
 * @param container The div containing the media display to be populated with click listeners.
 */
 function addDisplayListeners(container, displayFunction) {
-    var menuDiv = container.firstChild;
-    $(menuDiv).on('click', 'li', function() {
-      $('li').removeClass('active');
-      $(this).addClass('active');
-      displayFunction(this);
-    });
+  var menuDiv = container.firstChild;
+  $(menuDiv).on('click', 'li', function() {
+    $('li').removeClass('active');
+    $(this).addClass('active');
+    displayFunction(this);
+  });
 }
 
 function makeListContainer(listDisplayObject) {
-    var memoryContainer = document.createElement('div');
-    memoryContainer.classList.add('memory');
-    var listContentContainer = document.createElement('div');
-    listContentContainer.classList.add('content-panel');
-    if (listDisplayObject.multiList) {
-        var userLists = listDisplayObject.allLists;
-        var listNameContainer = document.createElement('ul');
-        listNameContainer.classList.add('left-panel');
-        var firstListObject = null;
-        var firstListNameDiv = null;
-        for (lst of userLists) {
-            var listNameDiv = document.createElement('li');
-            if (firstListNameDiv == null) {
-                firstListObject = lst;
-                firstListNameDiv = listNameDiv;
-            }
-            listNameDivToEntity.set(listNameDiv, lst);
-            listNameDiv.innerHTML = "<p class='comment-text'>" + lst.listName + "</p>";
-            listNameContainer.appendChild(listNameDiv);
-        }
-        memoryContainer.appendChild(listNameContainer);
-        $(firstListNameDiv).addClass('active');
-        populateListContentScreen(firstListObject, listContentContainer);
-    } else {
-        populateListContentScreen(listDisplayObject, listContentContainer);
+  var memoryContainer = document.createElement('div');
+  memoryContainer.classList.add('memory');
+  var listContentContainer = document.createElement('div');
+  listContentContainer.classList.add('content-panel');
+  if (listDisplayObject.multiList) {
+    var userLists = listDisplayObject.allLists;
+    var listNameContainer = document.createElement('ul');
+    listNameContainer.classList.add('left-panel');
+    var firstListObject = null;
+    var firstListNameDiv = null;
+    for (lst of userLists) {
+      var listNameDiv = document.createElement('li');
+      if (firstListNameDiv == null) {
+        firstListObject = lst;
+        firstListNameDiv = listNameDiv;
+      }
+      listNameDivToEntity.set(listNameDiv, lst);
+      listNameDiv.innerHTML = "<p class='comment-text'>" + lst.listName + "</p>";
+      listNameContainer.appendChild(listNameDiv);
     }
-    memoryContainer.appendChild(listContentContainer);
-    return memoryContainer;
+    memoryContainer.appendChild(listNameContainer);
+    $(firstListNameDiv).addClass('active');
+    populateListContentScreen(firstListObject, listContentContainer);
+  } else {
+    populateListContentScreen(listDisplayObject, listContentContainer);
+  }
+  memoryContainer.appendChild(listContentContainer);
+  return memoryContainer;
 }
 
 function populateListContentScreen(listDisplayObject, listContentContainer) {
-    var headerContainer = document.createElement('div');
-    headerContainer.innerHTML = "<h1 style='color: black'>" + listDisplayObject.listName + " list</h1>";
-    listContentContainer.appendChild(headerContainer);
-    if (listDisplayObject.items) {
-        for (listItem of listDisplayObject.items) {
-            listContentContainer.appendChild(makeBulletedElement(listItem));
-        }
+  var headerContainer = document.createElement('div');
+  headerContainer.innerHTML = "<h1 style='color: black'>" + listDisplayObject.listName + " list</h1>";
+  listContentContainer.appendChild(headerContainer);
+  if (listDisplayObject.items) {
+    for (listItem of listDisplayObject.items) {
+        listContentContainer.appendChild(makeBulletedElement(listItem));
     }
+  }
+  var downloadButton = document.createElement('a');
+  downloadButton.classList.add('download');
+  downloadButton.innerHTML = "<img src = \"images/download.png\" class=\"download-image\" alt = \"Download\">";
+  downloadButton.addEventListener("click", function() {
+    var contentDiv = this.parentNode;
+    var regexp1 = /<[a-z]*?>(.*?)<\/[a-z]*?>/g;
+    var regexp2 = /<.*?>(.*?)<.*?>/g;
+    var listItems = [...contentDiv.innerHTML.matchAll(regexp1)];
+    var title = [...listItems[0][1].matchAll(regexp2)][0][1];
+    var listText = title + "\n\n";
+    for (var i = 1; i < listItems.length; i++) {
+        listText += "- " + listItems[i][1] + "\n";
+    }
+    var blob = new Blob([listText], {type : "text/plain;charset=utf-8"});
+    if (textFile !== null) {
+        window.URL.revokeObjectURL(textFile);
+    }
+    textFile = window.URL.createObjectURL(blob);
+
+    this.setAttribute("href", textFile);
+    this.download = title + ".txt";
+  })
+  listContentContainer.appendChild(downloadButton);
 }
 
 function getListContentScreen(listNameDiv) {
@@ -189,7 +214,7 @@ function getListContentScreen(listNameDiv) {
 }
 
 function makeBulletedElement(itemString) {
-    var bulletDiv = document.createElement('li');
-    bulletDiv.innerHTML = itemString;
-    return bulletDiv;
+  var bulletDiv = document.createElement('li');
+  bulletDiv.innerHTML = itemString;
+  return bulletDiv;
 }

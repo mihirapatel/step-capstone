@@ -518,7 +518,7 @@ ul {
     height: 210px;
     width: 190px;
     overflow-y: scroll;
-    border: 2px solid #bcbbbb;
+    border-right: 2px solid #bcbbbb;
 }
 
 li {
@@ -556,6 +556,7 @@ li {
 .memory {
     background-color: white;
     height: 400px;
+    border: 2px solid #bcbbbb;
 }
 
 .conversation-div {
@@ -586,6 +587,7 @@ li {
     padding-top: 0px;
     overflow-y: auto;
     text-align: left;
+    position: relative;
 }
 
 .comment-text {
@@ -752,4 +754,22 @@ button.bookshelf-button:hover,button.bookshelf-button:focus {
   color: #4c8bf5;
   border-color: #4c8bf5;
   box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
+}
+
+.download {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px; 
+  right: 10px;
+}
+
+.download-image {
+  width: 30px;
+  height: 30px;
+  opacity: 20%;
+}
+
+.download-image:hover {
+  opacity: 40%;
 }
