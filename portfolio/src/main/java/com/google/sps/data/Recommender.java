@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 public class Recommender {
 
   private static Logger log = LoggerFactory.getLogger(Recommender.class);
-
   private int K;
   private final int STEPS = 10000;
   private final double ALPHA_START = 0.1;
@@ -99,6 +98,7 @@ public class Recommender {
    */
   SimpleMatrix matrixFactorization(
       SimpleMatrix dataMatrix, SimpleMatrix userFeatures, SimpleMatrix itemFeatures) {
+    log.info("Input matrix: " + dataMatrix);
     for (int step = 0; step < STEPS; step++) {
       double updated_learning_rate = Math.max(ALPHA_START / (Math.sqrt(step + 1)), 0.005);
       for (int row = 0; row < dataMatrix.numRows(); row++) {
@@ -151,6 +151,7 @@ public class Recommender {
         return estimatedData;
       }
     }
+    log.info("Return matrix: " + userFeatures.mult(itemFeatures));
     return userFeatures.mult(itemFeatures);
   }
 

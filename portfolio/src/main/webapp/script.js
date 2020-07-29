@@ -23,15 +23,11 @@ const textInputContainer = document.getElementById("text-input");
 var sessionId = "";
 var queryNumber = 0;
 window.onbeforeunload = deleteSessionInformation;
+var isUserLoggedIn = false;
  
 var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
-
-var sessionId = "";
-var queryNumber = 0;
-window.onbeforeunload = deleteSessionInformation;
-var isUserLoggedIn = false;
 
 /**
 * Function triggered with each character typed in the text input container that handles 
@@ -114,7 +110,7 @@ function getAudioStream(blob) {
 }
 
 /**
-* Backend call to dialogflow that handles recognizing the user's intent and 
+* Backend call to Dialogflow that handles recognizing the user's intent and 
 * accomplishing the necessary backend fulfillment to carry out the user's request.
 * Creates an audio output and handles making any displays that are necessary.
 * 
@@ -333,4 +329,24 @@ function deleteSessionInformation(){
       console.log('Deleted comments for ' + sessionId)
   });
   return null;
+}
+
+/** Saves workout plan using SaveWorkoutServlet for current user
+ *
+ * @param workoutPlan workoutPlan string with userId, workoutPlanPlaylist, workoutPlanId 
+ */
+
+function saveWorkoutPlan(workoutPlan){
+
+  //Create new JSON oject for workout plan to be saved
+  var savedWorkoutPlan = new Object();
+  savedWorkoutPlan.userId = workoutPlan.userId;
+  savedWorkoutPlan.workoutPlanId  = workoutPlan.workoutPlanId;
+  var workoutPlanString= JSON.stringify(savedWorkoutPlan);
+
+  fetch('/save-workouts' + '?workout-plan=' + workoutPlanString, {
+      method: 'POST'
+  }).then(response => response.text()).then(() => {
+      console.log('Saved workout plan');
+  });
 }

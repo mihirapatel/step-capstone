@@ -1,18 +1,21 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.users.UserService;
 import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
-import com.google.sps.data.Partition;
+import com.google.sps.data.WorkoutPlan;
 import com.google.sps.data.YouTubeVideo;
 import com.google.sps.utils.TimeUtils;
 import com.google.sps.utils.VideoUtils;
+import com.google.sps.utils.WorkoutProfileUtils;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,20 +32,39 @@ public class WorkoutAgent implements Agent {
   private String output = null;
   private String display = null;
   private String redirect = null;
+  private DatastoreService datastore;
+  private UserService userService;
   private String workoutType = "";
   private String workoutLength = "";
   private String youtubeChannel = "";
   private int planLength;
+  private String userSaved = "";
   private String amount = "";
   private String unit = "";
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
   private static final int maxPlaylistResults = 5;
 
-  public WorkoutAgent(String intentName, Map<String, Value> parameters)
+  /**
+   * Workout agent constructor that uses intent and parameters to determnine fulfillment and display
+   * for user request
+   *
+   * @param intentName String containing the specific workout agent intent requeste by user
+   * @param parameters Map containing the detected entities in the user's intent
+   * @param userService UserService instance to access userId and other user info
+   * @param datastore DatastoreService instance used to access saved workout plans from the user's
+   *     database
+   */
+  public WorkoutAgent(
+      String intentName,
+      Map<String, Value> parameters,
+      UserService userService,
+      DatastoreService datastore)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
+    this.datastore = datastore;
+    this.userService = userService;
     setParameters(parameters);
   }
 
@@ -53,7 +75,7 @@ public class WorkoutAgent implements Agent {
     if (intentName.contains("find")) {
       workoutFind(parameters);
     } else if (intentName.contains("plan")) {
-      workoutPlan(parameters);
+      workoutPlanner(parameters);
     }
   }
 
@@ -132,7 +154,7 @@ public class WorkoutAgent implements Agent {
     youtubeChannel = youtubeChannel.replaceAll("\\s", "");
 
     // Make API call to WorkoutUtils to get json object of videos
-    List<YouTubeVideo> videoList =
+    ArrayList<YouTubeVideo> videoList =
         VideoUtils.getVideoList(
             workoutLength, workoutType, youtubeChannel, videosDisplayedTotal, "video");
 
@@ -140,14 +162,14 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private workoutPlan method, makes and displays a workout specified by user request. Method sets
-   * parameters for planLength and workoutType based on Dialogflow detection and makes calls to set
-   * display and set output. parameters map needs to include duration struct to set int planLength
-   * and String workoutType
+   * Private workoutPlanner method, makes and displays a workout specified by user request. Method
+   * sets parameters for planLength and workoutType based on Dialogflow detection and makes calls to
+   * set display and set output. parameters map needs to include duration struct to set int
+   * planLength and String workoutType
    *
    * @param parameters parameter Map from Dialogflow
    */
-  private void workoutPlan(Map<String, Value> parameters) throws IOException {
+  private void workoutPlanner(Map<String, Value> parameters) throws IOException {
     log.info(String.valueOf(parameters));
     workoutType = parameters.get("workout-type").getStringValue();
     Struct durationStruct = parameters.get("date-time").getStructValue();
@@ -164,10 +186,10 @@ public class WorkoutAgent implements Agent {
         output = "Sorry, unable to make a workout plan for more than 30 days. Please try again.";
       } else {
         // Set output
-        setWorkoutPlanOutput();
+        setWorkoutPlannerOutput();
 
         // Set display
-        setWorkoutPlanDisplay();
+        setWorkoutPlannerDisplay();
       }
     } catch (ParseException e) {
       System.err.println("Unable to parse date format.");
@@ -175,26 +197,30 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPlanOutput method, that sets the agent output based on set parameters for
-   * planLength and workoutType from workoutPlan method
+   * Private setworkoutPlannerOutput method, that sets the agent output based on set parameters for
+   * planLength and workoutType from workoutPlanner method
    */
-  private void setWorkoutPlanOutput() {
+  private void setWorkoutPlannerOutput() {
     output = "Here is your " + planLength + " day " + workoutType + " workout plan:";
   }
 
   /**
-   * Private setworkoutPlanDisplay method, that sets the agent display to JSON string by making YT
-   * Data API call from VideoUtils to get passed into workout.js
+   * Private setworkoutPlannerDisplay method, that sets the agent display to JSON string by making
+   * YT Data API call from VideoUtils to get passed into workout.js
    */
-  private void setWorkoutPlanDisplay() throws IOException {
+  private void setWorkoutPlannerDisplay() throws IOException {
 
     // Removing white space so search URL does not have spaces
     workoutType = workoutType.replaceAll("\\s", "");
 
-    // Make API call to WorkoutUtils to get json object of videos
-    List<YouTubeVideo> videoList =
-        VideoUtils.getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
-    List<List<YouTubeVideo>> listOfVideoLists = Partition.ofSize(videoList, 5);
-    display = new Gson().toJson(listOfVideoLists);
+    // Make API call to VideoUtils to get WorkoutPlan object
+    WorkoutPlan workoutPlan =
+        VideoUtils.getWorkoutPlan(
+            userService, datastore, maxPlaylistResults, planLength, workoutType, "playlist");
+    if (userService.isUserLoggedIn()) {
+      String userId = userService.getCurrentUser().getUserId();
+      WorkoutProfileUtils.storeWorkoutPlan(userId, datastore, workoutPlan);
+    }
+    display = new Gson().toJson(workoutPlan);
   }
 }

@@ -141,6 +141,7 @@ function createMarkers(places, map, limit) {
     
     var li = document.createElement('li');
     li.classList.add('patterned');
+    li.classList.add('clickable');
     li.textContent = place.name;
     placesList.appendChild(li);
     placesDict.set(li, marker);
