@@ -238,8 +238,9 @@ public class MemoryUtils {
    */
   public static void allocateList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
+    String stemmedListName = StemUtils.stemmed(listName);
     List<Entity> existingList =
-        fetchExistingListQuery(datastore, userID, StemUtils.stemmed(listName));
+        fetchExistingListQuery(datastore, userID, stemmedListName);
     if (!existingList.isEmpty()) {
       Entity existingEntity = existingList.get(0);
       long timestamp = (long) existingEntity.getProperty("timestamp");
@@ -248,7 +249,6 @@ public class MemoryUtils {
         existingEntity.setProperty(
             "listName",
             ((String) existingEntity.getProperty("listName")) + " (" + timeString + ")");
-
       } catch (ParseException e) {
         existingEntity.setProperty(
             "listName",
@@ -257,10 +257,11 @@ public class MemoryUtils {
                 + String.valueOf(timestamp)
                 + ")");
       }
-
+      if (items.size() > 0) {
+          decreaseFracEntityWeights(datastore, userID, stemmedListName);
+      }
       datastore.put(existingEntity);
     }
-
     addListItems(datastore, userID, items, listName);
   }
 
@@ -276,22 +277,22 @@ public class MemoryUtils {
    */
   public static boolean addToList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
+    String stemmedListName = StemUtils.stemmed(listName);
     List<Entity> existingList =
-        fetchExistingListQuery(datastore, userID, StemUtils.stemmed(listName));
+        fetchExistingListQuery(datastore, userID, stemmedListName);
     if (existingList.isEmpty()) {
       addListItems(datastore, userID, items, listName);
-      saveAggregateListData(datastore, userID, listName, items, true);
       return false;
     }
-    saveAggregateListData(datastore, userID, listName, items, false);
     Entity existingEntity = existingList.get(0);
     ArrayList<String> existingItems = (ArrayList<String>) existingEntity.getProperty("items");
     if (existingItems == null) {
       existingItems = new ArrayList<>();
+      decreaseFracEntityWeights(datastore, userID, stemmedListName);
     }
     existingItems.addAll(items);
     existingEntity.setProperty("items", existingItems);
-
+    saveAggregateListData(datastore, userID, listName, items, false);
     datastore.put(existingEntity);
     return true;
   }
@@ -324,6 +325,9 @@ public class MemoryUtils {
   private static void addListItems(
       DatastoreService datastore, String userID, ArrayList<String> items, String listName) {
     makeListEntity(datastore, userID, items, listName, System.currentTimeMillis());
+    if (items != null && items.size() > 0) {
+        saveAggregateListData(datastore, userID, listName, items, true);
+    }
   }
 
   /**
@@ -366,36 +370,34 @@ public class MemoryUtils {
       List<String> items,
       boolean newList) {
     String stemmedListName = StemUtils.stemmed(listName);
-    Entity entity;
+    Entity aggregateEntity;
     try {
-      entity = datastore.get(KeyFactory.createKey(stemmedListName, userID));
+      aggregateEntity = datastore.get(KeyFactory.createKey(stemmedListName, userID));
+    } catch (EntityNotFoundException e) {
+      aggregateEntity = new Entity(stemmedListName, userID);
+      aggregateEntity.setProperty("userID", userID);
+    }
+    if (items != null) {
       for (String item : items) {
         String stemmedItem = StemUtils.stemmed(item);
         StemUtils.saveStemData(datastore, userID, item);
         long prevValue =
-            entity.getProperty(stemmedItem) == null ? 0 : (long) entity.getProperty(stemmedItem);
-        entity.setProperty(stemmedItem, prevValue + 1);
+            aggregateEntity.getProperty(stemmedItem) == null ? 0 : (long) aggregateEntity.getProperty(stemmedItem);
+        aggregateEntity.setProperty(stemmedItem, prevValue + 1);
       }
-    } catch (EntityNotFoundException e) {
-      entity = new Entity(stemmedListName, userID);
-      entity.setProperty("userID", userID);
-      for (String item : items) {
-        String stemmedItem = StemUtils.stemmed(item);
-        StemUtils.saveStemData(datastore, userID, item);
-        long value = 1;
-        entity.setProperty(stemmedItem, value);
-      }
+      updateUniqueProperties(datastore, stemmedListName, StemUtils.stemmedList(items));
     }
-    entity.setProperty("timestamp", System.currentTimeMillis());
+    aggregateEntity.setProperty("timestamp", System.currentTimeMillis());
+    long incrementCount = 0;
     if (newList) {
-      Object countObject = entity.getProperty("count");
-      long count = countObject == null ? 1 : ((long) countObject) + 1;
-      entity.setProperty("count", count);
+      incrementCount = 1;
     }
-    entity.setProperty("listName", stemmedListName);
-    datastore.put(entity);
-    updateFractionalAggregation(datastore, userID, entity);
-    updateUniqueProperties(datastore, stemmedListName, StemUtils.stemmedList(items));
+    Object countObject = aggregateEntity.getProperty("count");
+    long count = countObject == null ? 0 + incrementCount : ((long) countObject) + incrementCount;
+    aggregateEntity.setProperty("count", count);
+    aggregateEntity.setProperty("listName", stemmedListName);
+    datastore.put(aggregateEntity);
+    updateFractionalAggregation(datastore, userID, stemmedListName, items, aggregateEntity, count == 1);
   }
 
   /**
@@ -427,22 +429,66 @@ public class MemoryUtils {
    *
    * @param datastore Database entity to retrieve data from
    * @param userID The logged-in user's ID
-   * @param entity Original entity reference.
+   * @param stemmedListName Stemmed name of the list for which we are recording unique items
+   * @param items New items that were added
+   * @param aggregateEntity Aggregate entity for reference in creating fractional entity
+   * @param firstList Boolean representing true if updating fractions for the first list of a name type
    */
   private static void updateFractionalAggregation(
-      DatastoreService datastore, String userID, Entity entity) {
-    Entity fracEntity = new Entity("Frac-" + (String) entity.getProperty("listName"), userID);
-    Long total = (Long) entity.getProperty("count");
-    for (String item : entity.getProperties().keySet()) {
-      if (AGG_ENTITY_ID_PROPERTIES.contains(item)) {
-        continue;
+      DatastoreService datastore, String userID, String stemmedListName, List<String> items, Entity entity, boolean firstList) {
+    if (items == null) {
+        return;
+    }
+    List<String> stemmedItems = StemUtils.stemmedList(items);
+    Entity fracEntity;
+    try {
+      fracEntity = datastore.get(KeyFactory.createKey("Frac-" + stemmedListName, userID));
+      double incrementValue = firstList ? 1.0 : 0.4;
+      for (String stemmedItem : stemmedItems) {
+        Double existingRate = (Double)fracEntity.getProperty(stemmedItem);
+        if (existingRate == null) {
+            fracEntity.setProperty(stemmedItem, incrementValue);
+        } else {
+            fracEntity.setProperty(stemmedItem, existingRate + incrementValue);
+        }
       }
-      fracEntity.setProperty(item, ((Long) entity.getProperty(item)) / total.doubleValue());
+      fracEntity.setProperty("count", entity.getProperty("count"));
+    } catch (EntityNotFoundException e) {
+      fracEntity = new Entity("Frac-" + stemmedListName, userID);
+      for (String name : AGG_ENTITY_ID_PROPERTIES) {
+        fracEntity.setProperty(name, entity.getProperty(name));
+      }
+      for (String stemmedItem : stemmedItems) {
+          fracEntity.setProperty(stemmedItem, 1.0);
+      }
     }
-    for (String name : AGG_ENTITY_ID_PROPERTIES) {
-      fracEntity.setProperty(name, entity.getProperty(name));
-    }
+    log.info("frac entity here" + fracEntity);
     datastore.put(fracEntity);
+  }
+
+   /**
+   * Retrieves existing fractional entity from datastore and halves all weights to diminish 
+   * effects of earlier grocery lists. If no fractional entity of the given name exists,
+   * then does nothing.
+   *
+   * @param datastore Database entity to retrieve data from
+   * @param userID The logged-in user's ID
+   * @param stemmedListName Stemmed name of the list for the fractional entity to be retrieved.
+   */
+  private static void decreaseFracEntityWeights(DatastoreService datastore, String userID, String stemmedListName) {
+      try {
+          Entity fracEntity = datastore.get(KeyFactory.createKey("Frac-" + stemmedListName, userID));
+      for (String item : fracEntity.getProperties().keySet()) {
+        if (AGG_ENTITY_ID_PROPERTIES.contains(item)) {
+            continue;
+        }
+        fracEntity.setProperty(item, ((Double) fracEntity.getProperty(item)) * 0.6);
+      }
+      log.info("decrease frac entity: " + fracEntity);
+      datastore.put(fracEntity);
+      } catch (EntityNotFoundException e) {
+          return;
+      }
   }
 
   /**
@@ -456,17 +502,10 @@ public class MemoryUtils {
    * @return String containing the fulfillment response to the user
    */
   public static String makePastRecommendations(
-      String userID, DatastoreService datastore, String listName) throws EntityNotFoundException {
-    String defaultResponse =
-        "Created! What are some items to add to your new " + listName + " list?";
-    Entity entity;
-    try {
-      entity = datastore.get(KeyFactory.createKey("Frac-" + StemUtils.stemmed(listName), userID));
-    } catch (EntityNotFoundException e) {
-      return defaultResponse;
-    }
+      String userID, DatastoreService datastore, String listName) throws EntityNotFoundException, IllegalStateException {
+    Entity entity = datastore.get(KeyFactory.createKey("Frac-" + StemUtils.stemmed(listName), userID));
     if ((long) entity.getProperty("count") < 3) {
-      return defaultResponse;
+      throw new IllegalStateException("Not enough past lists to make recommendations.");
     }
     PriorityQueue pq =
         new PriorityQueue(
@@ -482,19 +521,15 @@ public class MemoryUtils {
         continue;
       }
       Double itemFreq = (Double) entity.getProperty(item);
-      if (itemFreq > 0.501) {
+      if (itemFreq > 0.49) {
         pq.add(new Pair<String, Double>(item, itemFreq));
       }
     }
     if (pq.isEmpty()) {
-      return defaultResponse;
+      throw new IllegalStateException("No items in PQ");
     }
-    try {
       String suggestedItems = getSuggestedItems(userID, datastore, pq);
-      return "Created! Based on your previous lists, would you like to add " + suggestedItems + "?";
-    } catch (IllegalStateException e) {
-      return defaultResponse;
-    }
+      return " Based on your previous lists, would you like to add " + suggestedItems + "?";
   }
 
   /**
@@ -555,7 +590,7 @@ public class MemoryUtils {
         rec.makeRecommendations(userEntity, otherUserEntities, uniqueItems);
     List<Pair<String, Double>> filteredUserInterest =
         expectedUserInterest.stream()
-            .filter(e -> (!existingItemsInList.contains(e.getKey())) && (e.getValue() > 0.501))
+            .filter(e -> (!existingItemsInList.contains(e.getKey())) && (e.getValue() > 0.4))
             .collect(Collectors.toList());
     PriorityQueue pq =
         new PriorityQueue(

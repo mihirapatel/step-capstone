@@ -48,6 +48,9 @@ public class Book implements Serializable {
   private int order;
   private String volumeId;
   private Boolean ebook = false;
+  private Boolean isLiked = false;
+  private ArrayList<String> likedBy;
+  private int likeCount = 0;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -90,12 +93,7 @@ public class Book implements Serializable {
     setTextSnippet(volume);
     setVolumeId(volume);
     setEbook(volume);
-  }
-
-  public void setEbook(Volume volume) {
-    if (hasValidSaleInfo(volume)) {
-      this.ebook = volume.getSaleInfo().getIsEbook();
-    }
+    this.likedBy = new ArrayList<String>();
   }
 
   /**
@@ -123,6 +121,23 @@ public class Book implements Serializable {
     this.volumeId = "";
   }
 
+  @Override
+  public boolean equals(Object object) {
+    if (object == this) {
+      return true;
+    }
+    if (!(object instanceof Book)) {
+      return false;
+    }
+    Book otherBook = (Book) object;
+    return otherBook.getVolumeId().equals(this.volumeId);
+  }
+
+  @Override
+  public int hashCode() {
+    return this.volumeId.hashCode();
+  }
+
   public void setOrder(int order) {
     this.order = order;
   }
@@ -137,6 +152,12 @@ public class Book implements Serializable {
 
   private void setDescription(Volume volume) {
     this.description = volume.getVolumeInfo().getDescription();
+  }
+
+  private void setEbook(Volume volume) {
+    if (hasValidSaleInfo(volume)) {
+      this.ebook = volume.getSaleInfo().getIsEbook();
+    }
   }
 
   private void setAuthors(Volume volume) {
@@ -279,9 +300,25 @@ public class Book implements Serializable {
     return this.textSnippet;
   }
 
+  public ArrayList<String> getLikedBy() {
+    return this.likedBy;
+  }
+
+  public int getLikeCount() {
+    return this.likeCount;
+  }
+
   public Boolean isEbook() {
     return this.ebook;
   }
+
+  public void addToLikedBy(String name) {
+    if (!this.likedBy.contains(name)) {
+      this.likedBy.add(name);
+      this.likeCount += 1;
+    }
+  }
+
   /**
    * Checks if Volume object has a valid title
    *
@@ -325,11 +362,12 @@ public class Book implements Serializable {
     return volume.getSearchInfo() != null;
   }
 
-  public void clearDescription() {
-    this.description = "";
+  public void setIsLiked(Boolean bool) {
+    this.isLiked = bool;
   }
 
-  public void clearPreview() {
-    this.embeddable = false;
+  public void setLikedBy(ArrayList<String> likedByFriends) {
+    this.likedBy = likedByFriends;
+    this.likeCount = likedByFriends.size();
   }
 }

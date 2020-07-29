@@ -68,6 +68,21 @@ window.onresize = function() {
  
 window.onresize();
 
+// Close the liked book dropdown menu if the user presses out of the button
+window.onclick = function(event) {
+  if (!event.target.matches("[class^=book-button-dropbtn]") &&
+      !event.target.matches("[class^=book-dropbtn-logo]")) {
+    var dropdowns = document.getElementsByClassName("book-dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 /**
 * Retrives the saved language from session storage or English as default.
 */
@@ -134,6 +149,7 @@ function authSetup() {
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
     //Checks if user is logged in or not
+    console.log(displayText.authText);
     if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
         createWorkoutDashboardButton();
@@ -203,6 +219,22 @@ function goToBookshelf(intent, bookshelfName){
 }
 
 /**
+ * Retrieves Output object created by BookAgent for the specified friend's liked
+ * books, triggered by pressing their name in the like list. Sends stream 
+ * to generic handler and does not specify a queryID (in order to generate new
+ * query)
+ * 
+ * @param intent name of book intent
+ * @param friendName friend to retrieve likes from
+ */
+function seeFriendsLikedBooks(intent, friendName){
+  fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId + 
+    '&friend=' + friendName, {
+      method: 'POST'
+  }).then(response => response.text()).then(stream => displayResponse(stream));
+}
+
+/**
  * Retrieves Output object created by BookAgent for specified intent 
  * triggered by a button the display. Sends stream to generic handler 
  * and specifies a queryID to reference stored query.
@@ -215,6 +247,20 @@ function getBooksFromButton(intent, queryID){
     '&query-id=' + queryID, {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
+}
+
+/**
+ * Handles when user hits like button for a book by storing liked book 
+ * or deleting stored liked book. Function is triggered by like button.
+ * 
+ * @param type either 'like' or 'unlike'
+ * @param number index of book to retrieve information for
+ * @param queryID queryID for div that triggered button
+ */
+function handleBookLiked(type, number, queryID) {
+  fetch('/book-likes?type=' + type + '&orderNum=' + number + '&query-id=' + queryID, {
+      method: 'POST'
+  });
 }
 
 /**

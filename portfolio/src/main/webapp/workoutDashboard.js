@@ -6,7 +6,6 @@ var userEmail;
 /** Creates Workout Dashboard button on assistant main page that links to dashboard page*/
 function createWorkoutDashboardButton(){
     var dashboardDiv = document.getElementsByClassName("workout-dashboard-link")[0];
-
     var dashboardLink = document.createElement("a");
     dashboardLink.title = "Workout Dashboard";
     dashboardLink.innerHTML = "Workout Dashboard"
@@ -57,7 +56,7 @@ function displayUserInfo() {
     email.innerHTML = userEmail;
     userContact.appendChild(email);
     userInfoDiv.appendChild(userContact);
-
+    dashboardContainer.appendChild(dashboardLink);
 }
 
 

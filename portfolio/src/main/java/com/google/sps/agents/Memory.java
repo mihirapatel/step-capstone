@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
  */
 public class Memory implements Agent {
 
+  private static Logger log = LoggerFactory.getLogger(Name.class);
+
   private final String intentName;
   private String userID;
   private String fulfillment;
@@ -39,7 +41,6 @@ public class Memory implements Agent {
   private UserService userService;
   private String listName;
   private ArrayList<String> items = new ArrayList<>();
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
@@ -175,15 +176,17 @@ public class Memory implements Agent {
    * @param parameters Map containing the detected entities in the user's intent.
    */
   private void makeList(Map<String, Value> parameters) throws EntityNotFoundException {
+    MemoryUtils.allocateList(listName, userID, datastore, items);
+    fulfillment = "Created!";
     if (items.isEmpty()) {
-      fulfillment = MemoryUtils.makePastRecommendations(userID, datastore, listName);
-      MemoryUtils.allocateList(listName, userID, datastore, items);
-      MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
+      try {
+          fulfillment += MemoryUtils.makePastRecommendations(userID, datastore, listName);
+      } catch (EntityNotFoundException | IllegalStateException e) {
+          log.error("User recommendation error", e);
+          fulfillment += " What are some items to add to your new " + listName + " list?";
+      }
       return;
     }
-    MemoryUtils.allocateList(listName, userID, datastore, items);
-    MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
-    fulfillment = "Created!";
     makeMoreRecommendations();
   }
 
