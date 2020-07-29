@@ -19,6 +19,7 @@ public class RecommendationsClient {
 
   private static Logger log = LoggerFactory.getLogger(RecommendationsClient.class);
   private String userID;
+  private static final String BASE_URL = "https://arliu-step-2020-3.wl.r.appspot.com/";
 
   public void setUserID(String userID) {
     this.userID = userID;
@@ -30,18 +31,24 @@ public class RecommendationsClient {
    * @param stemmedListName The stemmed name of the list to store aggregation information for.
    * @param items List of strings containing items that were newly added.
    * @param newList Indicates whether the list is a new list (true) or updating existing (false)
+   * @param positiveFeedback Boolean to indicate if the items are liked/added by user (true) or not
+   *     liked by user (false)
    */
-  public void saveAggregateListData(String stemmedListName, List<String> items, boolean newList)
+  public void saveAggregateListData(
+      String stemmedListName, List<String> items, boolean newList, boolean positiveFeedback)
       throws InvalidRequestException {
     log.info("making storeInfo api request");
     RestTemplate restTemplate = new RestTemplate();
     String urlString =
-        "https://arliu-step-2020-3.wl.r.appspot.com/storeInfo?userID="
+        BASE_URL
+            + "storeInfo?userID="
             + userID
             + "&stemmedListName="
             + stemmedListName
             + "&newList="
-            + newList;
+            + newList
+            + "&positiveFeedback="
+            + positiveFeedback;
     HttpEntity<List<String>> entity = new HttpEntity<>(items);
     log.info("http entity: " + entity.getBody());
     ResponseEntity<Void> result =
@@ -92,12 +99,7 @@ public class RecommendationsClient {
     log.info("making pastUserRecs api request");
     RestTemplate restTemplate = new RestTemplate();
     String urlString =
-        "https://arliu-step-2020-3.wl.r.appspot.com/"
-            + methodName
-            + "?userID="
-            + userID
-            + "&stemmedListName="
-            + stemmedListName;
+        BASE_URL + methodName + "?userID=" + userID + "&stemmedListName=" + stemmedListName;
     URI uri = new URI(urlString);
     ResponseEntity<List> result = restTemplate.getForEntity(uri, List.class);
     if (result.getStatusCode() != HttpStatus.OK) {

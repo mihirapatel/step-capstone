@@ -65,7 +65,7 @@ public class TestHelper {
     doNothing().when(recommenderMock).setUserID(any(String.class));
     doNothing()
         .when(recommenderMock)
-        .saveAggregateListData(any(String.class), any(List.class), any(Boolean.class));
+        .saveAggregateListData(any(String.class), any(List.class), any(Boolean.class), any(Boolean.class));
     // when(recommenderMock.setUserID(any(String.class))).doNothing();
     // when(recommenderMock.saveAggregateListData(any(String.class), any(List.class),
     // any(Boolean.class))).doNothing();

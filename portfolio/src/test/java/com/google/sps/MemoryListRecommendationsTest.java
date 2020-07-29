@@ -215,6 +215,9 @@ public class MemoryListRecommendationsTest {
 
     // No response
     tester.setParameters("no", "{\"list-name\":\"grocery\"}", "memory.list - make - no");
+    tester.setUserRecommendations(
+        Arrays.asList(
+            new Pair("apple", 0.0), new Pair("pineapple", -0.3), new Pair("grapes", 0.2)));
     assertEquals("Your preferences are noted.", tester.getOutput().getFulfillmentText());
     List<String> listItems =
         (List<String>) tester.fetchDatastoreEntities("List").get(0).getProperty("items");
@@ -254,6 +257,14 @@ public class MemoryListRecommendationsTest {
         "{\"list-name\":\"grocery\","
             + "\"yes-objects\":\"pineapple and watermelon but not blueberries\"}",
         "memory.list - make - yes");
+    tester.setUserRecommendations(
+        Arrays.asList(
+            new Pair("apple", 1.0),
+            new Pair("watermelon", 0.9),
+            new Pair("blueberries", -0.2),
+            new Pair("pineapple", 0.7),
+            new Pair("mangos", 0.65),
+            new Pair("grapes", 0.2)));
     assertEquals(
         "Updated! Based on your list item history, you might be interested in adding mangos to your grocery list.",
         tester.getOutput().getFulfillmentText());

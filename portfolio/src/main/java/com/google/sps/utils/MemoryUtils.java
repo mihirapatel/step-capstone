@@ -301,12 +301,12 @@ public class MemoryUtils {
     Entity existingEntity = existingList.get(0);
     ArrayList<String> existingItems = (ArrayList<String>) existingEntity.getProperty("items");
     if (existingItems != null) {
-      recommender.saveAggregateListData(stemmedListName, items, false);
+      recommender.saveAggregateListData(stemmedListName, items, false, true);
       existingItems.addAll(items);
       existingEntity.setProperty("items", existingItems);
     } else {
       existingEntity.setProperty("items", items);
-      recommender.saveAggregateListData(stemmedListName, items, true);
+      recommender.saveAggregateListData(stemmedListName, items, true, true);
     }
     datastore.put(existingEntity);
     return true;
@@ -346,7 +346,7 @@ public class MemoryUtils {
       throws InvalidRequestException {
     makeListEntity(datastore, userID, items, listName, System.currentTimeMillis());
     if (items != null && items.size() > 0) {
-      recommender.saveAggregateListData(StemUtils.stemmed(listName), items, true);
+      recommender.saveAggregateListData(StemUtils.stemmed(listName), items, true, true);
     }
   }
 
@@ -514,7 +514,7 @@ public class MemoryUtils {
 
   public static void provideNegativeFeedback(
       RecommendationsClient recommender, String listName, List<String> items) {
-    // TODO implement this
+    recommender.saveAggregateListData(StemUtils.stemmed(listName), items, false, false);
     return;
   }
 }
