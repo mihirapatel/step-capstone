@@ -28,9 +28,6 @@ var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
-var sessionId = "";
-var queryNumber = 0;
-window.onbeforeunload = deleteSessionInformation;
 
 /**
 * Function triggered with each character typed in the text input container that handles 
@@ -113,7 +110,7 @@ function getAudioStream(blob) {
 }
 
 /**
-* Backend call to dialogflow that handles recognizing the user's intent and 
+* Backend call to Dialogflow that handles recognizing the user's intent and 
 * accomplishing the necessary backend fulfillment to carry out the user's request.
 * Creates an audio output and handles making any displays that are necessary.
 * 
@@ -151,6 +148,10 @@ function authSetup() {
     var authContainer = document.getElementsByClassName("auth-link")[0];
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
+    //Checks if user is logged in or not
+    if (displayText.logButton == "Logout") {
+        isUserLoggedIn = true;
+    }
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
     deleteSessionInformation();
@@ -328,4 +329,24 @@ function deleteSessionInformation(){
       console.log('Deleted comments for ' + sessionId)
   });
   return null;
+}
+
+/** Saves workout plan using SaveWorkoutServlet for current user
+ *
+ * @param workoutPlan workoutPlan string with userId, workoutPlanPlaylist, workoutPlanId 
+ */
+
+function saveWorkoutPlan(workoutPlan){
+
+  //Create new JSON oject for workout plan to be saved
+  var savedWorkoutPlan = new Object();
+  savedWorkoutPlan.userId = workoutPlan.userId;
+  savedWorkoutPlan.workoutPlanId  = workoutPlan.workoutPlanId;
+  var workoutPlanString= JSON.stringify(savedWorkoutPlan);
+
+  fetch('/save-workouts' + '?workout-plan=' + workoutPlanString, {
+      method: 'POST'
+  }).then(response => response.text()).then(() => {
+      console.log('Saved workout plan');
+  });
 }

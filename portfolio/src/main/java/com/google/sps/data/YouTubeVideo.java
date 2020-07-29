@@ -1,12 +1,13 @@
 package com.google.sps.data;
 
 import com.google.gson.Gson;
+import java.io.Serializable;
 
 /**
  * YouTubeVideo class for Workout agent that has channel name and id of channel that posted video on
  * YouTube and title, description, thumbnail, id of video
  */
-public final class YouTubeVideo {
+public class YouTubeVideo implements Serializable {
   private String channelTitle;
   private String title;
   private String description;
@@ -41,7 +42,7 @@ public final class YouTubeVideo {
     channelURL += channelId;
   }
 
-  public String toString() {
+  public String toGson() {
     return new Gson().toJson(this);
   }
 }
