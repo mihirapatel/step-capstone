@@ -149,7 +149,6 @@ function authSetup() {
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
     //Checks if user is logged in or not
-    console.log(displayText.authText);
     if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
         createWorkoutDashboardButton();
@@ -335,11 +334,10 @@ function deleteSessionInformation(){
 
 /** Saves workout plan using SaveWorkoutServlet for current user
  *
- * @param workoutPlan workoutPlan string with userId, workoutPlanPlaylist, workoutPlanId 
+ * @param workoutPlan workoutPlan string with userId and workoutPlanId 
  */
 
 function saveWorkoutPlan(workoutPlan){
-
   //Create new JSON oject for workout plan to be saved
   var savedWorkoutPlan = new Object();
   savedWorkoutPlan.userId = workoutPlan.userId;
@@ -351,4 +349,8 @@ function saveWorkoutPlan(workoutPlan){
   }).then(response => response.text()).then(() => {
       console.log('Saved workout plan');
   });
+}
+
+function getUserLoginStatus() {
+    return isUserLoggedIn;
 }

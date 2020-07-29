@@ -170,10 +170,14 @@ public class WorkoutAgent implements Agent {
    * @param parameters parameter Map from Dialogflow
    */
   private void workoutPlanner(Map<String, Value> parameters) throws IOException {
-    log.info(String.valueOf(parameters));
+
+    // Get workoutType from parameter map
     workoutType = parameters.get("workout-type").getStringValue();
+
+    // Set planLength after getting duration struct from parameter map
     Struct durationStruct = parameters.get("date-time").getStructValue();
     Map<String, Value> durationMap = durationStruct.getFieldsMap();
+
     try {
       Date start = TimeUtils.stringToDate(durationMap.get("startDateTime").getStringValue());
       Date end = TimeUtils.stringToDate(durationMap.get("endDateTime").getStringValue());
@@ -218,8 +222,7 @@ public class WorkoutAgent implements Agent {
         VideoUtils.getWorkoutPlan(
             userService, datastore, maxPlaylistResults, planLength, workoutType, "playlist");
     if (userService.isUserLoggedIn()) {
-      String userId = userService.getCurrentUser().getUserId();
-      WorkoutProfileUtils.storeWorkoutPlan(userId, datastore, workoutPlan);
+      WorkoutProfileUtils.storeWorkoutPlan(datastore, workoutPlan);
     }
     display = new Gson().toJson(workoutPlan);
   }

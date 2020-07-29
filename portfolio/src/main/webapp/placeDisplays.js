@@ -1,5 +1,27 @@
 var isUserLoggedIn = false;
 
+function placeUserInput(text, container) {
+  if (container == "convo-container") {
+    streamingContainer.innerHTML = "";
+    streamingContainer.style.display = "none";
+  }
+  if (text != " (null) "){
+    var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
+    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side talk-bubble speech-border tri-right round right-in", container);
+  }
+}
+
+function placeFulfillmentResponseContainer(text, container) {
+  placeObjectContainer("<p>" + text + "</p>", "assistant-side talk-bubble speech-border tri-right round left-in", container);
+  if (text.includes("Switching conversation language")) {
+    window.sessionStorage.setItem("language", getLastWord(text));
+  }
+}
+ 
+function placeFulfillmentResponse(text) {
+  placeFulfillmentResponseContainer(text, "convo-container");
+}
+
 function getLastWord(words) {
     var split = words.split(/[ ]+/);
     console.log(split);

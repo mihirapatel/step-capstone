@@ -12,6 +12,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.common.collect.Iterables;
 import com.google.sps.data.WorkoutPlan;
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.apache.commons.lang3.SerializationUtils;
 
@@ -20,22 +21,20 @@ public class WorkoutProfileUtils {
   /**
    * Stores all generated workout plans if user is logged in
    *
-   * @param userID The current logged-in user's ID number
    * @param datastore Datastore instance to store WorkoutPlan in database
-   * @param workoutPlan WorkoutPlan object created by user to store in database
+   * @param workoutPlan WorkoutPlan object created by current user to store in database
    */
-  public static void storeWorkoutPlan(
-      String userId, DatastoreService datastore, WorkoutPlan workoutPlan) {
-    long timestamp = System.currentTimeMillis();
-    Entity workoutPlanEntity = new Entity("WorkoutPlan");
+  public static void storeWorkoutPlan(DatastoreService datastore, WorkoutPlan workoutPlan) {
 
+    // Transform WorkoutPlan to Blob to be able to store with Datastore
     byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
     Blob workoutPlanBlob = new Blob(workoutPlanData);
 
-    workoutPlanEntity.setProperty("userId", userId);
+    // Create WorkoutPlan Entity and store in Datastore
+    Entity workoutPlanEntity = new Entity("WorkoutPlan");
+    workoutPlanEntity.setProperty("userId", workoutPlan.getUserId());
     workoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
     workoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
-    workoutPlanEntity.setProperty("timestamp", timestamp);
     datastore.put(workoutPlanEntity);
   }
 
@@ -45,18 +44,19 @@ public class WorkoutProfileUtils {
    * @param userID The current logged-in user's ID number
    * @param workoutPlanId The id for the workout they want to save
    * @param datastore Datastore instance to retrieve WorkoutPlan from database
-   * @return ArrayList of WorkoutPlan objects that user saved
+   * @return WorkoutPlan that user wants to save
    */
   public static WorkoutPlan getStoredWorkoutPlan(
       String userId, int workoutPlanId, DatastoreService datastore) {
 
-    Filter storedWorkoutPlanFilter = createStoredWorkoutPlanFilter(userId, workoutPlanId);
-    Query query = new Query("WorkoutPlan").setFilter(storedWorkoutPlanFilter);
+    // Create Filter to retrieve WorkoutPlan entities based on userId and workoutPlanId
+    Filter workoutPlanFilter = createWorkoutPlanFilter(userId, workoutPlanId);
+    Query query = new Query("WorkoutPlan").setFilter(workoutPlanFilter);
     PreparedQuery results = datastore.prepare(query);
 
     Entity workoutPlanEntity = results.asSingleEntity();
 
-    long timestamp = (long) workoutPlanEntity.getProperty("timestamp");
+    // Transform WorkoutPlan Blob back into WorkoutPlan and return it
     Blob workoutPlanBlob = (Blob) workoutPlanEntity.getProperty("workoutPlan");
     WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
 
@@ -64,25 +64,85 @@ public class WorkoutProfileUtils {
   }
 
   /**
-   * Saved WorkoutPlan when requested by user
+   * Saves WorkoutPlan when requested by user (on button click)
    *
-   * @param userID The current logged-in user's ID number
+   * @param workoutPlan WorkoutPlan object current user wants to save in database
    * @param datastore Datastore instance to save WorkoutPlan in database
-   * @param workoutPlan WorkoutPlan object to save in database
    */
-  public static void saveWorkoutPlan(
-      String userId, DatastoreService datastore, WorkoutPlan workoutPlan) {
-    long timestamp = System.currentTimeMillis();
-    Entity savedWorkoutPlanEntity = new Entity("SavedWorkoutPlan");
+  public static void saveWorkoutPlan(WorkoutPlan workoutPlan, DatastoreService datastore) {
 
+    // Transform WorkoutPlan to Blob to be able to store with Datastore
     byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
     Blob workoutPlanBlob = new Blob(workoutPlanData);
 
-    savedWorkoutPlanEntity.setProperty("userId", userId);
+    // Create SavedWorkoutPlan Entity and store in Datastore
+    Entity savedWorkoutPlanEntity = new Entity("SavedWorkoutPlan");
+    savedWorkoutPlanEntity.setProperty("userId", workoutPlan.getUserId());
     savedWorkoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
     savedWorkoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
-    savedWorkoutPlanEntity.setProperty("timestamp", timestamp);
+    savedWorkoutPlanEntity.setProperty("numWorkoutDaysCompleted", 0);
     datastore.put(savedWorkoutPlanEntity);
+  }
+
+  /**
+   * Retrieves saved WorkoutPlans to display on user's workout dashboard
+   *
+   * @param userID The current logged-in user's ID number
+   * @param datastore Datastore instance to retrieve WorkoutPlans from database
+   * @return ArrayList of WorkoutPlan objects that has user saved
+   */
+  public static ArrayList<WorkoutPlan> getSavedWorkoutPlans(
+      String userId, DatastoreService datastore) {
+
+    // Create Filter to retrieve WorkoutPlan entities based on userId
+    Filter savedWorkoutPlanFilter = new FilterPredicate("userId", FilterOperator.EQUAL, userId);
+    Query query = new Query("SavedWorkoutPlan").setFilter(savedWorkoutPlanFilter);
+    PreparedQuery results = datastore.prepare(query);
+
+    ArrayList<WorkoutPlan> savedWorkoutPlans = new ArrayList<>();
+
+    // For each saved WorkoutPLan, transform WorkoutPlan Blob back into WorkoutPlan and add to
+    // ArrayList
+    for (Entity savedWorkoutPlanEntity : results.asIterable()) {
+      Blob workoutPlanBlob = (Blob) savedWorkoutPlanEntity.getProperty("workoutPlan");
+      WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
+      savedWorkoutPlans.add(workoutPlan);
+    }
+
+    return savedWorkoutPlans;
+  }
+
+  /**
+   * Updates SavedWorkoutPlan with the number of workout plan days the user has completed
+   *
+   * @param userID The current logged-in user's ID number
+   * @param workoutPlanId The id for the workout they want to save
+   * @param numWorkoutDaysCompleted The number of workout plan days the user has completed
+   * @param datastore Datastore instance to retrieve WorkoutPlan from database
+   */
+  public static void updateSavedWorkoutPlan(
+      String userId, int workoutPlanId, int numWorkoutDaysCompleted, DatastoreService datastore) {
+
+    // Create Filter to retrieve SavedWorkoutPlan entities based on userId and workoutPlanId
+    Filter workoutPlanFilter = createWorkoutPlanFilter(userId, workoutPlanId);
+    Query query = new Query("SavedWorkoutPlan").setFilter(workoutPlanFilter);
+    PreparedQuery results = datastore.prepare(query);
+
+    Entity workoutPlanEntity = results.asSingleEntity();
+
+    // Updating Workout Plan with correct number of workout plan days user has completed
+    Blob workoutPlanBlob = (Blob) workoutPlanEntity.getProperty("workoutPlan");
+    WorkoutPlan workoutPlan = SerializationUtils.deserialize(workoutPlanBlob.getBytes());
+    workoutPlan.setNumWorkoutDaysCompleted(numWorkoutDaysCompleted);
+    byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);
+    workoutPlanBlob = new Blob(workoutPlanData);
+
+    // Updating entity and storing it back into datastore
+    workoutPlanEntity.setProperty("userId", workoutPlan.getUserId());
+    workoutPlanEntity.setProperty("workoutPlan", workoutPlanBlob);
+    workoutPlanEntity.setProperty("workoutPlanId", workoutPlan.getWorkoutPlanId());
+    workoutPlanEntity.setProperty("numWorkoutDaysCompleted", numWorkoutDaysCompleted);
+    datastore.put(workoutPlanEntity);
   }
 
   /**
@@ -108,7 +168,7 @@ public class WorkoutProfileUtils {
    * @param workoutPlanId unique id (within session) to delete entities from
    * @return CompositeFilter with proper filters
    */
-  public static Filter createStoredWorkoutPlanFilter(String userId, int workoutPlanId) {
+  public static Filter createWorkoutPlanFilter(String userId, int workoutPlanId) {
     return new CompositeFilter(
         CompositeFilterOperator.AND,
         Arrays.asList(

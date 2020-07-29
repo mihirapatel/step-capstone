@@ -34,8 +34,6 @@ import org.slf4j.LoggerFactory;
  */
 public class Memory implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Name.class);
-
   private final String intentName;
   private String userID;
   private String fulfillment;
@@ -45,6 +43,7 @@ public class Memory implements Agent {
   private UserService userService;
   private String listName;
   private ArrayList<String> items = new ArrayList<>();
+  private static Logger log = LoggerFactory.getLogger(Memory.class);
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
