@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.google.sps.data.Output;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.*;
 import javax.servlet.http.*;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class MapsSearchTest {
   private static Logger log = LoggerFactory.getLogger(MapsSearchTest.class);
 
   @Test
-  public void testMapsSearchCountry() throws IOException {
+  public void testMapsSearchCountry() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -47,7 +48,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchZipCode() throws IOException {
+  public void testMapsSearchZipCode() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -75,7 +76,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchIsland() throws IOException {
+  public void testMapsSearchIsland() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -106,7 +107,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchBusinessName() throws IOException {
+  public void testMapsSearchBusinessName() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -135,7 +136,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchCounty() throws IOException {
+  public void testMapsSearchCounty() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -163,7 +164,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchState() throws IOException {
+  public void testMapsSearchState() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -191,7 +192,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchStreetAddress() throws IOException {
+  public void testMapsSearchStreetAddress() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -221,7 +222,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchStreetAddress2() throws IOException {
+  public void testMapsSearchStreetAddress2() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -251,7 +252,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsSearchCity() throws IOException {
+  public void testMapsSearchCity() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -280,7 +281,7 @@ public class MapsSearchTest {
   }
 
   @Test
-  public void testMapsWithoutLocationMock() throws IOException {
+  public void testMapsWithoutLocationMock() throws IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -308,7 +309,7 @@ public class MapsSearchTest {
         output.getFulfillmentText(), "I'm sorry, I didn't catch that. Can you repeat that?");
   }
 
-  public void testMapsWithoutLocation() throws IOException {
+  public void testMapsWithoutLocation() throws IOException, URISyntaxException {
 
     TestHelper tester = new TestHelper("Show me a map");
     Output output = tester.getOutput();

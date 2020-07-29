@@ -46,6 +46,7 @@ public class MemoryListTest {
     Entity entity = databaseQuery.get(0);
     assertEquals("grocery", (String) entity.getProperty("listName"));
     assertNull(entity.getProperty("items"));
+    tester.tearDown();
   }
 
   /**
@@ -75,6 +76,7 @@ public class MemoryListTest {
     assertEquals("apples", items.get(0));
     assertEquals("bananas", items.get(1));
     assertEquals("ice cream", items.get(2));
+    tester.tearDown();
   }
 
   /**
@@ -115,6 +117,7 @@ public class MemoryListTest {
     for (int i = 0; i < queryItems.size(); i++) {
       assertEquals(items.get(i), queryItems.get(i));
     }
+    tester.tearDown();
   }
 
   /**
@@ -168,6 +171,7 @@ public class MemoryListTest {
     for (int i = 0; i < queryItems.size(); i++) {
       assertEquals(otherListItems.get(i), queryItems.get(i));
     }
+    tester.tearDown();
   }
 
   /**
@@ -268,6 +272,7 @@ public class MemoryListTest {
     for (int i = 0; i < queryItems.size(); i++) {
       assertEquals(items.get(i), queryItems.get(i));
     }
+    tester.tearDown();
   }
 
   /** Tests the scenario where user tries to add elements to a list that is not in the datastore. */
@@ -308,5 +313,6 @@ public class MemoryListTest {
     for (int i = 0; i < queryItems.size(); i++) {
       assertEquals(items.get(i), queryItems.get(i));
     }
+    tester.tearDown();
   }
 }

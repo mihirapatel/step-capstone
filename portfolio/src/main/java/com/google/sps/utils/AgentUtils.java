@@ -12,6 +12,7 @@ import com.google.protobuf.Value;
 import com.google.sps.agents.*;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import com.google.sps.data.RecommendationsClient;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Map;
@@ -24,7 +25,10 @@ public class AgentUtils {
   public static String detectedInput;
   private static UserService userService;
   private static DatastoreService datastore;
+  private static RecommendationsClient recommender;
   private static Logger log = LoggerFactory.getLogger(Name.class);
+  public static final String DEFAULT_FALLBACK =
+      "I'm sorry, I didn't catch that. Can you repeat that?";
 
   /**
    * Method that creates and returns an Output object which is passed to frontend JS that
@@ -48,7 +52,8 @@ public class AgentUtils {
       String languageCode,
       UserService userServiceInput,
       DatastoreService datastoreInput,
-      String sessionID) {
+      String sessionID,
+      RecommendationsClient recommenderInput) {
     String fulfillment = null;
     String display = null;
     String redirect = null;
@@ -61,6 +66,7 @@ public class AgentUtils {
     String intentName = getIntentName(detectedIntent);
     userService = userServiceInput;
     datastore = datastoreInput;
+    recommender = recommenderInput;
 
     // Retrieve detected input from DialogFlow result.
     detectedInput = queryResult.getQueryText();
@@ -96,7 +102,7 @@ public class AgentUtils {
       }
     }
     if (fulfillment.equals("")) {
-      fulfillment = "I'm sorry, I didn't catch that. Can you repeat that?";
+      fulfillment = DEFAULT_FALLBACK;
     }
     if (userService.isUserLoggedIn()) {
       MemoryUtils.saveComment(
@@ -133,7 +139,7 @@ public class AgentUtils {
       case "maps":
         return new Maps(intentName, parameterMap);
       case "memory":
-        return new Memory(intentName, parameterMap, userService, datastore);
+        return new Memory(intentName, parameterMap, userService, datastore, recommender);
       case "name":
         return new Name(intentName, parameterMap, userService, datastore);
       case "reminders":
