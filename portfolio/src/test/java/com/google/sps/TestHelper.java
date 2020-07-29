@@ -477,7 +477,6 @@ public class TestHelper {
    */
   public void makeUserList(String userID, int size, List<Pair<String, Integer>> items)
       throws InvalidProtocolBufferException, IOException {
-    setUser("test@example.com", userID);
     for (int i = 0; i < size; i++) {
       List<Pair<String, Integer>> itemsList = new ArrayList<>((List<Pair<String, Integer>>) items);
       final int temp = i;
@@ -486,17 +485,29 @@ public class TestHelper {
       List<String> filteredStrings =
           filteredPairs.stream().map(e -> e.getKey()).collect(Collectors.toList());
       String stringItems = String.join(", ", filteredStrings);
+      createSingleGroceryList(userID, "make", stringItems);
+      getOutput();
+    }
+  }
+
+/**
+  * Runs one command for making a single grocery list
+  *
+  * @param userID Current user's ID
+  * @param listAction Either "make" or "add" depending on the command user wants to make
+  * @param items List of pairs of strings containing the name of all items expected and integer containing the number of times added to past grocery lists.
+  */
+  public void createSingleGroceryList(String userID, String listAction, String items) throws InvalidProtocolBufferException {
+      setUser("test@example.com", userID);
       setParameters(
-          "Start a grocery list.",
+          listAction + " a grocery list with " + items,
           "{\"list-name\":\"grocery\", "
               + "\"list-objects\":\""
-              + stringItems
+              + items
               + "\","
               + "\"new-list\": \"\","
               + "\"generic-list\": \"\"}",
-          "memory.list - make");
-      getOutput();
-    }
+          "memory.list - " + listAction);
   }
 
   private class TestableTextInputServlet extends TextInputServlet {

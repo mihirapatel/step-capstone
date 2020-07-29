@@ -1,3 +1,4 @@
+var isUserLoggedIn = false;
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
@@ -10,10 +11,11 @@ function workoutVideos(videoQuery) {
 }
 
 /** Creates workout planner div that gets passed into appendDisplay method */
-function workoutPlanner(videoQuery) {
+function workoutPlanner(workoutPlanQuery) {
   workoutPlanDay = 1;
-  videos = JSON.parse(videoQuery);
-  return createWorkoutPlanTable(videos);
+  workoutPlan = JSON.parse(workoutPlanQuery);
+  videos = workoutPlan.workoutPlanPlaylist;
+  return createWorkoutPlanTable(workoutPlan, videos);
 }
 
 /**
@@ -34,14 +36,14 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
   //Creating previous button
   previousButton = document.createElement("BUTTON");
-  previousButton.classList.add("video-buttons");
+  previousButton.classList.add("workout-buttons");
   previousButton.classList.add("video-previous-button");
   var buttonText = document.createTextNode("Previous");
   previousButton.appendChild(buttonText); 
 
   //Creating next button 
   nextButton = document.createElement("BUTTON");
-  nextButton.classList.add("video-buttons");
+  nextButton.classList.add("workout-buttons");
   nextButton.classList.add("video-next-button");
   var buttonText = document.createTextNode("Next");
   nextButton.appendChild(buttonText);
@@ -178,14 +180,13 @@ function showNewVideosPage(numShiftIndex) {
 *
 * @param videos JSON object of a list of lists of videos in chunks of 5
 */
-function createWorkoutPlanTable(videos) {
-  console.log(videos);
+function createWorkoutPlanTable(workoutPlan, videos) {
   workoutPlannerDiv = document.createElement("div");
   workoutPlannerDiv.classList.add("media-display");
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
-  var plannerDivHeight =  videos.length * 135;
+  var plannerDivHeight =  (videos.length * 135) + 45;
   plannerDiv.style.height = plannerDivHeight.toString() + "px";
   workoutPlannerDiv.appendChild(plannerDiv);
 
@@ -195,6 +196,10 @@ function createWorkoutPlanTable(videos) {
 
   for (var i = 0; i < videos.length; i++) {
     createNewPlanTable(videos[i]);
+  }
+
+  if (isUserLoggedIn) {
+      createWorkoutPlanFooter(workoutPlan);
   }
 
   return workoutPlannerDiv;
@@ -255,6 +260,24 @@ function createNewPlanTable(videos) {
 
   }
 
+}
+
+/** Created a footer with buttons to save workout plan and  */
+function createWorkoutPlanFooter() {
+    //Footer
+    var workoutPlanFooter = document.createElement("div");
+    workoutPlanFooter.className = "workout-plan-footer";
+    plannerDiv.appendChild(workoutPlanFooter);
+
+    //Save Workout Plan Button
+    saveWorkoutPlanButton = document.createElement("BUTTON");
+    saveWorkoutPlanButton.classList.add("save-workout-plan-button");
+    saveWorkoutPlanButton.classList.add("workout-buttons");
+    var buttonText = document.createTextNode("Save Workout Plan");
+    saveWorkoutPlanButton.appendChild(buttonText); 
+    workoutPlanFooter.appendChild(saveWorkoutPlanButton);
+
+    workoutPlanFooter.getElementsByClassName("save-workout-plan-button").item(0).onclick = function() {saveWorkoutPlan(workoutPlan)};
 }
 
 /** Replaces unicode strings with actual characters */

@@ -106,12 +106,12 @@ public final class RecommenderTest {
                 new Pair<String, Integer>("banana", 1),
                 new Pair<String, Integer>("carrot", 5),
                 new Pair<String, Integer>("donut", 4)));
-
-    tester.checkFracAggregate("groceri", "1", items, Arrays.asList(1.0, 0.6, 0.0, 0.2));
-    tester.checkFracAggregate("groceri", "2", items, Arrays.asList(0.8, 0.0, 0.0, 0.2));
-    tester.checkFracAggregate("groceri", "3", items, Arrays.asList(0.2, 0.2, 0.0, 1.0));
-    tester.checkFracAggregate("groceri", "4", items, Arrays.asList(0.2, 0.0, 0.0, 0.8));
-    tester.checkFracAggregate("groceri", "5", items, Arrays.asList(0.0, 0.2, 1.0, 0.8));
+    log.info("printing");
+    tester.checkFracAggregate("groceri", "1", items, Arrays.asList(1.0, Math.pow(0.6, 2), 0.0, Math.pow(0.6, 4)));
+    tester.checkFracAggregate("groceri", "2", items, Arrays.asList(1.0, 0.0, 0.0, Math.pow(0.6, 3)));
+    tester.checkFracAggregate("groceri", "3", items, Arrays.asList(Math.pow(0.6, 4), Math.pow(0.6, 4), 0.0, 1.0));
+    tester.checkFracAggregate("groceri", "4", items, Arrays.asList(Math.pow(0.6, 3), 0.0, 0.0, 1.0));
+    tester.checkFracAggregate("groceri", "5", items, Arrays.asList(0.0, Math.pow(0.6, 4), 1.0, 0.6));
 
     List<Entity> entities = tester.fetchDatastoreAllUsers("Frac-groceri");
     Recommender rec = new Recommender();
@@ -120,7 +120,12 @@ public final class RecommenderTest {
             entities.remove(0), entities, new HashSet<String>(StemUtils.stemmedList(items)));
     for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 4; j++) {
-        assertEquals(dataMatrix.get(i, j) / 5, matrix.get(i, j), 0.01);
+        if (dataMatrix.get(i, j) < 1) {
+            assertEquals(0.0, matrix.get(i, j), 0.01);
+        } else {
+            int maxPower = i % 2 == 1 ? 4 : 5;
+            assertEquals(Math.pow(0.6, maxPower - dataMatrix.get(i, j)), matrix.get(i, j), 0.01);
+        }
       }
     }
   }

@@ -28,9 +28,6 @@ var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
-var sessionId = "";
-var queryNumber = 0;
-window.onbeforeunload = deleteSessionInformation;
 
 /**
 * Function triggered with each character typed in the text input container that handles 
@@ -136,6 +133,10 @@ function authSetup() {
     var authContainer = document.getElementsByClassName("auth-link")[0];
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
+    //Checks if user is logged in or not
+    if (displayText.logButton == "Logout") {
+        isUserLoggedIn = true;
+    }
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
     deleteSessionInformation();
@@ -216,6 +217,20 @@ function getBooksFromButton(intent, queryID){
 }
 
 /**
+ * Handles when user hits like button for a book by storing liked book 
+ * or deleting stored liked book. Function is triggered by like button.
+ * 
+ * @param type either 'like' or 'unlike'
+ * @param number index of book to retrieve information for
+ * @param queryID queryID for div that triggered button
+ */
+function handleBookLiked(type, number, queryID) {
+  fetch('/book-likes?type=' + type + '&orderNum=' + number + '&query-id=' + queryID, {
+      method: 'POST'
+  });
+}
+
+/**
  * Retrieves list of bookshelves to add the specified volume to
  * based on valid bookshelves for the authenticated user. Function is
  * triggered by a button to add volume to bookshelf 
@@ -283,4 +298,24 @@ function deleteSessionInformation(){
       console.log('Deleted comments for ' + sessionId)
   });
   return null;
+}
+
+/** Saves workout plan using SaveWorkoutServlet for current user
+ *
+ * @param workoutPlan workoutPlan string with userId, workoutPlanPlaylist, workoutPlanId 
+ */
+
+function saveWorkoutPlan(workoutPlan){
+
+  //Create new JSON oject for workout plan to be saved
+  var savedWorkoutPlan = new Object();
+  savedWorkoutPlan.userId = workoutPlan.userId;
+  savedWorkoutPlan.workoutPlanId  = workoutPlan.workoutPlanId;
+  var workoutPlanString= JSON.stringify(savedWorkoutPlan);
+
+  fetch('/save-workouts' + '?workout-plan=' + workoutPlanString, {
+      method: 'POST'
+  }).then(response => response.text()).then(() => {
+      console.log('Saved workout plan');
+  });
 }
