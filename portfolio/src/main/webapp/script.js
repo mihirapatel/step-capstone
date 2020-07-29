@@ -23,11 +23,11 @@ const textInputContainer = document.getElementById("text-input");
 var sessionId = "";
 var queryNumber = 0;
 window.onbeforeunload = deleteSessionInformation;
+var isUserLoggedIn = false;
  
 var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
 var unsentLastCommand;
-
 
 /**
 * Function triggered with each character typed in the text input container that handles 
