@@ -64,12 +64,12 @@ public class WorkoutProfileUtils {
   }
 
   /**
-   * Saves WorkoutPlan when requested by user
+   * Saves WorkoutPlan when requested by user (on button click)
    *
-   * @param datastore Datastore instance to save WorkoutPlan in database
    * @param workoutPlan WorkoutPlan object current user wants to save in database
+   * @param datastore Datastore instance to save WorkoutPlan in database
    */
-  public static void saveWorkoutPlan(DatastoreService datastore, WorkoutPlan workoutPlan) {
+  public static void saveWorkoutPlan(WorkoutPlan workoutPlan, DatastoreService datastore) {
 
     // Transform WorkoutPlan to Blob to be able to store with Datastore
     byte[] workoutPlanData = SerializationUtils.serialize(workoutPlan);

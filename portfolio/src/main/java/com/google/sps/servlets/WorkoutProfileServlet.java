@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Retrieves information about the user related to workout: workout plans, completed workouts, etc.
- */
+/** Retrieves information about the user: id, name, email */
 @WebServlet("/workout-user-profile")
 public class WorkoutProfileServlet extends HttpServlet {
 

@@ -17,12 +17,6 @@ public class WorkoutPlan implements Serializable {
   private int planLength;
   private static final long serialVersionUID = -7602557355975608053L;
 
-  // 2020-07-27 17:24:59.583:WARN:oejs.HttpChannel:qtp644166178-17:
-  // handleException /save-workouts java.io.InvalidClassException: com.google.sps.data.WorkoutPlan;
-  // local class incompatible:
-  // stream classdesc serialVersionUID = 1554936233711268897, local class serialVersionUID =
-  // -7602557355975608053
-
   /** WorkoutPlan constructor to use when user is not logged in */
   public WorkoutPlan(ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist, String playlistId) {
     this.workoutPlanPlaylist = workoutPlanPlaylist;

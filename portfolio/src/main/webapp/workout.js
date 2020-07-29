@@ -7,13 +7,19 @@ var plannerDiv;
 var plannerTable;
 var isUserLoggedIn = function() {getUserLoggedInStatus();};
 
-/** Creates workout videos div that gets passed into appendDisplay method */
+/** Creates workout videos div that gets passed into appendDisplay method
+ *
+ * @param videoQuery list of all videos retuned by YouTube Data API call for workout.find intent
+ */
 function workoutVideos(videoQuery) {
   videos = JSON.parse(videoQuery);
   return createVideoDivs(videos, indexStart, indexEnd);
 }
 
-/** Creates workout planner div that gets passed into appendDisplay method */
+/** Creates workout planner div that gets passed into appendDisplay method
+ *
+ * @param workoutPlanQuery list of all videos in workout playlist created from YouTube Data API call
+ */
 function workoutPlanner(workoutPlanQuery) {
   workoutPlan = JSON.parse(workoutPlanQuery);
   workoutPlanDay = 1;
@@ -170,7 +176,8 @@ function showNewVideosPage(numShiftIndex) {
         mediaDiv.removeChild(mediaDiv.firstChild);
       }
   }
-  
+
+  //Create new divs
   indexStart += numShiftIndex
   indexEnd += numShiftIndex
   let workoutDiv = createVideoDivs(videos, indexStart, indexEnd);
@@ -191,6 +198,7 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
   var localStorageKey = userId + "-" + workoutPlanId;
   videos = workoutPlan.workoutPlanPlaylist;
 
+  //Creating correct div depending on if workout plan table needs to be created on main assistant display or dashboard
   if (onDashboard) {
     workoutPlannerDiv = document.createElement("div");
     workoutPlannerDiv.className = "dashboard-workout-plan";
@@ -198,7 +206,7 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
     workoutPlannerDiv = document.createElement("div");
     workoutPlannerDiv.className = "media-display";
   }
-  
+
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
   var plannerDivHeight =  (videos.length * 135) + 45;
@@ -209,20 +217,21 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
   plannerTable.className = "planner-table";
   plannerDiv.appendChild(plannerTable); 
 
+  //Initialize workout plan info in localStorage if not already stored
   if (onDashboard && !window.localStorage.getItem(localStorageKey)) {
       initializeWorkoutPlanProgress(workoutPlan, localStorageKey);
   }
 
+  //Creates new rows for workout plan table
   for (var i = 0; i < videos.length; i++) {
     createNewPlanTable(videos[i], workoutPlan, onDashboard);
   }
 
   //Only workout plan footer with save workout plan button if user logged in or view workout plan on YT if user is not logged in
   if (addFooter) {
-      createWorkoutPlanFooter(workoutPlan, isUserLoggedIn);
+      createWorkoutPlanFooter(workoutPlan);
   }
   
-
   return workoutPlannerDiv;
 }
 
@@ -230,6 +239,7 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
 * Creates a new row in the workout planner table (display shows new row, this creates new table)
 *
 * @param videos JSON object of videos in chunks of 5 videos
+* @param workoutPlan JSON object workout plan to get information about user and workout plan if logged in 
 * @param onDashboard boolean to know if table is on dashboard or assistant main page
 */
 
@@ -279,6 +289,7 @@ function createNewPlanTable(videos, workoutPlan, onDashboard) {
       tableVideoLink.appendChild(tableVideoTitle);
       tableData.appendChild(tableVideoLink);
 
+      //Add Mark Complete or Completed buttons if workout plan table on dashboard
       if (onDashboard) {
         var userId = workoutPlan.userId;
         var workoutPlanId = workoutPlan.workoutPlanId;
@@ -289,7 +300,7 @@ function createNewPlanTable(videos, workoutPlan, onDashboard) {
         markCompletedButton.classList.add("workout-buttons");
         markCompletedButton.classList.add("mark-completed-button");
 
-        var buttonText = getButtonText(workoutPlan, markCompletedButton.id, localStorageKey);
+        var buttonText = getButtonText(markCompletedButton.id, localStorageKey);
         markCompletedButton.appendChild(buttonText); 
         tableData.appendChild(markCompletedButton);
 
@@ -302,9 +313,12 @@ function createNewPlanTable(videos, workoutPlan, onDashboard) {
 
 }
 
-/** Created a footer with buttons to save workout plan and  */
-function createWorkoutPlanFooter(workoutPlan, isUserLoggedIn) {
-    //Footer
+/** Created a footer with buttons to save workout plan and 
+ *
+ * @param workoutPlan workoutPlan JSON object to know which workout plan to save if save button clicked
+ */
+function createWorkoutPlanFooter(workoutPlan) {
+    
     var workoutPlanFooter = document.createElement("div");
     workoutPlanFooter.className = "workout-plan-footer";
     plannerDiv.appendChild(workoutPlanFooter);
@@ -334,6 +348,12 @@ function createWorkoutPlanFooter(workoutPlan, isUserLoggedIn) {
     }
 }
 
+/** Marks day in workout plan as completed when button clicked and saves this is localStorage so user can access this information even when page is refreshed 
+ *
+ * @param buttonId buttonId to keep track of which workout day was marked as complete (depending on which button clicked)
+ * @param workoutPlan workoutPlan JSON object to know which workout plan to update progress about
+ * @param localStorageKey key for localStorage to access and update correct workout plan for correct user
+ */
 function markWorkoutAsCompleted(buttonId, workoutPlan, localStorageKey) {
 
     //Changing button text to show that workout plan day was completed
@@ -359,12 +379,17 @@ function markWorkoutAsCompleted(buttonId, workoutPlan, localStorageKey) {
     
 }
 
+/** Initialized workout plan in localStorage to workout progress can be updated in the future
+ *
+ * @param workoutPlan workoutPlan JSON object to know which workout plan to initialize progress about
+ * @param localStorageKey key for localStorage to initialize correct workout plan for correct user
+ */
 function initializeWorkoutPlanProgress(workoutPlan, localStorageKey) {
 
     var planLength = workoutPlan.planLength;
     var workoutProgressInfo = {};
 
-    //Create json to store workout progress for each day
+    //Create JSON to store workout progress for each day
     var workoutPlanProgressJson = {};
     for (var i = 1; i <= planLength; i++) {
         var day = "day-"+ i.toString();
@@ -372,15 +397,19 @@ function initializeWorkoutPlanProgress(workoutPlan, localStorageKey) {
     }
     var workoutPlanProgressString = JSON.stringify(workoutPlanProgressJson);
 
-    //Initialize number of days worked out to 0 and initialize json to track completed workouts for each day
+    //Initialize number of days worked out to 0 and initialize JSON to track completed workouts for each day
     workoutProgressInfo["numWorkoutDaysCompleted"] = 0;
     workoutProgressInfo["workoutProgressButtonText"] = workoutPlanProgressString;
     var workoutProgressInfoString = JSON.stringify(workoutProgressInfo);
     window.localStorage.setItem(localStorageKey, workoutProgressInfoString);
 }
 
-
-function getButtonText(workoutPlan, buttonId, localStorageKey) {
+/** Gets button text for each button in workout plan table to show user if workout plan day is already completed or not
+ *
+ * @param buttonId buttonId to know which button's text needs to be returned
+ * @param localStorageKey key for localStorage to find info for correct workout plan for correct user
+ */
+function getButtonText(buttonId, localStorageKey) {
     var workoutProgressInfoJson = JSON.parse(window.localStorage.getItem(localStorageKey));
     var workoutProgressButtonTextJson = JSON.parse(workoutProgressInfoJson["workoutProgressButtonText"]);
     var buttonText = workoutProgressButtonTextJson[buttonId]
@@ -390,6 +419,7 @@ function getButtonText(workoutPlan, buttonId, localStorageKey) {
 /** Updates workout plan progress when "Mark Complete" button is clicked
  *
  * @param workoutPlan workoutPlan string with userId and workoutPlanId 
+ * @param localStorageKey key for localStorage to update info for correct workout plan for correct user
  */
 
 function updateWorkoutPlanProgress(workoutPlan, localStorageKey){

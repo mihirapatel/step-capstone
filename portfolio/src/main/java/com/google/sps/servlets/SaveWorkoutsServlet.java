@@ -29,9 +29,13 @@ public class SaveWorkoutsServlet extends HttpServlet {
     JSONObject workoutPlanJson = new JSONObject(workoutPlanString);
     String userId = (String) workoutPlanJson.get("userId");
     int workoutPlanId = (int) workoutPlanJson.get("workoutPlanId");
+
+    // Getting workout plan from all stored workout plans that user wants to save
     WorkoutPlan workoutPlanToSave =
         WorkoutProfileUtils.getStoredWorkoutPlan(userId, workoutPlanId, datastore);
-    WorkoutProfileUtils.saveWorkoutPlan(datastore, workoutPlanToSave);
+
+    // Saves workout plan
+    WorkoutProfileUtils.saveWorkoutPlan(workoutPlanToSave, datastore);
   }
 
   /** Gets saved workouts to display on workout dashboard for specific user */

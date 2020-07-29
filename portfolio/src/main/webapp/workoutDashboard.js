@@ -6,7 +6,6 @@ var savedWorkoutPlans;
 /** Creates Workout Dashboard button on assistant main page that links to dashboard page*/
 function createWorkoutDashboardButton(){
     var dashboardDiv = document.getElementsByClassName("workout-dashboard-link")[0];
-
     var dashboardLink = document.createElement("a");
     dashboardLink.title = "Workout Dashboard";
     dashboardLink.innerHTML = "Workout Dashboard"
@@ -18,10 +17,8 @@ function createWorkoutDashboardButton(){
 
 /** Call all functions to get data from backend and display it*/
 function dashboardSetup() {
-
     getUserInfo();
     getSavedWorkoutPlans();
-    
 }
 
 /** Get user info from servlet and call displayUserInfo()*/
@@ -72,7 +69,6 @@ function getSavedWorkoutPlans() {
 function displaySavedWorkoutPlans() {
 
     savedWorkoutPlansDiv = document.getElementsByClassName("saved-workouts")[0];
-
     savedWorkoutPlansTitle = document.createElement("h2");
     savedWorkoutPlansTitle.innerHTML = "Saved Workout Plans";
     savedWorkoutPlansDiv.appendChild(savedWorkoutPlansTitle);
@@ -82,7 +78,10 @@ function displaySavedWorkoutPlans() {
     } 
 }
 
-/** Creates workout plan card to display on dashboard for each saved workout plan */
+/** Creates workout plan card to display on dashboard for each saved workout plan
+ *
+ * @param savedWorkoutPlan workout plan json object to create "card"-like displays
+ */
 function createSavedWorkoutPlanCard(savedWorkoutPlan) {
     workoutPlan = JSON.parse(savedWorkoutPlan);
     var workoutPlanId = workoutPlan.workoutPlanId.toString();
@@ -99,7 +98,7 @@ function createSavedWorkoutPlanCard(savedWorkoutPlan) {
     workoutPlanCardLink.id = workoutPlanId;
     workoutPlanCardLink.title = workoutPlan.workoutPlanName;
     workoutPlanCardLink.href = "workoutPlan.html";
-    workoutPlanCardLink.onclick = function(){ storeWorkoutPlanId(this.id); }
+    workoutPlanCardLink.onclick = function() {storeWorkoutPlanId(this.id);};
     workoutPlanCardLink.target = "_blank";
     savedWorkoutPlansDiv.appendChild(workoutPlanCardLink);
 
@@ -112,7 +111,7 @@ function createSavedWorkoutPlanCard(savedWorkoutPlan) {
     workoutPlanLink.title = workoutPlan.workoutPlanName;
     workoutPlanLink.innerHTML = workoutPlan.workoutPlanName;
     workoutPlanLink.href = "workoutPlan.html";
-    workoutPlanLink.onclick = function(){ storeWorkoutPlanId(this.id); }
+    workoutPlanLink.onclick = function() {storeWorkoutPlanId(this.id);};
     workoutPlanLink.target = "_blank";
     workoutPlanCard.appendChild(workoutPlanLink);
 
@@ -150,7 +149,10 @@ function displayWorkoutPlan() {
     dashboardWorkoutPlan.appendChild(workoutPlanTable);
 }
 
-/** Stores workoutPlanId to be able to display correct workout plan when link clicked */
+/** Stores workoutPlanId to be able to display correct workout plan when link clicked
+ *
+ * @param workoutPlanId workoutPlanId to store correct workout plan
+ */
 function storeWorkoutPlanId(workoutPlanId) {
     window.localStorage.setItem("workout-plan-id", workoutPlanId);
 }
