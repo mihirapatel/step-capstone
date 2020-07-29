@@ -13,6 +13,7 @@ import com.google.sps.agents.*;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,7 +89,8 @@ public class AgentUtils {
           | NullPointerException
           | TranslateException
           | InvalidRequestException
-          | EntityNotFoundException e) {
+          | EntityNotFoundException
+          | URISyntaxException e) {
         log.info("Error in object creation.");
         e.printStackTrace();
       }
@@ -114,7 +116,8 @@ public class AgentUtils {
       Map<String, Value> parameterMap,
       String sessionID)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException, InvalidRequestException, EntityNotFoundException {
+          ArrayIndexOutOfBoundsException, InvalidRequestException, EntityNotFoundException,
+          URISyntaxException {
     switch (agentName) {
       case "books":
         return new BooksAgent(

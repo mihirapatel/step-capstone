@@ -8,16 +8,21 @@ import com.google.appengine.api.log.InvalidRequestException;
 import com.google.appengine.api.users.UserService;
 import com.google.protobuf.Value;
 import com.google.sps.data.ConversationOutput;
-import com.google.sps.data.Pair;
 import com.google.sps.data.ListDisplay;
+import com.google.sps.data.Pair;
 import com.google.sps.utils.MemoryUtils;
 import com.google.sps.utils.TimeUtils;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Memory Agent Handles storing user info from past conversation history to user lists and providing
@@ -56,7 +61,7 @@ public class Memory implements Agent {
       Map<String, Value> parameters,
       UserService userService,
       DatastoreService datastore)
-      throws InvalidRequestException, EntityNotFoundException {
+      throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
     this.intentName = intentName;
     this.userService = userService;
     this.datastore = datastore;
@@ -65,7 +70,8 @@ public class Memory implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters)
-      throws InvalidRequestException, EntityNotFoundException {
+      throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
+    log.info("parameters: " + parameters);
     if (!userService.isUserLoggedIn()) {
       fulfillment = "Please login to access user history.";
       return;
@@ -87,6 +93,7 @@ public class Memory implements Agent {
         fulfillment = "What would you like to name the list?";
         return;
       }
+      listName = cleanName(listName);
       unpackObjects(parameters);
       if (subListIntent.contains("make")) {
         makeList(parameters);
@@ -173,15 +180,22 @@ public class Memory implements Agent {
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void makeList(Map<String, Value> parameters) throws EntityNotFoundException {
+  private void makeList(Map<String, Value> parameters)
+      throws EntityNotFoundException, URISyntaxException {
     MemoryUtils.allocateList(listName, userID, datastore, items);
     fulfillment = "Created!";
     if (items.isEmpty()) {
       try {
-          fulfillment += MemoryUtils.makePastRecommendations(userID, datastore, listName);
+        String suggestedItems = MemoryUtils.makePastRecommendations(userID, datastore, listName);
+        fulfillment +=
+            " Based on your previous "
+                + listName
+                + " lists, would you like to add "
+                + suggestedItems
+                + "?";
       } catch (EntityNotFoundException | IllegalStateException e) {
-          log.error("User recommendation error", e);
-          fulfillment += " What are some items to add to your new " + listName + " list?";
+        log.error("User recommendation error", e);
+        fulfillment += " What are some items to add to your new " + listName + " list?";
       }
       return;
     }
@@ -191,26 +205,30 @@ public class Memory implements Agent {
   private void showList(Map<String, Value> parameters) throws InvalidRequestException {
     List<Entity> pastLists = MemoryUtils.getPastUserLists(datastore, userID, parameters);
     if (pastLists.isEmpty()) {
-        fulfillment = "Sorry, no lists were found.";
-        return;
+      fulfillment = "Sorry, no lists were found.";
+      return;
     }
     String listInput = parameters.get("list-object").getStringValue();
     if (listInput.charAt(listInput.length() - 1) == 's') {
-        List<ListDisplay> allLists = new ArrayList<>();
-        for (Entity e : pastLists) {
-            allLists.add(entityToListDisplay(e));
-        }
-        display = (new ListDisplay(allLists)).toString();
-        fulfillment = "Here are all the found lists.";
+      List<ListDisplay> allLists = new ArrayList<>();
+      for (Entity e : pastLists) {
+        allLists.add(entityToListDisplay(e));
+      }
+      display = (new ListDisplay(allLists)).toString();
+      fulfillment = "Here are all the found lists.";
     } else {
-        Entity mostRecentList = pastLists.get(0);
-        display = (entityToListDisplay(mostRecentList)).toString();
-        fulfillment = "Here is your most recent " + ((String) mostRecentList.getProperty("listName")) + " list.";
+      Entity mostRecentList = pastLists.get(0);
+      display = (entityToListDisplay(mostRecentList)).toString();
+      fulfillment =
+          "Here is your most recent "
+              + ((String) mostRecentList.getProperty("listName"))
+              + " list.";
     }
   }
 
   private ListDisplay entityToListDisplay(Entity e) {
-      return new ListDisplay((String) e.getProperty("listName"), (List<String>) e.getProperty("items"));
+    return new ListDisplay(
+        (String) e.getProperty("listName"), (List<String>) e.getProperty("items"));
   }
 
   /**
@@ -219,7 +237,8 @@ public class Memory implements Agent {
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void updateList(Map<String, Value> parameters) throws EntityNotFoundException {
+  private void updateList(Map<String, Value> parameters)
+      throws EntityNotFoundException, URISyntaxException {
     boolean listExists = MemoryUtils.addToList(listName, userID, datastore, items);
     if (!listExists) {
       fulfillment =
@@ -238,7 +257,7 @@ public class Memory implements Agent {
    * type and recommending those that align most closely with the current user based on other user's
    * trends.
    */
-  private void makeMoreRecommendations() {
+  private void makeMoreRecommendations() throws URISyntaxException {
     try {
       String suggestedItems = MemoryUtils.makeUserRecommendations(userID, datastore, listName);
       fulfillment +=
@@ -269,6 +288,35 @@ public class Memory implements Agent {
       items.remove(commaSplit.length - 1);
       items.addAll(new ArrayList<String>(Arrays.asList(finalSplit)));
     }
+  }
+
+  /*
+   * Removes any filler words that were picked up in name detection.
+   *
+   * @param listName name of the list detected by dialogflow
+   * @return cleaned version of the list name without extra words
+   */
+  public static String cleanName(String listName) {
+    Set<String> unnecessaryWords =
+        Stream.of("a", "an", "list", "lists", "new", "the", "my", "last", "past", "recent")
+            .collect(Collectors.toSet());
+    String[] listWords = listName.split("\\s+");
+    int start = 0;
+    int end = listWords.length - 1;
+    // Remove unnecessary words in the beginning
+    while (unnecessaryWords.contains(listWords[start])) {
+      start++;
+    }
+    // Remove unnecessary words from the end
+    while (unnecessaryWords.contains(listWords[end])) {
+      end--;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = start; i < end; i++) {
+      sb.append(listWords[i] + " ");
+    }
+    sb.append(listWords[end]);
+    return sb.toString();
   }
 
   @Override
