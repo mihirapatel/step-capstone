@@ -230,6 +230,26 @@ td {
   color: gray;
 }
 
+.user-info {
+    position: absolute;
+    top: 0;
+	padding: 2% 50% 2% 50%;
+	max-width: 640px;
+}
+.user-pic {
+	display: inline-block;
+	vertical-align: top;
+	margin: 20px 30px 0 0;
+	border-radius: 50%;
+	height: 180px;
+	width: 180px;
+}
+
+.user-contact {
+	display: inline-block;
+	width: 45%;
+}
+
 /* Workout Agent Styling End */
 
 h1 {
