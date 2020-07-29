@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Retrieves information about the user: id, name, email */
+
 @WebServlet("/workout-user-profile")
 public class WorkoutProfileServlet extends HttpServlet {
 

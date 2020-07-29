@@ -28,6 +28,7 @@ function getUserInfo() {
         userId = infoJson.userId;
         userName = infoJson.userName;
         userEmail = infoJson.userEmail;
+
         displayUserInfo();
     });
 }
@@ -54,7 +55,6 @@ function displayUserInfo() {
     email.innerHTML = userEmail;
     userContact.appendChild(email);
     userInfoDiv.appendChild(userContact);
-
 }
 
 /** Gets user's saved workout plans from servlet and call displaySavedWorkoutPlans()*/
@@ -156,3 +156,4 @@ function displayWorkoutPlan() {
 function storeWorkoutPlanId(workoutPlanId) {
     window.localStorage.setItem("workout-plan-id", workoutPlanId);
 }
+

@@ -19,7 +19,6 @@ package com.google.sps.data;
 // Imports the Google Cloud client library
 import com.google.api.services.books.*;
 import com.google.gson.*;
-import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.sps.utils.AgentUtils;
 import java.io.Serializable;
@@ -38,18 +37,23 @@ import java.util.Map;
 public class BookQuery implements Serializable {
 
   private String userInput;
+  private String intent;
   private String type;
   private String categories;
   private String authors;
   private String title;
   private String order;
   private String language;
+  private String bookshelfName;
   private String queryString;
+  private boolean isMyLibrary;
+  private String friendName;
 
   /**
-   * Creates a BookQuery object the detected parameters from Dialogflow that will be used to
-   * retrieve appropriate Volumes from the Google Books API that match a user input, or throws an
-   * exception if the userInput is empty
+   * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
+   * retrieve appropriate Volumes from the Google Books API that match a user input for user
+   * requests that do not require user Authentication, or throws an exception if the userInput is
+   * empty
    *
    * @param String userInput
    * @param parameters parameter Map from Dialogflow
@@ -57,10 +61,26 @@ public class BookQuery implements Serializable {
    */
   public static BookQuery createBookQuery(String userInput, Map<String, Value> parameters)
       throws IllegalArgumentException {
+    return createBookQuery(userInput, parameters, false);
+  }
+
+  /**
+   * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
+   * retrieve appropriate Volumes from the Google Books API that match a user input, or throws an
+   * exception if the userInput is empty
+   *
+   * @param String userInput
+   * @param parameters parameter Map from Dialogflow
+   * @param requiresAuth determines whether request requires user authentication
+   * @return BookQuery object
+   */
+  public static BookQuery createBookQuery(
+      String userInput, Map<String, Value> parameters, Boolean requiresAuth)
+      throws IllegalArgumentException {
     if (userInput == null || userInput.isEmpty()) {
       throw new IllegalArgumentException();
     } else {
-      BookQuery bookQuery = new BookQuery(userInput, parameters);
+      BookQuery bookQuery = new BookQuery(userInput, parameters, requiresAuth);
       return bookQuery;
     }
   }
@@ -75,14 +95,17 @@ public class BookQuery implements Serializable {
    * @param userInput detected input string
    * @param parameters parameter Map from Dialogflow
    */
-  private BookQuery(String userInput, Map<String, Value> parameters) {
+  private BookQuery(String userInput, Map<String, Value> parameters, Boolean requiresAuth) {
     this.userInput = userInput;
+    this.isMyLibrary = requiresAuth;
     setType(parameters.get("type"));
     setCategories(parameters.get("categories"));
     setAuthors(parameters.get("authors"));
     setTitle(parameters.get("title"));
     setOrder(parameters.get("order"));
     setLanguage(parameters.get("language"));
+    setBookshelf(parameters.get("bookshelf"));
+    setFriendName(parameters.get("friend"));
     setQueryString();
   }
 
@@ -103,12 +126,8 @@ public class BookQuery implements Serializable {
       ArrayList<Value> valueList = new ArrayList<Value>(paramValue.getListValue().getValuesList());
       ArrayList<String> authorList = new ArrayList<String>();
       for (int i = 0; i < valueList.size(); ++i) {
-        Struct personStruct = valueList.get(i).getStructValue();
-        Map<String, Value> personFields = personStruct.getFieldsMap();
-        if (personFields.get("name") != null
-            && !personFields.get("name").getStringValue().isEmpty()) {
-          String authorName =
-              String.join("+", personFields.get("name").getStringValue().split(" "));
+        if (getValidName(valueList.get(i)) != null) {
+          String authorName = String.join("+", getValidName(valueList.get(i)).split(" "));
           authorList.add("inauthor:\"" + authorName + "\"");
         }
       }
@@ -152,6 +171,33 @@ public class BookQuery implements Serializable {
     this.queryString = queryText;
   }
 
+  private void setBookshelf(Value paramValue) {
+    if (paramValue != null && !paramValue.getStringValue().isEmpty()) {
+      String name = paramValue.getStringValue();
+      this.bookshelfName = name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+  }
+
+  private void setFriendName(Value paramValue) {
+    if (getValidName(paramValue) != null) {
+      String friend = getValidName(paramValue);
+      if (friend.endsWith("'s")) {
+        friend = friend.substring(0, friend.length() - 2);
+      }
+      String[] names = friend.split(" ");
+      for (int i = 0; i < names.length; ++i) {
+        if (names[i].length() > 1) {
+          names[i] = names[i].substring(0, 1).toUpperCase() + names[i].substring(1).toLowerCase();
+        }
+      }
+      this.friendName = String.join(" ", names);
+    }
+  }
+
+  public String getBookshelfName() {
+    return this.bookshelfName;
+  }
+
   public String getTitle() {
     return this.title;
   }
@@ -180,7 +226,34 @@ public class BookQuery implements Serializable {
     return this.userInput;
   }
 
+  public String getFriendName() {
+    return this.friendName;
+  }
+
   public String getQueryString() {
     return this.queryString;
+  }
+
+  public Boolean isMyLibrary() {
+    return this.isMyLibrary;
+  }
+
+  /**
+   * Returns the name parameter if the paramValue contains a valid, non-empty "name" parameter,
+   * based on Dialogflow's person parameter format for a single person. Example: {"name": "abby
+   * mapes"} returns "abby mapes" if Map has a non-empty name parameter. Otherwise, returns null
+   *
+   * @param paramValue single value Map
+   * @return validName string
+   */
+  private String getValidName(Value paramValue) {
+    if (paramValue != null
+        && paramValue.getStructValue() != null
+        && paramValue.getStructValue().getFieldsMap() != null
+        && paramValue.getStructValue().getFieldsMap().get("name") != null
+        && !paramValue.getStructValue().getFieldsMap().get("name").getStringValue().isEmpty()) {
+      return paramValue.getStructValue().getFieldsMap().get("name").getStringValue();
+    }
+    return null;
   }
 }

@@ -9,14 +9,19 @@ import com.google.appengine.api.users.UserService;
 import com.google.protobuf.Value;
 import com.google.sps.data.ConversationOutput;
 import com.google.sps.data.Pair;
+import com.google.sps.data.ListDisplay;
 import com.google.sps.utils.MemoryUtils;
 import com.google.sps.utils.TimeUtils;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +38,7 @@ public class Memory implements Agent {
   private String userID;
   private String fulfillment;
   private String display;
+  private String redirect;
   private DatastoreService datastore;
   private UserService userService;
   private String listName;
@@ -55,7 +61,7 @@ public class Memory implements Agent {
       Map<String, Value> parameters,
       UserService userService,
       DatastoreService datastore)
-      throws InvalidRequestException, EntityNotFoundException {
+      throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
     this.intentName = intentName;
     this.userService = userService;
     this.datastore = datastore;
@@ -64,7 +70,8 @@ public class Memory implements Agent {
 
   @Override
   public void setParameters(Map<String, Value> parameters)
-      throws InvalidRequestException, EntityNotFoundException {
+      throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
+    log.info("parameters: " + parameters);
     if (!userService.isUserLoggedIn()) {
       fulfillment = "Please login to access user history.";
       return;
@@ -75,18 +82,21 @@ public class Memory implements Agent {
     } else if (intentName.contains("time")) {
       findTimePeriodComments(parameters);
     } else if (intentName.contains("list")) {
+      String[] subIntents = intentName.split("-");
+      String subListIntent = subIntents[subIntents.length - 1];
+      if (subListIntent.contains("show")) {
+        showList(parameters);
+        return;
+      }
       listName = parameters.get("list-name").getStringValue();
       if (listName.isEmpty()) {
         fulfillment = "What would you like to name the list?";
         return;
       }
+      listName = cleanName(listName);
       unpackObjects(parameters);
-      String[] subIntents = intentName.split("-");
-      String subListIntent = subIntents[subIntents.length - 1];
       if (subListIntent.contains("make")) {
         makeList(parameters);
-      } else if (subListIntent.contains("show")) {
-        showList(parameters);
       } else if (subListIntent.contains("custom") || subListIntent.contains("add")) {
         updateList(parameters);
       } else if (subListIntent.contains("yes")) {
@@ -107,7 +117,7 @@ public class Memory implements Agent {
     try {
       Value dateObject = parameters.get("date-time-enhanced");
       if (dateObject != null && dateObject.hasStructValue()) {
-        Pair<Long, Long> timeRange = getTimeRange(dateObject);
+        Pair<Long, Long> timeRange = TimeUtils.getTimeRange(dateObject);
         conversationList =
             MemoryUtils.getKeywordCommentEntitiesWithTime(
                 datastore, userID, word.toLowerCase(), timeRange.getKey(), timeRange.getValue());
@@ -142,7 +152,7 @@ public class Memory implements Agent {
   private void findTimePeriodComments(Map<String, Value> parameters)
       throws InvalidRequestException {
     try {
-      Pair<Long, Long> timeRange = getTimeRange(parameters.get("date-time-enhanced"));
+      Pair<Long, Long> timeRange = TimeUtils.getTimeRange(parameters.get("date-time-enhanced"));
       List<Entity> conversationSnippet =
           MemoryUtils.getTimePeriodCommentEntities(
               datastore, userID, timeRange.getKey(), timeRange.getValue());
@@ -166,59 +176,49 @@ public class Memory implements Agent {
   }
 
   /**
-   * Retrieves the time range for a duration request.
-   *
-   * @param datObject Value corresponding to the parameter's 'date-time-enhanced' attribute which
-   *     contains date/time info
-   * @return A pair where the key is the start time and value is the end time.
-   */
-  private Pair<Long, Long> getTimeRange(Value dateObject) throws ParseException {
-    String startDateString;
-    String endDateString;
-    Value dateTimeObject = dateObject.getStructValue().getFieldsMap().get("date-time");
-    if (dateTimeObject.hasStructValue()) {
-      Map<String, Value> durationMap = dateTimeObject.getStructValue().getFieldsMap();
-      if (durationMap.get("date-time") != null) {
-        // Case where user specifies a specific date and time (should return a 10 min period
-        // centered around the time)
-        Date dateTime = TimeUtils.stringToDate(durationMap.get("date-time").getStringValue());
-        return new Pair(dateTime.getTime() - 300000, dateTime.getTime() + 300000);
-      }
-      // Case where user specifies a time duration.
-      startDateString = durationMap.get("startDate").getStringValue();
-      endDateString = durationMap.get("endDate").getStringValue();
-    } else {
-      // Case where user asks for a date but no time (should return a full day period)
-      String dateString = dateTimeObject.getStringValue();
-      startDateString = dateString.replaceAll("T([0-9]{2}:){2}[0-9]{2}", "T00:00:00");
-      endDateString = dateString.replaceAll("T([0-9]{2}:){2}[0-9]{2}", "T23:59:59");
-    }
-    Date start = TimeUtils.stringToDate(startDateString);
-    Date end = TimeUtils.stringToDate(endDateString);
-    return new Pair(start.getTime(), end.getTime());
-  }
-
-  /**
    * Creates a new list that is stored in datastore.
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void makeList(Map<String, Value> parameters) throws EntityNotFoundException {
+  private void makeList(Map<String, Value> parameters) throws EntityNotFoundException, URISyntaxException {
+    MemoryUtils.allocateList(listName, userID, datastore, items);
+    fulfillment = "Created!";
     if (items.isEmpty()) {
-      fulfillment = MemoryUtils.makePastRecommendations(userID, datastore, listName);
-      MemoryUtils.allocateList(listName, userID, datastore, items);
-      MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
+      try {
+          String suggestedItems = MemoryUtils.makePastRecommendations(userID, datastore, listName);
+          fulfillment += " Based on your previous " + listName + " lists, would you like to add " + suggestedItems + "?";
+      } catch (EntityNotFoundException | IllegalStateException e) {
+          log.error("User recommendation error", e);
+          fulfillment += " What are some items to add to your new " + listName + " list?";
+      }
       return;
     }
-    MemoryUtils.allocateList(listName, userID, datastore, items);
-    MemoryUtils.saveAggregateListData(datastore, userID, listName, items, true);
-    fulfillment = "Created!";
     makeMoreRecommendations();
   }
 
-  private void showList(Map<String, Value> parameters) {
-    // TODO
-    fulfillment = "no display yet sorry";
+  private void showList(Map<String, Value> parameters) throws InvalidRequestException {
+    List<Entity> pastLists = MemoryUtils.getPastUserLists(datastore, userID, parameters);
+    if (pastLists.isEmpty()) {
+        fulfillment = "Sorry, no lists were found.";
+        return;
+    }
+    String listInput = parameters.get("list-object").getStringValue();
+    if (listInput.charAt(listInput.length() - 1) == 's') {
+        List<ListDisplay> allLists = new ArrayList<>();
+        for (Entity e : pastLists) {
+            allLists.add(entityToListDisplay(e));
+        }
+        display = (new ListDisplay(allLists)).toString();
+        fulfillment = "Here are all the found lists.";
+    } else {
+        Entity mostRecentList = pastLists.get(0);
+        display = (entityToListDisplay(mostRecentList)).toString();
+        fulfillment = "Here is your most recent " + ((String) mostRecentList.getProperty("listName")) + " list.";
+    }
+  }
+
+  private ListDisplay entityToListDisplay(Entity e) {
+      return new ListDisplay((String) e.getProperty("listName"), (List<String>) e.getProperty("items"));
   }
 
   /**
@@ -227,7 +227,8 @@ public class Memory implements Agent {
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void updateList(Map<String, Value> parameters) throws EntityNotFoundException {
+  private void updateList(Map<String, Value> parameters) throws EntityNotFoundException, URISyntaxException
+ {
     boolean listExists = MemoryUtils.addToList(listName, userID, datastore, items);
     if (!listExists) {
       fulfillment =
@@ -246,7 +247,7 @@ public class Memory implements Agent {
    * type and recommending those that align most closely with the current user based on other user's
    * trends.
    */
-  private void makeMoreRecommendations() {
+  private void makeMoreRecommendations() throws URISyntaxException {
     try {
       String suggestedItems = MemoryUtils.makeUserRecommendations(userID, datastore, listName);
       fulfillment +=
@@ -279,6 +280,33 @@ public class Memory implements Agent {
     }
   }
 
+  /*
+  * Removes any filler words that were picked up in name detection.
+  *
+  * @param listName name of the list detected by dialogflow
+  * @return cleaned version of the list name without extra words
+  */
+  public static String cleanName(String listName) {
+    Set<String> unnecessaryWords = Stream.of("a", "an", "list", "lists", "new", "the", "my", "last", "past", "recent").collect(Collectors.toSet());
+    String[] listWords = listName.split("\\s+");
+    int start = 0;
+    int end = listWords.length - 1;
+    // Remove unnecessary words in the beginning
+    while(unnecessaryWords.contains(listWords[start])) {
+      start ++;
+    }
+    //Remove unnecessary words from the end
+    while(unnecessaryWords.contains(listWords[end])) {
+      end --;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = start; i < end; i++) {
+      sb.append(listWords[i] + " ");
+    }
+    sb.append(listWords[end]);
+    return sb.toString();
+  }
+
   @Override
   public String getOutput() {
     return fulfillment;
@@ -291,6 +319,6 @@ public class Memory implements Agent {
 
   @Override
   public String getRedirect() {
-    return null;
+    return redirect;
   }
 }

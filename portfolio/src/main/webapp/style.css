@@ -11,67 +11,81 @@ body {
 }
 
 /* CSS talk bubble */
-.talk-bubble {
+.talk-bubble-user {
   margin: 20px;
-  display: inline-block;
   position: relative;
-  width: 300px;
   height: auto;
-  background-color: white;
+  background-color: rgb(0, 145, 255);
+  max-width: calc(60% - 20px);
+  display: inline-block;
+  float: right;
 }
 
-.speech-border {
-  border: 1px solid #cccccc;
+.talk-bubble-user:after {
+    content: '';
+    bottom: -5px;
+    right: -36px;
+    position: absolute;
+    width: 38px;
+    height: 26px;
+    background-color: transparent;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    box-shadow: -20px 10px 0px -7px rgb(0, 145, 230);
+    transform: rotate(30deg);
+}
+
+.talk-bubble-user:before {
+    content: '';
+    bottom: -15px;
+    right: -35px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url(images/android.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.talk-bubble-assistant {
+    margin: 20px;
+    position: relative;
+    height: auto;
+    background-color: lightgrey;
+    max-width: calc(60% - 20px);
+    display: inline-block;
+    float: left;
+}
+
+.talk-bubble-assistant:after {
+    content: '';
+    bottom: -7px;
+    left: -35px;
+    position: absolute;
+    width: 38px;
+    height: 26px;
+    background-color: transparent;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    box-shadow: -20px 10px 0px -7px lightgrey;
+    -webkit-transform: rotateY(180deg) rotate(30deg);
+}
+
+.talk-bubble-assistant:before {
+    content: '';
+    bottom: -20px;
+    left: -45px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url(images/icon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .round {
-  border-radius: 30px;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-
-}
-
-.tri-right.border.left-in:before {
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-    left: -40px;
-	right: auto;
-    top: 30px;
-	bottom: auto;
-}
-.tri-right.left-in:after{
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-    left: -20px;
-	right: auto;
-    top: 38px;
-	bottom: auto;
-}
-
-/* Right triangle, right side slightly down*/
-.tri-right.border.right-in:before {
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-    left: auto;
-	right: -40px;
-    top: 30px;
-	bottom: auto;
-}
-.tri-right.right-in:after{
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-    left: auto;
-	right: -20px;
-    top: 38px;
-	bottom: auto;
+    border-radius: 20px;
+    padding: 2px;
 }
 
 /* Workout Agent Styling start */
@@ -282,6 +296,8 @@ h1 {
 p {
     color: #333333;
     margin: 10px;
+    z-index: 99 !important;
+    position: relative;
 }
 
 a {
@@ -289,7 +305,7 @@ a {
 }
 
 #map {
-    width: 100%;
+    width: calc(100% - 85px);
     height: 300px;
 }
 
@@ -325,7 +341,8 @@ top: 0px;
     bottom: 200px;
     overflow: auto;
     width: 90%;
-    max-width: 850px;
+    max-width: 950px;
+    padding: 40px;
 }
  
 [class*="user-side"] {
@@ -339,8 +356,8 @@ top: 0px;
 }
  
 .media-display {
-  margin-left: auto; 
-  margin-right: auto;
+  margin-left: 20px;
+  margin-right: 15px;
   text-align: center;
 }
 
@@ -562,7 +579,7 @@ a.link {
     font-family: 'Roboto', sans-serif;
     position: absolute;
     color: black;
-    right: 0px;
+    right: 55px;
     margin-top: -300px;
     height: 300px;
     width: 200px;
@@ -597,20 +614,27 @@ ul {
     height: 210px;
     width: 190px;
     overflow-y: scroll;
-    border: 2px solid #bcbbbb;
+    border-right: 2px solid #bcbbbb;
 }
 
 li {
     background-color: #fcfcfc;
     padding: 10px;
-    text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
     border: 2px solid white;
+}
+
+.clickable {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .patterned:nth-child(odd) {
     background-color: #f1f1f1;
+}
+
+.plain {
+    background-color: white;
 }
 
 .active {
@@ -623,6 +647,8 @@ li {
     color: black;
     border-radius: 10px;
     border: 1px solid #919090;
+    height: 45px;
+    font-size: large;
 }
 
 #more:disabled {
@@ -634,14 +660,19 @@ li {
 
 .memory {
     background-color: white;
-    height: 400px;
+    border: 2px solid #bcbbbb;
+    height: 350px;
+    margin-left: 20px;
+    margin-right: 15px;
+    display: inline-block;
+    width: calc(100% - 50px);
 }
 
 .conversation-div {
     background-color: white;
-    height: 400px;
+    height: 340px;
     overflow-y: auto;
-    padding: 20px;
+    padding: 30px;
     padding-top: 0px;
     padding-bottom: 20px;
 }
@@ -653,17 +684,19 @@ li {
     margin-bottom: 10px;
 }
 
-.keyword-screen, .conversation-screen {
+.left-panel, .content-panel {
     display: inline-block;
     width: 50%;
     height: 100%;
     vertical-align:top
 }
 
-.conversation-screen {
-    padding: 10px;
+.content-panel {
+    padding: 30px;
     padding-top: 0px;
     overflow-y: auto;
+    text-align: left;
+    position: relative;
 }
 
 .comment-text {
@@ -720,6 +753,10 @@ img.redirect-logo {
   width: 10px;
 }
 
+img.book-dropbtn-logo {
+  width: 10px;
+}
+
 p.book {
   color: hsl(0, 2%, 22%);
   font-size: 14px;
@@ -733,11 +770,12 @@ p.book {
   border-radius: 8px;
   padding: 3px;
   font-size: 12px;
+  margin: 1px;
 }
 
 [class*="book-button"]:hover, [class*="book-button"]:focus {
   background: none;
-  color: hsl(0, 2%, 22%);
+  color: #4c8bf5;
   border-color: #4c8bf5;
   box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
 }
@@ -745,11 +783,34 @@ p.book {
 a.book-link {
   background: none;
   color: hsl(0, 2%, 22%);
+  text-decoration: none;
 }
 
 a.book-link:hover,a.book-link:focus {
   background: none;
   color: #4c8bf5;
+}
+
+a.add-link {
+  background: none;
+  color: hsl(0, 2%, 22%);
+  text-decoration: none;
+}
+
+a.add-link:hover,a.add-link:focus {
+  background: none;
+  color: #1aa260;
+}
+
+a.delete-link {
+  background: none;
+  color: hsl(0, 2%, 22%);
+  text-decoration: none;
+}
+
+a.delete-link:hover,a.delete-link:focus {
+  background: none;
+  color: #de5246;
 }
 
 td.prev-column {
@@ -785,4 +846,105 @@ p.description {
     color: gray;
     font-size: 10px;
     margin-top: 20px;
+}
+
+td.bookshelf-name {
+  width: 10px;
+  padding: 5px;
+}
+
+button.bookshelf-button {
+  color: hsl(0, 2%, 30%);
+  border-color: hsl(0, 2%, 70%);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 3px;
+  font-size: 14px;
+}
+
+button.bookshelf-button:hover,button.bookshelf-button:focus {
+  background: none;
+  color: #4c8bf5;
+  border-color: #4c8bf5;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.book-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.book-dropdown-content a {
+  color: black;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+[class*="book-like-count"] {
+  background: none;
+  font-size: 12px;
+  font-style: bold;
+  color: hsl(0, 2%, 22%);
+  text-decoration: none;
+}
+
+[class*="book-like-count"]:hover, [class*="book-like-count"]:focus {
+  background: none;
+  color: #4c8bf5;
+}
+
+.download {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px; 
+  right: 10px;
+}
+
+.download-image {
+  width: 30px;
+  height: 30px;
+  opacity: 20%;
+}
+
+.download-image:hover {
+  opacity: 40%;
+}
+
+.list-container {
+    overflow-y: auto;
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+    width: calc(100% - 50px);
+    margin: 20px;
+}
+
+.list-content {
+    display: inline-block;
+    width: auto;
+    text-align: left;
+    position: relative;
+    padding: 50px;
+    padding-top: 0px;
+    padding-right: 75px;
+    border: 2px solid lightgrey;
+    float: left;
 }

@@ -1,12 +1,16 @@
-package com.google.sps.data;
+package com.google.sps.recommendations;
 
 import static org.junit.Assert.*;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.sps.servlets.TestHelper;
-import com.google.sps.utils.StemUtils;
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import java.util.*;
 import org.ejml.simple.SimpleMatrix;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -26,6 +30,20 @@ public final class RecommenderTest {
         0.0, 1.0, 5.0, 4.0
       };
   private SimpleMatrix dataMatrix = new SimpleMatrix(5, 4, true, data);
+  private final LocalServiceTestHelper helper =
+      new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+  private DatastoreService datastore;
+
+  @Before
+  public void setUp() {
+    helper.setUp();
+    datastore = DatastoreServiceFactory.getDatastoreService();
+  }
+
+  @After
+  public void tearDown() {
+    helper.tearDown();
+  }
 
   /** Tests that matrix factorization method is working reasonably correctly. */
   @Test
@@ -55,11 +73,12 @@ public final class RecommenderTest {
   /** Create 5 user database entries and check that matrix is properly created from the data. */
   @Test
   public void testMatrixCreation() throws Exception {
-    TestHelper tester = new TestHelper();
+
     List<String> items = Arrays.asList("apple", "banana", "carrot", "donut");
 
     // Creates User 1 with history: 1 for item 1, 0.6 for item 2, and 0.2 for item 4.
-    tester.makeUserList(
+    TestHelper.makeUserList(
+        datastore,
         "1",
         5,
         (List<Pair<String, Integer>>)
@@ -68,7 +87,8 @@ public final class RecommenderTest {
                 new Pair<String, Integer>("banana", 3),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 1)));
-    tester.makeUserList(
+    TestHelper.makeUserList(
+        datastore,
         "2",
         5,
         (List<Pair<String, Integer>>)
@@ -77,7 +97,8 @@ public final class RecommenderTest {
                 new Pair<String, Integer>("banana", 0),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 1)));
-    tester.makeUserList(
+    TestHelper.makeUserList(
+        datastore,
         "3",
         5,
         (List<Pair<String, Integer>>)
@@ -86,7 +107,8 @@ public final class RecommenderTest {
                 new Pair<String, Integer>("banana", 1),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 5)));
-    tester.makeUserList(
+    TestHelper.makeUserList(
+        datastore,
         "4",
         5,
         (List<Pair<String, Integer>>)
@@ -95,7 +117,8 @@ public final class RecommenderTest {
                 new Pair<String, Integer>("banana", 0),
                 new Pair<String, Integer>("carrot", 0),
                 new Pair<String, Integer>("donut", 4)));
-    tester.makeUserList(
+    TestHelper.makeUserList(
+        datastore,
         "5",
         5,
         (List<Pair<String, Integer>>)
@@ -104,21 +127,38 @@ public final class RecommenderTest {
                 new Pair<String, Integer>("banana", 1),
                 new Pair<String, Integer>("carrot", 5),
                 new Pair<String, Integer>("donut", 4)));
+    TestHelper.checkFracAggregate(
+        datastore,
+        "groceri",
+        "1",
+        items,
+        Arrays.asList(1.0, Math.pow(0.6, 2), 0.0, Math.pow(0.6, 4)));
+    TestHelper.checkFracAggregate(
+        datastore, "groceri", "2", items, Arrays.asList(1.0, 0.0, 0.0, Math.pow(0.6, 3)));
+    TestHelper.checkFracAggregate(
+        datastore,
+        "groceri",
+        "3",
+        items,
+        Arrays.asList(Math.pow(0.6, 4), Math.pow(0.6, 4), 0.0, 1.0));
+    TestHelper.checkFracAggregate(
+        datastore, "groceri", "4", items, Arrays.asList(Math.pow(0.6, 3), 0.0, 0.0, 1.0));
+    TestHelper.checkFracAggregate(
+        datastore, "groceri", "5", items, Arrays.asList(0.0, Math.pow(0.6, 4), 1.0, 0.6));
 
-    tester.checkFracAggregate("groceri", "1", items, Arrays.asList(1.0, 0.6, 0.0, 0.2));
-    tester.checkFracAggregate("groceri", "2", items, Arrays.asList(0.8, 0.0, 0.0, 0.2));
-    tester.checkFracAggregate("groceri", "3", items, Arrays.asList(0.2, 0.2, 0.0, 1.0));
-    tester.checkFracAggregate("groceri", "4", items, Arrays.asList(0.2, 0.0, 0.0, 0.8));
-    tester.checkFracAggregate("groceri", "5", items, Arrays.asList(0.0, 0.2, 1.0, 0.8));
-
-    List<Entity> entities = tester.fetchDatastoreAllUsers("Frac-groceri");
+    List<Entity> entities = TestHelper.fetchDatastoreAllUsers(datastore, "Frac-groceri");
     Recommender rec = new Recommender();
     SimpleMatrix matrix =
         rec.createMatrixFromDatabaseEntities(
-            entities.remove(0), entities, new HashSet<String>(StemUtils.stemmedList(items)));
+            entities, new HashSet<String>(StemUtils.stemmedList(items)));
     for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 4; j++) {
-        assertEquals(dataMatrix.get(i, j) / 5, matrix.get(i, j), 0.01);
+        if (dataMatrix.get(i, j) < 1) {
+          assertEquals(0.0, matrix.get(i, j), 0.01);
+        } else {
+          int maxPower = i % 2 == 1 ? 4 : 5;
+          assertEquals(Math.pow(0.6, maxPower - dataMatrix.get(i, j)), matrix.get(i, j), 0.01);
+        }
       }
     }
   }

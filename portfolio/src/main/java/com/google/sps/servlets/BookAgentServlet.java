@@ -17,6 +17,7 @@ import com.google.sps.data.Output;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.BooksMemoryUtils;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,8 @@ public class BookAgentServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private UserService userService = UserServiceFactory.getUserService();
-
+  private String bookshelfName = "";
+  private String friendName = "";
   /**
    * Retrieves corresponding Output object for given Book intent passed as a parameter to request.
    * If a number parameter was passed to request, then it is placed into parameterMap to be sent to
@@ -52,8 +54,21 @@ public class BookAgentServlet extends HttpServlet {
     Output output = null;
 
     try {
+      ArrayList<String> params = new ArrayList<String>();
       if (request.getParameter("number") != null) {
-        parameterMap = stringToMap("{\"number\": " + request.getParameter("number") + "}");
+        params.add("\"number\": " + request.getParameter("number"));
+      }
+      if (request.getParameter("bookshelf") != null) {
+        this.bookshelfName = request.getParameter("bookshelf");
+        params.add("\"bookshelf\": \"" + bookshelfName + "\"");
+      }
+      if (request.getParameter("friend") != null) {
+        this.friendName = request.getParameter("friend");
+        params.add("\"friend\": {\"name\": \"" + friendName + "\"}");
+      }
+      if (!params.isEmpty()) {
+        String paramString = String.join(",", params);
+        parameterMap = stringToMap("{" + paramString + "}");
       }
       output =
           getOutputFromBookAgent(intent, sessionID, parameterMap, languageCode, queryID, datastore);
@@ -88,7 +103,23 @@ public class BookAgentServlet extends HttpServlet {
     byte[] byteStringToByteArray = null;
     String intentName = AgentUtils.getIntentName(intent);
     String detectedInput = "Button pressed for: " + intentName;
-    String userInput = loadUserInput(sessionID, queryID, datastore);
+    String userInput = detectedInput;
+
+    if (intentName.equals("library")) {
+      userInput = "Show me my " + bookshelfName + " bookshelf.";
+    } else if (intentName.equals("add")) {
+      if (bookshelfName.isEmpty()) {
+        userInput = "Add to My Library.";
+      } else {
+        userInput = "Add to my " + bookshelfName + " bookshelf.";
+      }
+    } else if (intentName.equals("friendlikes")) {
+      userInput = "Show me " + friendName + "'s liked books.";
+    } else {
+      BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID, datastore);
+      userInput = query.getUserInput();
+    }
+
     String fulfillment = "";
     try {
       BooksAgent agent =

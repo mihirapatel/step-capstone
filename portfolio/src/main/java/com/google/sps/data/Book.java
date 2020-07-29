@@ -17,9 +17,8 @@
 package com.google.sps.data;
 
 // Imports the Google Cloud client library
-import com.google.api.services.books.*;
-import com.google.api.services.books.model.Volume;
-import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
+import com.google.api.services.books.v1.model.Volume;
+import com.google.api.services.books.v1.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,6 +46,11 @@ public class Book implements Serializable {
   private String isbn;
   private String textSnippet;
   private int order;
+  private String volumeId;
+  private Boolean ebook = false;
+  private Boolean isLiked = false;
+  private ArrayList<String> likedBy;
+  private int likeCount = 0;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -87,6 +91,9 @@ public class Book implements Serializable {
     setEmbeddable(volume);
     setIsbn(volume);
     setTextSnippet(volume);
+    setVolumeId(volume);
+    setEbook(volume);
+    this.likedBy = new ArrayList<String>();
   }
 
   /**
@@ -111,10 +118,32 @@ public class Book implements Serializable {
     this.thumbnailLink = "";
     this.buyLink = "";
     this.textSnippet = "";
+    this.volumeId = "";
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    if (object == this) {
+      return true;
+    }
+    if (!(object instanceof Book)) {
+      return false;
+    }
+    Book otherBook = (Book) object;
+    return otherBook.getVolumeId().equals(this.volumeId);
+  }
+
+  @Override
+  public int hashCode() {
+    return this.volumeId.hashCode();
   }
 
   public void setOrder(int order) {
     this.order = order;
+  }
+
+  private void setVolumeId(Volume volume) {
+    this.volumeId = volume.getId();
   }
 
   private void setTitle(Volume volume) {
@@ -123,6 +152,12 @@ public class Book implements Serializable {
 
   private void setDescription(Volume volume) {
     this.description = volume.getVolumeInfo().getDescription();
+  }
+
+  private void setEbook(Volume volume) {
+    if (hasValidSaleInfo(volume)) {
+      this.ebook = volume.getSaleInfo().getIsEbook();
+    }
   }
 
   private void setAuthors(Volume volume) {
@@ -217,6 +252,10 @@ public class Book implements Serializable {
     return this.order;
   }
 
+  public String getVolumeId() {
+    return this.volumeId;
+  }
+
   public String getTitle() {
     return this.title;
   }
@@ -261,6 +300,25 @@ public class Book implements Serializable {
     return this.textSnippet;
   }
 
+  public ArrayList<String> getLikedBy() {
+    return this.likedBy;
+  }
+
+  public int getLikeCount() {
+    return this.likeCount;
+  }
+
+  public Boolean isEbook() {
+    return this.ebook;
+  }
+
+  public void addToLikedBy(String name) {
+    if (!this.likedBy.contains(name)) {
+      this.likedBy.add(name);
+      this.likeCount += 1;
+    }
+  }
+
   /**
    * Checks if Volume object has a valid title
    *
@@ -302,5 +360,14 @@ public class Book implements Serializable {
    */
   public static boolean hasValidSearchInfo(Volume volume) {
     return volume.getSearchInfo() != null;
+  }
+
+  public void setIsLiked(Boolean bool) {
+    this.isLiked = bool;
+  }
+
+  public void setLikedBy(ArrayList<String> likedByFriends) {
+    this.likedBy = likedByFriends;
+    this.likeCount = likedByFriends.size();
   }
 }

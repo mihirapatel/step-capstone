@@ -27,10 +27,6 @@ function getLastWord(words) {
     console.log(split);
     return split[split.length - 1];
 }
-
-function placeDisplay(text) {
-  placeObjectContainer(text, "media-display", "convo-container");
-}
  
 function placeDisplay(text, type) {
   placeObjectContainer(text, type, "convo-container");
@@ -39,7 +35,28 @@ function placeDisplay(text, type) {
 function placeObjectContainer(text, type, container) {
   var container = document.getElementsByName(container)[0];
   var newDiv = document.createElement('div');
-  newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div><br>";
+  newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div>";
+  container.appendChild(newDiv);
+  updateScroll();
+  return container;
+}
+
+function placeChatContainer(text, type, side, container) {
+  var newDiv = document.createElement('div');
+  newDiv.setAttribute("style", "float: " + side + "; width: 100%;");
+  newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div>";
+  container.appendChild(newDiv);
+  updateScroll();
+  return container;
+}
+
+function appendHTML(text, type, container) {
+  var container = document.getElementsByName(container)[0];
+  var newDiv = document.createElement('div');
+  for (className of type.split(' ')) {
+    newDiv.classList.add(className);
+  }
+  newDiv.innerHTML = text;
   container.appendChild(newDiv);
   updateScroll();
   return container;

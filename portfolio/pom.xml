@@ -2,7 +2,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
+  <parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.1.7.RELEASE</version>
+	<relativePath/> <!-- lookup parent from repository -->
+  </parent>
   <groupId>com.google.sps</groupId>
   <artifactId>portfolio</artifactId>
   <version>1</version>
@@ -29,6 +34,11 @@
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-people</artifactId>
+      <version>v1-rev20200624-1.30.10</version>
+    </dependency>
 
     <dependency>
       <groupId>com.google.cloud</groupId>
@@ -174,16 +184,39 @@
     </dependency>
 
     <dependency>
+      <groupId>com.google.oauth-client</groupId>
+      <artifactId>google-oauth-client</artifactId>
+      <version>1.31.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.api-client</groupId>
+      <artifactId>google-api-client-appengine</artifactId>
+      <version>1.30.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.oauth-client</groupId>
+      <artifactId>google-oauth-client-servlet</artifactId>
+      <version>1.30.4</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.ejml</groupId>
       <artifactId>ejml-all</artifactId>
       <version>0.39</version>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-text</artifactId>
-      <version>1.9</version>
-    </dependency>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+
+	<dependency>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-test</artifactId>
+	  <scope>test</scope>
+	</dependency>
 
   </dependencies>
 
@@ -208,7 +241,7 @@
         <version>2.19.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <!-- <skipTests>true</skipTests> -->
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
 
@@ -217,6 +250,11 @@
         <artifactId>maven-surefire-report-plugin</artifactId>
         <version>2.19.1</version>
       </plugin>
+
+      <!-- <plugin>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-maven-plugin</artifactId>
+	  </plugin> -->
 
     </plugins>
   </build>
