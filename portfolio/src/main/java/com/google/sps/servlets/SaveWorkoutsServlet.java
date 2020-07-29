@@ -46,7 +46,6 @@ public class SaveWorkoutsServlet extends HttpServlet {
     ArrayList<WorkoutPlan> savedWorkoutPlans =
         WorkoutProfileUtils.getSavedWorkoutPlans(userId, datastore);
     String json = new Gson().toJson(savedWorkoutPlans);
-    System.out.println(json);
     response.getWriter().write(json);
   }
 }
