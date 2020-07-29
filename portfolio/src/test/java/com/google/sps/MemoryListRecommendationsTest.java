@@ -257,7 +257,6 @@ public class MemoryListRecommendationsTest {
         "{\"list-name\":\"grocery\","
             + "\"yes-objects\":\"pineapple and watermelon but not blueberries\"}",
         "memory.list - make - yes");
-<<<<<<< HEAD
     tester.setUserRecommendations(
         Arrays.asList(
             new Pair("apple", 1.0),
@@ -266,8 +265,6 @@ public class MemoryListRecommendationsTest {
             new Pair("pineapple", 0.7),
             new Pair("mangos", 0.65),
             new Pair("grapes", 0.2)));
-=======
->>>>>>> Working yes response to recommendations + tests.
     assertEquals(
         "Updated! Based on your list item history, you might be interested in adding mangos to your grocery list.",
         tester.getOutput().getFulfillmentText());
