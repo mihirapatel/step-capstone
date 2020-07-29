@@ -210,8 +210,8 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
-  var plannerDivHeight =  (videos.length * 135) + 45;
-  plannerDiv.style.height = plannerDivHeight.toString() + "px";
+//   var plannerDivHeight =  (videos.length * 135) + 45;
+//   plannerDiv.style.height = plannerDivHeight.toString() + "px";
   workoutPlannerDiv.appendChild(plannerDiv);
 
   plannerTable = document.createElement("div");
@@ -435,8 +435,8 @@ function updateWorkoutPlanProgress(workoutPlan, localStorageKey){
 
   //Update workout plan progress display on dashboard
   var progress = document.getElementById("progress");
-  var progressPercentage = numWorkoutDaysCompleted / workoutPlan.planLength;
-  progress.innerHTML = "Progress: " + progressPercentage;
+  var progressPercentage = Math.round((numWorkoutDaysCompleted / workoutPlan.planLength) * 100);
+  progress.innerHTML = "Progress: " + progressPercentage + "%";
 
   //Update workout plan progress
   fetch('/workout-plan-progress' + '?workout-plan=' + workoutPlanString + '&num-workout-days-completed=' + numWorkoutDaysCompleted, {
