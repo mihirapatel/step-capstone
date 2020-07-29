@@ -149,8 +149,10 @@ function authSetup() {
     authContainer.innerHTML = "<a class=\"link\" href=\"" + displayText.authText + "\">" + displayText.logButton + "</a>";
     updateName(displayText.displayName);
     //Checks if user is logged in or not
+    console.log(displayText.authText);
     if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
+        createWorkoutDashboardButton();
     }
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading

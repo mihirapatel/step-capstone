@@ -88,6 +88,8 @@ body {
     padding: 2px;
 }
 
+/* Workout Agent Styling start */
+
 #videos {
     width: 100%;
     height: 1250px;
@@ -206,6 +208,29 @@ td {
     font-size: 15px;
     padding: 10px;
 }
+
+.workout-dashboard-link {
+  position: absolute;
+  top: 60px;
+  right: 5px;
+  border-radius: 10px;
+  background-color: rgba(146, 142, 142, 0.156);
+  padding: 10px;
+  margin: 15px;
+  color: gray;
+  text-decoration: none;
+}
+
+.workout-dashboard-link:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
+}
+
+.workout-dashboard-link a:visited {
+  color: gray;
+}
+
+/* Workout Agent Styling End */
 
 h1 {
     font-weight: 200;
