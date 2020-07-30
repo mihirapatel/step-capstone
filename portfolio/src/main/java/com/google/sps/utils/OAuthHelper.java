@@ -40,6 +40,9 @@ public class OAuthHelper {
    */
   public static Credential loadUpdatedCredential(String userID) throws IOException {
     Credential credential = loadUserCredential(userID);
+    if (credential == null) {
+      return credential;
+    }
     if (credential.getExpiresInSeconds() <= 60) {
       credential.refreshToken();
       String refreshToken = credential.getRefreshToken();

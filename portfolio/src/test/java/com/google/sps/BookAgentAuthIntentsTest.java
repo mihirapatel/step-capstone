@@ -3,6 +3,7 @@ package com.google.sps.agents;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import com.google.gson.Gson;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.sps.data.Book;
 import com.google.sps.data.Friend;
@@ -31,12 +32,18 @@ public class BookAgentAuthIntentsTest {
 
   private static Logger log = LoggerFactory.getLogger(BookAgentAuthIntentsTest.class);
   private BookTestHelper bookTester;
-  private ArrayList<Book> bookshelfBooks;
+  private ArrayList<Book> bookshelfBooks, friendsLikes, bookList;
   private ArrayList<String> bookshelves;
   private ArrayList<Friend> friends;
-  private ArrayList<Book> friendsLikes;
   private Book firstBook, secondBook, thirdBook, fourthBook, fifthBook, sixthBook;
-  private Friend friendOne, friendTwo, friendThree, friendFour, friendFive, friendSix;
+  private Friend authUser,
+      friendOne,
+      friendTwo,
+      friendThree,
+      friendFour,
+      friendFive,
+      friendSix,
+      friendSeven;
 
   /**
    * Test setup which prepopulates the database and mocks with appropriate information about the
@@ -47,8 +54,11 @@ public class BookAgentAuthIntentsTest {
     try {
       // Set authenticated user
       this.bookTester = new BookTestHelper();
+      this.authUser =
+          new Friend("Auth User", new ArrayList<String>(Arrays.asList("authUser1@gmail.com")));
       bookTester.setLoggedIn("authUser1@gmail.com", "authUser1");
       bookTester.setAuthenticatedUser("authUser1");
+      bookTester.setUserInfo("authUser1", authUser);
 
       // Set user bookshelves and books in bookshelf for BookUtils mock
       this.bookshelves =
@@ -64,12 +74,15 @@ public class BookAgentAuthIntentsTest {
                   "Have read",
                   "Books for you"));
       bookTester.setBookshelfNames("authUser1", bookshelves);
-      this.bookshelfBooks = BookAgentTest.getBookList();
+      this.bookList = BookAgentTest.getBookList();
+      this.bookshelfBooks = getBookshelfBooks(bookList);
       bookTester.setBookShelfBooks("authUser1", bookshelfBooks, 8);
 
       // Set friends for PeopleUtils mock
       this.friends = getFriendList();
       bookTester.setFriends("authUser1", friends);
+      bookTester.setMatchingFriends(
+          "authUser1", "James Ray", new ArrayList<Friend>(Arrays.asList(friendThree, friendSeven)));
 
       // Populize database with friend's liked books
       setFriendsLikedBooks();
@@ -77,7 +90,7 @@ public class BookAgentAuthIntentsTest {
       // Set the proper liked by properties for each book in the expected list of friends likes
       // List will is sorted by like-count, ties broken alphabetically
       firstBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendOne, friendFour)));
-      secondBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendFive)));
+      secondBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendFive, friendSeven)));
       thirdBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendTwo)));
       fourthBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendThree)));
       fifthBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendOne)));
@@ -226,7 +239,7 @@ public class BookAgentAuthIntentsTest {
         "authUser1",
         "query-1-shelf",
         "authUser1@gmail.com");
-    String expectedOutput = BooksAgentHelper.bookToJson(bookshelfBooks.get(2));
+    String expectedOutput = BooksAgentHelper.bookToJson(bookList.get(2));
     assertEquals("I've added Title 2 to your Favorites bookshelf.", bookTester.getFulfillment());
     assertEquals(expectedOutput, bookTester.getDisplay());
     assertEquals("query-1-shelf", bookTester.getRedirect());
@@ -246,7 +259,6 @@ public class BookAgentAuthIntentsTest {
         "authUser1",
         "query-1-shelf",
         "authUser1@gmail.com");
-    String expectedOutput = BooksAgentHelper.bookToJson(bookshelfBooks.get(2));
     assertEquals(
         "I'm sorry. I couldn't add Title 2 to your Favorites bookshelf.",
         bookTester.getFulfillment());
@@ -267,7 +279,7 @@ public class BookAgentAuthIntentsTest {
         "authUser1",
         "query-1-shelf",
         "authUser1@gmail.com");
-    String expectedOutput = BooksAgentHelper.bookToJson(bookshelfBooks.get(4));
+    String expectedOutput = BooksAgentHelper.bookToJson(bookList.get(4));
     assertEquals(
         "I've deleted Title 4 from your Favorites bookshelf.", bookTester.getFulfillment());
     assertEquals(expectedOutput, bookTester.getDisplay());
@@ -335,22 +347,19 @@ public class BookAgentAuthIntentsTest {
    */
   @Test
   public void testSuccessfulMyLikesIntent() throws Exception {
-    bookTester.setLikedBook(firstBook, "authUser1", "authUser1@gmail.com");
-    bookTester.setLikedBook(secondBook, "authUser1", "authUser1@gmail.com");
-    bookTester.setLikedBook(thirdBook, "authUser1", "authUser1@gmail.com");
-
     // Set isLiked property for books in expectedLikes
-    firstBook.setIsLiked(true);
-    secondBook.setIsLiked(true);
-    thirdBook.setIsLiked(true);
     ArrayList<Book> expectedLikes =
         new ArrayList<Book>(Arrays.asList(firstBook, secondBook, thirdBook));
-
+    for (Book book : expectedLikes) {
+      bookTester.setLikedBook(book, "authUser1", "AuthUser1@gmail.com");
+      book.setIsLiked(true);
+      book.setRequestedFriend(authUser);
+    }
     bookTester.setParameters(
         "Show me my liked books", "{}", "mylikes", "authUser1", "authUser1@gmail.com");
     assertEquals("Here are your liked books.", bookTester.getFulfillment());
     assertEquals(BooksAgentHelper.listToJson(expectedLikes), bookTester.getDisplay());
-    assertEquals("query-2", bookTester.getRedirect());
+    assertEquals("query-2-mylikes", bookTester.getRedirect());
   }
 
   /**
@@ -405,6 +414,72 @@ public class BookAgentAuthIntentsTest {
   }
 
   /**
+   * This function tests the output, fulfillment, and redirect for a friendlikes intent when a user
+   * requests to see the liked books of one of their friends by name, but they have multiple friends
+   * with that name in their contacts.
+   */
+  @Test
+  public void testFriendLikesDuplicateName() throws Exception {
+    bookTester.setParameters(
+        "Show me James Ray's likes",
+        "{\"friend\" : {\"name\": \"James Ray\"}}",
+        "friendlikes",
+        "authUser1",
+        "authUser1@gmail.com");
+    ArrayList<Friend> expectedOutput =
+        new ArrayList<Friend>(Arrays.asList(friendThree, friendSeven));
+    assertEquals("Which James Ray would you like to see?", bookTester.getFulfillment());
+    assertEquals(BooksAgentHelper.listToJson(expectedOutput), bookTester.getDisplay());
+    assertEquals("query-2-which-friend", bookTester.getRedirect());
+  }
+
+  /**
+   * This function tests the output, fulfillment, and redirect for a friendlikes intent when a user
+   * selects one of their friends from a list of friends with duplicate names to see the likes of.
+   * Tests: James Ray, secondJames@gmail.com
+   */
+  @Test
+  public void testFriendLikesDuplicateName1() throws Exception {
+    Gson gson = new Gson();
+    String friendObject = gson.toJson(friendSeven);
+    bookTester.setParameters(
+        "Show me James Ray's likes",
+        "{\"friendObject\" : " + friendObject + "}",
+        "friendlikes",
+        "authUser1",
+        "authUser1@gmail.com");
+    secondBook.setRequestedFriend(friendSeven);
+    secondBook.setOrder(0);
+    ArrayList<Book> expectedOutput = new ArrayList<Book>(Arrays.asList(secondBook));
+    assertEquals("Here are James Ray's liked books.", bookTester.getFulfillment());
+    assertEquals(BooksAgentHelper.listToJson(expectedOutput), bookTester.getDisplay());
+    assertEquals("query-2-friend", bookTester.getRedirect());
+  }
+
+  /**
+   * This function tests the output, fulfillment, and redirect for a friendlikes intent when a user
+   * selects one of their friends from a list of friends with duplicate names to see the likes of.
+   * Tests: James Ray, james@gmail.com
+   */
+  @Test
+  public void testFriendLikesDuplicateName2() throws Exception {
+    Gson gson = new Gson();
+    String friendObject = gson.toJson(friendThree);
+    bookTester.setParameters(
+        "Show me James Ray's likes",
+        "{\"friendObject\" : " + friendObject + "}",
+        "friendlikes",
+        "authUser1",
+        "authUser1@gmail.com");
+    fourthBook.setRequestedFriend(friendThree);
+    fourthBook.setOrder(0);
+    ArrayList<Book> expectedOutput = new ArrayList<Book>(Arrays.asList(fourthBook));
+    assertEquals("Here are James Ray's liked books.", bookTester.getFulfillment());
+    assertEquals(BooksAgentHelper.listToJson(expectedOutput), bookTester.getDisplay());
+    assertEquals("query-2-friend", bookTester.getRedirect());
+  }
+
+  /**
    * This function tests the output, fulfillment, and redirect for a successful friendlikes intent
    * when a user requests to see the liked books of one of their friends and their friends has
    * stored likes.
@@ -417,15 +492,14 @@ public class BookAgentAuthIntentsTest {
         "friendlikes",
         "authUser1",
         "authUser1@gmail.com");
-
-    // Jim Jones likes first and sixth book, reset order of sixth book to 1 (first index in this
-    // list)
-    sixthBook.setOrder(1);
     ArrayList<Book> expectedLikes = new ArrayList<Book>(Arrays.asList(firstBook, sixthBook));
-
+    for (int i = 0; i < expectedLikes.size(); ++i) {
+      expectedLikes.get(i).setOrder(i);
+      expectedLikes.get(i).setRequestedFriend(friendFour);
+    }
     assertEquals("Here are Jim Jones's liked books.", bookTester.getFulfillment());
     assertEquals(BooksAgentHelper.listToJson(expectedLikes), bookTester.getDisplay());
-    assertEquals("query-2", bookTester.getRedirect());
+    assertEquals("query-2-friend", bookTester.getRedirect());
   }
 
   /**
@@ -550,6 +624,13 @@ public class BookAgentAuthIntentsTest {
     assertEquals("query-1-shelf", bookTester.getRedirect());
   }
 
+  private ArrayList<Book> getBookshelfBooks(ArrayList<Book> bookList) {
+    for (Book book : bookList) {
+      book.setBookshelfName("Favorites");
+    }
+    return bookList;
+  }
+
   private ArrayList<Friend> getFriendList() {
     friendOne = new Friend("John Doe", new ArrayList<String>(Arrays.asList("johndoe@gmail.com")));
     friendTwo = new Friend("Jane Smith", new ArrayList<String>(Arrays.asList("jane@gmail.com")));
@@ -561,8 +642,11 @@ public class BookAgentAuthIntentsTest {
     friendFive = new Friend("Mary Ann", new ArrayList<String>(Arrays.asList("maryann@gmail.com")));
     friendSix =
         new Friend("Claire Crown", new ArrayList<String>(Arrays.asList("clairec@gmail.com")));
+    friendSeven =
+        new Friend("James Ray", new ArrayList<String>(Arrays.asList("secondJames@gmail.com")));
     return new ArrayList<Friend>(
-        Arrays.asList(friendOne, friendTwo, friendThree, friendFour, friendFive, friendSix));
+        Arrays.asList(
+            friendOne, friendTwo, friendThree, friendFour, friendFive, friendSix, friendSeven));
   }
 
   private void setFriendsLikedBooks() {
@@ -573,12 +657,13 @@ public class BookAgentAuthIntentsTest {
     this.fifthBook = new Book("The Fault in our Stars", "4", 4);
     this.sixthBook = new Book("The Notebook", "5", 5);
 
-    bookTester.setLikedBook(firstBook, "JohnDoe", "johndoe@gmail.com");
+    bookTester.setLikedBook(firstBook, "JohnDoe", "JohnDoe@gmail.com");
     bookTester.setLikedBook(firstBook, "JimJones", "jimbo@gmail.com");
+    bookTester.setLikedBook(secondBook, "James Ray", "SecondJames@gmail.com");
     bookTester.setLikedBook(secondBook, "MaryAnn", "maryann@gmail.com");
     bookTester.setLikedBook(secondBook, "RandomPerson1", "notafriend@gmail.com");
     bookTester.setLikedBook(thirdBook, "RandomPerson2", "notafriend2@gmail.com");
-    bookTester.setLikedBook(thirdBook, "JaneSmith", "jane@gmail.com");
+    bookTester.setLikedBook(thirdBook, "JaneSmith", "Jane@gmail.com");
     bookTester.setLikedBook(fourthBook, "JamesRay", "james@gmail.com");
     bookTester.setLikedBook(fifthBook, "JohnDoe", "johndoe@gmail.com");
     bookTester.setLikedBook(sixthBook, "JimJones", "jimmy1@gmail.com");
@@ -588,6 +673,7 @@ public class BookAgentAuthIntentsTest {
   private void unlikeAllFriendsBooks() {
     bookTester.setUnlikedBook(firstBook, "JohnDoe", "johndoe@gmail.com");
     bookTester.setUnlikedBook(firstBook, "JimJones", "jimbo@gmail.com");
+    bookTester.setUnlikedBook(secondBook, "James Ray", "secondJames@gmail.com");
     bookTester.setUnlikedBook(secondBook, "MaryAnn", "maryann@gmail.com");
     bookTester.setUnlikedBook(thirdBook, "JaneSmith", "jane@gmail.com");
     bookTester.setUnlikedBook(fourthBook, "JamesRay", "james@gmail.com");

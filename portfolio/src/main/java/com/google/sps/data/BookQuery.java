@@ -210,9 +210,10 @@ public class BookQuery implements Serializable {
       Map<String, Value> friendMap = paramValue.getStructValue().getFieldsMap();
       String name = getFriendMapString(friendMap, "name");
       String photoUrl = getFriendMapString(friendMap, "photoUrl");
+      String resourceName = getFriendMapString(friendMap, "resourceName");
       ArrayList<String> emailList = getFriendEmailList(friendMap);
       if (!emailList.isEmpty()) {
-        this.requestedFriend = new Friend(name, emailList, photoUrl);
+        this.requestedFriend = new Friend(name, emailList, photoUrl, resourceName);
       }
     }
   }

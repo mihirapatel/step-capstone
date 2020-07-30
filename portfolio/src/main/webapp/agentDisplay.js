@@ -82,7 +82,7 @@ function placeUserInput(text, container) {
   }
   if (text != " (null) "){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side talk-bubble-user round", "right", document.getElementsByName("convo-container")[0]);
+    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side talk-bubble-user round", "right", document.getElementsByName("convo-container")[0], 0);
   }
 }
 
@@ -93,12 +93,12 @@ function placeBooksUserInput(text, container, queryID) {
   }
   if (text != " (null) "){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side-" + queryID + " talk-bubble-user round", "right", document.getElementsByName("convo-container")[0]);
+    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side-" + queryID + " talk-bubble-user round", "right", document.getElementsByName("convo-container")[0], 0);
   }
 }
 
 function placeBooksFulfillment(text, queryID) {
-  placeChatContainer("<p>" + text + "</p>", "assistant-side-" + queryID + " talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0]);
+  placeChatContainer("<p>" + text + "</p>", "assistant-side-" + queryID + " talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0], 15);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
   }
@@ -106,7 +106,7 @@ function placeBooksFulfillment(text, queryID) {
 
 
 function placeFulfillmentResponse(text) {
-  placeChatContainer("<p>" + text + "</p>", "assistant-side talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0]);
+  placeChatContainer("<p>" + text + "</p>", "assistant-side talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0], 0);
   console.log(text);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));

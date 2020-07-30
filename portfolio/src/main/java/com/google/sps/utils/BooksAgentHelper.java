@@ -123,7 +123,6 @@ public class BooksAgentHelper {
   }
 
   public String getDisplay() {
-    System.out.println(this.display);
     return this.display;
   }
 
@@ -197,8 +196,8 @@ public class BooksAgentHelper {
         this.bookResults =
             BooksMemoryUtils.getFriendsLikes(userID, datastore, oauthHelper, peopleUtils);
       } else if (intentName.equals("mylikes")) {
-        // Set requested friend to user's contact information
-        query.setRequestedFriend(peopleUtils.getUserInfo(userID, oauthHelper));
+        // Set requested friend to user's own contact information
+        query.setRequestedFriend(peopleUtils.getUserInfo(userID, "people/me", oauthHelper));
         this.bookResults = BooksMemoryUtils.getLikedBooksFromId(userID, "id", datastore);
       } else if (intentName.equals("friendlikes")) {
         if (query.getRequestedFriend() == null) {
@@ -233,6 +232,7 @@ public class BooksAgentHelper {
     }
     ArrayList<Friend> matchingFriends =
         peopleUtils.getMatchingFriends(userID, friendName, oauthHelper);
+
     if (matchingFriends.isEmpty()) {
       this.output = "I'm sorry. I don't recognize a " + friendName + " in your contact list.";
       return false;
@@ -260,7 +260,7 @@ public class BooksAgentHelper {
     } else if (intentName.equals("mylikes")) {
       return "Here are your liked books.";
     } else if (intentName.equals("friendlikes")) {
-      return "Here are " + query.getFriendName() + "'s liked books.";
+      return "Here are " + query.getRequestedFriend().getName() + "'s liked books.";
     } else if (intentName.equals("library")) {
       return "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
     }
@@ -280,7 +280,7 @@ public class BooksAgentHelper {
     } else if (intentName.equals("mylikes")) {
       return "You haven't liked any books yet!";
     } else if (intentName.equals("friendlikes")) {
-      return "I couldn't find any liked books for " + query.getFriendName() + ".";
+      return "I couldn't find any liked books for " + query.getRequestedFriend().getName() + ".";
     } else if (intentName.equals("library")) {
       return "There are no books in your " + query.getBookshelfName() + " bookshelf.";
     }
@@ -326,7 +326,6 @@ public class BooksAgentHelper {
       } else {
         // Store Book results starting at resultsStored index
         BooksMemoryUtils.storeBooks(bookResults, resultsStored, sessionID, queryID, datastore);
-
         // Store new indices
         int newResultsStored = resultsReturned + resultsStored;
         this.resultsStored = newResultsStored;
@@ -585,6 +584,10 @@ public class BooksAgentHelper {
       for (Book book : booksToDisplay) {
         book.setRequestedFriend(query.getRequestedFriend());
       }
+    } else if (query.getIntent().equals("library")) {
+      for (Book book : booksToDisplay) {
+        book.setBookshelfName(query.getBookshelfName());
+      }
     }
     this.display = listToJson(booksToDisplay);
   }
@@ -600,9 +603,12 @@ public class BooksAgentHelper {
       book = BooksMemoryUtils.assignLikeCount(book, sessionID, friendsLikes, datastore);
       book = BooksMemoryUtils.assignLikeStatus(book, sessionID, likedBooks, datastore);
     }
+    /*
     if (query.getIntent().equals("friendlikes") || query.getIntent().equals("mylikes")) {
       book.setRequestedFriend(query.getRequestedFriend());
-    }
+    } else if (query.getIntent().equals("library")) {
+      book.setBookshelfName(query.getBookshelfName());
+    }*/
     this.display = bookToJson(book);
   }
 

@@ -487,7 +487,7 @@ public class BooksMemoryUtils {
 
     Entity likedBookEntity = new Entity("LikedBook");
     likedBookEntity.setProperty("id", userID);
-    likedBookEntity.setProperty("userEmail", userEmail);
+    likedBookEntity.setProperty("userEmail", userEmail.toLowerCase());
     likedBookEntity.setProperty("volumeId", bookToLike.getVolumeId());
     likedBookEntity.setProperty("book", bookBlob);
     datastore.put(likedBookEntity);
@@ -508,7 +508,7 @@ public class BooksMemoryUtils {
 
     Entity likedBookEntity = new Entity("LikedBook");
     likedBookEntity.setProperty("id", userID);
-    likedBookEntity.setProperty("userEmail", userEmail);
+    likedBookEntity.setProperty("userEmail", userEmail.toLowerCase());
     likedBookEntity.setProperty("volumeId", bookToLike.getVolumeId());
     likedBookEntity.setProperty("book", bookBlob);
     datastore.put(likedBookEntity);
@@ -583,19 +583,21 @@ public class BooksMemoryUtils {
       throws IOException {
     ArrayList<Book> friendsLikes = new ArrayList<Book>();
     for (Friend friend : peopleUtils.getFriends(userID, oauthHelper)) {
-      for (String email : friend.getEmails()) {
-        String name = friend.getName();
-        if (!friend.hasName()) {
-          name = email;
-        }
-        ArrayList<Book> booksLikedByEmail = getLikedBooksFromId(email, "userEmail", datastore);
-        for (Book likedBook : booksLikedByEmail) {
-          if (friendsLikes.contains(likedBook)) {
-            Book bookInList = friendsLikes.get(friendsLikes.indexOf(likedBook));
-            bookInList.addToLikedBy(friend);
-          } else {
-            likedBook.addToLikedBy(friend);
-            friendsLikes.add(likedBook);
+      if (!friend.equals(peopleUtils.getUserInfo(userID, "people/me", oauthHelper))) {
+        for (String email : friend.getEmails()) {
+          String name = friend.getName();
+          if (!friend.hasName()) {
+            name = email;
+          }
+          ArrayList<Book> booksLikedByEmail = getLikedBooksFromId(email, "userEmail", datastore);
+          for (Book likedBook : booksLikedByEmail) {
+            if (friendsLikes.contains(likedBook)) {
+              Book bookInList = friendsLikes.get(friendsLikes.indexOf(likedBook));
+              bookInList.addToLikedBy(friend);
+            } else {
+              likedBook.addToLikedBy(friend);
+              friendsLikes.add(likedBook);
+            }
           }
         }
       }

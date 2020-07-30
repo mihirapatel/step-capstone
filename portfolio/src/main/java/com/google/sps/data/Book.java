@@ -51,6 +51,7 @@ public class Book implements Serializable {
   private ArrayList<Friend> likedBy;
   private Friend requestedFriend;
   private int likeCount = 0;
+  private String bookshelfName;
 
   /**
    * Creates a Book object from a valid Volume object that will be used to build virtual assistant
@@ -410,5 +411,9 @@ public class Book implements Serializable {
 
   public void setRequestedFriend(Friend friend) {
     this.requestedFriend = friend;
+  }
+
+  public void setBookshelfName(String bookshelfName) {
+    this.bookshelfName = bookshelfName;
   }
 }

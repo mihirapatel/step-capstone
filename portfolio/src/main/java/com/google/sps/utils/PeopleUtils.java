@@ -19,27 +19,6 @@ public class PeopleUtils {
   private static Logger log = LoggerFactory.getLogger(PeopleUtils.class);
 
   /**
-   * This function returns a boolean determining whether the user, specified by userID, contains a
-   * friend with the specified name (or email), based on their connections from the Google People
-   * API and throws an exception otherwise
-   *
-   * @param userID ID for authenticated user
-   * @param friendName friend to look for
-   * @param oauthHelper OAuthHelper instance used to access OAuth methods
-   * @return boolean value
-   */
-  public Boolean hasFriend(String userID, String friendName, OAuthHelper oauthHelper)
-      throws IOException {
-    for (Friend friend : getFriends(userID, oauthHelper)) {
-      if (friendName.toLowerCase().equals(friend.getName().toLowerCase())
-          || friend.getEmails().contains(friendName)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
    * This function returns all Friend objects in a user's contact list that match the specified
    * friendName based on the userID's connections from the Google People API
    *
@@ -114,16 +93,17 @@ public class PeopleUtils {
   }
 
   /**
-   * This function returns a Friend object of the Authenticated user including name, emails, and a
-   * photo, and null if one could not be created
+   * This function returns a Friend object of the requested resourceName including name, emails, and
+   * a photo, and null if one could not be created
    *
    * @param userID unique userID
+   * @param resourceName unique contact resourceName to retrieve
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Friend object
    */
-  public Friend getUserInfo(String userID, OAuthHelper helper) {
+  public Friend getUserInfo(String userID, String resourceName, OAuthHelper helper) {
     try {
-      Person person = getPerson(userID, helper);
+      Person person = getPerson(userID, resourceName, helper);
       return Friend.createFriend(person);
     } catch (IOException e) {
       log.error("User with no email was not created.");
@@ -155,19 +135,20 @@ public class PeopleUtils {
   }
 
   /**
-   * This function returns a Person object of the Authenticated user from the Google People API
+   * This function returns a Person object of the specified resourceName from the Google People API
    * including name, emails, and a photo, and throws an exception otherwise
    *
    * @param userID unique userID
+   * @param resourceName unique contact resourceName to retrieve
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Person object
    */
-  public Person getPerson(String userID, OAuthHelper helper)
+  public Person getPerson(String userID, String resourceName, OAuthHelper helper)
       throws IOException, GoogleJsonResponseException {
     Credential credential = helper.loadUpdatedCredential(userID);
     PeopleService service = getPeopleService(credential);
     Person response =
-        service.people().get("people/me").setPersonFields("names,emailAddresses,photos").execute();
+        service.people().get(resourceName).setPersonFields("names,emailAddresses,photos").execute();
     return response;
   }
 }

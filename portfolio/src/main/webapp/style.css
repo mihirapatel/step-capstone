@@ -700,13 +700,13 @@ li {
 td.book {
   border: 0px;
   width: 10px;
-  padding: 5px;
+  padding: 10px;
 }
 
 td.book-thumbnail {
   border: 0px;
-  width: 10px;
-  padding: 5px;
+  width: 1%;
+  padding: 10px;
 }
 
 td.book-about {
@@ -756,6 +756,7 @@ td.bookshelf-name {
 
 td.book-friend-header {
   font-size: 18px;
+  border: none;
 }
 
 /* All book images */
@@ -808,13 +809,13 @@ img.book-header-avatar {
 
 button.bookshelf-button {
   background-color: white;
-  color: hsl(0, 2%, 40%);
+  color: hsl(0, 2%, 30%);
   border-color: hsla(0, 2%, 70%, 0);
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
   padding: 3px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 button.bookshelf-button:hover,button.bookshelf-button:focus {
