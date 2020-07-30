@@ -346,7 +346,7 @@ top: 0px;
 }
  
 [class*="user-side"] {
-  text-align: right;
+  text-align: left;
   margin-left: 40%;
 }
  

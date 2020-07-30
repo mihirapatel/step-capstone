@@ -1,11 +1,10 @@
-const streamingContainer = document.getElementsByName('streaming')[0];
-
 /**
 * Creates all frontend display for user and assistant comments and specialized displays for each agent.
 *
 * @param stream JSON output from dialogflow containing all necessary display information.
 */
 function displayResponse(stream) {
+  console.log(stream);
   var outputAsJson = JSON.parse(stream);
   if (!outputAsJson.intent.includes("books") || !outputAsJson.display) {
     placeUserInput(outputAsJson.userInput, "convo-container");
@@ -73,17 +72,6 @@ function displayResponse(stream) {
     }
   }
   outputAudio(stream);
-}
- 
-function placeUserInput(text, container) {
-  if (container == "convo-container") {
-    streamingContainer.innerHTML = "";
-    streamingContainer.style.display = "none";
-  }
-  if (text != " (null) "){
-    var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side talk-bubble-user round", "right", document.getElementsByName("convo-container")[0]);
-  }
 }
 
 function placeBooksUserInput(text, container, queryID) {

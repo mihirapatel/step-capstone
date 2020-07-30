@@ -1,3 +1,4 @@
+const streamingContainer = document.getElementsByName('streaming')[0];
 var isUserLoggedIn = false;
 
 function placeUserInput(text, container) {
@@ -5,21 +6,11 @@ function placeUserInput(text, container) {
     streamingContainer.innerHTML = "";
     streamingContainer.style.display = "none";
   }
+  console.log("text: " + text);
   if (text != " (null) "){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side talk-bubble speech-border tri-right round right-in", container);
+    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side talk-bubble-user round", "right", document.getElementsByName(container)[0]);
   }
-}
-
-function placeFulfillmentResponseContainer(text, container) {
-  placeObjectContainer("<p>" + text + "</p>", "assistant-side talk-bubble speech-border tri-right round left-in", container);
-  if (text.includes("Switching conversation language")) {
-    window.sessionStorage.setItem("language", getLastWord(text));
-  }
-}
- 
-function placeFulfillmentResponse(text) {
-  placeFulfillmentResponseContainer(text, "convo-container");
 }
 
 function getLastWord(words) {
@@ -47,7 +38,7 @@ function placeChatContainer(text, type, side, container) {
   newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div>";
   container.appendChild(newDiv);
   updateScroll();
-  return container;
+  return newDiv;
 }
 
 function appendHTML(text, type, container) {
