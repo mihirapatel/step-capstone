@@ -41,8 +41,8 @@ function displayResponse(stream) {
       
       // Get appropriate book container
       var bookContainer;
-      if (outputAsJson.fulfillmentText.includes("Which bookshelf would you like to see?")) {
-        bookContainer = createBookshelfContainer(outputAsJson.display);
+      if (outputAsJson.fulfillmentText.includes("would you like to see?")) {
+        bookContainer = createNameContainer(outputAsJson.display, outputAsJson.intent);
       } else if (isBookInformationIntent(outputAsJson.intent)) {
         bookContainer = createBookInfoContainer(outputAsJson.display, outputAsJson.intent, outputAsJson.redirect, "");
       } else {
@@ -93,12 +93,12 @@ function placeBooksUserInput(text, container, queryID) {
   }
   if (text != " (null) "){
     var formattedInput = text.substring(0, 1).toUpperCase() + text.substring(1); 
-    placeObjectContainer("<p>" + formattedInput + "</p>", "user-side-" + queryID, container);
+    placeChatContainer("<p style=\'color: white\'>" + formattedInput + "</p>", "user-side-" + queryID + " talk-bubble-user round", "right", document.getElementsByName("convo-container")[0]);
   }
 }
 
 function placeBooksFulfillment(text, queryID) {
-  placeObjectContainer("<p>" + text + "</p>", "assistant-side-" + queryID, "convo-container");
+  placeChatContainer("<p>" + text + "</p>", "assistant-side-" + queryID + " talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0]);
   if (text.includes("Switching conversation language")) {
     window.sessionStorage.setItem("language", getLastWord(text));
   }

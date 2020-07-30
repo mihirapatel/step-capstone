@@ -36,6 +36,7 @@ public class BookAgentAuthIntentsTest {
   private ArrayList<Friend> friends;
   private ArrayList<Book> friendsLikes;
   private Book firstBook, secondBook, thirdBook, fourthBook, fifthBook, sixthBook;
+  private Friend friendOne, friendTwo, friendThree, friendFour, friendFive, friendSix;
 
   /**
    * Test setup which prepopulates the database and mocks with appropriate information about the
@@ -75,12 +76,12 @@ public class BookAgentAuthIntentsTest {
 
       // Set the proper liked by properties for each book in the expected list of friends likes
       // List will is sorted by like-count, ties broken alphabetically
-      firstBook.setLikedBy(new ArrayList<String>(Arrays.asList("John Doe", "Jim Jones")));
-      secondBook.setLikedBy(new ArrayList<String>(Arrays.asList("Mary Ann")));
-      thirdBook.setLikedBy(new ArrayList<String>(Arrays.asList("Jane Smith")));
-      fourthBook.setLikedBy(new ArrayList<String>(Arrays.asList("James Ray")));
-      fifthBook.setLikedBy(new ArrayList<String>(Arrays.asList("John Doe")));
-      sixthBook.setLikedBy(new ArrayList<String>(Arrays.asList("Jim Jones")));
+      firstBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendOne, friendFour)));
+      secondBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendFive)));
+      thirdBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendTwo)));
+      fourthBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendThree)));
+      fifthBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendOne)));
+      sixthBook.setLikedBy(new ArrayList<Friend>(Arrays.asList(friendFour)));
       friendsLikes =
           new ArrayList<Book>(
               Arrays.asList(firstBook, secondBook, thirdBook, fourthBook, fifthBook, sixthBook));
@@ -550,18 +551,18 @@ public class BookAgentAuthIntentsTest {
   }
 
   private ArrayList<Friend> getFriendList() {
-    ArrayList<Friend> friends = new ArrayList<Friend>();
-    friends.add(new Friend("John Doe", new ArrayList<String>(Arrays.asList("johndoe@gmail.com"))));
-    friends.add(new Friend("Jane Smith", new ArrayList<String>(Arrays.asList("jane@gmail.com"))));
-    friends.add(new Friend("James Ray", new ArrayList<String>(Arrays.asList("james@gmail.com"))));
-    friends.add(
+    friendOne = new Friend("John Doe", new ArrayList<String>(Arrays.asList("johndoe@gmail.com")));
+    friendTwo = new Friend("Jane Smith", new ArrayList<String>(Arrays.asList("jane@gmail.com")));
+    friendThree = new Friend("James Ray", new ArrayList<String>(Arrays.asList("james@gmail.com")));
+    friendFour =
         new Friend(
             "Jim Jones",
-            new ArrayList<String>(Arrays.asList("jimbo@gmail.com", "jimmy1@gmail.com"))));
-    friends.add(new Friend("Mary Ann", new ArrayList<String>(Arrays.asList("maryann@gmail.com"))));
-    friends.add(
-        new Friend("Claire Crown", new ArrayList<String>(Arrays.asList("clairec@gmail.com"))));
-    return friends;
+            new ArrayList<String>(Arrays.asList("jimbo@gmail.com", "jimmy1@gmail.com")));
+    friendFive = new Friend("Mary Ann", new ArrayList<String>(Arrays.asList("maryann@gmail.com")));
+    friendSix =
+        new Friend("Claire Crown", new ArrayList<String>(Arrays.asList("clairec@gmail.com")));
+    return new ArrayList<Friend>(
+        Arrays.asList(friendOne, friendTwo, friendThree, friendFour, friendFive, friendSix));
   }
 
   private void setFriendsLikedBooks() {

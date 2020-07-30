@@ -754,6 +754,10 @@ td.bookshelf-name {
   padding: 5px;
 }
 
+td.book-friend-header {
+  font-size: 18px;
+}
+
 /* All book images */
 
 img.thumbnail {
@@ -768,6 +772,19 @@ img.book-dropbtn-logo {
   width: 10px;
 }
 
+img.book-friend-avatar {
+  width: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+img.book-header-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
 /* All book buttons */
 [class*="book-button"] {
   color: hsl(0, 2%, 30%);
@@ -779,6 +796,7 @@ img.book-dropbtn-logo {
   font-size: 12px;
   margin: 1px;
   white-space: nowrap;
+  background: white;
 }
 
 [class*="book-button"]:hover, [class*="book-button"]:focus {
@@ -872,7 +890,8 @@ p.description {
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 100;
+  white-space: nowrap;
 }
 
 /* Links inside the dropdown */
@@ -888,7 +907,7 @@ p.description {
 
 [class*="book-like-count"] {
   background: none;
-  font-size: 12px;
+  font-size: 14px;
   font-style: bold;
   color: hsl(0, 2%, 22%);
   text-decoration: none;

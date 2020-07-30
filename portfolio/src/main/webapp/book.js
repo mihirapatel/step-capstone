@@ -40,6 +40,10 @@ function createBookContainer(bookResults, queryID) {
     booksDiv.className = "book-div";
     var bookTable = document.createElement("table"); 
     bookTable.className = "book-table";
+
+    if (queryID.includes("friend") || queryID.includes("mylikes")) {
+      bookTable.appendChild(createFriendHeader(booksList, queryID));
+    }
     booksList.forEach((book) => {
       bookTable.appendChild(createBookRow(book, queryID));
     });
@@ -49,21 +53,42 @@ function createBookContainer(bookResults, queryID) {
 }
 
 /**
- * This function creates a Book container containing a 
- * <table></table> element with information about Bookshelf names from the 
- * json bookResults parameter
+ * This function creates a header for the books table containing a 
+ * the name and icon of the friend whose liked books are being displayed
  *
- * @param bookResults json ArrayList<Book> objects
+ * @param bookResults ArrayList<Book> objects
+ * @param queryID appropriate queryID for results in this element
+ * @return row containing header information 
+ */
+function createFriendHeader(booksList, queryID) {
+    var headerRow = document.createElement("tr"); 
+    headerRow.className = "book-row";
+    var headerCol = document.createElement("td"); 
+    headerCol.className = "book-friend-header";
+    headerCol.colSpan = 3;
+    var friend = booksList[0].requestedFriend;
+    headerCol.insertAdjacentHTML("afterbegin", '<img class = "book-header-avatar" alt="Friend Avatar" src= "' + friend.photoUrl + '" > <b>' + friend.name + '</b>');
+    headerRow.appendChild(headerCol);
+    return headerRow;
+}
+
+/**
+ * This function creates a Book container containing a 
+ * <table></table> element with a list of names, either bookshelf
+ * names or friends names from the json display parameter
+ *
+ * @param displayResults json ArrayList<> of strings or Book objects
+ * @param intent name of intent
  * @return booksDiv element containing a book results table 
  */
-function createBookshelfContainer(bookResults) {
-  var bookshelfList = JSON.parse(bookResults);
+function createNameContainer(displayResults, intent) {
+  var displayList = JSON.parse(displayResults);
   var booksDiv = document.createElement("div"); 
   booksDiv.className = "book-div";
   var bookTable = document.createElement("table"); 
   bookTable.className = "book-table";
-  bookshelfList.forEach((bookName) => {
-    bookTable.appendChild(createBookShelfRow(bookName));
+  displayList.forEach((element) => {
+    bookTable.appendChild(createNameRow(element, intent));
   });
   booksDiv.appendChild(bookTable);
   return booksDiv;
@@ -71,15 +96,35 @@ function createBookshelfContainer(bookResults) {
 
 /**
  * This function creates a row <tr></tr> element containing information from the
- * parameter bookshelf name to be added to the book table
+ * parameter to be added to the book table. If intent is library, then the 
+ * bookshelf name is added to the row. If the intent is friendlikes, then the 
+ * friend's name and picture is added to the row.
  *
- * @param bookshelfName name of bookshelf
+ * @param object either bookshelf name or book object
+ * @param intent detected intent
  * @return bookRow element to be added to table
  */
-function createBookShelfRow(bookshelfName) {
+function createNameRow(object, intent) {
   const bookRow = document.createElement('tr');
   bookRow.className = "book-row";
-
+  const bookshelfColumn = document.createElement('td');
+  var bookshelfButton = document.createElement("button");
+  bookshelfButton.className = "bookshelf-button";
+  console.log(intent);
+  if (intent == "books.library") {
+    bookshelfColumn.className = "bookshelf-name";
+    bookshelfButton.insertAdjacentHTML('afterbegin', object);
+    bookshelfButton.addEventListener("click", function () {
+      goToBookshelf('books.library', object);
+    });
+  } else if (intent == "books.friendlikes") {
+    bookshelfColumn.className = "book-friend-header";
+    bookshelfButton.insertAdjacentHTML('afterbegin', '<img class = "book-friend-avatar" alt="Friend Avatar" src= "' + object.photoUrl + '" ><b> ' + object.name + '</b>');
+    bookshelfButton.addEventListener("click", function () {
+      seeFriendsLikedBooks('books.friendlikes', object);
+    });
+  }
+  /*
   const bookshelfColumn = document.createElement('td');
   bookshelfColumn.className = "bookshelf-name";
 
@@ -88,7 +133,7 @@ function createBookShelfRow(bookshelfName) {
   bookshelfButton.insertAdjacentHTML('afterbegin', bookshelfName);
   bookshelfButton.addEventListener("click", function () {
     goToBookshelf('books.library', bookshelfName);
-  });
+  });*/
   bookshelfColumn.appendChild(bookshelfButton);
   bookRow.appendChild(bookshelfColumn);
   return bookRow;
@@ -301,12 +346,12 @@ function createFriendsDropDown(book, queryID) {
     namesDiv.id = "bookDropdown-" + queryID + "-" + book.volumeId;
     namesDiv.className = "book-dropdown-content";
 
-    for (const name of book.likedBy) {
+    for (const friend of book.likedBy) {
       var personLink = document.createElement('a');
       personLink.className = "book-like-count";
-      personLink.textContent = name;
+      personLink.insertAdjacentHTML('afterbegin', '<img class = "book-friend-avatar" alt="Friend Avatar" src= "' + friend.photoUrl + '" > ' + friend.name);
       personLink.addEventListener("click", function () {
-        seeFriendsLikedBooks('books.friendlikes', this.textContent);
+        seeFriendsLikedBooks('books.friendlikes', friend);
       });
       namesDiv.appendChild(personLink);
     }

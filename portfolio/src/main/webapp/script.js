@@ -225,11 +225,11 @@ function goToBookshelf(intent, bookshelfName){
  * query)
  * 
  * @param intent name of book intent
- * @param friendName friend to retrieve likes from
+ * @param friend object 
  */
-function seeFriendsLikedBooks(intent, friendName){
+function seeFriendsLikedBooks(intent, friend){
   fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId + 
-    '&friend=' + friendName, {
+    '&friend=' + friend.name + '&friendObject=' + JSON.stringify(friend), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
 }

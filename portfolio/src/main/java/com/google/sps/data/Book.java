@@ -48,7 +48,8 @@ public class Book implements Serializable {
   private String volumeId;
   private Boolean ebook = false;
   private Boolean isLiked = false;
-  private ArrayList<String> likedBy;
+  private ArrayList<Friend> likedBy;
+  private Friend requestedFriend;
   private int likeCount = 0;
 
   /**
@@ -92,7 +93,7 @@ public class Book implements Serializable {
     setTextSnippet(volume);
     setVolumeId(volume);
     setEbook(volume);
-    this.likedBy = new ArrayList<String>();
+    this.likedBy = new ArrayList<Friend>();
   }
 
   /**
@@ -114,7 +115,7 @@ public class Book implements Serializable {
     this.buyLink = "";
     this.textSnippet = "";
     this.volumeId = "";
-    this.likedBy = new ArrayList<String>();
+    this.likedBy = new ArrayList<Friend>();
   }
 
   /**
@@ -336,7 +337,7 @@ public class Book implements Serializable {
     return this.textSnippet;
   }
 
-  public ArrayList<String> getLikedBy() {
+  public ArrayList<Friend> getLikedBy() {
     return this.likedBy;
   }
 
@@ -348,9 +349,9 @@ public class Book implements Serializable {
     return this.ebook;
   }
 
-  public void addToLikedBy(String name) {
-    if (!this.likedBy.contains(name)) {
-      this.likedBy.add(name);
+  public void addToLikedBy(Friend friend) {
+    if (!this.likedBy.contains(friend)) {
+      this.likedBy.add(friend);
       this.likeCount += 1;
     }
   }
@@ -402,8 +403,12 @@ public class Book implements Serializable {
     this.isLiked = bool;
   }
 
-  public void setLikedBy(ArrayList<String> likedByFriends) {
+  public void setLikedBy(ArrayList<Friend> likedByFriends) {
     this.likedBy = likedByFriends;
     this.likeCount = likedByFriends.size();
+  }
+
+  public void setRequestedFriend(Friend friend) {
+    this.requestedFriend = friend;
   }
 }

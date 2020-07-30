@@ -69,6 +69,8 @@ public class OAuthHelper {
   public static AuthorizationCodeFlow createFlow(String userID) throws IOException {
     Set<String> scopes = new HashSet<String>();
     scopes.add(BooksScopes.BOOKS);
+    scopes.add(PeopleServiceScopes.USERINFO_PROFILE);
+    scopes.add(PeopleServiceScopes.USERINFO_EMAIL);
     scopes.add(PeopleServiceScopes.CONTACTS_READONLY);
     return new GoogleAuthorizationCodeFlow.Builder(
             new NetHttpTransport(),

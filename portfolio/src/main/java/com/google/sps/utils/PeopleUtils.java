@@ -40,6 +40,29 @@ public class PeopleUtils {
   }
 
   /**
+   * This function returns all Friend objects in a user's contact list that match the specified
+   * friendName based on the userID's connections from the Google People API
+   *
+   * @param userID ID for authenticated user
+   * @param friendName friend to look for
+   * @param oauthHelper OAuthHelper instance used to access OAuth methods
+   * @return ArrayList<Friend> of matches
+   */
+  public ArrayList<Friend> getMatchingFriends(
+      String userID, String friendName, OAuthHelper oauthHelper) throws IOException {
+    ArrayList<Friend> matches = new ArrayList<Friend>();
+    for (Friend friend : getFriends(userID, oauthHelper)) {
+      if (friendName.toLowerCase().equals(friend.getName().toLowerCase())
+          || friend.getEmails().contains(friendName)) {
+        if (!matches.contains(friend)) {
+          matches.add(friend);
+        }
+      }
+    }
+    return matches;
+  }
+
+  /**
    * This function returns a list of the user's friends, based on their connections from the Google
    * People API and throws an exception otherwise
    *
@@ -91,12 +114,30 @@ public class PeopleUtils {
   }
 
   /**
-   * This function returns a Bookshelves object containing the Bookshelves from the Google Books API
-   * that match the authenticated user's bookshelves and throws an exception otherwise
+   * This function returns a Friend object of the Authenticated user including name, emails, and a
+   * photo, and null if one could not be created
    *
    * @param userID unique userID
    * @param helper OAuthHelper instance used to access OAuth methods
-   * @return Bookshelves object of results
+   * @return Friend object
+   */
+  public Friend getUserInfo(String userID, OAuthHelper helper) {
+    try {
+      Person person = getPerson(userID, helper);
+      return Friend.createFriend(person);
+    } catch (IOException e) {
+      log.error("User with no email was not created.");
+    }
+    return null;
+  }
+
+  /**
+   * This function returns a List of Person objects containing information about Person connections
+   * from the Google People API for the authenticated user and t throws an exception otherwise
+   *
+   * @param userID unique userID
+   * @param helper OAuthHelper instance used to access OAuth methods
+   * @return List<Person> list of results
    */
   public List<Person> getContactsFromAPI(String userID, OAuthHelper helper)
       throws IOException, GoogleJsonResponseException {
@@ -107,9 +148,26 @@ public class PeopleUtils {
             .people()
             .connections()
             .list("people/me")
-            .setPersonFields("names,emailAddresses")
+            .setPersonFields("names,emailAddresses,photos")
             .execute();
     List<Person> connections = response.getConnections();
     return connections;
+  }
+
+  /**
+   * This function returns a Person object of the Authenticated user from the Google People API
+   * including name, emails, and a photo, and throws an exception otherwise
+   *
+   * @param userID unique userID
+   * @param helper OAuthHelper instance used to access OAuth methods
+   * @return Person object
+   */
+  public Person getPerson(String userID, OAuthHelper helper)
+      throws IOException, GoogleJsonResponseException {
+    Credential credential = helper.loadUpdatedCredential(userID);
+    PeopleService service = getPeopleService(credential);
+    Person response =
+        service.people().get("people/me").setPersonFields("names,emailAddresses,photos").execute();
+    return response;
   }
 }
