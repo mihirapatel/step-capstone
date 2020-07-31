@@ -2,6 +2,7 @@ var userId;
 var userName;
 var userEmail;
 var savedWorkoutPlans;
+var savedWorkoutVideos;
 
 /** Creates Workout Dashboard button on assistant main page that links to dashboard page*/
 function createWorkoutDashboardButton(){
@@ -19,6 +20,7 @@ function createWorkoutDashboardButton(){
 function dashboardSetup() {
     getUserInfo();
     getSavedWorkoutPlans();
+    getSavedWorkoutVideos();
 }
 
 /** Get user info from servlet and call displayUserInfo()*/
@@ -48,7 +50,7 @@ function displayUserInfo() {
     //User contact info
     var userContact = document.createElement("div");
     userContact.className = "user-contact";
-    var name = document.createElement("h3");
+    var name = document.createElement("h1");
     name.innerHTML = userName;
     userContact.appendChild(name);
     var email = document.createElement("p");
@@ -68,7 +70,8 @@ function getSavedWorkoutPlans() {
 /** Displays user's saved workout plans in dashboard */
 function displaySavedWorkoutPlans() {
 
-    savedWorkoutPlansDiv = document.getElementsByClassName("saved-workouts")[0];
+    savedWorkoutContent = document.getElementsByClassName("saved-workout-content")[0];
+    savedWorkoutPlansDiv = document.getElementsByClassName("saved-workout-plans")[0];
     savedWorkoutPlansTitle = document.createElement("h2");
     savedWorkoutPlansTitle.innerHTML = "Saved Workout Plans";
     savedWorkoutPlansDiv.appendChild(savedWorkoutPlansTitle);
@@ -76,6 +79,8 @@ function displaySavedWorkoutPlans() {
     for (var i = 0; i < savedWorkoutPlans.length; i++) {
         createSavedWorkoutPlanCard(JSON.stringify(savedWorkoutPlans[i]));
     } 
+
+    savedWorkoutContent.appendChild(savedWorkoutPlansDiv);
 }
 
 /** Creates workout plan card to display on dashboard for each saved workout plan
@@ -129,24 +134,126 @@ function displayWorkoutPlan() {
     var storedWorkoutPlan = window.localStorage.getItem(storageKey);
     storedWorkoutPlan = JSON.parse(storedWorkoutPlan);
 
+    //Workout Plan Container
+    var workoutPlanContainer = document.getElementsByClassName("workout-plan-container")[0];
+
     //Workout Plan Header
     var workoutPlanHeader = document.getElementsByClassName("workout-plan-header")[0];
     var workoutPlanTitle = document.createElement("h1");
     workoutPlanTitle.innerHTML = storedWorkoutPlan.workoutPlanName;
     workoutPlanHeader.appendChild(workoutPlanTitle);
+    workoutPlanContainer.appendChild(workoutPlanHeader);
 
     //Workout Progress
     var workoutPlanProgress = document.getElementsByClassName("workout-plan-progress")[0];
     var progress = document.createElement("h3");
     progress.id = "progress";
-    var progressPercentage = storedWorkoutPlan.numWorkoutDaysCompleted / storedWorkoutPlan.planLength;
-    progress.innerHTML = "Progress: " + progressPercentage;
+    var progressPercentage = Math.round((storedWorkoutPlan.numWorkoutDaysCompleted / storedWorkoutPlan.planLength) * 100);
+    progress.innerHTML = "Progress: " + progressPercentage + "%";
     workoutPlanProgress.appendChild(progress);
+    workoutPlanContainer.appendChild(workoutPlanProgress);
 
     //Workout Plan Table
-    dashboardWorkoutPlan = document.getElementsByClassName("workout-plan")[0];
-    workoutPlanTable = createWorkoutPlanTable(storedWorkoutPlan, true, 1, false);
-    dashboardWorkoutPlan.appendChild(workoutPlanTable);
+    var workoutPlanTable = document.getElementsByClassName("workout-plan-table")[0];
+    var dashboardWorkoutPlan = createWorkoutPlanTable(storedWorkoutPlan, true, 1, false);
+    workoutPlanTable.appendChild(dashboardWorkoutPlan);
+    workoutPlanContainer.appendChild(workoutPlanTable);
+
+    //Back to Dashboard Button Link
+    var dashboardDiv = document.getElementsByClassName("dashboard-link")[0];
+    var dashboardLink = document.createElement("a");
+    dashboardLink.className = "back-to-dashboard-link";
+    dashboardLink.title = "Back to Dashboard";
+    dashboardLink.innerHTML = "Back to Dashboard"
+    dashboardLink.href = "dashboard.html";
+    dashboardDiv.appendChild(dashboardLink);
+    workoutPlanContainer.appendChild(dashboardDiv);
+}
+
+/** Gets user's saved workout videos from servlet and call displaySavedWorkoutVideos()*/
+function getSavedWorkoutVideos() {
+    fetch('/save-video').then(response => response.text()).then((workoutVideos) => {
+        savedWorkoutVideos = JSON.parse(workoutVideos);
+        displaySavedWorkoutVideos();
+    });
+}
+
+/** Displays user's saved workout videos in dashboard */
+function displaySavedWorkoutVideos() {
+
+    savedWorkoutContent = document.getElementsByClassName("saved-workout-content")[0];
+    savedWorkoutVideosDiv = document.getElementsByClassName("saved-workout-videos")[0];
+    savedWorkoutVideosTitle = document.createElement("h2");
+    savedWorkoutVideosTitle.innerHTML = "Saved Workout Videos";
+    savedWorkoutVideosDiv.appendChild(savedWorkoutVideosTitle);
+
+    for (var i = 0; i < savedWorkoutVideos.length; i++) {
+        createVideoContainer(JSON.stringify(savedWorkoutVideos[i]));
+    } 
+
+    savedWorkoutContent.appendChild(savedWorkoutVideosDiv);
+}
+
+/** Creates workout plan card to display on dashboard for each saved workout plan
+ *
+ * @param savedWorkoutVideo workout video json object to create display with thumbnail, title, and channel
+ */
+function createVideoContainer(savedWorkoutVideo) {
+    workoutVideo = JSON.parse(savedWorkoutVideo);
+
+    var savedWorkoutVideo = document.createElement("div");
+    savedWorkoutVideo.className = "saved-video";
+    
+    //Saved Workout Video Thumbnail
+    var savedVideoThumbnail = document.createElement("div");
+    savedVideoThumbnail.className = "saved-video-thumbnail";
+
+    var videoLink = document.createElement("a");
+    videoLink.title = workoutVideo.title;
+    videoLink.href = workoutVideo.videoURL.replace(/"/g, "");
+    videoLink.target = "_blank";    
+
+    var thumbnailImage = document.createElement("img");
+    thumbnailImage.src = workoutVideo.thumbnail.replace(/"/g, "");
+    thumbnailImage.setAttribute("width", "250");
+    thumbnailImage.setAttribute("height", "140");
+    videoLink.appendChild(thumbnailImage);
+
+    savedVideoThumbnail.appendChild(videoLink);
+    savedWorkoutVideo.appendChild(savedVideoThumbnail);
+
+    //Saved Video Title
+    var videoTitleLink = document.createElement("a");
+    videoTitleLink.title = workoutVideo.title;
+    videoTitleLink.href = workoutVideo.videoURL.replace(/"/g, "");
+    videoTitleLink.target = "_blank"; 
+
+    var videoTitle = document.createElement("h4");
+    videoTitle.className = "saved-video-title";
+
+    var title = workoutVideo.title.replace(/"/g, "");
+    if (title.length > 30) {
+        title = title.substring(0, 30) + "..."; 
+    }
+
+    videoTitle.innerHTML = title;
+    videoTitleLink.appendChild(videoTitle);
+    savedWorkoutVideo.appendChild(videoTitleLink);
+
+    //Saved Video Channel Name
+    var channelLink = document.createElement("a");
+    channelLink.title = workoutVideo.channelTitle;
+    channelLink.href = workoutVideo.channelURL.replace(/"/g, "");
+    channelLink.target = "_blank"; 
+
+    var channelTitle = document.createElement("p");
+    channelTitle.classList.add("channel-title");
+    channelTitle.classList.add("saved-video-channel-title");
+    channelTitle.innerHTML = workoutVideo.channelTitle.replace(/"/g, "");
+    channelLink.appendChild(channelTitle)
+    savedWorkoutVideo.appendChild(channelLink);
+
+    savedWorkoutVideosDiv.appendChild(savedWorkoutVideo);
 }
 
 /** Stores workoutPlanId to be able to display correct workout plan when link clicked

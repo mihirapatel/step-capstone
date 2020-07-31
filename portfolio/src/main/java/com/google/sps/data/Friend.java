@@ -20,6 +20,8 @@ package com.google.sps.data;
 import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.Name;
 import com.google.api.services.people.v1.model.Person;
+import com.google.api.services.people.v1.model.Photo;
+import com.google.sps.utils.BooksAgentHelper;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class Friend implements Serializable {
 
   private String name;
   private ArrayList<String> emailAddresses;
+  private String photoUrl = "images/blankAvatar.png";
+  private String resourceName;
 
   /**
    * Creates a Friend object from a valid Person object that will be used to access Book likes or
@@ -59,13 +63,15 @@ public class Friend implements Serializable {
    * Person object.
    *
    * <p>If Person object is missing any other properties, the properties will be set to an empty
-   * String.
+   * String, except for photoUrl, which will be a link to a blank avatar.
    *
    * @param person Person Object
    */
   private Friend(Person person) {
     setName(person);
     setEmailAddresses(person);
+    setPhotoUrl(person);
+    setResourceName(person);
   }
 
   /**
@@ -73,14 +79,50 @@ public class Friend implements Serializable {
    * fields from the parameters. The rest of the properties will be set to an Empty String.
    *
    * @param name String title of book
-   * @param emailAddresses list of email addresses
+   * @param emails list of email addresses
    */
-  public Friend(String name, ArrayList<String> emailAddresses) {
+  public Friend(String name, ArrayList<String> emails) {
     this.name = name;
-    this.emailAddresses = emailAddresses;
+    this.emailAddresses = setEmailsFromList(emails);
+    this.resourceName = "";
   }
 
-  public void setName(Person person) {
+  /**
+   * Public Friend constructor called when retrieving all attributes of a valid Friend object from
+   * the frontend. Properties of Friend constructor are set with the parameters.
+   *
+   * @param name name of Friend
+   * @param emails emails of Friend
+   * @param photoUrl photo of Friend
+   */
+  public Friend(String name, ArrayList<String> emails, String photoUrl, String resourceName) {
+    this(name, emails);
+    this.photoUrl = photoUrl;
+    this.resourceName = resourceName;
+  }
+
+  /**
+   * Two friends are considered equal if all of their email addresses and contact name are the same.
+   */
+  @Override
+  public boolean equals(Object object) {
+    if (object == this) {
+      return true;
+    }
+    if (!(object instanceof Friend)) {
+      return false;
+    }
+    Friend otherFriend = (Friend) object;
+    return (otherFriend.getName().equals(this.name)
+        && otherFriend.getEmails().equals(this.emailAddresses));
+  }
+
+  @Override
+  public int hashCode() {
+    return BooksAgentHelper.listToJson(this.emailAddresses).hashCode();
+  }
+
+  private void setName(Person person) {
     List<Name> names = person.getNames();
     if (names != null && !names.isEmpty()) {
       this.name = person.getNames().get(0).getDisplayName();
@@ -89,17 +131,28 @@ public class Friend implements Serializable {
     }
   }
 
-  public void setEmailAddresses(Person person) {
+  private void setEmailAddresses(Person person) {
     List<EmailAddress> emails = person.getEmailAddresses();
     ArrayList<String> stringEmails = new ArrayList<String>();
     if (emails != null && emails.size() > 0) {
       for (EmailAddress email : emails) {
         if (!email.getValue().isEmpty()) {
-          stringEmails.add(email.getValue());
+          stringEmails.add(email.getValue().toLowerCase());
         }
       }
     }
     this.emailAddresses = stringEmails;
+  }
+
+  private void setPhotoUrl(Person person) {
+    List<Photo> photos = person.getPhotos();
+    if (photos != null && photos.size() > 0 && !photos.get(0).isEmpty()) {
+      this.photoUrl = photos.get(0).getUrl();
+    }
+  }
+
+  private void setResourceName(Person person) {
+    this.resourceName = person.getResourceName();
   }
 
   public String getName() {
@@ -108,6 +161,14 @@ public class Friend implements Serializable {
 
   public ArrayList<String> getEmails() {
     return this.emailAddresses;
+  }
+
+  public String getPhotoUrl() {
+    return this.photoUrl;
+  }
+
+  public String getResourceName() {
+    return this.photoUrl;
   }
 
   public Boolean hasName() {
@@ -122,6 +183,14 @@ public class Friend implements Serializable {
    */
   public static boolean hasValidParameters(Person person) {
     List<EmailAddress> emails = person.getEmailAddresses();
-    return (emails != null && emails.size() > 0);
+    String resourceName = person.getResourceName();
+    return (emails != null && emails.size() > 0 && !resourceName.isEmpty());
+  }
+
+  private ArrayList<String> setEmailsFromList(ArrayList<String> emails) {
+    for (int i = 0; i < emails.size(); ++i) {
+      emails.set(i, emails.get(i).toLowerCase());
+    }
+    return emails;
   }
 }

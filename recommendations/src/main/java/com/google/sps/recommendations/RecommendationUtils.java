@@ -73,7 +73,6 @@ public class RecommendationUtils {
       throws IllegalStateException, EntityNotFoundException {
     PriorityQueue<Pair<String, Double>> pq =
         new PriorityQueue<>(
-            3,
             new Comparator<Pair<String, Double>>() {
               @Override
               public int compare(Pair<String, Double> p1, Pair<String, Double> p2) {
@@ -92,7 +91,6 @@ public class RecommendationUtils {
       throw new IllegalStateException("No items in PQ");
     }
     List<Pair<String, Double>> sortedItems = new ArrayList<>();
-    ;
     while (!pq.isEmpty()) {
       sortedItems.add(pq.poll());
     }

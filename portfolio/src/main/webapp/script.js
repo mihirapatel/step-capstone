@@ -24,6 +24,7 @@ var sessionId = "";
 var queryNumber = 0;
 window.onbeforeunload = deleteSessionInformation;
 var isUserLoggedIn = false;
+var userPhoto = "images/android.png";
  
 var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
@@ -77,6 +78,7 @@ window.onclick = function(event) {
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
       if (openDropdown.classList.contains('show')) {
+        updateDropdownScroll(openDropdown);
         openDropdown.classList.remove('show');
       }
     }
@@ -135,7 +137,12 @@ function authSetup() {
     if (displayText.logButton == "Logout") {
         isUserLoggedIn = true;
         createWorkoutDashboardButton();
+    } else if (displayText.logButton == "Login") {
+        isUserLoggedIn = false;
     }
+    window.userPhoto = displayText.photoUrl;
+    var body = document.body;
+    body.insertAdjacentHTML('beforeend', '<style>.talk-bubble-user:before{background-image: url(' + userPhoto + ');}</style>');
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
     deleteSessionInformation();
@@ -207,11 +214,11 @@ function goToBookshelf(intent, bookshelfName){
  * query)
  * 
  * @param intent name of book intent
- * @param friendName friend to retrieve likes from
+ * @param friend object 
  */
-function seeFriendsLikedBooks(intent, friendName){
+function seeFriendsLikedBooks(intent, friend){
   fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId + 
-    '&friend=' + friendName, {
+    '&friend=' + friend.name + '&friendObject=' + JSON.stringify(friend), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
 }
@@ -331,6 +338,40 @@ function saveWorkoutPlan(workoutPlan){
       method: 'POST'
   }).then(response => response.text()).then(() => {
       console.log('Saved workout plan');
+  });
+}
+
+function updateDropdownScroll(element) {
+  element.scrollTop =  0;
+/** Saves workout video using SaveVideoServlet for current user
+ *
+ * @param workoutVideo workoutVideo string with userId and videoId 
+ */
+
+function saveWorkoutVideo(videos, buttonId) {
+
+  workoutVideo = videos[parseInt(buttonId)];
+
+  //Change button text to show user that video has been saved
+  var buttonToMark = document.getElementById(buttonId);
+  var oldButtonText = buttonToMark.childNodes[0];
+
+  if (oldButtonText.textContent == "Save Video") {
+    buttonToMark.removeChild(oldButtonText);
+    var newButtonText = document.createTextNode("Saved!");
+    buttonToMark.appendChild(newButtonText); 
+  }
+
+  //Create new JSON oject for workout video to be saved
+  var savedWorkoutVideo = new Object();
+  savedWorkoutVideo.userId = workoutVideo.userId;
+  savedWorkoutVideo.videoId  = workoutVideo.videoId;
+  var workoutVideoString = JSON.stringify(savedWorkoutVideo);
+
+  fetch('/save-video' + '?workout-video=' + workoutVideoString, {
+      method: 'POST'
+  }).then(response => response.text()).then(() => {
+      console.log('Saved workout video');
   });
 }
 

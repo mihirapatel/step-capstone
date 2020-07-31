@@ -16,4 +16,9 @@ public class Pair<K, V> {
   public V getValue() {
     return this.value;
   }
+
+  @Override
+  public String toString() {
+    return "key: " + this.key + "\nvalue: " + this.value;
+  }
 }

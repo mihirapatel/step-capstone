@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.protobuf.Value;
 import com.google.sps.data.Book;
 import com.google.sps.data.BookQuery;
+import com.google.sps.data.Friend;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -195,15 +196,20 @@ public class BooksAgentHelper {
         this.bookResults =
             BooksMemoryUtils.getFriendsLikes(userID, datastore, oauthHelper, peopleUtils);
       } else if (intentName.equals("mylikes")) {
+        // Set requested friend to user's own contact information
+        query.setRequestedFriend(peopleUtils.getUserInfo(userID, "people/me", oauthHelper));
         this.bookResults = BooksMemoryUtils.getLikedBooksFromId(userID, "id", datastore);
       } else if (intentName.equals("friendlikes")) {
-        if (isValidFriend()) {
-          this.bookResults =
-              BooksMemoryUtils.getLikesOfFriend(
-                  userID, query.getFriendName(), datastore, oauthHelper, peopleUtils);
-        } else {
-          return;
+        if (query.getRequestedFriend() == null) {
+          // Check if parameter is a valid friend, if so, assigns requestedFriend variable for
+          // BookQuery. Otherwise, sets follow-up output and returns without retrieving books
+          if (!setQueryRequestedFriend()) {
+            return;
+          }
         }
+        this.bookResults =
+            BooksMemoryUtils.getLikesOfFriend(
+                userID, query.getRequestedFriend(), datastore, oauthHelper, peopleUtils);
       }
       this.totalResults = bookResults.size();
     }
@@ -213,19 +219,30 @@ public class BooksAgentHelper {
   /**
    * For "friendlikes" requests, checks if friend specified by the user is a valid friend, who is
    * listed in their list of friends. If not, it handles invalid friend requests and returns false.
-   * If the friend is valid, it returns true.
+   * If the friend is valid, it sets the requestedFriend property of the BookQuery object with the
+   * requested Friend object.
    *
    * @return Boolean indicating whether the friend is valid
    */
-  private Boolean isValidFriend() throws IOException {
+  private Boolean setQueryRequestedFriend() throws IOException {
     this.friendName = query.getFriendName();
     if (friendName == null) {
       this.output = "Which friend?";
       return false;
     }
-    if (!peopleUtils.hasFriend(userID, friendName, oauthHelper)) {
+    ArrayList<Friend> matchingFriends =
+        peopleUtils.getMatchingFriends(userID, friendName, oauthHelper);
+
+    if (matchingFriends.isEmpty()) {
       this.output = "I'm sorry. I don't recognize a " + friendName + " in your contact list.";
       return false;
+    } else if (matchingFriends.size() > 1) {
+      this.redirect = getNextQueryID(sessionID) + "-which-friend";
+      this.output = "Which " + friendName + " would you like to see?";
+      this.display = listToJson(matchingFriends);
+      return false;
+    } else {
+      query.setRequestedFriend(matchingFriends.get(0));
     }
     return true;
   }
@@ -243,7 +260,7 @@ public class BooksAgentHelper {
     } else if (intentName.equals("mylikes")) {
       return "Here are your liked books.";
     } else if (intentName.equals("friendlikes")) {
-      return "Here are " + query.getFriendName() + "'s liked books.";
+      return "Here are " + query.getRequestedFriend().getName() + "'s liked books.";
     } else if (intentName.equals("library")) {
       return "Here are the books in your " + query.getBookshelfName() + " bookshelf.";
     }
@@ -263,7 +280,7 @@ public class BooksAgentHelper {
     } else if (intentName.equals("mylikes")) {
       return "You haven't liked any books yet!";
     } else if (intentName.equals("friendlikes")) {
-      return "I couldn't find any liked books for " + query.getFriendName() + ".";
+      return "I couldn't find any liked books for " + query.getRequestedFriend().getName() + ".";
     } else if (intentName.equals("library")) {
       return "There are no books in your " + query.getBookshelfName() + " bookshelf.";
     }
@@ -309,7 +326,6 @@ public class BooksAgentHelper {
       } else {
         // Store Book results starting at resultsStored index
         BooksMemoryUtils.storeBooks(bookResults, resultsStored, sessionID, queryID, datastore);
-
         // Store new indices
         int newResultsStored = resultsReturned + resultsStored;
         this.resultsStored = newResultsStored;
@@ -358,6 +374,7 @@ public class BooksAgentHelper {
         BooksMemoryUtils.getBookFromOrderNum(
             bookNumber, prevStartIndex, sessionID, queryID, datastore);
 
+    loadBookQueryInfo(sessionID, queryID);
     setSingleBookDisplay(requestedBook);
     this.redirect = queryID;
     this.output = "Here's a " + intentName + " of " + requestedBook.getTitle() + ".";
@@ -444,6 +461,7 @@ public class BooksAgentHelper {
       bookUtils.addToBookshelf(bookshelfName, userID, volumeId, oauthHelper);
       this.output =
           "I've added " + requestedBook.getTitle() + " to your " + bookshelfName + " bookshelf.";
+      loadBookQueryInfo(sessionID, queryID);
       setSingleBookDisplay(requestedBook);
       this.redirect = queryID;
     } catch (GoogleJsonResponseException e) {
@@ -479,6 +497,7 @@ public class BooksAgentHelper {
       bookUtils.deleteFromBookshelf(shelfName, userID, volumeId, oauthHelper);
       this.output =
           "I've deleted " + requestedBook.getTitle() + " from your " + shelfName + " bookshelf.";
+      loadBookQueryInfo(sessionID, queryID);
       setSingleBookDisplay(requestedBook);
       this.redirect = queryID;
     } catch (GoogleJsonResponseException e) {
@@ -505,6 +524,10 @@ public class BooksAgentHelper {
     this.queryID = getNextQueryID(sessionID);
     if (intent.equals("library")) {
       this.queryID += "-shelf";
+    } else if (intent.equals("friendlikes")) {
+      this.queryID += "-friend";
+    } else if (intent.equals("mylikes")) {
+      this.queryID += "-mylikes";
     }
     // Store BookQuery, Book results, totalResults, resultsReturned
     BooksMemoryUtils.storeBooks(bookResults, startIndex, sessionID, queryID, datastore);
@@ -542,7 +565,10 @@ public class BooksAgentHelper {
         BooksMemoryUtils.getStoredIndices("totalResults", sessionID, queryID, datastore);
   }
 
-  /** Sets display to an ArrayList<Book> to display on user interface */
+  /**
+   * Sets display to an ArrayList<Book> to display on user interface. If it is a friendlikes intent,
+   * then it assigns the requestedFriend property for each book for the frontend display.
+   */
   private void setBookListDisplay() throws IOException {
     ArrayList<Book> booksToDisplay =
         BooksMemoryUtils.getStoredBooksToDisplay(
@@ -554,6 +580,15 @@ public class BooksAgentHelper {
             userService,
             oauthHelper,
             peopleUtils);
+    if (query.getIntent().equals("friendlikes") || query.getIntent().equals("mylikes")) {
+      for (Book book : booksToDisplay) {
+        book.setRequestedFriend(query.getRequestedFriend());
+      }
+    } else if (query.getIntent().equals("library")) {
+      for (Book book : booksToDisplay) {
+        book.setBookshelfName(query.getBookshelfName());
+      }
+    }
     this.display = listToJson(booksToDisplay);
   }
 
@@ -568,6 +603,12 @@ public class BooksAgentHelper {
       book = BooksMemoryUtils.assignLikeCount(book, sessionID, friendsLikes, datastore);
       book = BooksMemoryUtils.assignLikeStatus(book, sessionID, likedBooks, datastore);
     }
+    /*
+    if (query.getIntent().equals("friendlikes") || query.getIntent().equals("mylikes")) {
+      book.setRequestedFriend(query.getRequestedFriend());
+    } else if (query.getIntent().equals("library")) {
+      book.setBookshelfName(query.getBookshelfName());
+    }*/
     this.display = bookToJson(book);
   }
 

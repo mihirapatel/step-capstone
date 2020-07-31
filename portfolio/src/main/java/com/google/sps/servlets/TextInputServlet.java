@@ -22,6 +22,7 @@ import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.gson.Gson;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import com.google.sps.data.RecommendationsClient;
 import com.google.sps.utils.AgentUtils;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +42,7 @@ public class TextInputServlet extends HttpServlet {
   private static Logger log = LoggerFactory.getLogger(TextInputServlet.class);
   private DatastoreService datastore = createDatastore();
   private UserService userService = createUserService();
+  private RecommendationsClient recommender = createRecommendationsClient();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -59,7 +61,9 @@ public class TextInputServlet extends HttpServlet {
     }
     Output output = null;
     try {
-      output = AgentUtils.getOutput(result, languageCode, userService, datastore, sessionID);
+      output =
+          AgentUtils.getOutput(
+              result, languageCode, userService, datastore, sessionID, recommender);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -101,5 +105,9 @@ public class TextInputServlet extends HttpServlet {
 
   protected DatastoreService createDatastore() {
     return DatastoreServiceFactory.getDatastoreService();
+  }
+
+  protected RecommendationsClient createRecommendationsClient() {
+    return new RecommendationsClient();
   }
 }

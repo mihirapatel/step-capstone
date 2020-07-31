@@ -5,6 +5,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
+import com.google.sps.data.Friend;
 import com.google.sps.utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,19 +30,23 @@ public class AuthServlet extends HttpServlet {
     String authText;
     String displayName;
     String logButton;
+    String photoUrl;
     if (userService.isUserLoggedIn()) {
       String logoutUrl = userService.createLogoutURL("/index.html");
       String id = userService.getCurrentUser().getUserId();
+      Friend user = UserUtils.getUser(userService, datastore);
       authText = logoutUrl;
-      displayName = UserUtils.getDisplayName(userService, datastore);
+      displayName = UserUtils.getDisplayName(userService, datastore, user);
+      photoUrl = UserUtils.getPhotoUrl(userService, datastore, user);
       logButton = "Logout";
     } else {
       authText = loginUrl;
       displayName = "";
       logButton = "Login";
+      photoUrl = "images/android.png";
     }
 
-    AuthOutput output = new AuthOutput(authText, displayName, logButton);
+    AuthOutput output = new AuthOutput(authText, displayName, logButton, photoUrl);
     String json = new Gson().toJson(output);
     System.out.println(json);
     response.getWriter().write(json);
@@ -67,11 +72,13 @@ public class AuthServlet extends HttpServlet {
     String authText;
     String displayName;
     String logButton;
+    String photoUrl;
 
-    AuthOutput(String authText, String displayName, String logButton) {
+    AuthOutput(String authText, String displayName, String logButton, String photoUrl) {
       this.authText = authText;
       this.displayName = displayName;
       this.logButton = logButton;
+      this.photoUrl = photoUrl;
     }
   }
 }

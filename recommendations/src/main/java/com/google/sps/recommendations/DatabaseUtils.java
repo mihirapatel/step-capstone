@@ -62,15 +62,9 @@ public class DatabaseUtils {
     long count = countObject == null ? 0 + incrementCount : ((long) countObject) + incrementCount;
     aggregateEntity.setProperty("count", count);
     aggregateEntity.setProperty("listName", stemmedListName);
+    log.info("created aggregate entity: " + aggregateEntity);
     datastore.put(aggregateEntity);
-    updateFractionalAggregation(
-        datastore, userID, stemmedListName, items, aggregateEntity, count == 1);
-    try {
-      RecommendationUtils.updateUserRecommendations(datastore, userID, stemmedListName, items);
-
-    } catch (EntityNotFoundException | IllegalStateException e) {
-      log.error("Recommendation error: " + e);
-    }
+    updateFractionalAggregation(datastore, userID, stemmedListName, items, count, count == 1, true);
   }
 
   /**
@@ -85,13 +79,14 @@ public class DatabaseUtils {
    * @param firstList Boolean representing true if updating fractions for the first list of a name
    *     type
    */
-  private static void updateFractionalAggregation(
+  public static void updateFractionalAggregation(
       DatastoreService datastore,
       String userID,
       String stemmedListName,
       List<String> items,
-      Entity entity,
-      boolean firstList) {
+      long listCount,
+      boolean firstList,
+      boolean positiveFeedback) {
     if (items == null) {
       return;
     }
@@ -99,7 +94,7 @@ public class DatabaseUtils {
     Entity fracEntity;
     try {
       fracEntity = datastore.get(KeyFactory.createKey("Frac-" + stemmedListName, userID));
-      double incrementValue = firstList ? 1.0 : 0.4;
+      double incrementValue = positiveFeedback ? (firstList ? 1.0 : 0.4) : -1.0;
       for (String stemmedItem : stemmedItems) {
         Double existingRate = (Double) fracEntity.getProperty(stemmedItem);
         if (existingRate == null) {
@@ -108,18 +103,24 @@ public class DatabaseUtils {
           fracEntity.setProperty(stemmedItem, existingRate + incrementValue);
         }
       }
-      fracEntity.setProperty("count", entity.getProperty("count"));
+      fracEntity.setProperty("count", listCount);
     } catch (EntityNotFoundException e) {
       fracEntity = new Entity("Frac-" + stemmedListName, userID);
-      for (String name : AGG_ENTITY_ID_PROPERTIES) {
-        fracEntity.setProperty(name, entity.getProperty(name));
-      }
       for (String stemmedItem : stemmedItems) {
         fracEntity.setProperty(stemmedItem, 1.0);
       }
+      fracEntity.setProperty("userID", userID);
+      fracEntity.setProperty("listName", stemmedListName);
+      fracEntity.setProperty("timestamp", System.currentTimeMillis());
     }
     log.info("frac entity here" + fracEntity);
     datastore.put(fracEntity);
+    try {
+      RecommendationUtils.updateUserRecommendations(datastore, userID, stemmedListName, items);
+
+    } catch (EntityNotFoundException | IllegalStateException e) {
+      log.error("Recommendation error: " + e);
+    }
   }
 
   /**

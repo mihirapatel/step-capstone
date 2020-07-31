@@ -8,6 +8,7 @@ import com.google.sps.data.Output;
 import com.google.sps.servlets.BookAgentServlet;
 import com.google.sps.servlets.TestHelper;
 import com.google.sps.utils.TimeUtils;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class MemoryTest {
    * retrieval for different keywords and time durations.
    */
   @Before
-  public void setUp() throws ParseException {
+  public void setUp() throws ParseException, URISyntaxException {
     // Pre-populate database with some comments.
     commentList =
         new ArrayList<>(

@@ -426,6 +426,33 @@ public class MemoryRecommendationsTest {
             StemUtils.stemmedList(Arrays.asList("egg"))));
   }
 
+  @Test
+  public void testDecrementItem() throws Exception {
+    TestHelper.makeUserList(
+        datastore,
+        "1",
+        4,
+        (List<Pair<String, Integer>>)
+            Arrays.asList(
+                new Pair<String, Integer>("apple", 4),
+                new Pair<String, Integer>("banana", 3),
+                new Pair<String, Integer>("carrot", 0),
+                new Pair<String, Integer>("donut", 1)));
+    DatabaseUtils.updateFractionalAggregation(
+        datastore, "1", "groceri", Arrays.asList("apple", "banana", "carrot"), 4, false, false);
+
+    TestHelper.checkAggregate(
+        datastore,
+        "groceri",
+        Arrays.asList("apples", "bananas", "carrot", "donut"),
+        Arrays.asList(4, 3, 0, 1));
+    TestHelper.checkFracAggregate(
+        datastore,
+        "groceri",
+        Arrays.asList("apples", "bananas", "carrot", "donut"),
+        Arrays.asList(0.0, -0.4, -1.0, Math.pow(0.6, 3)));
+  }
+
   public static String formatResultString(List<Pair<String, Double>> items) {
     if (items.size() == 1) {
       return items.get(0).getKey();

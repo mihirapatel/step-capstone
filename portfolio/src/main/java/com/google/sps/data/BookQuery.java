@@ -48,6 +48,7 @@ public class BookQuery implements Serializable {
   private String queryString;
   private boolean isMyLibrary;
   private String friendName;
+  private Friend requestedFriend;
 
   /**
    * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
@@ -113,6 +114,7 @@ public class BookQuery implements Serializable {
     setLanguage(parameters.get("language"));
     setBookshelf(parameters.get("bookshelf"));
     setFriendName(parameters.get("friend"));
+    setRequestedFriend(parameters.get("friendObject"));
     setQueryString();
   }
 
@@ -201,6 +203,21 @@ public class BookQuery implements Serializable {
     }
   }
 
+  private void setRequestedFriend(Value paramValue) {
+    if (paramValue != null
+        && paramValue.getStructValue() != null
+        && paramValue.getStructValue().getFieldsMap() != null) {
+      Map<String, Value> friendMap = paramValue.getStructValue().getFieldsMap();
+      String name = getFriendMapString(friendMap, "name");
+      String photoUrl = getFriendMapString(friendMap, "photoUrl");
+      String resourceName = getFriendMapString(friendMap, "resourceName");
+      ArrayList<String> emailList = getFriendEmailList(friendMap);
+      if (!emailList.isEmpty()) {
+        this.requestedFriend = new Friend(name, emailList, photoUrl, resourceName);
+      }
+    }
+  }
+
   public String getIntent() {
     return this.intent;
   }
@@ -241,12 +258,23 @@ public class BookQuery implements Serializable {
     return this.friendName;
   }
 
+  public Friend getRequestedFriend() {
+    return this.requestedFriend;
+  }
+
   public String getQueryString() {
     return this.queryString;
   }
 
   public Boolean isMyLibrary() {
     return this.isMyLibrary;
+  }
+
+  public void setRequestedFriend(Friend friend) {
+    this.requestedFriend = friend;
+    if (friend != null) {
+      this.friendName = friend.getName();
+    }
   }
 
   /**
@@ -266,5 +294,41 @@ public class BookQuery implements Serializable {
       return paramValue.getStructValue().getFieldsMap().get("name").getStringValue();
     }
     return null;
+  }
+
+  /**
+   * Returns a list of emails from the "emailAddresses" key of a friendMap returned from
+   * Dialogflow's friend parameter format for a single friend.
+   *
+   * @param friendMap Map containing information about friend object
+   * @return ArrayList<String> of emails
+   */
+  private ArrayList<String> getFriendEmailList(Map<String, Value> friendMap) {
+    ArrayList<Value> valueEmailList =
+        new ArrayList<Value>(friendMap.get("emailAddresses").getListValue().getValuesList());
+    ArrayList<String> emailList = new ArrayList<String>();
+    for (int i = 0; i < valueEmailList.size(); ++i) {
+      String email = valueEmailList.get(i).getStringValue();
+      if (!email.isEmpty()) {
+        emailList.add(email);
+      }
+    }
+    return emailList;
+  }
+
+  /**
+   * Returns the String value for the specified parameter key of a friendMap returned from
+   * Dialogflow's friend parameter format for a single friend, and an empty String if the parameter
+   * is not specified.
+   *
+   * @param friendMap Map containing information about friend object
+   * @param keyName name of key in map to retrieve value for
+   * @return requested value String
+   */
+  private String getFriendMapString(Map<String, Value> friendMap, String keyName) {
+    if (friendMap.get(keyName) != null) {
+      return friendMap.get(keyName).getStringValue();
+    }
+    return "";
   }
 }

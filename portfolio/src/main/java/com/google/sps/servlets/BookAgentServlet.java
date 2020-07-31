@@ -66,6 +66,9 @@ public class BookAgentServlet extends HttpServlet {
         this.friendName = request.getParameter("friend");
         params.add("\"friend\": {\"name\": \"" + friendName + "\"}");
       }
+      if (request.getParameter("friendObject") != null) {
+        params.add("\"friendObject\": " + request.getParameter("friendObject"));
+      }
       if (!params.isEmpty()) {
         String paramString = String.join(",", params);
         parameterMap = stringToMap("{" + paramString + "}");

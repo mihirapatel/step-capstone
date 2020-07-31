@@ -1,9 +1,5 @@
 package com.google.sps.utils;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.EntityNotFoundException;
-import com.google.appengine.api.datastore.KeyFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
@@ -25,15 +21,15 @@ public class StemUtils {
     SnowballStemmer snowballStemmer = new englishStemmer();
     snowballStemmer.setCurrent(word);
     snowballStemmer.stem();
-    return snowballStemmer.getCurrent().toLowerCase().replaceAll("\\s+","");
+    return snowballStemmer.getCurrent().toLowerCase().replaceAll("\\s+", "");
   }
 
   /**
-  * Stems each string entry in a list of strings.
-  *
-  * @param items List of strings to be stemmed
-  * @return List of stemmed strings
-  */
+   * Stems each string entry in a list of strings.
+   *
+   * @param items List of strings to be stemmed
+   * @return List of stemmed strings
+   */
   public static List<String> stemmedList(List<String> items) {
     return items.stream().map(e -> StemUtils.stemmed(e)).collect(Collectors.toList());
   }

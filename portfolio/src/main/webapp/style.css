@@ -45,6 +45,7 @@ body {
     background-image: url(images/android.png);
     background-repeat: no-repeat;
     background-size: contain;
+    border-radius: 50%;
 }
 
 .talk-bubble-assistant {
@@ -92,7 +93,6 @@ body {
 
 #videos {
     width: 100%;
-    height: 1250px;
     background-color: white;
 }
 
@@ -132,6 +132,7 @@ body {
    color: #333333;
    padding: 15px;
    text-align: left;
+   width: 800px;
 }
 
 .workout-buttons {
@@ -179,7 +180,7 @@ body {
 
 #workout-planner {
     width: 100%;
-    background-color: white;
+    height: 100%
 }
 
 .planner-table {
@@ -250,13 +251,6 @@ td {
 	width: 45%;
 }
 
-.workout-plan {
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .workout-plan-card {
     height: 120px;
     width: 200px;
@@ -268,6 +262,7 @@ td {
 
 .workout-plan-card a {
     font-size: 17px;
+    font-weight: bold;
     color: #333333
 }
 
@@ -280,8 +275,52 @@ td {
     margin-top: 25px;
 }
 
+.saved-video-title {
+    color: #333333;
+    margin-bottom: 2%;
+    font-size: 17px;
+}
+
+.saved-video-channel-title {
+    text-align: left;
+    margin-left: 8%;
+}
+
 .mark-completed-button {
     margin: 5%;
+}
+
+.workout-plan-container {
+    margin-bottom: 27%;
+}
+
+.workout-plan-progress {
+    margin-top: 1.5%;
+    font-weight: 200;
+}
+
+.workout-plan-table {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.back-to-dashboard-link {
+  position: absolute;
+  border-radius: 10px;
+  background-color: rgba(146, 142, 142, 0.156);
+  padding: 10px;
+  margin: 15px;
+  color: gray;
+  text-decoration: none;
+}
+
+.back-to-dashboard-link:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
 }
 
 /* Workout Agent Styling End */
@@ -734,13 +773,13 @@ li {
 td.book {
   border: 0px;
   width: 10px;
-  padding: 5px;
+  padding: 10px;
 }
 
 td.book-thumbnail {
   border: 0px;
-  width: 10px;
-  padding: 5px;
+  width: 1%;
+  padding: 10px;
 }
 
 td.book-about {
@@ -788,6 +827,11 @@ td.bookshelf-name {
   padding: 5px;
 }
 
+td.book-friend-header {
+  font-size: 18px;
+  border: none;
+}
+
 /* All book images */
 
 img.thumbnail {
@@ -802,6 +846,19 @@ img.book-dropbtn-logo {
   width: 10px;
 }
 
+img.book-friend-avatar {
+  width: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+img.book-header-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
 /* All book buttons */
 [class*="book-button"] {
   color: hsl(0, 2%, 30%);
@@ -813,6 +870,7 @@ img.book-dropbtn-logo {
   font-size: 12px;
   margin: 1px;
   white-space: nowrap;
+  background: white;
 }
 
 [class*="book-button"]:hover, [class*="book-button"]:focus {
@@ -824,13 +882,13 @@ img.book-dropbtn-logo {
 
 button.bookshelf-button {
   background-color: white;
-  color: hsl(0, 2%, 40%);
+  color: hsl(0, 2%, 30%);
   border-color: hsla(0, 2%, 70%, 0);
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
   padding: 3px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 button.bookshelf-button:hover,button.bookshelf-button:focus {
@@ -906,7 +964,11 @@ p.description {
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 100;
+  white-space: nowrap;
+  overflow: auto;
+  max-height: 120px;
+  padding-right: 10px;
 }
 
 /* Links inside the dropdown */
@@ -918,11 +980,14 @@ p.description {
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.show {
+  display:block;
+  overflow: auto;
+  max-height: 120px;}
 
 [class*="book-like-count"] {
   background: none;
-  font-size: 12px;
+  font-size: 14px;
   font-style: bold;
   color: hsl(0, 2%, 22%);
   text-decoration: none;
