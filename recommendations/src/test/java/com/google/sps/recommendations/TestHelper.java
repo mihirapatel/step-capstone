@@ -158,6 +158,10 @@ public class TestHelper {
     assertEquals(1, databaseQuery.size());
     Entity entity = databaseQuery.get(0);
     for (int i = 0; i < expectedItems.size(); i++) {
+      if (expectedCounts.get(i) == 0) {
+        assertNull(entity.getProperty(StemUtils.stemmed(expectedItems.get(i))));
+        continue;
+      }
       assertEquals(
           (long) expectedCounts.get(i),
           (long) entity.getProperty(StemUtils.stemmed(expectedItems.get(i))));

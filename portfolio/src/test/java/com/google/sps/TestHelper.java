@@ -25,6 +25,7 @@ import com.google.protobuf.Value;
 import com.google.sps.data.*;
 import com.google.sps.utils.*;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 import javax.servlet.http.*;
@@ -39,6 +40,7 @@ public class TestHelper {
 
   @Mock DialogFlowClient dialogFlowMock;
   @Mock UserService userServiceMock;
+  @Mock RecommendationsClient recommenderMock;
 
   @InjectMocks TextInputServlet textInputServlet;
 
@@ -52,13 +54,25 @@ public class TestHelper {
       new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
   /** Default constructor for TestHelper that sets up testing environment and empty mocks. */
-  public TestHelper() {
+  public TestHelper() throws URISyntaxException {
     helper.setUp();
     customDatastore = DatastoreServiceFactory.getDatastoreService();
     userServiceMock = mock(UserService.class);
     request = mock(HttpServletRequest.class);
     response = mock(HttpServletResponse.class);
     dialogFlowMock = mock(DialogFlowClient.class);
+    recommenderMock = mock(RecommendationsClient.class);
+    doNothing().when(recommenderMock).setUserID(any(String.class));
+    doNothing()
+        .when(recommenderMock)
+        .saveAggregateListData(any(String.class), any(List.class), any(Boolean.class), any(Boolean.class));
+    // when(recommenderMock.setUserID(any(String.class))).doNothing();
+    // when(recommenderMock.saveAggregateListData(any(String.class), any(List.class),
+    // any(Boolean.class))).doNothing();
+    when(recommenderMock.getPastRecommendations(any(String.class)))
+        .thenReturn(new ArrayList<Pair<String, Double>>());
+    when(recommenderMock.getUserRecommendations(any(String.class)))
+        .thenReturn(new ArrayList<Pair<String, Double>>());
     servlet = new TestableTextInputServlet();
     sessionID = "fallbackTestingID";
     setLoggedIn();
@@ -71,7 +85,7 @@ public class TestHelper {
    *
    * @param inputText Text input of user's intent sent to Dialogflow.
    */
-  public TestHelper(String inputText) {
+  public TestHelper(String inputText) throws URISyntaxException {
     this();
     servlet = new TestableDFTextInputServlet();
     setInputText(inputText);
@@ -86,7 +100,7 @@ public class TestHelper {
    * @param intentName String name of expected intent identified by Dialogflow.
    */
   public TestHelper(String inputText, String parameters, String intentName)
-      throws InvalidProtocolBufferException {
+      throws InvalidProtocolBufferException, URISyntaxException {
     this();
     servlet = new TestableTextInputServlet();
     setParameters(inputText, parameters, intentName);
@@ -103,7 +117,7 @@ public class TestHelper {
    */
   public TestHelper(
       String inputText, String parameters, String intentName, Boolean allParamsPresent)
-      throws InvalidProtocolBufferException {
+      throws InvalidProtocolBufferException, URISyntaxException {
     this(inputText, parameters, intentName);
     setParamsPresent(allParamsPresent);
   }
@@ -118,7 +132,7 @@ public class TestHelper {
    * @param id String unique ID for current session
    */
   public TestHelper(String inputText, String parameters, String intentName, String id)
-      throws InvalidProtocolBufferException {
+      throws InvalidProtocolBufferException, URISyntaxException {
     this(inputText, parameters, intentName);
     sessionID = id;
   }
@@ -443,6 +457,31 @@ public class TestHelper {
         "memory.list - " + listAction);
   }
 
+  /**
+   * Sets mock return parameters for past recommender.
+   *
+   * @param itemPairs List of item and frequency pairs to be returned by mock recommender.
+   */
+  public void setPastRecommendations(List<Pair<String, Double>> itemPairs)
+      throws URISyntaxException {
+    when(recommenderMock.getPastRecommendations(any(String.class))).thenReturn(itemPairs);
+  }
+
+  /**
+   * Sets mock return parameters for user recommender.
+   *
+   * @param itemPairs List of item and frequency pairs to be returned by mock recommender.
+   */
+  public void setUserRecommendations(List<Pair<String, Double>> itemPairs)
+      throws URISyntaxException {
+    when(recommenderMock.getUserRecommendations(any(String.class))).thenReturn(itemPairs);
+  }
+
+  /** Removes stored items in datastore instance. */
+  public void tearDown() {
+    helper.tearDown();
+  }
+
   private class TestableTextInputServlet extends TextInputServlet {
     @Override
     public DialogFlowClient createDialogFlow(
@@ -458,6 +497,11 @@ public class TestHelper {
     @Override
     public DatastoreService createDatastore() {
       return customDatastore;
+    }
+
+    @Override
+    public RecommendationsClient createRecommendationsClient() {
+      return recommenderMock;
     }
   }
 

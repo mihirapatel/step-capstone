@@ -21,6 +21,7 @@ public class Recommender {
   private final int STEPS = 10000;
   private final double ALPHA_START = 0.1;
   private final double BETA = 0.02;
+  private final double DELTA = 0.01;
   private List<String> itemIndexMapping;
   private Map<Integer, String> userIDIndexMapping;
 
@@ -111,11 +112,11 @@ public class Recommender {
       SimpleMatrix dataMatrix, SimpleMatrix userFeatures, SimpleMatrix itemFeatures) {
     log.info("Input matrix: " + dataMatrix);
     for (int step = 0; step < STEPS; step++) {
-      double updated_learning_rate = Math.max(ALPHA_START / (Math.sqrt(step + 1)), 0.005);
+      double updatedLearningRate = Math.max(ALPHA_START / (Math.sqrt(step + 1)), 0.005);
       for (int row = 0; row < dataMatrix.numRows(); row++) {
         for (int col = 0; col < dataMatrix.numCols(); col++) {
           double element = dataMatrix.get(row, col);
-          if (element > 0) {
+          if (Math.abs(element - 0.0) > DELTA) {
             double error =
                 element
                     - userFeatures
@@ -125,13 +126,9 @@ public class Recommender {
               double userFeatures_ik = userFeatures.get(row, k);
               double itemFeatures_kj = itemFeatures.get(k, col);
               userFeatures.set(
-                  row,
-                  k,
-                  increment(userFeatures_ik, itemFeatures_kj, error, updated_learning_rate));
+                  row, k, increment(userFeatures_ik, itemFeatures_kj, error, updatedLearningRate));
               itemFeatures.set(
-                  k,
-                  col,
-                  increment(itemFeatures_kj, userFeatures_ik, error, updated_learning_rate));
+                  k, col, increment(itemFeatures_kj, userFeatures_ik, error, updatedLearningRate));
             }
           }
         }

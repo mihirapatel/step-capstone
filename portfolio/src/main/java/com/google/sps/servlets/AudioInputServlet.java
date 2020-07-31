@@ -24,6 +24,7 @@ import com.google.protobuf.ByteString;
 import com.google.sps.agents.TranslateAgent;
 import com.google.sps.data.DialogFlowClient;
 import com.google.sps.data.Output;
+import com.google.sps.data.RecommendationsClient;
 import com.google.sps.utils.AgentUtils;
 import com.google.sps.utils.AudioUtils;
 import com.google.sps.utils.SpeechUtils;
@@ -41,6 +42,7 @@ public class AudioInputServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private UserService userService = UserServiceFactory.getUserService();
+  private RecommendationsClient recommender = new RecommendationsClient();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -73,7 +75,8 @@ public class AudioInputServlet extends HttpServlet {
     if (result == null) {
       return null;
     }
-    return AgentUtils.getOutput(result, languageCode, userService, datastore, sessionID);
+    return AgentUtils.getOutput(
+        result, languageCode, userService, datastore, sessionID, recommender);
   }
 
   private Output handleForeignQuery(ByteString bytestring, String language, String sessionID) {

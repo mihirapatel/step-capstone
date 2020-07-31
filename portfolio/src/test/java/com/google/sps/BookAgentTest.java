@@ -8,6 +8,7 @@ import com.google.sps.data.Book;
 import com.google.sps.servlets.BookTestHelper;
 import com.google.sps.utils.BooksAgentHelper;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import org.junit.After;
@@ -36,7 +37,7 @@ public class BookAgentTest {
    * retrieval for different sessionIDs upon Book requests.
    */
   @Before
-  public void setUp() throws ParseException, InvalidProtocolBufferException {
+  public void setUp() throws ParseException, InvalidProtocolBufferException, URISyntaxException {
     try {
       this.bookTester = new BookTestHelper();
       this.parameters = "{\"number\" : 3," + "\"type\" : \"book\"," + "\"categories\" : \"love\"}";

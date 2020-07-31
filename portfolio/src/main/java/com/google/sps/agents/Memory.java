@@ -10,12 +10,14 @@ import com.google.protobuf.Value;
 import com.google.sps.data.ConversationOutput;
 import com.google.sps.data.ListDisplay;
 import com.google.sps.data.Pair;
+import com.google.sps.data.RecommendationsClient;
 import com.google.sps.utils.MemoryUtils;
 import com.google.sps.utils.TimeUtils;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -40,9 +42,21 @@ public class Memory implements Agent {
   private String redirect;
   private DatastoreService datastore;
   private UserService userService;
+  private RecommendationsClient recommender;
   private String listName;
   private ArrayList<String> items = new ArrayList<>();
   private static Logger log = LoggerFactory.getLogger(Memory.class);
+  private static final Set<String> unnecessaryWords =
+      Stream.of(
+              "a", "an", "list", "lists", "new", "the", "my", "last", "past", "recent", "some",
+              "of")
+          .collect(Collectors.toSet());
+  private static final Set<String> negativeWords =
+      Stream.of("except", "but", "no", "not", "without", "neither", "nor", "none")
+          .collect(Collectors.toSet());
+  private static final Set<String> generalWords =
+      Stream.of("all", "everything", "only", "them", "those", "items", "it")
+          .collect(Collectors.toSet());
 
   /**
    * Memory agent constructor that uses intent and parameter to determnine fulfillment for user
@@ -59,11 +73,13 @@ public class Memory implements Agent {
       String intentName,
       Map<String, Value> parameters,
       UserService userService,
-      DatastoreService datastore)
+      DatastoreService datastore,
+      RecommendationsClient recommender)
       throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
     this.intentName = intentName;
     this.userService = userService;
     this.datastore = datastore;
+    this.recommender = recommender;
     setParameters(parameters);
   }
 
@@ -92,14 +108,20 @@ public class Memory implements Agent {
         fulfillment = "What would you like to name the list?";
         return;
       }
+      recommender.setUserID(userID);
       listName = cleanName(listName);
-      unpackObjects(parameters);
+      if (subListIntent.contains("no")) {
+        handleBadRecommendations();
+        return;
+      } else if (subListIntent.contains("yes")) {
+        handleGoodRecommendations(parameters);
+        return;
+      }
+      unpackParameters(parameters);
       if (subListIntent.contains("make")) {
         makeList(parameters);
       } else if (subListIntent.contains("custom") || subListIntent.contains("add")) {
-        updateList(parameters);
-      } else if (subListIntent.contains("yes")) {
-        makeMoreRecommendations();
+        updateList(items);
       }
     }
   }
@@ -181,11 +203,12 @@ public class Memory implements Agent {
    */
   private void makeList(Map<String, Value> parameters)
       throws EntityNotFoundException, URISyntaxException {
-    MemoryUtils.allocateList(listName, userID, datastore, items);
+    MemoryUtils.allocateList(listName, userID, datastore, items, recommender);
     fulfillment = "Created!";
     if (items.isEmpty()) {
       try {
-        String suggestedItems = MemoryUtils.makePastRecommendations(userID, datastore, listName);
+        String suggestedItems =
+            MemoryUtils.makePastRecommendations(userID, datastore, listName, recommender);
         fulfillment +=
             " Based on your previous "
                 + listName
@@ -234,11 +257,12 @@ public class Memory implements Agent {
    * Updates an existing list with new items. If list doesn't exist, creates a brand new list in
    * datastore.
    *
-   * @param parameters Map containing the detected entities in the user's intent.
+   * @param itemsToAdd List of strings to add to list.
    */
-  private void updateList(Map<String, Value> parameters)
+  private void updateList(List<String> itemsToAdd)
       throws EntityNotFoundException, URISyntaxException {
-    boolean listExists = MemoryUtils.addToList(listName, userID, datastore, items);
+    boolean listExists =
+        MemoryUtils.addToList(listName, userID, datastore, itemsToAdd, recommender);
     if (!listExists) {
       fulfillment =
           "Your "
@@ -258,7 +282,8 @@ public class Memory implements Agent {
    */
   private void makeMoreRecommendations() throws URISyntaxException {
     try {
-      String suggestedItems = MemoryUtils.makeUserRecommendations(userID, datastore, listName);
+      String suggestedItems =
+          MemoryUtils.makeUserRecommendations(userID, datastore, listName, recommender);
       fulfillment +=
           " Based on your list item history, you might be interested in adding "
               + suggestedItems
@@ -275,39 +300,61 @@ public class Memory implements Agent {
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
-  private void unpackObjects(Map<String, Value> parameters) {
+  private void unpackParameters(Map<String, Value> parameters) {
     String listObjects = parameters.get("list-objects").getStringValue();
-    if (listObjects.isEmpty()) {
+    if (listObjects == null || listObjects.isEmpty()) {
       return;
     }
-    String[] commaSplit = listObjects.split(",[\\s]*[and]*[\\s]+");
+    items = unpackObjects(listObjects);
+  }
+
+  /**
+   * Extracts each item in a string of items.
+   *
+   * @param allItemsString String containing a grammatical list of items.
+   * @return List of strings where each element is an item
+   */
+  public static ArrayList<String> unpackObjects(String allItemsString) {
+    String[] commaSplit = allItemsString.split(",[\\s]*[and]*[\\s]+");
     if (commaSplit.length > 0) {
       String[] finalSplit = commaSplit[commaSplit.length - 1].split("[\\s]+and[\\s]+");
-      items = new ArrayList<>(Arrays.asList(commaSplit));
-      items.remove(commaSplit.length - 1);
-      items.addAll(new ArrayList<String>(Arrays.asList(finalSplit)));
+      ArrayList<String> listItems = new ArrayList<>(Arrays.asList(commaSplit));
+      listItems.remove(commaSplit.length - 1);
+      listItems.addAll(new ArrayList<String>(Arrays.asList(finalSplit)));
+      return listItems;
     }
+    return new ArrayList<>();
   }
 
   /*
-   * Removes any filler words that were picked up in name detection.
+   * Removes any filler words that were picked up in list name detection.
+   * ex: "the Monday grocery list" will remove "the" and "list"
    *
    * @param listName name of the list detected by dialogflow
    * @return cleaned version of the list name without extra words
    */
   public static String cleanName(String listName) {
-    Set<String> unnecessaryWords =
-        Stream.of("a", "an", "list", "lists", "new", "the", "my", "last", "past", "recent")
-            .collect(Collectors.toSet());
-    String[] listWords = listName.split("\\s+");
+    return cleanStringEndpoints(unnecessaryWords, listName);
+  }
+
+  /*
+   * Removes any filler words that were picked up in any general string
+   * based on the set of unwanted strings to filter out of the string endpoints.
+   *
+   * @param unwantedStrings set of strings to be removed from start and end of string to clean
+   * @param stringToClean The string to be cleaned
+   * @return cleaned version of the list name without extra words
+   */
+  public static String cleanStringEndpoints(Set<String> unwantedStrings, String stringToClean) {
+    String[] listWords = stringToClean.split("\\s+");
     int start = 0;
     int end = listWords.length - 1;
     // Remove unnecessary words in the beginning
-    while (unnecessaryWords.contains(listWords[start])) {
+    while (unwantedStrings.contains(listWords[start])) {
       start++;
     }
     // Remove unnecessary words from the end
-    while (unnecessaryWords.contains(listWords[end])) {
+    while (unwantedStrings.contains(listWords[end])) {
       end--;
     }
     StringBuilder sb = new StringBuilder();
@@ -316,6 +363,107 @@ public class Memory implements Agent {
     }
     sb.append(listWords[end]);
     return sb.toString();
+  }
+
+  /*
+   * Removes any filler words at the beginning and end of a string array.
+   *
+   * @param unwantedStrings set of strings to be removed from start and end of string to clean
+   * @param listWords Array of strings to be cleaned
+   * @return cleaned version of the list name without extra words
+   */
+  public static String cleanStringArrayEndpoints(Set<String> unwantedStrings, String[] listWords) {
+    int start = 0;
+    int end = listWords.length - 1;
+    // Remove unnecessary words in the beginning
+    while (unwantedStrings.contains(listWords[start])) {
+      start++;
+    }
+    // Remove unnecessary words from the end
+    while (unwantedStrings.contains(listWords[end])) {
+      end--;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = start; i < end; i++) {
+      sb.append(listWords[i] + " ");
+    }
+    sb.append(listWords[end]);
+    return sb.toString();
+  }
+
+  private void handleBadRecommendations() throws URISyntaxException {
+    handleBadRecommendations(MemoryUtils.getRecommendations(userID, datastore));
+  }
+
+  private void handleBadRecommendations(List<String> unwantedItems) throws URISyntaxException {
+    MemoryUtils.provideNegativeFeedback(recommender, listName, unwantedItems);
+    fulfillment = "Your preferences are noted.";
+    makeMoreRecommendations();
+  }
+
+  private void handleGoodRecommendations(Map<String, Value> parameters)
+      throws EntityNotFoundException, URISyntaxException {
+    String listObjects = parameters.get("yes-objects").getStringValue();
+    if (listObjects == null || listObjects.isEmpty()) {
+      List<String> recommendedItems = MemoryUtils.getRecommendations(userID, datastore);
+      updateList(recommendedItems);
+      return;
+    }
+    String[] listWords = listObjects.split("\\s+");
+    List<String> addObjects = new ArrayList<>();
+    int addObjectEndIndex = getAddObjects(listWords, addObjects);
+    List<String> removeObjects = getRemoveObjects(listWords, addObjectEndIndex);
+    if (addObjects.isEmpty()) {
+      addObjects = MemoryUtils.getRecommendations(userID, datastore);
+      for (String removeItem : removeObjects) {
+        addObjects.remove(removeItem);
+      }
+    }
+    updateList(addObjects);
+  }
+
+  /**
+   * Populates the list (passed in as the second argument) with all items that the user chooses to
+   * add and then returns the index of the first negative word (or end of the string if no negative
+   * word exists).
+   *
+   * @param listWords String array of words to extract adding items
+   * @param addObject Empty arraylist to be filled with items to be added
+   * @return int representing the index of the end of adding items
+   */
+  private int getAddObjects(String[] listWords, List<String> addObject) {
+    int start = 0;
+    // Remove unnecessary words in the beginning
+    while (start < listWords.length
+        && (unnecessaryWords.contains(listWords[start])
+            || generalWords.contains(listWords[start]))) {
+      start++;
+    }
+    int end = start;
+    // Find when statement turns negative to symbolize items that aren't wanted
+    while (end < listWords.length && (!negativeWords.contains(listWords[end]))) {
+      end++;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = start; i < end; i++) {
+      sb.append(listWords[i] + " ");
+    }
+    addObject = unpackObjects(sb.toString());
+    return end;
+  }
+
+  private List<String> getRemoveObjects(String[] listWords, int startIndex) {
+    if (startIndex == listWords.length) {
+      return new ArrayList<>();
+    }
+    Set<String> unwantedStrings = new HashSet<>(unnecessaryWords);
+    unwantedStrings.addAll(negativeWords);
+    String cleanedItems =
+        cleanStringArrayEndpoints(
+            unwantedStrings, Arrays.copyOfRange(listWords, startIndex, listWords.length));
+    List<String> unwantedItems = unpackObjects(cleanedItems);
+    MemoryUtils.provideNegativeFeedback(recommender, listName, unwantedItems);
+    return unwantedItems;
   }
 
   @Override

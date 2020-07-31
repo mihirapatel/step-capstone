@@ -7,11 +7,12 @@ clientsecret.txt
 clientid.txt
 recommendations/README.md
 .DS_Store
-recommendations/mvnw.cmd
-recommendations/mvnw
-recommendations/.mvn/wrapper/maven-wrapper.properties
+mvnw.cmd
+mvnw
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
 HELP.md
-recommendations/src/main/resources/application.properties
+application.properties
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
