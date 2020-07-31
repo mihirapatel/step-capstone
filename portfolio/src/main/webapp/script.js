@@ -24,6 +24,7 @@ var sessionId = "";
 var queryNumber = 0;
 window.onbeforeunload = deleteSessionInformation;
 var isUserLoggedIn = false;
+var userPhoto = "images/android.png";
  
 var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
@@ -77,6 +78,7 @@ window.onclick = function(event) {
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
       if (openDropdown.classList.contains('show')) {
+        updateDropdownScroll(openDropdown);
         openDropdown.classList.remove('show');
       }
     }
@@ -154,6 +156,9 @@ function authSetup() {
         isUserLoggedIn = true;
         createWorkoutDashboardButton();
     }
+    window.userPhoto = displayText.photoUrl;
+    var body = document.body;
+    body.insertAdjacentHTML('beforeend', '<style>.talk-bubble-user:before{background-image: url(' + userPhoto + ');}</style>');
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
     deleteSessionInformation();
@@ -351,4 +356,8 @@ function saveWorkoutPlan(workoutPlan){
   }).then(response => response.text()).then(() => {
       console.log('Saved workout plan');
   });
+}
+
+function updateDropdownScroll(element) {
+  element.scrollTop =  0;
 }

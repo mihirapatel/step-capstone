@@ -20,6 +20,9 @@ import javax.servlet.ServletException;
 
 /** This class contains methods that help with OAuth tasks */
 public class OAuthHelper {
+  static final String REDIRECT_URL_BASE =
+      "https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev";
+
   /**
    * Loads stored Credential for userID, or null if one does not exist
    *
@@ -57,8 +60,7 @@ public class OAuthHelper {
    * @return url String
    */
   public static String createRedirectUri() throws ServletException, IOException {
-    GenericUrl url =
-        new GenericUrl("https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev");
+    GenericUrl url = new GenericUrl(REDIRECT_URL_BASE);
     url.setRawPath("/oauth2callback");
     return url.build();
   }
