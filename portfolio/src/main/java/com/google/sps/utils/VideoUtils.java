@@ -14,10 +14,15 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.apache.commons.text.WordUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,10 +35,11 @@ public class VideoUtils {
   private static String q;
   private static String type;
   private static String key;
-  private static String playlistId;
   private static WorkoutPlan workoutPlan;
+  private static String playlistId;
   private static ArrayList<YouTubeVideo> playlistVids;
   private static ArrayList<ArrayList<YouTubeVideo>> listOfPlaylists;
+  private static Map<ArrayList<YouTubeVideo>, String> playlistToId;
   private static int randomInt;
   private static final int videosDisplayedTotal = 25;
   private static final int videosDisplayedPerPage = 5;
@@ -47,37 +53,11 @@ public class VideoUtils {
   private static int currentPage = 0;
   private static int totalPages = videosDisplayedTotal / videosDisplayedPerPage;
 
-  private static String readAll(Reader rd) throws IOException {
-    StringBuilder sb = new StringBuilder();
-    int cp;
-    while ((cp = rd.read()) != -1) {
-      sb.append((char) cp);
-    }
-    return sb.toString();
-  }
-
-  /**
-   * Creates JSON object from url passed in from getJSONObject
-   *
-   * @param url for YouTube Data API search by keyword
-   * @return JSONObject json from YouTube Data API search URL
-   */
-  private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-    InputStream is = new URL(url).openStream();
-    try {
-      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-      String jsonText = readAll(rd);
-      JSONObject json = new JSONObject(jsonText);
-      return json;
-    } finally {
-      is.close();
-    }
-  }
-
   /**
    * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
    * readJsonFromURL
    *
+   * @param userService UserService to get userId if user is logged in
    * @param workoutLength for workout video length
    * @param workoutType for workout video/playlist muscle/type
    * @param youtubeChannel for workout channel
@@ -86,12 +66,14 @@ public class VideoUtils {
    * @return ArrayList<YouTubeVideo> videoList list of YouTube videos
    */
   public static ArrayList<YouTubeVideo> getVideoList(
+      UserService userService,
       String workoutLength,
       String workoutType,
       String youtubeChannel,
       int numVideosSearched,
       String searchType)
       throws IOException, JSONException {
+
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(numVideosSearched);
     order = setOrderRelevance();
@@ -100,20 +82,21 @@ public class VideoUtils {
     key = setKey();
     URL = setURL(baseURL, maxResults, order, q, type, key);
     JSONObject json = readJsonFromUrl(URL);
-    return createVideoList(json, searchType);
+    return createVideoList(userService, json, searchType);
   }
 
   /**
-   * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
-   * readJsonFromURL
+   * Gets WorkoutPlan depending on user's workout plan requirements
    *
    * @param userService UserService to get userId if user is logged in
-   * @param datastore DatastoreService to get stored workout plans if user is logged in
+   * @param datastore DatastoreService to get workoutPlanId
    * @param maxPlayListResults number of playlists to search for
    * @param planLength for workout plan length
    * @param workoutType for workout video/playlist muscle/type
    * @param searchType type of search on YouTube (video or playlist)
-   * @return ArrayList<YouTubeVideo> videoList list of YouTube videos for playlist
+   * @return WorkoutPlan with list of videos and playlistId if user is not logged in and list of
+   *     videos, userId, workoutPlanName, workoutPlanId, dateCreated, and planLength if user logged
+   *     in
    */
   public static WorkoutPlan getWorkoutPlan(
       UserService userService,
@@ -123,15 +106,34 @@ public class VideoUtils {
       String workoutType,
       String searchType)
       throws IOException, JSONException {
-    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
-        getPlaylistVideoList(maxPlaylistResults, planLength, workoutType, "playlist");
 
+    // Initialize map to populate with function call to getPlayistVideoList
+    playlistToId = new HashMap<>();
+
+    // Get workout plan playlist with user specified parameters
+    ArrayList<ArrayList<YouTubeVideo>> listOfVideoLists =
+        getPlaylistVideoList(userService, maxPlaylistResults, planLength, workoutType, "playlist");
+
+    // Creating WorkoutPlan object with extra parameters if user logged in
     if (userService.isUserLoggedIn()) {
+
       String userId = userService.getCurrentUser().getUserId();
+
+      // Capitalize first letter of each word in workoutType string
+      workoutType = WordUtils.capitalize(workoutType, null);
+      String workoutPlanName = String.valueOf(planLength) + " Day " + workoutType + " Workout Plan";
       int workoutPlanId = WorkoutProfileUtils.getWorkoutPlanId(userId, datastore);
-      workoutPlan = new WorkoutPlan(userId, listOfVideoLists, workoutPlanId);
+
+      // Create formatted dateCreated String
+      SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+      Date date = new Date(System.currentTimeMillis());
+      String dateCreated = "Created: " + formatter.format(date).toString();
+
+      workoutPlan =
+          new WorkoutPlan(
+              userId, workoutPlanName, listOfVideoLists, workoutPlanId, dateCreated, planLength);
     } else {
-      workoutPlan = new WorkoutPlan(listOfVideoLists);
+      workoutPlan = new WorkoutPlan(listOfVideoLists, playlistId);
     }
 
     return workoutPlan;
@@ -139,16 +141,21 @@ public class VideoUtils {
 
   /**
    * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
-   * readJsonFromURL
+   * readJsonFromURL to search for playlist
    *
+   * @param userService UserService to get userId if user is logged in
    * @param maxPlayListResults number of playlists to search for
    * @param planLength for workout plan length
    * @param workoutType for workout video/playlist muscle/type
    * @param searchType type of search on YouTube (video or playlist)
-   * @return ArrayList<YouTubeVideo> videoList list of YouTube videos for playlist
+   * @return ArrayList<ArrayList<YouTubeVideo>> list of lists of videos in playlist
    */
   private static ArrayList<ArrayList<YouTubeVideo>> getPlaylistVideoList(
-      int maxPlaylistResults, int planLength, String workoutType, String searchType)
+      UserService userService,
+      int maxPlaylistResults,
+      int planLength,
+      String workoutType,
+      String searchType)
       throws IOException, JSONException {
     String baseURL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     maxResults = setMaxResults(maxPlaylistResults);
@@ -168,8 +175,7 @@ public class VideoUtils {
     randomInt = getRandomNumberInRange(0, maxPlaylistResults);
     listOfPlaylists = new ArrayList<>();
     for (int i = 0; i < maxPlaylistResults; i++) {
-      playlistVids =
-          createPlaylistVideosList(json, searchType, maxPlaylistResults, planLength, randomInt);
+      playlistVids = createPlaylistVideosList(userService, json, searchType, planLength, randomInt);
       listOfPlaylists.add(playlistVids);
       randomInt = (randomInt + 1) % maxPlaylistResults;
     }
@@ -180,16 +186,22 @@ public class VideoUtils {
     // Gets the first playlist from the list of playlists
     // Breaks up the ArrayList into chunks of 5 and puts that into one ArrayList to make an
     // ArrayList of ArrayLists
-    return VideoUtils.partitionOfSize(listOfPlaylists.get(0), 5);
+    ArrayList<YouTubeVideo> playlistVideos = listOfPlaylists.get(0);
+    playlistId = playlistToId.get(playlistVideos);
+    return VideoUtils.partitionOfSize(playlistVideos, 5);
   }
 
   /**
    * Created list of videos from JSONObject
    *
+   * @param userService UserService to get userId if user is logged in
    * @param json JSONObject from YouTube Data API call
+   * @param searchType string to call correct function to set paramters depending on video or
+   *     playlist
    * @return ArrayList<YouTubeVideo> list of YouTube videos
    */
-  private static ArrayList<YouTubeVideo> createVideoList(JSONObject json, String searchType) {
+  private static ArrayList<YouTubeVideo> createVideoList(
+      UserService userService, JSONObject json, String searchType) {
     JSONArray videos = json.getJSONArray("items");
 
     ArrayList<YouTubeVideo> videoList = new ArrayList<>();
@@ -205,18 +217,36 @@ public class VideoUtils {
       if (index % videosDisplayedPerPage == 0) {
         currentPage += 1;
       }
-      video =
-          new YouTubeVideo(
-              channelTitle,
-              title,
-              description,
-              thumbnail,
-              videoId,
-              channelId,
-              index,
-              videosDisplayedPerPage,
-              currentPage,
-              totalPages);
+
+      if (userService.isUserLoggedIn()) {
+        String userId = userService.getCurrentUser().getUserId();
+        video =
+            new YouTubeVideo(
+                userId,
+                channelTitle,
+                title,
+                description,
+                thumbnail,
+                videoId,
+                channelId,
+                index,
+                videosDisplayedPerPage,
+                currentPage,
+                totalPages);
+      } else {
+        video =
+            new YouTubeVideo(
+                channelTitle,
+                title,
+                description,
+                thumbnail,
+                videoId,
+                channelId,
+                index,
+                videosDisplayedPerPage,
+                currentPage,
+                totalPages);
+      }
       videoList.add(video);
     }
 
@@ -251,6 +281,8 @@ public class VideoUtils {
    * @param playlistVideoString JSON string of YouTube videos in playlist from API call
    */
   private static void setPlaylistVideoParameters(String playlistVideoString) {
+
+    // Set parameters from JSONObject
     JSONObject videoJSONObject = new JSONObject(playlistVideoString).getJSONObject("map");
     JSONObject snippet = videoJSONObject.getJSONObject("snippet").getJSONObject("map");
     title = new Gson().toJson(snippet.get("title"));
@@ -266,39 +298,55 @@ public class VideoUtils {
   }
 
   /**
-   * Gets playlistId from JSONObject and passes that into getPlaylistVideos
+   * Gets playlistId from JSONObject and passes that into getPlaylistVideos to create list of videos
    *
+   * @param userService UserService to get userId if user is logged in
    * @param json JSONObject from initial YouTube Data API call for playlists
+   * @param searchType type of search to pass into getPlaylistVideos
    * @param planLength length of workout plan in days
+   * @param randomInt random int to ensure user gets different workout plans each time
    * @return ArrayList<YouTubeVideo> list of YouTube videos from playlist
    */
   private static ArrayList<YouTubeVideo> createPlaylistVideosList(
-      JSONObject json, String searchType, int maxPlaylistResults, int planLength, int randomInt)
+      UserService userService, JSONObject json, String searchType, int planLength, int randomInt)
       throws IOException {
+
+    // Set parameters from JSONObject
     JSONArray playlist = json.getJSONArray("items");
     String playlistString = new Gson().toJson(playlist.get(randomInt));
     JSONObject playlistJSONObject = new JSONObject(playlistString).getJSONObject("map");
     JSONObject id = playlistJSONObject.getJSONObject("id").getJSONObject("map");
     String playlistId = new Gson().toJson(id.get("playlistId"));
-    return getPlaylistVideos(searchType, playlistId, planLength);
+
+    // Make function call to get videos in playlist
+    ArrayList<YouTubeVideo> playlistVideos =
+        getPlaylistVideos(userService, searchType, playlistId, planLength);
+
+    // Store playlist and playlistId in map
+    playlistToId.put(playlistVideos, playlistId);
+
+    return playlistVideos;
   }
 
   /**
    * Makes second call to YouTube Data API to get videos from playlist
    *
-   * @param json JSONObject from initial YouTube Data API call for playlists
+   * @param userService UserService to get userId if user is logged in
+   * @param searchType type of search to pass into createVideoList
+   * @param playlistId playlistId to get videos from this playlist
    * @param planLength length of workout plan in days
    * @return ArrayList<YouTubeVideo> list of YouTube videos from playlist
    */
   private static ArrayList<YouTubeVideo> getPlaylistVideos(
-      String searchType, String playlistId, int planLength) throws IOException {
+      UserService userService, String searchType, String playlistId, int planLength)
+      throws IOException {
     String baseURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
     maxResults = setMaxResults(planLength);
     playlistId = setPlaylistID(playlistId);
     key = setKey();
     URL = setURL(baseURL, maxResults, null, playlistId, key, null);
     JSONObject json = readJsonFromUrl(URL);
-    return createVideoList(json, searchType);
+    return createVideoList(userService, json, searchType);
   }
 
   /** Set parameters for YouTube Data API search */
@@ -392,6 +440,39 @@ public class VideoUtils {
             return a2.size() - a1.size();
           }
         });
+  }
+
+  /**
+   * Creates JSON object from url passed in from getJSONObject
+   *
+   * @param url for YouTube Data API search by keyword
+   * @return JSONObject json from YouTube Data API search URL
+   */
+  private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+    InputStream is = new URL(url).openStream();
+    try {
+      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+      String jsonText = readAll(rd);
+      JSONObject json = new JSONObject(jsonText);
+      return json;
+    } finally {
+      is.close();
+    }
+  }
+
+  /**
+   * Creates JSON string by reading from URL text
+   *
+   * @param rd Reader that is created in call to readJsonFromUrl
+   * @return json String that can be made into a JSONObject
+   */
+  private static String readAll(Reader rd) throws IOException {
+    StringBuilder sb = new StringBuilder();
+    int cp;
+    while ((cp = rd.read()) != -1) {
+      sb.append((char) cp);
+    }
+    return sb.toString();
   }
 
   /** Gets random int in range [min, max) */

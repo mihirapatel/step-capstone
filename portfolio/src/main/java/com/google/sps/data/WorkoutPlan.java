@@ -8,30 +8,69 @@ import java.util.ArrayList;
 public class WorkoutPlan implements Serializable {
 
   private String userId;
+  private String workoutPlanName;
   private ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist;
+  private String playlistId;
   private int workoutPlanId;
+  private String dateCreated;
+  private int numWorkoutDaysCompleted;
+  private int planLength;
+  private static final long serialVersionUID = -7602557355975608053L;
 
-  public WorkoutPlan(ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist) {
+  /** WorkoutPlan constructor to use when user is not logged in */
+  public WorkoutPlan(ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist, String playlistId) {
     this.workoutPlanPlaylist = workoutPlanPlaylist;
+    this.playlistId = playlistId;
   }
 
+  /** WorkoutPlan constructor to use when user is logged in */
   public WorkoutPlan(
-      String userId, ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist, int workoutPlanId) {
+      String userId,
+      String workoutPlanName,
+      ArrayList<ArrayList<YouTubeVideo>> workoutPlanPlaylist,
+      int workoutPlanId,
+      String dateCreated,
+      int planLength) {
     this.userId = userId;
+    this.workoutPlanName = workoutPlanName;
     this.workoutPlanPlaylist = workoutPlanPlaylist;
     this.workoutPlanId = workoutPlanId;
+    this.dateCreated = dateCreated;
+    this.planLength = planLength;
   }
 
+  /** Get Methods */
   public String getUserId() {
     return this.userId;
+  }
+
+  public String getWorkoutPlanName() {
+    return this.workoutPlanName;
   }
 
   public ArrayList<ArrayList<YouTubeVideo>> getWorkoutPlanPlaylist() {
     return this.workoutPlanPlaylist;
   }
 
+  public String getPlaylistId() {
+    return this.playlistId;
+  }
+
   public int getWorkoutPlanId() {
     return this.workoutPlanId;
+  }
+
+  public String getDateCreated() {
+    return this.dateCreated;
+  }
+
+  public int getNumWorkoutDaysCompleted() {
+    return this.numWorkoutDaysCompleted;
+  }
+
+  /** Set Methods */
+  public void setNumWorkoutDaysCompleted(int numWorkoutDaysCompleted) {
+    this.numWorkoutDaysCompleted = numWorkoutDaysCompleted;
   }
 
   public String toGson() {
