@@ -95,23 +95,6 @@ function getLanguage() {
 }
 
 /**
-* Backend call to speech-to-text that handles streaming inputs while the user 
-* is talking and converts them to text.
-* 
-* @param blob Mini audio file containing a subset of the user's entire speech.
-*/
-function getAudioStream(blob) {
-  fetch('/audio-stream' + '?language=' + getLanguage(), {
-    method: 'POST',
-    body: blob
-  }).then(response => response.text()).then(stream => {
-    streamingContainer.innerHTML = "";
-    stream = (stream.includes(null)) ? "" : stream;
-    placeUserInput(stream + "...", "streaming");
-  });
-}
-
-/**
 * Backend call to Dialogflow that handles recognizing the user's intent and 
 * accomplishing the necessary backend fulfillment to carry out the user's request.
 * Creates an audio output and handles making any displays that are necessary.

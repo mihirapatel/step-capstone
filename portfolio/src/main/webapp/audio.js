@@ -59,6 +59,28 @@ function streamAudio() {
   rec.exportWAV(getAudioStream);
   rec.record();
 }
+
+/**
+* Backend call to speech-to-text that handles streaming inputs while the user 
+* is talking and converts them to text.
+* 
+* @param blob Mini audio file containing a subset of the user's entire speech.
+*/
+function getAudioStream(blob) {
+  fetch('/audio-stream' + '?language=' + getLanguage(), {
+    method: 'POST',
+    body: blob
+  }).then(response => response.text()).then(stream => {
+    console.log("stream output: " + stream);
+    if (stream.includes("<")) {
+      console.log("error output");
+      return;
+    }
+    streamingContainer.innerHTML = "";
+    stream = (stream.includes(null)) ? "" : stream;
+    placeUserInput(stream + "...", "streaming");
+  });
+}
  
 function stopRecording() {
   console.log("stopButton clicked");
