@@ -177,7 +177,7 @@ public class MemoryListRecommendationsTest {
             + "\"generic-list\": \"\"}",
         "memory.list - make");
     assertEquals(
-        "Created! Based on your list item history, you might be interested in adding apple to your grocery list.",
+        "Created! Based on your list item preferences, you might be interested in adding apple to your grocery list.",
         tester.getOutput().getFulfillmentText());
 
     // Yes response
@@ -210,7 +210,7 @@ public class MemoryListRecommendationsTest {
             + "\"generic-list\": \"\"}",
         "memory.list - make");
     assertEquals(
-        "Created! Based on your list item history, you might be interested in adding apple and pineapple to your grocery list.",
+        "Created! Based on your list item preferences, you might be interested in adding apple and pineapple to your grocery list.",
         tester.getOutput().getFulfillmentText());
 
     // No response
@@ -248,7 +248,7 @@ public class MemoryListRecommendationsTest {
             + "\"generic-list\": \"\"}",
         "memory.list - make");
     assertEquals(
-        "Created! Based on your list item history, you might be interested in adding watermelon, blueberries, and pineapple to your grocery list.",
+        "Created! Based on your list item preferences, you might be interested in adding watermelon, blueberries, and pineapple to your grocery list.",
         tester.getOutput().getFulfillmentText());
 
     // Yes and no response
@@ -266,7 +266,7 @@ public class MemoryListRecommendationsTest {
             new Pair("mangos", 0.65),
             new Pair("grapes", 0.2)));
     assertEquals(
-        "Updated! Based on your list item history, you might be interested in adding mangos to your grocery list.",
+        "Updated! Based on your list item preferences, you might be interested in adding mangos to your grocery list.",
         tester.getOutput().getFulfillmentText());
     List<String> listItems =
         (List<String>) tester.fetchDatastoreEntities("List").get(0).getProperty("items");

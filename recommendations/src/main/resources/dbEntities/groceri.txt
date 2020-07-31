@@ -1,0 +1,14 @@
+#groceri database
+{"key":{"kind":"groceri","id":"5634161670881280"},"propertyMap":{"avocado":4,"bean":3,"carrot":4,"count":5,"cucumb":0,"donut":1,"egg":3,"honey":1,"icecream":2,"lettuce":4,"listName":"groceri","milk":5,"spinach":5,"timestamp":"1594348169594","tomato":0,"userID":"2"}}
+{"key":{"kind":"groceri","id":"1"},"propertyMap":{"count":7,"donut":6,"honey":5,"icecream":4,"kiwi":6,"lettuce":2,"listName":"groceri","milk":1,"peach":6,"pineappl":4,"timestamp":"1594348169594","userID":"1","watermelon":4}}
+{"key":{"kind":"groceri","id":"2"},"propertyMap":{"avocado":1,"count":3,"cucumb":1,"egg":2,"honey":1,"kiwi":1,"listName":"groceri","milk":1,"peach":1,"spinach":1,"timestamp":"1594348169594","tomato":3,"userID":"112479245331521077924","watermelon":1}}
+{"key":{"kind":"groceri","id":"3"},"propertyMap":{"avocado":8,"carrot":3,"count":9,"cucumb":8,"honey":1,"icecream":3,"kale":9,"lettuce":6,"listName":"groceri","spinach":7,"timestamp":"1594348169594","zucchini":6,"userID":"118024119584481251151"}}
+{"key":{"kind":"groceri","id":"4"},"propertyMap":{"bean":2,"cabbage":1,"carrot":2,"count":3,"cucumb":3,"egg":2,"kale":1,"kiwi":1,"listName":"groceri","milk":2,"pineappl":1,"timestamp":"1594348169594","tomato":2,"userID":"121121523518511814218"}}
+#point values
+{"key":{"kind":"Frac-groceri","id":"5634161670881280"},"propertyMap":{"avocado":0.88,"bean":0.67,"carrot":0.47,"count":5,"cucumb":0.0,"donut":0.12,"egg":0.53,"honey":0.21,"icecream":0.23,"lettuce":0.43,"listName":"groceri","milk":1.0,"spinach":1.0,"timestamp":"1594348169594","tomato":0.0,"userID":"2"}}
+{"key":{"kind":"Frac-groceri","id":"1"},"propertyMap":{"count":7,"donut":0.94,"honey":0.68,"icecream":0.57,"kiwi":0.72,"lettuce":0.14,"listName":"groceri","milk":0.12,"peach":0.65,"pineappl":0.48,"timestamp":"1594348169594","userID":"1","watermelon":0.59}}
+{"key":{"kind":"Frac-groceri","id":"2"},"propertyMap":{"avocado":0.4,"count":3,"cucumb":0.18,"egg":0.65,"honey":0.22,"kiwi":0.22,"listName":"groceri","milk":0.4,"peach":0.31,"spinach":0.26,"timestamp":"1594348169594","tomato":1.0,"userID":"112479245331521077924","watermelon":0.21}}
+{"key":{"kind":"Frac-groceri","id":"3"},"propertyMap":{"avocado":0.89,"carrot":0.21,"count":9,"cucumb":0.92,"honey":0.13,"icecream":0.27,"kale":1.0,"lettuce":0.47,"listName":"groceri","spinach":0.79,"timestamp":"1594348169594","zucchini":0.58,"userID":"118024119584481251151"}}
+{"key":{"kind":"Frac-groceri","id":"4"},"propertyMap":{"bean":0.72,"cabbage":0.32,"carrot":0.79,"count":3,"cucumb":1.0,"egg":0.76,"kale":0.32,"kiwi":0.32,"listName":"groceri","milk":0.79,"pineappl":0.24,"timestamp":"1594348169594","tomato":0.69,"userID":"121121523518511814218"}}
+#unique items
+{"key":{"kind":"UniqueItems","id":"1"},"propertyMap":{"items":["appl","avocado","banana","bean","cabbage","carrot","cucumb","donut","egg","honey","icecream","kale","kiwi","lettuce","milk","peach","pineappl","spinach","tomato","watermelon","zucchini"]}}

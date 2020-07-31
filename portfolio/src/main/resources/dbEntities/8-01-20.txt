@@ -1,0 +1,13 @@
+#8/1 I guess
+{"key":{"kind":"CommentHistory","id":"629499534213120"},"propertyMap":{"comment":"show me my grocery lists","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337215780"}}
+{"key":{"kind":"CommentHistory","id":"066549580791800"},"propertyMap":{"comment":"Here are all the found lists.","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337215782"}}
+{"key":{"kind":"List","id":"6473924464345088"},"propertyMap":{"stemmedListName":"groceri","listName":"grocery (06/30/2020 13:06:36)","userID":"112479245331521077924","items":["tomato", "cucumbers","avocado", "watermelon"],"timestamp":"1596332416260"}}
+{"key":{"kind":"List","id":"192449487634430"},"propertyMap":{"stemmedListName":"groceri","listName":"grocery","userID":"112479245331521077924","items":["tomato", "egg", "milk", "honey", "kiwi"],"timestamp":"1596337240220"}}
+{"key":{"kind":"CommentHistory","id":"785074604081150"},"propertyMap":{"comment":"start a new grocery list","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337242540"}}
+{"key":{"kind":"CommentHistory","id":"910974510923770"},"propertyMap":{"comment":"Created! Based on your previous grocery lists, would you like to add tomatoes and eggs?","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337242560"}}
+{"key":{"kind":"CommentHistory","id":"644337115725820"},"propertyMap":{"comment":"yes","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337265440"}}
+{"key":{"kind":"CommentHistory","id":"910974510923770"},"propertyMap":{"comment":"Updated! Based on your previous grocery lists, would you like to add lettuce and cheese?","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337265460"}}
+{"key":{"kind":"CommentHistory","id":"644337115725820"},"propertyMap":{"comment":"no","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337265462"}}
+{"key":{"kind":"CommentHistory","id":"770237022568440"},"propertyMap":{"comment":"Your preferences are noted.","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337265464"}}
+{"key":{"kind":"CommentHistory","id":"644337115725820"},"propertyMap":{"comment":"Update my grocery list with milk, honey, and kiwi.","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337265466"}}
+{"key":{"kind":"CommentHistory","id":"910974510923770"},"propertyMap":{"comment":"Updated!","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1596337265468"}}

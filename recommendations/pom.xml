@@ -144,6 +144,11 @@
             <artifactId>ejml-all</artifactId>
             <version>0.39</version>
         </dependency>
+
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-dialogflow</artifactId>
+    </dependency>
     </dependencies>
 
     <build>

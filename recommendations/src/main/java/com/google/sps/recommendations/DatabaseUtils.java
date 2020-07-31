@@ -4,10 +4,23 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.gson.Gson;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Struct;
+import com.google.protobuf.Struct.Builder;
+import com.google.protobuf.Value;
+import com.google.protobuf.util.JsonFormat;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +61,7 @@ public class DatabaseUtils {
       long prevValue =
           aggregateEntity.getProperty(stemmedItem) == null
               ? 0
-              : (long) aggregateEntity.getProperty(stemmedItem);
+              : ((Number) aggregateEntity.getProperty(stemmedItem)).longValue();
       aggregateEntity.setProperty(stemmedItem, prevValue + 1);
     }
     updateUniqueProperties(datastore, stemmedListName, StemUtils.stemmedList(items));
@@ -103,7 +116,6 @@ public class DatabaseUtils {
           fracEntity.setProperty(stemmedItem, existingRate + incrementValue);
         }
       }
-      fracEntity.setProperty("count", listCount);
     } catch (EntityNotFoundException e) {
       fracEntity = new Entity("Frac-" + stemmedListName, userID);
       for (String stemmedItem : stemmedItems) {
@@ -113,10 +125,11 @@ public class DatabaseUtils {
       fracEntity.setProperty("listName", stemmedListName);
       fracEntity.setProperty("timestamp", System.currentTimeMillis());
     }
+    fracEntity.setProperty("count", listCount);
     log.info("frac entity here" + fracEntity);
     datastore.put(fracEntity);
     try {
-      RecommendationUtils.updateUserRecommendations(datastore, userID, stemmedListName, items);
+      RecommendationUtils.updateUserRecommendations(datastore, stemmedListName);
 
     } catch (EntityNotFoundException | IllegalStateException e) {
       log.error("Recommendation error: " + e);
@@ -169,5 +182,84 @@ public class DatabaseUtils {
     }
     entity.setProperty("items", updatedUniqueItems);
     datastore.put(entity);
+  }
+
+  /**
+   * Resets the database to the initial demo status. Only resets categories of: type, frac-type, and
+   * uniqueItems
+   *
+   * @param datastore Datastore instance
+   */
+  public static void resetDatabase(DatastoreService datastore) throws IllegalStateException {
+    URL url = DatabaseUtils.class.getResource("/dbEntities");
+    String path = url.getPath();
+    File[] allDBFiles = new File(path).listFiles();
+    Arrays.sort(allDBFiles);
+    Gson gson = new Gson();
+    boolean checkExisting = true;
+    for (File file : allDBFiles) {
+      String fileName = file.getName();
+      log.info("file: " + fileName);
+      String categoryName = fileName.split("\\.")[0];
+      try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+          log.info("line: " + line);
+          char firstCh = line.charAt(0);
+          if (firstCh == '#') {
+            continue;
+          } else if (firstCh != '{') {
+            break;
+          }
+          Entity e = gson.fromJson(line, Entity.class);
+          Map<String, Value> keyMap = stringToMap(line).get("key").getStructValue().getFieldsMap();
+          String kind = (String) keyMap.get("kind").getStringValue();
+          boolean uniqueItems = kind.equals("UniqueItems");
+          String id = uniqueItems ? categoryName : (String) e.getProperty("userID");
+          Entity entity = new Entity(kind, id);
+          entity.setPropertiesFrom(e);
+          if (!uniqueItems) {
+            entity.setProperty(
+                "timestamp", Long.parseLong((String) entity.getProperty("timestamp")));
+            entity.setProperty(
+                "count", Double.valueOf((double) entity.getProperty("count")).longValue());
+          }
+          if (checkExisting) {
+            checkExisting = false;
+            try {
+              Entity existing = datastore.get(entity.getKey());
+              throw new IllegalStateException(
+                  "Cannot reset database when there are existing entities that will be overridden.");
+            } catch (EntityNotFoundException exception) {
+              datastore.put(entity);
+            }
+          } else {
+            datastore.put(entity);
+          }
+        }
+      } catch (IOException e) {
+        log.error("Error trying to read file: " + e);
+        continue;
+      }
+      try {
+        RecommendationUtils.updateUserRecommendations(datastore, categoryName);
+      } catch (EntityNotFoundException | IllegalStateException e) {
+        log.error("Recommendation error: " + e);
+      }
+    }
+  }
+
+  /**
+   * Converts a json string into a Map object
+   *
+   * @param json json string
+   * @return Map<String, Value>
+   */
+  public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
+    JSONObject jsonObject = new JSONObject(json);
+    Builder structBuilder = Struct.newBuilder();
+    JsonFormat.parser().merge(jsonObject.toString(), structBuilder);
+    Struct struct = structBuilder.build();
+    return struct.getFieldsMap();
   }
 }
