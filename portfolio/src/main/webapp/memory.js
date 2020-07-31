@@ -110,9 +110,9 @@ function populateConversationScreen(conversationDiv, conversationList, keywordEn
       }
     }
     if (commentEntity.isUser) {
-      placeChatContainer(text, "user-side talk-bubble-user round", "right", conversationDiv);
+      placeChatContainer(text, "user-side talk-bubble-user round", "right", conversationDiv, 0);
     } else {
-      placeChatContainer(text, "assistant-side talk-bubble-assistant round", "left", conversationDiv);
+      placeChatContainer(text, "assistant-side talk-bubble-assistant round", "left", conversationDiv, 0);
     }
   }
 }

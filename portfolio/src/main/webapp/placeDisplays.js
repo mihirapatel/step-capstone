@@ -41,9 +41,9 @@ function placeObjectContainer(text, type, container) {
   return container;
 }
 
-function placeChatContainer(text, type, side, container) {
+function placeChatContainer(text, type, side, container, marginBottom) {
   var newDiv = document.createElement('div');
-  newDiv.setAttribute("style", "float: " + side + "; width: 100%;");
+  newDiv.setAttribute("style", "float: " + side + "; width: 100%; margin-bottom:" + marginBottom + "px;");
   newDiv.innerHTML = "<div class='" + type + "'>" + text + "</div>";
   container.appendChild(newDiv);
   updateScroll();

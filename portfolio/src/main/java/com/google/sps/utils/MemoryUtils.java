@@ -4,7 +4,6 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilter;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -14,23 +13,17 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.log.InvalidRequestException;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.protobuf.Value;
 import com.google.sps.agents.Memory;
 import com.google.sps.data.Pair;
-import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -190,7 +183,8 @@ public class MemoryUtils {
             new FilterPredicate("timestamp", FilterOperator.LESS_THAN_OR_EQUAL, endTime)));
   }
 
-  public static List<Entity> getPastUserLists(DatastoreService datastore, String userID, Map<String, Value> parameters) {
+  public static List<Entity> getPastUserLists(
+      DatastoreService datastore, String userID, Map<String, Value> parameters) {
     Filter filter = makeFilters(parameters, userID, true);
     List<Entity> listQuery = pastListHelper(datastore, filter);
     if (listQuery.size() == 0) {
@@ -199,25 +193,33 @@ public class MemoryUtils {
     }
     String maxValue = parameters.get("number").getStringValue();
     if (!maxValue.equals("-1")) {
-      return listQuery.subList(0, Math.min(listQuery.size(), (int) parameters.get("number").getNumberValue()));
+      return listQuery.subList(
+          0, Math.min(listQuery.size(), (int) parameters.get("number").getNumberValue()));
     }
     return listQuery;
   }
 
-  private static Filter makeFilters(Map<String, Value> parameters, String userID, boolean tryName) throws InvalidRequestException {
+  private static Filter makeFilters(Map<String, Value> parameters, String userID, boolean tryName)
+      throws InvalidRequestException {
     List<Filter> filters = new ArrayList<>();
     filters.add(new FilterPredicate("userID", FilterOperator.EQUAL, userID));
     String listNameValue = parameters.get("list-name").getStringValue();
     listNameValue = Memory.cleanName(listNameValue);
     if (tryName && !listNameValue.isEmpty()) {
-      filters.add(new FilterPredicate("stemmedListName", FilterOperator.EQUAL, StemUtils.stemmed(listNameValue)));
+      filters.add(
+          new FilterPredicate(
+              "stemmedListName", FilterOperator.EQUAL, StemUtils.stemmed(listNameValue)));
     }
     Value durationValue = parameters.get("date-time-enhanced");
     if (durationValue.hasStructValue()) {
       try {
         Pair<Long, Long> timeRange = TimeUtils.getTimeRange(durationValue);
-        filters.add(new FilterPredicate("timestamp", FilterOperator.GREATER_THAN_OR_EQUAL, timeRange.getKey()));
-        filters.add(new FilterPredicate("timestamp", FilterOperator.LESS_THAN_OR_EQUAL, timeRange.getValue()));
+        filters.add(
+            new FilterPredicate(
+                "timestamp", FilterOperator.GREATER_THAN_OR_EQUAL, timeRange.getKey()));
+        filters.add(
+            new FilterPredicate(
+                "timestamp", FilterOperator.LESS_THAN_OR_EQUAL, timeRange.getValue()));
       } catch (ParseException e) {
         log.error("Parse error in date-time parameter", e);
         throw new InvalidRequestException("Parse error in date-time parameter");
@@ -232,9 +234,7 @@ public class MemoryUtils {
 
   private static List<Entity> pastListHelper(DatastoreService datastore, Filter filter) {
     Query query =
-      new Query("List")
-        .setFilter(filter)
-        .addSort("timestamp", SortDirection.DESCENDING);
+        new Query("List").setFilter(filter).addSort("timestamp", SortDirection.DESCENDING);
     return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 
@@ -251,8 +251,7 @@ public class MemoryUtils {
   public static void allocateList(
       String listName, String userID, DatastoreService datastore, ArrayList<String> items) {
     String stemmedListName = StemUtils.stemmed(listName);
-    List<Entity> existingList =
-        fetchExistingListQuery(datastore, userID, stemmedListName);
+    List<Entity> existingList = fetchExistingListQuery(datastore, userID, stemmedListName);
     if (!existingList.isEmpty()) {
       Entity existingEntity = existingList.get(0);
       long timestamp = (long) existingEntity.getProperty("timestamp");
@@ -285,10 +284,10 @@ public class MemoryUtils {
    * @param items List of strings containing items to add to list
    */
   public static boolean addToList(
-      String listName, String userID, DatastoreService datastore, ArrayList<String> items) throws InvalidRequestException {
+      String listName, String userID, DatastoreService datastore, ArrayList<String> items)
+      throws InvalidRequestException {
     String stemmedListName = StemUtils.stemmed(listName);
-    List<Entity> existingList =
-        fetchExistingListQuery(datastore, userID, stemmedListName);
+    List<Entity> existingList = fetchExistingListQuery(datastore, userID, stemmedListName);
     if (existingList.isEmpty()) {
       addListItems(datastore, userID, items, listName);
       return false;
@@ -333,7 +332,8 @@ public class MemoryUtils {
   }
 
   private static void addListItems(
-      DatastoreService datastore, String userID, ArrayList<String> items, String listName) throws InvalidRequestException {
+      DatastoreService datastore, String userID, ArrayList<String> items, String listName)
+      throws InvalidRequestException {
     makeListEntity(datastore, userID, items, listName, System.currentTimeMillis());
     if (items != null && items.size() > 0) {
       saveAggregateListData(datastore, userID, StemUtils.stemmed(listName), items, true);
@@ -377,18 +377,26 @@ public class MemoryUtils {
       String userID,
       String stemmedListName,
       List<String> items,
-      boolean newList) throws InvalidRequestException {
+      boolean newList)
+      throws InvalidRequestException {
     log.info("making storeInfo api request");
     RestTemplate restTemplate = new RestTemplate();
-    String urlString = "https://arliu-step-2020-3.wl.r.appspot.com/storeInfo?userID=" + userID + "&stemmedListName=" + stemmedListName + "&newList=" + newList;
+    String urlString =
+        "https://arliu-step-2020-3.wl.r.appspot.com/storeInfo?userID="
+            + userID
+            + "&stemmedListName="
+            + stemmedListName
+            + "&newList="
+            + newList;
     HttpEntity<List<String>> entity = new HttpEntity<>(items);
     log.info("http entity: " + entity.getBody());
-    ResponseEntity<Void> result = restTemplate.exchange(urlString, HttpMethod.POST, entity, Void.class);
+    ResponseEntity<Void> result =
+        restTemplate.exchange(urlString, HttpMethod.POST, entity, Void.class);
     if (result.getStatusCode() != HttpStatus.OK) {
       throw new InvalidRequestException("Error sending info to recommendations API.");
     }
     log.info("storeInfo success");
-   }
+  }
 
   /**
    * Makes recommendations based on the user's past history of list items. Will only make
@@ -401,9 +409,10 @@ public class MemoryUtils {
    * @return String containing the fulfillment response to the user
    */
   public static String makePastRecommendations(
-      String userID, DatastoreService datastore, String listName) 
+      String userID, DatastoreService datastore, String listName)
       throws EntityNotFoundException, IllegalStateException, URISyntaxException {
-    List<Pair<String, Double>> itemPairs = callRecommendationsAPI("pastUserRecs", userID, StemUtils.stemmed(listName));
+    List<Pair<String, Double>> itemPairs =
+        callRecommendationsAPI("pastUserRecs", userID, StemUtils.stemmed(listName));
     return formatResult(itemPairs);
   }
 
@@ -422,14 +431,15 @@ public class MemoryUtils {
       throws IllegalStateException, EntityNotFoundException, URISyntaxException {
     String stemmedListName = StemUtils.stemmed(listName);
     List<String> stemmedCurrentListItems = getCurrentItems(userID, datastore, stemmedListName);
-    List<Pair<String, Double>> itemPairs = callRecommendationsAPI("generalUserRecs", userID, stemmedListName);
+    List<Pair<String, Double>> itemPairs =
+        callRecommendationsAPI("generalUserRecs", userID, stemmedListName);
     return formatResult(itemPairs, stemmedCurrentListItems);
   }
 
   /**
-   * Calls recommendations API to get any possible list item recommendations for the user.
-   * Throws URISyntaxException if there is an error in URI creation. Otherwise, if no 
-   * item suggestions exist, returns an empty list.
+   * Calls recommendations API to get any possible list item recommendations for the user. Throws
+   * URISyntaxException if there is an error in URI creation. Otherwise, if no item suggestions
+   * exist, returns an empty list.
    *
    * @param methodName String name of the type of recommendation requested (pastUser or generalUser)
    * @param userID String representing the ID of the user giving recommendations for
@@ -437,11 +447,16 @@ public class MemoryUtils {
    * @return String containing up to 3 items to recommend to the user.
    */
   private static List<Pair<String, Double>> callRecommendationsAPI(
-      String methodName, String userID, String stemmedListName) 
-      throws URISyntaxException {
+      String methodName, String userID, String stemmedListName) throws URISyntaxException {
     log.info("making pastUserRecs api request");
     RestTemplate restTemplate = new RestTemplate();
-    String urlString = "https://arliu-step-2020-3.wl.r.appspot.com/" + methodName + "?userID=" + userID + "&stemmedListName=" + stemmedListName;
+    String urlString =
+        "https://arliu-step-2020-3.wl.r.appspot.com/"
+            + methodName
+            + "?userID="
+            + userID
+            + "&stemmedListName="
+            + stemmedListName;
     URI uri = new URI(urlString);
     ResponseEntity<List> result = restTemplate.getForEntity(uri, List.class);
     if (result.getStatusCode() != HttpStatus.OK) {
@@ -450,7 +465,8 @@ public class MemoryUtils {
     log.info("pastUserRecs success");
     List<LinkedHashMap<String, Double>> resultList = result.getBody();
     Gson gson = new Gson();
-    List<Pair<String, Double>> formattedList = resultList.stream().map(e -> makePair(e)).collect(Collectors.toList());
+    List<Pair<String, Double>> formattedList =
+        resultList.stream().map(e -> makePair(e)).collect(Collectors.toList());
     return formattedList;
   }
 
@@ -468,8 +484,7 @@ public class MemoryUtils {
    * @param pq Priority queue of top elements to recommend to the user
    * @return String containing a formatted list of items to recommend to the user
    */
-  private static String getSuggestedItems(
-      List<String> items) {
+  private static String getSuggestedItems(List<String> items) {
     if (items.size() == 1) {
       return items.get(0);
     }
@@ -488,20 +503,24 @@ public class MemoryUtils {
     List<String> filteredUserInterest =
         items.stream()
             .filter(
-            e ->
-                (!existingItems.contains(StemUtils.stemmed(e.getKey()))
-                    && (e.getValue() > 0.4)))
+                e ->
+                    (!existingItems.contains(StemUtils.stemmed(e.getKey()))
+                        && (e.getValue() > 0.4)))
             .map(e -> e.getKey())
             .collect(Collectors.toList());
     return getSuggestedItems(filteredUserInterest);
   }
 
-  private static String formatResult(List<Pair<String, Double>> items) throws IllegalStateException {
+  private static String formatResult(List<Pair<String, Double>> items)
+      throws IllegalStateException {
     if (items == null || items.isEmpty()) {
       throw new IllegalStateException("No recommendations are available");
     }
     List<String> filteredUserInterest =
-        items.stream().filter(e -> (e.getValue() > 0.49)).map(e -> e.getKey()).collect(Collectors.toList());
+        items.stream()
+            .filter(e -> (e.getValue() > 0.49))
+            .map(e -> e.getKey())
+            .collect(Collectors.toList());
     return getSuggestedItems(filteredUserInterest);
   }
 

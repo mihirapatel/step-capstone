@@ -181,9 +181,15 @@ public class Recommender {
   }
 
   /**
+<<<<<<< HEAD:portfolio/src/main/java/com/google/sps/data/Recommender.java
+   * Extracts the row corresponding to the given user (always the 0th row) and maps each column with
+   * the corresponding item name so that each item name corresponds to the frequency prediction made
+   * by matrix factorization.
+=======
    * Converts matrix into List of Pairs where the key is the user ID and the value is another list
    * of pairs where the key is the item string name and the value is the predicted chance that the
    * user would like that item.
+>>>>>>> upstream/master:recommendations/src/main/java/com/google/sps/recommendations/Recommender.java
    *
    * @param datastore Datastore instance
    * @param stemmedListName Stemmed name of the list that predictions were calculated for

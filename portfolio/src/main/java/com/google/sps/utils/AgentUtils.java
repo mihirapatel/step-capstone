@@ -116,7 +116,8 @@ public class AgentUtils {
       Map<String, Value> parameterMap,
       String sessionID)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
-          ArrayIndexOutOfBoundsException, InvalidRequestException, EntityNotFoundException, URISyntaxException {
+          ArrayIndexOutOfBoundsException, InvalidRequestException, EntityNotFoundException,
+          URISyntaxException {
     switch (agentName) {
       case "books":
         return new BooksAgent(

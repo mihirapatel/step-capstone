@@ -265,7 +265,7 @@ public class BooksMemoryUtils {
   public static Book assignLikeCount(
       Book book, String userID, ArrayList<Book> friendsLikes, DatastoreService datastore) {
     if (friendsLikes.contains(book)) {
-      ArrayList<String> likedByList = friendsLikes.get(friendsLikes.indexOf(book)).getLikedBy();
+      ArrayList<Friend> likedByList = friendsLikes.get(friendsLikes.indexOf(book)).getLikedBy();
       book.setLikedBy(likedByList);
     }
     return book;
@@ -387,6 +387,8 @@ public class BooksMemoryUtils {
     deleteStoredEntities("BookQuery");
     deleteStoredEntities("Book");
     deleteStoredEntities("Indices");
+    deleteStoredEntities("Bookshelves");
+    deleteStoredEntities("LikedBook");
   }
 
   /**
@@ -485,7 +487,7 @@ public class BooksMemoryUtils {
 
     Entity likedBookEntity = new Entity("LikedBook");
     likedBookEntity.setProperty("id", userID);
-    likedBookEntity.setProperty("userEmail", userEmail);
+    likedBookEntity.setProperty("userEmail", userEmail.toLowerCase());
     likedBookEntity.setProperty("volumeId", bookToLike.getVolumeId());
     likedBookEntity.setProperty("book", bookBlob);
     datastore.put(likedBookEntity);
@@ -506,7 +508,7 @@ public class BooksMemoryUtils {
 
     Entity likedBookEntity = new Entity("LikedBook");
     likedBookEntity.setProperty("id", userID);
-    likedBookEntity.setProperty("userEmail", userEmail);
+    likedBookEntity.setProperty("userEmail", userEmail.toLowerCase());
     likedBookEntity.setProperty("volumeId", bookToLike.getVolumeId());
     likedBookEntity.setProperty("book", bookBlob);
     datastore.put(likedBookEntity);
@@ -581,19 +583,21 @@ public class BooksMemoryUtils {
       throws IOException {
     ArrayList<Book> friendsLikes = new ArrayList<Book>();
     for (Friend friend : peopleUtils.getFriends(userID, oauthHelper)) {
-      for (String email : friend.getEmails()) {
-        String name = friend.getName();
-        if (!friend.hasName()) {
-          name = email;
-        }
-        ArrayList<Book> booksLikedByEmail = getLikedBooksFromId(email, "userEmail", datastore);
-        for (Book likedBook : booksLikedByEmail) {
-          if (friendsLikes.contains(likedBook)) {
-            Book bookInList = friendsLikes.get(friendsLikes.indexOf(likedBook));
-            bookInList.addToLikedBy(name);
-          } else {
-            likedBook.addToLikedBy(name);
-            friendsLikes.add(likedBook);
+      if (!friend.equals(peopleUtils.getUserInfo(userID, "people/me", oauthHelper))) {
+        for (String email : friend.getEmails()) {
+          String name = friend.getName();
+          if (!friend.hasName()) {
+            name = email;
+          }
+          ArrayList<Book> booksLikedByEmail = getLikedBooksFromId(email, "userEmail", datastore);
+          for (Book likedBook : booksLikedByEmail) {
+            if (friendsLikes.contains(likedBook)) {
+              Book bookInList = friendsLikes.get(friendsLikes.indexOf(likedBook));
+              bookInList.addToLikedBy(friend);
+            } else {
+              likedBook.addToLikedBy(friend);
+              friendsLikes.add(likedBook);
+            }
           }
         }
       }
@@ -604,10 +608,10 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a list of Book objects from the stored LikedBook Entities in Datastore
-   * for the specified friend of the userID
+   * for the specified Friend of the userID
    *
    * @param userID unique id of user
-   * @param friendName name of friend to retrive liked books of
+   * @param friend friend object to retrive liked books of
    * @param datastore DatastoreService instance used to access Book info from database
    * @param oauthHelper OAuthHelper instance used to access OAuth methods
    * @param peopleUtils PeopleUtils instance used to access Google People API
@@ -615,7 +619,7 @@ public class BooksMemoryUtils {
    */
   public static ArrayList<Book> getLikesOfFriend(
       String userID,
-      String friendName,
+      Friend friend,
       DatastoreService datastore,
       OAuthHelper oauthHelper,
       PeopleUtils peopleUtils)
@@ -623,10 +627,11 @@ public class BooksMemoryUtils {
     ArrayList<Book> friendsLikes = getFriendsLikes(userID, datastore, oauthHelper, peopleUtils);
     ArrayList<Book> individualFriendLikes = new ArrayList<Book>();
     for (Book likedBook : friendsLikes) {
-      ArrayList<String> likedByLowerCase =
-          BooksAgentHelper.allLowerCaseList(likedBook.getLikedBy());
-      if (likedByLowerCase.contains(friendName.toLowerCase())) {
-        individualFriendLikes.add(likedBook);
+      ArrayList<Friend> likedBy = likedBook.getLikedBy();
+      for (Friend personWhoLiked : likedBy) {
+        if (personWhoLiked.equals(friend)) {
+          individualFriendLikes.add(likedBook);
+        }
       }
     }
     Collections.sort(individualFriendLikes, new BookComparator());

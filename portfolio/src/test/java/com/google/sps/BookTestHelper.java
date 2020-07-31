@@ -26,6 +26,7 @@ import com.google.sps.utils.OAuthHelper;
 import com.google.sps.utils.PeopleUtils;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,20 +137,48 @@ public class BookTestHelper {
 
   /**
    * Sets list of Friend objects for a user returned from PeopleUtils mock when a user requests
-   * their friends' likes and sets hasFriend to return true if the name is included in the list of
-   * Friend objects. Otherwise, hasFriend will return false.
+   * their friends' likes and sets matchingFriend to return a list containing 1 Friend element for
+   * each friend in the list, and an empty list otherwise.
    *
    * @param userId unique Id of user
    * @param friends list of Friend objects
    */
   public void setFriends(String userID, ArrayList<Friend> friends) throws IOException {
     when(peopleUtilsMock.getFriends(eq(userID), any(OAuthHelper.class))).thenReturn(friends);
-    when(peopleUtilsMock.hasFriend(eq(userID), any(String.class), any(OAuthHelper.class)))
-        .thenReturn(false);
+    when(peopleUtilsMock.getMatchingFriends(eq(userID), any(String.class), any(OAuthHelper.class)))
+        .thenReturn(new ArrayList<Friend>());
     for (Friend friend : friends) {
-      when(peopleUtilsMock.hasFriend(eq(userID), eq(friend.getName()), any(OAuthHelper.class)))
-          .thenReturn(true);
+      when(peopleUtilsMock.getMatchingFriends(
+              eq(userID), eq(friend.getName()), any(OAuthHelper.class)))
+          .thenReturn(new ArrayList<Friend>(Arrays.asList(friend)));
     }
+  }
+
+  /**
+   * Sets list of Friend objects for a user returned from PeopleUtils mock when the
+   * getMatchingFriends function is called. The PeopleUtils mock will return the specified
+   * matchingFriends list.
+   *
+   * @param userId unique Id of user
+   * @param friendName friend name to retrun matchingFriends list
+   * @param matchingFriends list of Friend objects
+   */
+  public void setMatchingFriends(
+      String userID, String friendName, ArrayList<Friend> matchingFriends) throws IOException {
+    when(peopleUtilsMock.getMatchingFriends(eq(userID), eq(friendName), any(OAuthHelper.class)))
+        .thenReturn(matchingFriends);
+  }
+
+  /**
+   * Sets Friend object for a user returned from PeopleUtils mock when a user requests to see their
+   * likes.
+   *
+   * @param userId unique Id of user
+   * @param friend Friend object to return from PeopleUtils mock
+   */
+  public void setUserInfo(String userID, Friend friend) throws IOException {
+    when(peopleUtilsMock.getUserInfo(eq(userID), eq("people/me"), any(OAuthHelper.class)))
+        .thenReturn(friend);
   }
 
   /**

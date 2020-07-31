@@ -24,6 +24,7 @@ var sessionId = "";
 var queryNumber = 0;
 window.onbeforeunload = deleteSessionInformation;
 var isUserLoggedIn = false;
+var userPhoto = "images/android.png";
  
 var pastCommands = loadCommands();
 var commandIndex = pastCommands.length;
@@ -77,6 +78,7 @@ window.onclick = function(event) {
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
       if (openDropdown.classList.contains('show')) {
+        updateDropdownScroll(openDropdown);
         openDropdown.classList.remove('show');
       }
     }
@@ -155,6 +157,9 @@ function authSetup() {
     } else if (displayText.logButton == "Login") {
         isUserLoggedIn = false;
     }
+    window.userPhoto = displayText.photoUrl;
+    var body = document.body;
+    body.insertAdjacentHTML('beforeend', '<style>.talk-bubble-user:before{background-image: url(' + userPhoto + ');}</style>');
     getSessionID();
     // Clears any stored information in Datastore for this session upon loading
     deleteSessionInformation();
@@ -226,11 +231,11 @@ function goToBookshelf(intent, bookshelfName){
  * query)
  * 
  * @param intent name of book intent
- * @param friendName friend to retrieve likes from
+ * @param friend object 
  */
-function seeFriendsLikedBooks(intent, friendName){
+function seeFriendsLikedBooks(intent, friend){
   fetch('/book-agent?intent=' + intent + '&language=' + getLanguage() + '&session-id=' + sessionId + 
-    '&friend=' + friendName, {
+    '&friend=' + friend.name + '&friendObject=' + JSON.stringify(friend), {
       method: 'POST'
   }).then(response => response.text()).then(stream => displayResponse(stream));
 }
@@ -353,6 +358,8 @@ function saveWorkoutPlan(workoutPlan){
   });
 }
 
+function updateDropdownScroll(element) {
+  element.scrollTop =  0;
 /** Saves workout video using SaveVideoServlet for current user
  *
  * @param workoutVideo workoutVideo string with userId and videoId 
