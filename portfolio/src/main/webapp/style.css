@@ -92,7 +92,6 @@ body {
 
 #videos {
     width: 100%;
-    height: 1250px;
     background-color: white;
 }
 
@@ -132,6 +131,7 @@ body {
    color: #333333;
    padding: 15px;
    text-align: left;
+   width: 800px;
 }
 
 .workout-buttons {
@@ -179,7 +179,7 @@ body {
 
 #workout-planner {
     width: 100%;
-    background-color: white;
+    height: 100%
 }
 
 .planner-table {
@@ -250,13 +250,6 @@ td {
 	width: 45%;
 }
 
-.workout-plan {
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .workout-plan-card {
     height: 120px;
     width: 200px;
@@ -268,6 +261,7 @@ td {
 
 .workout-plan-card a {
     font-size: 17px;
+    font-weight: bold;
     color: #333333
 }
 
@@ -280,8 +274,52 @@ td {
     margin-top: 25px;
 }
 
+.saved-video-title {
+    color: #333333;
+    margin-bottom: 2%;
+    font-size: 17px;
+}
+
+.saved-video-channel-title {
+    text-align: left;
+    margin-left: 8%;
+}
+
 .mark-completed-button {
     margin: 5%;
+}
+
+.workout-plan-container {
+    margin-bottom: 27%;
+}
+
+.workout-plan-progress {
+    margin-top: 1.5%;
+    font-weight: 200;
+}
+
+.workout-plan-table {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.back-to-dashboard-link {
+  position: absolute;
+  border-radius: 10px;
+  background-color: rgba(146, 142, 142, 0.156);
+  padding: 10px;
+  margin: 15px;
+  color: gray;
+  text-decoration: none;
+}
+
+.back-to-dashboard-link:hover {
+  cursor: pointer;
+  background-color: rgba(133, 132, 132, 0.356);
 }
 
 /* Workout Agent Styling End */

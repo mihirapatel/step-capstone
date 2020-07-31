@@ -128,10 +128,21 @@ function createVideoDivs(videos, indexStart, indexEnd) {
     videoDescription.className = "video-description";
     videoDescription.innerHTML = description.replace(/"/g, "");
     videoInfo.appendChild(videoDescription);
+    
+    //Save Video Button (only add if user is logged in) 
+    if (isUserLoggedIn) {
+      saveVideoButton = document.createElement("BUTTON");
+      saveVideoButton.id = i.toString();
+      saveVideoButton.classList.add("workout-buttons");
+      saveVideoButton.classList.add("save-video-button");
+      var buttonText = document.createTextNode("Save Video");
+      saveVideoButton.onclick = function() {saveWorkoutVideo(videos, this.id);};
+      saveVideoButton.appendChild(buttonText); 
+      videoInfo.appendChild(saveVideoButton);
+    }
 
     videoContainer.appendChild(videoInfo);
     videosDiv.appendChild(videoContainer);
-
 
     footerDisplay = ((currentIndex + 1) % videosDisplayedPerPage == 0);
     //Create footer with page numbers and buttons under correct video div
@@ -149,12 +160,12 @@ function createVideoDivs(videos, indexStart, indexEnd) {
         //Display previous button if not on first page
         if (currentPage != 1) {
           footer.appendChild(previousButton);
-          footer.getElementsByClassName("video-buttons video-previous-button").item(0).onclick = function() {showNewVideosPage(-5)};
+          footer.getElementsByClassName("workout-buttons video-previous-button").item(0).onclick = function() {showNewVideosPage(-5)};
         }
         //Display next button if not on last page
         if (currentPage != totalPages) {
           footer.appendChild(nextButton);
-          footer.getElementsByClassName("video-buttons video-next-button").item(0).onclick = function() {showNewVideosPage(5)};
+          footer.getElementsByClassName("workout-buttons video-next-button").item(0).onclick = function() {showNewVideosPage(5)};
         }
     }
   }
@@ -210,8 +221,8 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
-  var plannerDivHeight =  (videos.length * 135) + 45;
-  plannerDiv.style.height = plannerDivHeight.toString() + "px";
+//   var plannerDivHeight =  (videos.length * 135) + 45;
+//   plannerDiv.style.height = plannerDivHeight.toString() + "px";
   workoutPlannerDiv.appendChild(plannerDiv);
 
   plannerTable = document.createElement("div");
@@ -435,8 +446,8 @@ function updateWorkoutPlanProgress(workoutPlan, localStorageKey){
 
   //Update workout plan progress display on dashboard
   var progress = document.getElementById("progress");
-  var progressPercentage = numWorkoutDaysCompleted / workoutPlan.planLength;
-  progress.innerHTML = "Progress: " + progressPercentage;
+  var progressPercentage = Math.round((numWorkoutDaysCompleted / workoutPlan.planLength) * 100);
+  progress.innerHTML = "Progress: " + progressPercentage + "%";
 
   //Update workout plan progress
   fetch('/workout-plan-progress' + '?workout-plan=' + workoutPlanString + '&num-workout-days-completed=' + numWorkoutDaysCompleted, {
