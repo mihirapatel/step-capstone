@@ -8,11 +8,15 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.sps.utils.BooksMemoryUtils;
+import com.google.sps.utils.BooksSetUpHelper;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Retrieves sessionIDs for each user (logged in or not) in order to keep track of their stored Book
@@ -20,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/id")
 public class SessionIdServlet extends HttpServlet {
-
+  private static Logger log = LoggerFactory.getLogger(BooksSetUpHelper.class);
   UserService userService = createUserService();
   DatastoreService datastore = createDatastore();
 
@@ -35,6 +39,13 @@ public class SessionIdServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html");
     String id;
+
+    // Set up book likes for demo
+    try {
+      BooksSetUpHelper.setUpBookLikes(datastore);
+    } catch (FileNotFoundException e) {
+      log.error("Could not set up liked books for test users.");
+    }
 
     if (userService.isUserLoggedIn()) {
       id = userService.getCurrentUser().getUserId();

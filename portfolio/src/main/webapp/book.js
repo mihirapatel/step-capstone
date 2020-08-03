@@ -287,6 +287,8 @@ function createInfoColumn(book, queryID) {
       }
       infoHTML += '</p>';
       titleHTML += infoHTML;
+  } else {
+      titleHTML += '<br>';
   }
   infoColumn.insertAdjacentHTML('afterbegin', titleHTML);
   if (book.description){
