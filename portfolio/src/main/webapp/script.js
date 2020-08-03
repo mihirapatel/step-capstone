@@ -139,6 +139,7 @@ function authSetup() {
         createWorkoutDashboardButton();
     } else if (displayText.logButton == "Login") {
         isUserLoggedIn = false;
+        document.getElementsByClassName("workout-dashboard-link")[0].style.display = "none";
     }
     window.userPhoto = displayText.photoUrl;
     var body = document.body;
@@ -342,7 +343,9 @@ function saveWorkoutPlan(workoutPlan){
 }
 
 function updateDropdownScroll(element) {
-  element.scrollTop =  0;
+  element.scrollTop = 0;
+}
+
 /** Saves workout video using SaveVideoServlet for current user
  *
  * @param workoutVideo workoutVideo string with userId and videoId 
