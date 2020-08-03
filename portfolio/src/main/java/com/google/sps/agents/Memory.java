@@ -83,7 +83,6 @@ public class Memory implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters)
       throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
     log.info("parameters: " + parameters);

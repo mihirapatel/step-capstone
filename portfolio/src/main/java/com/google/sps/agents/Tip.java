@@ -31,7 +31,6 @@ public class Tip implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters) {
     tipPercentageString = parameters.get("tip-percentage").getStringValue();
     amountWithoutTip = parameters.get("amount-without-tip").getNumberValue();
