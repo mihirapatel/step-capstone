@@ -86,6 +86,26 @@ public class BookUtils {
   }
 
   /**
+   * This function returns a Book object of the requested volumeId from the Google Books API and
+   * returns null otherwise
+   *
+   * @param volumeId unique volume Id of book from Google Books API
+   * @return Book object of requested book
+   */
+  public Book getBook(String volumeId) {
+    Book book = null;
+    try {
+      Books books = getBooksContext();
+      Volume volume = books.volumes().get(volumeId).execute();
+      book = Book.createBook(volume);
+      return book;
+    } catch (IOException e) {
+      log.error("Could not retrieve requested book.");
+    }
+    return book;
+  }
+
+  /**
    * This function builds and returns a Books object that can access a list of volumes the Google
    * Books API and throws an exception otherwise
    *
