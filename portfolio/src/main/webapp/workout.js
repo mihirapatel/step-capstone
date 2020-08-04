@@ -1,4 +1,3 @@
-var isUserLoggedIn = false;
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
@@ -24,7 +23,7 @@ function workoutVideos(videoQuery) {
 function workoutPlanner(workoutPlanQuery) {
   workoutPlan = JSON.parse(workoutPlanQuery);
   workoutPlanDay = 1;
-  return createWorkoutPlanTable(workoutPlan, false, workoutPlanDay, true);
+  return createWorkoutPlanTable(workoutPlan, false, workoutPlanDay);
 }
 
 /**
@@ -59,14 +58,19 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
   for (var i = indexStart; i < indexEnd; i++) {
     video = videos[i];
-    channelName = video.channelTitle;
 
-    title = video.title.replace(/"/g, "")
+    //Get video parameters and get rid of extra double quotes
+    title = video.title.replace(/"/g, "");
+    description = video.description.replace(/"/g, "");
+    videoURL = video.videoURL.replace(/"/g, "");
+    thumbnail = video.thumbnail.replace(/"/g, "");
+    channelURL = video.channelURL.replace(/"/g, "");
+    channelName = video.channelTitle.replace(/"/g, "");
+
     if (title.length > 80) { 
         title = title.substring(0, 80) + "..."; 
     }
-
-    description = video.description;
+    
     if (description.length > 170) {
         description = description.substring(0, 170) + "...";
     }
@@ -86,11 +90,11 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     var videoLink = document.createElement("a");
     videoLink.title = title;
-    videoLink.href = video.videoURL.replace(/"/g, "");
+    videoLink.href = videoURL;
     videoLink.target = "_blank";    
 
     var thumbnailImage = document.createElement("img");
-    thumbnailImage.src = video.thumbnail.replace(/"/g, "");
+    thumbnailImage.src = thumbnail;
     thumbnailImage.setAttribute("width", "320");
     thumbnailImage.setAttribute("height", "180");
     videoLink.appendChild(thumbnailImage);
@@ -104,7 +108,7 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     var videoTitleLink = document.createElement("a");
     videoTitleLink.title = title;
-    videoTitleLink.href = video.videoURL.replace(/"/g, "");
+    videoTitleLink.href = videoURL;
     videoTitleLink.target = "_blank"; 
 
     var videoTitle = document.createElement("h3");
@@ -115,18 +119,18 @@ function createVideoDivs(videos, indexStart, indexEnd) {
 
     var channelLink = document.createElement("a");
     channelLink.title = channelName;
-    channelLink.href = video.channelURL.replace(/"/g, "");
+    channelLink.href = channelURL;
     channelLink.target = "_blank"; 
 
     var channelTitle = document.createElement("p");
     channelTitle.className = "channel-title";
-    channelTitle.innerHTML = channelName.replace(/"/g, "");
+    channelTitle.innerHTML = channelName;
     channelLink.appendChild(channelTitle)
     videoInfo.appendChild(channelLink);
 
     var videoDescription = document.createElement("p");
     videoDescription.className = "video-description";
-    videoDescription.innerHTML = description.replace(/"/g, "");
+    videoDescription.innerHTML = description;
     videoInfo.appendChild(videoDescription);
     
     //Save Video Button (only add if user is logged in) 
@@ -202,9 +206,8 @@ function showNewVideosPage(numShiftIndex) {
 * @param workoutPlan JSON object of WorkoutPlan object
 * @param onDashboard boolean to know if table is on dashboard or assistant main page
 * @param workoutPlanDay makes sure that each workout plan display starts at day 1
-* @param addFooter boolean to decide if table should have a footer
 */
-function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFooter) {
+function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay) {
   var userId = workoutPlan.userId;
   var workoutPlanId = workoutPlan.workoutPlanId;
   var localStorageKey = userId + "-" + workoutPlanId;
@@ -221,8 +224,6 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
-//   var plannerDivHeight =  (videos.length * 135) + 45;
-//   plannerDiv.style.height = plannerDivHeight.toString() + "px";
   workoutPlannerDiv.appendChild(plannerDiv);
 
   plannerTable = document.createElement("div");
@@ -240,7 +241,7 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
   }
 
   //Only workout plan footer with save workout plan button if user logged in or view workout plan on YT if user is not logged in
-  if (addFooter) {
+  if (!onDashboard) {
       createWorkoutPlanFooter(workoutPlan);
   }
   
@@ -271,9 +272,11 @@ function createNewPlanTable(videos, workoutPlan, onDashboard) {
 
   for (var i = 0; i < videos.length; i++) {
       video = videos[i];
-      channelName = video.channelTitle;
+
+      channelName = video.channelTitle.replace(/"/g, "");
       title = video.title.replace(/"/g, "");
-      description = video.description.replace(/"/g, "");
+      videoURL = video.videoURL.replace(/"/g, "");
+      
       if (title.length > 43) {
           title = title.substring(0, 43) + "...";
       }
@@ -292,7 +295,7 @@ function createNewPlanTable(videos, workoutPlan, onDashboard) {
       var tableVideoLink = document.createElement("a");
       tableVideoLink.className = "table-video-link";
       tableVideoLink.title = title;
-      tableVideoLink.href = video.videoURL.replace(/"/g, "");
+      tableVideoLink.href = videoURL;
       tableVideoLink.target = "_blank";
 
       var tableVideoTitle = document.createElement("p");
@@ -344,12 +347,14 @@ function createWorkoutPlanFooter(workoutPlan) {
         viewPlaylistButton.appendChild(buttonText); 
         workoutPlanFooter.appendChild(viewPlaylistButton);
 
-        var playlistURL = "https://www.youtube.com/playlist?list=" + workoutPlan.playlistId.replace(/"/g, "");
+        var playlistId = workoutPlan.playlistId.replace(/"/g, "");
+        var playlistURL = "https://www.youtube.com/playlist?list=" + playlistId;
         viewPlaylistButton.onclick = function() {window.open(playlistURL, "_blank");};
 
     } else {
         //Save Workout Plan Button (if user logged in)
         saveWorkoutPlanButton = document.createElement("BUTTON");
+        saveWorkoutPlanButton.id = workoutPlan.workoutPlanId;
         saveWorkoutPlanButton.classList.add("workout-plan-footer-buttons");
         saveWorkoutPlanButton.classList.add("workout-buttons");
         var buttonText = document.createTextNode("Save Workout Plan");
@@ -376,6 +381,7 @@ function markWorkoutAsCompleted(buttonId, workoutPlan, localStorageKey) {
     if (oldButtonText.textContent == "Mark Completed") {
         buttonToMark.removeChild(oldButtonText);
         var newButtonText = document.createTextNode("Completed!");
+        buttonToMark.classList.add("button-color-change");
         buttonToMark.appendChild(newButtonText); 
 
         //Storing this button text so workout progress is accurate when page refreshed
@@ -448,6 +454,8 @@ function updateWorkoutPlanProgress(workoutPlan, localStorageKey){
   var progress = document.getElementById("progress");
   var progressPercentage = Math.round((numWorkoutDaysCompleted / workoutPlan.planLength) * 100);
   progress.innerHTML = "Progress: " + progressPercentage + "%";
+  var progressBar = document.getElementsByClassName("progress-bar-orange")[0];
+  progressBar.style.width = progressPercentage + "%";
 
   //Update workout plan progress
   fetch('/workout-plan-progress' + '?workout-plan=' + workoutPlanString + '&num-workout-days-completed=' + numWorkoutDaysCompleted, {
@@ -463,10 +471,15 @@ function replaceUnicode() {
     //Properly format apostrophes
     channelName = channelName.replace("\\u0027", "'");
     title = title.replace("\\u0027", "'");
-    description = description.replace("\\u0027", "'");    
+    if (typeof description !== 'undefined') {
+        description = description.replace("\\u0027", "'");    
+    }
 
     //Properly format ampersands
     channelName = channelName.replace("\\u0026", "&").replace("\\u0026amp;", "&");
     title = title.replace("\\u0026", "&").replace("\\u0026amp;", "&");
-    description = description.replace("\\u0026", "&").replace("\\u0026amp;", "&");
+    if (typeof description !== 'undefined') {
+        description = description.replace("\\u0026", "&").replace("\\u0026amp;", "&");
+    }
+    
 }

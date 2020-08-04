@@ -1,6 +1,5 @@
 body {
     background:white;
-    font-weight: 300;
     height: 100vh;
     margin: 0;
     display: flex;
@@ -231,35 +230,101 @@ td {
   color: gray;
 }
 
-.user-info {
-    position: absolute;
-    top: 0;
-	padding: 2% 50% 2% 50%;
-	max-width: 640px;
+.user-info-content {
+    margin-bottom: 10%;
+    margin-left: 15%;
+    margin-right: 5%;
+    margin-top: 2.5%;
 }
+
+.user-info {
+    top: 0;
+    margin-bottom: 3%;
+    margin-right: 65%;
+    display: inline-flex;
+}
+
 .user-pic {
-	display: inline-block;
 	vertical-align: top;
 	margin: 20px 30px 0 0;
 	border-radius: 50%;
-	height: 180px;
-	width: 180px;
+	height: 150px;
+	width: 150px;
 }
 
 .user-contact {
-	display: inline-block;
 	width: 45%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
+
+.dashboard-user-name {
+    text-align: left;
+}
+
+.dashboard-user-email {
+    text-align: left;
+}
+
+/* .dashboard-content {
+    display: inline-block;
+} */
+
+.activity-tracker {
+    width: 40%;
+}
+
+.activity-tracker-header {
+    text-align: left;
+    margin: 1%;
+    margin-left: 0.5%;
+}
+
+.activity-tracker-button {
+    padding: 2%;
+}
+
+
+.saved-workout-content {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 12%;
+    display: flex;
+    flex-direction: column;
+}
+
+.saved-workout-plans {
+    order: 1;
+}
+
+.saved-workout-videos {
+    order: 2;
+}
+
+.saved-workout-plans-header {
+    text-align: left;
+    margin: 1%;
+    margin-left: 0.5%;
+}
+
+.workout-plan-card-div {
+    display: inline-block;
+    margin: 0.5%;
+    margin-left: 1%;
+}
+
 
 .workout-plan-card {
     height: 120px;
     width: 200px;
-    background-color: #e7e7e7;
-    margin: 5%;
+    background-color: #fffaf3;
+    margin: 0% 5% 5% 0%;
     padding: 7%;
-    
+    text-align: center;
+    border: 2px solid #ff9167;
+    border-radius: 5px;
 }
-
+    
 .workout-plan-card a {
     font-size: 17px;
     font-weight: bold;
@@ -275,28 +340,75 @@ td {
     margin-top: 25px;
 }
 
+.progress-bar-light-gray {
+    color:#000!important;
+    background-color:#f1f1f1!important;
+    width: 100%;
+}
+
+.progress-bar-orange {
+    color:#000!important;
+    background-color:#ff9167!important
+}
+
+.progress-bar-round {
+    border-radius: 4px
+}
+
+.workout-plan-card-progress {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.saved-workout-videos-header {
+    text-align: left;
+    margin: 1%;
+    margin-left: 0.5%;
+    padding-top: 2%;
+}
+
+.saved-video {
+    display: inline-block;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    padding: 1%;
+    margin: 0.5%;
+}
+
 .saved-video-title {
     color: #333333;
-    margin-bottom: 2%;
+    margin-bottom: 0%;
+    margin-top: 2%;
+    text-align: left;
     font-size: 17px;
 }
 
 .saved-video-channel-title {
     text-align: left;
-    margin-left: 8%;
+    margin-left: 0%;
+    margin-bottom: 0%;
 }
 
 .mark-completed-button {
     margin: 5%;
 }
 
-.workout-plan-container {
-    margin-bottom: 27%;
+.button-color-change {
+    color:#3f8865;
+    border: 1px solid #8bc7aa;
 }
+
+#progress {
+    font-weight: 200;
+}
+
 
 .workout-plan-progress {
     margin-top: 1.5%;
-    font-weight: 200;
+    margin-left: auto;
+    margin-right: auto;
+    width: 48%;
 }
 
 .workout-plan-table {
@@ -308,13 +420,18 @@ td {
     margin-bottom: 3%;
 }
 
+.dashboard-link {
+    text-align: right;
+    margin-right: 35%;
+}
+
 .back-to-dashboard-link {
   position: absolute;
   border-radius: 10px;
   background-color: rgba(146, 142, 142, 0.156);
   padding: 10px;
   margin: 15px;
-  color: gray;
+  color: #615f5f;
   text-decoration: none;
 }
 

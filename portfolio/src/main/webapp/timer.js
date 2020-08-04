@@ -41,7 +41,7 @@ function subtractOne(timeString) {
 
 function terminateTimer(timeContainer) {
   timeContainer.classList.remove('timer-display');
-  timeContainer.innerHTML = "<p style=\'background-color: rgba(5, 5, 5, 0.678); display: inline-block\'>Timer has ended.</p>";
+  timeContainer.innerHTML = "<p style=\'display: inline-block\'>Timer has ended.</p>";
   clearInterval(timer);
   existingTimer = false;
 }
