@@ -1,0 +1,26 @@
+[
+  {
+    "value": "a list",
+    "synonyms": [
+      "a list"
+    ]
+  },
+  {
+    "value": "all",
+    "synonyms": [
+      "all",
+      "past",
+      "recent",
+      "previous",
+      "stored"
+    ]
+  },
+  {
+    "value": "my",
+    "synonyms": [
+      "my",
+      "my own",
+      "mine"
+    ]
+  }
+]

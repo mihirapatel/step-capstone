@@ -1,0 +1,73 @@
+[
+  {
+    "value": "Recently viewed",
+    "synonyms": [
+      "recently viewed "
+    ]
+  },
+  {
+    "value": "Favorites",
+    "synonyms": [
+      "favorites"
+    ]
+  },
+  {
+    "value": "Purchased",
+    "synonyms": [
+      "purchased"
+    ]
+  },
+  {
+    "value": "Reading now",
+    "synonyms": [
+      "reading now"
+    ]
+  },
+  {
+    "value": "Have read",
+    "synonyms": [
+      "have read"
+    ]
+  },
+  {
+    "value": "Reviewed",
+    "synonyms": [
+      "reviewed"
+    ]
+  },
+  {
+    "value": "My Google eBooks",
+    "synonyms": [
+      "my eBooks",
+      "my google ebooks"
+    ]
+  },
+  {
+    "value": "Books for you",
+    "synonyms": [
+      "Books For You",
+      "books for me",
+      "recommended"
+    ]
+  },
+  {
+    "value": "To read",
+    "synonyms": [
+      "to read"
+    ]
+  },
+  {
+    "value": "Browsing history",
+    "synonyms": [
+      "Browsing history",
+      "browsing history"
+    ]
+  },
+  {
+    "value": "Sad books",
+    "synonyms": [
+      "Sad books",
+      "sad books"
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "value": "children",
+    "synonyms": [
+      "kids",
+      "family",
+      "child",
+      "childrens",
+      "young kids"
+    ]
+  },
+  {
+    "value": "computer",
+    "synonyms": [
+      "computer science",
+      "computers",
+      "compsci"
+    ]
+  },
+  {
+    "value": "romance",
+    "synonyms": [
+      "romance",
+      "love"
+    ]
+  },
+  {
+    "value": "horror",
+    "synonyms": [
+      "horror",
+      "scary",
+      "thriller"
+    ]
+  },
+  {
+    "value": "mystery",
+    "synonyms": [
+      "mystery",
+      "mysterious"
+    ]
+  }
+]
