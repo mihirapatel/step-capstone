@@ -1,0 +1,143 @@
+[
+  {
+    "id": "79993686-b102-4545-8d2c-2a95654309a8",
+    "data": [
+      {
+        "text": "e ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " na ",
+        "userDefined": false
+      },
+      {
+        "text": "próxima sexta-feira",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "4facf1fa-5f06-448e-aa8a-be49b751e9e7",
+    "data": [
+      {
+        "text": "e ",
+        "userDefined": false
+      },
+      {
+        "text": "Princeton",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "15ad5d18-33e4-4f8b-84b5-7cadd9e8a86c",
+    "data": [
+      {
+        "text": "em ",
+        "userDefined": false
+      },
+      {
+        "text": "Moscou",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "neste fim de semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "b06b216b-f6fc-4e7c-8af0-1624ac67cf1d",
+    "data": [
+      {
+        "text": "E em ",
+        "userDefined": false
+      },
+      {
+        "text": "Curitiba",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "be63b436-f061-4d8f-887c-e46499ac5581",
+    "data": [
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  }
+]

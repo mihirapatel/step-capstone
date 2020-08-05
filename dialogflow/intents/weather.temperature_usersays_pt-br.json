@@ -1,0 +1,382 @@
+[
+  {
+    "id": "862e27d8-a3b9-450e-9fe4-77d1f8b45afd",
+    "data": [
+      {
+        "text": "quantos graus em ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " agora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "15aa184b-53a2-4449-833a-02300810dfa1",
+    "data": [
+      {
+        "text": "qual a temperatura ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "b4f0f7de-5a16-421c-b373-2342bae9bdec",
+    "data": [
+      {
+        "text": "quantos graus está em ",
+        "userDefined": false
+      },
+      {
+        "text": "Curitiba",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " agora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "f5230ded-3a81-4b65-bd06-1f3eedfa5390",
+    "data": [
+      {
+        "text": "você sabe se está ",
+        "userDefined": false
+      },
+      {
+        "text": "frio",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " lá fora agora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "8516fadb-8a71-4588-b1ae-5fb1d5babdf2",
+    "data": [
+      {
+        "text": "está ",
+        "userDefined": false
+      },
+      {
+        "text": "calor",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nova York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "e188e76e-f605-4beb-9977-6257a8ea6e0b",
+    "data": [
+      {
+        "text": "está ",
+        "userDefined": false
+      },
+      {
+        "text": "frio",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nova York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "88f03c4d-0a1d-44b2-9b37-68df0bb64d26",
+    "data": [
+      {
+        "text": "mostrar a temperatura em ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Fahrenheit",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "067003fb-5eda-49a0-88b3-42c5233c98aa",
+    "data": [
+      {
+        "text": "temperatura",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "9744f4fa-9622-4cb1-94a6-14e800ccbb95",
+    "data": [
+      {
+        "text": "está fazendo ",
+        "userDefined": false
+      },
+      {
+        "text": "calor",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": false
+      },
+      {
+        "text": " no ",
+        "userDefined": false
+      },
+      {
+        "text": "Recife",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "dc87c782-fc11-467a-9bc8-0f84451b7b54",
+    "data": [
+      {
+        "text": "temperatura em ",
+        "userDefined": false
+      },
+      {
+        "text": "Bangkok",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "3680de21-bb2e-4a2d-86dd-5f83638c3db8",
+    "data": [
+      {
+        "text": "qual será a temperatura em ",
+        "userDefined": false
+      },
+      {
+        "text": "Camberra",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "7f00d128-9506-473b-8263-429364f6bcb8",
+    "data": [
+      {
+        "text": "qual deve ser a temperatura ",
+        "userDefined": false
+      },
+      {
+        "text": "deste domingo",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Mountain View",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "3186fd32-fe4f-4309-a622-62ce3dd38f02",
+    "data": [
+      {
+        "text": "qual será a temperatura ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "6213a82a-8723-45e8-8b18-334e415ec869",
+    "data": [
+      {
+        "text": "quantos graus está fazendo ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "c2679c2d-c4e7-484c-bbb5-01ab490aa99a",
+    "data": [
+      {
+        "text": "hoje será um dia ",
+        "userDefined": false
+      },
+      {
+        "text": "quente",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "11eef915-0da0-4237-b55d-ed842c4dc3be",
+    "data": [
+      {
+        "text": "está ",
+        "userDefined": false
+      },
+      {
+        "text": "quente",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nova York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  }
+]

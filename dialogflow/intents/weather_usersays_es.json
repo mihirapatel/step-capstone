@@ -1,0 +1,966 @@
+[
+  {
+    "id": "cc5c4bff-2445-4ac1-b9bc-74d15f0e5456",
+    "data": [
+      {
+        "text": "cuál es el pronóstico del clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "México",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " para el ",
+        "userDefined": false
+      },
+      {
+        "text": "12 de octubre",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4a4356dc-5800-4edb-b6c7-fbef22405324",
+    "data": [
+      {
+        "text": "pronóstico meteorológico para la ",
+        "userDefined": false
+      },
+      {
+        "text": "semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "498e424b-54f8-44f3-8b7d-dc3944421aa9",
+    "data": [
+      {
+        "text": "qué tiempo hace ahora en ",
+        "userDefined": false
+      },
+      {
+        "text": "Roma",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "71b96897-2abb-46e5-b50e-b05e99deac98",
+    "data": [
+      {
+        "text": "pronóstico del tiempo en ",
+        "userDefined": false
+      },
+      {
+        "text": "Portugal",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " para el ",
+        "userDefined": false
+      },
+      {
+        "text": "fin de semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f40a8c6b-1118-4662-93a3-7bd8332442c9",
+    "data": [
+      {
+        "text": "clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "759db739-5775-4c4e-82f5-57b3463aaa6c",
+    "data": [
+      {
+        "text": "muéstrame el tiempo para el ",
+        "userDefined": false
+      },
+      {
+        "text": "22 de agosto",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Centígrados",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0b24ce69-be87-434e-8843-d6be52aa1e77",
+    "data": [
+      {
+        "text": "pronóstico del tiempo en ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "este finde",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4181a825-caa4-44b1-927f-71c107181798",
+    "data": [
+      {
+        "text": "qué ",
+        "userDefined": false
+      },
+      {
+        "text": "tiempo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " hace en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valencia",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ca1b676b-f433-4e82-9e29-bb15c30a8aef",
+    "data": [
+      {
+        "text": "tiempo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "90a39ad5-8c20-44ce-8920-589304d6bb2b",
+    "data": [
+      {
+        "text": "qué tiempo hace en ",
+        "userDefined": false
+      },
+      {
+        "text": "Nueva York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la mañana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2e59eae8-2d6d-4d6f-8a93-f5f671ea5fb5",
+    "data": [
+      {
+        "text": "muéstrame el tiempo en grados ",
+        "userDefined": false
+      },
+      {
+        "text": "Fahrenheit",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e385e8d3-1ac6-4df4-8d39-a97a99932244",
+    "data": [
+      {
+        "text": "dime cómo está el tiempo en ",
+        "userDefined": false
+      },
+      {
+        "text": "Estocolmo",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " en grados ",
+        "userDefined": false
+      },
+      {
+        "text": "Fahrenheit",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "97147ba5-e367-4ac1-8868-c5f1c5aecbe9",
+    "data": [
+      {
+        "text": "cómo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " está ",
+        "userDefined": false
+      },
+      {
+        "text": "el",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Barcelona",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "  ",
+        "userDefined": false
+      },
+      {
+        "text": "hoy",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "62c9e5c2-2b6f-4f40-9a7c-9645b5cb5bbd",
+    "data": [
+      {
+        "text": "clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Caracas",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoy a las 6 de la tarde",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8758d58f-e66c-49af-8d05-695fb8ec94bf",
+    "data": [
+      {
+        "text": "me",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " dices ",
+        "userDefined": false
+      },
+      {
+        "text": "cómo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " está ",
+        "userDefined": false
+      },
+      {
+        "text": "el",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " clima",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fdccfa7c-d6c1-43a3-9193-7f962ce60e19",
+    "data": [
+      {
+        "text": "qué tal estará el tiempo en ",
+        "userDefined": false
+      },
+      {
+        "text": "Benidorm",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana a las 9",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "59af4e6e-ed89-43ce-80c9-2dd72de8bbb2",
+    "data": [
+      {
+        "text": "muéstrame el tiempo para la ",
+        "userDefined": false
+      },
+      {
+        "text": "próxima semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a9dc991c-0d71-43b8-bebe-7defc66d627f",
+    "data": [
+      {
+        "text": "cuántos grados hace ",
+        "userDefined": false
+      },
+      {
+        "text": "hoy",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Salamanca",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5e4b8ef1-6add-4dd9-a2d7-910ae0e247b3",
+    "data": [
+      {
+        "text": "cómo está el clima",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e4bb4abc-ae5c-42df-9663-5491ba230884",
+    "data": [
+      {
+        "text": "tiempo en ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "marzo",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "17c2a571-8fa8-4f41-abdf-03a31dc6c5b7",
+    "data": [
+      {
+        "text": "qué ",
+        "userDefined": false
+      },
+      {
+        "text": "tiempo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " hace",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3300becf-4773-45f7-bbf4-befb6a36e6f8",
+    "data": [
+      {
+        "text": "avísame cómo está el clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Moscú",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c8282e5b-89d8-4688-a382-8b58152e7732",
+    "data": [
+      {
+        "text": "pronóstico ",
+        "userDefined": false
+      },
+      {
+        "text": "del",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " tiempo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dd533420-152d-4cf9-8acc-d96b26692afc",
+    "data": [
+      {
+        "text": "qué tiempo va a hacer ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9c594be0-a068-46b4-90b5-76f8668cca84",
+    "data": [
+      {
+        "text": "qué tiempo va a hacer el ",
+        "userDefined": false
+      },
+      {
+        "text": "viernes",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f54562e9-4cdf-41e9-b26b-fd0f9a0835c8",
+    "data": [
+      {
+        "text": "cómo estará el clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valladolid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "este finde",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "296c9ddd-46f6-4cc4-9d35-779033a02cb1",
+    "data": [
+      {
+        "text": "Nueva York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " clima",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2ababee3-974c-48d8-b888-970250f87ef0",
+    "data": [
+      {
+        "text": "infórmame cómo está el clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Palo Alto",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7a0ed16d-582d-4db9-a1bf-57a997dd9211",
+    "data": [
+      {
+        "text": "me",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " interesa saber ",
+        "userDefined": false
+      },
+      {
+        "text": "cómo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " está ",
+        "userDefined": false
+      },
+      {
+        "text": "el",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " clima",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8449fbbc-c41c-4fa7-b026-cbbecf2a4c23",
+    "data": [
+      {
+        "text": "quiero saber sobre el clima ahora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "371f8847-f309-4b30-8168-431b3a2b73d1",
+    "data": [
+      {
+        "text": "cómo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " estará ",
+        "userDefined": false
+      },
+      {
+        "text": "el",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valladolid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "este fin de semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b679573f-b18f-463c-b5aa-2ae96994f51c",
+    "data": [
+      {
+        "text": "qué tiempo hace en ",
+        "userDefined": false
+      },
+      {
+        "text": "Nueva York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "esta mañana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3263bcf6-2e4d-42ff-8ae8-2fb5efa16ab2",
+    "data": [
+      {
+        "text": "cómo va a estar el clima ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a34f0093-ea37-40fa-ab98-52e12889b87b",
+    "data": [
+      {
+        "text": "necesito saber cómo está el clima ahora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2fd58dd5-dd18-49d0-a288-9596e1d6c77c",
+    "data": [
+      {
+        "text": "informar sobre el clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2899aff4-d4b3-41f6-960b-0987743acee9",
+    "data": [
+      {
+        "text": "me puedes decir cómo está el clima",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9ec5ea32-3b8d-4692-97c0-0d9d3b0b93de",
+    "data": [
+      {
+        "text": "cuántos grados hace",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "01562dbb-1e66-4c10-ac60-d07a4e7ce591",
+    "data": [
+      {
+        "text": "cuántos grados ",
+        "userDefined": false
+      },
+      {
+        "text": "Celsius",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " hace ahora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e545d2bb-f450-43e1-9d9b-847d0eafc09e",
+    "data": [
+      {
+        "text": "tiempo para la ",
+        "userDefined": false
+      },
+      {
+        "text": "próxima semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2649359f-a720-410b-874b-ec2517ddad9f",
+    "data": [
+      {
+        "text": "pronóstico del tiempo para ",
+        "userDefined": false
+      },
+      {
+        "text": "esta noche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9867d3fa-b5c7-4433-b638-2ab98769d137",
+    "data": [
+      {
+        "text": "me podrías decir cómo está el clima en ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

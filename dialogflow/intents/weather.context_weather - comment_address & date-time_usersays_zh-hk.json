@@ -1,0 +1,264 @@
+[
+  {
+    "id": "89e88f38-0dad-471d-8cd8-dbeda08f049b",
+    "data": [
+      {
+        "text": "下個星期五",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "南京",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "8e8e7a81-0600-4894-8c32-5bce74ea23d2",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "天津",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "6398299b-f969-41fd-919f-95e66360d6cf",
+    "data": [
+      {
+        "text": "沈陽",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "五天後",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "02bd6577-914a-42b6-abd4-7b143edead6c",
+    "data": [
+      {
+        "text": "還要",
+        "userDefined": false
+      },
+      {
+        "text": "下星期日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "蘇州",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "2ea20258-5a03-4d10-b578-3f4310da0ec3",
+    "data": [
+      {
+        "text": "青島",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "明天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "9933a6b5-8b69-40ca-887c-4773424d925a",
+    "data": [
+      {
+        "text": "我要",
+        "userDefined": false
+      },
+      {
+        "text": "上海",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "明天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "的",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "35897a0e-91d0-444d-9721-f86e82fcbe9d",
+    "data": [
+      {
+        "text": "三天後",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "武漢",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "呢",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "e29921fa-df83-46e5-acc1-1462966339b0",
+    "data": [
+      {
+        "text": "下星期一",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "北京",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "呢",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "1599a24e-3c36-460f-be5e-cd4b32e7e160",
+    "data": [
+      {
+        "text": "關于",
+        "userDefined": false
+      },
+      {
+        "text": "兩天後",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "上海",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "7e13f401-b2fc-4379-b4b9-a49d63f87a13",
+    "data": [
+      {
+        "text": "明天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "在",
+        "userDefined": false
+      },
+      {
+        "text": "北京",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  }
+]

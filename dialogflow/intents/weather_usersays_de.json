@@ -1,0 +1,5314 @@
+[
+  {
+    "id": "ee6c4ca9-40b0-4d25-b187-31cec6fe5954",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "nacht",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "12642a78-874c-4293-a278-95ba29a69daf",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6fc69fe7-ef2d-4353-bd88-8349bd0f6e9e",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " möchte ",
+        "userDefined": false
+      },
+      {
+        "text": "wissen",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wie ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bergen",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d3e4cdc1-8189-44dc-ae76-b2cd65e30143",
+    "data": [
+      {
+        "text": "sag mir wie",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4d825c09-fd98-44bc-aef1-f0f54ad0005a",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 3,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1ed3eac8-5920-47f6-9785-57f7cd51c573",
+    "data": [
+      {
+        "text": "Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "Wien",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3ea8a91e-54d9-44c5-a732-8147fb39157c",
+    "data": [
+      {
+        "text": "wie ist ",
+        "userDefined": false
+      },
+      {
+        "text": "heute Morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " das Wetter in ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "71e046c3-8063-4348-840f-d28bf5046598",
+    "data": [
+      {
+        "text": "wie ist ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0ddea57e-5521-4a56-856d-6996c4315f56",
+    "data": [
+      {
+        "text": "sag mir wie",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "78b81ed6-d48a-4297-9aa6-5c7ed0366d56",
+    "data": [
+      {
+        "text": "was für ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ist ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "73b7030b-d581-42a7-9635-a110fe301d69",
+    "data": [
+      {
+        "text": "haben wir ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " schönes ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "91a937ff-255e-4ac6-9366-c3f19b57d5f4",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Haldensleben",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9fa585ec-0c9e-44d2-bc64-68fbf170efaf",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "nacht",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Burgdorf",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "12b8ca0c-0750-4205-8f5a-d453896ef35e",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "53855187-b2f3-4ff8-85d5-f36dfef5aa8a",
+    "data": [
+      {
+        "text": "sag mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "efc731cd-4844-4877-a5bf-0aea5ebd7363",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "diese Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5ed8bd47-b410-4b40-8ebf-9c6f1f7a7977",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " am ",
+        "userDefined": false
+      },
+      {
+        "text": "Wochenende",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e465668f-430f-4bc4-9e69-b1cf7035017c",
+    "data": [
+      {
+        "text": "aktuelles ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "10710c9b-3240-4cb6-b8bd-8e6f201298bd",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "nächste Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f5d4e9d3-0041-4013-861c-c13ffef808e0",
+    "data": [
+      {
+        "text": "Augsburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5448e35b-1ae1-49ff-b693-75b84d2caf02",
+    "data": [
+      {
+        "text": "Wettervorhersage ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "58f4c51b-a46c-4ea3-9e70-67da7d20dad0",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Lübeck",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ee61ad1d-4475-4773-8a25-452abb41402b",
+    "data": [
+      {
+        "text": "zeig mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "756f7f64-e5b8-4555-b7c1-85d5cc1fc5c0",
+    "data": [
+      {
+        "text": "wie wird das Wetter ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Dossenheim",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "67c019eb-5f8f-4d85-9b6a-7bb3e247d6c9",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "in",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Kohlscheid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5a3e7a50-a1ee-421f-9950-f1eb2bd162e7",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " gerade",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "da544956-8c85-48e9-b2f3-343e10b077a5",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute Abend",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6e1c4420-9488-4618-a3c6-9abc55be0b16",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " jetzt in ",
+        "userDefined": false
+      },
+      {
+        "text": "Dresden",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "af0eb572-c86a-42af-ab45-82e9968838ab",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1b9abfe3-f90f-4056-a29c-de4b31afc966",
+    "data": [
+      {
+        "text": "gib mir bitte das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "in",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Celcius",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "in",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Bebra",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "an",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99ef1134-7de4-441b-902a-edd468442529",
+    "data": [
+      {
+        "text": "weißt ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "91d71a88-d44f-4e7b-9ffa-13c669de90b4",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fcd5eb95-06ef-4392-80fb-1b60a501bd9b",
+    "data": [
+      {
+        "text": "wie sieht das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " aus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a21a101b-1154-49d0-bb4e-3f3f7ceb01f1",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "146830f4-0e60-4a90-9ac3-3e58e502fe51",
+    "data": [
+      {
+        "text": "gib mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "46c1d1ad-db37-4988-bf8e-ce49175fd15a",
+    "data": [
+      {
+        "text": "Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "80331 München",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7671d0ef-642f-4e99-93d7-d196b114746f",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sein",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4382e69b-dd8f-4e91-83c7-53866a5be7dc",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " von ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4d822483-492a-4873-a00b-d57d00146759",
+    "data": [
+      {
+        "text": "wie sieht das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " aus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "90df0a1b-a8b1-4df5-b286-f0bccddbe806",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Köln",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cf462014-8e0f-43a4-9c77-eb9d86d82822",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "auf",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Celsius",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e9839f38-2639-49ef-adf5-439e1fcfdcfb",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3846d275-5b39-405e-a0e9-0f88c512ada1",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Wien",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9da50599-ec5d-4fd3-8cab-90bd547bc700",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4ca4ab78-fe64-47de-a59d-d7f34052daed",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "853877d5-0252-4aa2-aafa-529c92d40367",
+    "data": [
+      {
+        "text": "Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "diese Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cdbc1d88-607f-42fa-a4d6-ea7fae5c9a9f",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ec28c0fc-2ed5-4066-b1ed-a5627ac991e7",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für\u0027s ",
+        "userDefined": false
+      },
+      {
+        "text": "Wochenende",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c875b1cb-ab70-436b-a3bc-b0dd9777cc29",
+    "data": [
+      {
+        "text": "Wettervorhersage",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f5d6df18-20fe-4291-ab71-9596627ae158",
+    "data": [
+      {
+        "text": "sag mir bitte das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bcdffd73-c213-47b3-8df1-279d1fd1ec7c",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " brauche das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5af670b2-f94b-4614-a610-12619528ea85",
+    "data": [
+      {
+        "text": "Wettervorhersage für die ",
+        "userDefined": false
+      },
+      {
+        "text": "nächste Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fe1901bb-9842-4f76-af5b-94dbaae70701",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3a6fadba-c26a-4553-938d-4d59b0a4ea4d",
+    "data": [
+      {
+        "text": "wie wird ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ebff44b3-808d-41f1-a8a8-0656138eb842",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " suchen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5314e1f6-b0de-48a3-8c45-45fcbd154451",
+    "data": [
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " kannst mir sagen wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "55f574ac-490f-4810-a080-5cde0a858545",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "linz",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "42d7dadd-ef66-4021-afdc-fdf166004a35",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8faf993c-3027-4bcb-9ff2-af91a198654b",
+    "data": [
+      {
+        "text": "wie wird ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bb6edfd9-3e5f-4e5f-af70-2ac7c20243a7",
+    "data": [
+      {
+        "text": "gibt es ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " schönes ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4e4908f6-c418-4d45-8c78-873ab273bb06",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " möchte jetzt gerne ",
+        "userDefined": false
+      },
+      {
+        "text": "wissen",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Budapest",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cc236470-c7e8-402e-a1f3-d45c1cfc278b",
+    "data": [
+      {
+        "text": "wie schaut das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " aus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4dac906e-bb96-4ecc-b03e-3075f0657099",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " am ",
+        "userDefined": false
+      },
+      {
+        "text": "Montag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "93d6daba-0dab-4449-9a05-5b0f1a01e370",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " draußen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9ca9f1b2-21a1-4513-b4a5-0b230e4960ca",
+    "data": [
+      {
+        "text": "welches",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " haben wir ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0fb18c22-00e6-4fc1-a902-8a698b5961e4",
+    "data": [
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " sollst mir jetzt sofort sagen ",
+        "userDefined": false
+      },
+      {
+        "text": "welches",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wir in ",
+        "userDefined": false
+      },
+      {
+        "text": "Maastricht",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " haben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "eaedfaaa-fc02-4429-ac8c-51e97b8e5291",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8fec4c56-4fbe-4132-a6a6-2615b266322d",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7666b85a-5603-4f0f-a79f-638e255c1d2b",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "aktuelle",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Sonntag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bad Harzburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c51acb0c-51d0-4941-a573-a3b36573a723",
+    "data": [
+      {
+        "text": "die Wettervorhersage von ",
+        "userDefined": false
+      },
+      {
+        "text": "meinem Standort",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a40e8b51-a652-4e1a-8826-b265b57d67b5",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "73f2cc8e-af2b-42ca-a4f5-a92ea3ff10db",
+    "data": [
+      {
+        "text": "haben wir ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "gutes",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bf23d433-f5fb-4cbf-a191-488d39f219ee",
+    "data": [
+      {
+        "text": "was ",
+        "userDefined": false
+      },
+      {
+        "text": "für ein",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wird ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "095ab0fb-850f-446e-a0e7-5bbe69129762",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " bin in ",
+        "userDefined": false
+      },
+      {
+        "text": "Mieders",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b33738a4-6843-44d0-9b8e-bab237d90ef2",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "17875d1f-5eb5-422a-b05b-642034d9136d",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a13f63be-8614-45aa-b4d5-e05061c58685",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "38d265ec-74aa-4b49-bc8d-d7e7a968c64e",
+    "data": [
+      {
+        "text": "sag mir die Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fc48277b-fde8-4fe5-814b-061775710d74",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " am ",
+        "userDefined": false
+      },
+      {
+        "text": "Samstag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8fd8e7bf-3072-406f-87a5-061c7c96a162",
+    "data": [
+      {
+        "text": "Wettervorhersage ",
+        "userDefined": false
+      },
+      {
+        "text": "nächste Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Steiermark Wenigzell",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1480806f-2fca-4904-aaef-e6debf7d87ae",
+    "data": [
+      {
+        "text": "wie wird das Wetter ",
+        "userDefined": false
+      },
+      {
+        "text": "nächste Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Wilhelmshaven",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "677385f5-7b65-4a1d-b51b-e44cf516e468",
+    "data": [
+      {
+        "text": "sag wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6d92d333-f81a-4200-b893-c418ce7dc764",
+    "data": [
+      {
+        "text": "wie ist ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a7a66a0e-6ebf-416f-940f-c938155b5621",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Laufersweiler",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "88395521-c9dd-4e26-9368-58a500770b52",
+    "data": [
+      {
+        "text": "Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "diese Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3b98a52b-f0b6-45a9-8b63-17536df2d480",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "in",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Mühlheim an der Ruhr",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "816e8323-1e3d-48ea-bd1c-e47a58075835",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "nächste Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6b39ee96-356a-4aae-ac79-50678b5aa604",
+    "data": [
+      {
+        "text": "wie ist die Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "diese Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "46a276fe-3018-4a7d-b0c7-6270e1aa5b17",
+    "data": [
+      {
+        "text": "gib mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "meine Ort",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4a7f7fbe-035d-45fa-be8e-da634e978c34",
+    "data": [
+      {
+        "text": "Wettervorhersage ",
+        "userDefined": false
+      },
+      {
+        "text": "Sonntag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d6b87ca1-f4c4-4e74-96b1-60220a88ad81",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Hagenow",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b803504e-75a9-4834-b5a4-f67d6b3312e6",
+    "data": [
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " kannst mir sagen wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9772ef0e-dfd0-4f7d-a306-f2cb1aa656dd",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir bitte das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7abf6f28-b580-4554-aa4e-54dddf43d16e",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Suhl",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0e174598-05da-44ec-b1da-839c0d7a8a88",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Weimar",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e3137d5b-53c6-4cd6-8c9c-016ec1433db6",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir bitte ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Köln",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " berechnen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "79c017b9-6cc7-474f-b729-f4617895bb74",
+    "data": [
+      {
+        "text": "was für ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " haben wir ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "87d4321e-7ede-48b2-ad49-69be100bb2f2",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " am ",
+        "userDefined": false
+      },
+      {
+        "text": "Sonntag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a7d12594-a284-4c3c-bf10-ca900024a6ff",
+    "data": [
+      {
+        "text": "und wie soll das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " werden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7aa201fc-9990-4304-bac9-2a0530f54230",
+    "data": [
+      {
+        "text": "finde ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Kirgistan",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2a430115-5411-4ac1-af0a-635017581024",
+    "data": [
+      {
+        "text": "sag mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "17a7fda4-c7d6-4522-a66a-e0d1c6755388",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Athen",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fe079c5b-9914-4203-badb-f01c14490a4b",
+    "data": [
+      {
+        "text": "die Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "übermorgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7b453c7a-0705-41d7-b72b-fc51ece79996",
+    "data": [
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " kannst mir sagen wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8710dc42-1568-4d3a-8a51-70d921417469",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " brauche das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "Ludwigsburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "37f1e612-bbd6-4fdf-8bef-ba55e487e039",
+    "data": [
+      {
+        "text": "wie wird ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Rhede",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b4ded6d5-5eb6-4498-9fdb-97671a46ef14",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Deutschland",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d2a0712a-db67-4c4b-b85d-0bf09d4b8a1a",
+    "data": [
+      {
+        "text": "ist ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ein ",
+        "userDefined": false
+      },
+      {
+        "text": "gutes",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b2f5e786-aba7-4d1d-a104-c4ff85719f9d",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "übermorgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b55c9d48-b0ca-47f1-bd28-269e3f2f6111",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "110d9f1b-0475-410b-abe5-0aad24c6ed28",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " gerade draußen bei mir ",
+        "userDefined": false
+      },
+      {
+        "text": "hier",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f27b3a8d-d63a-458f-acfa-2e16f0333a2f",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Wuppertal",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ceb7fb6d-e4b4-4ad0-88e0-493fa5efd261",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7c5cdb24-3711-4329-9688-22a5dc603dd0",
+    "data": [
+      {
+        "text": "wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d95be89d-4235-4658-a3f1-e02d34f396d3",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Arendsee",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "de80f1a2-cb79-487d-81a1-1798d4f1ede3",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "aktuelle",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bb8bb7f4-4bd9-46b3-ba1c-224dd36c6f23",
+    "data": [
+      {
+        "text": "guck mal im ",
+        "userDefined": false
+      },
+      {
+        "text": "Internet",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " welche ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " haben wir ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c9380cae-361a-49ab-bc5e-50bc1b770635",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir bitte sagen ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ceb0fb5d-8cc8-44c3-8847-37c49ca67274",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " draußen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f5e9b253-c242-4aa6-abcb-d2ce0084604c",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Steinfurt",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7d6836bb-84dd-4624-ab89-46fe2885102d",
+    "data": [
+      {
+        "text": "wie wird ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Coburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5e3c468c-3e23-4f78-a3a2-e647edaf62ee",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Stralsund",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "32a59c39-2b93-4950-b78e-218942e5c00c",
+    "data": [
+      {
+        "text": "wie soll das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " werden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b64ec627-ed7c-48e3-af56-fff18b5998f4",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "Donnerstag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2d21de17-0e79-49cc-be0e-842ed6872dd1",
+    "data": [
+      {
+        "text": "wie ist die ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "63c340fb-182e-40e7-ac67-d3f85bd87a20",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Chemnitz",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a7c3c961-2678-4db8-8577-cdf7826312ac",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir mal bitte sagen wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7e13d5ba-4b3b-4a63-9ae4-59ff09929e34",
+    "data": [
+      {
+        "text": "welches",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wird es ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Rhede",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " geben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4aeb1d18-f386-4941-9b9a-c18de4431701",
+    "data": [
+      {
+        "text": "wie wird ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bochum",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ad3161bb-adc3-4833-bc19-8000e3253cc7",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Nettetal",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7ea9275b-226f-4b98-9a75-6be27270b53b",
+    "data": [
+      {
+        "text": "sag mir mal bitte noch wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bochum",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "62079192-3322-4c23-920a-e39b865081ef",
+    "data": [
+      {
+        "text": "welches",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " gibt es ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Rhede",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0f201807-d44c-4bb2-8d6a-e74d88326139",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " suche das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamburg Bahrenfeld",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "907d1223-e368-4b94-a6d4-26e812d580fb",
+    "data": [
+      {
+        "text": "Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "Dienstag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "45ce15d0-face-4446-8466-9b7d0327c282",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mal das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "78ed62d2-46cf-494d-a179-18363812eab6",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir bitte ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8563f6c7-f7cb-449d-b469-db32fd8452fc",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Düsseldorf",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "23aff5a5-5bed-457a-8711-02c5fbdb14b1",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Rickling",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8445602a-30e7-4a25-83b7-3aa2d2513b75",
+    "data": [
+      {
+        "text": "guten",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Steinfurt",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "42d51771-300a-4423-b70d-89b614ddd20d",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9d7cc396-23ab-4c4f-9698-211efa10f549",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Nürnberg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f2543a70-6bcf-4264-8f99-970a80f679d8",
+    "data": [
+      {
+        "text": "ist ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " schönes ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0776820e-2758-4b75-95da-000bea2ab6bd",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir bitte das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3d2f27d3-c78f-4616-84ff-aae9b031fa83",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Spremberg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "08690b41-2d35-496c-8d27-29b62e727325",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Chemnitz",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2f77f767-355f-4886-b628-47d0bc3f1ad7",
+    "data": [
+      {
+        "text": "ist ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ein schönes ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5325e89f-9237-4698-9882-66602f3ca8d6",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "diese Woche",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Nettetal",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "acfb46ad-57bb-4a46-95cd-7c344e40b7db",
+    "data": [
+      {
+        "text": "bitte lesen ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " von ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fa7ab668-2ed3-4f58-ac0c-9e42c5485fb2",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " zeigen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8c961f16-9a43-4fc5-89d1-a2267eacc828",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "Samstag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c1ede0e7-65ef-4aed-bfb3-62d638bc87ca",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Berlin",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dc19fa55-7cf7-4a0e-9f30-f707b1fc6bcf",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Regensburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5fd67a83-3bee-44d3-8940-3261076843eb",
+    "data": [
+      {
+        "text": "Wettervorhersage für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "München",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9d055115-3a61-415f-96b8-940b8469ae19",
+    "data": [
+      {
+        "text": "aber wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Suhl",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ad4eb320-d8e1-414f-9edd-fed4f1240654",
+    "data": [
+      {
+        "text": "ich",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " will ",
+        "userDefined": false
+      },
+      {
+        "text": "wissen",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wie ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "98c10714-e175-466a-b4f2-dd6209dff667",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Braunschweig",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a122f851-7f94-49ce-995a-7c71744a1194",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bellinzona",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d008d1c8-0921-464e-953c-66da27f8e7b3",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Biesenthal Bayern",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7771e9fa-41db-4e4c-9b32-a1a4c21b3a7f",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir sagen wie das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f98d51da-7581-4368-9ad9-f9b339766a79",
+    "data": [
+      {
+        "text": "alex",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "für ein",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " haben wir in ",
+        "userDefined": false
+      },
+      {
+        "text": "Chemnitz",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5bc49c20-445b-41a6-a1a1-63df64648161",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bogota",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "67d56441-ff55-4f52-b551-05b8eb638223",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Luzern",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9a0a4dbc-a421-43d3-948c-ae2582f70e33",
+    "data": [
+      {
+        "text": "wie ist das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Freiburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "59d97dab-eeec-4fb0-b21c-c0e3e8575401",
+    "data": [
+      {
+        "text": "hallo wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Weimar",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c8e39cdc-227d-40bd-844a-90d079b4600a",
+    "data": [
+      {
+        "text": "das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "Freitag",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ddfd7e63-fa0a-4d3c-92c7-44030178eaa3",
+    "data": [
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Oberhausen",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5a15a453-3fcd-41eb-ab31-70f8ad25818e",
+    "data": [
+      {
+        "text": "ist ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "gutes",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a6c55867-38fd-4174-8ce1-13af983957d4",
+    "data": [
+      {
+        "text": "kannst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " mir bitte ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " für ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7e321b18-c478-4151-8349-f9564e1cd90c",
+    "data": [
+      {
+        "text": "wie wird das ",
+        "userDefined": false
+      },
+      {
+        "text": "Wetter",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Coburg",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

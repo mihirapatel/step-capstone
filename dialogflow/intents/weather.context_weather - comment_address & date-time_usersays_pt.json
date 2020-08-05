@@ -1,0 +1,114 @@
+[
+  {
+    "id": "762c1170-dc26-495b-8f68-7e0edac36823",
+    "data": [
+      {
+        "text": "e em ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " na ",
+        "userDefined": false
+      },
+      {
+        "text": "próxima sexta-feira",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "59398ad4-da38-4c3d-9cc6-b0f00d0ec85e",
+    "data": [
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f95ee7b2-e76e-4b53-807f-e3264d95132f",
+    "data": [
+      {
+        "text": "e em ",
+        "userDefined": false
+      },
+      {
+        "text": "Princeton",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "5f8483c9-cb50-4e17-a988-2bc479cc166b",
+    "data": [
+      {
+        "text": "em ",
+        "userDefined": false
+      },
+      {
+        "text": "Moscovo",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " neste ",
+        "userDefined": false
+      },
+      {
+        "text": "fim de semana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  }
+]
