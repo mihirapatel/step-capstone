@@ -1,0 +1,119 @@
+[
+  {
+    "id": "c1610073-3eac-441d-a061-36321e63cb0c",
+    "data": [
+      {
+        "text": "não o faças",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "ad96248b-e550-4e0f-9deb-f2c2d848f804",
+    "data": [
+      {
+        "text": "não quero",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "fb471f6c-9752-49cb-91c3-fff9a344129e",
+    "data": [
+      {
+        "text": "não me parece",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "b7e6b7b6-d7e0-437a-87f3-139ad6686fc4",
+    "data": [
+      {
+        "text": "não estou interessado",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f3aef311-4d25-4f32-be0c-69de89b272c5",
+    "data": [
+      {
+        "text": "não concordo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "2ea1be9f-939a-464d-8ce7-96ef65be72be",
+    "data": [
+      {
+        "text": "não mesmo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "58c01d40-5bf9-4d70-a72d-275ce696ef7a",
+    "data": [
+      {
+        "text": "não",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "486f1d40-b904-46cd-a475-1a6c5afad9a5",
+    "data": [
+      {
+        "text": "definitivamente não",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "2c27b4be-f353-4df1-9d9d-2c6d668fd442",
+    "data": [
+      {
+        "text": "não obrigado",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  }
+]

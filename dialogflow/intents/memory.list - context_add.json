@@ -1,0 +1,87 @@
+{
+  "id": "51e014b8-d9dd-45f5-b998-a4742761f263",
+  "name": "memory.list - context:add",
+  "auto": true,
+  "contexts": [
+    "list-context"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "list-context",
+          "lifespan": 5
+        },
+        {
+          "name": "memorylist-contextadd-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "d9b9b40e-7fa5-4ffd-ade0-dff1e8df107b",
+          "name": "list-name",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$list-name",
+          "defaultValue": "#list-context.list-name",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "66b4660f-d8e2-46dd-996b-5ccfb61aa431",
+          "name": "list-objects",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$list-objects",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "cc760dca-dfb0-4742-be73-cb2ee8e2e44a",
+          "name": "list-start",
+          "required": false,
+          "dataType": "@list-start",
+          "value": "$list-start",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": [],
+  "endInteraction": true
+}

@@ -1,0 +1,122 @@
+{
+  "id": "1803c991-ce71-4d59-9a11-69141aabaf0e",
+  "name": "books.search",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "books",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "0099ff9c-4145-49e1-a97c-1865d59688f4",
+          "name": "type",
+          "required": false,
+          "dataType": "@book-type",
+          "value": "$type",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "df6d46a8-a11d-4ff8-892b-b72ae7174946",
+          "name": "categories",
+          "required": false,
+          "dataType": "@books-categories",
+          "value": "$categories",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "4c6cd9f8-a3e4-4892-8163-625b34d6d643",
+          "name": "authors",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$authors",
+          "defaultValue": "",
+          "isList": true,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "ce3d0dce-885c-47ff-9dbe-f860339468ef",
+          "name": "title",
+          "required": false,
+          "dataType": "@title",
+          "value": "$title",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "73d207e3-f267-4356-89af-0c28a04e4cd4",
+          "name": "order",
+          "required": false,
+          "dataType": "@order",
+          "value": "$order",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "d0c4c2c4-a2b4-4004-a397-c1a5a8857e3a",
+          "name": "language",
+          "required": false,
+          "dataType": "@sys.language",
+          "value": "$language",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 1000000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

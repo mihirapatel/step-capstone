@@ -1,0 +1,132 @@
+[
+  {
+    "id": "dbb723a7-d20a-49d7-a85b-550d5b847326",
+    "data": [
+      {
+        "text": "いいえ",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "f9fccdd6-614d-49cf-9541-9d074f4a40e9",
+    "data": [
+      {
+        "text": "興味ない",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "a22c43a5-4b23-482d-bc18-06bef0800f28",
+    "data": [
+      {
+        "text": "同意しない",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "059e936d-a6d7-4835-a750-b572761f5028",
+    "data": [
+      {
+        "text": "やめとく",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "c76e901e-6b1c-4264-9760-08f42f045863",
+    "data": [
+      {
+        "text": "いらない",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "7e3447cb-bbc8-416c-8b8c-4e2896200c8d",
+    "data": [
+      {
+        "text": "しないで",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "2dcf1c8e-0ff0-48e4-b0d5-5a80a2ac17f9",
+    "data": [
+      {
+        "text": "結構です",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "b2701c96-8287-43b7-8edb-26145976e6c4",
+    "data": [
+      {
+        "text": "やりたくない",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "b7b9490a-b213-4a2e-b2b8-ba2441e6d8d0",
+    "data": [
+      {
+        "text": "やらない",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "1df4a001-1bf3-40ed-9cb8-aecb80a182bf",
+    "data": [
+      {
+        "text": "やだ",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  }
+]

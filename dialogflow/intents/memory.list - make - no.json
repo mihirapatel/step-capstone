@@ -1,0 +1,135 @@
+{
+  "id": "1d09e5f7-5a2f-4c13-a1e1-772dd5108ff3",
+  "parentId": "c8b744a0-68d5-46ec-80f6-de6232606d69",
+  "rootParentId": "c8b744a0-68d5-46ec-80f6-de6232606d69",
+  "name": "memory.list - make - no",
+  "auto": true,
+  "contexts": [
+    "list-context",
+    "memorylist-followup",
+    "memorylist-make-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "memorylist-make.memorylist-make-no",
+      "affectedContexts": [
+        {
+          "name": "list-context",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "ee1663d4-63da-4a5a-b7c2-bbcbb069adc0",
+          "name": "list-name",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$list-name",
+          "defaultValue": "#list-context.list-name",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ja",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "zh-cn",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "zh-tw",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ru",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "pt",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "it",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "zh-hk",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "fr",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "pt-br",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,2633 @@
+[
+  {
+    "id": "f16882f1-9703-4d9c-9ae1-a52bc66586ad",
+    "data": [
+      {
+        "text": "Calculate tip on ",
+        "userDefined": false
+      },
+      {
+        "text": "65.00",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2e364a59-d3cf-4a4f-a70e-620465f6e190",
+    "data": [
+      {
+        "text": "hundred",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "86d00035-c56b-428a-bf07-010a113fc694",
+    "data": [
+      {
+        "text": "tip ",
+        "userDefined": false
+      },
+      {
+        "text": "calculator",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "14b7165c-a950-4615-ab43-6b05b72cf2cd",
+    "data": [
+      {
+        "text": "calculate the tip on ",
+        "userDefined": false
+      },
+      {
+        "text": "hundred",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "rupees",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "60d1dca0-39aa-496c-a736-6a905da6f00c",
+    "data": [
+      {
+        "text": "250",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " + ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "44d954b5-d26a-4c18-9fdb-ff9794b91b77",
+    "data": [
+      {
+        "text": "88",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " with ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip between ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5e10c71b-3c9e-467f-aa94-2bc5b5a01b59",
+    "data": [
+      {
+        "text": "150",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "pounds",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " + ",
+        "userDefined": false
+      },
+      {
+        "text": "10 percent",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " person",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fa888b11-6419-45de-976c-ffd711798778",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "€",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "19%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2d0f7bd6-5938-479a-a2ec-a98384d7bd33",
+    "data": [
+      {
+        "text": "88.9",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus a ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ab897bcc-59a2-46a7-9f58-4089c1745f74",
+    "data": [
+      {
+        "text": "tips ",
+        "userDefined": false
+      },
+      {
+        "text": "calculator",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "599aef94-ab07-48d7-88b3-bd97c9a7808d",
+    "data": [
+      {
+        "text": "what\u0027s the tip on ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "15",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "18620992-59ae-433f-a3be-2b4935ca7866",
+    "data": [
+      {
+        "text": "200",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " + ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ed8aaac0-c9ae-4b43-9269-3d4e767794a0",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " percent tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6791c766-f2c9-48f2-887d-aa85101f2512",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "16%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "29",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b900431e-de7c-40a1-bc49-5239f0c6f7a2",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "63",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " dollars",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2a6e49e4-a469-416c-a340-3afab0e2070c",
+    "data": [
+      {
+        "text": "what is in ",
+        "userDefined": false
+      },
+      {
+        "text": "18%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "52",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a3f2ed48-56b7-49ce-acde-48c913cbc8c9",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "€",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "200",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "5%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "tip",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5458fbbf-418c-4067-aeb8-ff8c48952af3",
+    "data": [
+      {
+        "text": "how much is ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "143",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " + ",
+        "userDefined": false
+      },
+      {
+        "text": "5 percent",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "for",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "10",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "people",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "afbb196b-9f25-438b-9be0-6f8938cf0c3c",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "40",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b75c048d-c8c0-48fe-891f-b1d93557807c",
+    "data": [
+      {
+        "text": "calculate the tip on ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "82.13",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "59eac9ff-b787-46df-9e42-044bd2e27ad7",
+    "data": [
+      {
+        "text": "what is ",
+        "userDefined": false
+      },
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0a82a561-b541-4be4-8947-c2d041c7e860",
+    "data": [
+      {
+        "text": "how much ",
+        "userDefined": false
+      },
+      {
+        "text": "do",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " I ",
+        "userDefined": false
+      },
+      {
+        "text": "tip",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "1250",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "42de5d63-2c67-47f3-80e6-0ffab4679fd9",
+    "data": [
+      {
+        "text": "I need a tip ",
+        "userDefined": false
+      },
+      {
+        "text": "calculator",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3880e4f3-8111-41c0-918c-fce0424e68c4",
+    "data": [
+      {
+        "text": "calculate tip between ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3acdf8fd-7482-4caf-bfe7-37f5f194ae03",
+    "data": [
+      {
+        "text": "49",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "four",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2eb0cfcf-9410-4310-a593-266ee104ba68",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "euros",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "132febb8-c7c3-4327-a111-04495fbf0a4f",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollar",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7df38e9c-e7fd-49d4-8829-948c0a58a1ac",
+    "data": [
+      {
+        "text": "how much should I tip",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "159",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "39a85287-8d76-4d88-b66f-d4641a11feb0",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "63.70",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2b9e11f6-6e4e-466e-8b50-a9e8fedb6afe",
+    "data": [
+      {
+        "text": "split a ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "76.50",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " check ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " ways with a ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip included",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5692abae-5ec3-4d99-bdb7-86e03d3b3e12",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "64c62c11-f1f1-434a-b895-04900865f101",
+    "data": [
+      {
+        "text": "200",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "€",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "5%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "tip",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "360786f7-cb7a-433a-9aa8-acbee8066c27",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollar",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "795c4e06-b4b1-4d4d-8afa-55f79bc647b1",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "36",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "aac9df3e-4b67-4cb7-a0c3-53c64dbadeec",
+    "data": [
+      {
+        "text": "calculate tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "48",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e895425c-f995-45ee-a0ed-7feeb32302d9",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "plus",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "4%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "tip",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2bacba8c-2ddc-4441-ba2e-3c9d7f93d1dc",
+    "data": [
+      {
+        "text": "13.20",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "€",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " + ",
+        "userDefined": false
+      },
+      {
+        "text": "19%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "392f8ca8-2d1a-4dad-994a-eee4886dd341",
+    "data": [
+      {
+        "text": "what\u0027s an ",
+        "userDefined": false
+      },
+      {
+        "text": "18 percent",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "106 point 31",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "cents",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e4c440eb-22aa-4617-bf77-7ec6cfa9d206",
+    "data": [
+      {
+        "text": "what\u0027s",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " the tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "33293345-0c85-44cb-b5b0-ee14710796d3",
+    "data": [
+      {
+        "text": "tip on ",
+        "userDefined": false
+      },
+      {
+        "text": "66.99",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d8079389-9800-4f8e-99da-6ff788c047d4",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "80",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f55e904f-54ad-4f55-b82c-e9dfa28d5ce5",
+    "data": [
+      {
+        "text": "102",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "4",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "933b37bf-2279-4ff7-b98d-31134a996d0d",
+    "data": [
+      {
+        "text": "what is ",
+        "userDefined": false
+      },
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "567.32",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "995bc4ac-97c6-4b22-a238-ffbbde9c1965",
+    "data": [
+      {
+        "text": "250",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2b6c1581-22aa-49b3-a42e-afa08152d03e",
+    "data": [
+      {
+        "text": "88.90",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus a ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "053002c1-d4dc-41a2-99fb-23eb50b3290b",
+    "data": [
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "149",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "two",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "350fb3d7-1622-49a8-a526-932f33ad0404",
+    "data": [
+      {
+        "text": "what do I tip for a ",
+        "userDefined": false
+      },
+      {
+        "text": "30",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollar",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bill",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e6a1531e-f7d4-4c44-bd79-fa31f1fe7e33",
+    "data": [
+      {
+        "text": "calculate a ",
+        "userDefined": false
+      },
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "20.52",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "601e1373-e960-4d4d-8987-42e5cd619590",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "35",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5c85c6a8-20cd-4fa4-847e-b0af4f58c75c",
+    "data": [
+      {
+        "text": "how much do I tip on ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "150",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c9cc5c67-3c32-450b-a172-4005ce797350",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bf45c782-17bd-416b-97cf-e9c317071cbf",
+    "data": [
+      {
+        "text": "how much should I tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3025ad9b-a775-49bd-9b92-65c7ddb32fb4",
+    "data": [
+      {
+        "text": "calculate tips",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d50ea8bf-7575-4e7b-af98-4c2db8cbf320",
+    "data": [
+      {
+        "text": "what\u0027s a proper tip for a ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "123",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " bill",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "134f9bbd-5ebf-43de-9773-2c2631a7ad9a",
+    "data": [
+      {
+        "text": "calculate tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "120",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a16aa6b0-84fd-4532-8965-cf1e5420c46e",
+    "data": [
+      {
+        "text": "what is a ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "68.46",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8440f59b-e168-48b7-b2ad-1165979183b1",
+    "data": [
+      {
+        "text": "what is a ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "80",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b6d44c82-ce44-44c1-916e-7d05d3080402",
+    "data": [
+      {
+        "text": "tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1bbbabc8-86a4-44a4-96d7-fb6548496fea",
+    "data": [
+      {
+        "text": "how much is ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": "30",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " plus a ",
+        "userDefined": false
+      },
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "36365c7d-8658-45ec-ad24-97e3c8770d4c",
+    "data": [
+      {
+        "text": "what is ",
+        "userDefined": false
+      },
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "40",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "786b8bb5-ea69-4fd4-8184-db917546b870",
+    "data": [
+      {
+        "text": "20",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucks",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " with a ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e761fef4-9690-4bfb-9799-4cbd39b7ab67",
+    "data": [
+      {
+        "text": "tip calculation",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "55ae0c1e-7934-4751-a9b2-3eea400854ae",
+    "data": [
+      {
+        "text": "calculate tip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c68f7649-481c-4880-91ac-a665db75c30e",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "36.50",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "dd94bbe3-ef60-4795-842e-0aa55885d09a",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2131187a-1f6b-47f2-98af-f3a2941ac9b9",
+    "data": [
+      {
+        "text": "19",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "rupees",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "10%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "split",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " between ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ed0437e1-614a-40af-9e08-e58925d1504f",
+    "data": [
+      {
+        "text": "150",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "pounds",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      },
+      {
+        "text": " plus ",
+        "userDefined": false
+      },
+      {
+        "text": "10 percent",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip for ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " person",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "077dd67f-feac-4bde-9d91-bafe2649a01a",
+    "data": [
+      {
+        "text": "calculate ",
+        "userDefined": false
+      },
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "80",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a76cba6b-e862-4355-87c0-6921ed1aa75a",
+    "data": [
+      {
+        "text": "tips",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "96846d0f-936a-4484-a0de-8e25651941e3",
+    "data": [
+      {
+        "text": "20%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "21",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2fc3fcd2-659f-406a-ba61-14985d6943fe",
+    "data": [
+      {
+        "text": "15%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " tip ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "3650",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "id": "2b44a19d-eb6f-4f07-b1e0-e80e9410dbff",
+    "data": [
+      {
+        "text": "je ne crois pas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "3f87442f-3c45-4244-8852-949bb6070399",
+    "data": [
+      {
+        "text": "ça ne m\u0027intéresse pas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "890ff4bf-9fe1-4e52-a751-832eb6c2aca1",
+    "data": [
+      {
+        "text": "ne le fais pas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "aa927ba5-78a1-4674-a680-a7392bab3534",
+    "data": [
+      {
+        "text": "pas vraiment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "690a6cf1-c455-4954-aeb3-8f85099c8c0e",
+    "data": [
+      {
+        "text": "sûrement pas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "f870405e-9510-4b81-b3ad-98477280d8f7",
+    "data": [
+      {
+        "text": "non merci",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "3685967b-a1e2-4d25-91ce-3af196724b23",
+    "data": [
+      {
+        "text": "je n\u0027en veux pas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "88926b06-053d-4ee9-8ce0-85d5c557e5ef",
+    "data": [
+      {
+        "text": "je ne suis pas d\u0027accord",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "f2f1840f-74b6-453b-8813-72cfee1b08e6",
+    "data": [
+      {
+        "text": "non",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 3,
+    "lang": "fr",
+    "updated": 0
+  }
+]

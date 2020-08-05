@@ -1,0 +1,119 @@
+[
+  {
+    "id": "8f76500d-8543-4ff6-a43b-3ceab5f64057",
+    "data": [
+      {
+        "text": "我不愿意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "0b6f14de-c0bc-43f1-a9a9-130e5268b070",
+    "data": [
+      {
+        "text": "我不同意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "e8120e67-d893-410d-96de-28eaf3ea4d4b",
+    "data": [
+      {
+        "text": "不必了",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "21896047-8a03-4a04-816a-ee5ef11904ba",
+    "data": [
+      {
+        "text": "千万不要",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "5f9a2d59-c8b3-4f4b-a8c3-37dd91790d2f",
+    "data": [
+      {
+        "text": "否",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "87d19b5c-4ef1-4e68-927c-a80f4b4063d0",
+    "data": [
+      {
+        "text": "不用了",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "ee13897b-3e03-47c0-b672-8901388d5148",
+    "data": [
+      {
+        "text": "不要",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "cf743a2b-4bb2-4ae3-b0a2-762b853699ac",
+    "data": [
+      {
+        "text": "没兴趣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "1989da4e-937a-46b9-bea7-7022f17d1c5a",
+    "data": [
+      {
+        "text": "我不想",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  }
+]

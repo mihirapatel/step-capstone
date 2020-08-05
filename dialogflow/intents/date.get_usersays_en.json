@@ -1,0 +1,152 @@
+[
+  {
+    "data": [
+      {
+        "text": "what date is it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "give me the date",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what is the date in ",
+        "userDefined": false
+      },
+      {
+        "text": "los angeles",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " is it in ",
+        "userDefined": false
+      },
+      {
+        "text": "madrid",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " is it in ",
+        "userDefined": false
+      },
+      {
+        "text": "london",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what is the date ",
+        "userDefined": false
+      },
+      {
+        "text": "today",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " is it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what is the date",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

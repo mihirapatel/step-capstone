@@ -1,0 +1,77 @@
+{
+  "id": "00e1d66b-599f-4076-a5c8-3a0d5ab4bb90",
+  "name": "currency.convert - context:convert-currency",
+  "auto": true,
+  "contexts": [
+    "convert-currency"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "currency.convert",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "68e1b3e4-7c01-427a-a2a3-7a6d67f0bd8c",
+          "name": "currency-from",
+          "required": false,
+          "dataType": "@sys.currency-name",
+          "value": "$currency-from",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "53845440-bb31-4d6c-b3d1-390dedcd0aac",
+          "name": "currency-to",
+          "required": false,
+          "dataType": "@sys.currency-name",
+          "value": "$currency-to",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "bc79ec11-ae9e-40a5-bcdd-978ca58896a9",
+          "name": "amount",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$amount",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
