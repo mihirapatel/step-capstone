@@ -1,0 +1,9 @@
+{
+  "id": "a60b7eb2-f7e0-4629-aa00-12c7744f252e",
+  "name": "workout-length",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": true
+}

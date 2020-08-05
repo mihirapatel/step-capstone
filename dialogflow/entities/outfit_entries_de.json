@@ -1,0 +1,162 @@
+[
+  {
+    "value": "coat",
+    "synonyms": [
+      "Mantel"
+    ]
+  },
+  {
+    "value": "dress",
+    "synonyms": [
+      "Kleid",
+      "Kleidung"
+    ]
+  },
+  {
+    "value": "gloves",
+    "synonyms": [
+      "Handschuhe",
+      "Handschuhen"
+    ]
+  },
+  {
+    "value": "gloves",
+    "synonyms": [
+      "Handschuhe"
+    ]
+  },
+  {
+    "value": "gum boots",
+    "synonyms": [
+      "Gummistiefel"
+    ]
+  },
+  {
+    "value": "hat",
+    "synonyms": [
+      "hut"
+    ]
+  },
+  {
+    "value": "jacket",
+    "synonyms": [
+      "Jacke"
+    ]
+  },
+  {
+    "value": "jumper",
+    "synonyms": [
+      "Jumper",
+      "Pullover"
+    ]
+  },
+  {
+    "value": "rain coat",
+    "synonyms": [
+      "Regenmantel"
+    ]
+  },
+  {
+    "value": "rain jacket",
+    "synonyms": [
+      "Regenjacke"
+    ]
+  },
+  {
+    "value": "sandals",
+    "synonyms": [
+      "Sandalen"
+    ]
+  },
+  {
+    "value": "scarf",
+    "synonyms": [
+      "Schal"
+    ]
+  },
+  {
+    "value": "shorts",
+    "synonyms": [
+      "Shorts"
+    ]
+  },
+  {
+    "value": "skirt",
+    "synonyms": [
+      "Rock"
+    ]
+  },
+  {
+    "value": "suit",
+    "synonyms": [
+      "Anzug"
+    ]
+  },
+  {
+    "value": "sunglasses",
+    "synonyms": [
+      "Sonnenbrille"
+    ]
+  },
+  {
+    "value": "sunscreen",
+    "synonyms": [
+      "Sonnenschutz"
+    ]
+  },
+  {
+    "value": "sweater",
+    "synonyms": [
+      "Pullover"
+    ]
+  },
+  {
+    "value": "sweatpants",
+    "synonyms": [
+      "Jogginghose"
+    ]
+  },
+  {
+    "value": "swimming suit",
+    "synonyms": [
+      "Badeanzug"
+    ]
+  },
+  {
+    "value": "t-shirt",
+    "synonyms": [
+      "t-shirt"
+    ]
+  },
+  {
+    "value": "tank top",
+    "synonyms": [
+      "Muskelshirt"
+    ]
+  },
+  {
+    "value": "tie",
+    "synonyms": [
+      "Krawatte"
+    ]
+  },
+  {
+    "value": "umbrella",
+    "synonyms": [
+      "Regenschirm",
+      "Schirm"
+    ]
+  },
+  {
+    "value": "wool cap",
+    "synonyms": [
+      "Wollmütze"
+    ]
+  },
+  {
+    "value": "wool socks",
+    "synonyms": [
+      "Wollsocken"
+    ]
+  }
+]

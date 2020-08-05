@@ -1,0 +1,9 @@
+{
+  "id": "d6b355d7-59e2-448e-9008-dc92f7107454",
+  "name": "turn-direction",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

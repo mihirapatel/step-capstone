@@ -1,0 +1,77 @@
+[
+  {
+    "value": "bikini",
+    "synonyms": [
+      "bikini"
+    ]
+  },
+  {
+    "value": "blouse",
+    "synonyms": [
+      "blusa"
+    ]
+  },
+  {
+    "value": "coat",
+    "synonyms": [
+      "casaco"
+    ]
+  },
+  {
+    "value": "gloves",
+    "synonyms": [
+      "luvas"
+    ]
+  },
+  {
+    "value": "jacket",
+    "synonyms": [
+      "jaqueta"
+    ]
+  },
+  {
+    "value": "rain coat",
+    "synonyms": [
+      "capa de chuva",
+      "capas de chuva",
+      "casaco de chuva"
+    ]
+  },
+  {
+    "value": "sunglasses",
+    "synonyms": [
+      "oculos de sol",
+      "oculos escuros",
+      "óculos de sol",
+      "óculos escuros"
+    ]
+  },
+  {
+    "value": "sunscreen",
+    "synonyms": [
+      "filtro solar",
+      "protetor solar"
+    ]
+  },
+  {
+    "value": "swimmswear",
+    "synonyms": [
+      "sunga"
+    ]
+  },
+  {
+    "value": "umbrella",
+    "synonyms": [
+      "guarda chuva",
+      "guarda chuvas",
+      "guarda-chuva"
+    ]
+  },
+  {
+    "value": "wool gloves",
+    "synonyms": [
+      "luvas de lã",
+      "luvas quentes"
+    ]
+  }
+]
