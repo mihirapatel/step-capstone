@@ -48,10 +48,8 @@ public final class RecommenderTest {
   /** Tests that matrix factorization method is working reasonably correctly. */
   @Test
   public void testFactorization() throws Exception {
-    // SimpleMatrix userFeatures = SimpleMatrix.random_DDRM​(dataMatrix.numRows(), 2, -1.0, 1.0, new
-    // Random(1));
-    // SimpleMatrix itemFeatures = SimpleMatrix.random_DDRM​(2, dataMatrix.numCols(), -1.0, 1.0, new
-    // Random(1));
+    SimpleMatrix userFeatures = SimpleMatrix.random_DDRM​(dataMatrix.numRows(), 2, -1.0, 1.0, new Random(1));
+    SimpleMatrix itemFeatures = SimpleMatrix.random_DDRM​(2, dataMatrix.numCols(), -1.0, 1.0, new Random(1));
 
     Recommender rec = new Recommender();
     SimpleMatrix predictedResults = rec.matrixFactorization(dataMatrix, userFeatures, itemFeatures);

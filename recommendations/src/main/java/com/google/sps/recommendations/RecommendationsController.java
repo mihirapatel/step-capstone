@@ -69,6 +69,7 @@ public class RecommendationsController {
       log.info("making past user recs");
       return RecommendationUtils.makePastRecommendations(userID, datastore, stemmedListName);
     } catch (IllegalStateException | EntityNotFoundException e) {
+      e.printStackTrace();
       return Collections.EMPTY_LIST;
     }
   }
@@ -81,7 +82,28 @@ public class RecommendationsController {
     try {
       return RecommendationUtils.makeUserRecommendations(userID, datastore, stemmedListName);
     } catch (IllegalStateException | EntityNotFoundException e) {
+      e.printStackTrace();
       return Collections.EMPTY_LIST;
     }
+  }
+
+  /**
+   * Post method that resets database to default demo values
+   *
+   * @param confirm True to confirm database reset
+   */
+  @GetMapping("/reset")
+  public ResponseEntity reset(@RequestParam(value = "confirm") String confirm) {
+    log.info("resetting database");
+    try {
+      if (confirm.equals("true")) {
+        DatabaseUtils.resetDatabase(datastore);
+      } else {
+        throw new IllegalStateException("Confirm should be set to true");
+      }
+    } catch (IllegalStateException e) {
+      return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity(HttpStatus.OK);
   }
 }
