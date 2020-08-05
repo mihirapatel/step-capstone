@@ -1,0 +1,76 @@
+{
+  "id": "d2096ee7-214a-4d95-b572-276e935c7c8a",
+  "name": "time.time_difference",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "time.time_difference",
+      "affectedContexts": [
+        {
+          "name": "time-difference",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "9e0effc9-b681-40c8-abe0-b3c59f96a2e4",
+          "name": "location-1",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location-1",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "From where?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "68abdaa2-3555-48c6-be3a-0ea03df564e6",
+          "name": "location-2",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location-2",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "To where?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

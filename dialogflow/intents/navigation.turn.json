@@ -1,0 +1,47 @@
+{
+  "id": "36aebadc-25cc-4c5a-92ae-3a9c80687e72",
+  "name": "navigation.turn",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "navigation.turn",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "8ab56284-8d4b-4843-9f71-2d458e738810",
+          "name": "direction",
+          "required": false,
+          "dataType": "@turn-direction",
+          "value": "$direction",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

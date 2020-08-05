@@ -1,0 +1,268 @@
+[
+  {
+    "id": "664f9e02-de24-4955-9c3a-c5b68a1cdc43",
+    "data": [
+      {
+        "text": "reschedule my ",
+        "userDefined": false
+      },
+      {
+        "text": "7 am",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "908bf57b-b60d-4c78-b291-aa9f5d5667c2",
+    "data": [
+      {
+        "text": "schedule new time for my reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "816b9962-c348-497e-b008-dd2d9fb23976",
+    "data": [
+      {
+        "text": "move my ",
+        "userDefined": false
+      },
+      {
+        "text": "6 am",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " reminder to ",
+        "userDefined": false
+      },
+      {
+        "text": "7 in the evening",
+        "meta": "@sys.date-time",
+        "alias": "date-time-new",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "393666c7-5424-496b-86fc-63157190614e",
+    "data": [
+      {
+        "text": "move my reminder from ",
+        "userDefined": false
+      },
+      {
+        "text": "7",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "8",
+        "meta": "@sys.date-time",
+        "alias": "date-time-new",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a8a7713e-5014-41e9-9d53-9e71abc1803b",
+    "data": [
+      {
+        "text": "can you reschedule my reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6cf6df86-04f6-480e-afa6-e83bb4f938a3",
+    "data": [
+      {
+        "text": "reschedule my ",
+        "userDefined": false
+      },
+      {
+        "text": "7 am",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " reminder to ",
+        "userDefined": false
+      },
+      {
+        "text": "15 am",
+        "meta": "@sys.date-time",
+        "alias": "date-time-new",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a055f0af-6ac7-46ed-87f2-cdb6dc314a6a",
+    "data": [
+      {
+        "text": "reschedule reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "563620cd-7288-480f-bc47-0cd9c9b19432",
+    "data": [
+      {
+        "text": "change reminder time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5c29150f-f1f2-44b0-8b5a-29814fc2268c",
+    "data": [
+      {
+        "text": "new",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "time",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " for my reminder for ",
+        "userDefined": false
+      },
+      {
+        "text": "11:00",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a300f74a-00dd-433c-87ec-d2bb4fb47a8f",
+    "data": [
+      {
+        "text": "new time for my reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "559ba498-5a7f-48b5-ab04-10547a2e258c",
+    "data": [
+      {
+        "text": "move my ",
+        "userDefined": false
+      },
+      {
+        "text": "5 pm",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " reminder to ",
+        "userDefined": false
+      },
+      {
+        "text": "7 pm",
+        "meta": "@sys.date-time",
+        "alias": "date-time-new",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8c68252a-f3d9-46ee-9a9b-e0f7997f6cc0",
+    "data": [
+      {
+        "text": "reschedule ",
+        "userDefined": false
+      },
+      {
+        "text": "today",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " reminder for ",
+        "userDefined": false
+      },
+      {
+        "text": "tomorrow",
+        "meta": "@sys.date-time",
+        "alias": "date-time-new",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

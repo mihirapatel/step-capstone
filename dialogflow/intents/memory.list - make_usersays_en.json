@@ -1,0 +1,490 @@
+[
+  {
+    "id": "98c59da1-401d-4583-8ddf-98d327213e48",
+    "data": [
+      {
+        "text": "start a ",
+        "userDefined": false
+      },
+      {
+        "text": "new list",
+        "meta": "@new-list",
+        "alias": "new-list",
+        "userDefined": true
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "dogs",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "78f1ecd4-4704-4d8d-8ab1-5b4f8f250b85",
+    "data": [
+      {
+        "text": "start a ",
+        "userDefined": false
+      },
+      {
+        "text": "new list",
+        "meta": "@new-list",
+        "alias": "new-list",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "af8b6abb-6f34-4c80-807c-f6f21273e34a",
+    "data": [
+      {
+        "text": "start",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "a list",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "642821a6-8809-465e-ad87-3ee4b6d34570",
+    "data": [
+      {
+        "text": "start",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " a ",
+        "userDefined": false
+      },
+      {
+        "text": "bucket",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list with ",
+        "userDefined": false
+      },
+      {
+        "text": "skydiving and parachuting",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "511802a2-fae4-430b-b906-e800c52bdedd",
+    "data": [
+      {
+        "text": "put ",
+        "userDefined": false
+      },
+      {
+        "text": "carrots, potatoes, and celery",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": " into a ",
+        "userDefined": false
+      },
+      {
+        "text": "new list",
+        "meta": "@new-list",
+        "alias": "new-list",
+        "userDefined": true
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "potato soup ingredients",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "06f052a0-3a89-4fc6-a27a-95b7cefa6424",
+    "data": [
+      {
+        "text": "populate ",
+        "userDefined": false
+      },
+      {
+        "text": "a list",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "computers",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " with ",
+        "userDefined": false
+      },
+      {
+        "text": "mac and pixelbook",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "539613f1-255d-43dd-aabf-0cb50bd09164",
+    "data": [
+      {
+        "text": "make",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "a list",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "hats",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "47e1b766-ced5-473e-8917-e9b83126afaf",
+    "data": [
+      {
+        "text": "record ",
+        "userDefined": false
+      },
+      {
+        "text": "a list",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      },
+      {
+        "text": " of ",
+        "userDefined": false
+      },
+      {
+        "text": "preferences",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " with ",
+        "userDefined": false
+      },
+      {
+        "text": "cherries, strawberries, and bananas",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "23af6226-14b0-4259-8571-b3eae1d2c386",
+    "data": [
+      {
+        "text": "start",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " a ",
+        "userDefined": false
+      },
+      {
+        "text": "shopping",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list for ",
+        "userDefined": false
+      },
+      {
+        "text": "shoes, jackets, and socks",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2ae37979-2ff8-4b87-a898-0d99365be06b",
+    "data": [
+      {
+        "text": "make",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " a ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list with ",
+        "userDefined": false
+      },
+      {
+        "text": "lemons, cabbage, and potatoes",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "37f055d6-3077-4230-b5c1-6a9ce95ca2c9",
+    "data": [
+      {
+        "text": "make a ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list with ",
+        "userDefined": false
+      },
+      {
+        "text": "apples, bananas, watermelon, and carrots",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ff015e2b-8123-4dc0-83c5-dac16c6f20dc",
+    "data": [
+      {
+        "text": "make a ",
+        "userDefined": false
+      },
+      {
+        "text": "preferences",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b997692f-aced-44f4-90ef-e56cd54d86aa",
+    "data": [
+      {
+        "text": "start a list for ",
+        "userDefined": false
+      },
+      {
+        "text": "groceries",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cd5dfb38-89e2-43cf-a131-1a936470f734",
+    "data": [
+      {
+        "text": "start a ",
+        "userDefined": false
+      },
+      {
+        "text": "shopping",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c9a69962-f443-4d72-8ca4-e2b572d17a91",
+    "data": [
+      {
+        "text": "Start ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "list",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

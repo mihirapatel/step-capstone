@@ -1,0 +1,49 @@
+{
+  "id": "d224a6ae-d310-42b9-9d4c-b713be476561",
+  "name": "time.time_zones - context:time-zones",
+  "auto": true,
+  "contexts": [
+    "time-zones"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "time.time_zones",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "b8f3dbc0-b746-40b1-b0db-e8cd476263ae",
+          "name": "location",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$location",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

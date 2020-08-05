@@ -1,0 +1,325 @@
+[
+  {
+    "id": "ca85ad84-7835-4948-b6f1-b945d6e73e65",
+    "data": [
+      {
+        "text": "what is my ",
+        "userDefined": false
+      },
+      {
+        "text": "nickname",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4f289bef-3441-4ea9-ac03-5b99ba7c1b84",
+    "data": [
+      {
+        "text": "my ",
+        "userDefined": false
+      },
+      {
+        "text": "last name",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e7a61532-f662-4ed4-acd4-e6bc9d13a009",
+    "data": [
+      {
+        "text": "how did I teach you to address me",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9f43e62e-245e-4f60-882b-690d56e888f0",
+    "data": [
+      {
+        "text": "do I have a name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "96cd868a-258e-440f-a4c8-0ac53c1eb0c0",
+    "data": [
+      {
+        "text": "my ",
+        "userDefined": false
+      },
+      {
+        "text": "name",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "be7278c1-f77e-4c28-be2e-87ef98d83d3a",
+    "data": [
+      {
+        "text": "do I have a ",
+        "userDefined": false
+      },
+      {
+        "text": "middle name",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "34ff7dd0-be93-4ceb-a4b4-8191557df5b4",
+    "data": [
+      {
+        "text": "can you say my ",
+        "userDefined": false
+      },
+      {
+        "text": "first name",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "98374ea6-b670-4b0b-917b-2a92e50a121d",
+    "data": [
+      {
+        "text": "I",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " forgot my ",
+        "userDefined": false
+      },
+      {
+        "text": "nickname",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "614224d2-45d7-496e-af34-24859f53bf8d",
+    "data": [
+      {
+        "text": "what is my ",
+        "userDefined": false
+      },
+      {
+        "text": "name",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9c636fd5-0f43-4a88-b843-9c9273129741",
+    "data": [
+      {
+        "text": "tell me my ",
+        "userDefined": false
+      },
+      {
+        "text": "surname",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "95c67ee3-8140-45cf-a0b4-b1581634eebf",
+    "data": [
+      {
+        "text": "do you remember my ",
+        "userDefined": false
+      },
+      {
+        "text": "middle name",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d4253f13-b0c7-4a45-9e1c-dd7bd583b1f3",
+    "data": [
+      {
+        "text": "how ",
+        "userDefined": false
+      },
+      {
+        "text": "do",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " you ",
+        "userDefined": false
+      },
+      {
+        "text": "address",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " me",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "93818466-c0ca-4071-97af-cc13a372793e",
+    "data": [
+      {
+        "text": "tell me my ",
+        "userDefined": false
+      },
+      {
+        "text": "last name",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c58e4810-b81c-45ba-a470-4c06d868940e",
+    "data": [
+      {
+        "text": "can you ",
+        "userDefined": false
+      },
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " my ",
+        "userDefined": false
+      },
+      {
+        "text": "name",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ef58118e-0088-42aa-afb5-6ce883bee0e0",
+    "data": [
+      {
+        "text": "what are you supposed ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " call me",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "92b3e2d3-5cb0-41a7-8b56-7aa242676e6c",
+    "data": [
+      {
+        "text": "do",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " you remember my ",
+        "userDefined": false
+      },
+      {
+        "text": "surname",
+        "meta": "@name-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

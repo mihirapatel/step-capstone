@@ -1,0 +1,362 @@
+[
+  {
+    "id": "63426224-393e-435d-8f6d-fb5000511d66",
+    "data": [
+      {
+        "text": "when",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " should ",
+        "userDefined": false
+      },
+      {
+        "text": "I",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "843459fe-9d80-4b9f-a73a-c2d14fe63430",
+    "data": [
+      {
+        "text": "how far is the next",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6e9aa86b-cd44-4682-9dae-ee1a506e9089",
+    "data": [
+      {
+        "text": "is the ",
+        "userDefined": false
+      },
+      {
+        "text": "next",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " soon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3a9bc8d6-fe23-41cf-a2b8-3b484affad0f",
+    "data": [
+      {
+        "text": "when should I turn ",
+        "userDefined": false
+      },
+      {
+        "text": "left",
+        "meta": "@turn-direction",
+        "alias": "direction",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bcdec43f-2a0a-4fa3-bd90-c3af4997ee04",
+    "data": [
+      {
+        "text": "should ",
+        "userDefined": false
+      },
+      {
+        "text": "I",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "left",
+        "meta": "@turn-direction",
+        "alias": "direction",
+        "userDefined": true
+      },
+      {
+        "text": " next",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4a304009-18fc-4f93-b393-f433b5d28bce",
+    "data": [
+      {
+        "text": "do",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " I have ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "right",
+        "meta": "@turn-direction",
+        "alias": "direction",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b05bbc79-d90c-480e-b175-5a2d03bad008",
+    "data": [
+      {
+        "text": "do",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " I have ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b538ed93-480c-458e-91b9-201bbbed3376",
+    "data": [
+      {
+        "text": "should ",
+        "userDefined": false
+      },
+      {
+        "text": "I",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " now",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a32df5e9-84a9-4dc8-b850-0065c7cdb451",
+    "data": [
+      {
+        "text": "when",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " is the ",
+        "userDefined": false
+      },
+      {
+        "text": "next",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b925d940-6bbb-46c9-a6fe-1177a9e36854",
+    "data": [
+      {
+        "text": "when",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " is the ",
+        "userDefined": false
+      },
+      {
+        "text": "next",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "my",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "route",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2d972d94-9526-439d-8c76-e9d2afe25151",
+    "data": [
+      {
+        "text": "where is the ",
+        "userDefined": false
+      },
+      {
+        "text": "next",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "turn",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

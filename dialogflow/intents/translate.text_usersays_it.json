@@ -1,0 +1,320 @@
+[
+  {
+    "id": "96356df7-d0ad-4a35-a1e8-37147f374ee4",
+    "data": [
+      {
+        "text": "puoi tradurre in ",
+        "userDefined": false
+      },
+      {
+        "text": "spagnolo",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "49eec1ad-2c99-460a-9af7-e7c53cbb500e",
+    "data": [
+      {
+        "text": "traduzioni",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "925dcba1-1b88-44e8-8111-fdf8706a1a7e",
+    "data": [
+      {
+        "text": "traduci ",
+        "userDefined": false
+      },
+      {
+        "text": "ti amo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "francese",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "e4d5e02f-ecff-4817-8ec4-6ae5cd232316",
+    "data": [
+      {
+        "text": "traduci questa frase",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "9f140fe0-62b2-49d9-a4ea-5e39365c79fb",
+    "data": [
+      {
+        "text": "traduci ",
+        "userDefined": false
+      },
+      {
+        "text": "come stai",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "spagnolo",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "d01a29a1-c44b-4eb1-acb0-5ba81d104de4",
+    "data": [
+      {
+        "text": "traduci ",
+        "userDefined": false
+      },
+      {
+        "text": "what\u0027s up",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " dall\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "inglese",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "francese",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "db14c55a-3ec0-4c8b-914d-ae825c31d57b",
+    "data": [
+      {
+        "text": "qual è la parola ",
+        "userDefined": false
+      },
+      {
+        "text": "tedesca",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " per ",
+        "userDefined": false
+      },
+      {
+        "text": "colazione",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "428dfea9-137e-4276-b4a1-0560dd506ac3",
+    "data": [
+      {
+        "text": "come va",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "tedesco",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "8433ded4-0208-47f6-84f7-3ddbbba15c83",
+    "data": [
+      {
+        "text": "traduzione",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "108fd6c4-7e82-463f-8406-821987c4bdc7",
+    "data": [
+      {
+        "text": "come si dice ",
+        "userDefined": false
+      },
+      {
+        "text": "Babbo Natale",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "finlandese",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "0442592d-7207-4e82-a52f-09675332d02a",
+    "data": [
+      {
+        "text": "traduci dall\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "inglese",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "francese",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "45bbae83-4605-49ee-86a1-dc14d53da1da",
+    "data": [
+      {
+        "text": "traduci questa parola",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "96d396fd-3183-4f4e-9329-e0daee8c9b46",
+    "data": [
+      {
+        "text": "traduzione in ",
+        "userDefined": false
+      },
+      {
+        "text": "spagnolo",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "a03907e7-e79e-4d68-82b8-2060cd5052ac",
+    "data": [
+      {
+        "text": "traduzione dall\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "inglese",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  }
+]

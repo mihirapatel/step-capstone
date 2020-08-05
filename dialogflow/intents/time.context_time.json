@@ -1,0 +1,54 @@
+{
+  "id": "23b4ad26-c130-4ef0-8a9b-eaf13ce5ee21",
+  "name": "time.context:time",
+  "auto": true,
+  "contexts": [
+    "time"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "#time.intent_action",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "99581efb-8fec-4eed-9644-114b5ba2dcb3",
+          "name": "location",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Please specify a location."
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
