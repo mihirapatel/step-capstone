@@ -1,0 +1,1485 @@
+[
+  {
+    "id": "c81cbff8-00a5-423c-9d10-da8f31e3aca6",
+    "data": [
+      {
+        "text": "sabes traducir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1551dd99-164b-4d25-8092-b84a810cdd57",
+    "data": [
+      {
+        "text": "traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "una",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " frase",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e7597203-c468-428c-a3ba-6905e67f900c",
+    "data": [
+      {
+        "text": "traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "buenos días",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "portugués",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c6de885f-3634-4389-a539-b5f6ea413712",
+    "data": [
+      {
+        "text": "cómo decir ",
+        "userDefined": false
+      },
+      {
+        "text": "te vuelvo a llamar",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "turco",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b740add1-40ad-4c09-bd94-b5a039916bb4",
+    "data": [
+      {
+        "text": "cómo se traduce ",
+        "userDefined": false
+      },
+      {
+        "text": "desayuno",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "alemán",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "480591ee-2383-4dd8-b692-fb39e45fb102",
+    "data": [
+      {
+        "text": "al ",
+        "userDefined": false
+      },
+      {
+        "text": "ruso",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " es que quiero traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "milagros",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0645fdd0-8e71-47f1-91e2-c7b160c6f400",
+    "data": [
+      {
+        "text": "me encantaría traducir algo al ",
+        "userDefined": false
+      },
+      {
+        "text": "brasileño",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8fa046e7-3788-4c2c-9b4d-3fee62043b11",
+    "data": [
+      {
+        "text": "quiero traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "how are you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "89682c07-c92b-42b5-9360-858bf59e0c0a",
+    "data": [
+      {
+        "text": "traducción de ",
+        "userDefined": false
+      },
+      {
+        "text": "cómo estás",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "ruso",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "db724c57-17d2-43d2-97d8-51a5ebd188cc",
+    "data": [
+      {
+        "text": "puedes traducir al ",
+        "userDefined": false
+      },
+      {
+        "text": "alemán",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "777b9b19-827d-4373-bc03-1eaf940abb37",
+    "data": [
+      {
+        "text": "me podrás traducir al ",
+        "userDefined": false
+      },
+      {
+        "text": "persa",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f845f671-c17a-490a-bd34-469d77a16594",
+    "data": [
+      {
+        "text": "me",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " podrías traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "algo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5fcaefa9-83d7-4b67-9092-05ce1becd17d",
+    "data": [
+      {
+        "text": "me podrías buscar qué quiere decir ",
+        "userDefined": false
+      },
+      {
+        "text": "apfel",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "alemán",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ea1d93e0-ae79-450c-9c3e-322b167e803c",
+    "data": [
+      {
+        "text": "traduce ",
+        "userDefined": false
+      },
+      {
+        "text": "I love you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "ruso",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "13f2d432-dc0c-4319-8f40-dd3ac17c87a5",
+    "data": [
+      {
+        "text": "cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "qué tal",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0deb8715-8928-489d-8358-5297a223af7e",
+    "data": [
+      {
+        "text": "te necesito",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "para que",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "me",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " traduzcas ",
+        "userDefined": false
+      },
+      {
+        "text": "algo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "155e1709-18ac-4069-a3e7-ee5a4511e508",
+    "data": [
+      {
+        "text": "necesito una traducción de ",
+        "userDefined": false
+      },
+      {
+        "text": "perro",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "vasco",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6aa5c44f-b87e-4fa0-99ca-c2f417013a55",
+    "data": [
+      {
+        "text": "me haces el favor de traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "uva",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "ruso",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fc4a7281-aeae-4cb3-ade7-e0e329feabd0",
+    "data": [
+      {
+        "text": "cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "buenos días",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "077c061e-e5b1-473e-a770-adc05ca376f7",
+    "data": [
+      {
+        "text": "traducir la palabra ",
+        "userDefined": false
+      },
+      {
+        "text": "leche",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "ruso",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0d3916cb-0bdc-481a-afe1-6c8d5ff7defb",
+    "data": [
+      {
+        "text": "tradúceme ",
+        "userDefined": false
+      },
+      {
+        "text": "hola cómo estás",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "español",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "italiano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9dc5d364-2630-492d-8c0b-37c1baad6eda",
+    "data": [
+      {
+        "text": "traducción de ",
+        "userDefined": false
+      },
+      {
+        "text": "where\u0027s the nearest bus stop",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8a0bb829-8ac1-4d51-9474-571559b5cfdf",
+    "data": [
+      {
+        "text": "gato",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "japonés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " cómo se dice",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "359e233b-1641-400f-9f8d-b228fcf11470",
+    "data": [
+      {
+        "text": "cómo es que traduzco ",
+        "userDefined": false
+      },
+      {
+        "text": "no sé",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " de ",
+        "userDefined": false
+      },
+      {
+        "text": "español",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c3fc2833-3090-4607-b93f-154d7f5a44a2",
+    "data": [
+      {
+        "text": "me vas a traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "te amo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "italiano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "eadfa32d-765e-4e83-8f70-890a1549719e",
+    "data": [
+      {
+        "text": "sabes decir ",
+        "userDefined": false
+      },
+      {
+        "text": "buenas noches",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "coreano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8486abd6-760a-4149-9a7e-51e762249ce9",
+    "data": [
+      {
+        "text": "necesito una traducción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2fb2946f-ecf5-41e1-b51c-4c5d77fda27e",
+    "data": [
+      {
+        "text": "me urge traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "papá",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "italiano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "729266a1-85cf-48ec-912a-7719c5dce553",
+    "data": [
+      {
+        "text": "cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "hola qué tal",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "japonés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "515c6a24-1391-43df-a135-8fe25d6492a9",
+    "data": [
+      {
+        "text": "tradúceme algo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5d25358c-2393-4e93-9517-587b2f85c4b7",
+    "data": [
+      {
+        "text": "te averiguas cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "por favor",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "chino",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b847cbb3-3c0d-4abf-b555-bff3f9f34408",
+    "data": [
+      {
+        "text": "traduce ",
+        "userDefined": false
+      },
+      {
+        "text": "me gustas",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "español",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3659a6ca-ef2d-4f84-9f91-e0a1d10945c1",
+    "data": [
+      {
+        "text": "cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "bebé",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "portugués",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a57f436c-c3e6-4cad-9724-1c0faf20a083",
+    "data": [
+      {
+        "text": "necesito saber cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "cebolla",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "29a12aa6-3e2c-4a67-b4b3-3e4ed52bd862",
+    "data": [
+      {
+        "text": "traduce ",
+        "userDefined": false
+      },
+      {
+        "text": "te quiero",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cee1c166-e3ec-4c24-a31d-5bed0b5ce829",
+    "data": [
+      {
+        "text": "me hace falta traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "me perdí",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "gallego",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "caacdbe6-b0dd-4278-9f44-984df479d883",
+    "data": [
+      {
+        "text": "traduce ",
+        "userDefined": false
+      },
+      {
+        "text": "hola",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "edee2f2f-8603-4bf0-a86a-f90a47860c8d",
+    "data": [
+      {
+        "text": "puedes traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "dónde está la parada del autobús más cercana",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f65a3696-b47c-4a8d-882e-42df9c6d4545",
+    "data": [
+      {
+        "text": "sabes",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "al",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "chino",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5c0355d9-53c3-494b-867a-33eacaabd38e",
+    "data": [
+      {
+        "text": "traducir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "237f962c-6702-4f54-8868-cd157489c848",
+    "data": [
+      {
+        "text": "traduce",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "39912b16-3636-45c8-a8ef-fae009e109ff",
+    "data": [
+      {
+        "text": "escribe ",
+        "userDefined": false
+      },
+      {
+        "text": "hasta luego",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "italiano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f2fe7e1a-5bd5-4288-9af1-ae4ca0a1e576",
+    "data": [
+      {
+        "text": "cómo se traduce ",
+        "userDefined": false
+      },
+      {
+        "text": "what\u0027s up",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "inglés",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "80d9801e-db44-4b14-b3b1-c15af6e52102",
+    "data": [
+      {
+        "text": "traducción",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1d93a0d-ef56-4e93-9b86-424dedf5462b",
+    "data": [
+      {
+        "text": "cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "Papá Noel",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "finés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "18658745-b5a8-4a7d-9834-30632a51c290",
+    "data": [
+      {
+        "text": "de ",
+        "userDefined": false
+      },
+      {
+        "text": "vasco",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " a ",
+        "userDefined": false
+      },
+      {
+        "text": "gallego",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " quiero traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "bacalao",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "084ea1d2-6269-444f-b6e7-2221fa01258e",
+    "data": [
+      {
+        "text": "lo que quiero es traducir al ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "94d5e6b1-fc62-4bb6-b485-bd9d04619c5f",
+    "data": [
+      {
+        "text": "me averiguas cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "tos",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "alemán",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f6872241-5b6b-414a-a4f7-903885840d84",
+    "data": [
+      {
+        "text": "di ",
+        "userDefined": false
+      },
+      {
+        "text": "quiero comer",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "polaco",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "314dfd01-d2bb-4e7e-b763-d2bad4ab9751",
+    "data": [
+      {
+        "text": "a ver cómo se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "te quiero",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "alemán",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "61fcee9e-acc0-4a70-9b92-9b7cb4071d06",
+    "data": [
+      {
+        "text": "dime ",
+        "userDefined": false
+      },
+      {
+        "text": "tengo hambre",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "turco",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9519f518-63ce-4ee3-8149-7fa2654272b5",
+    "data": [
+      {
+        "text": "traducir ",
+        "userDefined": false
+      },
+      {
+        "text": "I love you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "bfa57229-0eb8-4229-84d1-16352d456232",
+    "data": [
+      {
+        "text": "dame la traducción de ",
+        "userDefined": false
+      },
+      {
+        "text": "vamos a la playa",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " del ",
+        "userDefined": false
+      },
+      {
+        "text": "español",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      },
+      {
+        "text": " al ",
+        "userDefined": false
+      },
+      {
+        "text": "francés",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f4bc7a12-bb1e-4792-b268-71077456d556",
+    "data": [
+      {
+        "text": "búscame como se dice ",
+        "userDefined": false
+      },
+      {
+        "text": "pollo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "ruso",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

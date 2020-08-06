@@ -1,0 +1,644 @@
+[
+  {
+    "id": "34cbd4b3-99af-4d48-83ee-a2b76a54eb59",
+    "data": [
+      {
+        "text": "三天後",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "台北",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "的",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "f8e9efbf-4727-462e-b158-4ea9cff54e98",
+    "data": [
+      {
+        "text": "明天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "天氣多少",
+        "userDefined": false
+      },
+      {
+        "text": "攝氏度",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "85377b0c-0026-414c-924e-35f14ec1f178",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "上海",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "eef92e64-529c-4f35-87bc-70804c59aa7d",
+    "data": [
+      {
+        "text": "北京",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "今天早上",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣怎麽樣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "e3641a59-2343-4bc3-a59a-5e9d9f87d3a9",
+    "data": [
+      {
+        "text": "廈門",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "啥天氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "50e28f2d-d682-4e8e-8887-3fd6c325b114",
+    "data": [
+      {
+        "text": "北京",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣如何",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "2f68b373-0d7a-4eb9-9b98-a465e9ca4646",
+    "data": [
+      {
+        "text": "上海",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "明天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣怎麽樣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "a4ec0192-969f-4c9d-9de0-cdb52b2f4f18",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "台北市",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "的",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣如",
+        "userDefined": false
+      },
+      {
+        "text": "何",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "f8b3c1fc-21b5-4bfb-9a1a-8220744ded7a",
+    "data": [
+      {
+        "text": "天氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "8b4c3c65-38a3-429e-82aa-0310c349b8ae",
+    "data": [
+      {
+        "text": "不好意思可以幫我查",
+        "userDefined": false
+      },
+      {
+        "text": "香港",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "6ed88187-b4d2-448b-82fc-f757420c1593",
+    "data": [
+      {
+        "text": "你能查下",
+        "userDefined": false
+      },
+      {
+        "text": "北京",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "的天氣嗎",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "2a553752-40a0-4e67-8c17-dee28d18613a",
+    "data": [
+      {
+        "text": "9/4",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "天氣如何",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "2afacb2b-9651-4695-b88f-6ce4ec6f5291",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "9ad5fa76-8e3c-4599-a79c-8f375309d3c8",
+    "data": [
+      {
+        "text": "昨天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "什麽",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "024bfd74-fe38-49e1-bfde-a2f79eb4f3b3",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "台北",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣如",
+        "userDefined": false
+      },
+      {
+        "text": "何",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "61628a0e-ae99-40f5-b752-0b0d2d8d82a8",
+    "data": [
+      {
+        "text": "下個星期五",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "台北",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "是不是",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣",
+        "userDefined": false
+      },
+      {
+        "text": "好",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "嗎",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "d50be990-0c3d-4e87-a971-8f4ba93b3b2f",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "台北",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "的",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣如",
+        "userDefined": false
+      },
+      {
+        "text": "何",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "d54d3a44-6a4a-432e-9101-501b5f5d26e6",
+    "data": [
+      {
+        "text": "用著",
+        "userDefined": false
+      },
+      {
+        "text": "攝氏度",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": "顯示天氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "b098ba99-f5e2-4784-b576-78bcd55d2184",
+    "data": [
+      {
+        "text": "上海",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "什麽天氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "a7adebeb-7222-40bb-a380-3bbd66638323",
+    "data": [
+      {
+        "text": "杭州",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣怎麽樣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "39b09bd8-4bd8-4da0-8340-0094cf7a8709",
+    "data": [
+      {
+        "text": "明天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "台北",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "468c0529-3edb-46c4-9141-9a9f7dbc7297",
+    "data": [
+      {
+        "text": "昨天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "幾度",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "b29c1703-480b-4dd9-ad72-4f5534ef1cc4",
+    "data": [
+      {
+        "text": "今天",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "台中",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "天",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "氣如",
+        "userDefined": false
+      },
+      {
+        "text": "何",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "7e3fbc2b-f9ba-4827-a14f-04c70821c864",
+    "data": [
+      {
+        "text": "兩天前",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "上海",
+        "meta": "@sys.address",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "的天氣如何",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  }
+]

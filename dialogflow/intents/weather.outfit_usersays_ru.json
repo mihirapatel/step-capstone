@@ -1,0 +1,616 @@
+[
+  {
+    "id": "87a8cb9f-3d44-4140-b51b-998804ebba5c",
+    "data": [
+      {
+        "text": "взять ли ",
+        "userDefined": false
+      },
+      {
+        "text": "солнечные очки",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "4ca7028e-2288-41f3-9863-2a424e09aa3f",
+    "data": [
+      {
+        "text": "брать ",
+        "userDefined": false
+      },
+      {
+        "text": "пиджак",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "35c4462e-e5f3-4d9d-8c2f-26b0e9049b37",
+    "data": [
+      {
+        "text": "мне понадобится ",
+        "userDefined": false
+      },
+      {
+        "text": "пальто",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Лондоне",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ef063b8f-ed2a-4111-8746-47bedbae1daa",
+    "data": [
+      {
+        "text": "потребуется ли ",
+        "userDefined": false
+      },
+      {
+        "text": "зонт",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "409a0ceb-2e78-4c00-8d15-e8ec48244811",
+    "data": [
+      {
+        "text": "я ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " лечу в ",
+        "userDefined": false
+      },
+      {
+        "text": "Париж",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " мне нужно брать ",
+        "userDefined": false
+      },
+      {
+        "text": "зонтик",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "698fb1a9-8103-483b-bcc2-c0a29f3c0e98",
+    "data": [
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Калифорнии",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " потребуются ли мне ",
+        "userDefined": false
+      },
+      {
+        "text": "очки от солнца",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "6540c752-acbd-4e0c-a7c9-578b53d637cd",
+    "data": [
+      {
+        "text": "надеть ли сегодня ",
+        "userDefined": false
+      },
+      {
+        "text": "пиджак",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "371cebbb-689c-4462-b033-64a4e1086d65",
+    "data": [
+      {
+        "text": "понадобится ли мне ",
+        "userDefined": false
+      },
+      {
+        "text": "зонт",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "на этой неделе",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ac8407f6-3bab-4830-9dca-9a9e2a947d06",
+    "data": [
+      {
+        "text": "понадобится ли ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "плащ",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f61d7ded-1858-4ac2-ab43-4c5eac24d615",
+    "data": [
+      {
+        "text": "стоит одеть ",
+        "userDefined": false
+      },
+      {
+        "text": "пальто",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "7b359ce1-e746-4b45-a3a3-709f345b14fa",
+    "data": [
+      {
+        "text": "мне понадобится ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "куртка",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Новосибирске",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ced19f4e-adf0-4ccc-b10e-a72dcbcc0b00",
+    "data": [
+      {
+        "text": "надевать ли ",
+        "userDefined": false
+      },
+      {
+        "text": "перчатки",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Аспене",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "4524d8bb-402c-409c-9ab7-d2e716998721",
+    "data": [
+      {
+        "text": "нужны ли мне будут ",
+        "userDefined": false
+      },
+      {
+        "text": "очки",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "9173065b-d316-4b3f-83f3-ec2872b89395",
+    "data": [
+      {
+        "text": "взять ли с собой ",
+        "userDefined": false
+      },
+      {
+        "text": "зонт",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Токио",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ee3ba709-4dec-49a8-8f76-64d2a1ddb352",
+    "data": [
+      {
+        "text": "взять ли с собой ",
+        "userDefined": false
+      },
+      {
+        "text": "пальто",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Прагу",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "20 марта",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "fedb026d-eec5-4f50-866d-ac48d4ca2faf",
+    "data": [
+      {
+        "text": "нужен ли будет ",
+        "userDefined": false
+      },
+      {
+        "text": "зонт",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Париже",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "этой неделе",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "cfe2ffeb-d773-44de-a751-8727b0a9ff86",
+    "data": [
+      {
+        "text": "брать ли с собой ",
+        "userDefined": false
+      },
+      {
+        "text": "солнцезащитные очки",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Милан",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "9789487e-6294-4aa1-a2bc-04d63025fa2f",
+    "data": [
+      {
+        "text": "следует ли взять ",
+        "userDefined": false
+      },
+      {
+        "text": "солнечные очки",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " с собой ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "5978d393-d69a-4c20-9a41-c9a22dcad966",
+    "data": [
+      {
+        "text": "взять с собой ",
+        "userDefined": false
+      },
+      {
+        "text": "пиджак",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Рим",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "e7914487-bd01-4044-ba32-16d86fbb771f",
+    "data": [
+      {
+        "text": "мне пригодится ",
+        "userDefined": false
+      },
+      {
+        "text": "сегодня",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "зонтик",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Лондоне",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "317daef0-f03c-4252-8918-8246edc0ea3f",
+    "data": [
+      {
+        "text": "надевать ли ",
+        "userDefined": false
+      },
+      {
+        "text": "пальто",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "042a92fe-c309-4efa-a154-5b8325ff15a4",
+    "data": [
+      {
+        "text": "мне нужно надеть ",
+        "userDefined": false
+      },
+      {
+        "text": "пальто",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  }
+]

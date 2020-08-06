@@ -1,0 +1,379 @@
+[
+  {
+    "id": "eb640a16-06b6-4a27-943d-3ba2dd5e7dc5",
+    "data": [
+      {
+        "text": "como se diz ",
+        "userDefined": false
+      },
+      {
+        "text": "Pai Natal",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "finlandês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "bf2003db-6148-4624-a3bd-84f591409fba",
+    "data": [
+      {
+        "text": "traduzir texto ",
+        "userDefined": false
+      },
+      {
+        "text": "olá",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "34085e7b-dbb9-4240-b966-27ddd3f24b38",
+    "data": [
+      {
+        "text": "tradução da palavra ",
+        "userDefined": false
+      },
+      {
+        "text": "bismilla",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "76717bc7-451a-4710-9e4d-665a2c32d2cd",
+    "data": [
+      {
+        "text": "traduzir a palavra ",
+        "userDefined": false
+      },
+      {
+        "text": "espanhola",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "trabajador",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f8b6880e-ceeb-41b3-a977-78a9a65fb5e9",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "olá",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "espanhol",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "42e6e370-8860-43d4-8f99-797d16351f48",
+    "data": [
+      {
+        "text": "qual a palavra ",
+        "userDefined": false
+      },
+      {
+        "text": "alemã",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "pequeno-almoço",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "bbd53c1d-edf3-444f-ad61-32c8bc69b4f5",
+    "data": [
+      {
+        "text": "traduza ",
+        "userDefined": false
+      },
+      {
+        "text": "amo-te",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "9e0c6a7f-d983-4f80-9346-6b285aa6d808",
+    "data": [
+      {
+        "text": "como se diz ",
+        "userDefined": false
+      },
+      {
+        "text": "pequeno-almoço",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "alemão",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "ad8f32f4-aabc-45c6-a093-57bfd0dc7e2d",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "na América",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "27c0f970-e011-4ad4-b379-4acf985b48b8",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "olá como está",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "punjabi",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "b7d3fd49-3470-4ed3-a97c-19c157cc9fc4",
+    "data": [
+      {
+        "text": "traduzir de ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "ad4502b3-28e6-488d-8ef5-9115b0240d87",
+    "data": [
+      {
+        "text": "tradução de ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "italiano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "cf3fd034-86fe-4a35-8c22-cf81091f6d98",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "many",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " de ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  }
+]

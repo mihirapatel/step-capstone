@@ -1,0 +1,371 @@
+[
+  {
+    "id": "ae9dd9d4-be76-4d85-b6ff-dd518a6f8f22",
+    "data": [
+      {
+        "text": "como vai estar o tempo ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Campbell",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "e70aec65-3897-416e-b38a-4d8ed0aa444b",
+    "data": [
+      {
+        "text": "tempo agora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "1583283e-8031-42c9-8b69-5a78b791f8b2",
+    "data": [
+      {
+        "text": "qual é a previsão do tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "esta manhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "e2f5d5a0-2438-4330-b3b9-dc293e702e8d",
+    "data": [
+      {
+        "text": "mostrar-me o tempo para ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "e25d9dd8-b516-4073-baa4-9cd771da6616",
+    "data": [
+      {
+        "text": "o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "dd1ac752-e3df-45e8-8fa9-994743459eea",
+    "data": [
+      {
+        "text": "como está o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nova Iorque",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "esta manhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "91b4684f-8b19-40f0-8cbb-847fa234b04f",
+    "data": [
+      {
+        "text": "previsão meteorológica",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "fd8ddf35-da33-40d6-bd07-687584f8c811",
+    "data": [
+      {
+        "text": "como está o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Delft",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f8222eee-44d1-4067-8d6b-4670062a016a",
+    "data": [
+      {
+        "text": "o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Durban",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "60c84180-cdc3-4203-bc0f-0787ddad8ef1",
+    "data": [
+      {
+        "text": "tempo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "26d7173e-0312-4698-ace3-3c9e6b7f1751",
+    "data": [
+      {
+        "text": "como está o tempo na ",
+        "userDefined": false
+      },
+      {
+        "text": "Cidade do Cabo",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "b48e789e-e9d2-4778-9f15-150fc4cecd6e",
+    "data": [
+      {
+        "text": "o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " para os ",
+        "userDefined": false
+      },
+      {
+        "text": "próximos 5 dias",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "c6f86321-a971-4b83-ac4c-52245cbf2fcd",
+    "data": [
+      {
+        "text": "o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Celsius",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "d837a3db-4e68-484a-b67c-63442928d754",
+    "data": [
+      {
+        "text": "diga-me a previsão meteorológica para ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Hong Kong",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f252419e-c937-4505-b884-2e1660e79a62",
+    "data": [
+      {
+        "text": "como está o tempo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "41613088-6c4e-4cc5-b845-7c098f7b892c",
+    "data": [
+      {
+        "text": "como vai estar o tempo ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Camberra",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "e9c3575b-2197-40fa-8d5f-62e3e26d7351",
+    "data": [
+      {
+        "text": "o tempo em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nirmal",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  }
+]

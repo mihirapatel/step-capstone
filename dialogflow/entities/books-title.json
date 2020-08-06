@@ -1,0 +1,9 @@
+{
+  "id": "a9d9db8a-9e4d-4605-8d76-fcf09871c434",
+  "name": "books-title",
+  "isOverridable": true,
+  "isEnum": true,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

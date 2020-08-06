@@ -101,12 +101,9 @@ public class RecommendationUtils {
    * Calculates updated past recommendation rates.
    *
    * @param datastore Database entity to retrieve data from
-   * @param userID The logged-in user's ID
    * @param stemmedListName The name of the list to store aggregation information for.
-   * @param items List of strings containing items that were newly added.
    */
-  public static void updateUserRecommendations(
-      DatastoreService datastore, String userID, String stemmedListName, List<String> items)
+  public static void updateUserRecommendations(DatastoreService datastore, String stemmedListName)
       throws EntityNotFoundException, IllegalStateException {
     Set<String> uniqueItems = getUniqueItems(datastore, stemmedListName);
     List<Entity> allUserEntities = getAllEntities(datastore, "Frac-" + stemmedListName);
@@ -114,7 +111,9 @@ public class RecommendationUtils {
       throw new IllegalStateException(
           "Cannot make recommendations when there are less than 3 other users.");
     }
-    Recommender rec = new Recommender((int) Math.ceil(Math.sqrt(uniqueItems.size())));
+    Recommender rec =
+        new Recommender(
+            (int) Math.ceil(Math.sqrt(Math.min(allUserEntities.size(), uniqueItems.size()))));
     rec.makeRecommendations(datastore, stemmedListName, allUserEntities, uniqueItems);
   }
 

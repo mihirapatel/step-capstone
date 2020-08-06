@@ -1,0 +1,479 @@
+[
+  {
+    "id": "e1c5e6a5-d9eb-45e8-8735-c5593a994b93",
+    "data": [
+      {
+        "text": "show me all instances of the keyword ",
+        "userDefined": false
+      },
+      {
+        "text": "tomato",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in my conversation history from this ",
+        "userDefined": false
+      },
+      {
+        "text": "past June",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2633634b-e124-4806-af0e-440d1930b20e",
+    "data": [
+      {
+        "text": "show me all instances of the keyword ",
+        "userDefined": false
+      },
+      {
+        "text": "tomato",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in my conversation history from ",
+        "userDefined": false
+      },
+      {
+        "text": "last month",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "15ff2ffd-9d5c-415a-ad62-8b1a7278183d",
+    "data": [
+      {
+        "text": "Show all instances of ",
+        "userDefined": false
+      },
+      {
+        "text": "carrot",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " being mentioned in our conversations ",
+        "userDefined": false
+      },
+      {
+        "text": "last year",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c5348b1b-d1d6-4cc9-8e76-523edf738335",
+    "data": [
+      {
+        "text": "search conversations in ",
+        "userDefined": false
+      },
+      {
+        "text": "the month of November",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": " for the word ",
+        "userDefined": false
+      },
+      {
+        "text": "Christmas",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "293e64d9-b6e7-48c7-acda-85b1124bbffd",
+    "data": [
+      {
+        "text": "Find all instances of ",
+        "userDefined": false
+      },
+      {
+        "text": "ice cream",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in our conversations on ",
+        "userDefined": false
+      },
+      {
+        "text": "December 2.",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "588f5ea4-8c42-4b17-b281-ab9a90a01733",
+    "data": [
+      {
+        "text": "Remind me about our conversation on ",
+        "userDefined": false
+      },
+      {
+        "text": "chairs",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "a week ago",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2d7b024a-a28b-4201-97af-99c49208d339",
+    "data": [
+      {
+        "text": "Did I talk about ",
+        "userDefined": false
+      },
+      {
+        "text": "puppies",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "April",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "026dc935-e13c-402e-b6f0-118ef2dedd21",
+    "data": [
+      {
+        "text": "show me all the times I talked about ",
+        "userDefined": false
+      },
+      {
+        "text": "computers",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "last month.",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f6af6bf9-8c2a-4080-a23f-65e0a7f700d6",
+    "data": [
+      {
+        "text": "remind me when we last talked about ",
+        "userDefined": false
+      },
+      {
+        "text": "watermelon",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5be5d3b8-985d-48a6-ba33-a9ef55bf769f",
+    "data": [
+      {
+        "text": "find past instances of the word ",
+        "userDefined": false
+      },
+      {
+        "text": "blueberry",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in our conversation.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "379cc8e2-bfeb-4aa4-821a-400776c86157",
+    "data": [
+      {
+        "text": "show me when we last talked about ",
+        "userDefined": false
+      },
+      {
+        "text": "oranges",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9dfc5ff1-269e-4d2a-8618-a30717ee7295",
+    "data": [
+      {
+        "text": "when did I mention ",
+        "userDefined": false
+      },
+      {
+        "text": "strawberries",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in our past conversation?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a4ddb6bb-040b-41bf-b097-44df1d11d26d",
+    "data": [
+      {
+        "text": "find all the times I mentioned ",
+        "userDefined": false
+      },
+      {
+        "text": "bananas",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": " in the past.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6be1bec2-0aa7-48dd-92a7-dffb15894a7c",
+    "data": [
+      {
+        "text": "search conversation for ",
+        "userDefined": false
+      },
+      {
+        "text": "juice",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "155fbf46-8863-4fed-894b-f39d8cb23f06",
+    "data": [
+      {
+        "text": "search history for ",
+        "userDefined": false
+      },
+      {
+        "text": "apple",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "569f73cc-16bc-4ba4-9c7d-97f002b86efa",
+    "data": [
+      {
+        "text": "search past conversation ",
+        "userDefined": false
+      },
+      {
+        "text": "for",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " any mention of ",
+        "userDefined": false
+      },
+      {
+        "text": "bike",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6dc795ac-349c-4b49-9764-b0370d9ea354",
+    "data": [
+      {
+        "text": "Search conversation history ",
+        "userDefined": false
+      },
+      {
+        "text": "for",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " the word ",
+        "userDefined": false
+      },
+      {
+        "text": "dog",
+        "meta": "@sys.any",
+        "alias": "keyword",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

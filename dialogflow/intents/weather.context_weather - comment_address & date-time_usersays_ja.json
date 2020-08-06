@@ -1,0 +1,119 @@
+[
+  {
+    "id": "5bbd631b-8edb-4b7a-a6d3-ccb2fcd69590",
+    "data": [
+      {
+        "text": "今週末",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "モスクワ",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "19c26bd3-56b9-47b0-89ab-530e056873d6",
+    "data": [
+      {
+        "text": "じゃあ",
+        "userDefined": false
+      },
+      {
+        "text": "来週の金曜日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "パリ",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "はどう",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "4c39bbf5-73c6-492c-890d-5d3525a446de",
+    "data": [
+      {
+        "text": "明日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "福岡市",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "は",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": "どう",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "a8efd737-5618-4b90-86d0-6a30805acd63",
+    "data": [
+      {
+        "text": "明日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "マドリード",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  }
+]

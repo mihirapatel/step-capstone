@@ -1,0 +1,33 @@
+[
+  {
+    "value": "15 minute",
+    "synonyms": [
+      "15 minute"
+    ]
+  },
+  {
+    "value": "20 minute",
+    "synonyms": [
+      "20 minute"
+    ]
+  },
+  {
+    "value": "30 minute",
+    "synonyms": [
+      "30 minute"
+    ]
+  },
+  {
+    "value": "45 minute",
+    "synonyms": [
+      "45 minute"
+    ]
+  },
+  {
+    "value": "60 minute",
+    "synonyms": [
+      "60 minute",
+      "1 hour"
+    ]
+  }
+]

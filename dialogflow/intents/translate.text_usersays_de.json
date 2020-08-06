@@ -1,0 +1,1663 @@
+[
+  {
+    "id": "32609665-395b-4455-9f1f-db152e75c715",
+    "data": [
+      {
+        "text": "übersetze auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Russisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "65653187-f227-4e78-9c25-c15cb4ce55d7",
+    "data": [
+      {
+        "text": "in welche Sprachen kannst du übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "465d8e3f-7f21-45a4-9617-83a4c549dd23",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich liebe dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Rumänisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "122ac51e-bcd3-4a54-b208-e8b64f6505f1",
+    "data": [
+      {
+        "text": "Herz",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bd439bc2-0eac-4174-ba28-a3718ea77852",
+    "data": [
+      {
+        "text": "übersetze mir auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4536bf9a-88b7-4e0c-aecd-90015de0146b",
+    "data": [
+      {
+        "text": "Bier",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "85ad8cfc-f9b1-41d8-a912-ffb7c063ec7a",
+    "data": [
+      {
+        "text": "Französisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cd15af47-e59c-4faf-8d79-f52b300d2636",
+    "data": [
+      {
+        "text": "bitte übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ba7c32e0-58c2-4275-8197-c0b1f058eb1f",
+    "data": [
+      {
+        "text": "kannst du mir das übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "842846ee-8dfc-4a78-b516-8e1c19f087f3",
+    "data": [
+      {
+        "text": "kannst du auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Chinesisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "300e64f4-deb7-4d1a-b147-306d8b3cda13",
+    "data": [
+      {
+        "text": "Übersetzung auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "80c375b4-1a57-457c-b2ba-6bf26984226a",
+    "data": [
+      {
+        "text": "kannst du auch Fremdsprachen übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6cffb6a2-d38a-4730-bb47-98930ebaf42f",
+    "data": [
+      {
+        "text": "kannst du auch Texte übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5952f78d-415c-4fe9-95de-24554520c677",
+    "data": [
+      {
+        "text": "was heißt ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich liebe dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Japanisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c8b195cc-2d84-4ad9-8980-19ecfc825ff1",
+    "data": [
+      {
+        "text": "übersetze mir ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Lateinische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Du bist mein Herz",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "34e3a76d-08df-42e6-aa2a-eb9b2212eb15",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Hallo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6282449d-c49e-4da6-8f81-1ea5a74bd3c8",
+    "data": [
+      {
+        "text": "übersetze ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Englische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dd4f39ea-5df3-43bf-85f1-637e0fcf94da",
+    "data": [
+      {
+        "text": "Übersetzer bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a1c1ac5f-c270-4570-9d79-127499c12da1",
+    "data": [
+      {
+        "text": "ich möchte bitte eine Übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "295df99d-3c92-434c-a8d7-df25f36c457f",
+    "data": [
+      {
+        "text": "kannst du mir auch bitte Übersetzen auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6256da7e-8994-4283-8168-5bcb3da38b00",
+    "data": [
+      {
+        "text": "übersetze bitte das auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5db42c50-962f-4f04-99dc-6e9e220f323b",
+    "data": [
+      {
+        "text": "vom ",
+        "userDefined": false
+      },
+      {
+        "text": "Englischen",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ins",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Deutsche",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6ef04454-6c7a-4311-b9aa-c1ab83de00a3",
+    "data": [
+      {
+        "text": "wie sagt man ",
+        "userDefined": false
+      },
+      {
+        "text": "Wie geht\u0027s",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Schwedisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9e22f9e2-1aeb-4699-a200-9c76f2d58c7c",
+    "data": [
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "-",
+        "userDefined": false
+      },
+      {
+        "text": "Deutsch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "-Übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bff476cb-a5d7-4daf-bb01-14924ba128cb",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich liebe dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "22f970f4-9778-4a18-9d1e-ca8769b57489",
+    "data": [
+      {
+        "text": "Spanisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "94854046-88fb-4fb3-9115-49e0d5c8fa51",
+    "data": [
+      {
+        "text": "kannst du was übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5e35c490-9336-43ea-afc9-f8bb21e72fa8",
+    "data": [
+      {
+        "text": "übersetze auf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "03fefda0-0e59-4e34-b4e2-cf62bc93d92c",
+    "data": [
+      {
+        "text": "ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Russische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "58d8b10b-778e-4950-9303-fb986cd72b7e",
+    "data": [
+      {
+        "text": "kannst du etwas übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "172f1634-fa58-4f90-a26f-4b69d137f2bb",
+    "data": [
+      {
+        "text": "übersetze mir das bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0ae57a33-df1c-4eda-98d8-acdb99dbecd2",
+    "data": [
+      {
+        "text": "was heißt ",
+        "userDefined": false
+      },
+      {
+        "text": "urgent letter",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Deutsch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "191a7ebf-78d4-4ee8-af0d-9d4adb0d3cfc",
+    "data": [
+      {
+        "text": "übersetze mir bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7ef4fe5f-c378-45cb-a9df-b93e17b61a29",
+    "data": [
+      {
+        "text": "kannst du mir was übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "006ba51b-85f0-4009-9b7f-44a3ac338a1d",
+    "data": [
+      {
+        "text": "übersetze auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Rumänisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9f325477-25c7-4593-aaf7-ba002fa05e90",
+    "data": [
+      {
+        "text": "übersetze ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Polnische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e8b6a93d-94e3-4f43-91d2-db3e567cb4ab",
+    "data": [
+      {
+        "text": "übersetze mal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "39944e8f-01bd-4695-946a-0beaff1d4b77",
+    "data": [
+      {
+        "text": "ich möchte auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Rumänisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen: ",
+        "userDefined": false
+      },
+      {
+        "text": "Tür",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1f7cd615-e694-4b8b-b5d4-55a7a5aaac15",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Hallo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " von ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fa1de49d-b4aa-455f-b438-eaf567e8684b",
+    "data": [
+      {
+        "text": "übersetze auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f53b72a8-b4af-4c68-b609-8881051b09dd",
+    "data": [
+      {
+        "text": "ich möchte übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8c4dca65-cbde-4d3d-8e21-570497caa268",
+    "data": [
+      {
+        "text": "ich will eine Übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e77acb74-6032-46fc-ad79-94e602e95991",
+    "data": [
+      {
+        "text": "Übersetzung vom ",
+        "userDefined": false
+      },
+      {
+        "text": "Französischen",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ins",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Englische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d73a9296-ea76-4bb3-bca8-84e7003099ae",
+    "data": [
+      {
+        "text": "Übersetzungen von Texten von ",
+        "userDefined": false
+      },
+      {
+        "text": "Französisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ins",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Polnische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "34fcf28a-2d93-4112-a4c3-4532a24689a6",
+    "data": [
+      {
+        "text": "was heißt \"",
+        "userDefined": false
+      },
+      {
+        "text": "Frühstück",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "\" auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ca80e5ed-2e4e-4910-b421-8607d58ee8c9",
+    "data": [
+      {
+        "text": "Herz",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Albanisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ff0c7777-4ae4-4428-b3b1-2ca5051d7333",
+    "data": [
+      {
+        "text": "übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9e5d3298-6b5b-4811-abed-d77e7f7f4af7",
+    "data": [
+      {
+        "text": "kannst du übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a1e3fc84-602b-4704-8248-132f9235afa0",
+    "data": [
+      {
+        "text": "kannst du Sprachen übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0870449f-1847-43c8-aa02-9ac672936491",
+    "data": [
+      {
+        "text": "übersetze mir etwas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5c806068-c97e-4edf-bb2d-8ac468be11b2",
+    "data": [
+      {
+        "text": "du sollst übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "146249ff-69bf-449b-a695-c78bb328391d",
+    "data": [
+      {
+        "text": "übersetze auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Spanisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8ef97972-3c87-4853-aa81-0f84d324bef8",
+    "data": [
+      {
+        "text": "kannst du ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e1911d64-263d-4b98-8c52-14b7afff54c0",
+    "data": [
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " Übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "eaa093c3-3d9c-4d2b-ac0d-fbb64f8529ed",
+    "data": [
+      {
+        "text": "kannst du mir etwas übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5b4aad30-cfdf-4828-bae3-4b61f95949db",
+    "data": [
+      {
+        "text": "übersetz mir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2c02e9f9-3546-41f2-9237-e8ec48a3dddc",
+    "data": [
+      {
+        "text": "übersetze ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Deutsche",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c4bfb15b-0c0a-460b-ac48-59fd2f658d7b",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich liebe dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Albanisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9a241f23-b143-4793-a9b1-9ee00c2a035c",
+    "data": [
+      {
+        "text": "du sollst es mir übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c1618226-c205-4e52-b0c4-39b2ec9e0e43",
+    "data": [
+      {
+        "text": "ich möchte Text übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dc447350-4e3c-4b7f-8f0c-9892c0049913",
+    "data": [
+      {
+        "text": "kannst du ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " Übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7ca914cc-d94c-45ee-a8c1-4262c0ba2ab0",
+    "data": [
+      {
+        "text": "übersetze bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b15dc33f-c856-4209-97da-756f2b10483b",
+    "data": [
+      {
+        "text": "Englisch",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f5d7204f-ae28-44b9-833e-6ec314892864",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich hasse dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Latein",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5951c48e-9d7f-4b5c-b1e7-055538423fe8",
+    "data": [
+      {
+        "text": "übersetze mir was",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5974c893-4158-442f-a6bb-6d66f551f33d",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Hallo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "80ca4f87-cc84-420c-b39b-d39b812bfdd5",
+    "data": [
+      {
+        "text": "übersetze",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c85b341a-6bab-4189-9b9a-5bcce197be8e",
+    "data": [
+      {
+        "text": "übersetz",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9a798f24-0299-4108-9a81-c5740cbf77f9",
+    "data": [
+      {
+        "text": "bist du ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " guter Übersetzer",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f377c2d6-c500-4363-bfd5-05421a33cd56",
+    "data": [
+      {
+        "text": "kannst du auch Wörter in andere Sprachen übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "46b02fe6-5b0b-4a8e-a0fc-30605232dcd4",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich mag dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "554b4fae-b34f-460f-ae19-7d96566d1414",
+    "data": [
+      {
+        "text": "und was heißt ",
+        "userDefined": false
+      },
+      {
+        "text": "Hallo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Russisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99a0f1ff-19d7-4d1b-8d1b-201b73d3e847",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich liebe dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5e19b1a1-7a7f-4cf6-98d2-877605c501cc",
+    "data": [
+      {
+        "text": "übersetzer",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fc084fca-8d82-41fd-9165-666fda88ad83",
+    "data": [
+      {
+        "text": "kannst du auch übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e628c770-792a-4059-ab3d-cd720584a338",
+    "data": [
+      {
+        "text": "welche Sprachen kannst du übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dde12f52-864d-47e8-8dcb-a7fe9a0c5c65",
+    "data": [
+      {
+        "text": "übersetze auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Deutsch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6cc9ac72-66d7-4326-9f0d-747aff1c5fb5",
+    "data": [
+      {
+        "text": "kannst du auch Sätze übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1f9ab941-4bdf-41fa-ba38-8538b0e9bd8d",
+    "data": [
+      {
+        "text": "übersetzung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d513e339-3370-4b90-846f-6afaba439578",
+    "data": [
+      {
+        "text": "kannst du für mich übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "56fc35fb-4872-41bf-9a26-169d816978b9",
+    "data": [
+      {
+        "text": "ins ",
+        "userDefined": false
+      },
+      {
+        "text": "Russische",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " übersetzt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3c433335-ad0a-4352-a58b-5fcd8c20b9dd",
+    "data": [
+      {
+        "text": "übersetze ",
+        "userDefined": false
+      },
+      {
+        "text": "Ich liebe dich",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Türkisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1f505654-1685-4d8e-99d8-dc9f5ad9b04e",
+    "data": [
+      {
+        "text": "was heißt \"",
+        "userDefined": false
+      },
+      {
+        "text": "Santa Claus",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "\" auf ",
+        "userDefined": false
+      },
+      {
+        "text": "Finnisch",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99f17026-f9ce-46fb-b428-e4053ff91339",
+    "data": [
+      {
+        "text": "übersetze mir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0c8d6b57-7803-4e44-9ac9-c09c4709c50c",
+    "data": [
+      {
+        "text": "kannst du mir auch andere Sprachen übersetzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

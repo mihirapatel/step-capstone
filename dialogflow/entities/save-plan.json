@@ -1,0 +1,9 @@
+{
+  "id": "21a241e2-b5af-4cc2-8ace-777fb7610618",
+  "name": "save-plan",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

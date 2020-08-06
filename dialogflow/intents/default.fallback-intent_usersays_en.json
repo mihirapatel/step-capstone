@@ -1,0 +1,93 @@
+[
+  {
+    "id": "5d322854-9427-4dcb-ac54-037d9d47cd1d",
+    "data": [
+      {
+        "text": "price of hotel in Paris in us dollars",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0a6d70d4-305f-47f0-a93a-9afd2b66a336",
+    "data": [
+      {
+        "text": "convert it into inches",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "817ca16f-f8b1-48cc-841a-de1ffac3a607",
+    "data": [
+      {
+        "text": "now into Paris",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f541c9fb-ece8-465f-8850-45769e629be8",
+    "data": [
+      {
+        "text": "the price for Mexican hotel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e4c6eb75-5c2e-4d6d-bee6-f99c93b6defe",
+    "data": [
+      {
+        "text": "convert 100 Fahrenheit to Celsius",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f0eda805-2fed-493c-97a5-14e97e1af3c9",
+    "data": [
+      {
+        "text": "don\u0027t convert 100 Pounds to Dollars",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "abc43743-e912-4a54-81a8-1a58e9b76c9b",
+    "data": [
+      {
+        "text": "how many inches in a meter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

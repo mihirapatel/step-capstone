@@ -1,0 +1,91 @@
+{
+  "id": "eac78767-06e2-46ab-b5e5-3ab390f6dd90",
+  "name": "calculator.tips - context:tips",
+  "auto": true,
+  "contexts": [
+    "calculator-tips"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "calculator.tips",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "bc40a840-cdad-46fc-8aca-adbc6ffc8421",
+          "name": "tip-percentage",
+          "required": false,
+          "dataType": "@sys.percentage",
+          "value": "$tip-percentage",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "2a607c5b-e3c6-4e4f-91da-39a787c1f2a5",
+          "name": "currency",
+          "required": false,
+          "dataType": "@sys.currency-name",
+          "value": "$currency",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "82169720-a5c0-45d8-a5b3-07c67baa85cc",
+          "name": "amount-without-tip",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$amount-without-tip",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "ff28be20-4407-4e65-9936-161a1682227b",
+          "name": "people-number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$people-number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

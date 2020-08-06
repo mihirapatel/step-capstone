@@ -1,0 +1,373 @@
+[
+  {
+    "id": "09fd97b3-bece-495a-9fd3-fbb5c297c95e",
+    "data": [
+      {
+        "text": "show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "list",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fadd2f3b-7976-4aba-ab52-ef1ab585783f",
+    "data": [
+      {
+        "text": "give me ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lists",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": " from ",
+        "userDefined": false
+      },
+      {
+        "text": "December",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "73167c53-d1e0-48c1-96cf-5952ba623ffb",
+    "data": [
+      {
+        "text": "display my last ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "shopping",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lists",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "57eb9adf-6693-40aa-9bc3-d7d0cf284bd6",
+    "data": [
+      {
+        "text": "show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "last",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "bucket",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "list",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "83ccce3c-7203-4e35-b977-4f358b98ce28",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "all",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " the ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lists",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": " I created in ",
+        "userDefined": false
+      },
+      {
+        "text": "the past month",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4bbd6695-d1de-4fec-97d0-8845c1e06542",
+    "data": [
+      {
+        "text": "Show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "most recent",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "list",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "584f3d9e-6ee6-42a0-a8d5-466cb3c7f15f",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "all",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lists",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": " created ",
+        "userDefined": false
+      },
+      {
+        "text": "yesterday",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "405926db-0b14-4ad4-bc8e-6d410794871d",
+    "data": [
+      {
+        "text": "Show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "past",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lists",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "467c2f98-af3f-4356-acf0-2193d260f262",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "all",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "my",
+        "meta": "@generic-list",
+        "alias": "generic-list",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lists",
+        "meta": "@list-object",
+        "alias": "list-object",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

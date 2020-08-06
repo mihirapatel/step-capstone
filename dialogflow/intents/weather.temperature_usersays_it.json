@@ -1,0 +1,275 @@
+[
+  {
+    "id": "f05f23fa-730c-4378-bfdb-1ff7aba9ab46",
+    "data": [
+      {
+        "text": "fuori fa ",
+        "userDefined": false
+      },
+      {
+        "text": "caldo",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "14011773-9aa1-454e-8e90-1a967f3bd261",
+    "data": [
+      {
+        "text": "com\u0027è la temperatura",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "48efab5b-496e-47fc-ac18-894aaac3bb71",
+    "data": [
+      {
+        "text": "temperatura",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "b714f431-5594-4d12-a5d2-25385864d6e5",
+    "data": [
+      {
+        "text": "mostrami la temperatura a ",
+        "userDefined": false
+      },
+      {
+        "text": "Roma",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "bd706091-7972-4869-a0c1-2f6326ab4def",
+    "data": [
+      {
+        "text": "temperatura a ",
+        "userDefined": false
+      },
+      {
+        "text": "Londra",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "3b193467-905d-4e3f-849d-5a1abe05dad8",
+    "data": [
+      {
+        "text": "fa ",
+        "userDefined": false
+      },
+      {
+        "text": "freddo",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "a3c299ba-89de-4aed-a34d-8cc1a3c81ed7",
+    "data": [
+      {
+        "text": "mostrami la temperatura a ",
+        "userDefined": false
+      },
+      {
+        "text": "Napoli",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "gradi Centigradi",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "8d107f3a-b2a9-453a-a15b-03b88e6ba738",
+    "data": [
+      {
+        "text": "sai se fa ",
+        "userDefined": false
+      },
+      {
+        "text": "freddo",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " fuori ora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "ca56563e-14c1-4721-b803-468401007b3c",
+    "data": [
+      {
+        "text": "temperatura in ",
+        "userDefined": false
+      },
+      {
+        "text": "gradi Centigradi",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "0d98e5c4-1b05-47a1-ad65-a7194123a6c1",
+    "data": [
+      {
+        "text": "fa ",
+        "userDefined": false
+      },
+      {
+        "text": "caldo",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " fuori",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "1857a35f-062f-47b6-acb1-d5e6b1e50adc",
+    "data": [
+      {
+        "text": "fa ",
+        "userDefined": false
+      },
+      {
+        "text": "freddo",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " a ",
+        "userDefined": false
+      },
+      {
+        "text": "Napoli",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "3e6ffaec-b0f4-4f72-aa25-b8fe35f148b6",
+    "data": [
+      {
+        "text": "mostrami la temperatura",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  },
+  {
+    "id": "47c1473e-e43f-4509-9c56-4ba09d4aefe4",
+    "data": [
+      {
+        "text": "oggi",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " a ",
+        "userDefined": false
+      },
+      {
+        "text": "Roma",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " fa ",
+        "userDefined": false
+      },
+      {
+        "text": "caldo",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "it",
+    "updated": 0
+  }
+]

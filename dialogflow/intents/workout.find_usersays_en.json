@@ -1,0 +1,551 @@
+[
+  {
+    "id": "085191db-e50e-4d9a-adc3-ac1665d6f63b",
+    "data": [
+      {
+        "text": "Open",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " workout",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "89e477d6-5db3-476c-a392-58fdc6b781cb",
+    "data": [
+      {
+        "text": "I want to workout",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "478d10f5-c8ec-46b5-9cdb-facfd2b7f272",
+    "data": [
+      {
+        "text": " Show me workouts from ",
+        "userDefined": false
+      },
+      {
+        "text": "Chloe Ting",
+        "meta": "@youtube-channel",
+        "alias": "youtube-channel",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b091c209-f72a-4174-9109-7461d4de0366",
+    "data": [
+      {
+        "text": " Find some ",
+        "userDefined": false
+      },
+      {
+        "text": "30 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dancer",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "606563b6-1507-4569-b41e-ec2ecb303f88",
+    "data": [
+      {
+        "text": " Search for ",
+        "userDefined": false
+      },
+      {
+        "text": "pilates",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts by ",
+        "userDefined": false
+      },
+      {
+        "text": "Blogilates",
+        "meta": "@youtube-channel",
+        "alias": "youtube-channel",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6a0dbfbb-e7f7-478a-9564-12257d521f37",
+    "data": [
+      {
+        "text": "Can you find some ",
+        "userDefined": false
+      },
+      {
+        "text": "beginner",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts from ",
+        "userDefined": false
+      },
+      {
+        "text": "Madfit",
+        "meta": "@youtube-channel",
+        "alias": "youtube-channel",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3bd4efe7-8d95-4a89-9985-56a41ff54239",
+    "data": [
+      {
+        "text": " I need some ",
+        "userDefined": false
+      },
+      {
+        "text": "15 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "upper body",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5b26a177-dc7f-4d02-b0d5-27dc943c3883",
+    "data": [
+      {
+        "text": " I want to do ",
+        "userDefined": false
+      },
+      {
+        "text": "dumbbell only",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0bf654bf-be23-45aa-af1d-7e1ed0995b9d",
+    "data": [
+      {
+        "text": " I want to work out my ",
+        "userDefined": false
+      },
+      {
+        "text": "abs",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "59d261c7-51d8-462f-a560-92463ab7a8d9",
+    "data": [
+      {
+        "text": " Find ",
+        "userDefined": false
+      },
+      {
+        "text": "45 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Popsugar Fitness",
+        "meta": "@youtube-channel",
+        "alias": "youtube-channel",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a9644e36-413b-425d-a794-5760b2f40e90",
+    "data": [
+      {
+        "text": "Find me ",
+        "userDefined": false
+      },
+      {
+        "text": "20 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "apartment friendly",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts by ",
+        "userDefined": false
+      },
+      {
+        "text": "Madfit",
+        "meta": "@youtube-channel",
+        "alias": "youtube-channel",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "875f9c40-8e46-4666-8990-e607ed895bdd",
+    "data": [
+      {
+        "text": " Show me some ",
+        "userDefined": false
+      },
+      {
+        "text": "30 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "cardio",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "191fa0cb-f349-403d-a5f0-f6f24bf3b40f",
+    "data": [
+      {
+        "text": " What are some good ",
+        "userDefined": false
+      },
+      {
+        "text": "knee friendly",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fa26ff0c-a0cf-4006-9993-f9b52b5df1bd",
+    "data": [
+      {
+        "text": " Search for ",
+        "userDefined": false
+      },
+      {
+        "text": "low impact",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ba624da9-511c-4c80-b0eb-1753c9b7e6e2",
+    "data": [
+      {
+        "text": " Search for ",
+        "userDefined": false
+      },
+      {
+        "text": "15 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "full body",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b3750cda-fbbd-46ee-8c32-8a5142380e73",
+    "data": [
+      {
+        "text": " Search for ",
+        "userDefined": false
+      },
+      {
+        "text": "30 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "partner",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8c6d70ef-3b1a-4187-9f0e-3704108e8b00",
+    "data": [
+      {
+        "text": " What are some good ",
+        "userDefined": false
+      },
+      {
+        "text": "yoga",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9aa497e9-7131-451c-8084-555e568be00a",
+    "data": [
+      {
+        "text": "Search for ",
+        "userDefined": false
+      },
+      {
+        "text": "30 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "no equipment",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "aeb29457-4bad-41f0-b9f2-4bc86acbc0d4",
+    "data": [
+      {
+        "text": " Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "lower body",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workouts",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d10ef474-995f-47b5-8be3-b044bc3ca6cd",
+    "data": [
+      {
+        "text": "Find me a ",
+        "userDefined": false
+      },
+      {
+        "text": "15 minute",
+        "meta": "@sys.duration",
+        "alias": "duration",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "HIIT",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": true
+      },
+      {
+        "text": " workout",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

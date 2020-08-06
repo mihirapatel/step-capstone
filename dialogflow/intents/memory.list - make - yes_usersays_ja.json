@@ -1,0 +1,132 @@
+[
+  {
+    "id": "c2f692e6-ee4e-4083-9a83-b0e969baa455",
+    "data": [
+      {
+        "text": "そうする",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "796c067c-807b-4ea1-b5bc-0dea6ed44fe7",
+    "data": [
+      {
+        "text": "もちろん",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "37ed0b1f-3abb-4385-abbb-e4a1154ab93c",
+    "data": [
+      {
+        "text": "賛成です",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "66ca22da-cd86-445e-9d63-58feab2f4766",
+    "data": [
+      {
+        "text": "はい",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "af48aae7-d050-4278-a11d-4c4acabe5787",
+    "data": [
+      {
+        "text": "やって",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "580cbba4-cc32-4eb4-acf3-45d7ddcad447",
+    "data": [
+      {
+        "text": "そのとおり",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "9fdb778f-03c7-4d43-a0f5-8ea95bb534f7",
+    "data": [
+      {
+        "text": "同意します",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 3,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "d182d732-2ec4-4a96-a3b8-301909264782",
+    "data": [
+      {
+        "text": "いいよ",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "87438d51-7d0d-49d1-9494-9de07b85d3b1",
+    "data": [
+      {
+        "text": "そうだね",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "8806e50d-95de-41f0-93f1-ea2bc8c389f0",
+    "data": [
+      {
+        "text": "そうしよう",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  }
+]

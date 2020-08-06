@@ -12,10 +12,18 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.log.InvalidRequestException;
+import com.google.gson.Gson;
 import com.google.protobuf.Value;
 import com.google.sps.agents.Memory;
-import com.google.sps.data.Pair;import com.google.sps.data.RecommendationsClient;
+import com.google.sps.data.Pair;
+import com.google.sps.data.RecommendationsClient;
+import com.google.sps.servlets.BookAgentServlet;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,6 +95,7 @@ public class MemoryUtils {
     entity.setProperty("errorResponse", !isUser && comment.equals(AgentUtils.DEFAULT_FALLBACK));
     entity.setProperty("timestamp", timeMillis);
     datastore.put(entity);
+    log.info(new Gson().toJson(entity));
   }
 
   /**
@@ -123,6 +132,8 @@ public class MemoryUtils {
   public static List<Pair<Entity, List<Entity>>> getKeywordCommentEntitiesWithTime(
       DatastoreService datastore, String userID, String keyword, long startTime, long endTime) {
     Filter currentUserFilter = getDurationFilter(userID, startTime, endTime);
+    log.info("start time: " + startTime);
+    log.info("end time: " + endTime);
     return getCommentListHelper(datastore, currentUserFilter, keyword);
   }
 
@@ -197,6 +208,7 @@ public class MemoryUtils {
       return listQuery.subList(
           0, Math.min(listQuery.size(), (int) parameters.get("number").getNumberValue()));
     }
+    log.info("past list query: " + listQuery);
     return listQuery;
   }
 
@@ -275,6 +287,7 @@ public class MemoryUtils {
                 + ")");
       }
       datastore.put(existingEntity);
+      log.info(new Gson().toJson(existingEntity));
     }
     addListItems(datastore, userID, items, listName, recommender);
   }
@@ -314,6 +327,7 @@ public class MemoryUtils {
       recommender.saveAggregateListData(stemmedListName, items, true, true);
     }
     datastore.put(existingEntity);
+    log.info(new Gson().toJson(existingEntity));
     return true;
   }
 
@@ -340,6 +354,7 @@ public class MemoryUtils {
     entity.setProperty("timestamp", timestamp);
     entity.setProperty("items", items);
     datastore.put(entity);
+    log.info(new Gson().toJson(entity));
   }
 
   private static void addListItems(
@@ -586,6 +601,50 @@ public class MemoryUtils {
   public static void provideNegativeFeedback(
       RecommendationsClient recommender, String listName, List<String> items) {
     recommender.saveAggregateListData(StemUtils.stemmed(listName), items, false, false);
-    return;
+  }
+
+  public static void seedDatabase(DatastoreService datastore) {
+    URL url = MemoryUtils.class.getResource("/dbEntities");
+    String path = url.getPath();
+    File[] allDBFiles = new File(path).listFiles();
+    Arrays.sort(allDBFiles);
+    Gson gson = new Gson();
+    boolean checkExisting = true;
+    for (File file : allDBFiles) {
+      log.info("file: " + file.getName());
+      try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+          log.info("line: " + line);
+          char firstCh = line.charAt(0);
+          if (firstCh == '#') {
+            continue;
+          } else if (firstCh != '{') {
+            break;
+          }
+          Entity e = gson.fromJson(line, Entity.class);
+          Map<String, Value> keyMap =
+              BookAgentServlet.stringToMap(line).get("key").getStructValue().getFieldsMap();
+          Entity entity =
+              new Entity(
+                  (String) keyMap.get("kind").getStringValue(), keyMap.get("id").getStringValue());
+          entity.setPropertiesFrom(e);
+          entity.setProperty("timestamp", Long.parseLong((String) entity.getProperty("timestamp")));
+          if (checkExisting) {
+            checkExisting = false;
+            try {
+              Entity existing = datastore.get(entity.getKey());
+              return;
+            } catch (EntityNotFoundException exception) {
+              datastore.put(entity);
+            }
+          } else {
+            datastore.put(entity);
+          }
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }

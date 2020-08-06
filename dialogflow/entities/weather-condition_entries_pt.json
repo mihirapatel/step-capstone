@@ -1,0 +1,71 @@
+[
+  {
+    "value": "clouds",
+    "synonyms": [
+      "céu com nuvens",
+      "céu nublado",
+      "nublado",
+      "nuvens"
+    ]
+  },
+  {
+    "value": "foggy",
+    "synonyms": [
+      "neblina",
+      "nevoeiro",
+      "névoa"
+    ]
+  },
+  {
+    "value": "rain",
+    "synonyms": [
+      "a chover",
+      "aguaceiro",
+      "aguaceiros",
+      "chove",
+      "chovendo",
+      "chover",
+      "chovisca",
+      "chovoso",
+      "chuva",
+      "chuva forte",
+      "chuva leve",
+      "chuvarada",
+      "chuvaradas",
+      "chuviscando",
+      "chuvuscar",
+      "garoa",
+      "pancadas de chuva"
+    ]
+  },
+  {
+    "value": "snow",
+    "synonyms": [
+      "a nevar",
+      "neva",
+      "nevando",
+      "nevar",
+      "neve"
+    ]
+  },
+  {
+    "value": "sun",
+    "synonyms": [
+      "com sol",
+      "céu limpo",
+      "céu sem nuvens",
+      "ensolarado",
+      "sol",
+      "tempo bom"
+    ]
+  },
+  {
+    "value": "wind",
+    "synonyms": [
+      "a ventar",
+      "ventando",
+      "ventania",
+      "vento"
+    ]
+  }
+]

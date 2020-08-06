@@ -1,0 +1,9 @@
+{
+  "id": "1b8d21f3-611f-4701-8485-6ab4e1993f65",
+  "name": "books-categories",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": true
+}

@@ -1,0 +1,533 @@
+[
+  {
+    "id": "7f55b5c9-9db0-4f65-83fa-d9a5d2ad43da",
+    "data": [
+      {
+        "text": "翻譯成",
+        "userDefined": false
+      },
+      {
+        "text": "韓文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "7b1b82ec-620a-4c20-9d7d-a1399d0125de",
+    "data": [
+      {
+        "text": "我愛你",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "翻譯成",
+        "userDefined": false
+      },
+      {
+        "text": "德語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "ebeecc84-af7b-4c77-88d2-bdc3277f0cba",
+    "data": [
+      {
+        "text": "從",
+        "userDefined": false
+      },
+      {
+        "text": "英文",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "翻譯",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "成",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "中文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "20d34c4d-98a2-44ce-9656-bf62bc69cbb0",
+    "data": [
+      {
+        "text": "在線翻譯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "18114ad5-13f5-4bab-9ef9-faafe9aa52ca",
+    "data": [
+      {
+        "text": "「",
+        "userDefined": false
+      },
+      {
+        "text": "早餐",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」的",
+        "userDefined": false
+      },
+      {
+        "text": "德文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "是什麼",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "2a016961-4281-4c01-8f05-ef3e15fedd23",
+    "data": [
+      {
+        "text": "能幫我翻譯嗎",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "221c2d33-3e5d-4fa4-aa0f-3b1a58161b67",
+    "data": [
+      {
+        "text": "你可以做我的翻譯嗎",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "87df8031-cf81-4ca9-b774-435c221804d8",
+    "data": [
+      {
+        "text": "翻譯從",
+        "userDefined": false
+      },
+      {
+        "text": "德語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      },
+      {
+        "text": "到",
+        "userDefined": false
+      },
+      {
+        "text": "法文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "46b13a69-3bc6-43e2-9997-5f53b80e11b9",
+    "data": [
+      {
+        "text": "我怎麽翻譯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "22b673df-0ab7-4640-818f-a7394545077a",
+    "data": [
+      {
+        "text": "你好",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "從",
+        "userDefined": false
+      },
+      {
+        "text": "中文",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "翻譯",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "成",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "英文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "0d21558f-31d1-41e2-b07a-7a6ba3f2791a",
+    "data": [
+      {
+        "text": "你可以幫我翻譯嗎",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "3b8fcd9a-33f1-49f8-85d5-e5c7d9cfa4ba",
+    "data": [
+      {
+        "text": "將“",
+        "userDefined": false
+      },
+      {
+        "text": "我愛你",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "”翻譯成",
+        "userDefined": false
+      },
+      {
+        "text": "法語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "171492dd-d6e7-4c9d-b835-a237be4a643f",
+    "data": [
+      {
+        "text": "請你告訴我怎麽翻譯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "ea24517a-0421-4575-92da-ef0233375045",
+    "data": [
+      {
+        "text": "“",
+        "userDefined": false
+      },
+      {
+        "text": "聖誕老人",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "”用",
+        "userDefined": false
+      },
+      {
+        "text": "芬蘭語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "怎麽說",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "ec35587d-af5a-42f3-ac0b-736377d50c39",
+    "data": [
+      {
+        "text": "請將「",
+        "userDefined": false
+      },
+      {
+        "text": "我愛您",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」譯成",
+        "userDefined": false
+      },
+      {
+        "text": "法文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "86e7216d-2448-4f79-b12b-a2d128639b07",
+    "data": [
+      {
+        "text": "“",
+        "userDefined": false
+      },
+      {
+        "text": "早餐",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "”對應的",
+        "userDefined": false
+      },
+      {
+        "text": "德語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      },
+      {
+        "text": "單詞是什麽",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "00931b7e-4d8e-4d1e-a13c-8b7a1ccbd60c",
+    "data": [
+      {
+        "text": "翻譯成",
+        "userDefined": false
+      },
+      {
+        "text": "英語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "66b7fdf5-f478-48ef-b1af-3529e5757cc0",
+    "data": [
+      {
+        "text": "翻譯從",
+        "userDefined": false
+      },
+      {
+        "text": "法語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "e97d578a-1210-4dc3-881c-5becd5f848ce",
+    "data": [
+      {
+        "text": "你好",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "日語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "翻譯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "9329f852-154a-47d5-851d-3f489853a7ef",
+    "data": [
+      {
+        "text": "語言翻譯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "4819a044-5499-49b1-8f7b-ca7d8b71e3da",
+    "data": [
+      {
+        "text": "幫我翻譯",
+        "userDefined": false
+      },
+      {
+        "text": "我愛你",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "908b7be3-e005-4c16-87d3-8640aac0b636",
+    "data": [
+      {
+        "text": "翻譯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  },
+  {
+    "id": "e1ecb240-cb20-4e81-98a2-ebbb96b8f91a",
+    "data": [
+      {
+        "text": "從",
+        "userDefined": false
+      },
+      {
+        "text": "日語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      },
+      {
+        "text": "到",
+        "userDefined": false
+      },
+      {
+        "text": "法語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      },
+      {
+        "text": "翻譯",
+        "userDefined": false
+      },
+      {
+        "text": "你好",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-hk",
+    "updated": 0
+  }
+]

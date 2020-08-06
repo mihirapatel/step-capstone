@@ -1,0 +1,158 @@
+[
+  {
+    "id": "76c73ab3-91e3-4973-bf0f-300a076943ba",
+    "data": [
+      {
+        "text": "是",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "f031abfa-b66a-47b4-a869-e2d9eaa77ae7",
+    "data": [
+      {
+        "text": "没问题",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "facfb029-03a9-4057-951d-4b9a06366703",
+    "data": [
+      {
+        "text": "可以",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "5b50862d-0627-4d08-9e2b-20bf346d7b52",
+    "data": [
+      {
+        "text": "我不介意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "bef12e1d-03f6-4b15-84c2-d52085d34497",
+    "data": [
+      {
+        "text": "确认",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "135564dd-3b8d-4267-a05f-de9289859b92",
+    "data": [
+      {
+        "text": "好",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "0043bcc4-5b9f-47f2-a069-9a544f259a96",
+    "data": [
+      {
+        "text": "好的",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "e1570e21-c13f-44e9-a9ef-2d6acc28253c",
+    "data": [
+      {
+        "text": "正确",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "581ea998-b8a6-4275-a3d1-05c67fc43f33",
+    "data": [
+      {
+        "text": "没错",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "cd0ef91e-2059-4bed-a5e7-09f71efd6bca",
+    "data": [
+      {
+        "text": "对",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "508e6cda-8b3a-4753-8ea7-7babfb562184",
+    "data": [
+      {
+        "text": "我同意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "f9d5771c-2e4b-44b0-a60b-29f99240348b",
+    "data": [
+      {
+        "text": "对啊",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  }
+]

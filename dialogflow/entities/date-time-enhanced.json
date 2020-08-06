@@ -1,0 +1,9 @@
+{
+  "id": "c28c135d-af8e-466a-a329-088653d7c065",
+  "name": "date-time-enhanced",
+  "isOverridable": true,
+  "isEnum": true,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

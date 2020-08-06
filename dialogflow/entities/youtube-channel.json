@@ -1,0 +1,9 @@
+{
+  "id": "02b6dd99-af5f-458e-8811-426c93a889da",
+  "name": "youtube-channel",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": true
+}

@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "d0b8c005-c55b-4057-9e81-95248ac1fa4b",
+    "data": [
+      {
+        "text": "прочти перевод фразы ",
+        "userDefined": false
+      },
+      {
+        "text": "как здорово",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "испанского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "e3d6800d-7555-4d92-8466-8396b3ff86e6",
+    "data": [
+      {
+        "text": "теперь переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "how are you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "eca2081c-9b42-472b-8b8d-7ad4e20bf08c",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "студент",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "китайский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "6f46715e-25d3-4872-9b43-9470785b8502",
+    "data": [
+      {
+        "text": "скажи ",
+        "userDefined": false
+      },
+      {
+        "text": "я счастлив",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "португальский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "dac425b4-9d18-4310-9626-3af9a77cb8c7",
+    "data": [
+      {
+        "text": "перевод фразы ",
+        "userDefined": false
+      },
+      {
+        "text": "je t\u0027aime",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "иврит",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "372c5254-2d42-4850-8392-8e9f29b8356d",
+    "data": [
+      {
+        "text": "умеешь переводить с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "5ba77d0f-9e81-4524-8d8d-6ca297959357",
+    "data": [
+      {
+        "text": "перевод на ",
+        "userDefined": false
+      },
+      {
+        "text": "итальянский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "мы идём в кино",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "db60b43d-2cc4-4596-9d66-87b3f9f7f340",
+    "data": [
+      {
+        "text": "мне надо перевести на ",
+        "userDefined": false
+      },
+      {
+        "text": "бенгальский язык",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "10ec368b-9957-4abc-b534-0316bc12cc6d",
+    "data": [
+      {
+        "text": "покажи мне перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "где ты живешь",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "1ca81cb1-cbac-4510-a413-8886aa32cb74",
+    "data": [
+      {
+        "text": "пожалуйста переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "te quiero",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "испанского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "1bc93e7c-3a55-4499-aaa9-1bd0487b1c01",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "привет",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "испанский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "a0297934-5426-4658-a42e-a9d12ee335bb",
+    "data": [
+      {
+        "text": "перевод слова ",
+        "userDefined": false
+      },
+      {
+        "text": "здравствуйте",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "36a62859-a18a-4b6e-86fc-8534b40876bf",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра мы пойдём в цирк",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "болгарский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f2bfe35b-5f54-4e0a-9985-5d7d9e7ad02e",
+    "data": [
+      {
+        "text": "переведи это на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "как у тебя дела",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "279b70bf-45e5-4949-bf54-2a091537e169",
+    "data": [
+      {
+        "text": "переведи на ",
+        "userDefined": false
+      },
+      {
+        "text": "китайский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "пришлёшь мне фото",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "18f05395-abce-4abf-b5e6-ddf508dc3b6e",
+    "data": [
+      {
+        "text": "перевод с испанского",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "a0e45320-1209-4e41-a828-9f3ffc7e3665",
+    "data": [
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " перевод  ",
+        "userDefined": false
+      },
+      {
+        "text": "te quiero",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "7edc8795-4960-49cc-88c0-c1a90710480c",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "bonjour",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "французского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "a23163be-a892-474a-bcc2-4e4e3be1b12c",
+    "data": [
+      {
+        "text": "перевод слова ",
+        "userDefined": false
+      },
+      {
+        "text": "salve",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "7e3074d7-a5ca-4028-958b-2bdb080e7c64",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "привет как дела",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "итальянский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f30e815b-819a-44c0-a6c2-d31a8c7b3970",
+    "data": [
+      {
+        "text": "можешь перевести ",
+        "userDefined": false
+      },
+      {
+        "text": "привет",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "немецкий",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "0c85c3ab-81cf-465c-b1cf-7fc750302d5c",
+    "data": [
+      {
+        "text": "перевод с ",
+        "userDefined": false
+      },
+      {
+        "text": "немецкого",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "французский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "9cd37bb8-b707-408d-86a8-fa9bf17e3255",
+    "data": [
+      {
+        "text": "переводи",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "fea9631e-ff71-4b59-816e-b7396c14aae6",
+    "data": [
+      {
+        "text": "можешь перевести слово",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "2eb5efbd-3b17-4e64-bfef-718511315002",
+    "data": [
+      {
+        "text": "перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "does he like it",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f1e5a6e6-15ff-4027-abec-def3065acc71",
+    "data": [
+      {
+        "text": "переведи это ",
+        "userDefined": false
+      },
+      {
+        "text": "je t\u0027aime les croissans",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "0e4239b4-ed75-4066-8f77-995c3d12922d",
+    "data": [
+      {
+        "text": "русско",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "-",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " перевод",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ca35d34e-301c-4622-8b52-e96d76eae121",
+    "data": [
+      {
+        "text": "как по-",
+        "userDefined": false
+      },
+      {
+        "text": "немецки",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " сказать ",
+        "userDefined": false
+      },
+      {
+        "text": "карандаш",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "17481b99-c92e-4bf4-827c-992b66715683",
+    "data": [
+      {
+        "text": "переведи с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "60bf26b1-0b6b-4dd2-a380-0bb877040063",
+    "data": [
+      {
+        "text": "как сказать ",
+        "userDefined": false
+      },
+      {
+        "text": "Санта-Клаус",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " по-",
+        "userDefined": false
+      },
+      {
+        "text": "фински",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "8446b59c-e272-4c8e-96f6-32739c180784",
+    "data": [
+      {
+        "text": "переведи",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ab02f00d-9344-48a8-ac44-6ec84adaf5bb",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "how are you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "8b5ac57a-ecf0-4add-8490-02e85843ea79",
+    "data": [
+      {
+        "text": "перевод фразы ",
+        "userDefined": false
+      },
+      {
+        "text": "je t\u0027aime bien",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "французского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "dcd32c96-421e-46a1-9c77-babfb40bc8a6",
+    "data": [
+      {
+        "text": "теперь я хочу переводить с ",
+        "userDefined": false
+      },
+      {
+        "text": "итальянского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "c3369874-fa1b-4c10-b1a0-5a58835b1453",
+    "data": [
+      {
+        "text": "как сказать ",
+        "userDefined": false
+      },
+      {
+        "text": "привет",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "китайском",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "8090bee6-0c4b-4efb-ac19-b7d4265250a8",
+    "data": [
+      {
+        "text": "переведи  ",
+        "userDefined": false
+      },
+      {
+        "text": "what\u0027s up",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "5357cc01-dabd-49bf-b45a-52b53a190b55",
+    "data": [
+      {
+        "text": "переводи с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "испанский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "9d5b911b-5f64-4bec-a63f-85fbf5135c62",
+    "data": [
+      {
+        "text": "переведи слово ",
+        "userDefined": false
+      },
+      {
+        "text": "le renard",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "aa6063e4-78af-494f-82ac-e98a8d52281d",
+    "data": [
+      {
+        "text": "пожалуйста переведи мне на ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "30f23d37-4e2b-4b69-a18b-b36836375ba9",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "приветствую тебя",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "тагальский язык",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "3eeb6d38-7058-4d62-ba88-a9a419bd27d0",
+    "data": [
+      {
+        "text": "также мне нужен перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "tu es beau",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "французского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f6a79455-0b50-40fc-9d76-2e6e003260ed",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "what\u0027s up",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "83505a4c-cf94-4887-8905-b0f8ef1ef05e",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "I love you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ae6583bf-adab-4184-a94c-d6029bb562bc",
+    "data": [
+      {
+        "text": "как сказать ",
+        "userDefined": false
+      },
+      {
+        "text": "завтрак",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "немецком",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "842fd144-49fb-4748-b5ad-1c9a46ea0c0d",
+    "data": [
+      {
+        "text": "мне нужен перевод",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "61d50ee3-4df8-4c3d-984e-a98e2aef41f0",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "испанское",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " слово ",
+        "userDefined": false
+      },
+      {
+        "text": "trabajador",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "русский язык",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "914d0af7-64a2-42c6-9b04-5a250a69c4d3",
+    "data": [
+      {
+        "text": "прочти перевод фразы ",
+        "userDefined": false
+      },
+      {
+        "text": "как здорово",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "17f14fa8-a29b-4a28-a584-062e76e9e8ac",
+    "data": [
+      {
+        "text": "можешь пожалуйста перевести ",
+        "userDefined": false
+      },
+      {
+        "text": "приходи сегодня",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "итальянский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ebd79df7-dc0d-4844-a6dd-2348a95dc316",
+    "data": [
+      {
+        "text": "хочу перевести фразу",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "5ba3d95e-c2f5-4550-91d5-64732d3b394d",
+    "data": [
+      {
+        "text": "умеешь переводить на ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "91133248-d482-446c-9e9a-bf1faabe4b14",
+    "data": [
+      {
+        "text": "перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "trabajador",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "4bf1454a-1ecf-488f-9e18-ee3a318f23d6",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "кот",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "русского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "иврит",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "e501429b-8122-4d52-b357-04a657b4dee3",
+    "data": [
+      {
+        "text": "переведи пожелание ",
+        "userDefined": false
+      },
+      {
+        "text": "счастливого нового года",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "испанский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "003eccd6-5238-4042-8f78-3cab8f7391b4",
+    "data": [
+      {
+        "text": "как сказать ",
+        "userDefined": false
+      },
+      {
+        "text": "привет как дела",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "немецком языке",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "698b9397-0ed9-43d2-b62e-27899b8726ab",
+    "data": [
+      {
+        "text": "скажи мне ",
+        "userDefined": false
+      },
+      {
+        "text": "английском",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " перевод слова ",
+        "userDefined": false
+      },
+      {
+        "text": "сок",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " пожалуйста",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "feb28aba-3a7e-4f2b-93f7-856d7ac35c65",
+    "data": [
+      {
+        "text": "хинди",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " перевод слова ",
+        "userDefined": false
+      },
+      {
+        "text": "лёгкость",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "9b676707-638d-4c3d-9c52-5385565f87b9",
+    "data": [
+      {
+        "text": "перевод",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ff2d1501-6d1e-491c-a3bc-cd3058c16a83",
+    "data": [
+      {
+        "text": "как переводится фраза ",
+        "userDefined": false
+      },
+      {
+        "text": "I love you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "французский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "d8a171a4-5323-42f5-8593-1b5fe6ecb2e6",
+    "data": [
+      {
+        "text": "русский",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " перевод",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "46f92f6b-128c-40e9-ae41-4f115809b9ab",
+    "data": [
+      {
+        "text": "умеешь переводить с ",
+        "userDefined": false
+      },
+      {
+        "text": "латинского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "2e26f71e-e858-4742-b5ca-d83f6d0de84f",
+    "data": [
+      {
+        "text": "нужно чтобы ты перевела это",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "af4b505f-44dc-40f8-8c82-40f31da28e1a",
+    "data": [
+      {
+        "text": "переведи ",
+        "userDefined": false
+      },
+      {
+        "text": "много",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " с ",
+        "userDefined": false
+      },
+      {
+        "text": "английского",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "французский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "8cea0a53-9fce-42e2-81c5-172c5b6a6c39",
+    "data": [
+      {
+        "text": "переведи вот это слово на ",
+        "userDefined": false
+      },
+      {
+        "text": "английский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ярмарка",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f109c5a2-4603-47c7-87b8-03658648c2b3",
+    "data": [
+      {
+        "text": "перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "привет",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "испанский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "96462e0b-5957-4563-a500-b2472cb270c4",
+    "data": [
+      {
+        "text": "перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "выходные",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " на ",
+        "userDefined": false
+      },
+      {
+        "text": "португальский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "3d9a3ef0-de01-449e-8d18-c7aed43d5d9a",
+    "data": [
+      {
+        "text": "скажи мне ",
+        "userDefined": false
+      },
+      {
+        "text": "японский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " перевод ",
+        "userDefined": false
+      },
+      {
+        "text": "how are you",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "b7809065-6d57-46b4-b340-faf47df93037",
+    "data": [
+      {
+        "text": "как сказать ",
+        "userDefined": false
+      },
+      {
+        "text": "привет",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " по-",
+        "userDefined": false
+      },
+      {
+        "text": "фински",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "6f79b68f-19de-4525-ae73-5b29adbff2da",
+    "data": [
+      {
+        "text": "переведи на ",
+        "userDefined": false
+      },
+      {
+        "text": "французский",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  }
+]

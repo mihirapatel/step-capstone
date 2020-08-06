@@ -1,0 +1,116 @@
+[
+  {
+    "id": "aa780d04-d4c1-4734-9575-f91d100ba4f0",
+    "data": [
+      {
+        "text": "dogs",
+        "meta": "@sys.any",
+        "alias": "q",
+        "userDefined": false
+      },
+      {
+        "text": " as ",
+        "userDefined": false
+      },
+      {
+        "text": "well",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "97aae8de-41b4-4de9-b6de-22a45f154d2c",
+    "data": [
+      {
+        "text": "now",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "kittens",
+        "meta": "@sys.any",
+        "alias": "q",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ecef454f-2fc7-4b05-8bde-47cafe17d8d8",
+    "data": [
+      {
+        "text": "how about ",
+        "userDefined": false
+      },
+      {
+        "text": "apple pie recipes",
+        "meta": "@sys.any",
+        "alias": "q",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d5e0fce8-910a-4385-a977-32cadebc96a5",
+    "data": [
+      {
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "puppies",
+        "meta": "@sys.any",
+        "alias": "q",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "now",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b55dbc1d-1551-469d-a04c-ba6f8eccebb0",
+    "data": [
+      {
+        "text": "now for ",
+        "userDefined": false
+      },
+      {
+        "text": "tables",
+        "meta": "@sys.any",
+        "alias": "q",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

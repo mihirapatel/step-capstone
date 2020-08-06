@@ -1,0 +1,314 @@
+[
+  {
+    "id": "20b66afd-dd94-487b-8994-0fd38889ce96",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "nevar",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "5c89e70f-f526-4a35-9008-38d54ab17296",
+    "data": [
+      {
+        "text": "deve ",
+        "userDefined": false
+      },
+      {
+        "text": "nevar",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "052f2c9f-2584-4f22-8fb3-0a34c035dbae",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "dfab9b9c-2e70-489d-b24b-b96d506bb898",
+    "data": [
+      {
+        "text": "será que está fazendo ",
+        "userDefined": false
+      },
+      {
+        "text": "sol",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": " no ",
+        "userDefined": false
+      },
+      {
+        "text": "Rio de Janeiro",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " agora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "1534f78a-c67f-4938-8ec7-692373004ebe",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": " mais ",
+        "userDefined": false
+      },
+      {
+        "text": "tarde",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "à noite",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "42763f0d-d1cd-496e-a467-f87f4e0e673d",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "da2040d9-db19-4cb8-b71a-08fb7189d2e9",
+    "data": [
+      {
+        "text": "está ",
+        "userDefined": false
+      },
+      {
+        "text": "chovendo",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "fbe2d4b0-afdf-494a-9672-9e7f7c278153",
+    "data": [
+      {
+        "text": "mas vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "099eddcf-c219-4b84-9716-31c62938d027",
+    "data": [
+      {
+        "text": "qual é a previsão do tempo para ",
+        "userDefined": false
+      },
+      {
+        "text": "neve",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nova York",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "fd4ec7c4-8042-4e1a-b375-2884fd262c2e",
+    "data": [
+      {
+        "text": "teremos ",
+        "userDefined": false
+      },
+      {
+        "text": "neve",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "c05f2b33-bc5a-409f-9f1f-6983d6ae9b92",
+    "data": [
+      {
+        "text": "será que vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " mais tarde ",
+        "userDefined": false
+      },
+      {
+        "text": "à noite",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  }
+]

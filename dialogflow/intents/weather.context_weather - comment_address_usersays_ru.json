@@ -1,0 +1,150 @@
+[
+  {
+    "id": "71722c6c-60bc-430c-9d68-bef5192945b1",
+    "data": [
+      {
+        "text": "теперь в ",
+        "userDefined": false
+      },
+      {
+        "text": "Новосибирске",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "8bc48980-a21c-414e-8cca-e03431c25247",
+    "data": [
+      {
+        "text": "Париж",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "408525fc-0043-45e1-ae17-ed80daac45c9",
+    "data": [
+      {
+        "text": "а какая в ",
+        "userDefined": false
+      },
+      {
+        "text": "Екатеринбурге",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "b1bd4cc4-8074-4949-8f1d-a843afd07f47",
+    "data": [
+      {
+        "text": "можешь проверить для ",
+        "userDefined": false
+      },
+      {
+        "text": "Лондона",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "004edff2-167b-41db-9b7f-ac3a9124cf46",
+    "data": [
+      {
+        "text": "что насчёт ",
+        "userDefined": false
+      },
+      {
+        "text": "Москвы",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "376cd6be-5a53-4a4a-a250-3ee396e1f5c4",
+    "data": [
+      {
+        "text": "и что в ",
+        "userDefined": false
+      },
+      {
+        "text": "Риме",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "361339e4-0ac9-4ec9-9aa3-5f759ea0f13e",
+    "data": [
+      {
+        "text": "а как в ",
+        "userDefined": false
+      },
+      {
+        "text": "Амстердаме",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "26c46a04-d216-473d-a9a6-a13dffd6a324",
+    "data": [
+      {
+        "text": "и в ",
+        "userDefined": false
+      },
+      {
+        "text": "Милане",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  }
+]

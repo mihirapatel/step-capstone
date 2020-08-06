@@ -1,0 +1,82 @@
+[
+  {
+    "value": "clouds",
+    "synonyms": [
+      "couvert",
+      "nuages",
+      "nuageux"
+    ]
+  },
+  {
+    "value": "fog",
+    "synonyms": [
+      "brouillard",
+      "brume"
+    ]
+  },
+  {
+    "value": "haze",
+    "synonyms": [
+      "brume"
+    ]
+  },
+  {
+    "value": "ice",
+    "synonyms": [
+      "glace"
+    ]
+  },
+  {
+    "value": "rain",
+    "synonyms": [
+      "il pleut",
+      "pleut-il",
+      "pleuvoir",
+      "pleuvra",
+      "pleuvra-t-il",
+      "pluie"
+    ]
+  },
+  {
+    "value": "shower",
+    "synonyms": [
+      "averse",
+      "averses"
+    ]
+  },
+  {
+    "value": "smoke",
+    "synonyms": [
+      "fumée"
+    ]
+  },
+  {
+    "value": "snow",
+    "synonyms": [
+      "il neige",
+      "neige",
+      "neige-t-il",
+      "neigera-t-il"
+    ]
+  },
+  {
+    "value": "sun",
+    "synonyms": [
+      "ensoleillé",
+      "soleil"
+    ]
+  },
+  {
+    "value": "thunderstorm",
+    "synonyms": [
+      "orage"
+    ]
+  },
+  {
+    "value": "wind",
+    "synonyms": [
+      "vent",
+      "venteaux"
+    ]
+  }
+]

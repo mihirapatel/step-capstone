@@ -1,0 +1,9 @@
+{
+  "id": "f314e526-9d38-4c8b-a54a-1c2d637a02a3",
+  "name": "generic-list",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

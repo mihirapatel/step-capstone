@@ -1,0 +1,271 @@
+[
+  {
+    "id": "51f45ffc-322b-4dd8-8697-550867a54c08",
+    "data": [
+      {
+        "text": "I speak ",
+        "userDefined": false
+      },
+      {
+        "text": "French",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      },
+      {
+        "text": " only",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "12b3362c-206c-48e3-ab5e-7d659426b170",
+    "data": [
+      {
+        "text": "I can talk in ",
+        "userDefined": false
+      },
+      {
+        "text": "Russian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8f5affa8-68b7-44e7-9512-dac12d89c0e1",
+    "data": [
+      {
+        "text": "I speak ",
+        "userDefined": false
+      },
+      {
+        "text": "European Portuguese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "32cc6481-dab3-4312-908e-5f1ffd50b86c",
+    "data": [
+      {
+        "text": "I can talk only in ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bb1439c1-2c28-47a9-abd3-f5f751db2ea7",
+    "data": [
+      {
+        "text": "my mother ",
+        "userDefined": false
+      },
+      {
+        "text": "tongue",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " is ",
+        "userDefined": false
+      },
+      {
+        "text": "German",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "16217a17-d2e8-4454-8828-bc812710d3b9",
+    "data": [
+      {
+        "text": "I want to talk in ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "48469b6c-69a8-4dab-a0d3-47b35c6c9069",
+    "data": [
+      {
+        "text": "I can speak ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "907f0a24-98ef-4073-ae35-770044254ab5",
+    "data": [
+      {
+        "text": "I\u0027m able to speak ",
+        "userDefined": false
+      },
+      {
+        "text": "General American",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "344bc8e6-38c6-456f-a501-d8b0588fd991",
+    "data": [
+      {
+        "text": "I speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Japanese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c155d151-9f82-4167-869d-7ae37e79da31",
+    "data": [
+      {
+        "text": "I speak only ",
+        "userDefined": false
+      },
+      {
+        "text": "French",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1b72ed69-a5fe-400a-8e98-746d99ebaf2d",
+    "data": [
+      {
+        "text": "I speak ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "well",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b62fd956-901d-4ef9-8a82-4ff82713d871",
+    "data": [
+      {
+        "text": "I\u0027m fluent in ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8e244b72-1c67-4bb7-98cc-13f36dec83dc",
+    "data": [
+      {
+        "text": "I\u0027m a native speaker of ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "id": "784b9d75-ab99-4d7c-b75e-1bcf864d9f47",
+  "name": "memory.list - show",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "47872e0f-6860-4329-a44a-1390eb4490d0",
+          "name": "list-name",
+          "required": false,
+          "dataType": "@sys.any",
+          "value": "$list-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "edf4f3f8-4fff-4ce6-be6e-8d3ce722823d",
+          "name": "date-time-enhanced",
+          "required": false,
+          "dataType": "@date-time-enhanced",
+          "value": "$date-time-enhanced",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "f484ee25-e5c5-4048-827b-1d7bbc954671",
+          "name": "list-object",
+          "required": true,
+          "dataType": "@list-object",
+          "value": "$list-object.original",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "cc6ef6f1-dbc6-45ec-ba66-7cec92b5f819",
+          "name": "generic-list",
+          "required": false,
+          "dataType": "@generic-list",
+          "value": "$generic-list",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "075f4b3b-f2bb-40d0-a20d-d3c33a334f56",
+          "name": "number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$number",
+          "defaultValue": "-1",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

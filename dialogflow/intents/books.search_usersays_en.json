@@ -1,0 +1,2266 @@
+[
+  {
+    "id": "4a57151e-eaa9-473d-8683-5fd7bdbcc561",
+    "data": [
+      {
+        "text": "Hey ",
+        "userDefined": false
+      },
+      {
+        "text": "Google",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": ", what are ",
+        "userDefined": false
+      },
+      {
+        "text": "new",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "hunting",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6614fcc7-5659-4a71-a44c-426532e3ae43",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "new",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "hunting",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "373489d0-c5a4-4ef8-afde-30403b3e8d3f",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "hunting",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "24db41fe-c8ec-4fe6-8140-3471d3a53b30",
+    "data": [
+      {
+        "text": "fiction",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d49110b5-2b0f-45df-bb93-00d5d0120a5f",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "popular",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "20481d39-85f3-4e03-aec4-918fbb956f93",
+    "data": [
+      {
+        "text": "popular",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "34140b91-a656-4f45-be07-8187523be346",
+    "data": [
+      {
+        "text": "newest",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "families",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3bfc3c2f-84d1-4ff5-8d85-7e3c5ff2f29c",
+    "data": [
+      {
+        "text": "Online books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "living on your own",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5fe1f077-ac5e-4f21-85b8-ce5c706cacb3",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "recent",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "The Great Gatsby",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e9bf4778-7ea7-4468-9ae7-cbb9ea21cdc8",
+    "data": [
+      {
+        "text": "What are ",
+        "userDefined": false
+      },
+      {
+        "text": "online books for free",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Love and Death",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "89a61259-4a65-4883-a1f4-62679e37f5b5",
+    "data": [
+      {
+        "text": "What are ",
+        "userDefined": false
+      },
+      {
+        "text": "free eBooks",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Ernest Hemingway",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0343366c-1156-4e4e-b0e0-3f1dbc4ee539",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "new",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "free eBooks",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8020e115-767d-454c-9623-231a95fd3f30",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "eBooks",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "Harry Potter",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8f5676eb-1961-40db-b328-52537d144276",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "recently published",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "free eBooks",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Looking for Love",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3cd3f783-8329-45ad-acb5-4cc2e00e80e0",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Saving Alaska",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "45f11ccf-b73a-411e-bd9c-66fa775a7877",
+    "data": [
+      {
+        "text": "What are the ",
+        "userDefined": false
+      },
+      {
+        "text": "newest",
+        "meta": "@order",
+        "alias": "order",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books online",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Google",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f79add5d-2108-4aad-ba82-19068c8633b1",
+    "data": [
+      {
+        "text": "Show me results titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Cooking 101",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e385f22f-4389-4b79-90f8-61de9240c2d7",
+    "data": [
+      {
+        "text": "Magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Highlights",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      },
+      {
+        "text": " for ",
+        "userDefined": false
+      },
+      {
+        "text": "children",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c2adbf0a-961a-407f-a8a8-aa27c92cb64f",
+    "data": [
+      {
+        "text": "Books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "The Grinch",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Dr. Suess",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "Tom Sawyer",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ca3aee57-d345-4a8f-bbc3-2d028dd61ec7",
+    "data": [
+      {
+        "text": "what are some ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Twlight",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Jane Austen",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "John Doe",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d3541fa6-e7ab-4126-acee-5c82d60d308f",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "Cricket",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "753a636b-ed9e-46bb-805c-ade674b9a2fc",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "Big and Beautiful",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b617a0f3-563f-4943-bbd2-c07781d2d4c3",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Martin Luther King",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "062925a3-dfd1-48d2-81e3-30a2d62cbd4e",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamilton",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "65b2054e-9150-4f7e-bffa-dfd4c4b72ad0",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Twilight",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f0ad2a4e-beb4-4e47-b0e6-c97038e02848",
+    "data": [
+      {
+        "text": "search for ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "Trees",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7910e535-92af-40a6-8164-d710edfe084b",
+    "data": [
+      {
+        "text": "what are ",
+        "userDefined": false
+      },
+      {
+        "text": "scary",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "44f3bf5e-6d0e-4133-b5e6-7b1dba64cf34",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "romance",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "novels",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Love is Good",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3af2a2dd-7be5-495d-aa0d-24efab68eb3b",
+    "data": [
+      {
+        "text": "Books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "\"Love is Blind\"",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3715f217-e3ac-43e4-a144-8b7d62aeb37d",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Julius Caesar",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "33734e44-1a27-4b8f-9d4d-602ae3758d9c",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Romeo and Juliette",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eee1679e-c793-4f9f-ba44-5b8e4d6d5a12",
+    "data": [
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Mark Twain",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "79bda598-bc0c-4f84-bbad-d8d34a018188",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " by author ",
+        "userDefined": false
+      },
+      {
+        "text": "John Snow",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f0356bf5-1897-474c-aef4-5c6b6ff8743a",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "The Great Gatsby",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7de027fd-40e4-4795-a943-76d3d8e8700d",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Trees and Things",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d04762d8-12e9-46dd-9218-9116bc3a597e",
+    "data": [
+      {
+        "text": "what are ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Abby is Awesome",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0a46d09a-45d6-4a34-8426-3b4c68fa2236",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "love and war",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "58e880d4-f37a-4f48-a537-54accfb88cd1",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " for ",
+        "userDefined": false
+      },
+      {
+        "text": "vegetarians",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d36b5ab0-6c21-45e3-b906-1bb77c6516fc",
+    "data": [
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "healthy cooking",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a29f5e86-4df6-4efe-96f7-e28baaf25df5",
+    "data": [
+      {
+        "text": "what are some ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "life and food",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9ae60b4d-419f-43e5-9379-138c47caa2ab",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "trees",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Julia Mckenna",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1d3fd329-b35b-41b0-b8ac-fb424798639e",
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " did ",
+        "userDefined": false
+      },
+      {
+        "text": "Jane Smith",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": false
+      },
+      {
+        "text": " write",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "150729c9-355d-4b26-bf89-f91f020ca42a",
+    "data": [
+      {
+        "text": "what are some ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "John Doe",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0f910e2f-c2fb-4736-8f93-cb4fb5b89925",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "love",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Nicholas Sparks",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "479fbeed-8813-4910-bb82-8a2157d5be9e",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "gardening",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fdd5a4c4-11e8-4ff7-b6de-041e65f14b51",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Percy Jackson",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6f4a5078-595a-47d2-8671-a82c82f602cb",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Where the Red Fern Grows",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "30963483-afae-4188-8c44-51d89a32ee9e",
+    "data": [
+      {
+        "text": "novels",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "world war II",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "09c6a3be-6150-4a57-8900-e185c2bedfa0",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "war and death",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2583b53d-2108-4056-921e-52b4c6d4de7c",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "for kids",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7f257e67-e358-4732-b2d8-0c29615ddf04",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "family",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eea1c039-b009-478e-a146-618368b16208",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "love",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "da90e155-80a6-4d63-80df-955588bbaaad",
+    "data": [
+      {
+        "text": "romance",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "novels",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "62d4ae93-4c2d-4ad9-99de-9e11c2112c54",
+    "data": [
+      {
+        "text": "Show ",
+        "userDefined": false
+      },
+      {
+        "text": "novels",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " called ",
+        "userDefined": false
+      },
+      {
+        "text": "The Defining Decade",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0df07732-526b-4484-8e00-7ecf7466f610",
+    "data": [
+      {
+        "text": "What are some ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "The Fault in our Stars",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "43dad4d5-2bde-43be-a7e6-ffb07ced7480",
+    "data": [
+      {
+        "text": "what are ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Hamilton",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "90ae3ede-ed6a-425d-bc3e-1106ef46df22",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Abby Mapes",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c009e3d2-89c6-4a95-852d-62ac72a201eb",
+    "data": [
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "People",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "94b793cc-50d2-4cab-b9ce-08e0afc175be",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " titled ",
+        "userDefined": false
+      },
+      {
+        "text": "Hello World",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eec9bc77-37d8-40eb-ac6e-be48fcbe0982",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " named ",
+        "userDefined": false
+      },
+      {
+        "text": "Pride and Prejudice",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "547a1bbf-c3d9-408a-9123-7e407c19c8be",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "computer science",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c57fc374-e304-4fe0-92db-9217290bde67",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "John Greene",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2a61ab2b-747f-48fc-8c52-afa836b1ea86",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " with ",
+        "userDefined": false
+      },
+      {
+        "text": "the",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " name of ",
+        "userDefined": false
+      },
+      {
+        "text": "Breaking Dawn",
+        "meta": "@title",
+        "alias": "title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "57389fe8-a341-4dba-9835-22f636f69b1b",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Jane Austen",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f9f12806-80bd-41e3-b5ba-fbf69841c1a8",
+    "data": [
+      {
+        "text": "show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "13274c66-a542-4b89-a32e-a66d4384a788",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Greek",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "baf154f5-430f-4d0f-a550-4e1cf0d7abe9",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "free online books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " written in ",
+        "userDefined": false
+      },
+      {
+        "text": "Dutch",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f966977d-358b-48c5-ad68-08008dde4c45",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "online books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " written in ",
+        "userDefined": false
+      },
+      {
+        "text": "italian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "566e4d7b-ce88-4343-803f-377c5a4a6c13",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "magazines",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "german",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      },
+      {
+        "text": " written by ",
+        "userDefined": false
+      },
+      {
+        "text": "Ben Eggers",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "53096d4d-b1b6-4dc9-816c-d32c1d291dee",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "spanish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "love",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ad80808a-6948-4e7a-89eb-9ae32848b11e",
+    "data": [
+      {
+        "text": "Show be ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " written in ",
+        "userDefined": false
+      },
+      {
+        "text": "french",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b0d318fc-661f-4d50-8870-06e2c9d8f0bc",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " written by ",
+        "userDefined": false
+      },
+      {
+        "text": "John Mapes",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0f3e8afd-2017-4b91-8b96-cbfe78d2308f",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " written by ",
+        "userDefined": false
+      },
+      {
+        "text": "Abby Mapes",
+        "meta": "@sys.person",
+        "alias": "authors",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "89da056e-1662-4703-a179-09bf2380d81d",
+    "data": [
+      {
+        "text": "magazine",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " search",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0b41d63a-99d2-490d-8705-668d4f64aa5d",
+    "data": [
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "sex and music",
+        "meta": "@books-categories",
+        "alias": "categories",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3c5c8003-1246-4a36-8dc4-2b58cd73980c",
+    "data": [
+      {
+        "text": "search for ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "034c6426-9162-43fa-9ff3-06bf580e6feb",
+    "data": [
+      {
+        "text": "book",
+        "meta": "@book-type",
+        "alias": "type",
+        "userDefined": true
+      },
+      {
+        "text": " search",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

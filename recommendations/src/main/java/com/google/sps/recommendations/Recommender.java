@@ -48,7 +48,8 @@ public class Recommender {
       DatastoreService datastore,
       String stemmedListName,
       List<Entity> entities,
-      Set<String> uniqueItems) {
+      Set<String> uniqueItems) 
+      throws IllegalStateException {
     SimpleMatrix dataMatrix = createMatrixFromDatabaseEntities(entities, uniqueItems);
     SimpleMatrix userFeatures = SimpleMatrix.random_DDRM​(dataMatrix.numRows(), K, -2.0, 2.0, new Random(1));
     SimpleMatrix itemFeatures = SimpleMatrix.random_DDRM​(K, dataMatrix.numCols(), -2.0, 2.0, new Random(1));
@@ -109,7 +110,8 @@ public class Recommender {
    * @return Matrix with the final best prediction for userFeatures * itemFeatures
    */
   SimpleMatrix matrixFactorization(
-      SimpleMatrix dataMatrix, SimpleMatrix userFeatures, SimpleMatrix itemFeatures) {
+      SimpleMatrix dataMatrix, SimpleMatrix userFeatures, SimpleMatrix itemFeatures) 
+      throws IllegalStateException {
     log.info("Input matrix: " + dataMatrix);
     for (int step = 0; step < STEPS; step++) {
       double updatedLearningRate = Math.max(ALPHA_START / (Math.sqrt(step + 1)), 0.005);
@@ -134,11 +136,17 @@ public class Recommender {
         }
       }
       SimpleMatrix estimatedData = userFeatures.mult(itemFeatures);
+      if (estimatedData.hasUncountable()) {
+        log.error("Failure at step: " + step);
+        log.error("User feature matrix: " + userFeatures);
+        log.error("Item feature matrix: " + itemFeatures);
+        throw new IllegalStateException("NaN error in matrix factorization.");
+      }
       double totalError = 0.0;
       for (int row = 0; row < dataMatrix.numRows(); row++) {
         for (int col = 0; col < dataMatrix.numCols(); col++) {
           double element = dataMatrix.get(row, col);
-          if (element > 0) {
+          if (Math.abs(element - 0.0) > DELTA) {
             totalError +=
                 Math.pow(
                     element
@@ -178,15 +186,7 @@ public class Recommender {
   }
 
   /**
-<<<<<<< HEAD:portfolio/src/main/java/com/google/sps/data/Recommender.java
-   * Extracts the row corresponding to the given user (always the 0th row) and maps each column with
-   * the corresponding item name so that each item name corresponds to the frequency prediction made
-   * by matrix factorization.
-=======
-   * Converts matrix into List of Pairs where the key is the user ID and the value is another list
-   * of pairs where the key is the item string name and the value is the predicted chance that the
-   * user would like that item.
->>>>>>> upstream/master:recommendations/src/main/java/com/google/sps/recommendations/Recommender.java
+   * Stores results of matrix factorization into database.
    *
    * @param datastore Datastore instance
    * @param stemmedListName Stemmed name of the list that predictions were calculated for
