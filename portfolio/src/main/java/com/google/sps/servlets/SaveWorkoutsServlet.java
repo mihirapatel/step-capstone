@@ -53,10 +53,12 @@ public class SaveWorkoutsServlet extends HttpServlet {
     response.getWriter().write(json);
   }
 
+  /** Creates UserService instance */
   protected UserService createUserService() {
     return UserServiceFactory.getUserService();
   }
 
+  /** Creates DatastoreService instance */
   protected DatastoreService createDatastore() {
     return DatastoreServiceFactory.getDatastoreService();
   }

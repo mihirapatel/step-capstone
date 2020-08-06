@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -55,8 +71,7 @@ public class VideoUtils {
   private WorkoutProfileUtils workoutProfileUtils = new WorkoutProfileUtils();
 
   /**
-   * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
-   * readJsonFromURL
+   * Returns video list depending on user's workout find requirements
    *
    * @param userService UserService to get userId if user is logged in
    * @param workoutLength for workout video length
@@ -64,7 +79,7 @@ public class VideoUtils {
    * @param youtubeChannel for workout channel
    * @param numVideosSearched for number of videos to get from search
    * @param searchType type of search on YouTube (video or playlist)
-   * @return ArrayList<YouTubeVideo> videoList list of YouTube videos
+   * @return ArrayList<YouTubeVideo> videoList list of YouTubeVideo objects with proper parameters
    */
   public ArrayList<YouTubeVideo> getVideoList(
       UserService userService,
@@ -87,7 +102,7 @@ public class VideoUtils {
   }
 
   /**
-   * Gets WorkoutPlan depending on user's workout plan requirements
+   * Returns WorkoutPlan depending on user's workout plan requirements
    *
    * @param userService UserService to get userId if user is logged in
    * @param datastore DatastoreService to get workoutPlanId
@@ -134,6 +149,7 @@ public class VideoUtils {
           new WorkoutPlan(
               userId, workoutPlanName, listOfVideoLists, workoutPlanId, dateCreated, planLength);
     } else {
+      // Creating generic WorkoutPlan if user is not logged in
       workoutPlan = new WorkoutPlan(listOfVideoLists, playlistId);
     }
 
@@ -141,8 +157,7 @@ public class VideoUtils {
   }
 
   /**
-   * Sets YouTube Data API search by keyword parameters, creates URL, and passes URL into
-   * readJsonFromURL to search for playlist
+   * Returns list of workout videos (in chunks) of videos in playlist with user specified attributes
    *
    * @param userService UserService to get userId if user is logged in
    * @param maxPlayListResults number of playlists to search for
@@ -193,7 +208,7 @@ public class VideoUtils {
   }
 
   /**
-   * Created list of videos from JSONObject
+   * Creates list of videos from JSONObject
    *
    * @param userService UserService to get userId if user is logged in
    * @param json JSONObject from YouTube Data API call
@@ -209,16 +224,21 @@ public class VideoUtils {
 
     for (int index = 0; index < videos.length(); index++) {
       String videoString = new Gson().toJson(videos.get(index));
+
+      // Setting video or playlist  parameters depending on if user searched for videos or workout
+      // plan
       if (searchType.equals("video")) {
         setVideoParameters(videoString);
       } else if (searchType.equals("playlist")) {
         setPlaylistVideoParameters(videoString);
       }
 
+      // Setting currentPage to assign correct page number for each video
       if (index % videosDisplayedPerPage == 0) {
         currentPage += 1;
       }
 
+      // Creating YouTubeVideo with extra userId parameter if user logged in
       if (userService.isUserLoggedIn()) {
         String userId = userService.getCurrentUser().getUserId();
         video =
@@ -235,6 +255,7 @@ public class VideoUtils {
                 currentPage,
                 totalPages);
       } else {
+        // Creating YouTubeVideo if user not logged in
         video =
             new YouTubeVideo(
                 channelTitle,
@@ -255,8 +276,8 @@ public class VideoUtils {
   }
 
   /**
-   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
-   * video object
+   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for
+   * YouTubeVideo
    *
    * @param videoString JSON string of YouTube video from API call
    */
@@ -277,8 +298,8 @@ public class VideoUtils {
   }
 
   /**
-   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for YouTube
-   * video object from playlists
+   * Sets parameters: channelTitle, title, description, thumbnail, videoId, channelId for
+   * YouTubeVideo from playlists
    *
    * @param playlistVideoString JSON string of YouTube videos in playlist from API call
    */

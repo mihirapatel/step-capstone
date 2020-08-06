@@ -603,12 +603,6 @@ public class BooksAgentHelper {
       book = BooksMemoryUtils.assignLikeCount(book, sessionID, friendsLikes, datastore);
       book = BooksMemoryUtils.assignLikeStatus(book, sessionID, likedBooks, datastore);
     }
-    /*
-    if (query.getIntent().equals("friendlikes") || query.getIntent().equals("mylikes")) {
-      book.setRequestedFriend(query.getRequestedFriend());
-    } else if (query.getIntent().equals("library")) {
-      book.setBookshelfName(query.getBookshelfName());
-    }*/
     this.display = bookToJson(book);
   }
 

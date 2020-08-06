@@ -129,6 +129,7 @@ public class PeopleUtils {
             .connections()
             .list("people/me")
             .setPersonFields("names,emailAddresses,photos")
+            .setPageSize(2000)
             .execute();
     List<Person> connections = response.getConnections();
     return connections;

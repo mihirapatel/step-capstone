@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Retrieves information about the user: id, name, email */
-
 @WebServlet("/workout-user-profile")
 public class WorkoutProfileServlet extends HttpServlet {
 
@@ -24,10 +23,12 @@ public class WorkoutProfileServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
+    // Get workout profile parameters
     String userId = userService.getCurrentUser().getUserId();
     String userName = UserUtils.getDisplayName(userService, datastore);
     String userEmail = userService.getCurrentUser().getEmail();
 
+    // Create WorkoutProfile
     WorkoutProfile profile = new WorkoutProfile(userId, userName, userEmail);
     String json = new Gson().toJson(profile);
     response.getWriter().write(json);

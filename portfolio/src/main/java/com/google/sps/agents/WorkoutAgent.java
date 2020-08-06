@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
@@ -21,8 +37,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Workout Agent: finds relevant workout videos through Youtube and schedules workout plans. Also
- * tracks workouts for user.
+ * Workout Agent: finds relevant YouTube workout videos when user specifies workout type, workout
+ * length, or YouTube channel and generates workout plans when user specifies plan length and
+ * workout type. Creates a workout dashboard for logged in users to see their saved workout content
+ * and to track progress on their workout plans.
  */
 public class WorkoutAgent implements Agent {
 
@@ -49,7 +67,7 @@ public class WorkoutAgent implements Agent {
 
   /**
    * Workout agent constructor that uses intent and parameters to determnine fulfillment and display
-   * for user request
+   * for user request.
    *
    * @param intentName String containing the specific workout agent intent requeste by user
    * @param parameters Map containing the detected entities in the user's intent
@@ -74,7 +92,7 @@ public class WorkoutAgent implements Agent {
 
   /**
    * Workout agent constructor used for testing purposes that uses intent and parameters to
-   * determnine fulfillment and display for user request
+   * determnine fulfillment and display for user request.
    *
    * @param intentName String containing the specific workout agent intent requeste by user
    * @param parameters Map containing the detected entities in the user's intent
@@ -129,14 +147,16 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private workoutFind method, that displays workouts specified by user request. Method sets
-   * parameters for workoutLength, workoutType, and youtubeChannel based on Dialogflow detection and
-   * makes calls to set display and set output. parameters map needs to include duration struct to
-   * set String workoutLength, String workoutType, and String youtubeChannel
+   * Private workoutFind method, that displays workout videos specified by user request. This method
+   * sets values for workoutLength, workoutType, and youtubeChannel based on Dialogflow detection
+   * and makes calls to set display and set output. parameters map needs to include duration struct
+   * to set String workoutLength, String workoutType, and String youtubeChannel.
    *
    * @param parameters parameter Map from Dialogflow
    */
   private void workoutFind(Map<String, Value> parameters) throws IOException {
+
+    // Sets values for amount and unit from duration struct
     if (parameters.get("duration").hasStructValue()) {
       Struct durationStruct = parameters.get("duration").getStructValue();
       Map<String, Value> durationMap = durationStruct.getFieldsMap();
@@ -144,6 +164,7 @@ public class WorkoutAgent implements Agent {
       unit = durationMap.get("unit").getStringValue();
     }
 
+    // Sets workoutLength, workoutType, youtubeChannel values
     workoutLength = amount + " " + unit;
     workoutType = parameters.get("workout-type").getStringValue();
     youtubeChannel = parameters.get("youtube-channel").getStringValue();
@@ -157,7 +178,7 @@ public class WorkoutAgent implements Agent {
 
   /**
    * Private setworkoutFindOutput method, that sets the agent output based on set parameters for
-   * workoutLength, workoutType, and youtubeChannel from workoutFind method
+   * workoutLength, workoutType, and youtubeChannel from workoutFind method.
    */
   private void setWorkoutFindOutput() {
 
@@ -175,10 +196,13 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by making YT
-   * Data API call from VideoUtils to get passed into workout.js
+   * Private setworkoutFindDisplay method, that sets the agent display to JSON string by making
+   * YouTube Data API call from VideoUtils. If the user is logged in, this method stores all videos
+   * returned by YouTube Data API call to access if user chooses to save any videos to their
+   * dashboard.
    */
   private void setWorkoutFindDisplay() throws IOException {
+
     // Removing white space so search URL does not have spaces
     workoutLength = workoutLength.replaceAll("\\s", "");
     workoutType = workoutType.replaceAll("\\s", "");
@@ -189,6 +213,7 @@ public class WorkoutAgent implements Agent {
         videoUtils.getVideoList(
             userService, workoutLength, workoutType, youtubeChannel, videosDisplayedTotal, "video");
 
+    // Storing all returned videos in Datastore if user is logged in
     if (userService.isUserLoggedIn()) {
       for (YouTubeVideo video : videoList) {
         workoutProfileUtils.storeWorkoutVideo(datastore, video);
@@ -199,9 +224,9 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private workoutPlanner method, makes and displays a workout specified by user request. Method
-   * sets parameters for planLength and workoutType based on Dialogflow detection and makes calls to
-   * set display and set output. parameters map needs to include duration struct to set int
+   * Private workoutPlanner method makes and displays a workout plan specified by user request. This
+   * method sets parameters for planLength and workoutType based on Dialogflow detection and makes
+   * calls to set display and set output. parameters map needs to include duration struct to set int
    * planLength and String workoutType
    *
    * @param parameters parameter Map from Dialogflow
@@ -238,7 +263,7 @@ public class WorkoutAgent implements Agent {
   }
 
   /**
-   * Private setworkoutPlannerOutput method, that sets the agent output based on set parameters for
+   * Private setworkoutPlannerOutput method, that sets the agent output based on set values for
    * planLength and workoutType from workoutPlanner method
    */
   private void setWorkoutPlannerOutput() {
@@ -247,7 +272,9 @@ public class WorkoutAgent implements Agent {
 
   /**
    * Private setworkoutPlannerDisplay method, that sets the agent display to JSON string by making
-   * YT Data API call from VideoUtils to get passed into workout.js
+   * YouTube Data API call from VideoUtils. If the user is logged in, this method stores the
+   * generated workout plan in Datastore to access is user decides to save the workout plan to their
+   * dashboard.
    */
   private void setWorkoutPlannerDisplay() throws IOException {
 
@@ -258,6 +285,8 @@ public class WorkoutAgent implements Agent {
     WorkoutPlan workoutPlan =
         videoUtils.getWorkoutPlan(
             userService, datastore, maxPlaylistResults, planLength, workoutType, "playlist");
+
+    // Storing workout plan is user is logged in
     if (userService.isUserLoggedIn()) {
       workoutProfileUtils.storeWorkoutPlan(datastore, workoutPlan);
     }
