@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.recommendations;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -34,9 +50,9 @@ public class DatabaseUtils {
    * Stores the integer aggregate count of number of times user has placed a given item in a list.
    *
    * @param datastore Database entity to retrieve data from
-   * @param userID The logged-in user's ID
+   * @param userID String containing current user's unique ID
    * @param stemmedListName The name of the list to store aggregation information for.
-   * @param items List of strings containing items that were newly added.
+   * @param items List of strings containing items to add to list
    * @param newList Indicates whether the list is a new list (true) or updating existing (false)
    */
   public static void storeUserListInformation(
@@ -85,12 +101,14 @@ public class DatabaseUtils {
    * in a list.
    *
    * @param datastore Database entity to retrieve data from
-   * @param userID The logged-in user's ID
+   * @param userID String containing current user's unique ID
    * @param stemmedListName Stemmed name of the list for which we are recording unique items
-   * @param items New items that were added
+   * @param items List of strings containing items to add to list
    * @param aggregateEntity Aggregate entity for reference in creating fractional entity
    * @param firstList Boolean representing true if updating fractions for the first list of a name
    *     type
+   * @param positiveFeedback Boolean indicating if items are being added to list or rejected
+   *     recommendations.
    */
   public static void updateFractionalAggregation(
       DatastoreService datastore,
@@ -141,7 +159,7 @@ public class DatabaseUtils {
    * of earlier grocery lists. If no fractional entity of the given name exists, then does nothing.
    *
    * @param datastore Database entity to retrieve data from
-   * @param userID The logged-in user's ID
+   * @param userID String containing current user's unique ID
    * @param stemmedListName Stemmed name of the list for the fractional entity to be retrieved.
    */
   private static void decreaseFracEntityWeights(
@@ -166,7 +184,7 @@ public class DatabaseUtils {
    *
    * @param datastore Database entity to retrieve data from
    * @param stemmedListName Stemmed name of the list for which we are recording unique items
-   * @param items Newly added items being determined for uniqueness
+   * @param items List of strings containing items to add to list
    */
   private static void updateUniqueProperties(
       DatastoreService datastore, String stemmedListName, List<String> items) {
@@ -188,7 +206,7 @@ public class DatabaseUtils {
    * Resets the database to the initial demo status. Only resets categories of: type, frac-type, and
    * uniqueItems
    *
-   * @param datastore Datastore instance
+   * @param datastore DatastoreService instance to be prepopulated with default values
    */
   public static void resetDatabase(DatastoreService datastore) throws IllegalStateException {
     URL url = DatabaseUtils.class.getResource("/dbEntities");

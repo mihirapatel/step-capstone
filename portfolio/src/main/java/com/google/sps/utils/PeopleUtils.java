@@ -41,7 +41,7 @@ public class PeopleUtils {
    * This function returns all Friend objects in a user's contact list that match the specified
    * friendName based on the userID's connections from the Google People API.
    *
-   * @param userID ID for authenticated user
+   * @param userID String containing current user's unique ID
    * @param friendName friend to look for
    * @param oauthHelper OAuthHelper instance used to access OAuth methods
    * @return ArrayList<Friend> of matches
@@ -64,7 +64,7 @@ public class PeopleUtils {
    * This function returns a list of the user's friends, based on their connections from the Google
    * People API and throws an exception otherwise.
    *
-   * @param userID ID for authenticated user
+   * @param userID String containing current user's unique ID
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return ArrayList<Friend> list of friends
    */
@@ -115,7 +115,7 @@ public class PeopleUtils {
    * This function returns a Friend object of the requested resourceName including name, emails, and
    * a photo, and null if one could not be created.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param resourceName unique contact resourceName to retrieve
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Friend object
@@ -134,7 +134,7 @@ public class PeopleUtils {
    * This function returns a List of Person objects containing information about Person connections
    * from the Google People API for the authenticated user and t throws an exception otherwise.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return List<Person> list of results
    */
@@ -158,7 +158,7 @@ public class PeopleUtils {
    * This function returns a Person object of the specified resourceName from the Google People API
    * including name, emails, and a photo, and throws an exception otherwise.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param resourceName unique contact resourceName to retrieve
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Person object

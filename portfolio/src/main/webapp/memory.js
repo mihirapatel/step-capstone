@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 var commentToConvo = new Map();
 var commentDivToEntity = new Map();
 var listNameDivToEntity = new Map();
@@ -5,10 +21,11 @@ var listNameDivToEntity = new Map();
 var textFile = null;
 
 /**
-* Creates the media container for memory.keyword display.
-* 
-* @param jsonOutput JSON string of the Conversation Output object returned from 
-*/
+ * Creates the media container for memory.keyword display.
+ * 
+ * @param jsonOutput JSON string of the Conversation Output object from backend
+ * @return Div containing the keyword display container
+ */
 function createKeywordContainer(jsonOutput) {
   var conversationOutputObject = JSON.parse(jsonOutput);
   var keyword = conversationOutputObject.keyword;
@@ -29,13 +46,13 @@ function createKeywordContainer(jsonOutput) {
 }
 
 /**
-* Bolds the keyword in each identified comment and adds it as a list element inside the memory container.
-* 
-* @param keyword The keyword that the user requested.
-* @param keywordComments A list of comments all with the identified keyword (aka. keyset of commentToConvo)
-* @param commentToConvo Map containing each individual keywordComment as a key with a list of surrounding comments as its value
-* @param memoryContainer Div container that holds the entire display.
-*/
+ * Bolds the keyword in each identified comment and adds it as a list element inside the memory container.
+ * 
+ * @param keyword The keyword that the user requested.
+ * @param keywordComments A list of comments all with the identified keyword (aka. keyset of commentToConvo)
+ * @param commentToConvo Map containing each individual keywordComment as a key with a list of surrounding comments as its value
+ * @param memoryContainer Div container that holds the entire display.
+ */
 function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryContainer) {
   var comment;
   var keywordCommentContainer = document.createElement('ul');
@@ -63,12 +80,11 @@ function addIdentifiedComments(keyword, keywordComments, commentToConvo, memoryC
 }
 
 /**
-* Iteratively adds each comment in the surrounding conversation list corresponding to the selected comment 
-* in the comment div into the conversation side display.
-*
-* @param commentDiv Selected commentDiv that contains the identified comment used to determine the surrounding conversation
-* to be displayed on the conversation side of the display.
-*/
+ * Creates the conversation screen corresponding to the selected comment div.
+ *
+ * @param commentDiv Selected commentDiv that contains the identified comment used to determine the surrounding conversation
+ * to be displayed on the conversation side of the display.
+ */
 function getConversationScreen(commentDiv) {
   var keywordEntity = commentDivToEntity.get(commentDiv);
   var conversationList = commentToConvo.get(keywordEntity);
@@ -77,6 +93,12 @@ function getConversationScreen(commentDiv) {
   populateConversationScreen(conversationDiv, conversationList, keywordEntity);
 }
 
+/**
+ * Creates the conversation display for memory.time intent
+ *
+ * @param jsonOutput JSON string of the Conversation Output object from backend.
+ * @return Div container for the conversation display
+ */
 function makeConversationDiv(jsonOutput) {
   var conversationOutputList = JSON.parse(jsonOutput).conversationList;
   var conversationList = conversationOutputList.map(function(entity) {
@@ -91,6 +113,14 @@ function makeConversationDiv(jsonOutput) {
   return conversationContainer;
 }
 
+/**
+ * Iteratively adds each comment in the surrounding conversation list corresponding to the selected comment 
+ * in the comment div into the conversation side display.
+ *
+ * @param conversationDiv Div to place surrounding conversation entities
+ * @param conversationList List of comment entities in the surrounding conversation
+ * @param keyWordEntity Specific entity within the conversationList which contains the keyword
+ */
 function populateConversationScreen(conversationDiv, conversationList, keywordEntity) {
   var commentEntity;
   var prevTime = 0;
@@ -117,6 +147,12 @@ function populateConversationScreen(conversationDiv, conversationList, keywordEn
   }
 }
 
+/**
+ * Creates a small centered timestamp symbol in the conversation div.
+ *
+ * @param time The time to display represented as time since 1970
+ * @param conversationDiv Div to place the time display into
+ */
 function makeTimestamp(time, conversationDiv) {
   var timeString = new Date(time).toLocaleString()
   timeDiv = document.createElement('div');
@@ -125,20 +161,20 @@ function makeTimestamp(time, conversationDiv) {
 }
 
 /**
-* Bolds all instances of boldedWord found in the text string input.
-*
-* @param text String that contains the identified comment
-* @param boldedWord keyword to be bolded
-*/
+ * Bolds all instances of boldedWord found in the text string input.
+ *
+ * @param text String that contains the identified comment
+ * @param boldedWord keyword to be bolded
+ */
 function makeBold(text, boldedWord) {
   return text.replace(new RegExp("(" + boldedWord + ")",'ig'), '<b>$1</b>');
 }
 
 /**
-* Creates on-click listeners for each bulleted element in the left-side panel.
-*
-* @param container The div containing the media display to be populated with click listeners.
-*/
+ * Creates on-click listeners for each bulleted element in the left-side panel.
+ *
+ * @param container The div containing the media display to be populated with click listeners.
+ */
 function addDisplayListeners(container, displayFunction) {
     if ($(container).children().length < 2) {
       return;
@@ -151,6 +187,11 @@ function addDisplayListeners(container, displayFunction) {
     });
 }
 
+/**
+ * Creates list display according to the list display object retrieved from backend.
+ *
+ * @param listDisplayObject Object from backend that contains all necessary list display info
+ */
 function makeListContainer(listDisplayObject) {
     var memoryContainer = document.createElement('div');
     if (listDisplayObject.multiList) {
@@ -186,6 +227,12 @@ function makeListContainer(listDisplayObject) {
     return memoryContainer;
 }
 
+/**
+ * Displays all list content onto the given container.
+ *
+ * @param listDisplayObject Object from backend that contains all necessary list display info
+ * @param listContentContainer Div container to place list contents onto
+ */
 function populateListContentScreen(listDisplayObject, listContentContainer) {
   var headerContainer = document.createElement('div');
   headerContainer.innerHTML = "<h1 style='color: black'>" + listDisplayObject.listName + " list</h1>";
@@ -220,6 +267,12 @@ function populateListContentScreen(listDisplayObject, listContentContainer) {
   listContentContainer.appendChild(downloadButton);
 }
 
+/**
+ * Creates the list content screen corresponding to the selected list name.
+ *
+ * @param commentDiv Selected commentDiv that contains the identified comment used to determine the surrounding conversation
+ * to be displayed on the conversation side of the display.
+ */
 function getListContentScreen(listNameDiv) {
   var listEntity = listNameDivToEntity.get(listNameDiv);
   var listContentDiv = listNameDiv.parentElement.nextSibling;
@@ -227,6 +280,12 @@ function getListContentScreen(listNameDiv) {
   populateListContentScreen(listEntity, listContentDiv);
 }
 
+/**
+ * Creates the bulleted items in list content screen.
+ *
+ * @param itemString Text for the bulleted item
+ * @return Div containing the bulleted text
+ */
 function makeBulletedElement(itemString) {
     var bulletDiv = document.createElement('li');
     bulletDiv.classList.add('plain');

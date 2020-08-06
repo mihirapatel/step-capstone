@@ -219,7 +219,7 @@
       <version>0.39</version>
     </dependency>
 
-    <!-- <dependency>
+    <dependency>
 	  <groupId>org.springframework.boot</groupId>
 	  <artifactId>spring-boot-starter-web</artifactId>
 	</dependency>
@@ -228,7 +228,7 @@
 	  <groupId>org.springframework.boot</groupId>
 	  <artifactId>spring-boot-starter-test</artifactId>
 	  <scope>test</scope>
-	</dependency> -->
+	</dependency>
 
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -265,7 +265,7 @@
         <version>2.19.1</version>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <skipTests>true</skipTests>
+          <!-- <skipTests>true</skipTests> -->
           <trimStackTrace>false</trimStackTrace>
         </configuration>
       </plugin>

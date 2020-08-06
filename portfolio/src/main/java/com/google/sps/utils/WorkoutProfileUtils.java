@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 import com.google.appengine.api.datastore.Blob;
@@ -47,7 +63,7 @@ public class WorkoutProfileUtils {
   /**
    * Retrieves stored WorkoutPlan that user wants to save
    *
-   * @param userID The current logged-in user's ID number
+   * @param userID String containing current user's unique ID
    * @param workoutPlanId The id for the workout they want to save
    * @param datastore Datastore instance to retrieve WorkoutPlan from database
    * @return WorkoutPlan that user wants to save
@@ -93,7 +109,7 @@ public class WorkoutProfileUtils {
   /**
    * Retrieves saved WorkoutPlans to display on user's workout dashboard
    *
-   * @param userID The current logged-in user's ID number
+   * @param userID String containing current user's unique ID
    * @param datastore Datastore instance to retrieve WorkoutPlans from database
    * @return ArrayList of WorkoutPlan objects that has user saved
    */
@@ -121,7 +137,7 @@ public class WorkoutProfileUtils {
   /**
    * Updates SavedWorkoutPlan with the number of workout plan days the user has completed
    *
-   * @param userID The current logged-in user's ID number
+   * @param userID String containing current user's unique ID
    * @param workoutPlanId The id for the workout they want to save
    * @param numWorkoutDaysCompleted The number of workout plan days the user has completed
    * @param datastore Datastore instance to retrieve WorkoutPlan from database
@@ -155,7 +171,7 @@ public class WorkoutProfileUtils {
    * Returns number of WorkoutPlans created and saved in Datastore by current user (specified by
    * userId)
    *
-   * @param userId The current logged-in user's ID number
+   * @param userID String containing current user's unique ID
    * @param datastore Datastore instance to retrieve WorkoutPlan information from database
    * @return number of workout plans created by userId + 1 to create unique id for new workout plan
    */
@@ -170,7 +186,7 @@ public class WorkoutProfileUtils {
    * Retuns a composite filter for Query to retrieve WorkoutPlan Entity corresponding to userId and
    * workoutPlanId
    *
-   * @param userId unique id of session to delete entities from
+   * @param userID String containing current user's unique ID
    * @param workoutPlanId unique id to retrieve correct entities
    * @return CompositeFilter with proper filters
    */
@@ -213,7 +229,7 @@ public class WorkoutProfileUtils {
   /**
    * Retrieves stored workout video (YouTubeVideo) that user wants to save
    *
-   * @param userID The current logged-in user's ID number
+   * @param userID String containing current user's unique ID
    * @param workoutVideoId The id for the workout video they want to save
    * @param datastore Datastore instance to retrieve WorkoutVideo from database
    * @return YouTubeVideo workout video that user wants to save
@@ -266,7 +282,7 @@ public class WorkoutProfileUtils {
   /**
    * Retrieves saved workout videos (YouTubeVideo) to display on user's workout dashboard
    *
-   * @param userID The current logged-in user's ID number
+   * @param userID String containing current user's unique ID
    * @param datastore Datastore instance to retrieve WorkoutPlans from database
    * @return ArrayList of YouTubeVideo objects that has user saved
    */
@@ -295,7 +311,7 @@ public class WorkoutProfileUtils {
    * Retuns a composite filter for Query to retrieve WorkoutVideo Entity corresponding to userId and
    * workoutVideoId
    *
-   * @param userId unique id of session to delete entities from
+   * @param userID String containing current user's unique ID
    * @param workoutVideoId unique id to retrieve correct entities
    * @return CompositeFilter with proper filters
    */

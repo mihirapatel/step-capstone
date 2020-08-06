@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.recommendations;
 
 import static org.junit.Assert.*;
@@ -13,8 +29,9 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.*;
 import org.slf4j.Logger;
@@ -52,8 +69,7 @@ public class TestHelper {
    * result in datastore match the expected.
    *
    * @param category String containing the type of entity we are querying for.
-   * @param userID String representing the user ID number for getting specific info about other
-   *     users
+   * @param userID String containing current user's unique ID users
    * @return A list of entity objects returned by datastore.
    */
   public static List<Entity> fetchDatastoreEntities(
@@ -97,7 +113,7 @@ public class TestHelper {
    * Methods for database verification. Checks that database entries are equal to expected.
    *
    * @param size Number of items expected in user's list
-   * @param userID Current user's ID
+   * @param userID String containing current user's unique ID
    * @param listName Name of the list being checked
    * @param expectedItems List of strings containing the name of all items expected to be in the
    *     user's list database
@@ -136,7 +152,7 @@ public class TestHelper {
    * expected.
    *
    * @param fetchName Category name used to fetch subcategory from datastore
-   * @param userID Current user's ID
+   * @param userID String containing current user's unique ID
    * @param expectedItems List of strings containing the name of all items expected to be in the
    *     user's list database
    * @param expectedCount List of integers containing expected counts for each expected item of the
@@ -182,7 +198,7 @@ public class TestHelper {
    * expected.
    *
    * @param fetchName Category name used to fetch subcategory from datastore
-   * @param userID Current user's ID
+   * @param userID String containing current user's unique ID
    * @param expectedItems List of strings containing the name of all items expected to be in the
    *     user's list database
    * @param expectedCount List of doubles containing expected fractional values for each expected
@@ -217,10 +233,10 @@ public class TestHelper {
    * lists created.
    *
    * @param datastore Datastore instance
-   * @param userID Current user's ID
+   * @param userID String containing current user's unique ID
    * @param size Number of lists of the same name created by the user
-   * @param items List of pairs of strings containing the name of all items expected and integer
-   *     containing the number of times added to past grocery lists.
+   * @param items List of strings containing items to add to list containing the number of times
+   *     added to past grocery lists.
    */
   public static void makeUserList(
       DatastoreService datastore, String userID, int size, List<Pair<String, Integer>> items) {

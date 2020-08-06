@@ -38,6 +38,14 @@ public class DateAgent implements Agent {
   private String locationDisplay;
   private ZonedDateTime dateGiven;
 
+  /**
+   * Date agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public DateAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -45,6 +53,12 @@ public class DateAgent implements Agent {
     setParameters(parameters);
   }
 
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -58,7 +72,7 @@ public class DateAgent implements Agent {
       }
     } else if (intentName.contains("day-of-date")) {
       this.locationFormatted = "United States";
-      this.dateGiven = Time.getZonedTime("date-time", locationFormatted, parameters);
+      this.dateGiven = TimeAgent.getZonedTime("date-time", locationFormatted, parameters);
       LocalDateTime givenDate = dateGiven.toLocalDateTime();
       LocalDateTime currentDate = getCurrentDate(locationFormatted).toLocalDateTime();
 
@@ -74,27 +88,6 @@ public class DateAgent implements Agent {
     }
   }
 
-  @Override
-  public String getOutput() {
-    return this.output;
-  }
-
-  @Override
-  public String getDisplay() {
-    return null;
-  }
-
-  @Override
-  public String getRedirect() {
-    return null;
-  }
-
-  /**
-   * Gets a ZonedDateTime object of the current date based on a location.
-   *
-   * @param locationName name of location
-   * @return ZonedDateTime of current date in location
-   */
   public ZonedDateTime getCurrentDate(String locationName)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -161,5 +154,20 @@ public class DateAgent implements Agent {
       dateString = date.format(formatter);
     }
     return dateString;
+  }
+
+  @Override
+  public String getOutput() {
+    return this.output;
+  }
+
+  @Override
+  public String getDisplay() {
+    return null;
+  }
+
+  @Override
+  public String getRedirect() {
+    return null;
   }
 }

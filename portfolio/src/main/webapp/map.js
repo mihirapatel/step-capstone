@@ -1,9 +1,37 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 var mapOutputAsJson;
+
+/**
+ * Creates map display from backend stream.
+ *
+ * @param stream Backend stream in JSON representation
+ */
 function displayMap(stream) {
   mapOutputAsJson = JSON.parse(stream);
   showMap();
 }
 
+/**
+ * Creates a map display for maps.search intent
+ *
+ * @param placeQuery JSON string containing place information
+ * @return div containing the map display created
+ */
 function locationMap(placeQuery) {
   var place = JSON.parse(placeQuery);
   var limit = place.limit;
@@ -32,6 +60,12 @@ var placesDict = new Map();
 var markerMap = new Map();
 var moreButton;
 
+/**
+ * Creates a map display for maps.find intent.
+ *
+ * @param placeQuery JSON string containing place information
+ * @return div containing the map display created
+ */
 function nearestPlacesMap(placeQuery) {
   var place = JSON.parse(placeQuery);
   limit = place.limit;
@@ -79,12 +113,25 @@ function nearestPlacesMap(placeQuery) {
   return mapDiv;
 }
 
+/**
+ * Callback function for marker creation
+ * 
+ * @param results List of place results from Google Maps query
+ * @param status Status of Google Maps Query
+ */
 function standardCallback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     createMarkers(results, map);
   }
 }
 
+/**
+ * Creates inner map div container elements.
+ *
+ * @param limit Integer representing a limit for number of places to show (-1 if no limit)
+ * @param makePanel Boolean indicating whether or not to make an place marker legend panel
+ * @return tuple of map div container and Google maps instance
+ */
 function createMapDivs(limit, makePanel) {
   mapDiv = document.createElement('div');
   mapDiv.classList.add('media-display');
@@ -111,6 +158,9 @@ function createMapDivs(limit, makePanel) {
   return {mapDiv, newMap};
 }
 
+/**
+ * Creates a UI for button to request more results.
+ */
 function createMoreButton() {
   moreButton = document.createElement('button');
   moreButton.id = 'more';
@@ -119,6 +169,13 @@ function createMoreButton() {
   return moreButton;
 }
 
+/**
+ * Creates markers and infowindows for all queried places.
+ *
+ * @param places List of places returned by Google Maps API
+ * @param map Google Maps instance
+ * @param limit Integer representing a limit for number of places to show (-1 if no limit)
+ */
 function createMarkers(places, map, limit) {
   var bounds = new google.maps.LatLngBounds();
 
@@ -159,6 +216,11 @@ function createMarkers(places, map, limit) {
   map.fitBounds(bounds);
 }
 
+/**
+ * Checks whether the infowindow is open.
+ * @param infowindow The Infowindow instance in question
+ * @return boolena indicating if input infowindow is open
+ */
 function isInfoWindowOpen(infoWindow) {
   var map = infoWindow.getMap();
   return (map !== null && typeof map !== "undefined");

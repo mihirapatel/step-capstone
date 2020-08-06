@@ -39,22 +39,45 @@ public class OAuthServlet extends AbstractAuthorizationCodeServlet {
   UserService userService = UserServiceFactory.getUserService();
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+  /**
+   * GET method to handle redirect for oauth request.
+   *
+   * @param request HTTP request for OAuth servlet
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.sendRedirect("/");
   }
 
+  /**
+   * Handles succes redirect for oauth request.
+   *
+   * @param request HTTP request for OAuth servlet
+   * @return String containing the OAuth redirect url
+   */
   @Override
-  protected String getRedirectUri(HttpServletRequest req) throws ServletException, IOException {
+  protected String getRedirectUri(HttpServletRequest request) throws ServletException, IOException {
     return OAuthHelper.createRedirectUri();
   }
 
+  /**
+   * Creates authorization codeflow for current user
+   *
+   * @return OAuth authorization code flow for current user
+   */
   @Override
   protected AuthorizationCodeFlow initializeFlow() throws IOException {
     String userID = userService.getCurrentUser().getUserId();
     return OAuthHelper.createFlow(userID);
   }
 
+  /**
+   * Retrieves the current user's ID
+   *
+   * @param request HTTP request for OAuth servlet
+   * @return string containing current user's ID
+   */
   @Override
   protected String getUserId(HttpServletRequest req) throws ServletException, IOException {
     return userService.getCurrentUser().getUserId();

@@ -114,7 +114,7 @@ public class BooksMemoryUtils {
    * authenticated user
    *
    * @param bookshelvesNames list of bookshelf names to store
-   * @param userID unique id of user
+   * @param userID String containing current user's unique ID
    * @param datastore DatastoreService instance used to access Book info from database
    */
   public static void storeBookshelfNames(
@@ -256,7 +256,7 @@ public class BooksMemoryUtils {
    * Datastore for the userID likes.
    *
    * @param book Book object to assign like status for, based on information stored in Datastore
-   * @param userID unique id of user
+   * @param userID String containing current user's unique ID
    * @param likedBooks list of Book objects that the user likes
    * @param datastore DatastoreService instance used to access Book info from database
    * @return Book
@@ -272,7 +272,7 @@ public class BooksMemoryUtils {
    * Datastore for the userID's friends' likes.
    *
    * @param book Book object to assign like status for, based on information stored in Datastore
-   * @param userID unique id of user
+   * @param userID String containing current user's unique ID
    * @param friendsLikes list of Book objects that the user's friends like, including likedBy
    *     information
    * @param datastore DatastoreService instance used to access Book info from database
@@ -332,7 +332,7 @@ public class BooksMemoryUtils {
   /**
    * This function returns the list of bookshelf names stored in Datastore for the specified user.
    *
-   * @param userID unique id of user
+   * @param userID String containing current user's unique ID
    * @param datastore DatastoreService instance used to access Book info from database
    * @return ArrayList<String> of bookshelf names
    */
@@ -439,7 +439,7 @@ public class BooksMemoryUtils {
    * This function returns a boolean value indicating whether the authenticated user has Bookshelves
    * Entities stored in Datastore.
    *
-   * @param userID user ID to retrieve stored Entities
+   * @param userID String containing current user's unique ID
    * @param datastore DatastoreService instance used to access Book info from database
    */
   public static boolean hasBookshelvesStored(String userID, DatastoreService datastore) {
@@ -513,7 +513,7 @@ public class BooksMemoryUtils {
    * This function stores a Book object and userEmail in a LikedBook entity in Datastore.
    *
    * @param bookToLike book to like
-   * @param userID unique id of user to store book for
+   * @param userID String containing current user's unique ID
    * @param userEmail unique email of user to store liked book for
    * @param datastore DatastoreService instance used to access Book info from database
    */
@@ -564,7 +564,7 @@ public class BooksMemoryUtils {
    * This function deletes a stored LikedBook Entity for the book and user specified in Datastore.
    *
    * @param bookToUnlike book to unlike
-   * @param userID unique id of user to delete book for
+   * @param userID String containing current user's unique ID
    * @param userEmail unique email of user to delete liked book for
    * @param datastore DatastoreService instance used to access Book info from database
    */
@@ -588,7 +588,7 @@ public class BooksMemoryUtils {
    * This function returns a list of Book objects from the stored LikedBook Entities in Datastore
    * for all friends of the given userID.
    *
-   * @param userID unique id of user
+   * @param userID String containing current user's unique ID
    * @param datastore DatastoreService instance used to access Book info from database
    * @param oauthHelper OAuthHelper instance used to access OAuth methods
    * @param peopleUtils PeopleUtils instance used to access Google People API
@@ -626,7 +626,7 @@ public class BooksMemoryUtils {
    * This function returns a list of Book objects from the stored LikedBook Entities in Datastore
    * for the specified Friend of the userID.
    *
-   * @param userID unique id of user
+   * @param userID String containing current user's unique ID
    * @param friend friend object to retrive liked books of
    * @param datastore DatastoreService instance used to access Book info from database
    * @param oauthHelper OAuthHelper instance used to access OAuth methods

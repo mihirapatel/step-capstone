@@ -43,35 +43,69 @@ public class OAuthCallbackServlet extends AbstractAuthorizationCodeCallbackServl
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private static Logger log = LoggerFactory.getLogger(OAuthCallbackServlet.class);
 
+  /**
+   * Handles succes redirect for oauth request.
+   *
+   * @param request HTTP request for OAuth callback servlet
+   * @param response Writer to return http response to input request
+   * @param credential OAuth credential token
+   */
   @Override
-  protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential)
+  protected void onSuccess(
+      HttpServletRequest request, HttpServletResponse response, Credential credential)
       throws ServletException, IOException {
     log.info("Success callback servlet");
     log.info("Credential: " + credential.getAccessToken());
-    resp.sendRedirect("/");
+    response.sendRedirect("/");
   }
 
+  /**
+   * Handles error redirect for OAuth request.
+   *
+   * @param request HTTP request for OAuth callback servlet
+   * @param response Writer to return http response to input request
+   * @param errorResponse OAuth error message url
+   */
   @Override
   protected void onError(
-      HttpServletRequest req, HttpServletResponse resp, AuthorizationCodeResponseUrl errorResponse)
+      HttpServletRequest request,
+      HttpServletResponse response,
+      AuthorizationCodeResponseUrl errorResponse)
       throws ServletException, IOException {
     log.error("Callback servlet OAuth error occured.");
-    resp.sendRedirect("/");
+    response.sendRedirect("/");
   }
 
+  /**
+   * Creates redirect url for OAuth service
+   *
+   * @param request HTTP request for OAuth callback servlet
+   * @return string containing url for OAuth redirect
+   */
   @Override
-  protected String getRedirectUri(HttpServletRequest req) throws ServletException, IOException {
+  protected String getRedirectUri(HttpServletRequest request) throws ServletException, IOException {
     return OAuthHelper.createRedirectUri();
   }
 
+  /**
+   * Creates authorization codeflow for current user
+   *
+   * @return OAuth authorization code flow for current user
+   */
   @Override
   protected AuthorizationCodeFlow initializeFlow() throws IOException {
     String userID = userService.getCurrentUser().getUserId();
     return OAuthHelper.createFlow(userID);
   }
 
+  /**
+   * Retrieves the current user's ID
+   *
+   * @param request HTTP request for OAuth callback servlet
+   * @return string containing current user's ID
+   */
   @Override
-  protected String getUserId(HttpServletRequest req) throws ServletException, IOException {
+  protected String getUserId(HttpServletRequest request) throws ServletException, IOException {
     return userService.getCurrentUser().getUserId();
   }
 }

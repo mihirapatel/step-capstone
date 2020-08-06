@@ -37,6 +37,12 @@ public class BookLikesServlet extends HttpServlet {
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private UserService userService = UserServiceFactory.getUserService();
 
+  /**
+   * POST method to modify database of book likes information.
+   *
+   * @param request HTTP request for Book Likes servlet
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String type = request.getParameter("type");

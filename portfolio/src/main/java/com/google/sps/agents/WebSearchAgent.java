@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Google LLC
+ * Copyright 2019 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.google.sps.agents;
 
+// Imports the Google Cloud client library
 import com.google.protobuf.Value;
 import java.util.Map;
 
@@ -23,16 +25,29 @@ import java.util.Map;
  * and display information to send to the user interface based on Dialogflow's detected WebSearch
  * intents.
  */
-
-public class WebSearch implements Agent {
+public class WebSearchAgent implements Agent {
   private final String intentName;
   private String searchText;
 
-  public WebSearch(String intentName, Map<String, Value> parameters) {
+  /**
+   * Web Search agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
+  public WebSearchAgent(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
     setParameters(parameters);
   }
-  
+
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters) {
     searchText = parameters.get("q").getStringValue();
   }

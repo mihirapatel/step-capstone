@@ -42,7 +42,7 @@ public class BooksAgent implements Agent {
    * BooksAgent constructor without queryID sets queryID property to the most recent queryID for the
    * specified sessionID.
    *
-   * @param intentName String containing the specific intent within memory agent that user is
+   * @param intentName String containing the specific intent within books agent that user is
    *     requesting.
    * @param userInput String containing user's request input
    * @param parameters Map containing the detected entities in the user's intent.
@@ -70,7 +70,7 @@ public class BooksAgent implements Agent {
    * @param parameters Map containing the detected entities in the user's intent.
    * @param sessionID String containing the unique sessionID for user's session
    * @param userService UserService instance to access userID and other user info.
-   * @param datastore DatastoreService instance used to access book info grom database.
+   * @param datastore DatastoreService instance used to access book info from database.
    * @param queryID String containing the unique ID for the BookQuery the user is requesting, If
    *     request comes from Book Display interface, then queryID is retrieved from Book Display
    *     Otherwise, queryID is set to the most recent query that the user (sessionID) made.
@@ -106,7 +106,7 @@ public class BooksAgent implements Agent {
    * @param parameters Map containing the detected entities in the user's intent.
    * @param sessionID String containing the unique sessionID for user's session
    * @param userService UserService instance to access userID and other user info.
-   * @param datastore DatastoreService instance used to access book info grom database.
+   * @param datastore DatastoreService instance used to access book info from database.
    * @param queryID String containing the unique ID for the BookQuery the user is requesting, If
    *     request comes from Book Display interface, then queryID is retrieved from Book Display
    *     Otherwise, queryID is set to the most recent query that the user (sessionID) made.
@@ -151,6 +151,12 @@ public class BooksAgent implements Agent {
     setParameters(parameters);
   }
 
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters)
       throws IOException, IllegalArgumentException {
     // Intents that do not require user to be authenticated

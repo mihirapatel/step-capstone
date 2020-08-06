@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
@@ -10,9 +26,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Name Agent */
-public class Name implements Agent {
+public class NameAgent implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Name.class);
+  private static Logger log = LoggerFactory.getLogger(NameAgent.class);
 
   private String intentName;
   String outputText;
@@ -32,7 +48,7 @@ public class Name implements Agent {
    * @param datastore DatastoreService instance used to access past comments from the user's
    *     database.
    */
-  public Name(
+  public NameAgent(
       String intentName,
       Map<String, Value> parameters,
       UserService userService,
@@ -48,6 +64,12 @@ public class Name implements Agent {
     }
   }
 
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters) {
     String nameType = parameters.get("type").getStringValue();
     String name = null;
@@ -62,6 +84,13 @@ public class Name implements Agent {
     }
   }
 
+  /**
+   * Retrieves the user's input name, which can appear in any one of the name categories for
+   * given-name, last-name, or nick-name depending one which intent dialogflow picks up.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   * @param nameType The type of name that the user wants to change (first, last, nickname)
+   */
   private String getSpecificName(Map<String, Value> parameters, String nameType) {
     String name = parameters.get("given-name").getStringValue();
     if (!name.equals("")) {

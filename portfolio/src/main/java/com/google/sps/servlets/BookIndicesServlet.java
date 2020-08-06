@@ -36,6 +36,12 @@ public class BookIndicesServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+  /**
+   * GET method to retrieve bookshelf index information.
+   *
+   * @param request HTTP request for Book Indices servlet
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");

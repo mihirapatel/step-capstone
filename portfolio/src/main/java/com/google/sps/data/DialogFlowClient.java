@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.data;
 
 import com.google.api.gax.rpc.BidiStream;
@@ -20,7 +36,13 @@ public class DialogFlowClient {
   static SessionName session = SessionName.of("mihira-step-2020-3", "1");
   QueryResult queryResult;
 
-  // Constructor for text inputs
+  /**
+   * Dialogflow Client constructor for text inputs
+   *
+   * @param text Input text to dialogflow
+   * @param languageCode Two-letter representation of input language
+   * @param sessionsClient Instance of the current dialogflow session
+   */
   public DialogFlowClient(String text, String languageCode, SessionsClient sessionsClient) {
     TextInput.Builder textInput =
         TextInput.newBuilder().setText(text).setLanguageCode(languageCode);
@@ -29,7 +51,13 @@ public class DialogFlowClient {
     queryResult = response.getQueryResult();
   }
 
-  // Constructor for audio inputs
+  /**
+   * Dialogflow Client constructor for audio inputs
+   *
+   * @param sessionsClient Instance of the current dialogflow session
+   * @param audioByteString ByteString containing the audio input recording
+   * @param sampleRate Sample hertz frequency of the audio byte string recording
+   */
   public DialogFlowClient(
       SessionsClient sessionsClient, ByteString audioBytestring, int sampleRate) {
     InputAudioConfig inputAudioConfig =
@@ -47,6 +75,14 @@ public class DialogFlowClient {
     }
   }
 
+  /**
+   * Creates streaming ability to handle audio input streams to Dialogflow.
+   *
+   * @param sessionsClient Instance of the current dialogflow session
+   * @param queryInput Configured audio query to handle input stream
+   * @param audioBytestring ByteString containing the input audio stream
+   * @return BidiStream that contains the stream of audio data in a readable format
+   */
   private static BidiStream<StreamingDetectIntentRequest, StreamingDetectIntentResponse>
       makeBidiStream(
           SessionsClient sessionsClient, QueryInput queryInput, ByteString audioBytestring) {

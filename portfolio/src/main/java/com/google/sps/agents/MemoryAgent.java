@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
@@ -33,7 +49,7 @@ import org.slf4j.LoggerFactory;
  * and storing/updating lists and notes occurs on user voice command. Finally, with sufficient user
  * data history, provides recommendations for additional list items to add to list.
  */
-public class Memory implements Agent {
+public class MemoryAgent implements Agent {
 
   private final String intentName;
   private String userID;
@@ -45,7 +61,7 @@ public class Memory implements Agent {
   private RecommendationsClient recommender;
   private String listName;
   private ArrayList<String> items = new ArrayList<>();
-  private static Logger log = LoggerFactory.getLogger(Memory.class);
+  private static Logger log = LoggerFactory.getLogger(MemoryAgent.class);
   private static final Set<String> unnecessaryWords =
       Stream.of(
               "a", "an", "list", "lists", "new", "the", "my", "last", "past", "recent", "some",
@@ -68,8 +84,9 @@ public class Memory implements Agent {
    * @param userService UserService instance to access userID and other user info.
    * @param datastore DatastoreService instance used to access past comments from the user's
    *     database.
+   * @param recommender Recommendations API client for recommendation services.
    */
-  public Memory(
+  public MemoryAgent(
       String intentName,
       Map<String, Value> parameters,
       UserService userService,
@@ -84,6 +101,12 @@ public class Memory implements Agent {
     setParameters(parameters);
   }
 
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters)
       throws InvalidRequestException, EntityNotFoundException, URISyntaxException {
     log.info("parameters: " + parameters);
@@ -197,7 +220,7 @@ public class Memory implements Agent {
   }
 
   /**
-   * Creates a new list that is stored in datastore.
+   * Handles request for creating a new list that is stored in datastore.
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
@@ -207,8 +230,7 @@ public class Memory implements Agent {
     fulfillment = "Created!";
     if (items.isEmpty()) {
       try {
-        String suggestedItems =
-            MemoryUtils.makePastRecommendations(userID, datastore, listName, recommender);
+        String suggestedItems = MemoryUtils.makePastRecommendations(userID, listName, recommender);
         fulfillment +=
             " Based on your previous "
                 + listName
@@ -224,6 +246,11 @@ public class Memory implements Agent {
     makeMoreRecommendations();
   }
 
+  /**
+   * Handles request for showing the user's stored lists.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void showList(Map<String, Value> parameters) throws InvalidRequestException {
     List<Entity> pastLists = MemoryUtils.getPastUserLists(datastore, userID, parameters);
     if (pastLists.isEmpty()) {
@@ -248,14 +275,20 @@ public class Memory implements Agent {
     }
   }
 
+  /**
+   * Converts the given database entity into a ListDisplay object for display output.
+   *
+   * @param e Entity instance to be converted.
+   * @return ListDisplay object that is returned to frontend javascript for display
+   */
   private ListDisplay entityToListDisplay(Entity e) {
     return new ListDisplay(
         (String) e.getProperty("listName"), (List<String>) e.getProperty("items"));
   }
 
   /**
-   * Updates an existing list with new items. If list doesn't exist, creates a brand new list in
-   * datastore.
+   * Convenience method for updating an existing list with new items. If list doesn't exist, creates
+   * a brand new list in datastore.
    *
    * @param itemsToAdd List of strings to add to list.
    */
@@ -310,7 +343,8 @@ public class Memory implements Agent {
   }
 
   /**
-   * Converts a string of list items into a list of strings representing each item.
+   * Converts a string of list items into a list of strings representing each item and stores it
+   * into the items instance variable.
    *
    * @param parameters Map containing the detected entities in the user's intent.
    */
@@ -351,13 +385,13 @@ public class Memory implements Agent {
     return cleanStringEndpoints(unnecessaryWords, listName);
   }
 
-  /*
-   * Removes any filler words that were picked up in any general string
-   * based on the set of unwanted strings to filter out of the string endpoints.
+  /**
+   * Removes any filler words that were picked up in any general string based on the set of unwanted
+   * strings to filter out of the string endpoints.
    *
    * @param unwantedStrings set of strings to be removed from start and end of string to clean
    * @param stringToClean The string to be cleaned
-   * @return cleaned version of the list name without extra words
+   * @return cleaned version of the input string without the unwanted words
    */
   public static String cleanStringEndpoints(Set<String> unwantedStrings, String stringToClean) {
     String[] listWords = stringToClean.split("\\s+");
@@ -379,7 +413,7 @@ public class Memory implements Agent {
     return sb.toString();
   }
 
-  /*
+  /**
    * Removes any filler words at the beginning and end of a string array.
    *
    * @param unwantedStrings set of strings to be removed from start and end of string to clean
@@ -405,15 +439,29 @@ public class Memory implements Agent {
     return sb.toString();
   }
 
+  /**
+   * Convenience method for handling negative feedback to system recommendations for cases when the
+   * user rejects all previously recommended items.
+   */
   private void handleBadRecommendations() throws URISyntaxException {
     handleBadRecommendations(MemoryUtils.getRecommendations(userID, datastore));
   }
 
+  /**
+   * Handles response for recommended items that were not wanted.
+   *
+   * @param unwantedItems List of recommended items that were rejected by user
+   */
   private void handleBadRecommendations(List<String> unwantedItems) throws URISyntaxException {
     MemoryUtils.provideNegativeFeedback(recommender, listName, unwantedItems);
     fulfillment = "Your preferences are noted.";
   }
 
+  /**
+   * Handles response to positive feedback for recommended items.
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void handleGoodRecommendations(Map<String, Value> parameters)
       throws EntityNotFoundException, URISyntaxException {
     String listObjects = parameters.get("yes-objects").getStringValue();
@@ -436,9 +484,9 @@ public class Memory implements Agent {
   }
 
   /**
-   * Populates the list (passed in as the second argument) with all items that the user chooses to
-   * add and then returns the index of the first negative word (or end of the string if no negative
-   * word exists).
+   * Populates the list of objects to add (second argument) with all items that the user chooses to
+   * add (first argument) and then returns the index of the first negative word (or end of the
+   * string if no negative word exists).
    *
    * @param listWords String array of words to extract adding items
    * @param addObject Empty arraylist to be filled with items to be added
@@ -465,6 +513,14 @@ public class Memory implements Agent {
     return end;
   }
 
+  /**
+   * Retrieves a list of items that were not wanted among multiple recommended items where the
+   * startIndex indicates the beginning of unwanted items in the array of words.
+   *
+   * @param listWords Users input string represented as an array of words
+   * @param startIndex Index for listWords corresponding to the beginning of all unwanted items
+   * @return List of items that are not wanted in the list
+   */
   private List<String> getRemoveObjects(String[] listWords, int startIndex) {
     if (startIndex == listWords.length) {
       return new ArrayList<>();

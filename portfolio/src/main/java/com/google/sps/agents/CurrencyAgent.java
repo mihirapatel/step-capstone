@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
@@ -8,9 +24,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Currency Agent */
-public class Currency implements Agent {
+public class CurrencyAgent implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Currency.class);
+  private static Logger log = LoggerFactory.getLogger(CurrencyAgent.class);
 
   private final String intentName;
   private String userInput;
@@ -25,11 +41,25 @@ public class Currency implements Agent {
   private String baseURL;
   private String endURL;
 
-  public Currency(String intentName, Map<String, Value> parameters) {
+  /**
+   * Currency agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
+  public CurrencyAgent(String intentName, Map<String, Value> parameters) {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters) {
     currencyFrom = parameters.get("currency-from").getStringValue();
     currencyTo = parameters.get("currency-to").getStringValue();
