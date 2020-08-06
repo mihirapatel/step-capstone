@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 import static org.junit.Assert.*;
@@ -34,7 +50,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the author property specified, correct Volume objects
-   * are returned from the Google Books API
+   * are returned from the Google Books API.
    */
   @Test
   public void checkAuthorSpecifiedQuery() throws Exception {
@@ -56,7 +72,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the title property specified, correct Volume objects
-   * are returned from the Google Books API
+   * are returned from the Google Books API.
    */
   @Test
   public void checkTitleSpecifiedQuery() throws Exception {
@@ -78,7 +94,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the type property specified as "books", only Volume
-   * objects classified as "books" are returned from the Google Books API
+   * objects classified as "books" are returned from the Google Books API.
    */
   @Test
   public void checkTypeSpecifiedQuery1() throws Exception {
@@ -101,7 +117,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the type property specified as "magazines", only
-   * Volume objects classified as "magazines" are returned from the Google Books API
+   * Volume objects classified as "magazines" are returned from the Google Books API.
    */
   @Test
   public void checkTypeSpecifiedQuery2() throws Exception {
@@ -124,7 +140,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the type property specified as "ebooks", only Volume
-   * objects classified as "ebooks" are returned from the Google Books API
+   * objects classified as "ebooks" are returned from the Google Books API.
    */
   @Test
   public void checkTypeSpecifiedQuery3() throws Exception {
@@ -147,7 +163,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the type property specified as "free-ebooks", only
-   * Volume objects classified as "free-ebooks" are returned from the Google Books API
+   * Volume objects classified as "free-ebooks" are returned from the Google Books API.
    */
   @Test
   public void checkTypeSpecifiedQuery4() throws Exception {
@@ -170,7 +186,7 @@ public class BookCreationTest {
 
   /**
    * Checks that given a BookQuery object with the language property specified, only Volume objects
-   * with the specified language are returned from the Google Books API
+   * with the specified language are returned from the Google Books API.
    */
   @Test
   public void checkLanguageSpecifiedQuery() throws Exception {

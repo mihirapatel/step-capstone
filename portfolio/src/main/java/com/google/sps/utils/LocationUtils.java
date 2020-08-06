@@ -1,6 +1,21 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
-// Imports the Google Cloud client library
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
@@ -9,10 +24,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * This class contains methods to parse Dialogflow’s detected location inputs and determine the
+ * appropriate formatted string to be sent to location-based APIs or outputted to the user interface
+ */
 public class LocationUtils {
   /**
    * This function returns a valid formatted address from the Geocoding API based on the user
-   * inputted address, and throws an exception otherwise
+   * inputted address, and throws an exception otherwise.
    *
    * @param parameterName name of parameter to get address from
    * @param parameters map of parameters detected from Dialogflow
@@ -56,7 +75,7 @@ public class LocationUtils {
 
   /**
    * This function returns a single field from the address detected from Dialogflow based on the
-   * user inputted address, which is used for brief responses
+   * user inputted address, which is used for brief responses.
    *
    * @param parameterName name of parameter to get address from
    * @param parameters map of parameters detected from Dialogflow
@@ -77,7 +96,7 @@ public class LocationUtils {
 
   /**
    * This function returns an ArrayList containing all location fields detected from Dialogflow
-   * based on the specified parameter name
+   * based on the specified parameter name.
    *
    * @param parameterName name of parameter to get location fields from
    * @param parameters map of parameters detected from Dialogflow

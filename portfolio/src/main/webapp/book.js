@@ -1,3 +1,18 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 /**
  * This function places a book div element in the container specified by the 
@@ -133,16 +148,6 @@ function createNameRow(object, intent) {
       seeFriendsLikedBooks('books.friendlikes', object);
     });
   }
-  /*
-  const bookshelfColumn = document.createElement('td');
-  bookshelfColumn.className = "bookshelf-name";
-
-  var bookshelfButton = document.createElement("button");
-  bookshelfButton.className = "bookshelf-button";
-  bookshelfButton.insertAdjacentHTML('afterbegin', bookshelfName);
-  bookshelfButton.addEventListener("click", function () {
-    goToBookshelf('books.library', bookshelfName);
-  });*/
   bookshelfColumn.appendChild(bookshelfButton);
   bookRow.appendChild(bookshelfColumn);
   return bookRow;
@@ -443,7 +448,7 @@ function createLinkColumn(book, queryID) {
  * @param queryID ID of assistant response to scroll to
  */
 function updateBookScroll(queryID) {
-  var recentResponse = document.getElementsByClassName("assistant-side-" + queryID)[document.getElementsByClassName("assistant-side-" + queryID).length - 1];
+  var recentResponse = document.getElementsByClassName("user-side-" + queryID)[document.getElementsByClassName("user-side-" + queryID).length - 1];
   var topPos = recentResponse.offsetTop;
   var element = document.getElementById("content");
   element.scrollTop = topPos;

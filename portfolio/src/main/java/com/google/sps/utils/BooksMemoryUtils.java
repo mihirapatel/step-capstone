@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 import com.google.appengine.api.datastore.Blob;
@@ -34,7 +50,7 @@ public class BooksMemoryUtils {
   private static Logger log = LoggerFactory.getLogger(BooksMemoryUtils.class);
   /**
    * This function stores each Book object an ArrayList of Book objects in DataStore as a Book
-   * Entity with the corresponding properties
+   * Entity with the corresponding properties.
    *
    * @param books ArrayList of Book objects to store
    * @param startIndex index to start order at
@@ -71,7 +87,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function stores a BookQuery Object in DataStore as a BookQuery Entity with the
-   * corresponding properties
+   * corresponding properties.
    *
    * @param query BookQuery object to store
    * @param sessionID unique id of session to store
@@ -114,8 +130,8 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function stores a the parameter integers in DataStore as a Indices Entity with the
-   * corresponding properties
+   * This function stores the parameters in DataStore as a Indices Entity with the corresponding
+   * properties for the queryID and sessionID.
    *
    * @param startIndex index to start retrieving Volume objects from
    * @param resultsStored number of results stored
@@ -147,8 +163,8 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function deletes all Entitys in Datastore of type BookQuery, Book, and Indices for the
-   * specified session id
+   * This function deletes all Entitys in Datastore of type BookQuery, Book, Indices, and
+   * Bookshelves for the specified sessionID.
    *
    * @param sessionID unique id of session to delete from
    * @param datastore DatastoreService instance used to access Book info from database
@@ -161,7 +177,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function deletes all Entitys in Datastore of type specified by parameter
+   * This function deletes all Entitys in Datastore of type specified by parameter.
    *
    * @param entityName name of Entity to delete
    * @param sessionID unique id of session to delete entities from
@@ -272,7 +288,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function returns the Book object stored in the Book Entity parameter in Datastore
+   * This function returns the Book object stored in the Book Entity parameter in Datastore.
    *
    * @param bookEntity Entity in Datastore
    * @return Book object
@@ -296,7 +312,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns the BookQuery object stored in Datastore that stores the parameters for
-   * previous BookQuery
+   * previous BookQuery.
    *
    * @param sessionID unique id of session to retrieve from
    * @param queryID unique id (within sessionID) of query to store
@@ -314,7 +330,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function returns the list of bookshelf names stored in Datastore for the specified user
+   * This function returns the list of bookshelf names stored in Datastore for the specified user.
    *
    * @param userID unique id of user
    * @param datastore DatastoreService instance used to access Book info from database
@@ -335,7 +351,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns the previous index specified by indexName stored in Datastore Indices
-   * Entity
+   * Entity.
    *
    * @param indexName name of Indices: startIndex, resultsStored, totalResults, or displayNum
    * @param sessionID unique id of session to retrieve from
@@ -355,7 +371,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns the stored Book object that matches the parameter orderNum from Datastore
-   * and throws an exception if the requested Book doesn't exist
+   * and throws an exception if the requested Book doesn't exist.
    *
    * @param orderNum order number of book to retrieve
    * @param startIndex index to start retrieving results from
@@ -381,7 +397,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function deletes all Entitys in Datastore of type BookQuery, Book, and Indices for any
-   * session id
+   * session id.
    */
   public static void deleteAllStoredBookInformation() {
     deleteStoredEntities("BookQuery");
@@ -392,7 +408,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function deletes all Entitys in Datastore of type specified by parameter
+   * This function deletes all Entitys in Datastore of type specified by parameter.
    *
    * @param entityName name of Entity to delete
    */
@@ -407,7 +423,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function returns the number of BookQuery Entities stored in Datastore with id sessionID
+   * This function returns the number of BookQuery Entities stored in Datastore with id sessionID.
    *
    * @param sessionID session ID to retrieve stored Entities
    * @param datastore DatastoreService instance used to access Book info from database
@@ -421,7 +437,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a boolean value indicating whether the authenticated user has Bookshelves
-   * Entities stored in Datastore
+   * Entities stored in Datastore.
    *
    * @param userID user ID to retrieve stored Entities
    * @param datastore DatastoreService instance used to access Book info from database
@@ -435,7 +451,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function deletes all Entitys in Datastore of type specified by parameter with id property
-   * of sessionID and queryID property of queryID
+   * of sessionID and queryID property of queryID.
    *
    * @param entityName name of Entity to delete
    * @param sessionID unique id of session to delete entities from
@@ -455,7 +471,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a composite filter for Queries that retrieves Entitys with property id
-   * equal to sessionID and property queryID equal to queryID
+   * equal to sessionID and property queryID equal to queryID.
    *
    * @param sessionID unique id of session to delete entities from
    * @param queryID unique id (within session) to delete entities from
@@ -469,7 +485,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function stores a Book object and userEmail in a LikedBook entity in Datastore
+   * This function stores a Book object and userEmail in a LikedBook entity in Datastore.
    *
    * @param orderNum index of book to like
    * @param queryID unique id (within sessionID) of query to store
@@ -494,7 +510,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function stores a Book object and userEmail in a LikedBook entity in Datastore
+   * This function stores a Book object and userEmail in a LikedBook entity in Datastore.
    *
    * @param bookToLike book to like
    * @param userID unique id of user to store book for
@@ -515,7 +531,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function deletes a stored LikedBook Entity for the book and user specified in Datastore
+   * This function deletes a stored LikedBook Entity for the book and user specified in Datastore.
    *
    * @param orderNum index of book to like
    * @param queryID unique id (within sessionID) of query to store
@@ -545,7 +561,7 @@ public class BooksMemoryUtils {
   }
 
   /**
-   * This function deletes a stored LikedBook Entity for the book and user specified in Datastore
+   * This function deletes a stored LikedBook Entity for the book and user specified in Datastore.
    *
    * @param bookToUnlike book to unlike
    * @param userID unique id of user to delete book for
@@ -570,7 +586,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a list of Book objects from the stored LikedBook Entities in Datastore
-   * for all friends of the given userID
+   * for all friends of the given userID.
    *
    * @param userID unique id of user
    * @param datastore DatastoreService instance used to access Book info from database
@@ -608,7 +624,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a list of Book objects from the stored LikedBook Entities in Datastore
-   * for the specified Friend of the userID
+   * for the specified Friend of the userID.
    *
    * @param userID unique id of user
    * @param friend friend object to retrive liked books of
@@ -640,7 +656,7 @@ public class BooksMemoryUtils {
 
   /**
    * This function returns a list of Book objects from the stored LikedBook Entities in Datastore
-   * for the given id
+   * for the given id.
    *
    * @param id id of user (either email address or userID)
    * @param property LikedBook property to specify filter (either userEmail or id)

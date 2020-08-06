@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.google.sps.data;
 
-// Imports the Google Cloud client library
 import com.google.api.services.books.*;
 import com.google.gson.*;
 import com.google.protobuf.Value;
@@ -27,7 +26,7 @@ import java.util.Map;
 
 /**
  * A BookQuery object contains parameters neccessary to make a call to the Google Books API that
- * will match users' requests to Dialogflow
+ * matches users' requests to Dialogflow.
  *
  * <p>A BookQuery object is only created by createBookQuery() function, ensuring that any BookQuery
  * object is only created with valid parameters. Specifically, it ensures that all BookQuery objects
@@ -54,7 +53,7 @@ public class BookQuery implements Serializable {
    * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
    * retrieve appropriate Volumes from the Google Books API that match a user input for user
    * requests that do not require user Authentication, or throws an exception if the userInput is
-   * empty
+   * empty.
    *
    * @param intent detected intent from Dialogflow
    * @param userInput string
@@ -68,9 +67,9 @@ public class BookQuery implements Serializable {
   }
 
   /**
-   * Creates a BookQuery object for the detected parameters from Dialogflow that will be used to
-   * retrieve appropriate Volumes from the Google Books API that match a user input, or throws an
-   * exception if the userInput is empty
+   * Creates a BookQuery object for the detected parameters from Dialogflow when requiredAuth
+   * parameter is specified that will be used to retrieve appropriate Volumes from the Google Books
+   * API that match a user input, or throws an exception if the userInput is empty.
    *
    * @param intent detected intent from Dialogflow
    * @param String userInput
@@ -94,7 +93,7 @@ public class BookQuery implements Serializable {
    * valid.
    *
    * <p>If Dialogflow does not detect certain parameters for a user request, then BookQuery
-   * properties will remain null
+   * properties will remain null.
    *
    * @param intent detected intent from Dialogflow
    * @param userInput detected input string
@@ -280,7 +279,7 @@ public class BookQuery implements Serializable {
   /**
    * Returns the name parameter if the paramValue contains a valid, non-empty "name" parameter,
    * based on Dialogflow's person parameter format for a single person. Example: {"name": "abby
-   * mapes"} returns "abby mapes" if Map has a non-empty name parameter. Otherwise, returns null
+   * mapes"} returns "abby mapes" if Map has a non-empty name parameter. Otherwise, returns null.
    *
    * @param paramValue single value Map
    * @return validName string

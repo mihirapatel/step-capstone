@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.google.sps.data;
 
-// Imports the Google Cloud client library
 import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.Name;
 import com.google.api.services.people.v1.model.Person;
@@ -29,7 +28,7 @@ import java.util.List;
 
 /**
  * A Friend object contains specific properties about a Person object that will be used to create
- * output display and text
+ * output display and text.
  *
  * <p>A Friend object is only created by createFriend() function, ensuring that any Friend object is
  * only created with valid parameters and that all Friend objects have at least one email address.
@@ -43,7 +42,7 @@ public class Friend implements Serializable {
 
   /**
    * Creates a Friend object from a valid Person object that will be used to access Book likes or
-   * throws an exception if the Person object is invalid or missing an email address
+   * throws an exception if the Person object is invalid or missing an email address.
    *
    * @param person Person Object
    * @return Friend object
@@ -176,9 +175,9 @@ public class Friend implements Serializable {
   }
 
   /**
-   * Checks if person object has at least email address
+   * Checks if Person object has at least email address.
    *
-   * @param person person Object
+   * @param person Person Object
    * @return boolean
    */
   public static boolean hasValidParameters(Person person) {
