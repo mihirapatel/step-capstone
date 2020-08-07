@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.servlets;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -27,7 +43,7 @@ import org.json.JSONObject;
 
 /**
  * Creates BookAgent object and retrieves corresponding Output object for a given intent. For all
- * intents passed to book-agent servlet, no queryText or parameterMap will be necessary.
+ * intents passed to BookAgentServlet, no queryText or parameterMap will be necessary.
  */
 @WebServlet("/book-agent")
 public class BookAgentServlet extends HttpServlet {
@@ -147,7 +163,7 @@ public class BookAgentServlet extends HttpServlet {
   }
 
   /**
-   * Converts a json string into a Map object
+   * Converts a json string into a Map object.
    *
    * @param json json string
    * @return Map<String, Value>
@@ -160,6 +176,14 @@ public class BookAgentServlet extends HttpServlet {
     return struct.getFieldsMap();
   }
 
+  /**
+   * Gets user input from stored BookQuery object for the given sessionID and queryID.
+   *
+   * @param sessionID unique ID for current session
+   * @param queryID unique ID (within sessionID) for current query
+   * @param datastore DataStore service to use
+   * @return String of user's input
+   */
   public static String loadUserInput(String sessionID, String queryID, DatastoreService datastore) {
     BookQuery query = BooksMemoryUtils.getStoredBookQuery(sessionID, queryID, datastore);
     return query.getUserInput();

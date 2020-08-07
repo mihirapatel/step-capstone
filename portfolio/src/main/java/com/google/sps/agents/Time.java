@@ -1,6 +1,21 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
-// Imports the Google Cloud client library
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
@@ -13,7 +28,10 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-/** Time Agent */
+/**
+ * Time Agent handles users' requests for time information. It determines appropriate outputs and
+ * display information to send to the user interface based on Dialogflow's detected Time intents.
+ */
 public class Time implements Agent {
   private final String intentName;
   private String output = null;
@@ -128,6 +146,12 @@ public class Time implements Agent {
     return null;
   }
 
+  /**
+   * Gets a ZonedDateTime object of the current time based on a location.
+   *
+   * @param locationName name of location
+   * @return ZonedDateTime of current time in location
+   */
   public ZonedDateTime getCurrentTime(String locationName)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -138,6 +162,12 @@ public class Time implements Agent {
     return currentTime;
   }
 
+  /**
+   * Gets a time zone name based on a location, formatted: Pacific Standard Time (PST).
+   *
+   * @param locationName name of location
+   * @return String time zone name
+   */
   public String getZone(String locationName)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -149,6 +179,13 @@ public class Time implements Agent {
     return place.getTimeZoneName() + " (" + timeZone + ")";
   }
 
+  /**
+   * Gets a string identifying the time difference between two locations.
+   *
+   * @param locationName name of location
+   * @param secondLocation name of second location
+   * @return String indicating time difference
+   */
   public String getTimeDiff(String firstLocation, String secondLocation)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -184,6 +221,14 @@ public class Time implements Agent {
     return ret;
   }
 
+  /**
+   * Gets a ZonedDateTime object of the time in the specified location when it is the time indicated
+   * in the timeFromObject.
+   *
+   * @param locationIn name of location
+   * @param timeFromObject object containing time and zone to convert to
+   * @return ZonedDateTime of time conversion
+   */
   public ZonedDateTime getTimeIn(String locationIn, ZonedDateTime timeFromObject)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -194,6 +239,12 @@ public class Time implements Agent {
     return timeIn;
   }
 
+  /**
+   * Gets a String of the current time in the specified location.
+   *
+   * @param location name of location
+   * @return String specifying current time in location
+   */
   public String getCurrentTimeString(String location)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -201,6 +252,12 @@ public class Time implements Agent {
     return zonedTimeToString(time);
   }
 
+  /**
+   * Gets a String of the time of the ZonedDateTime object.
+   *
+   * @param time object containing time to retrieve String of
+   * @return String specifying the ZonedDateTime
+   */
   public String zonedTimeToString(ZonedDateTime time) {
     String timeString = "";
     if (time != null) {
@@ -210,6 +267,15 @@ public class Time implements Agent {
     return timeString;
   }
 
+  /**
+   * Gets a ZonedDateTime object of the time specified by the location parameter when it is the time
+   * specified by the timeName and parameters.
+   *
+   * @param timeName time name to get time parameter of
+   * @param locationParameter location to calculate time conversion
+   * @param parameters map of parameters
+   * @return ZonedDateTime of local time in location
+   */
   public static ZonedDateTime getZonedTime(
       String timeName, String locationParameter, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
@@ -224,6 +290,13 @@ public class Time implements Agent {
     return zonedTime;
   }
 
+  /**
+   * Retrieves time parameter of the specified parameterName from the map parameters.
+   *
+   * @param timeName name of time parameter to get
+   * @param parameters map of parameters
+   * @return LocalDateTime object from parameters
+   */
   public static LocalDateTime getTimeParameter(
       String parameterName, Map<String, Value> parameters) {
     String time = parameters.get(parameterName).getStringValue();

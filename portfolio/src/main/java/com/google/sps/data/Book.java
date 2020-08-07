@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.google.sps.data;
 
-// Imports the Google Cloud client library
 import com.google.api.services.books.v1.model.Volume;
 import com.google.api.services.books.v1.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.gson.*;
@@ -159,6 +158,7 @@ public class Book implements Serializable {
     this.order = order;
   }
 
+  /** Two books are considered equal if their unique volumeIds are the same. */
   @Override
   public boolean equals(Object object) {
     if (object == this) {
@@ -357,6 +357,23 @@ public class Book implements Serializable {
     }
   }
 
+  public void setIsLiked(Boolean bool) {
+    this.isLiked = bool;
+  }
+
+  public void setLikedBy(ArrayList<Friend> likedByFriends) {
+    this.likedBy = likedByFriends;
+    this.likeCount = likedByFriends.size();
+  }
+
+  public void setRequestedFriend(Friend friend) {
+    this.requestedFriend = friend;
+  }
+
+  public void setBookshelfName(String bookshelfName) {
+    this.bookshelfName = bookshelfName;
+  }
+
   /**
    * Checks if Volume object has a valid title
    *
@@ -398,22 +415,5 @@ public class Book implements Serializable {
    */
   public static boolean hasValidSearchInfo(Volume volume) {
     return volume.getSearchInfo() != null;
-  }
-
-  public void setIsLiked(Boolean bool) {
-    this.isLiked = bool;
-  }
-
-  public void setLikedBy(ArrayList<Friend> likedByFriends) {
-    this.likedBy = likedByFriends;
-    this.likeCount = likedByFriends.size();
-  }
-
-  public void setRequestedFriend(Friend friend) {
-    this.requestedFriend = friend;
-  }
-
-  public void setBookshelfName(String bookshelfName) {
-    this.bookshelfName = bookshelfName;
   }
 }
