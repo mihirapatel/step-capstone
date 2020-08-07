@@ -1,0 +1,285 @@
+[
+  {
+    "id": "65361744-f6dc-4ba6-8fba-d08ada93f4f2",
+    "data": [
+      {
+        "text": "Show my ",
+        "userDefined": false
+      },
+      {
+        "text": "purchased",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " bookshelf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "52358966-bbd9-4c54-ae34-c7e0c16f25b4",
+    "data": [
+      {
+        "text": "Show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "recently viewed",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " bookshelf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "10113e9c-f8c7-4114-b525-bf2fe7becead",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "my ebooks",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " bookshelf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "03644e54-c7e1-426c-b722-9e524cb0fe81",
+    "data": [
+      {
+        "text": "My ",
+        "userDefined": false
+      },
+      {
+        "text": "favorites",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " bookshelf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c5f8d4d5-d23a-40a9-9a51-7c5ba30e7635",
+    "data": [
+      {
+        "text": "What ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " am I ",
+        "userDefined": false
+      },
+      {
+        "text": "reading now",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "aaf23e79-a17c-4b1b-9508-3df706a2d31c",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " I am ",
+        "userDefined": false
+      },
+      {
+        "text": "reading now",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "82dc0c26-24de-45e3-a162-041bb0164f3e",
+    "data": [
+      {
+        "text": "Show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "to read",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " bookshelf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3bbc352c-138c-42d3-8166-6af7d13ce40b",
+    "data": [
+      {
+        "text": "Show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "purchased",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e6cc0448-7783-4c13-934d-170f57cbb092",
+    "data": [
+      {
+        "text": "Show me my ",
+        "userDefined": false
+      },
+      {
+        "text": "favorite",
+        "meta": "@bookshelf",
+        "alias": "bookshelf",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "books",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "71404e8a-2a50-40f0-8f1a-3e0c61a6cd4b",
+    "data": [
+      {
+        "text": "My bookshelves",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "775288dd-cf54-44a4-9bd2-d783242d4806",
+    "data": [
+      {
+        "text": "What are my bookshelves?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "709c6c03-775a-40d0-9cbe-ff0f6e97fef4",
+    "data": [
+      {
+        "text": "What\u0027s in my bookshelf?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b4bab568-a2f6-4206-b052-b92691fc6faf",
+    "data": [
+      {
+        "text": "Show me my bookshelf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

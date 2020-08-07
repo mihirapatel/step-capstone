@@ -1,0 +1,315 @@
+[
+  {
+    "id": "b8b5c46f-e804-4084-bb51-686f757cce02",
+    "data": [
+      {
+        "text": "Plan me a workout for ",
+        "userDefined": false
+      },
+      {
+        "text": "1 week",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9c56b33a-d0d3-47f9-8c14-a48215500c77",
+    "data": [
+      {
+        "text": "Make me ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " workout schedule",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a8e3a130-8691-49f1-89f3-44b2fa086d16",
+    "data": [
+      {
+        "text": "I want to make a workout schedule",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5007c552-842b-4f97-a116-590816f9575f",
+    "data": [
+      {
+        "text": "I want to make a workout ",
+        "userDefined": false
+      },
+      {
+        "text": "plan",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4489439f-8645-4d3d-b3a0-83403ebb1f3a",
+    "data": [
+      {
+        "text": "Plan me ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "2 week",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "full body",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": false
+      },
+      {
+        "text": " workout schedule",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ac6c9ecb-8770-4782-9ae6-cf5635916c50",
+    "data": [
+      {
+        "text": "Make me ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " workout ",
+        "userDefined": false
+      },
+      {
+        "text": "plan",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " for ",
+        "userDefined": false
+      },
+      {
+        "text": "20 days",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b3a91b04-ed65-4e2b-9091-451467cbea38",
+    "data": [
+      {
+        "text": "Schedule me ",
+        "userDefined": false
+      },
+      {
+        "text": "1 month",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " workout ",
+        "userDefined": false
+      },
+      {
+        "text": "plan",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "63695820-7dbd-4309-b708-ca74c4561dbe",
+    "data": [
+      {
+        "text": "Plan me ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "2 week",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ab",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": false
+      },
+      {
+        "text": " challenge",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "09bc1e7c-c332-4ebe-ba05-e73540f6dc3e",
+    "data": [
+      {
+        "text": "Make me a ",
+        "userDefined": false
+      },
+      {
+        "text": "30 day",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ab",
+        "meta": "@workout-type",
+        "alias": "workout-type",
+        "userDefined": false
+      },
+      {
+        "text": " workout ",
+        "userDefined": false
+      },
+      {
+        "text": "plan",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "73b7c5cc-bbde-4281-8c9a-493380912b50",
+    "data": [
+      {
+        "text": "Schedule me ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " workout ",
+        "userDefined": false
+      },
+      {
+        "text": "plan",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "68ac05dc-284b-4c05-a729-3a7aba825ecc",
+    "data": [
+      {
+        "text": "Make me ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " workout ",
+        "userDefined": false
+      },
+      {
+        "text": "plan",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "id": "98fcdfff-a7c2-45b1-83db-db0b4d162452",
+  "name": "name.user.save",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "name.user.save",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "1c47ae3f-1a4e-4373-bcf4-ce8334310769",
+          "name": "given-name",
+          "required": false,
+          "dataType": "@sys.given-name",
+          "value": "$given-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "5c5d01c6-6db8-4c92-b6fe-bcf753431e1a",
+          "name": "last-name",
+          "required": false,
+          "dataType": "@sys.last-name",
+          "value": "$last-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "daef60a1-0d4c-432a-b25a-cffd636c7ace",
+          "name": "nick-name",
+          "required": false,
+          "dataType": "@nick-name",
+          "value": "$nick-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "da808a03-b0bc-4811-b96e-e3672330caf8",
+          "name": "type",
+          "required": false,
+          "dataType": "@name-type",
+          "value": "$type",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

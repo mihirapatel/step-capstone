@@ -1,0 +1,143 @@
+[
+  {
+    "id": "f4219805-878d-41d3-aea4-eb0a39c1c8f6",
+    "data": [
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "94fd80f0-6499-4a13-9883-61c53a8a54cd",
+    "data": [
+      {
+        "text": "et à ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "c2b5d73e-ac40-43fb-9db0-405d5c09b4c0",
+    "data": [
+      {
+        "text": "et à ",
+        "userDefined": false
+      },
+      {
+        "text": "Nantes",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "55bc76c8-d20a-4e00-987a-4792ebcb5a57",
+    "data": [
+      {
+        "text": "sur ",
+        "userDefined": false
+      },
+      {
+        "text": "Moscou",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ce week-end",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "31741c3c-55c1-4197-b795-ad09ec931509",
+    "data": [
+      {
+        "text": "à ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "lundi",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  }
+]

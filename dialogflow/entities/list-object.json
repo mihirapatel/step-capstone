@@ -1,0 +1,9 @@
+{
+  "id": "aee13c81-cdd8-4944-b03f-7fdfe53f511b",
+  "name": "list-object",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

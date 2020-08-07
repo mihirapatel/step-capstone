@@ -1,0 +1,431 @@
+[
+  {
+    "id": "a4f30fcf-e83e-4bdb-b258-0c75d2f3784b",
+    "data": [
+      {
+        "text": "アメリカ英語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "312e52b3-c6d0-467f-b1f1-943d2b29f559",
+    "data": [
+      {
+        "text": "英語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "を",
+        "userDefined": false
+      },
+      {
+        "text": "フランス語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳できますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "c9754934-3490-490f-ba15-c25c243beadd",
+    "data": [
+      {
+        "text": "テキスト「",
+        "userDefined": false
+      },
+      {
+        "text": "こんにちは",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」を翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "41b69268-05d4-4595-860a-fed60f26e20a",
+    "data": [
+      {
+        "text": "英語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "を",
+        "userDefined": false
+      },
+      {
+        "text": "イタリア語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "5c467248-88a1-461a-a42d-163dadaab535",
+    "data": [
+      {
+        "text": "「",
+        "userDefined": false
+      },
+      {
+        "text": "こんにちは",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」を",
+        "userDefined": false
+      },
+      {
+        "text": "スペイン語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳してください",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "2455c1a1-fb72-4d53-92f7-b0060dbff494",
+    "data": [
+      {
+        "text": "翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "c5e2825f-64ec-4639-8bcf-202e6991b1a6",
+    "data": [
+      {
+        "text": "「",
+        "userDefined": false
+      },
+      {
+        "text": "こんにちは、お元気ですか",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」を",
+        "userDefined": false
+      },
+      {
+        "text": "パンジャブ語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "bcccad84-781a-434a-8d22-58240cbc9905",
+    "data": [
+      {
+        "text": "ドイツ語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "で「",
+        "userDefined": false
+      },
+      {
+        "text": "朝食",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」は何と言いますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "c84cf5fc-c7e9-4d00-a896-2e8779b2c810",
+    "data": [
+      {
+        "text": "フィンランド語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "で「",
+        "userDefined": false
+      },
+      {
+        "text": "サンタクロース",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」は",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "cc4d8196-4336-439f-8f25-62ed8bf17975",
+    "data": [
+      {
+        "text": "「",
+        "userDefined": false
+      },
+      {
+        "text": "entschuldigung",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」という単語の",
+        "userDefined": false
+      },
+      {
+        "text": "英",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "14c8cdab-8eaa-4f89-b7f9-98c0b12e48d6",
+    "data": [
+      {
+        "text": "ドイツ語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "ができますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "0b8a9152-6098-4b12-bb17-290dfbc0827a",
+    "data": [
+      {
+        "text": "「",
+        "userDefined": false
+      },
+      {
+        "text": "たくさん",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」を",
+        "userDefined": false
+      },
+      {
+        "text": "日本語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "から",
+        "userDefined": false
+      },
+      {
+        "text": "フランス語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "c3e84386-6d6b-46cd-be4b-ec8c370433d8",
+    "data": [
+      {
+        "text": "「",
+        "userDefined": false
+      },
+      {
+        "text": "こんにちは",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」という単語の",
+        "userDefined": false
+      },
+      {
+        "text": "英訳",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "726a752e-9c80-4620-939f-73754095eed0",
+    "data": [
+      {
+        "text": "スペイン語",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "の「",
+        "userDefined": false
+      },
+      {
+        "text": "trabajador",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」を",
+        "userDefined": false
+      },
+      {
+        "text": "英語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "に翻訳",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "a5b32132-08b3-4f5e-8948-2d632b50b336",
+    "data": [
+      {
+        "text": "英語",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "で「",
+        "userDefined": false
+      },
+      {
+        "text": "おはよう",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "」は",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  }
+]

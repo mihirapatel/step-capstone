@@ -1,0 +1,780 @@
+[
+  {
+    "id": "c3a7dcb1-7014-4291-8f67-9e2988a0b84d",
+    "data": [
+      {
+        "text": "me pongo ",
+        "userDefined": false
+      },
+      {
+        "text": "chaqueta",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoy",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b9e2acd0-2c2e-4aa0-a165-26a9d671431b",
+    "data": [
+      {
+        "text": "voy a ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " necesito llevar ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a7538377-5ed0-44d8-a75b-dc69fbf51cdc",
+    "data": [
+      {
+        "text": "podrías decirme ",
+        "userDefined": false
+      },
+      {
+        "text": "si",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "voy",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " a necesitar ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "París",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " el ",
+        "userDefined": false
+      },
+      {
+        "text": "13 de noviembre",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8c3cf73d-a5df-406e-9191-9d59c94209c5",
+    "data": [
+      {
+        "text": "quiero que me digas si necesitaré ",
+        "userDefined": false
+      },
+      {
+        "text": "suéter",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Moscú",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6f66497c-8b41-427a-ab97-90b81a5ccf42",
+    "data": [
+      {
+        "text": "dime si se necesita ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para salir por ",
+        "userDefined": false
+      },
+      {
+        "text": "Murcia",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoy",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f74da258-faaf-4a00-9896-75ad3064b1a7",
+    "data": [
+      {
+        "text": "quisiera saber si necesito ",
+        "userDefined": false
+      },
+      {
+        "text": "gafas de sol",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para salir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8c0d640b-08c5-4e38-8ccc-fac6c4e7bf42",
+    "data": [
+      {
+        "text": "necesitaré ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cdfe6d00-ff6b-4b56-af43-f5afcf3df6a5",
+    "data": [
+      {
+        "text": "me hace falta un ",
+        "userDefined": false
+      },
+      {
+        "text": "suéter",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para ir a caminar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dcee7c90-d624-4364-bc3b-6738d60a7398",
+    "data": [
+      {
+        "text": "necesitaré ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "48b8cfc3-1e1b-44da-9e41-a34e64c5fe3f",
+    "data": [
+      {
+        "text": "quiero saber si necesitaré ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " al salir ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8367a8ec-232a-4799-a5f7-df35333013bd",
+    "data": [
+      {
+        "text": "puedo salir sin ",
+        "userDefined": false
+      },
+      {
+        "text": "suéter",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e3911c66-38ca-46de-93c5-aac80d8d8290",
+    "data": [
+      {
+        "text": "me pongo ",
+        "userDefined": false
+      },
+      {
+        "text": "chaqueta",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e16b5000-26bc-4ddd-83c2-cf1997bdf586",
+    "data": [
+      {
+        "text": "dime si necesito ",
+        "userDefined": false
+      },
+      {
+        "text": "chamarra",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " afuera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "65cb4fc1-4574-4d76-bab1-1baf5cde7570",
+    "data": [
+      {
+        "text": "necesitaría ",
+        "userDefined": false
+      },
+      {
+        "text": "gafas de sol",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valencia",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoy",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "35a7d13a-5b1b-4576-8f83-e2e29a408074",
+    "data": [
+      {
+        "text": "podría salir sin un ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f1726a3c-c3e1-42b0-91a0-d8f6150f4cc8",
+    "data": [
+      {
+        "text": "me será necesario un ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " afuera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b8f2179c-b7dc-4f95-91b8-58f17d41f915",
+    "data": [
+      {
+        "text": "tendré que llevar una ",
+        "userDefined": false
+      },
+      {
+        "text": "chaqueta",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cc96dfc0-7610-44c0-829b-9813879a12de",
+    "data": [
+      {
+        "text": "a las ",
+        "userDefined": false
+      },
+      {
+        "text": "6 de la tarde",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " será necesario un ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "95e360fb-4948-45a2-bc8f-25c314b879b7",
+    "data": [
+      {
+        "text": "me hará falta un ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " afuera",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9fb4d2a5-921f-4efa-b3e9-ea08ec9dcd68",
+    "data": [
+      {
+        "text": "tengo que llevarme una ",
+        "userDefined": false
+      },
+      {
+        "text": "chamarra",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dc013475-0194-43c4-bed8-3c1bf11d6e6a",
+    "data": [
+      {
+        "text": "necesito ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para salir ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Miami",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3d2e8d2d-6da0-45d1-a492-b82364d42d2c",
+    "data": [
+      {
+        "text": "necesito un ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para salir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c0a84c40-9d75-4e5a-8459-a96e788f50f2",
+    "data": [
+      {
+        "text": "avisame si debo salir con ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f90ad656-50eb-476a-9f62-fbcfc12959be",
+    "data": [
+      {
+        "text": "necesitaré un ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " el ",
+        "userDefined": false
+      },
+      {
+        "text": "próximo viernes",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "París",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f22e6258-b878-4f96-a54d-1896a284252b",
+    "data": [
+      {
+        "text": "necesito ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para salir ahora en ",
+        "userDefined": false
+      },
+      {
+        "text": "Barcelona",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9e79449e-b0a3-440e-affe-df59bff60589",
+    "data": [
+      {
+        "text": "no sé si debo llevar el ",
+        "userDefined": false
+      },
+      {
+        "text": "paraguas",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7858b15f-1d8f-4c3d-86d3-d4dcc760094c",
+    "data": [
+      {
+        "text": "me dices si necesito ",
+        "userDefined": false
+      },
+      {
+        "text": "abrigo",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " para salir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1b2ef8ce-fe17-4014-81ae-21430e295f5c",
+    "data": [
+      {
+        "text": "me pongo ",
+        "userDefined": false
+      },
+      {
+        "text": "suéter",
+        "meta": "@outfit",
+        "alias": "outfit",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "id": "3cbe1243-b40e-470a-a14c-c1d4cf8bf86e",
+    "data": [
+      {
+        "text": "faz isso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "6147d01a-0c66-44b7-bbb8-9e820d0fa491",
+    "data": [
+      {
+        "text": "sim",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "c73f62aa-7a2b-4219-83a8-cf0a7e7c4972",
+    "data": [
+      {
+        "text": "parece-me bem",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "99d26fdb-cf4d-4e54-9c8d-bd0b86ca7bc4",
+    "data": [
+      {
+        "text": "concordo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "af480c7e-2d7e-4a94-8547-ff832f99f7b1",
+    "data": [
+      {
+        "text": "com certeza",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "c7e142e6-cc3b-40e5-83ef-68b4fafc82f3",
+    "data": [
+      {
+        "text": "exatamente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f6521d56-6a75-4c36-8412-1611417202a0",
+    "data": [
+      {
+        "text": "está correto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "b25a464b-1c9b-49ea-8f5a-f097c6de0cc7",
+    "data": [
+      {
+        "text": "confirma",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "00e0e75a-5995-4cff-93f6-389c1019a32a",
+    "data": [
+      {
+        "text": "claro",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  }
+]

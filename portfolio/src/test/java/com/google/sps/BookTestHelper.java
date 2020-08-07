@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.servlets;
 
 import static org.junit.Assert.*;
@@ -31,6 +47,10 @@ import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This class provides testing framework to easily mock calls to external APIs, including Google
+ * Books API, People API, and OAuth 2.0. when testing the BooksAgent and any books intents.
+ */
 public class BookTestHelper {
   private static Logger log = LoggerFactory.getLogger(BookTestHelper.class);
   @Mock UserService userServiceMock;
@@ -60,7 +80,7 @@ public class BookTestHelper {
 
   /**
    * Sets the general return parameters to mock OAuthHelper when userEmail and queryId are not
-   * specified, i.e. for an un-authenticated query request
+   * specified, i.e. for an un-authenticated query request.
    *
    * @param inputText Text input of user's intent sent to Dialogflow.
    * @param parameters String json that consists of expected parameters identified by Dialogflow.
@@ -75,7 +95,7 @@ public class BookTestHelper {
 
   /**
    * Sets the general return parameters to mock OAuthHelper when queryId is not specified, i.e. for
-   * a new query request
+   * a new query request.
    *
    * @param inputText Text input of user's intent sent to Dialogflow.
    * @param parameters String json that consists of expected parameters identified by Dialogflow.
@@ -183,7 +203,7 @@ public class BookTestHelper {
 
   /**
    * Sets the list of bookshelf names returned from the BookUtils mock when a user requests
-   * bookshelves from their libraries
+   * bookshelves from their libraries.
    *
    * @param userId unique Id of user
    * @param bookshelfNames list of Bookshelf names
@@ -196,7 +216,7 @@ public class BookTestHelper {
 
   /**
    * Sets BookUtils mock to edit the users bookshelf (add or delete), or fail to add the book to the
-   * user's bookshelf and throw a GoogleJsonResponseException
+   * user's bookshelf and throw a GoogleJsonResponseException.
    *
    * @param bookshelfName name of bookshelf to edit
    * @param userId unique Id of user
@@ -230,7 +250,7 @@ public class BookTestHelper {
 
   /**
    * Sets the list of books returned from the BookUtils mock when a user requests books from their
-   * authenticated bookshelf
+   * authenticated bookshelf.
    *
    * @param userId unique Id of user
    * @param bookshelfBooks list of Book objects
@@ -247,7 +267,8 @@ public class BookTestHelper {
   }
 
   /**
-   * Sets the list of books returned from the BookUtils mock when a user makes a generic book search
+   * Sets the list of books returned from the BookUtils mock when a user makes a generic book
+   * search.
    *
    * @param books list of Book objects
    * @param totalBooksFound number of books in certain bookshelf
@@ -259,7 +280,7 @@ public class BookTestHelper {
   }
 
   /**
-   * Sets the mocks returned for a logged-in user with email and id from parameters
+   * Sets the mocks returned for a logged-in user with email and id from parameters.
    *
    * @param email email of logged-in user
    * @param id id of logged-in user
@@ -269,7 +290,7 @@ public class BookTestHelper {
   }
 
   /**
-   * Sets the mocks returned for authenticated users
+   * Sets the mocks returned for authenticated users.
    *
    * @param id id of logged-in user
    */

@@ -1,6 +1,21 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
-// Imports the Google Cloud client library
 import com.google.maps.errors.ApiException;
 import com.google.protobuf.Value;
 import com.google.sps.data.Location;
@@ -12,7 +27,10 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-/** Date Agent */
+/**
+ * Date Agent handles users' requests for date information. It determines appropriate outputs and
+ * display information to send to the user interface based on Dialogflow's detected Date intents.
+ */
 public class DateAgent implements Agent {
   private final String intentName;
   private String output = null;
@@ -27,7 +45,6 @@ public class DateAgent implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -72,6 +89,12 @@ public class DateAgent implements Agent {
     return null;
   }
 
+  /**
+   * Gets a ZonedDateTime object of the current date based on a location.
+   *
+   * @param locationName name of location
+   * @return ZonedDateTime of current date in location
+   */
   public ZonedDateTime getCurrentDate(String locationName)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -82,6 +105,12 @@ public class DateAgent implements Agent {
     return currentTime;
   }
 
+  /**
+   * Gets a String of the current date in the specified location.
+   *
+   * @param location name of location
+   * @return String specifying current date in location
+   */
   public String getCurrentDateString(String location)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -89,6 +118,12 @@ public class DateAgent implements Agent {
     return zonedTimeToString(date);
   }
 
+  /**
+   * Gets a String of the date of the ZonedDateTime object.
+   *
+   * @param time object containing date to retrieve String of
+   * @return String specifying the ZonedDateTime date
+   */
   public String zonedTimeToString(ZonedDateTime date) {
     String dateString = "";
     if (date != null) {
@@ -98,6 +133,12 @@ public class DateAgent implements Agent {
     return dateString;
   }
 
+  /**
+   * Gets the day of the week from a ZonedDateTime object.
+   *
+   * @param date object containing the date
+   * @return String specifying the weekday of the date
+   */
   public String getDayOfWeek(ZonedDateTime date) {
     String dateString = "";
     if (date != null) {
@@ -107,6 +148,12 @@ public class DateAgent implements Agent {
     return dateString;
   }
 
+  /**
+   * Gets a String of the date of the ZonedDateTime object.
+   *
+   * @param date object containing date to retrieve String of
+   * @return String specifying the ZonedDateTime
+   */
   public String getDateString(ZonedDateTime date) {
     String dateString = "";
     if (date != null) {

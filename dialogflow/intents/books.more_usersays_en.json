@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1edd62ae-64bc-4ab2-9cb5-f9f6c2ab391e",
+    "data": [
+      {
+        "text": "More",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2ed7951b-4931-4b38-b451-21e3403b4b7d",
+    "data": [
+      {
+        "text": "Next ",
+        "userDefined": false
+      },
+      {
+        "text": "page",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "46f1204c-9b7e-4d08-8c68-e0b466cf387f",
+    "data": [
+      {
+        "text": "Show more?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eed68d38-bc18-4d48-ace2-a74d8d98a1ed",
+    "data": [
+      {
+        "text": "Are there more results?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c0498cc1-9391-4fcd-853e-f83adaca5bb9",
+    "data": [
+      {
+        "text": "Can I see more?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "14453e8d-835a-4006-8a0e-554cd2a24282",
+    "data": [
+      {
+        "text": "show me more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c11abe3d-cc7a-4e26-a264-1717df15857c",
+    "data": [
+      {
+        "text": "more results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

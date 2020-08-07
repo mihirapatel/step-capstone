@@ -1,0 +1,162 @@
+{
+  "id": "f6b5cc47-aa42-467e-b816-179de98a47c1",
+  "parentId": "c8b744a0-68d5-46ec-80f6-de6232606d69",
+  "rootParentId": "c8b744a0-68d5-46ec-80f6-de6232606d69",
+  "name": "memory.list - custom",
+  "auto": true,
+  "contexts": [
+    "list-context",
+    "memorylist-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "memorylist.memorylist-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "1b6e3b5d-432e-49d0-9dee-dc519d5fd3d6",
+          "name": "list-objects",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$list-objects",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What items would you like to add?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "4b0bc84f-eb0f-46a4-8857-74620d141789",
+          "name": "list-name",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$list-name",
+          "defaultValue": "#list-context.list-name",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "38bc25ad-1297-4236-bde6-f6b56beda416",
+          "name": "nothing",
+          "required": false,
+          "dataType": "@nothing",
+          "value": "$nothing",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ja",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ru",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "zh-cn",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "zh-tw",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "fr",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "pt",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "zh-hk",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "it",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "pt-br",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

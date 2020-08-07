@@ -3,17 +3,17 @@ var userName;
 var userEmail;
 var savedWorkoutPlans;
 var savedWorkoutVideos;
+var isUserLoggedIn = function() {getUserLoggedInStatus();};
 
 /** Creates Workout Dashboard button on assistant main page that links to dashboard page*/
 function createWorkoutDashboardButton(){
-    var dashboardDiv = document.getElementsByClassName("workout-dashboard-link")[0];
+    dashboardDiv = document.getElementsByClassName("workout-dashboard-link")[0];
     var dashboardLink = document.createElement("a");
     dashboardLink.title = "Workout Dashboard";
     dashboardLink.innerHTML = "Workout Dashboard"
     dashboardLink.href = "dashboard.html";
     dashboardLink.target= "_blank";
     dashboardDiv.appendChild(dashboardLink);
-
 }
 
 /** Call all functions to get data from backend and display it*/
@@ -249,7 +249,6 @@ function displaySavedWorkoutVideos() {
  */
 function createVideoContainer(savedWorkoutVideo) {
     workoutVideo = JSON.parse(savedWorkoutVideo);
- 
     videoURL = workoutVideo.videoURL.replace(/"/g, "");
     thumbnail = workoutVideo.thumbnail.replace(/"/g, "");
     videoTitle = workoutVideo.title.replace(/"/g, "");
@@ -289,7 +288,6 @@ function createVideoContainer(savedWorkoutVideo) {
  
     var savedVideoTitle = document.createElement("h4");
     savedVideoTitle.className = "saved-video-title";
- 
     savedVideoTitle.innerHTML = videoTitle;
     videoTitleLink.appendChild(savedVideoTitle);
     savedWorkoutVideo.appendChild(videoTitleLink);

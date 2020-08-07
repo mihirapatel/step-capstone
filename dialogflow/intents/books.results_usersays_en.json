@@ -1,0 +1,41 @@
+[
+  {
+    "id": "68be962a-44c2-42d4-a3c9-2968c16974fc",
+    "data": [
+      {
+        "text": "back to results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cb6d6a67-8463-42ef-a22f-7daa5bd1bd0b",
+    "data": [
+      {
+        "text": "go back",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "44ef0b45-fe89-4f7d-b746-5493fedf5b1e",
+    "data": [
+      {
+        "text": "Go back to results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

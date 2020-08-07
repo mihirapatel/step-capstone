@@ -1,0 +1,57 @@
+{
+  "id": "a248c967-0918-4c39-8df8-58be4fdbafac",
+  "name": "books.library",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "books",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "74a0a4c8-bfa4-4a4b-a932-730f5b5b501e",
+          "name": "bookshelf",
+          "required": false,
+          "dataType": "@bookshelf",
+          "value": "$bookshelf",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Which bookshelf would you like to view?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 1000000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

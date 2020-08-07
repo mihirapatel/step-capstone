@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 import static org.junit.Assert.*;
@@ -25,7 +41,7 @@ import org.slf4j.LoggerFactory;
 /**
  * This class runs JUnit tests to test BookAgent outputs for intents that require user to be logged
  * in given mock BookUtils, PeopleUtils, and OAuthUtils instances to mock Google Books API, Google
- * People API, and OAuth2.0
+ * People API, and OAuth 2.0.
  */
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class BookAgentAuthIntentsTest {
@@ -47,7 +63,7 @@ public class BookAgentAuthIntentsTest {
 
   /**
    * Test setup which prepopulates the database and mocks with appropriate information about the
-   * authenticated user
+   * authenticated user.
    */
   @Before
   public void setUp() throws ParseException, InvalidProtocolBufferException {
@@ -124,7 +140,7 @@ public class BookAgentAuthIntentsTest {
 
   /**
    * This function tests a non-logged in user making a request for intents that require the user to
-   * give proper authentication
+   * give proper authentication.
    */
   @Test
   public void testUserNotLoggedIn() throws Exception {
@@ -138,7 +154,7 @@ public class BookAgentAuthIntentsTest {
 
   /**
    * This function tests a logged in, but non-authenticated user making a request for intents that
-   * require the user to give proper authentication
+   * require the user to give proper authentication.
    */
   @Test
   public void testUserNotAuthenticated() throws Exception {
@@ -436,7 +452,7 @@ public class BookAgentAuthIntentsTest {
   /**
    * This function tests the output, fulfillment, and redirect for a friendlikes intent when a user
    * selects one of their friends from a list of friends with duplicate names to see the likes of.
-   * Tests: James Ray, secondJames@gmail.com
+   * Tests: James Ray, secondJames@gmail.com.
    */
   @Test
   public void testFriendLikesDuplicateName1() throws Exception {
@@ -459,7 +475,7 @@ public class BookAgentAuthIntentsTest {
   /**
    * This function tests the output, fulfillment, and redirect for a friendlikes intent when a user
    * selects one of their friends from a list of friends with duplicate names to see the likes of.
-   * Tests: James Ray, james@gmail.com
+   * Tests: James Ray, james@gmail.com.
    */
   @Test
   public void testFriendLikesDuplicateName2() throws Exception {
@@ -522,7 +538,7 @@ public class BookAgentAuthIntentsTest {
 
   /**
    * Checks whether the output, display, and redirect when the user requests to see more books in
-   * one of their bookshelves
+   * one of their bookshelves.
    */
   @Test
   public void testNextPageOfBookshelfRequest() throws Exception {

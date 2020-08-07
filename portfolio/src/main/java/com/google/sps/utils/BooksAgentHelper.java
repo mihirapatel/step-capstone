@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
@@ -50,7 +66,7 @@ public class BooksAgentHelper {
   private PeopleUtils peopleUtils;
 
   /**
-   * BooksAgentHelper constructor
+   * BooksAgentHelper constructor.
    *
    * @param intentName String containing the specific intent within memory agent that user is
    *     requesting.
@@ -93,6 +109,13 @@ public class BooksAgentHelper {
     this.peopleUtils = peopleUtils;
   }
 
+  /**
+   * This method directs the information flow for an intent that requires authorization to the
+   * correct helper method to determine the appropriate fulfillment, display, and redirect based on
+   * the intent name.
+   *
+   * @param parameters Map of parameters from Dialogflow
+   */
   public void handleAuthorizationIntents(Map<String, Value> parameters)
       throws IOException, IllegalArgumentException {
     if (!userService.isUserLoggedIn()) {
@@ -132,7 +155,7 @@ public class BooksAgentHelper {
 
   /**
    * Retrieves bookshelf information for the logged in user and sets parameters accordingly,
-   * including shelvesnames and lowerShelvesNames to be used for MyLibrary intents
+   * including shelvesnames and lowerShelvesNames to be used for MyLibrary intents.
    */
   private void setBookshelfInfoForUser() throws IOException, IllegalArgumentException {
     // Retrieve stored or store bookshelf names for current user
@@ -146,7 +169,7 @@ public class BooksAgentHelper {
   }
 
   /**
-   * Handles new query Book intents that require retrieving new lists of books, based on user input.
+   * Handles new query Book intents that require retrieving new lists of books based on user input.
    * Includes: search, library, friends, mylikes, friendlikes intents. Handles these intents by:
    * creating BookQuery, retrieving appropriate Books, and handling a new query storage and display
    * if the request is successful.
@@ -171,7 +194,7 @@ public class BooksAgentHelper {
 
   /**
    * Creates new query request by: creating BookQuery, retrieving appropriate Books for the intent
-   * and setting the totalResults and resultsReturned parameters
+   * and setting the totalResults and resultsReturned parameters.
    *
    * @param intentName name of detected intent
    * @param parameters Map of parameters from Dialogflow
@@ -540,7 +563,7 @@ public class BooksAgentHelper {
 
   /**
    * Loads previous BookQuery information from the BookQuery matching the request's sessionID and
-   * queryID and sets query parameter based on stored information
+   * queryID and sets query parameter based on stored information.
    *
    * @param sessionID ID of current user / session
    * @param queryID ID of query requested
@@ -551,7 +574,7 @@ public class BooksAgentHelper {
 
   /**
    * Loads previous Indices information from the BookQuery matching the request's sessionID and
-   * queryID and sets prevStartIndex, resultsStored, totalResults based on stored information
+   * queryID and sets prevStartIndex, resultsStored, totalResults based on stored information.
    *
    * @param sessionID ID of current user / session
    * @param queryID ID of query requested
@@ -593,7 +616,10 @@ public class BooksAgentHelper {
   }
 
   /**
-   * Sets display to Book specified in parameters and assigns like status to display on interface
+   * Sets display to Book specified in parameters and assigns like status to display on interface,
+   * and throws an exception otherwise.
+   *
+   * @param book book to display
    */
   private void setSingleBookDisplay(Book book) throws IOException {
     if (userService.isUserLoggedIn()) {
@@ -623,7 +649,7 @@ public class BooksAgentHelper {
   /**
    * Replaces previous Indices Entity stored in Datastore with the new startIndex, totalResults,
    * resultsStored, displayNum for the Indices Entity that matches the current sessionID and queryID
-   * for the request
+   * for the request.
    *
    * @param sessionID ID of current user / session
    * @param queryID ID of query requested
@@ -657,7 +683,7 @@ public class BooksAgentHelper {
 
   /**
    * Returns a list of valid shelves to add Book object to, based on type of book and access type of
-   * generic Google Books shelves
+   * generic Google Books shelves.
    *
    * @param shelves list of all user's shelves
    * @param bookToAdd Book to add
@@ -692,6 +718,10 @@ public class BooksAgentHelper {
     return queryID;
   }
 
+  /* Determines appropriate fulfillment ending based on intent.
+   *
+   * @param query BookQuery for current queryID
+   */
   private String getFulfillmentEnding(BookQuery query) {
     String ending = "";
     if (query.getIntent().equals("library")) {

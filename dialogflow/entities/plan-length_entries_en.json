@@ -1,0 +1,25 @@
+[
+  {
+    "value": "30-day",
+    "synonyms": [
+      "30-day",
+      "30 days",
+      "1 month"
+    ]
+  },
+  {
+    "value": "2-week",
+    "synonyms": [
+      "2-week",
+      "2 weeks",
+      "14 days"
+    ]
+  },
+  {
+    "value": "1 week",
+    "synonyms": [
+      "1 week",
+      "7 days"
+    ]
+  }
+]

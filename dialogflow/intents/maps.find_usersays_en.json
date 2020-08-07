@@ -1,0 +1,284 @@
+[
+  {
+    "id": "6644a302-2481-4d6d-9913-7ecb4888269a",
+    "data": [
+      {
+        "text": "Where can I find banks in",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "017bccfc-8ada-4f81-87ca-1d75c7af4cbb",
+    "data": [
+      {
+        "text": "I want to find some ",
+        "userDefined": false
+      },
+      {
+        "text": "pizza places",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7e962719-1bfa-4767-a06d-177eb8337e4b",
+    "data": [
+      {
+        "text": "Can I get the top ",
+        "userDefined": false
+      },
+      {
+        "text": "10",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "restaurants",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "France",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "099f15c4-76f4-499d-9b77-7ac3569edd6a",
+    "data": [
+      {
+        "text": "Find ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "zoos",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": true
+      },
+      {
+        "text": " to visit in ",
+        "userDefined": false
+      },
+      {
+        "text": "California",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6fa25ac2-801e-496f-a3ea-d860b736082f",
+    "data": [
+      {
+        "text": "Find some places to visit in ",
+        "userDefined": false
+      },
+      {
+        "text": "London",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4cc65739-1852-4793-9de4-50ade1ed1495",
+    "data": [
+      {
+        "text": "What are some good ",
+        "userDefined": false
+      },
+      {
+        "text": "cafes",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Seattle",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c91b79a5-0a48-4d10-a97d-e1a87e6dc577",
+    "data": [
+      {
+        "text": "I want some ",
+        "userDefined": false
+      },
+      {
+        "text": "ice cream",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Sydney",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "62f84a53-eb0a-4d11-84ed-40aaff89c493",
+    "data": [
+      {
+        "text": "Find ",
+        "userDefined": false
+      },
+      {
+        "text": "popular",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "attractions",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "New York",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": " City.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "17de899d-28af-42c5-8cde-b371efa001de",
+    "data": [
+      {
+        "text": "Find the some ",
+        "userDefined": false
+      },
+      {
+        "text": "restaurants",
+        "meta": "@sys.place-attraction",
+        "alias": "place-attraction",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "San Jose.",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

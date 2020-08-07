@@ -1,0 +1,107 @@
+{
+  "id": "c8b744a0-68d5-46ec-80f6-de6232606d69",
+  "name": "memory.list - make",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "list-context",
+          "lifespan": 5
+        },
+        {
+          "name": "memorylist-followup",
+          "lifespan": 2
+        },
+        {
+          "name": "memorylist-make-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "0eabbc52-3ad9-4331-8262-030d115e3453",
+          "name": "list-name",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$list-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What would you like to name the list?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "cdc4d549-624a-4712-acc6-75b790fa4503",
+          "name": "list-objects",
+          "required": false,
+          "dataType": "@sys.any",
+          "value": "$list-objects",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "52aed687-a389-4271-a360-63b7aa1cec37",
+          "name": "new-list",
+          "required": false,
+          "dataType": "@new-list",
+          "value": "$new-list",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "7acb5b12-5a72-4812-a258-469c640defb1",
+          "name": "generic-list",
+          "required": false,
+          "dataType": "@generic-list",
+          "value": "$generic-list",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

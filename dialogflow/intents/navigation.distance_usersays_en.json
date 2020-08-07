@@ -1,0 +1,371 @@
+[
+  {
+    "id": "05d63d38-a9b6-46e6-9b88-cd6dbb2dde18",
+    "data": [
+      {
+        "text": "how many kilometres are left to get to ",
+        "userDefined": false
+      },
+      {
+        "text": "1938 Sulivan Ln Metropolis",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6acde283-2150-4166-bec3-2f2943c9b90c",
+    "data": [
+      {
+        "text": "how many ",
+        "userDefined": false
+      },
+      {
+        "text": "kilometres",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "my",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "home",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "55bb8c0f-ed6e-4cd1-84be-a03e4e578e6a",
+    "data": [
+      {
+        "text": "will I drive more than ",
+        "userDefined": false
+      },
+      {
+        "text": "300",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "miles",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " to get from ",
+        "userDefined": false
+      },
+      {
+        "text": "12 Arbour Road",
+        "meta": "@sys.location",
+        "alias": "from",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "55 Central Park West",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "af4c6885-d865-41c1-9f6d-d957944fcbf4",
+    "data": [
+      {
+        "text": "number of ",
+        "userDefined": false
+      },
+      {
+        "text": "miles",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " I have to cover to reach ",
+        "userDefined": false
+      },
+      {
+        "text": "Main Street",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "65330b90-414c-45e9-9fc3-3d06389b4b54",
+    "data": [
+      {
+        "text": "what\u0027s the distance ",
+        "userDefined": false
+      },
+      {
+        "text": "to the destination point",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ec6281f1-7419-49d2-b470-ea6ca4bababa",
+    "data": [
+      {
+        "text": "how far is ",
+        "userDefined": false
+      },
+      {
+        "text": "my",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "office",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "529ed359-c436-43d2-947c-e27c98f394b5",
+    "data": [
+      {
+        "text": "how far is ",
+        "userDefined": false
+      },
+      {
+        "text": "my",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " destination ",
+        "userDefined": false
+      },
+      {
+        "text": "point",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "238fa011-bb15-48f0-bc45-2aedc6e48877",
+    "data": [
+      {
+        "text": "tell me how many ",
+        "userDefined": false
+      },
+      {
+        "text": "miles",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "New York",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6b9132ea-b692-43b8-9b73-332eb9952d79",
+    "data": [
+      {
+        "text": "do I have to drive more than ",
+        "userDefined": false
+      },
+      {
+        "text": "200",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "miles",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e1704702-b040-4a07-af90-7dbaad41abe6",
+    "data": [
+      {
+        "text": "is this ",
+        "userDefined": false
+      },
+      {
+        "text": "route",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " longer than ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "miles",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d81a33e0-28b5-4ebd-b624-1bd6bd208453",
+    "data": [
+      {
+        "text": "how ",
+        "userDefined": false
+      },
+      {
+        "text": "many",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "km",
+        "meta": "@sys.unit-length-name",
+        "alias": "unit",
+        "userDefined": true
+      },
+      {
+        "text": " should I ",
+        "userDefined": false
+      },
+      {
+        "text": "drive",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " reach ",
+        "userDefined": false
+      },
+      {
+        "text": "New York",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

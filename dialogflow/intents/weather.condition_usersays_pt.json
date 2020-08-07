@@ -1,0 +1,297 @@
+[
+  {
+    "id": "38fb15e8-147f-47b4-90ea-893eeadcc408",
+    "data": [
+      {
+        "text": "está a ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "335205ea-a1a2-4e97-8d83-00a6b5acbd55",
+    "data": [
+      {
+        "text": "está previsto ",
+        "userDefined": false
+      },
+      {
+        "text": "nevar",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "0fb10c3d-2dea-49e0-9ad9-37f628741e8c",
+    "data": [
+      {
+        "text": "chove",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "nesta sexta-feira",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "93f0e890-39bb-49e6-abb3-aabce2cbac4a",
+    "data": [
+      {
+        "text": "qual é a previsão meteorológica de ",
+        "userDefined": false
+      },
+      {
+        "text": "neve",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Nova Iorque",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "074634a5-686c-4dd5-a82c-58e8f1d9185e",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "09c9fad4-22d0-44f3-a1bf-2d0ad62857fa",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " logo ",
+        "userDefined": false
+      },
+      {
+        "text": "à noite",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "f9b986d6-8412-4ed3-a1f3-f14c82f7c04f",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "nevar",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "88c09b69-b20b-4375-9bd2-3a8a13e092a5",
+    "data": [
+      {
+        "text": "mas vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "50659295-7d11-4b31-8701-3c010533e7d3",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "esta sexta-feira",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "0baee732-7de7-4fd9-8ad6-c0367221e4d6",
+    "data": [
+      {
+        "text": "está previsto ",
+        "userDefined": false
+      },
+      {
+        "text": "nevar",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "hoje",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt",
+    "updated": 0
+  },
+  {
+    "id": "7bb35a92-0d57-41ec-b7cd-817e67e7dead",
+    "data": [
+      {
+        "text": "vai ",
+        "userDefined": false
+      },
+      {
+        "text": "chover",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "amanhã",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt",
+    "updated": 0
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "id": "efb7a724-33bb-42c7-a157-cc19befa0528",
+  "name": "currency.convert",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "currency.convert",
+      "affectedContexts": [
+        {
+          "name": "convert-currency",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "d968996f-a39a-47bf-a161-8dc9a2d30a29",
+          "name": "currency-from",
+          "required": false,
+          "dataType": "@sys.currency-name",
+          "value": "$currency-from",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "493d073f-4250-49e0-be61-64ab409929fa",
+          "name": "currency-to",
+          "required": false,
+          "dataType": "@sys.currency-name",
+          "value": "$currency-to",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "9da275dc-fd5f-47a5-997a-731331fdf998",
+          "name": "amount",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$amount",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

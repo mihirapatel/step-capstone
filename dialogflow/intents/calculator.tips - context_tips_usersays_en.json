@@ -1,0 +1,305 @@
+[
+  {
+    "id": "f665bd18-5c70-4c68-8ff7-17de97be5a3f",
+    "data": [
+      {
+        "text": "and on ",
+        "userDefined": false
+      },
+      {
+        "text": "19",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6b7fa646-591b-4691-9542-0a3a7769e3f7",
+    "data": [
+      {
+        "text": "and ",
+        "userDefined": false
+      },
+      {
+        "text": "12",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b898bd80-d3e2-45dc-8689-4024eca2fedd",
+    "data": [
+      {
+        "text": "how about ",
+        "userDefined": false
+      },
+      {
+        "text": "10 percent",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "30838f9e-d46a-47a4-8824-8a638059962b",
+    "data": [
+      {
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "2837",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "815d7677-74d1-40cd-9f50-78c3c2e259b0",
+    "data": [
+      {
+        "text": "and for ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": true
+      },
+      {
+        "text": " people",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e701d909-9754-4ca9-a1d2-413eebcfbae3",
+    "data": [
+      {
+        "text": "12%",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " now",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "19886775-413f-44c0-9bb8-8d9e7e0ae8d2",
+    "data": [
+      {
+        "text": "and what about ",
+        "userDefined": false
+      },
+      {
+        "text": "10",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d8a16eb0-0b36-461e-a882-1bb6c03a2c3c",
+    "data": [
+      {
+        "text": "and ",
+        "userDefined": false
+      },
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount-without-tip",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "11fa9681-019c-42c0-a067-ca87cf45002c",
+    "data": [
+      {
+        "text": "for ",
+        "userDefined": false
+      },
+      {
+        "text": "8",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "people",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e424e1ee-8d78-444a-aa3c-2fe756feaf20",
+    "data": [
+      {
+        "text": "for ",
+        "userDefined": false
+      },
+      {
+        "text": "8",
+        "meta": "@sys.number",
+        "alias": "people-number",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "people",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "now",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eb7574fb-633b-4b07-8359-b6571f344504",
+    "data": [
+      {
+        "text": "and ",
+        "userDefined": false
+      },
+      {
+        "text": "12 percents",
+        "meta": "@sys.percentage",
+        "alias": "tip-percentage",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "now",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

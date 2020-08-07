@@ -1,0 +1,223 @@
+[
+  {
+    "value": "HIIT",
+    "synonyms": [
+      "HIIT",
+      "High Intensity Interval Training",
+      "hiit",
+      "intense"
+    ]
+  },
+  {
+    "value": "yoga",
+    "synonyms": [
+      "yoga"
+    ]
+  },
+  {
+    "value": "cardio",
+    "synonyms": [
+      "cardio"
+    ]
+  },
+  {
+    "value": "LIIT",
+    "synonyms": [
+      "LIIT",
+      "Low Intensity Interval Training",
+      "Beginner",
+      "Easy",
+      "Low Intensity",
+      "liit"
+    ]
+  },
+  {
+    "value": "no equipment",
+    "synonyms": [
+      "no equipment"
+    ]
+  },
+  {
+    "value": "dumbbell only",
+    "synonyms": [
+      "dumbbell only"
+    ]
+  },
+  {
+    "value": "apartment friendly",
+    "synonyms": [
+      "apartment friendly"
+    ]
+  },
+  {
+    "value": "pilates",
+    "synonyms": [
+      "pilates"
+    ]
+  },
+  {
+    "value": "jump rope",
+    "synonyms": [
+      "jump rope",
+      "jumprope"
+    ]
+  },
+  {
+    "value": "kickboxing",
+    "synonyms": [
+      "kickboxing"
+    ]
+  },
+  {
+    "value": "zumba",
+    "synonyms": [
+      "zumba"
+    ]
+  },
+  {
+    "value": "tabata",
+    "synonyms": [
+      "tabata"
+    ]
+  },
+  {
+    "value": "full body",
+    "synonyms": [
+      "full body"
+    ]
+  },
+  {
+    "value": "upper body",
+    "synonyms": [
+      "upper body",
+      "upperbody"
+    ]
+  },
+  {
+    "value": "bicep",
+    "synonyms": [
+      "biceps",
+      "bicep"
+    ]
+  },
+  {
+    "value": "arm",
+    "synonyms": [
+      "arm",
+      "arms"
+    ]
+  },
+  {
+    "value": "tricep",
+    "synonyms": [
+      "tricep",
+      "triceps"
+    ]
+  },
+  {
+    "value": "leg",
+    "synonyms": [
+      "leg",
+      "legs"
+    ]
+  },
+  {
+    "value": "lower body",
+    "synonyms": [
+      "lower body",
+      "lowerbody"
+    ]
+  },
+  {
+    "value": "calf",
+    "synonyms": [
+      "calve",
+      "calf"
+    ]
+  },
+  {
+    "value": "thigh",
+    "synonyms": [
+      "thigh",
+      "thighs"
+    ]
+  },
+  {
+    "value": "hamstring",
+    "synonyms": [
+      "hamstring",
+      "hamstrings"
+    ]
+  },
+  {
+    "value": "glutes",
+    "synonyms": [
+      "glutes",
+      "butt",
+      "booty"
+    ]
+  },
+  {
+    "value": "stretch",
+    "synonyms": [
+      "stretch",
+      "stretching",
+      "streches"
+    ]
+  },
+  {
+    "value": "abs",
+    "synonyms": [
+      "abs",
+      "ab",
+      "stomach",
+      "core"
+    ]
+  },
+  {
+    "value": "plank",
+    "synonyms": [
+      "plank",
+      "planks"
+    ]
+  },
+  {
+    "value": "lower ab",
+    "synonyms": [
+      "lower abs",
+      "lower belly"
+    ]
+  },
+  {
+    "value": "knee friendly",
+    "synonyms": [
+      "knee friendly"
+    ]
+  },
+  {
+    "value": "no jumping",
+    "synonyms": [
+      "no jumping",
+      "no jump"
+    ]
+  },
+  {
+    "value": "strength training",
+    "synonyms": [
+      "strength training"
+    ]
+  },
+  {
+    "value": "boxing",
+    "synonyms": [
+      "boxing"
+    ]
+  },
+  {
+    "value": "dance",
+    "synonyms": [
+      "dance",
+      "dancing"
+    ]
+  }
+]

@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
@@ -18,13 +34,13 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
 
-/** This class contains methods that help with OAuth tasks */
+/** This class contains methods that help with OAuth 2.0. handling. */
 public class OAuthHelper {
   static final String REDIRECT_URL_BASE =
       "https://8080-fabf4299-6bc0-403a-9371-600927588310.us-west1.cloudshell.dev";
 
   /**
-   * Loads stored Credential for userID, or null if one does not exist
+   * Loads stored Credential for userID, or null if one does not exist.
    *
    * @param userID current unique user ID
    * @return Credential object for current user
@@ -35,8 +51,8 @@ public class OAuthHelper {
   }
 
   /**
-   * Loads and updates stored Credential for userID if needed , or returns null if one does not
-   * exist
+   * Loads and updates stored Credential for userID if needed, or returns null if one does not
+   * exist.
    *
    * @param userID current unique user ID
    * @return Credential object for current user
@@ -55,7 +71,7 @@ public class OAuthHelper {
   }
 
   /**
-   * Creates a redirect URL for OAuth Servlets
+   * Creates a redirect URL for OAuth Servlets.
    *
    * @return url String
    */
@@ -66,7 +82,7 @@ public class OAuthHelper {
   }
 
   /**
-   * Creates an AuthorizationCodeFlow to handle OAuth access tokens
+   * Creates an AuthorizationCodeFlow to handle OAuth access tokens.
    *
    * @param userID current unique user ID
    * @return AuthorizationCodeFlow
@@ -96,7 +112,7 @@ public class OAuthHelper {
   }
 
   /**
-   * This function determines if the current user has stored book credentials
+   * This function determines if the current user has stored book credentials.
    *
    * @param userID ID of current user logged in
    * @return boolean indicating if user has book credentials

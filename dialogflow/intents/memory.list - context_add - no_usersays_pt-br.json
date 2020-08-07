@@ -1,0 +1,119 @@
+[
+  {
+    "id": "62a12716-c44e-4505-bb81-ce94a1062b4e",
+    "data": [
+      {
+        "text": "discordo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "3b7cd8a6-35d4-4c4c-81d8-0105a94a5186",
+    "data": [
+      {
+        "text": "definitivamente não",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "b107cc6f-3956-432b-bcf1-a3a1b59c9e5b",
+    "data": [
+      {
+        "text": "não obrigado",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "10b41714-9064-4dcd-b3f0-8fd9df2ac672",
+    "data": [
+      {
+        "text": "acho que não",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "bde2d10c-a5ce-41eb-a561-8e76cb0a54fe",
+    "data": [
+      {
+        "text": "não",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 4,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "311868a9-e66f-439a-85ec-9245b63a76a7",
+    "data": [
+      {
+        "text": "não tenho interesse",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "97b9a95e-8568-485f-98d5-c94f6f4d5bc7",
+    "data": [
+      {
+        "text": "não quero isso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "1a4178d9-8337-4564-bd19-7857acf90673",
+    "data": [
+      {
+        "text": "não faça isso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "57cb9c30-3725-44e2-bb73-aee05a1089b2",
+    "data": [
+      {
+        "text": "não mesmo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "pt-br",
+    "updated": 0
+  }
+]

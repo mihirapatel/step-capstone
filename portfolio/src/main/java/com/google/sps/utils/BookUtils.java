@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -21,12 +37,15 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+ * This class contains methods to access the Google Books API.
+ */
 public class BookUtils {
   private static Logger log = LoggerFactory.getLogger(BookUtils.class);
 
   /**
    * This function returns an ArrayList of Book objects containing information from the Google Books
-   * API based on the user's request, and throws an exception otherwise
+   * API based on the user's request, and throws an exception otherwise.
    *
    * @param query BookQuery object containing parameters for user requested query
    * @param startIndex the index of the first result to return from Google Books API
@@ -40,7 +59,7 @@ public class BookUtils {
 
   /**
    * This function returns the number of total volumes from the Google Books API that match the
-   * BookQuery request based on the user's input, and throws an exception otherwise
+   * BookQuery request based on the user's input, and throws an exception otherwise.
    *
    * @param query BookQuery object containing parameters for user requested query
    * @param startIndex the index of the first result to return from Google Books API
@@ -53,7 +72,7 @@ public class BookUtils {
 
   /**
    * This function returns a Volumes object containing the volumes from the Google Books API that
-   * match the parameters in the BookQuery object, and throws an exception otherwise
+   * match the parameters in the BookQuery object, and throws an exception otherwise.
    *
    * @param query BookQuery object containing parameters for user requested query
    * @param startIndex the index of the first result to return from Google Books API
@@ -87,7 +106,7 @@ public class BookUtils {
 
   /**
    * This function returns a Book object of the requested volumeId from the Google Books API and
-   * returns null otherwise
+   * returns null otherwise.
    *
    * @param volumeId unique volume Id of book from Google Books API
    * @return Book object of requested book
@@ -107,7 +126,7 @@ public class BookUtils {
 
   /**
    * This function builds and returns a Books object that can access a list of volumes the Google
-   * Books API and throws an exception otherwise
+   * Books API and throws an exception otherwise.
    *
    * @return Books object
    */
@@ -128,7 +147,7 @@ public class BookUtils {
 
   /**
    * This function builds and returns a Books object that can access a list of volumes the Google
-   * Books API from the Credential for the authenticated user and throws an exception otherwise
+   * Books API from the Credential for the authenticated user and throws an exception otherwise.
    *
    * @param credential Valid credential for authenticated user
    * @return Books object
@@ -143,9 +162,9 @@ public class BookUtils {
   }
 
   /**
-   * This function returns an ArrayList of Book objects from a Volumes object
+   * This function returns an ArrayList of Book objects from a Volumes object.
    *
-   * <p>If no valid Book objects can be constructed, it returns an empty ArrayList
+   * <p>If no valid Book objects can be constructed, it returns an empty ArrayList.
    *
    * @param volumes Volumes object from Google Books API
    * @return ArrayList<Book>
@@ -169,7 +188,7 @@ public class BookUtils {
 
   /**
    * This function returns a Bookshelves object containing the Bookshelves from the Google Books API
-   * that match the authenticated user's bookshelves and throws an exception otherwise
+   * that match the authenticated user's bookshelves and throws an exception otherwise.
    *
    * @param userID unique userID
    * @param helper OAuthHelper instance used to access OAuth methods
@@ -187,7 +206,7 @@ public class BookUtils {
 
   /**
    * This function returns a list of the names of the authenticated user's bookshelves from the
-   * Google Books API and throws an exception otherwise
+   * Google Books API and throws an exception otherwise.
    *
    * @param userID unique userID
    * @param helper OAuthHelper instance used to access OAuth methods
@@ -212,7 +231,7 @@ public class BookUtils {
 
   /**
    * This function returns a Bookshelf object of the authenticated user's specified bookshelf from
-   * the Google Books API and throws an exception otherwise
+   * the Google Books API and throws an exception otherwise.
    *
    * @param userID unique userID
    * @param bookshelfName bookshelf to retrieve
@@ -236,7 +255,7 @@ public class BookUtils {
 
   /**
    * This function returns the volumes contained in the authenticated user's specified bookshelf
-   * from the Google Books API and throws an exception otherwise
+   * from the Google Books API and throws an exception otherwise.
    *
    * @param query BookQuery object containing parameters for user requested query
    * @param startIndex the index of the first result to return from Google Books API
@@ -262,7 +281,7 @@ public class BookUtils {
 
   /**
    * This function returns the volumes contained in the authenticated user's specified bookshelf
-   * from the Google Books API and throws an exception otherwise
+   * from the Google Books API and throws an exception otherwise.
    *
    * @param userID unique userID
    * @param startIndex the index of the first result to return from Google Books API
@@ -279,7 +298,7 @@ public class BookUtils {
 
   /**
    * This function returns the number of total volumes from the Google Books API that match the
-   * BookQuery bookshelf request, and throws an exception otherwise
+   * BookQuery bookshelf request, and throws an exception otherwise.
    *
    * @param query BookQuery object containing parameters for user requested query
    * @param startIndex the index of the first result to return from Google Books API
@@ -296,7 +315,7 @@ public class BookUtils {
 
   /**
    * This function adds the specified volume to the user's specified bookshelf, and throws an
-   * exception otherwise
+   * exception otherwise.
    *
    * @param bookshelfName name of bookshelf to add volume to
    * @param userID unique userID
@@ -322,7 +341,7 @@ public class BookUtils {
 
   /**
    * This function deletes the specified volume to the user's specified bookshelf, and throws an
-   * exception otherwise
+   * exception otherwise.
    *
    * @param bookshelfName name of bookshelf to delete volume from
    * @param userID unique userID

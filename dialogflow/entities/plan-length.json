@@ -1,0 +1,9 @@
+{
+  "id": "7e5c7e38-d4d2-4708-a5ee-a0aa7477ea2c",
+  "name": "plan-length",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

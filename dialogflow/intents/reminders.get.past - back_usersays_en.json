@@ -1,0 +1,132 @@
+[
+  {
+    "id": "be0563db-3061-4d27-92b3-1bb3e04711c6",
+    "data": [
+      {
+        "text": "previous",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cf6138ba-9efc-4b0d-9d05-6bebe83b416f",
+    "data": [
+      {
+        "text": "previous results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0eb90b6a-5600-4ad0-8953-0017d8d061d2",
+    "data": [
+      {
+        "text": "go back",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "37c6b4d8-5a7d-424a-be1f-146c6c0f958f",
+    "data": [
+      {
+        "text": "previous page",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3d95c910-3a93-4c0f-a284-41935a1a6fae",
+    "data": [
+      {
+        "text": "read out the previous results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a4426ef0-7d97-4957-96ce-6a6ff742ce83",
+    "data": [
+      {
+        "text": "return to the previous",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a35fb044-f66e-454a-951b-aea9ebb69dfd",
+    "data": [
+      {
+        "text": "return to previous page",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b4b38f1e-dd63-4d87-9bac-1e4ff33171e3",
+    "data": [
+      {
+        "text": "go back to previous results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bff9487d-bc7b-4a78-9662-5ea903bf8533",
+    "data": [
+      {
+        "text": "go to the previous page",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "57a6c16f-8c8b-4fde-8c0f-50f86dfedae5",
+    "data": [
+      {
+        "text": "back",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

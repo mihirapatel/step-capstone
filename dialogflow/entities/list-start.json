@@ -1,0 +1,9 @@
+{
+  "id": "8011efba-d006-44e4-9d0a-c14007b75b54",
+  "name": "list-start",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

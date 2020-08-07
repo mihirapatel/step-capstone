@@ -1,0 +1,1190 @@
+[
+  {
+    "id": "ac8b7595-b579-4f47-bcb7-df0a285683e4",
+    "data": [
+      {
+        "text": "get",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " directions to the ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ATM",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "89f1ef4e-1278-4ef6-9f9b-540e73bae6b1",
+    "data": [
+      {
+        "text": "how do I get ",
+        "userDefined": false
+      },
+      {
+        "text": "home",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " taking ",
+        "userDefined": false
+      },
+      {
+        "text": "E120",
+        "meta": "@sys.location",
+        "alias": "include-point",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "79c80821-b85e-4884-83b7-355daff14f71",
+    "data": [
+      {
+        "text": "find the ",
+        "userDefined": false
+      },
+      {
+        "text": "fastest route",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "Baxter Building 42nd street Madison Avenue Manhattan",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d40ce34a-92f9-418a-80e8-bb7228a88088",
+    "data": [
+      {
+        "text": "how to get to the ",
+        "userDefined": false
+      },
+      {
+        "text": "Main Street",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "avoiding heavy traffic",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8f3a3445-76a7-4c1a-8a69-4cf622ae4f03",
+    "data": [
+      {
+        "text": "can you direct me to the ",
+        "userDefined": false
+      },
+      {
+        "text": "mobile office",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "48a5aa52-e656-431c-9e23-4a68e86aa182",
+    "data": [
+      {
+        "text": "can you find me the ",
+        "userDefined": false
+      },
+      {
+        "text": "best route",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "Ohio",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6996ed56-46c0-416a-af39-152f6ea6562c",
+    "data": [
+      {
+        "text": "directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "bar",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "with light traffic",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1a204e93-de37-4aa9-b91c-2b0fac085631",
+    "data": [
+      {
+        "text": "what is the ",
+        "userDefined": false
+      },
+      {
+        "text": "shortest route",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "San Francisco",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " from here",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cf6e5f5b-0315-4073-b265-139385cbd2b3",
+    "data": [
+      {
+        "text": "show me the way ",
+        "userDefined": false
+      },
+      {
+        "text": "home",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "45a86403-a245-43a8-9e08-bbf1bac04af6",
+    "data": [
+      {
+        "text": "how do I ",
+        "userDefined": false
+      },
+      {
+        "text": "get",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "San Diego",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " from ",
+        "userDefined": false
+      },
+      {
+        "text": "my house",
+        "meta": "@sys.location",
+        "alias": "from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4bb0fb67-208a-4bf1-988b-5ac91861ca01",
+    "data": [
+      {
+        "text": "directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "New York",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "avoiding heavy traffic",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "970bd5ed-d92b-40db-a9c9-344ed497f783",
+    "data": [
+      {
+        "text": "give ",
+        "userDefined": false
+      },
+      {
+        "text": "me",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "Starbucks",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3fdd1d0b-1de6-43ae-9e67-0fefae5d4de6",
+    "data": [
+      {
+        "text": "how to get to the ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "petrol station",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e2244d24-02fe-4fc0-9105-0b7280305c2f",
+    "data": [
+      {
+        "text": "what\u0027s the ",
+        "userDefined": false
+      },
+      {
+        "text": "best way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "get",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "home",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "996c52a8-5554-4e8d-b5ea-3284065438e5",
+    "data": [
+      {
+        "text": "directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "New York",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "avoiding toll roads",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ef1e6fd5-95d6-4404-80e7-594666d53681",
+    "data": [
+      {
+        "text": "directions from ",
+        "userDefined": false
+      },
+      {
+        "text": "Denver",
+        "meta": "@sys.location",
+        "alias": "from",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "Ohio",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2ade8d94-3761-4319-b656-9ee2f29a0f6b",
+    "data": [
+      {
+        "text": "start navigation to ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Starbucks",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " via ",
+        "userDefined": false
+      },
+      {
+        "text": "fastest route",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6a89a989-aad7-4659-ac9d-877dbac93f79",
+    "data": [
+      {
+        "text": "show me directions to the ",
+        "userDefined": false
+      },
+      {
+        "text": "Heathrow airport",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e83d2141-212c-4909-889b-38bfe4ac0700",
+    "data": [
+      {
+        "text": "find directions to the ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery shop",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "faec4810-90fd-49db-bfea-05244bc28125",
+    "data": [
+      {
+        "text": "what\u0027s the ",
+        "userDefined": false
+      },
+      {
+        "text": "best way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to get ",
+        "userDefined": false
+      },
+      {
+        "text": "home",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " from here",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b97ccae4-de07-49d1-803f-02735ce3f929",
+    "data": [
+      {
+        "text": "show me the ",
+        "userDefined": false
+      },
+      {
+        "text": "best way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": false
+      },
+      {
+        "text": " to get to the ",
+        "userDefined": false
+      },
+      {
+        "text": "airport",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d9983ead-9270-4cc8-b3a2-18a54b019e46",
+    "data": [
+      {
+        "text": "can you please direct me to the ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "petrol pump",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fd96dd09-6aa7-4e75-8106-b055bdb4b07b",
+    "data": [
+      {
+        "text": "how to get to ",
+        "userDefined": false
+      },
+      {
+        "text": "Danemea High street St Mary Mead",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "10c9fb20-ab68-4760-aaeb-decedc99e5a3",
+    "data": [
+      {
+        "text": "what is the ",
+        "userDefined": false
+      },
+      {
+        "text": "fastest way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "my house",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6ab0d1fd-c462-4506-8d1b-44626e463beb",
+    "data": [
+      {
+        "text": "directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "metro",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " with ",
+        "userDefined": false
+      },
+      {
+        "text": "fastest way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9b70a3b4-6f6c-4799-a80b-d7dbbcff2697",
+    "data": [
+      {
+        "text": "what\u0027s the ",
+        "userDefined": false
+      },
+      {
+        "text": "fastest way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to get to ",
+        "userDefined": false
+      },
+      {
+        "text": "work",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " without taking ",
+        "userDefined": false
+      },
+      {
+        "text": "Center Avenue",
+        "meta": "@sys.location",
+        "alias": "exclude-point",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4133edc7-1b01-4324-96f0-a95620babbe4",
+    "data": [
+      {
+        "text": "how do I get to ",
+        "userDefined": false
+      },
+      {
+        "text": "Central Park",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6e363077-8a40-44f6-b562-4781343382fc",
+    "data": [
+      {
+        "text": "the ",
+        "userDefined": false
+      },
+      {
+        "text": "quickest route",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "420 Paper St Wilmington DE 19886",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "20d9804d-b9a1-4d13-b88e-c1d52c17245a",
+    "data": [
+      {
+        "text": "show me the ",
+        "userDefined": false
+      },
+      {
+        "text": "fastest way",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to get to the ",
+        "userDefined": false
+      },
+      {
+        "text": "office",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "aee2eb65-80b3-479b-84ea-cd0afb8d1ec8",
+    "data": [
+      {
+        "text": "display directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "San Francisco",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f2946e75-5c5f-4eec-b553-c2d49851dadc",
+    "data": [
+      {
+        "text": "show me directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "gas station",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6fbf66c8-a65e-4cc1-903f-eeee872c7f8d",
+    "data": [
+      {
+        "text": "directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "restaurant",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "with light traffic",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "656d9d5b-8d00-4839-8b76-7691d776cf80",
+    "data": [
+      {
+        "text": "route me to ",
+        "userDefined": false
+      },
+      {
+        "text": "Fort Bragg",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " from ",
+        "userDefined": false
+      },
+      {
+        "text": "my current location",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4f24b07f-cd7c-4775-96b4-aaffb33bd83f",
+    "data": [
+      {
+        "text": "how do I ",
+        "userDefined": false
+      },
+      {
+        "text": "get",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " to the ",
+        "userDefined": false
+      },
+      {
+        "text": "Cherry Hill mall",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " from here",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8dc14f26-ed9a-4724-8a26-9511b4e24894",
+    "data": [
+      {
+        "text": "let me see the directions to go to ",
+        "userDefined": false
+      },
+      {
+        "text": "301 Cobblestone Way Bedrock 70777",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "254ddf4f-d5c5-4cde-81ae-a5369ae6839d",
+    "data": [
+      {
+        "text": "how do I ",
+        "userDefined": false
+      },
+      {
+        "text": "get",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "my house",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " from here",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ac4d5781-44ac-489e-a212-08e85fd913b3",
+    "data": [
+      {
+        "text": "I need directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "Pittsburgh",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a8e8e983-32c1-45f2-8fb9-abf5d7f6ae06",
+    "data": [
+      {
+        "text": "driving directions to ",
+        "userDefined": false
+      },
+      {
+        "text": "Longbourn near Meryton Hertfortshire",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7e3535fd-4e4e-4110-b21b-ad5bf90ddba9",
+    "data": [
+      {
+        "text": "how to get to ",
+        "userDefined": false
+      },
+      {
+        "text": "nearest",
+        "meta": "@map-sort",
+        "alias": "sort",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "petrol station",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "59667c44-2880-44ac-a626-93c43a8baeee",
+    "data": [
+      {
+        "text": "give",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " me route to ",
+        "userDefined": false
+      },
+      {
+        "text": "Bristol",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "using highways",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "569040c5-ed07-43d9-b2b4-2b3833e3f1b0",
+    "data": [
+      {
+        "text": "get me a route to the ",
+        "userDefined": false
+      },
+      {
+        "text": "San Francisco International airport",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "without using highways",
+        "meta": "@navigation-road-type",
+        "alias": "road-type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e92cd27e-7139-45be-bc7d-08e0e2918dcf",
+    "data": [
+      {
+        "text": "show me the ",
+        "userDefined": false
+      },
+      {
+        "text": "quickest route",
+        "meta": "@navigation-route-type",
+        "alias": "route-type",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "work",
+        "meta": "@sys.location",
+        "alias": "to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

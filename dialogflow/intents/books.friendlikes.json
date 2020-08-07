@@ -1,0 +1,61 @@
+{
+  "id": "0c78cda9-9460-490a-9ee1-53b94b56f8df",
+  "name": "books.friendlikes",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "books",
+          "lifespan": 5
+        },
+        {
+          "name": "books-friend",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "d180b027-a4e9-4a78-ad55-aeab8ef9e897",
+          "name": "friend",
+          "required": true,
+          "dataType": "@sys.person",
+          "value": "$friend",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Which friend?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 1000000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

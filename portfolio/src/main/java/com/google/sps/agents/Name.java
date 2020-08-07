@@ -48,7 +48,6 @@ public class Name implements Agent {
     }
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters) {
     String nameType = parameters.get("type").getStringValue();
     String name = null;

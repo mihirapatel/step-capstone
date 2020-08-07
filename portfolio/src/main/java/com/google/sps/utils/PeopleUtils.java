@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -15,12 +31,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+ * This class contains methods to access the Google People API.
+ */
 public class PeopleUtils {
   private static Logger log = LoggerFactory.getLogger(PeopleUtils.class);
 
   /**
    * This function returns all Friend objects in a user's contact list that match the specified
-   * friendName based on the userID's connections from the Google People API
+   * friendName based on the userID's connections from the Google People API.
    *
    * @param userID ID for authenticated user
    * @param friendName friend to look for
@@ -43,7 +62,7 @@ public class PeopleUtils {
 
   /**
    * This function returns a list of the user's friends, based on their connections from the Google
-   * People API and throws an exception otherwise
+   * People API and throws an exception otherwise.
    *
    * @param userID ID for authenticated user
    * @param helper OAuthHelper instance used to access OAuth methods
@@ -55,7 +74,7 @@ public class PeopleUtils {
 
   /**
    * This function builds and returns a PeopleService object that can access a list of the Google
-   * People API and throws an exception otherwise
+   * People API and throws an exception otherwise.
    *
    * @param credential Valid credential for authenticated user
    * @return PeopleService object
@@ -71,9 +90,9 @@ public class PeopleUtils {
   }
 
   /**
-   * This function returns an ArrayList of Friend objects returned from the Google People API
+   * This function returns an ArrayList of Friend objects returned from the Google People API.
    *
-   * <p>If no valid People objects are returned, it returns an empty ArrayList
+   * <p>If no valid People objects are returned, it returns an empty ArrayList.
    *
    * @param connections list of Person objects from Google Books API
    * @return ArrayList<Friend>
@@ -94,7 +113,7 @@ public class PeopleUtils {
 
   /**
    * This function returns a Friend object of the requested resourceName including name, emails, and
-   * a photo, and null if one could not be created
+   * a photo, and null if one could not be created.
    *
    * @param userID unique userID
    * @param resourceName unique contact resourceName to retrieve
@@ -113,7 +132,7 @@ public class PeopleUtils {
 
   /**
    * This function returns a List of Person objects containing information about Person connections
-   * from the Google People API for the authenticated user and t throws an exception otherwise
+   * from the Google People API for the authenticated user and t throws an exception otherwise.
    *
    * @param userID unique userID
    * @param helper OAuthHelper instance used to access OAuth methods
@@ -137,7 +156,7 @@ public class PeopleUtils {
 
   /**
    * This function returns a Person object of the specified resourceName from the Google People API
-   * including name, emails, and a photo, and throws an exception otherwise
+   * including name, emails, and a photo, and throws an exception otherwise.
    *
    * @param userID unique userID
    * @param resourceName unique contact resourceName to retrieve

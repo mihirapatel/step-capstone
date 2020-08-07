@@ -1,0 +1,132 @@
+[
+  {
+    "id": "a811a7fc-f3d7-4d36-85ba-1a32345829c8",
+    "data": [
+      {
+        "text": "正確",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "93a5c2df-488a-4001-98e3-fba238094fe1",
+    "data": [
+      {
+        "text": "執行",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "fec57f10-38d5-47ac-ae7f-5a9464d7e07d",
+    "data": [
+      {
+        "text": "沒錯",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "2b21e8d8-2409-4ce3-8942-e2d1a6803935",
+    "data": [
+      {
+        "text": "確認",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "c80b7771-9dff-4ae3-b285-0b9e1ea07fec",
+    "data": [
+      {
+        "text": "好",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "3930ece5-b0f4-4f21-9690-17f5763bbddb",
+    "data": [
+      {
+        "text": "可以",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "1680c7e0-c488-4249-a120-0d38ee85d8b2",
+    "data": [
+      {
+        "text": "我同意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "124d70f8-de17-40fb-a5b3-9ce0a23a291d",
+    "data": [
+      {
+        "text": "好啊",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "265729c4-a006-4d2e-ac27-c0fd3f64eb1c",
+    "data": [
+      {
+        "text": "是",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "d437deaf-4d14-4a69-9b78-294f0af51b19",
+    "data": [
+      {
+        "text": "好的",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  }
+]

@@ -1,0 +1,533 @@
+[
+  {
+    "id": "fce5b7cf-3865-41ef-b450-7dd41250b112",
+    "data": [
+      {
+        "text": "você sabe traduzir do ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "31bb556f-050d-49a7-a58f-147db5ce64b0",
+    "data": [
+      {
+        "text": "como se diz ",
+        "userDefined": false
+      },
+      {
+        "text": "Papai Noel",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "finlandês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "af3a5631-061a-4078-bbff-f02d7b95d031",
+    "data": [
+      {
+        "text": "tradução da palavra ",
+        "userDefined": false
+      },
+      {
+        "text": "bismilla",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "português",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "b2e76ce2-0a53-4c11-9e1b-e86a03e1252f",
+    "data": [
+      {
+        "text": "qual é a palavra ",
+        "userDefined": false
+      },
+      {
+        "text": "alemã",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "café da manhã",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "f5db2ada-9061-48c7-8d42-cdb41437bd2f",
+    "data": [
+      {
+        "text": "você pode traduzir do ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "af17b9b6-4878-4410-9474-0eb4fa3a4b49",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "oi",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "espanhol",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "4ead7f74-faa8-4aaf-95cd-40d98983a176",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "na América",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "9bdb6c11-252f-45c5-8dfa-560ee228781a",
+    "data": [
+      {
+        "text": "eu quero que você traduz ",
+        "userDefined": false
+      },
+      {
+        "text": "hi",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "português",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "8a87b26d-8df0-44f0-8245-4dae67db73d0",
+    "data": [
+      {
+        "text": "traduzir texto ",
+        "userDefined": false
+      },
+      {
+        "text": "olá",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "7f5c5ad2-42ed-4162-8baf-97236d528798",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "olá como você está",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "punjabi",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "104a57bd-578c-45f2-b418-cd4e74602fc7",
+    "data": [
+      {
+        "text": "traduzir a palavra em ",
+        "userDefined": false
+      },
+      {
+        "text": "espanhol",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "trabajador",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "português",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "9b9e7499-17ff-4c8c-ad05-7aeceb461c82",
+    "data": [
+      {
+        "text": "você sabe traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "hi",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " do ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "c8e6c891-759c-4b20-87d3-aa68154b0b5d",
+    "data": [
+      {
+        "text": "preciso traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "olá",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para ",
+        "userDefined": false
+      },
+      {
+        "text": "espanhol",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "7c52ee96-018a-4a60-85c4-1f1b26a84302",
+    "data": [
+      {
+        "text": "você poderia traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "friend",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " do ",
+        "userDefined": false
+      },
+      {
+        "text": "inglês",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "2b8c263f-9535-4ddb-8c43-d8b8882da430",
+    "data": [
+      {
+        "text": "tradução do ",
+        "userDefined": false
+      },
+      {
+        "text": "português",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "italiano",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "45e0b77a-4290-47fd-ac59-515ffd815450",
+    "data": [
+      {
+        "text": "como se diz ",
+        "userDefined": false
+      },
+      {
+        "text": "café da manhã",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " em ",
+        "userDefined": false
+      },
+      {
+        "text": "alemão",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "103711ab-3eac-4bda-8b84-59b1d606ab79",
+    "data": [
+      {
+        "text": "traduza ",
+        "userDefined": false
+      },
+      {
+        "text": "eu te amo",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "04e5740c-d916-4fda-bfc6-a1d90862664e",
+    "data": [
+      {
+        "text": "traduzir do ",
+        "userDefined": false
+      },
+      {
+        "text": "português",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  },
+  {
+    "id": "56b4f72f-00b2-4780-8a28-67af36f27968",
+    "data": [
+      {
+        "text": "traduzir ",
+        "userDefined": false
+      },
+      {
+        "text": "muitos",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": " do ",
+        "userDefined": false
+      },
+      {
+        "text": "português",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": " para o ",
+        "userDefined": false
+      },
+      {
+        "text": "francês",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "pt-br",
+    "updated": 0
+  }
+]

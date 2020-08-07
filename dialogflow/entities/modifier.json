@@ -1,0 +1,9 @@
+{
+  "id": "e270c8c8-b7e2-4f06-af78-5c940ac2dc7f",
+  "name": "modifier",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": true
+}

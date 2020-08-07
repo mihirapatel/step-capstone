@@ -1,0 +1,80 @@
+{
+  "id": "3a9c0631-a47c-4290-a9cf-94812dc7f7e4",
+  "name": "memory.keyword",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "4e7b4dad-7ea9-4b47-9531-7de0993bf931",
+          "name": "keyword",
+          "required": true,
+          "dataType": "@sys.any",
+          "value": "$keyword",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What keyword would you like to search for?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "931a9203-cb24-44c5-9230-d95046755438",
+          "name": "date-time-enhanced",
+          "required": false,
+          "dataType": "@date-time-enhanced",
+          "value": "$date-time-enhanced",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "531b506a-51f0-46f1-bfe9-fdbec7c9bc31",
+          "name": "date-time-original",
+          "required": false,
+          "dataType": "@date-time-enhanced",
+          "value": "$date-time-enhanced.original",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

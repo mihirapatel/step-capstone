@@ -1,0 +1,89 @@
+{
+  "id": "179caca8-3e07-472a-8df5-404528bb320b",
+  "name": "navigation.time",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "navigation.time",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "97480a05-586a-4efd-b942-a02cd079f808",
+          "name": "from",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$from",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "5071fc87-54eb-4710-bf60-bc3f40d486f2",
+          "name": "to",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$to",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "42f085cc-93bd-48fe-b7cf-974972edfcfb",
+          "name": "amount",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$amount",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "7fad7065-0f69-407f-bc98-79dfcc492c1f",
+          "name": "unit",
+          "required": false,
+          "dataType": "@unit-time",
+          "value": "$unit",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

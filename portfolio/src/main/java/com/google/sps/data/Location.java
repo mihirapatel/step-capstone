@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.google.sps.data;
 
-// Imports the Google Cloud client library
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.maps.GeoApiContext;
@@ -36,12 +35,11 @@ import java.util.TimeZone;
  * longitude coordinate for location formattedAddress: user-inputted location formatted by Geocoding
  * API timeZoneObj: TimeZone object for corresponding LatLng coords timeZoneID: timezone ID for the
  * location ("America/Los_Angeles") timeZoneName: Standard time zone name for location ("Pacific
- * Standard Time")
+ * Standard Time").
  *
  * <p>A Location object is only created by create() function, ensuring that an Location object is
  * only created with valid parameters and all Location objects are valid.
  */
-
 public class Location {
 
   private String address;
@@ -54,7 +52,7 @@ public class Location {
   private String timeZoneName;
 
   /**
-   * Creates a Location object, or throws exception if any parameters for Location are invalid
+   * Creates a Location object, or throws exception if any parameters for Location are invalid.
    *
    * @param address user-inputted location
    * @return Location object
@@ -91,7 +89,7 @@ public class Location {
 
   /**
    * This function returns a valid GeoApiContext to make calls to Geocoding and Timezone API, and
-   * throws an exception otherwise
+   * throws an exception otherwise.
    *
    * @return GeoApiContext
    */
@@ -108,7 +106,7 @@ public class Location {
 
   /**
    * This function returns valid LatLng coordinates from the Geocoding API based on the user
-   * inputted address, and throws an exception otherwise
+   * inputted address, and throws an exception otherwise.
    *
    * @param address user-inputted location string
    * @return LatLng object
@@ -127,7 +125,7 @@ public class Location {
 
   /**
    * This function returns a valid full address from the Geocoding API based on the user inputted
-   * address, and throws an exception otherwise
+   * address, and throws an exception otherwise.
    *
    * @param address user-inputted location string
    * @return String formatted address
@@ -144,7 +142,7 @@ public class Location {
 
   /**
    * This function returns a valid TimeZone object from the Timezone API based on the LatLng
-   * coordinates determined from the Geocoding API, and throws an exception otherwise
+   * coordinates determined from the Geocoding API, and throws an exception otherwise.
    *
    * @param location LatLng object
    * @return TimeZone object

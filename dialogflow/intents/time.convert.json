@@ -1,0 +1,90 @@
+{
+  "id": "eaf9bd9f-0260-4430-a7b7-52a8c5e26860",
+  "name": "time.convert",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "time.convert",
+      "affectedContexts": [
+        {
+          "name": "convert-time",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "ec984c27-ebf6-4a64-88a2-5bda8e8bfd48",
+          "name": "time-from",
+          "required": false,
+          "dataType": "@sys.time",
+          "value": "$time-from",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "8b7d727e-4ac7-4525-b563-3ac572d8d5e7",
+          "name": "location-from",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location-from",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "From where?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "f768e737-6e9d-4ee1-9bc6-5be0d806ffd2",
+          "name": "location-to",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location-to",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "To where?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,136 @@
+{
+  "id": "bb2bb19c-a285-46b9-82c4-da0a89c6c373",
+  "name": "navigation.directions",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "navigation.directions",
+      "affectedContexts": [
+        {
+          "name": "navigation",
+          "lifespan": 3
+        }
+      ],
+      "parameters": [
+        {
+          "id": "e1a2fc03-063a-4ea8-8f1f-0f7da4523f86",
+          "name": "from",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$from",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "9093905c-116a-4aae-8997-db7264ec53ad",
+          "name": "to",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$to",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "1d614a7b-1b96-4124-ac01-ecca7a619d90",
+          "name": "route-type",
+          "required": false,
+          "dataType": "@navigation-route-type",
+          "value": "$route-type",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "78082335-02e1-4bcf-9252-1a2cf4bba8ab",
+          "name": "road-type",
+          "required": false,
+          "dataType": "@navigation-road-type",
+          "value": "$road-type",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "6e1d5e85-ef89-41f7-acaa-6d5e7bd2005b",
+          "name": "include-point",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$include-point",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "7d75b5cd-5040-4c7a-8d2b-25ac6f968558",
+          "name": "exclude-point",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$exclude-point",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "11efe2a0-a1f2-4466-af7b-db6fa21f3657",
+          "name": "sort",
+          "required": false,
+          "dataType": "@map-sort",
+          "value": "$sort",
+          "defaultValue": "",
+          "isList": true,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,161 @@
+[
+  {
+    "id": "299771d9-cca7-478c-a2c2-4ef5916415c0",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Dinars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b3f2598f-2d42-40fb-802a-724155fc5997",
+    "data": [
+      {
+        "text": "into ",
+        "userDefined": false
+      },
+      {
+        "text": "INR",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e1b65245-9ff4-49cf-9692-ed879fca0d7a",
+    "data": [
+      {
+        "text": "and ",
+        "userDefined": false
+      },
+      {
+        "text": "30",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Yuan",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c47249e7-7141-4734-8b6f-224ccbec4572",
+    "data": [
+      {
+        "text": "now into ",
+        "userDefined": false
+      },
+      {
+        "text": "Euros",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0a663d0c-3669-498d-93ad-b6595b558833",
+    "data": [
+      {
+        "text": "now ",
+        "userDefined": false
+      },
+      {
+        "text": "240",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "GBP",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6030f7b7-fd3c-47f1-a0ee-8feda422ac50",
+    "data": [
+      {
+        "text": "and in ",
+        "userDefined": false
+      },
+      {
+        "text": "Mexican Pesos",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0ba32d24-8613-422b-ba5d-aa3ab9fc027f",
+    "data": [
+      {
+        "text": "convert it into ",
+        "userDefined": false
+      },
+      {
+        "text": "US Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

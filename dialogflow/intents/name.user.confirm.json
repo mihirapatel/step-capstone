@@ -1,0 +1,89 @@
+{
+  "id": "75b7f194-b22d-4a59-b3c5-59773deafec9",
+  "name": "name.user.confirm",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "name.user.confirm",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "d62a39cb-f6f0-41b4-9580-39a9940c8d79",
+          "name": "given-name",
+          "required": false,
+          "dataType": "@sys.given-name",
+          "value": "$given-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "2a992cc9-7b4d-471d-aa31-3bde112eae3a",
+          "name": "nick-name",
+          "required": false,
+          "dataType": "@nick-name",
+          "value": "$nick-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "827c7762-0c6a-42e3-ae47-bb81c1498fa0",
+          "name": "last-name",
+          "required": false,
+          "dataType": "@sys.last-name",
+          "value": "$last-name",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "caef1a46-a8b0-4f34-8afd-9655c3f7b7f9",
+          "name": "type",
+          "required": false,
+          "dataType": "@name-type",
+          "value": "$type",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
