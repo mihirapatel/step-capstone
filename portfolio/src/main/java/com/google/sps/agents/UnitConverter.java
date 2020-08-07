@@ -22,7 +22,6 @@ public class UnitConverter implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters) {
     unitFrom = parameters.get("unit-from").getStringValue();
     unitTo = parameters.get("unit-to").getStringValue();

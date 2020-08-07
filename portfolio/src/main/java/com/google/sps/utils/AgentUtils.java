@@ -156,6 +156,8 @@ public class AgentUtils {
         return new WebSearch(intentName, parameterMap);
       case "workout":
         return new WorkoutAgent(intentName, parameterMap, userService, datastore);
+      case "presentation":
+        return new PresentationAgent();
       default:
         return null;
     }

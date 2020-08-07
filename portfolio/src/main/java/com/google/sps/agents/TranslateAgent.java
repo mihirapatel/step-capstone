@@ -29,7 +29,6 @@ public class TranslateAgent implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters) {
     System.out.println(parameters);
     text = parameters.get("text").getStringValue();

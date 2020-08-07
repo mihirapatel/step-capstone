@@ -26,7 +26,6 @@ public class Reminders implements Agent {
     }
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters) {
     if (intentName.equals("snooze")) {
       Struct durationStruct = parameters.get("date-time").getStructValue();
