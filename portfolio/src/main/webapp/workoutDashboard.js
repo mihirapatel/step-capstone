@@ -21,6 +21,7 @@ function dashboardSetup() {
     getUserInfo();
     getSavedWorkoutPlans();
     getSavedWorkoutVideos();
+    displayActivityTracker();
 }
 
 /** Get user info from servlet and call displayUserInfo()*/
@@ -44,16 +45,18 @@ function displayUserInfo() {
     //User profile picture
     var userPic = document.createElement("img");
     userPic.className = "user-pic";
-    userPic.src = "https://icon-library.com/images/default-user-icon/default-user-icon-4.jpg";
+    userPic.src = "images/blankAvatar.png";
     userInfoDiv.appendChild(userPic);
 
     //User contact info
     var userContact = document.createElement("div");
     userContact.className = "user-contact";
     var name = document.createElement("h1");
+    name.className = "dashboard-user-name";
     name.innerHTML = userName;
     userContact.appendChild(name);
     var email = document.createElement("p");
+    email.className = "dashboard-user-email";
     email.innerHTML = userEmail;
     userContact.appendChild(email);
     userInfoDiv.appendChild(userContact);
@@ -73,6 +76,7 @@ function displaySavedWorkoutPlans() {
     savedWorkoutContent = document.getElementsByClassName("saved-workout-content")[0];
     savedWorkoutPlansDiv = document.getElementsByClassName("saved-workout-plans")[0];
     savedWorkoutPlansTitle = document.createElement("h2");
+    savedWorkoutPlansTitle.className = "saved-workout-plans-header";
     savedWorkoutPlansTitle.innerHTML = "Saved Workout Plans";
     savedWorkoutPlansDiv.appendChild(savedWorkoutPlansTitle);
 
@@ -99,13 +103,19 @@ function createSavedWorkoutPlanCard(savedWorkoutPlan) {
     workoutPlanVideos = workoutPlan.workoutPlanPlaylist;
     
     //Creating saved workout cards display for dashboard
+    workoutPlanCardDiv = document.createElement("div");
+    workoutPlanCardDiv.className = "workout-plan-card-div";
+    savedWorkoutPlansDiv.appendChild(workoutPlanCardDiv);  
+
+    //Workout Plan Name Link
     workoutPlanCardLink = document.createElement("a");
+    workoutPlanCardLink.className = "workout-plan-card-link";
     workoutPlanCardLink.id = workoutPlanId;
     workoutPlanCardLink.title = workoutPlan.workoutPlanName;
     workoutPlanCardLink.href = "workoutPlan.html";
     workoutPlanCardLink.onclick = function() {storeWorkoutPlanId(this.id);};
     workoutPlanCardLink.target = "_blank";
-    savedWorkoutPlansDiv.appendChild(workoutPlanCardLink);
+    workoutPlanCardDiv.appendChild(workoutPlanCardLink);
 
     workoutPlanCard = document.createElement("div");
     workoutPlanCard.className = "workout-plan-card";
@@ -120,9 +130,29 @@ function createSavedWorkoutPlanCard(savedWorkoutPlan) {
     workoutPlanLink.target = "_blank";
     workoutPlanCard.appendChild(workoutPlanLink);
 
+    //Workout Plan Date Created
     workoutPlanDateCreated = document.createElement("p");
     workoutPlanDateCreated.innerHTML = workoutPlan.dateCreated;
     workoutPlanCard.appendChild(workoutPlanDateCreated);
+
+    //Workout Plan Progress Bar
+    workoutPlanCardProgressBarDiv = document.createElement("div");
+    workoutPlanCardProgressBarDiv.className = "progress-bar-light-gray";
+    workoutPlanCardProgressBar = document.createElement("div");
+    workoutPlanCardProgressBar.classList.add("progress-bar-orange");
+    workoutPlanCardProgressBar.classList.add("progress-bar-round");
+    workoutPlanCardProgressBar.style.height = "10px";
+    workoutPlanCardProgressBarDiv.appendChild(workoutPlanCardProgressBar);
+    workoutPlanCardDiv.appendChild(workoutPlanCardProgressBarDiv);
+
+    //Workout Plan Progress Percentage
+    workoutPlanCardProgress = document.createElement("p");
+    workoutPlanCardProgress.className = "workout-plan-card-progress";
+    var cardProgressPercentage = Math.round((workoutPlan.numWorkoutDaysCompleted / workoutPlan.planLength) * 100);
+    workoutPlanCardProgress.innerHTML = cardProgressPercentage + "% Completed";
+    workoutPlanCardProgressBar.style.width = cardProgressPercentage + "%";
+    workoutPlanCardDiv.appendChild(workoutPlanCardProgress);
+    console.log(workoutPlan);
 
 }
 
@@ -146,16 +176,31 @@ function displayWorkoutPlan() {
 
     //Workout Progress
     var workoutPlanProgress = document.getElementsByClassName("workout-plan-progress")[0];
+
+    //Workout Progress String
     var progress = document.createElement("h3");
     progress.id = "progress";
     var progressPercentage = Math.round((storedWorkoutPlan.numWorkoutDaysCompleted / storedWorkoutPlan.planLength) * 100);
     progress.innerHTML = "Progress: " + progressPercentage + "%";
     workoutPlanProgress.appendChild(progress);
+
+    //Workout Progress Bar
+    workoutPlanProgressBarDiv = document.createElement("div");
+    workoutPlanProgressBarDiv.className = "progress-bar-light-gray";
+    workoutPlanProgressBar = document.createElement("div");
+    workoutPlanProgressBar.classList.add("progress-bar-orange");
+    workoutPlanProgressBar.classList.add("progress-bar-round");
+    workoutPlanProgressBar.style.height = "25px";
+    workoutPlanProgressBar.style.width = progressPercentage + "%";
+    workoutPlanProgressBarDiv.appendChild(workoutPlanProgressBar);
+    workoutPlanProgress.appendChild(workoutPlanProgressBarDiv);
     workoutPlanContainer.appendChild(workoutPlanProgress);
 
     //Workout Plan Table
     var workoutPlanTable = document.getElementsByClassName("workout-plan-table")[0];
-    var dashboardWorkoutPlan = createWorkoutPlanTable(storedWorkoutPlan, true, 1, false);
+    workoutPlanTable.style.marginTop = "1%";
+    workoutPlanTable.style.marginBottom = "0%";
+    var dashboardWorkoutPlan = createWorkoutPlanTable(storedWorkoutPlan, true, 1);
     workoutPlanTable.appendChild(dashboardWorkoutPlan);
     workoutPlanContainer.appendChild(workoutPlanTable);
 
@@ -180,12 +225,16 @@ function getSavedWorkoutVideos() {
 
 /** Displays user's saved workout videos in dashboard */
 function displaySavedWorkoutVideos() {
-
     savedWorkoutContent = document.getElementsByClassName("saved-workout-content")[0];
     savedWorkoutVideosDiv = document.getElementsByClassName("saved-workout-videos")[0];
     savedWorkoutVideosTitle = document.createElement("h2");
+    savedWorkoutVideosTitle.className = "saved-workout-videos-header";
     savedWorkoutVideosTitle.innerHTML = "Saved Workout Videos";
     savedWorkoutVideosDiv.appendChild(savedWorkoutVideosTitle);
+
+    videosBlock = document.createElement("div");
+    videosBlock.className = "dashboard-videos-block";
+    savedWorkoutVideosDiv.appendChild(videosBlock);
 
     for (var i = 0; i < savedWorkoutVideos.length; i++) {
         createVideoContainer(JSON.stringify(savedWorkoutVideos[i]));
@@ -200,65 +249,89 @@ function displaySavedWorkoutVideos() {
  */
 function createVideoContainer(savedWorkoutVideo) {
     workoutVideo = JSON.parse(savedWorkoutVideo);
-
     videoURL = workoutVideo.videoURL.replace(/"/g, "");
     thumbnail = workoutVideo.thumbnail.replace(/"/g, "");
     videoTitle = workoutVideo.title.replace(/"/g, "");
     channelURL = workoutVideo.channelURL.replace(/"/g, "");
     channelName = workoutVideo.channelTitle.replace(/"/g, "");
-
-    if (videoTitle.length > 30) {
-        videoTitle = videoTitle.substring(0, 30) + "..."; 
+ 
+    if (videoTitle.length > 25) {
+        videoTitle = videoTitle.substring(0, 25) + "..."; 
     }
-
+ 
     var savedWorkoutVideo = document.createElement("div");
     savedWorkoutVideo.className = "saved-video";
     
     //Saved Workout Video Thumbnail
     var savedVideoThumbnail = document.createElement("div");
     savedVideoThumbnail.className = "saved-video-thumbnail";
-
+ 
     var videoLink = document.createElement("a");
     videoLink.title = videoTitle;
     videoLink.href = videoURL;
     videoLink.target = "_blank";    
-
+ 
     var thumbnailImage = document.createElement("img");
     thumbnailImage.src = thumbnail;
     thumbnailImage.setAttribute("width", "250");
     thumbnailImage.setAttribute("height", "140");
     videoLink.appendChild(thumbnailImage);
-
+ 
     savedVideoThumbnail.appendChild(videoLink);
     savedWorkoutVideo.appendChild(savedVideoThumbnail);
-
+ 
     //Saved Video Title
     var videoTitleLink = document.createElement("a");
     videoTitleLink.title = videoTitle;
     videoTitleLink.href = videoURL;
     videoTitleLink.target = "_blank"; 
-
+ 
     var savedVideoTitle = document.createElement("h4");
     savedVideoTitle.className = "saved-video-title";
-
     savedVideoTitle.innerHTML = videoTitle;
     videoTitleLink.appendChild(savedVideoTitle);
     savedWorkoutVideo.appendChild(videoTitleLink);
-
+ 
     //Saved Video Channel Name
     var channelLink = document.createElement("a");
     channelLink.title = workoutVideo.channelTitle;
     channelLink.href = channelURL;
     channelLink.target = "_blank"; 
-
+ 
     var channelTitle = document.createElement("p");
     channelTitle.classList.add("channel-title");
     channelTitle.classList.add("saved-video-channel-title");
     channelTitle.innerHTML = channelName;
     channelLink.appendChild(channelTitle)
     savedWorkoutVideo.appendChild(channelLink);
+ 
+    videosBlock.appendChild(savedWorkoutVideo);
+}
 
-    savedWorkoutVideosDiv.appendChild(savedWorkoutVideo);
+function displayActivityTracker() {
+
+    //Activity Tracker Header
+    activityTrackerDiv = document.getElementsByClassName("activity-tracker")[0];
+    activityTrackerTitle = document.createElement("h2");
+    activityTrackerTitle.className = "activity-tracker-header";
+    activityTrackerTitle.innerHTML = "Activity Tracker";
+    activityTrackerDiv.appendChild(activityTrackerTitle);
+
+    //Activity Tracker Graph
+    activityGraph = document.createElement("img");
+    activityGraph.className = "activity-graph";
+    activityGraph.src = "images/activity-tracker-graph.png";
+    activityGraph.style.width = "700px";
+    activityGraph.style.height = "427px";
+    activityTrackerDiv.appendChild(activityGraph);
+
+    activityButton = document.createElement("BUTTON");
+    activityButton.classList.add("workout-buttons");
+    activityButton.classList.add("activity-tracker-button");
+    var buttonText = document.createTextNode("Add Activity Data");
+    activityButton.appendChild(buttonText); 
+    activityTrackerDiv.appendChild(activityButton);
+
 }
 
 /** Stores workoutPlanId to be able to display correct workout plan when link clicked

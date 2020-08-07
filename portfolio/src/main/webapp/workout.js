@@ -1,4 +1,3 @@
-var isUserLoggedIn = false;
 var indexStart = 0;
 var indexEnd = 5;
 var numTotalVideos = 25;
@@ -24,7 +23,7 @@ function workoutVideos(videoQuery) {
 function workoutPlanner(workoutPlanQuery) {
   workoutPlan = JSON.parse(workoutPlanQuery);
   workoutPlanDay = 1;
-  return createWorkoutPlanTable(workoutPlan, false, workoutPlanDay, true);
+  return createWorkoutPlanTable(workoutPlan, false, workoutPlanDay);
 }
 
 /**
@@ -207,9 +206,8 @@ function showNewVideosPage(numShiftIndex) {
 * @param workoutPlan JSON object of WorkoutPlan object
 * @param onDashboard boolean to know if table is on dashboard or assistant main page
 * @param workoutPlanDay makes sure that each workout plan display starts at day 1
-* @param addFooter boolean to decide if table should have a footer
 */
-function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFooter) {
+function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay) {
   var userId = workoutPlan.userId;
   var workoutPlanId = workoutPlan.workoutPlanId;
   var localStorageKey = userId + "-" + workoutPlanId;
@@ -226,8 +224,6 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
 
   plannerDiv = document.createElement("div");
   plannerDiv.id = "workout-planner";
-//   var plannerDivHeight =  (videos.length * 135) + 45;
-//   plannerDiv.style.height = plannerDivHeight.toString() + "px";
   workoutPlannerDiv.appendChild(plannerDiv);
 
   plannerTable = document.createElement("div");
@@ -245,7 +241,7 @@ function createWorkoutPlanTable(workoutPlan, onDashboard, workoutPlanDay, addFoo
   }
 
   //Only workout plan footer with save workout plan button if user logged in or view workout plan on YT if user is not logged in
-  if (addFooter) {
+  if (!onDashboard) {
       createWorkoutPlanFooter(workoutPlan);
   }
   
@@ -351,12 +347,14 @@ function createWorkoutPlanFooter(workoutPlan) {
         viewPlaylistButton.appendChild(buttonText); 
         workoutPlanFooter.appendChild(viewPlaylistButton);
 
-        var playlistURL = "https://www.youtube.com/playlist?list=" + workoutPlan.playlistId;
+        var playlistId = workoutPlan.playlistId.replace(/"/g, "");
+        var playlistURL = "https://www.youtube.com/playlist?list=" + playlistId;
         viewPlaylistButton.onclick = function() {window.open(playlistURL, "_blank");};
 
     } else {
         //Save Workout Plan Button (if user logged in)
         saveWorkoutPlanButton = document.createElement("BUTTON");
+        saveWorkoutPlanButton.id = workoutPlan.workoutPlanId;
         saveWorkoutPlanButton.classList.add("workout-plan-footer-buttons");
         saveWorkoutPlanButton.classList.add("workout-buttons");
         var buttonText = document.createTextNode("Save Workout Plan");
@@ -383,6 +381,7 @@ function markWorkoutAsCompleted(buttonId, workoutPlan, localStorageKey) {
     if (oldButtonText.textContent == "Mark Completed") {
         buttonToMark.removeChild(oldButtonText);
         var newButtonText = document.createTextNode("Completed!");
+        buttonToMark.classList.add("button-color-change");
         buttonToMark.appendChild(newButtonText); 
 
         //Storing this button text so workout progress is accurate when page refreshed
@@ -455,6 +454,8 @@ function updateWorkoutPlanProgress(workoutPlan, localStorageKey){
   var progress = document.getElementById("progress");
   var progressPercentage = Math.round((numWorkoutDaysCompleted / workoutPlan.planLength) * 100);
   progress.innerHTML = "Progress: " + progressPercentage + "%";
+  var progressBar = document.getElementsByClassName("progress-bar-orange")[0];
+  progressBar.style.width = progressPercentage + "%";
 
   //Update workout plan progress
   fetch('/workout-plan-progress' + '?workout-plan=' + workoutPlanString + '&num-workout-days-completed=' + numWorkoutDaysCompleted, {
@@ -470,10 +471,15 @@ function replaceUnicode() {
     //Properly format apostrophes
     channelName = channelName.replace("\\u0027", "'");
     title = title.replace("\\u0027", "'");
-    description = description.replace("\\u0027", "'");    
+    if (typeof description !== 'undefined') {
+        description = description.replace("\\u0027", "'");    
+    }
 
     //Properly format ampersands
     channelName = channelName.replace("\\u0026", "&").replace("\\u0026amp;", "&");
     title = title.replace("\\u0026", "&").replace("\\u0026amp;", "&");
-    description = description.replace("\\u0026", "&").replace("\\u0026amp;", "&");
+    if (typeof description !== 'undefined') {
+        description = description.replace("\\u0026", "&").replace("\\u0026amp;", "&");
+    }
+    
 }

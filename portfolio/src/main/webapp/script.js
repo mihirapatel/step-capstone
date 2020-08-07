@@ -329,6 +329,17 @@ function deleteSessionInformation(){
  */
 
 function saveWorkoutPlan(workoutPlan){
+
+  //Change button text to show user that workout plan has been saved
+  var buttonToMark = document.getElementById(workoutPlan.workoutPlanId);
+  var oldButtonText = buttonToMark.childNodes[0];
+
+  if (oldButtonText.textContent == "Save Workout Plan") {
+    buttonToMark.removeChild(oldButtonText);
+    var newButtonText = document.createTextNode("Saved Workout Plan!");
+    buttonToMark.appendChild(newButtonText); 
+  }
+
   //Create new JSON oject for workout plan to be saved
   var savedWorkoutPlan = new Object();
   savedWorkoutPlan.userId = workoutPlan.userId;
