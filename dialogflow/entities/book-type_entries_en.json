@@ -1,0 +1,46 @@
+[
+  {
+    "value": "book",
+    "synonyms": [
+      "book",
+      "books",
+      "novel",
+      "novels"
+    ]
+  },
+  {
+    "value": "magazine",
+    "synonyms": [
+      "magazine",
+      "magazines",
+      "mags"
+    ]
+  },
+  {
+    "value": "ebooks",
+    "synonyms": [
+      "ebook",
+      "eBooks",
+      "ebooks",
+      "eBook",
+      "online books",
+      "books online"
+    ]
+  },
+  {
+    "value": "free-ebooks",
+    "synonyms": [
+      "free-ebooks",
+      "free ebooks",
+      "free eBooks",
+      "free eBook",
+      "free ebook",
+      "online books for free",
+      "books online for free",
+      "free books online",
+      "free online books",
+      "ebooks for free",
+      "eBooks for free"
+    ]
+  }
+]

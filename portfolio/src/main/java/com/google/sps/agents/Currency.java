@@ -30,7 +30,6 @@ public class Currency implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters) {
     currencyFrom = parameters.get("currency-from").getStringValue();
     currencyTo = parameters.get("currency-to").getStringValue();

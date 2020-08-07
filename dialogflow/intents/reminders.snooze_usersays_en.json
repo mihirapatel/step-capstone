@@ -1,0 +1,212 @@
+[
+  {
+    "id": "d5aac117-8605-4265-94bb-fd11320ce2b3",
+    "data": [
+      {
+        "text": "Set a timer ",
+        "userDefined": false
+      },
+      {
+        "text": "for 30 sec",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2a30f63e-98e6-48fc-9118-18db6f7d756c",
+    "data": [
+      {
+        "text": "Set a timer ",
+        "userDefined": false
+      },
+      {
+        "text": "for 1 hour",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ca7aaadd-5ebc-4b1d-9b01-46cd1b570105",
+    "data": [
+      {
+        "text": "Set a timer ",
+        "userDefined": false
+      },
+      {
+        "text": "for 10 min",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a01b37fa-52e0-4424-83a2-8dd99f000f51",
+    "data": [
+      {
+        "text": "snooze reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "50eeefa0-d10b-4bb1-bff0-19fb30729bd3",
+    "data": [
+      {
+        "text": "move reminder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "43f47232-0979-41fe-914c-6867ae886c97",
+    "data": [
+      {
+        "text": "reschedule it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6ab5a4ca-daba-49a4-94ab-967a481321ed",
+    "data": [
+      {
+        "text": "reschedule my reminder for ",
+        "userDefined": false
+      },
+      {
+        "text": "next Monday",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a1d42571-b0a5-46d6-b7b1-9afe7c934ba4",
+    "data": [
+      {
+        "text": "can you remind me about it ",
+        "userDefined": false
+      },
+      {
+        "text": "in 30 minutes",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a16daae0-25ea-4b5e-9e7f-a2320229d15b",
+    "data": [
+      {
+        "text": "snooze for ",
+        "userDefined": false
+      },
+      {
+        "text": "7 minutes",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ceadd808-5d4a-42e7-8512-c9b556b8a151",
+    "data": [
+      {
+        "text": "remind me ",
+        "userDefined": false
+      },
+      {
+        "text": "in 2 hours",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " please",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d6f1282e-da2a-4b74-9ae9-5dbe6d727a03",
+    "data": [
+      {
+        "text": "snooze it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4466b913-b011-44e8-9e0e-4ab0570cb3b7",
+    "data": [
+      {
+        "text": "snooze",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

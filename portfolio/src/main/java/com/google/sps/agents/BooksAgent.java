@@ -151,7 +151,6 @@ public class BooksAgent implements Agent {
     setParameters(parameters);
   }
 
-  @Override
   public void setParameters(Map<String, Value> parameters)
       throws IOException, IllegalArgumentException {
     // Intents that do not require user to be authenticated

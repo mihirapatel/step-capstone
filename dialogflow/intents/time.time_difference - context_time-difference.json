@@ -1,0 +1,73 @@
+{
+  "id": "ab85c3be-0913-4ea9-84fb-3dd970fc88b4",
+  "name": "time.time_difference - context:time-difference",
+  "auto": true,
+  "contexts": [
+    "time-difference"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "time.time_difference",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "4c967f3a-b0f4-4175-9642-c8fc7116724d",
+          "name": "location-1",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location-1",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is the first location?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "118dddee-7804-4bb7-9cc7-f2fca0ccdaff",
+          "name": "location-2",
+          "required": true,
+          "dataType": "@sys.location",
+          "value": "$location-2",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is the second location?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

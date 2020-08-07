@@ -1,0 +1,139 @@
+[
+  {
+    "value": "drizzle",
+    "synonyms": [
+      "こぬか雨",
+      "小糠雨",
+      "細雨",
+      "霧雨"
+    ]
+  },
+  {
+    "value": "earthquake",
+    "synonyms": [
+      "地震"
+    ]
+  },
+  {
+    "value": "fog",
+    "synonyms": [
+      "濃霧",
+      "霧"
+    ]
+  },
+  {
+    "value": "freezing rain",
+    "synonyms": [
+      "凍雨",
+      "雨氷"
+    ]
+  },
+  {
+    "value": "haze",
+    "synonyms": [
+      "かすみ",
+      "もや",
+      "薄霧"
+    ]
+  },
+  {
+    "value": "hurricanes",
+    "synonyms": [
+      "ハリケーン",
+      "大あらし",
+      "大嵐"
+    ]
+  },
+  {
+    "value": "ice",
+    "synonyms": [
+      "氷"
+    ]
+  },
+  {
+    "value": "overcast",
+    "synonyms": [
+      "曇った",
+      "曇り",
+      "雲の多い"
+    ]
+  },
+  {
+    "value": "rain",
+    "synonyms": [
+      "大雨",
+      "小雨",
+      "雨"
+    ]
+  },
+  {
+    "value": "rain snow",
+    "synonyms": [
+      "みぞれ"
+    ]
+  },
+  {
+    "value": "shower",
+    "synonyms": [
+      "にわか雨"
+    ]
+  },
+  {
+    "value": "snow",
+    "synonyms": [
+      "小雪",
+      "粉雪",
+      "雪"
+    ]
+  },
+  {
+    "value": "storm",
+    "synonyms": [
+      "あらし",
+      "嵐"
+    ]
+  },
+  {
+    "value": "sun",
+    "synonyms": [
+      "晴れ",
+      "晴れる",
+      "晴天"
+    ]
+  },
+  {
+    "value": "thunderstorm",
+    "synonyms": [
+      "かみなり",
+      "サンダーストーム",
+      "雷",
+      "雷雨",
+      "雷電"
+    ]
+  },
+  {
+    "value": "tornadoes",
+    "synonyms": [
+      "トルネード",
+      "暴風"
+    ]
+  },
+  {
+    "value": "tsunami",
+    "synonyms": [
+      "津波"
+    ]
+  },
+  {
+    "value": "volcano eruption",
+    "synonyms": [
+      "火山噴火"
+    ]
+  },
+  {
+    "value": "wind",
+    "synonyms": [
+      "風"
+    ]
+  }
+]

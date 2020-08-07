@@ -358,7 +358,7 @@ top: 0px;
  
 #footer {
   position:absolute; 
-  bottom: 5%; 
+  bottom: 30px; 
   height: fit-content; 
   overflow:hidden; 
   width: 90%; 
@@ -376,7 +376,7 @@ top: 0px;
 #content {
     position: absolute;
     top: 170px;
-    bottom: 200px;
+    bottom: 175px;
     overflow: auto;
     width: 90%;
     max-width: 950px;
@@ -1016,10 +1016,8 @@ p.description {
 }
 
 .list-container {
-    overflow-y: auto;
     display: block;
     max-height: 350px;
-    overflow-y: auto;
     width: calc(100% - 50px);
     margin: 20px;
 }
@@ -1034,4 +1032,6 @@ p.description {
     padding-right: 75px;
     border: 2px solid lightgrey;
     float: left;
+    overflow-y: auto;
+    max-height: 350px;
 }

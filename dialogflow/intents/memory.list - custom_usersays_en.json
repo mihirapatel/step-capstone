@@ -1,0 +1,153 @@
+[
+  {
+    "id": "868bbfc0-19e4-4f76-b79f-d005e65d048e",
+    "data": [
+      {
+        "text": "add to ",
+        "userDefined": false
+      },
+      {
+        "text": "bucket",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "208aea60-1f9b-499e-8bc4-f247c076cd66",
+    "data": [
+      {
+        "text": "append to ",
+        "userDefined": false
+      },
+      {
+        "text": "shopping",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " list some ",
+        "userDefined": false
+      },
+      {
+        "text": "shampoo, conditioner, and slippers",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "56ba669e-fb3b-49cc-b9fe-656fe3c20fb0",
+    "data": [
+      {
+        "text": "add ",
+        "userDefined": false
+      },
+      {
+        "text": "nothing",
+        "meta": "@nothing",
+        "alias": "nothing",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bf94a50b-a292-4465-8439-004075748448",
+    "data": [
+      {
+        "text": "add ",
+        "userDefined": false
+      },
+      {
+        "text": "ice cream, tomatoes, and pizza",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "679efbce-31fb-4af1-8de6-f6e7bbcf2397",
+    "data": [
+      {
+        "text": "add ",
+        "userDefined": false
+      },
+      {
+        "text": "watermelon",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "grocery",
+        "meta": "@sys.any",
+        "alias": "list-name",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "list",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bf15721a-3196-4f83-b2fb-996736fa09bd",
+    "data": [
+      {
+        "text": "add ",
+        "userDefined": false
+      },
+      {
+        "text": "pineapples and raspberries",
+        "meta": "@sys.any",
+        "alias": "list-objects",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

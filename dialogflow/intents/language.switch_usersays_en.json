@@ -1,0 +1,760 @@
+[
+  {
+    "id": "1f04490c-b074-442e-add7-c681a19135b2",
+    "data": [
+      {
+        "text": "let\u0027s talk in ",
+        "userDefined": false
+      },
+      {
+        "text": "Chinese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8a76018b-7580-4316-80fd-8a7b39d1cab2",
+    "data": [
+      {
+        "text": "talk me in ",
+        "userDefined": false
+      },
+      {
+        "text": "Hindi",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5f2ef6ff-10f4-418d-b6c6-8874563665ed",
+    "data": [
+      {
+        "text": "change language to ",
+        "userDefined": false
+      },
+      {
+        "text": "Korean",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "142fdfbd-5fb2-45af-9e10-56c533a3012d",
+    "data": [
+      {
+        "text": "please speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Cantonese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "86941087-a296-4a18-9325-cfdaa2955284",
+    "data": [
+      {
+        "text": "I would like you to be able to speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Japanese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "489c1053-1a73-4813-9943-54bbc0442e13",
+    "data": [
+      {
+        "text": "no speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Hindi",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " always",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "84f7523c-b1dd-4f53-bf88-4d44538aa301",
+    "data": [
+      {
+        "text": "switch to ",
+        "userDefined": false
+      },
+      {
+        "text": "Arabic",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9fddb208-5c5a-4cb1-83dc-d48ee536fad7",
+    "data": [
+      {
+        "text": "Speak ",
+        "userDefined": false
+      },
+      {
+        "text": "German",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2e02301a-6e3d-4e9c-89fb-59e0e092921a",
+    "data": [
+      {
+        "text": "speak in ",
+        "userDefined": false
+      },
+      {
+        "text": "Spanish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "8f40f412-2047-4376-959a-aaea945c33ce",
+    "data": [
+      {
+        "text": "please talk in ",
+        "userDefined": false
+      },
+      {
+        "text": "Cantonese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ca9750cf-5c70-4b4a-b21d-65f42069f563",
+    "data": [
+      {
+        "text": "switch language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d6328b7f-f040-4e58-bd55-7b17003b1e93",
+    "data": [
+      {
+        "text": "can you change your language to ",
+        "userDefined": false
+      },
+      {
+        "text": "Hebrew",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "04fb6966-b7b3-4fff-91a6-4e32cb8bd58a",
+    "data": [
+      {
+        "text": "change ",
+        "userDefined": false
+      },
+      {
+        "text": "your",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "dadacfa2-c6bc-4041-bce6-8ee7d4834c6c",
+    "data": [
+      {
+        "text": "how can I do so you talk ",
+        "userDefined": false
+      },
+      {
+        "text": "Spanish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5c50c1aa-97d4-4d21-a569-5cb79e39016e",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Cantonese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7802490a-2ed4-405a-a3aa-8655b83e390a",
+    "data": [
+      {
+        "text": "can u learn me ",
+        "userDefined": false
+      },
+      {
+        "text": "Italian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3ed67556-29fa-4fd1-a8a0-192c3ab19a91",
+    "data": [
+      {
+        "text": "can you switch to ",
+        "userDefined": false
+      },
+      {
+        "text": "Spanish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      },
+      {
+        "text": " por favor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "cbbfdb80-7c50-49fa-aa7e-43a680ef70ad",
+    "data": [
+      {
+        "text": "please talk in ",
+        "userDefined": false
+      },
+      {
+        "text": "Russian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3485b762-dd20-431a-a960-2cb4cdfc3723",
+    "data": [
+      {
+        "text": "can ",
+        "userDefined": false
+      },
+      {
+        "text": "we",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " change the language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e7c177fe-63ed-4ab6-837f-95d3e7b492ce",
+    "data": [
+      {
+        "text": "what can I do so you talk ",
+        "userDefined": false
+      },
+      {
+        "text": "Danish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d98d4fb7-a36e-49c7-a7b3-dec0e2a441cc",
+    "data": [
+      {
+        "text": "I want to back to ",
+        "userDefined": false
+      },
+      {
+        "text": "Portuguese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7ebf3f2d-bdc3-454e-9da4-3f0c08de4657",
+    "data": [
+      {
+        "text": "I",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " want you ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Malay",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4a7a24ce-63cb-4852-b9a9-52cd14f1134e",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "European Portuguese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "92ae48dd-47f9-4a19-8670-f8a04c13e3ae",
+    "data": [
+      {
+        "text": "could you speak in ",
+        "userDefined": false
+      },
+      {
+        "text": "French",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "7a931f5e-2ceb-4626-ab5e-150c3cd7b85c",
+    "data": [
+      {
+        "text": "please speak ",
+        "userDefined": false
+      },
+      {
+        "text": "German",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "255a6d5b-0c7e-40a2-b467-e7fe4a2c0612",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Neapolitan",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " from now on",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "627d0681-0b5d-4750-b919-2117c96c47ca",
+    "data": [
+      {
+        "text": "switch language to ",
+        "userDefined": false
+      },
+      {
+        "text": "Russian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e036c915-419f-4be6-8c97-004a09dc8f12",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Turkish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c8bacf79-c6d6-43c4-986d-d08758d7372f",
+    "data": [
+      {
+        "text": "please speak ",
+        "userDefined": false
+      },
+      {
+        "text": "English like an Australian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "aa245715-155d-436e-ad83-dfb6e394f0b0",
+    "data": [
+      {
+        "text": "first",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " you should speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Hindi",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " also",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a97f67f5-bda3-4d91-bc66-e6c3d9932f87",
+    "data": [
+      {
+        "text": "you should know ",
+        "userDefined": false
+      },
+      {
+        "text": "Swedish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0cc6f3f3-1984-4b80-bbb2-f7c955daf869",
+    "data": [
+      {
+        "text": "change ",
+        "userDefined": false
+      },
+      {
+        "text": "your",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " dialect",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c7a7a5db-6b03-4d24-9444-509be8edf792",
+    "data": [
+      {
+        "text": "talk ",
+        "userDefined": false
+      },
+      {
+        "text": "Swedish",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f5379f64-ee10-432c-81d7-7588aeac0733",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Russian",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " from now ",
+        "userDefined": false
+      },
+      {
+        "text": "on",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2ff332d7-6481-4b79-aa91-251592a730ed",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "Portuguese",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f46a112a-24bf-44aa-af55-b9f004dd8785",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      },
+      {
+        "text": " now",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b995e362-32c3-451b-9344-c2e18279c3ce",
+    "data": [
+      {
+        "text": "speak ",
+        "userDefined": false
+      },
+      {
+        "text": "English",
+        "meta": "@sys.language",
+        "alias": "language",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  }
+]

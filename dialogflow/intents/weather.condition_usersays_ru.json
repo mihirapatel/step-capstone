@@ -1,0 +1,1153 @@
+[
+  {
+    "id": "f50b5a01-fe44-4402-a35e-a735dd8d0bc0",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "гроза",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Колорадо",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "сегодня вечером",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "986edfa6-7a64-4229-bdfc-81dfc05fc53f",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "ливень",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "f0d7db3e-2853-4d2f-a782-0e10774d83d7",
+    "data": [
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Нью-Йорке",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "сегодня",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "0f066d34-4471-4241-94c3-3a59445c3abf",
+    "data": [
+      {
+        "text": "в ",
+        "userDefined": false
+      },
+      {
+        "text": "пятницу",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " будет ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "24e0a615-d5e3-4e3e-8f56-3df87ff0e4e3",
+    "data": [
+      {
+        "text": "ожидается ли ",
+        "userDefined": false
+      },
+      {
+        "text": "град",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "a984b02a-bd44-41c9-8a63-f5c47ad6ba93",
+    "data": [
+      {
+        "text": "что с погодой ",
+        "userDefined": false
+      },
+      {
+        "text": "изморось",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Гон Конге",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "1fffe763-efcf-4fa9-bc4c-6bbe4cd38d00",
+    "data": [
+      {
+        "text": "есть ли что-то про ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в прогнозе погоды",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "fb1f10e4-7bbc-48de-94c9-60632c276036",
+    "data": [
+      {
+        "text": "кажется ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " собирается",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "29e55018-077d-49b7-a97b-c3d5079d0f3a",
+    "data": [
+      {
+        "text": "ожидают ли ",
+        "userDefined": false
+      },
+      {
+        "text": "ураган",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "b39ad638-60f5-48cf-ad6a-9ee9fc44ef72",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "туманно",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "эти выходные",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "246fb84e-0b4c-4c20-a286-0e6ebb57b689",
+    "data": [
+      {
+        "text": "когда пойдёт ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "fbb5a8e1-91d1-450b-901c-f2553d59151b",
+    "data": [
+      {
+        "text": "утром",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " обещали ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Париже",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "5a65bf80-a9e2-415c-aedf-333ae9e25429",
+    "data": [
+      {
+        "text": "ожидать ли ",
+        "userDefined": false
+      },
+      {
+        "text": "ураган",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "на этой неделе",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "bdf6bf7b-9621-4b3c-86f5-dbb071df99fa",
+    "data": [
+      {
+        "text": "позже ",
+        "userDefined": false
+      },
+      {
+        "text": "вечером",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "дождливо",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "176914da-a942-45f2-93bb-24aed5a03bc6",
+    "data": [
+      {
+        "text": "когда пойдёт ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Пало-Альто",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "c28d57c6-d0ed-4460-b03d-3fd808480e39",
+    "data": [
+      {
+        "text": "идёт ли ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Москве",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "fae5ac80-535e-4a81-8649-9a31cc5f3854",
+    "data": [
+      {
+        "text": "сейчас",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " идёт ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "11c13de7-a951-4534-b817-f8740a0752cd",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "облачно",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Берлине",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "4fb2d6e5-76d1-47be-9f73-8581297f330f",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Мадриде",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "на следующей неделе",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "2fbe8e36-b53d-4d9f-b654-8ee901273260",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "дождливо",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "d6a9c4a9-81c4-48c1-8ba1-e506347859de",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "туманно",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "22 июля",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "23fb32a3-46eb-4667-b593-102a08cd57f1",
+    "data": [
+      {
+        "text": "ожидать ли ",
+        "userDefined": false
+      },
+      {
+        "text": "ураган",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Кливленде",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "12 марта",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "cfc5eab7-d9ed-4199-92c4-1192670f035e",
+    "data": [
+      {
+        "text": "во сколько ",
+        "userDefined": false
+      },
+      {
+        "text": "сегодня",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " пойдёт ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ef086b60-8799-4cfd-88b3-81f5ecc9a4ee",
+    "data": [
+      {
+        "text": "надвигается ли ",
+        "userDefined": false
+      },
+      {
+        "text": "гроза",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "b57040d0-009f-421a-9ac1-6e2d2de9a92d",
+    "data": [
+      {
+        "text": "есть ли в прогнозе новости про ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Мюнхене",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "bb2b1323-fca9-470c-a095-f03f20698507",
+    "data": [
+      {
+        "text": "сегодня падает ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "dc2faee5-0520-431c-a073-bd4dafd62351",
+    "data": [
+      {
+        "text": "какая есть информация про ",
+        "userDefined": false
+      },
+      {
+        "text": "шторм",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "094b5437-20e8-40e0-8164-d6a784354611",
+    "data": [
+      {
+        "text": "прогнозируют ли ",
+        "userDefined": false
+      },
+      {
+        "text": "ливни",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Канаде",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "bcfad069-6717-44ef-bf2c-1716bb81467c",
+    "data": [
+      {
+        "text": "будет ",
+        "userDefined": false
+      },
+      {
+        "text": "туманно",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "3c4d125d-74f5-4ad4-aa07-8f93585817a3",
+    "data": [
+      {
+        "text": "пойдёт ли ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "сегодня",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "fd5ca3b4-dd23-4d40-9684-0bc17fe5fa22",
+    "data": [
+      {
+        "text": "выпадет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "пятницу",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "b7709020-258b-4c97-a8fa-388d71e40f32",
+    "data": [
+      {
+        "text": "надвигается ли ",
+        "userDefined": false
+      },
+      {
+        "text": "вьюга",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Москве",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "5119bf40-68c5-4a89-9895-e827d71a813f",
+    "data": [
+      {
+        "text": "есть ли опасность ",
+        "userDefined": false
+      },
+      {
+        "text": "цунами",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "47e719c7-3d2d-4fb2-b82f-f9e22fa2147a",
+    "data": [
+      {
+        "text": "ожидается ли ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Лондоне",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "d27ae83e-a2ab-40e2-8578-435a5912521b",
+    "data": [
+      {
+        "text": "что в прогнозе говорится о ",
+        "userDefined": false
+      },
+      {
+        "text": "ливнях",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Валенсии",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "6f2a1c81-7e42-44ce-bcee-cf7e54decd96",
+    "data": [
+      {
+        "text": "будет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в эту ",
+        "userDefined": false
+      },
+      {
+        "text": "пятницу",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "14071acd-4f07-43c2-86eb-cb7dca5e6b4e",
+    "data": [
+      {
+        "text": "вечером",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " будет ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "1f73a52a-3a7c-441e-ad77-960292b2f21f",
+    "data": [
+      {
+        "text": "пойдёт ли ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Париже",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "00b1afc3-1a96-478d-80a7-07716e13eb82",
+    "data": [
+      {
+        "text": "выпадет ли ",
+        "userDefined": false
+      },
+      {
+        "text": "снег",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Париже",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "этот вторник",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "ad7859f3-986d-4804-b44c-0f0fc20c6a57",
+    "data": [
+      {
+        "text": "случится ли ",
+        "userDefined": false
+      },
+      {
+        "text": "извержение вулкана",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "в этом месяце",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Сицилии",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "a4cd2b86-f81c-4aac-9701-d7842f693c8e",
+    "data": [
+      {
+        "text": "когда в ",
+        "userDefined": false
+      },
+      {
+        "text": "Осло",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " пойдёт ",
+        "userDefined": false
+      },
+      {
+        "text": "дождь",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  }
+]

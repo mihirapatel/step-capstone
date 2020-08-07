@@ -1,0 +1,66 @@
+{
+  "id": "755af587-f0fe-4715-8532-942789201efb",
+  "name": "memory.time",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "096d0370-8bb7-4ceb-908e-37e9a63992ac",
+          "name": "date-time-enhanced",
+          "required": true,
+          "dataType": "@date-time-enhanced",
+          "value": "$date-time-enhanced",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "For which day and time?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "6f09483a-7114-48f0-b18f-01ed65de72e0",
+          "name": "date-time-original",
+          "required": false,
+          "dataType": "@date-time-enhanced",
+          "value": "$date-time-enhanced.original",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

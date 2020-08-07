@@ -1,0 +1,104 @@
+{
+  "id": "acf25d12-e183-448e-87a6-591483c1e327",
+  "name": "calculator.tips",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "calculator.tips",
+      "affectedContexts": [
+        {
+          "name": "calculator-tips",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "62d85755-2664-45b7-acc0-98abf2a82513",
+          "name": "tip-percentage",
+          "required": true,
+          "dataType": "@sys.percentage",
+          "value": "$tip-percentage",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What percentage tip?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "f2714ff0-bb01-438a-879f-34372e2b3537",
+          "name": "amount-without-tip",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$amount-without-tip",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is the amount without tip?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "61f84989-36b7-45c1-86b6-def61f6c4a0b",
+          "name": "currency",
+          "required": false,
+          "dataType": "@sys.currency-name",
+          "value": "$currency",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "268c56dc-fe72-4cfe-9549-55a063292ddd",
+          "name": "people-number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$people-number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,119 @@
+[
+  {
+    "id": "2d292362-4d7b-4ed1-92da-3cb3b954ed01",
+    "data": [
+      {
+        "text": "我不同意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "2816a96c-849b-4f0a-8ab5-869737d84254",
+    "data": [
+      {
+        "text": "不用了，謝謝",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "1608b27f-3b65-456c-b8db-ed38c42192fa",
+    "data": [
+      {
+        "text": "我不想",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "76ef2df3-2c8a-403d-898c-3cd2f8080957",
+    "data": [
+      {
+        "text": "否",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "774b5c8e-5ee0-4d26-9a73-e225e8060763",
+    "data": [
+      {
+        "text": "不要執行",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "788723de-1069-4960-93f4-b051e93d3c21",
+    "data": [
+      {
+        "text": "不必了",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "a81882dd-7340-447d-bbbf-ad8815dad554",
+    "data": [
+      {
+        "text": "我不願意",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "335e21ed-e4f1-4b10-87ac-0dc39b053316",
+    "data": [
+      {
+        "text": "絕對不要",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  },
+  {
+    "id": "22c2f282-0509-4f8e-9869-423d331a4251",
+    "data": [
+      {
+        "text": "不感興趣",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-tw",
+    "updated": 0
+  }
+]

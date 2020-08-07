@@ -1,0 +1,9 @@
+{
+  "id": "b1dbf3b4-7a7f-45ce-80b8-61a8157f7f2f",
+  "name": "nick-name",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": false
+}

@@ -1,0 +1,544 @@
+[
+  {
+    "id": "b569fbb9-b2ee-4bb5-8c73-114ba27c15d1",
+    "data": [
+      {
+        "text": "fait-il ",
+        "userDefined": false
+      },
+      {
+        "text": "chaud",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "1407d5bd-7ad1-4e7a-bb50-3ca16e59229e",
+    "data": [
+      {
+        "text": "est-ce qu\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " fait ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "ce",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " moment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "1696094e-81d9-447e-99db-6f310f63b659",
+    "data": [
+      {
+        "text": "est-ce qu\u0027il fait ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " dehors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "aba42900-4882-4cba-8376-40081130abfa",
+    "data": [
+      {
+        "text": "fait-il ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Marseille",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "92fd98b5-a200-41f0-9ff2-34296110dd72",
+    "data": [
+      {
+        "text": "est-ce qu\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " fera ",
+        "userDefined": false
+      },
+      {
+        "text": "chaud",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "529592cc-d7d1-4d61-a781-cb0a2b69cd7a",
+    "data": [
+      {
+        "text": "dis-moi est-ce qu\u0027il fera ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " sur ",
+        "userDefined": false
+      },
+      {
+        "text": "Nantes",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "2acbcaac-4ccb-459a-9aed-ac687c265665",
+    "data": [
+      {
+        "text": "la température pour ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "b00b1c93-9c3c-46ab-b96b-d9e8b757e8ca",
+    "data": [
+      {
+        "text": "la",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "température",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " en degrés ",
+        "userDefined": false
+      },
+      {
+        "text": "Celsius",
+        "meta": "@unit-temperature",
+        "alias": "unit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "ffad1e11-b209-42e6-abb4-641be69dc843",
+    "data": [
+      {
+        "text": "peux-tu ",
+        "userDefined": false
+      },
+      {
+        "text": "me",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " donner ",
+        "userDefined": false
+      },
+      {
+        "text": "la",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "température",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " s\u0027il te plaît",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "d1e4bf27-76e0-4280-a69e-6eafec188f68",
+    "data": [
+      {
+        "text": "fait-il ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "aujourd\u0027hui",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "7cf9980d-6898-4837-ba1d-ec2aef575b06",
+    "data": [
+      {
+        "text": "est-ce qu\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " fait ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " là",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "3fda411f-0560-4cb0-bd6b-db0823c30d1b",
+    "data": [
+      {
+        "text": "sais-tu s\u0027il fait ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " dehors en ce moment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "908b2b5c-954d-4bdc-bffb-177dd1372749",
+    "data": [
+      {
+        "text": "fait-il ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "41834aaa-1885-4ecc-96c7-ab9d41d5452c",
+    "data": [
+      {
+        "text": "fera-t-il ",
+        "userDefined": false
+      },
+      {
+        "text": "chaud",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "aujourd\u0027hui",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "0070f57c-2680-41bf-87ea-68b9c26c9e3d",
+    "data": [
+      {
+        "text": "est-ce qu\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " va faire ",
+        "userDefined": false
+      },
+      {
+        "text": "froid",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Nantes",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "01764fdf-c238-4069-8a1d-98dc49e7d8a5",
+    "data": [
+      {
+        "text": "fera-t-il ",
+        "userDefined": false
+      },
+      {
+        "text": "chaud",
+        "meta": "@temperature",
+        "alias": "temperature",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "109f2748-af09-4866-adbe-d016a136c75d",
+    "data": [
+      {
+        "text": "quelle température il fait dehors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "72dfb084-44fe-4306-aa34-d250199f8091",
+    "data": [
+      {
+        "text": "quelle est la température de ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "fr",
+    "updated": 0
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "4fff0c38-d58f-4bbe-abf6-ebbaf7194b0e",
+  "name": "book-type",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": false
+}

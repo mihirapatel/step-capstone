@@ -1,0 +1,147 @@
+[
+  {
+    "value": "camping",
+    "synonyms": [
+      "Campingwetter",
+      "camping",
+      "zelten"
+    ]
+  },
+  {
+    "value": "climbing",
+    "synonyms": [
+      "bergsteigern",
+      "klettern"
+    ]
+  },
+  {
+    "value": "cycling",
+    "synonyms": [
+      "Fahrrad fahren",
+      "Fahrradfahren",
+      "Fahrradwetter",
+      "Rad fahren",
+      "Radfahren",
+      "Radtour"
+    ]
+  },
+  {
+    "value": "fly a kite",
+    "synonyms": [
+      "Drachen fliegen",
+      "Drachen fliegen lassen",
+      "Drachen steigen",
+      "Drachen steigen lassen",
+      "drahen steigen"
+    ]
+  },
+  {
+    "value": "frisbee",
+    "synonyms": [
+      "frisbee"
+    ]
+  },
+  {
+    "value": "go sledding",
+    "synonyms": [
+      "rodeln"
+    ]
+  },
+  {
+    "value": "jogging",
+    "synonyms": [
+      "joggen",
+      "jogging"
+    ]
+  },
+  {
+    "value": "parasailing",
+    "synonyms": [
+      "parasailing",
+      "parasegeln"
+    ]
+  },
+  {
+    "value": "renne",
+    "synonyms": [
+      "renne"
+    ]
+  },
+  {
+    "value": "riding",
+    "synonyms": [
+      "reiten"
+    ]
+  },
+  {
+    "value": "run",
+    "synonyms": [
+      "gelaufen",
+      "gerennt",
+      "laufen",
+      "rennen"
+    ]
+  },
+  {
+    "value": "skating",
+    "synonyms": [
+      "schlittschuh laufen",
+      "schlittschuhlaufen"
+    ]
+  },
+  {
+    "value": "skiing",
+    "synonyms": [
+      "schi",
+      "schi fahren",
+      "ski",
+      "ski fahren",
+      "skifahren"
+    ]
+  },
+  {
+    "value": "snowball fights",
+    "synonyms": [
+      "Schneeballschlacht",
+      "Schneeballschlachten"
+    ]
+  },
+  {
+    "value": "snowboarding",
+    "synonyms": [
+      "snowboarden",
+      "snowboarding"
+    ]
+  },
+  {
+    "value": "surfing",
+    "synonyms": [
+      "surfen",
+      "surfing"
+    ]
+  },
+  {
+    "value": "swimming",
+    "synonyms": [
+      "schwimmen",
+      "swimmen"
+    ]
+  },
+  {
+    "value": "walking",
+    "synonyms": [
+      "gehen",
+      "spazieren",
+      "spazieren gehen",
+      "wandern",
+      "zu fuß"
+    ]
+  },
+  {
+    "value": "workout",
+    "synonyms": [
+      "trainieren",
+      "training"
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "value": "zoos",
+    "synonyms": [
+      "zoos"
+    ]
+  },
+  {
+    "value": "pizza places",
+    "synonyms": [
+      "pizza places"
+    ]
+  },
+  {
+    "value": "ice cream",
+    "synonyms": [
+      "ice cream"
+    ]
+  },
+  {
+    "value": "restaurants",
+    "synonyms": [
+      "restaurants"
+    ]
+  },
+  {
+    "value": "attractions",
+    "synonyms": [
+      "attractions"
+    ]
+  }
+]

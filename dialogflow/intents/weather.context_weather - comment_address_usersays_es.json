@@ -1,0 +1,114 @@
+[
+  {
+    "id": "91b2f3d8-f137-46a9-b3cb-c3a925cc492b",
+    "data": [
+      {
+        "text": "y en ",
+        "userDefined": false
+      },
+      {
+        "text": "Girona",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "160caccc-b13f-4a81-ac0c-bb7fe87d02a1",
+    "data": [
+      {
+        "text": "y en ",
+        "userDefined": false
+      },
+      {
+        "text": "Roma",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "cómo",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " estará",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "52214a50-7ac8-4ccb-a145-a496052be6b7",
+    "data": [
+      {
+        "text": "y en cuanto a ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "30b5aa97-0c8f-4af4-ade3-135ae6fcd0b1",
+    "data": [
+      {
+        "text": "y en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valencia",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " qué tal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4b68ce47-4b65-4134-9cbb-df6ac545dc7d",
+    "data": [
+      {
+        "text": "en ",
+        "userDefined": false
+      },
+      {
+        "text": "San Francisco",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

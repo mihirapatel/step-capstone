@@ -1,0 +1,465 @@
+[
+  {
+    "id": "386b6c48-d21b-4674-abc0-38736730481f",
+    "data": [
+      {
+        "text": "va-t-il ",
+        "userDefined": false
+      },
+      {
+        "text": "pleuvoir",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "1320826f-f60a-4629-ae9c-0c627c465529",
+    "data": [
+      {
+        "text": "est-ce qu\u0027",
+        "userDefined": false
+      },
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " y ",
+        "userDefined": false
+      },
+      {
+        "text": "aura",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " du ",
+        "userDefined": false
+      },
+      {
+        "text": "soleil",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "aujourd\u0027hui",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "91f62c3f-e7db-4adb-a370-6eb285193434",
+    "data": [
+      {
+        "text": "neigera-t-il",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "sur",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Paris",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " ou pas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "77529fb8-7fe5-41aa-a978-ee70beb23e91",
+    "data": [
+      {
+        "text": "va-t-il neiger ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Montréal",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "c7fc0cbf-7a46-41ac-9824-bcb52cd21f7a",
+    "data": [
+      {
+        "text": "y aura-t-il ",
+        "userDefined": false
+      },
+      {
+        "text": "de",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "la",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "pluie",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Bordeaux",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "c9c26de7-2914-4050-8b7a-355c995e06eb",
+    "data": [
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "va",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "pleuvoir",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Farciennes",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " météo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "7f60d1ff-55e9-4c3d-bda5-398597fd5e1b",
+    "data": [
+      {
+        "text": "est-ce qu\u0027il va ",
+        "userDefined": false
+      },
+      {
+        "text": "pleuvoir",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": " plus tard ",
+        "userDefined": false
+      },
+      {
+        "text": "dans la soirée",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "c4aa7bef-b82f-4777-af19-4cbe712bb5cf",
+    "data": [
+      {
+        "text": "y aura-t-il du ",
+        "userDefined": false
+      },
+      {
+        "text": "soleil",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "aujourd\u0027hui",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "e5ea1363-ba87-4595-aa7c-79e72e8144d6",
+    "data": [
+      {
+        "text": "va-t-il ",
+        "userDefined": false
+      },
+      {
+        "text": "pleuvoir",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "vendredi",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "0d260665-0258-446b-92fe-4d885f9d8f16",
+    "data": [
+      {
+        "text": "neige-t-il",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": " en ce moment",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "5631ad01-4623-467f-9991-1a3d3a9e5c69",
+    "data": [
+      {
+        "text": "pleut-il",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "413e81fc-c119-4293-ac5c-7c386d0e98f6",
+    "data": [
+      {
+        "text": "est-ce que ",
+        "userDefined": false
+      },
+      {
+        "text": "il",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "va",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "pleuvoir",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Raismes",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "30c50c7d-b3c2-4a3f-ac2b-af0d5d8e4a70",
+    "data": [
+      {
+        "text": "demain",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "il pleut",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": " ou non",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  }
+]

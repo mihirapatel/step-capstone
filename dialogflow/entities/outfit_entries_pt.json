@@ -1,0 +1,46 @@
+[
+  {
+    "value": "coat",
+    "synonyms": [
+      "casaco"
+    ]
+  },
+  {
+    "value": "gloves",
+    "synonyms": [
+      "luvas"
+    ]
+  },
+  {
+    "value": "jeans",
+    "synonyms": [
+      "jeans"
+    ]
+  },
+  {
+    "value": "pajama",
+    "synonyms": [
+      "pajama",
+      "pyjama"
+    ]
+  },
+  {
+    "value": "rain coat",
+    "synonyms": [
+      "gabardina"
+    ]
+  },
+  {
+    "value": "sunglasses",
+    "synonyms": [
+      "óculos de sol"
+    ]
+  },
+  {
+    "value": "umbrella",
+    "synonyms": [
+      "guarda chuva",
+      "guarda-chuva"
+    ]
+  }
+]

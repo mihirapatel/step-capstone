@@ -1,0 +1,111 @@
+[
+  {
+    "id": "4a3682af-23f9-4d85-b196-0a5300605f31",
+    "data": [
+      {
+        "text": "sur",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Nantes",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "baa5b73d-eb69-4d39-90fa-0a422d907b27",
+    "data": [
+      {
+        "text": "et",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " à ",
+        "userDefined": false
+      },
+      {
+        "text": "Londres",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "bfb366e6-391a-4f3c-8574-34481b9bb369",
+    "data": [
+      {
+        "text": "et à ",
+        "userDefined": false
+      },
+      {
+        "text": "Marseille",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      },
+      {
+        "text": " aussi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "6ba8325f-a53d-454b-a29c-10b08100724a",
+    "data": [
+      {
+        "text": "et à ",
+        "userDefined": false
+      },
+      {
+        "text": "Montpellier",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  },
+  {
+    "id": "9978976c-09ad-4576-9d7d-9df500c59599",
+    "data": [
+      {
+        "text": "à ",
+        "userDefined": false
+      },
+      {
+        "text": "Orléans",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "fr",
+    "updated": 0
+  }
+]

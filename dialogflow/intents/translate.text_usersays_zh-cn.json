@@ -1,0 +1,442 @@
+[
+  {
+    "id": "79eaef56-91be-45c0-803d-babcbdac0b7b",
+    "data": [
+      {
+        "text": "帮我翻译",
+        "userDefined": false
+      },
+      {
+        "text": "我爱你",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "8cdd2c65-7af9-4ffb-a80f-6d7549131a7a",
+    "data": [
+      {
+        "text": "你可以做我的翻译吗",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "0e203329-9d9d-4b47-9f0f-85c139c4c9c9",
+    "data": [
+      {
+        "text": "我爱你",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "翻译成",
+        "userDefined": false
+      },
+      {
+        "text": "德语",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "218c25e9-a157-437e-8fc6-3bc75c96d4c5",
+    "data": [
+      {
+        "text": "你好",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "从",
+        "userDefined": false
+      },
+      {
+        "text": "中文",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "翻译",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "成",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "英文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "a0f6170d-762d-4466-8b25-5f4378e3d014",
+    "data": [
+      {
+        "text": "翻译成",
+        "userDefined": false
+      },
+      {
+        "text": "英语",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "500e2b45-ff11-4a66-a057-48720b5dd6b3",
+    "data": [
+      {
+        "text": "能帮我翻译吗",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "4dbd3320-7a2f-4522-b00b-a6a0f3595008",
+    "data": [
+      {
+        "text": "在线翻译",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "8e33bef2-39fc-4f1c-9a23-6ff844628635",
+    "data": [
+      {
+        "text": "语言翻译",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "8fbc6970-d37a-4080-aba3-e9878598f004",
+    "data": [
+      {
+        "text": "你好",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "日语",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "翻译",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "479d4671-f879-43a9-836d-f89a5a722bd4",
+    "data": [
+      {
+        "text": "将“",
+        "userDefined": false
+      },
+      {
+        "text": "我爱你",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "”翻译成",
+        "userDefined": false
+      },
+      {
+        "text": "法语",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "483024f5-ae0b-4c45-8667-6a82c89af1f2",
+    "data": [
+      {
+        "text": "我怎么翻译",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "2ecbb629-c6a4-4b7b-a178-d2ed740389b3",
+    "data": [
+      {
+        "text": "翻译从",
+        "userDefined": false
+      },
+      {
+        "text": "法语",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "dc30f596-81cf-43df-9f02-ff6555243297",
+    "data": [
+      {
+        "text": "“",
+        "userDefined": false
+      },
+      {
+        "text": "早餐",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "”对应的",
+        "userDefined": false
+      },
+      {
+        "text": "德语",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "单词是什么",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "9b5a4fb6-9f51-404a-a65c-2016ea87e119",
+    "data": [
+      {
+        "text": "翻译成",
+        "userDefined": false
+      },
+      {
+        "text": "韩文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "b9d7cf7a-d023-4485-bc86-2406e2ac4b45",
+    "data": [
+      {
+        "text": "你可以帮我翻译吗",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "07443be5-461a-4807-969b-597ac39294d2",
+    "data": [
+      {
+        "text": "从",
+        "userDefined": false
+      },
+      {
+        "text": "日语",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": false
+      },
+      {
+        "text": "到",
+        "userDefined": false
+      },
+      {
+        "text": "法语",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": false
+      },
+      {
+        "text": "翻译",
+        "userDefined": false
+      },
+      {
+        "text": "你好",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "19f71788-4416-4c09-92a8-abf7a5fd6c57",
+    "data": [
+      {
+        "text": "“",
+        "userDefined": false
+      },
+      {
+        "text": "圣诞老人",
+        "meta": "@sys.any",
+        "alias": "text",
+        "userDefined": true
+      },
+      {
+        "text": "”用",
+        "userDefined": false
+      },
+      {
+        "text": "芬兰语",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      },
+      {
+        "text": "怎么说",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "1924c7b9-c9ef-49fa-985a-cdb537f11eda",
+    "data": [
+      {
+        "text": "请你告诉我怎么翻译",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "cf1c6cc9-b79d-4bb9-81da-0b4e02babe9c",
+    "data": [
+      {
+        "text": "从",
+        "userDefined": false
+      },
+      {
+        "text": "英文",
+        "meta": "@sys.language",
+        "alias": "lang-from",
+        "userDefined": true
+      },
+      {
+        "text": "翻译",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "成",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "中文",
+        "meta": "@sys.language",
+        "alias": "lang-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  },
+  {
+    "id": "deca62f6-3206-41d5-a151-60a1f489f548",
+    "data": [
+      {
+        "text": "翻译",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "zh-cn",
+    "updated": 0
+  }
+]

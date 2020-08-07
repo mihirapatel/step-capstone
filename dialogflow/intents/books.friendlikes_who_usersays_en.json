@@ -1,0 +1,152 @@
+[
+  {
+    "id": "e266b143-f00e-4878-be21-0123604e6aaf",
+    "data": [
+      {
+        "text": "John White",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "455e9230-6da1-4caf-95e8-25417475f6b6",
+    "data": [
+      {
+        "text": "john green",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "42f99c1c-a646-4619-83f6-5852213954a5",
+    "data": [
+      {
+        "text": "Sansa Stark",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1f96bed0-dede-4604-9756-3f25f9b45393",
+    "data": [
+      {
+        "text": "Carrie Mapes",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2411400f-0202-46c1-b8c9-987e8cce20cd",
+    "data": [
+      {
+        "text": "John Snow",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "13888701-5f63-4ce6-ad98-4178e2e695a8",
+    "data": [
+      {
+        "text": "Ben Stark",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ac147f12-5d57-460a-964c-3e87920f67ef",
+    "data": [
+      {
+        "text": "Arya Frey",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d3eaeccb-07c2-4bd3-bd4d-a02c8ba441bd",
+    "data": [
+      {
+        "text": "Michael Mapes",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "22b76a97-8cfc-4f5e-a31f-bafa0ca3a600",
+    "data": [
+      {
+        "text": "Abby Mapes",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5311c0df-bd4d-4647-8c92-eb74963eeb05",
+    "data": [
+      {
+        "text": "Margaery Martell",
+        "meta": "@sys.person",
+        "alias": "friend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  }
+]

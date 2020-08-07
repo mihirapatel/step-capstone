@@ -1,0 +1,334 @@
+[
+  {
+    "id": "8af78938-3376-4346-bc9f-bd7787b384ff",
+    "data": [
+      {
+        "text": "来週の金曜日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "は降るか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "9de2289e-1070-4cc3-aeb8-1e6c9b0fcec9",
+    "data": [
+      {
+        "text": "今日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "は",
+        "userDefined": false
+      },
+      {
+        "text": "雪",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "になるの",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "cd6357a6-8f78-4dd2-aa5e-022481f0c9ad",
+    "data": [
+      {
+        "text": "雪",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "が降る予報",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "7fa4be5b-dc2d-4ead-9e18-a48c5876e3c1",
+    "data": [
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "は降っていますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "2d087c8d-1d6e-4155-a450-539eb0999dc1",
+    "data": [
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "は降ってるか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "6e86ab16-fd6d-4849-aa1c-19dd497a2828",
+    "data": [
+      {
+        "text": "天気予報で",
+        "userDefined": false
+      },
+      {
+        "text": "今日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "札幌",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "雪",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "はありますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "519277f8-5fb8-4ef6-af3b-16f4a10c6b5e",
+    "data": [
+      {
+        "text": "来週の金曜日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "、",
+        "userDefined": false
+      },
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": false
+      },
+      {
+        "text": "は降る",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "c905f3df-9eb0-4424-abaa-30943b0230ba",
+    "data": [
+      {
+        "text": "でも",
+        "userDefined": false
+      },
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "は降る",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "3955f33e-4426-4963-89dd-9b01908e7728",
+    "data": [
+      {
+        "text": "夜",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "遅くに",
+        "userDefined": false
+      },
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "は降りますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "e1486084-df04-4142-845e-bbde0d63eec8",
+    "data": [
+      {
+        "text": "明日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "の",
+        "userDefined": false
+      },
+      {
+        "text": "パリ",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": "は",
+        "userDefined": false
+      },
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "になりますか",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "9c66563d-7bfd-404c-80ef-e492b8455763",
+    "data": [
+      {
+        "text": "今日",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "は",
+        "userDefined": false
+      },
+      {
+        "text": "雪",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "が降る予報",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  },
+  {
+    "id": "23ff3793-cc7a-4911-a21a-a6cad31fbd84",
+    "data": [
+      {
+        "text": "夜",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": "遅くに",
+        "userDefined": false
+      },
+      {
+        "text": "雨",
+        "meta": "@weather-condition",
+        "alias": "condition",
+        "userDefined": true
+      },
+      {
+        "text": "は降る",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ja",
+    "updated": 0
+  }
+]

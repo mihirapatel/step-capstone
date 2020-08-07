@@ -1,0 +1,165 @@
+[
+  {
+    "id": "e3f21c2e-857e-4b47-bc2a-e9591ed9bcc6",
+    "data": [
+      {
+        "text": "find",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " me conversation history ",
+        "userDefined": false
+      },
+      {
+        "text": "from April of last year",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e9e4e268-6fb6-4616-9497-f90c1868168a",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "everything",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " we talked about ",
+        "userDefined": false
+      },
+      {
+        "text": "last month",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f38cf1f3-4c71-4713-96b0-3cc9030ea4a2",
+    "data": [
+      {
+        "text": "what were we talking about ",
+        "userDefined": false
+      },
+      {
+        "text": "between 2pm and 5pm last Friday",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "c45e6bfd-a0cd-4a12-9cfc-a188524d4c93",
+    "data": [
+      {
+        "text": "show me conversation history from ",
+        "userDefined": false
+      },
+      {
+        "text": "august 9",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b3a30db1-ae12-4110-b31d-51df2c3576a6",
+    "data": [
+      {
+        "text": "what did we talk about ",
+        "userDefined": false
+      },
+      {
+        "text": "at 9 am yesterday",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6436f943-b9a0-4b6e-b7e2-16315f41989c",
+    "data": [
+      {
+        "text": "remind me about our conversation on ",
+        "userDefined": false
+      },
+      {
+        "text": "june 10",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3cd3a5bc-5a47-4c2f-8a1f-a4a1050d831e",
+    "data": [
+      {
+        "text": "remind me what we talked about ",
+        "userDefined": false
+      },
+      {
+        "text": "yesterday",
+        "meta": "@date-time-enhanced",
+        "alias": "date-time-enhanced",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

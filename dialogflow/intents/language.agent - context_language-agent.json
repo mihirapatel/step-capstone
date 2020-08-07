@@ -1,0 +1,49 @@
+{
+  "id": "d8c49ee9-8394-4854-8f7c-c1fba3eeeadc",
+  "name": "language.agent - context:language-agent",
+  "auto": true,
+  "contexts": [
+    "language-agent"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "language.agent",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "8ab891f4-1888-4be5-b2c3-5460ef5c30ac",
+          "name": "language",
+          "required": false,
+          "dataType": "@sys.language",
+          "value": "$language",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

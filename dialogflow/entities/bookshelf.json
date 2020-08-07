@@ -1,0 +1,9 @@
+{
+  "id": "7b57f80c-c979-412e-8085-7fa71ef96152",
+  "name": "bookshelf",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": false
+}

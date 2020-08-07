@@ -1,0 +1,175 @@
+[
+  {
+    "data": [
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " of ",
+        "userDefined": false
+      },
+      {
+        "text": "jan 2 1990",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "august second",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " of the ",
+        "userDefined": false
+      },
+      {
+        "text": "week",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "august 2 1999",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " is ",
+        "userDefined": false
+      },
+      {
+        "text": "january fourteenth",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "september 1st",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what ",
+        "userDefined": false
+      },
+      {
+        "text": "day",
+        "meta": "@unit-time",
+        "alias": "unit-time",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "august 2nd 1999",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

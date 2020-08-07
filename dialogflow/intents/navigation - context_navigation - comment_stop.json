@@ -1,0 +1,34 @@
+{
+  "id": "46574bee-b205-43d3-a792-df10405b5ea9",
+  "name": "navigation - context:navigation - comment:stop",
+  "auto": true,
+  "contexts": [
+    "navigation"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "navigation.stop",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

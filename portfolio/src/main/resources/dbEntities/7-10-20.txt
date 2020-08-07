@@ -1,0 +1,9 @@
+#Tuesday, July 10, 2020 6:51:00.632 PM
+{"key":{"kind":"CommentHistory","id":"6192449487634432"},"propertyMap":{"comment":"show me my grocery list","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1594432260632"}}
+{"key":{"kind":"CommentHistory","id":"4785074604081152"},"propertyMap":{"comment":"Here is your most recent grocery list.","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1594432260665"}}
+{"key":{"kind":"CommentHistory","id":"5910974510923776"},"propertyMap":{"comment":"show me all my past grocery lists","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1594432327903"}}
+{"key":{"kind":"CommentHistory","id":"5348024557502464"},"propertyMap":{"comment":"Here are all the found lists.","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1594432327912"}}
+{"key":{"kind":"List","id":"6271614324834304"},"propertyMap":{"stemmedListName":"groceri","listName":"grocery (06/28/2020 12:47:50)","userID":"112479245331521077924","items":["tomato","spinach","egg", "peaches"],"timestamp":"1593348470790"}}
+{"key":{"kind":"List","id":"6473924464345088"},"propertyMap":{"stemmedListName":"groceri","listName":"grocery","userID":"112479245331521077924","items":["tomato","cucumbers","avocado", "watermelon"],"timestamp":"1594432416268"}}
+{"key":{"kind":"CommentHistory","id":"4644337115725824"},"propertyMap":{"comment":"start a new grocery list with tomato, cucumbers, avocado, and watermelon","isUser":true,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1594432417692"}}
+{"key":{"kind":"CommentHistory","id":"5770237022568448"},"propertyMap":{"comment":"Created! Based on your list item preferences, you might be interested in adding bananas, ice cream, and apples to your grocery list.","isUser":false,"userID":"112479245331521077924","errorResponse":false,"timestamp":"1594432417730"}}

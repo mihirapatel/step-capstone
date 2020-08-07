@@ -1,0 +1,706 @@
+[
+  {
+    "id": "a37b6a95-11bd-4e50-bc1b-c470f46d8ca9",
+    "data": [
+      {
+        "text": "what\u0027s the exchange rate for ",
+        "userDefined": false
+      },
+      {
+        "text": "Canadian dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "US dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "607f7fd2-930f-4053-ad46-bf48b599a93e",
+    "data": [
+      {
+        "text": "currency conversion",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "94cf48a0-8c4b-4116-9a41-e3deff062569",
+    "data": [
+      {
+        "text": "how many ",
+        "userDefined": false
+      },
+      {
+        "text": "US Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      },
+      {
+        "text": " will ",
+        "userDefined": false
+      },
+      {
+        "text": "300",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Euro",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " get me",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1d5fe26a-0411-4215-b9ba-985918fe4bb0",
+    "data": [
+      {
+        "text": "the price for ",
+        "userDefined": false
+      },
+      {
+        "text": "Mexican Peso",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "75dcec94-03db-442b-af9d-e2dd01b31847",
+    "data": [
+      {
+        "text": "what\u0027s the currency exchange ",
+        "userDefined": false
+      },
+      {
+        "text": "right now",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "dd687715-7c48-41d2-ae74-b7d4fab448b5",
+    "data": [
+      {
+        "text": "how much will I get for ",
+        "userDefined": false
+      },
+      {
+        "text": "1000",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Euro",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "023caac1-14f9-421a-8fb8-2920308749eb",
+    "data": [
+      {
+        "text": "how much is ",
+        "userDefined": false
+      },
+      {
+        "text": "30",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "English Pounds",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " in Ethiopian ",
+        "userDefined": false
+      },
+      {
+        "text": "Birrs",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "13f9ed0b-82d3-4666-acc0-d79bd8c68ed3",
+    "data": [
+      {
+        "text": "convert ",
+        "userDefined": false
+      },
+      {
+        "text": "Jamaican Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " into ",
+        "userDefined": false
+      },
+      {
+        "text": "Euros",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "5c382f7c-1459-4ce6-86ab-a7660cf4dcfb",
+    "data": [
+      {
+        "text": "convert ",
+        "userDefined": false
+      },
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": "200",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6483b8e3-9c4c-4ce5-8b41-481f4b1b53fa",
+    "data": [
+      {
+        "text": "currency conversion from ",
+        "userDefined": false
+      },
+      {
+        "text": "Yens",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "New Taiwan Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bc05dd66-0891-4b7a-97d4-748625f6b7d5",
+    "data": [
+      {
+        "text": "25",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Tenge",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " converted into ",
+        "userDefined": false
+      },
+      {
+        "text": "Dinar",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6d9399ac-b53c-4d69-b130-5a378fd61a77",
+    "data": [
+      {
+        "text": "what\u0027s the ",
+        "userDefined": false
+      },
+      {
+        "text": "Euro",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " exchange rate",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b07afe5a-c93c-4f0c-bb33-1339ee335294",
+    "data": [
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Euro",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " into ",
+        "userDefined": false
+      },
+      {
+        "text": "US Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3a549a98-fe9f-411b-bff2-aead05f4867f",
+    "data": [
+      {
+        "text": "convert ",
+        "userDefined": false
+      },
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Pounds",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "94ca1f75-5e97-43d0-b82a-4780d5a274b6",
+    "data": [
+      {
+        "text": "exchange rate",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a88a2ea8-3ba4-4be5-949a-62a4a8497769",
+    "data": [
+      {
+        "text": "USD",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " into ",
+        "userDefined": false
+      },
+      {
+        "text": "JPY",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "0dc1e8a3-d2a8-410e-8a63-67fe15c21414",
+    "data": [
+      {
+        "text": "can you convert currencies",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6eff2b31-62c6-4854-a917-97ae78dfc584",
+    "data": [
+      {
+        "text": "what\u0027s ",
+        "userDefined": false
+      },
+      {
+        "text": "100",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Levas",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Kunas",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "893e0d7f-bbbd-43a0-b178-99a4ba16cbcb",
+    "data": [
+      {
+        "text": "how do currencies perform",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a78fdaff-1c7b-4e20-ab80-20d172609ecf",
+    "data": [
+      {
+        "text": "convert ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "dinars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b1bed0ac-41e1-4c51-9337-077518fa6880",
+    "data": [
+      {
+        "text": "British Pound",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " currency rate",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ae27929c-36d9-4820-a966-634cf84883c0",
+    "data": [
+      {
+        "text": "convert ",
+        "userDefined": false
+      },
+      {
+        "text": "1 000",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Indian Rupee",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " into ",
+        "userDefined": false
+      },
+      {
+        "text": "Yens",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b5801dfa-fa92-4b34-a4fb-57dc6d3226ae",
+    "data": [
+      {
+        "text": "convert ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Rubles",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "6ccb5882-48c5-4bbf-adbc-c5f8c39f58c1",
+    "data": [
+      {
+        "text": "$",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": "12.34",
+        "meta": "@sys.number",
+        "alias": "amount",
+        "userDefined": true
+      },
+      {
+        "text": " into ",
+        "userDefined": false
+      },
+      {
+        "text": "Yen",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d7ad1751-af6b-4107-800b-a6df81dffec2",
+    "data": [
+      {
+        "text": "what\u0027s the exchange rate for ",
+        "userDefined": false
+      },
+      {
+        "text": "Canadian Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-from",
+        "userDefined": true
+      },
+      {
+        "text": " to ",
+        "userDefined": false
+      },
+      {
+        "text": "US Dollars",
+        "meta": "@sys.currency-name",
+        "alias": "currency-to",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

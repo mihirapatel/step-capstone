@@ -1,0 +1,9 @@
+{
+  "id": "45dc4d4b-6845-4979-9193-039e4f1eeff8",
+  "name": "order",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": false
+}

@@ -23,6 +23,7 @@ import java.util.Map;
  * and display information to send to the user interface based on Dialogflow's detected WebSearch
  * intents.
  */
+
 public class WebSearch implements Agent {
   private final String intentName;
   private String searchText;
@@ -31,8 +32,7 @@ public class WebSearch implements Agent {
     this.intentName = intentName;
     setParameters(parameters);
   }
-
-  @Override
+  
   public void setParameters(Map<String, Value> parameters) {
     searchText = parameters.get("q").getStringValue();
   }

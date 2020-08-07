@@ -1,0 +1,143 @@
+[
+  {
+    "id": "f775ba7b-d21d-48e4-9fc0-73781162244e",
+    "data": [
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "Мадриде",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "0b0be666-e7d5-4d69-9969-145509ba5458",
+    "data": [
+      {
+        "text": "а в ",
+        "userDefined": false
+      },
+      {
+        "text": "Барселоне",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " в ",
+        "userDefined": false
+      },
+      {
+        "text": "пятницу",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "d7881f9e-cf4f-4c83-857f-1c3f4cc3d7cf",
+    "data": [
+      {
+        "text": "в ",
+        "userDefined": false
+      },
+      {
+        "text": "Москве",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "на этой неделе",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "179e90e6-1b92-4962-ac6b-57e46840cfd8",
+    "data": [
+      {
+        "text": "и какая в ",
+        "userDefined": false
+      },
+      {
+        "text": "Париже",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "5 марта",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  },
+  {
+    "id": "1b1bff19-0d60-41ab-a9a2-a64e16058b75",
+    "data": [
+      {
+        "text": "что насчёт ",
+        "userDefined": false
+      },
+      {
+        "text": "Новосибирска",
+        "meta": "@sys.location",
+        "alias": "address",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "завтра",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ru",
+    "updated": 0
+  }
+]

@@ -1,8 +1,6 @@
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
-import com.google.protobuf.Value;
-import java.util.Map;
 
 /**
  * Agents handle Dialogflow's detected intent and parameters for each user request. From the
@@ -10,14 +8,6 @@ import java.util.Map;
  * redirect links to return to the user
  */
 public interface Agent {
-
-  /**
-   * This function parses a Map of parameters from Dialogflow and sets the necessary output and/or
-   * display and/or redirect links that will be outputted to the user
-   *
-   * @param address user-inputted location
-   */
-  public void setParameters(Map<String, Value> parameters) throws Exception;
 
   /**
    * This function returns a String containing the text to be outputted to the user (on the screen
