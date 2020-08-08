@@ -1,16 +1,18 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.google.sps.servlets;
 
@@ -44,6 +46,12 @@ public class TextInputServlet extends HttpServlet {
   private UserService userService = createUserService();
   private RecommendationsClient recommender = createRecommendationsClient();
 
+  /**
+   * POST method that handles http request for dialogflow response to textual user input
+   *
+   * @param request HTTP request containing user's input audio, language, and sesion ID
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
@@ -72,6 +80,13 @@ public class TextInputServlet extends HttpServlet {
     response.getWriter().write(json);
   }
 
+  /**
+   * Detects the appropriate intent corresponding to the user's input text
+   *
+   * @param text User input in text form
+   * @param languageCode Two-letter representation of input language
+   * @return DialogFlow Client instance containing dialogflow result
+   */
   public DialogFlowClient detectIntentStream(String text, String languageCode) {
     DialogFlowClient dialogFlowResult = null;
 

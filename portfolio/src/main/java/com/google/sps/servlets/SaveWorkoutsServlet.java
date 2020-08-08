@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.servlets;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -21,7 +37,12 @@ public class SaveWorkoutsServlet extends HttpServlet {
   private DatastoreService datastore = createDatastore();
   private UserService userService = createUserService();
 
-  /** Saves workout plans to user profile when save button is clicked */
+  /**
+   * POST method that saves workout plans to user profile when save button is clicked
+   *
+   * @param request HTTP request for Save Workouts servlet
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
@@ -39,7 +60,12 @@ public class SaveWorkoutsServlet extends HttpServlet {
     workoutProfileUtils.saveWorkoutPlan(workoutPlanToSave, datastore);
   }
 
-  /** Gets saved workouts to display on workout dashboard for specific user */
+  /**
+   * GET method that retrieves saved workouts to display on workout dashboard for specific user
+   *
+   * @param request HTTP request for Save Workouts servlet
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");

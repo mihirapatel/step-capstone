@@ -21,7 +21,6 @@ import static org.mockito.Mockito.*;
 
 import com.google.sps.data.Output;
 import java.io.*;
-import java.util.*;
 import javax.servlet.http.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;

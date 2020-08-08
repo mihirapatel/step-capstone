@@ -1,8 +1,24 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 /**
-* Creates all frontend display for user and assistant comments and specialized displays for each agent.
-*
-* @param stream JSON output from dialogflow containing all necessary display information.
-*/
+ * Creates all frontend display for user and assistant comments and specialized displays for each agent.
+ *
+ * @param stream JSON output from dialogflow containing all necessary display information.
+ */
 function displayResponse(stream) {
   console.log(stream);
   var outputAsJson = JSON.parse(stream);
@@ -74,6 +90,13 @@ function displayResponse(stream) {
   outputAudio(stream);
 }
 
+/** 
+ * Creates user's chat display with given book query ID
+ *
+ * @param text User's chat input content
+ * @param container Div to place user's chat display
+ * @param queryID Unique identification for the user's current query session
+ */
 function placeBooksUserInput(text, container, queryID) {
   if (container == "convo-container") {
     streamingContainer.innerHTML = "";
@@ -85,6 +108,12 @@ function placeBooksUserInput(text, container, queryID) {
   }
 }
 
+/** 
+ * Creates assistant's chat display with given book query ID
+ *
+ * @param text Assistant's chat input content
+ * @param queryID Unique identification for the user's current query session
+ */
 function placeBooksFulfillment(text, queryID) {
   placeChatContainer("<p>" + text + "</p>", "assistant-side-" + queryID + " talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0], 15);
   if (text.includes("Switching conversation language")) {
@@ -92,7 +121,11 @@ function placeBooksFulfillment(text, queryID) {
   }
 }
 
-
+/** 
+ * Creates assistant's chat display
+ *
+ * @param text Assistant's chat output content
+ */
 function placeFulfillmentResponse(text) {
   placeChatContainer("<p>" + text + "</p>", "assistant-side talk-bubble-assistant round", "left", document.getElementsByName("convo-container")[0], 0);
   console.log(text);
@@ -106,10 +139,10 @@ function placeFulfillmentResponse(text) {
 }
 
 /**
-* Updates the frontend javascript to include the user's name (or nickname) in the title.
-*
-* @param name The name used to refer to the user.
-*/
+ * Updates the frontend javascript to include the user's name (or nickname) in the title.
+ *
+ * @param name The name used to refer to the user.
+ */
 function updateName(name) {
   var greetingContainer = document.getElementsByName("greeting")[0];
   if (name.length > 1) {
@@ -119,10 +152,22 @@ function updateName(name) {
   }
 }
 
+/**
+ * Checks if intent is a book intent
+ *
+ * @param intentName Full name of the intent
+ * @return boolean indicating if provided intent name is a book intent
+ */
 function isBooksIntent(intentName) {
   return (intentName.includes("books."));
 }
 
+/**
+ * Checks if intent is a book display intent
+ *
+ * @param intentName Full name of the intent
+ * @return boolean indicating if provided intent name is a book display intent
+ */
 function isBooksDisplayIntent(intentName) {
   return (intentName.includes("books.search") ||
     intentName.includes("books.more") ||
@@ -132,12 +177,24 @@ function isBooksDisplayIntent(intentName) {
     intentName.includes("books.friends"));
 }
 
+/**
+ * Checks if intent is a new query
+ *
+ * @param intentName Full name of the intent
+ * @return boolean indicating if provided intent name indicates a new query
+ */
 function isNewQuery(intentName) {
   return (intentName.includes("books.search") || 
          intentName.includes("books.library") ||
          intentName.includes("books.friends"));
 }
 
+/**
+ * Checks if intent is for book information
+ *
+ * @param intentName Full name of the intent
+ * @return boolean indicating if provided intent name is a request for book information
+ */
 function isBookInformationIntent(intentName) {
   return (intentName.includes("books.description") ||
           intentName.includes("books.preview"));

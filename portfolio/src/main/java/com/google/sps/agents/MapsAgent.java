@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.agents;
 
 // Imports the Google Cloud client library
@@ -13,9 +29,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Maps Agent */
-public class Maps implements Agent {
+public class MapsAgent implements Agent {
 
-  private static Logger log = LoggerFactory.getLogger(Maps.class);
+  private static Logger log = LoggerFactory.getLogger(MapsAgent.class);
 
   private final String intentName;
   private String fulfillment = null;
@@ -25,13 +41,26 @@ public class Maps implements Agent {
   private String locationFormatted;
   private Location location;
 
-  public Maps(String intentName, Map<String, Value> parameters)
+  /**
+   * Maps agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
+  public MapsAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
+  /**
+   * Properly populates all private instance variables to determine fulfillment and display output
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -44,21 +73,11 @@ public class Maps implements Agent {
     }
   }
 
-  @Override
-  public String getOutput() {
-    return fulfillment;
-  }
-
-  @Override
-  public String getDisplay() {
-    return display;
-  }
-
-  @Override
-  public String getRedirect() {
-    return redirect;
-  }
-
+  /**
+   * Handles maps search intent to find the user's desired place
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void mapsSearch(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -68,6 +87,11 @@ public class Maps implements Agent {
     display = place.toString();
   }
 
+  /**
+   * Handles maps find intent which finds places according to the identified location parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   private void mapsFind(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
@@ -99,5 +123,20 @@ public class Maps implements Agent {
             + locationFormatted
             + ".";
     display = place.toString();
+  }
+
+  @Override
+  public String getOutput() {
+    return fulfillment;
+  }
+
+  @Override
+  public String getDisplay() {
+    return display;
+  }
+
+  @Override
+  public String getRedirect() {
+    return redirect;
   }
 }

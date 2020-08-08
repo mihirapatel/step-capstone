@@ -29,6 +29,7 @@ import com.google.sps.utils.WorkoutProfileUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,13 +56,13 @@ public class WorkoutTestHelper {
   HttpServletResponse response;
   WorkoutAgent workoutAgent;
   DatastoreService customDatastore;
-  TestHelper testHelper = new TestHelper();
-
+  TestHelper testHelper;
   private final LocalServiceTestHelper helper =
       new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
   /** Default constructor for WorkoutTestHelper to set up testing environment and mocks. */
-  public WorkoutTestHelper() {
+  public WorkoutTestHelper() throws URISyntaxException {
+    testHelper = new TestHelper();
     helper.setUp();
     customDatastore = DatastoreServiceFactory.getDatastoreService();
     userServiceMock = mock(UserService.class);

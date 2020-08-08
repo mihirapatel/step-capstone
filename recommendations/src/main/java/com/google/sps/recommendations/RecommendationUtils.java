@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.recommendations;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -31,7 +47,7 @@ public class RecommendationUtils {
    * recommendations if the user has at least 3 lists of the same name. Recommendations are made
    * based on the top 3 items that the user has placed on at least 50% of previous lists.
    *
-   * @param userID The logged-in user's ID
+   * @param userID String containing current user's unique ID
    * @param datastore Database entity to retrieve data from
    * @param stemmedListName Name of the list we are providing item recommendations for.
    * @return String containing the fulfillment response to the user
@@ -51,7 +67,7 @@ public class RecommendationUtils {
    * to other users. If the current user does not have any history of interests in the database,
    * method will throw EntityNotFoundException.
    *
-   * @param userID String representing the ID of the user giving recommendations for
+   * @param userID String containing current user's unique ID
    * @param datastore Database service instance
    * @param stemmedListName Name of the list we are providing recommendations for.
    * @param stemmedExistingItems List of stemmed strings containing all items already in the user's
@@ -68,6 +84,13 @@ public class RecommendationUtils {
     return getSortedListItems(userID, datastore, entity);
   }
 
+  /**
+   * Retrieves sorted prediction items and values values from datastore for the given user.
+   *
+   * @param userID String containing current user's unique ID
+   * @param datastore Datastore instance to used to retrieve user's stem conversions.
+   * @param entity Item prediction entity corresponding to the current user
+   */
   private static List<Pair<String, Double>> getSortedListItems(
       String userID, DatastoreService datastore, Entity entity)
       throws IllegalStateException, EntityNotFoundException {
@@ -139,7 +162,6 @@ public class RecommendationUtils {
    *
    * @param datastore DatastoreService instance
    * @param category String representing category to fetch from datastore
-   * @param userID String representing the ID of the user we want to filter out of query.
    * @return List of entities containing the fractional aggregate properties for each user
    */
   private static List<Entity> getAllEntities(DatastoreService datastore, String category) {
@@ -152,7 +174,7 @@ public class RecommendationUtils {
    * returned with the most recently created first.
    *
    * @param datastore Database instance
-   * @param userID current user's ID
+   * @param userID String containing current user's unique ID
    * @param stemmedListName stemmed name of the list to query for
    * @return A list of all past lists of the same stemmed name for the given user with the most
    *     recent first.

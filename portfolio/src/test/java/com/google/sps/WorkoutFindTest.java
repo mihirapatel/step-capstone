@@ -9,6 +9,7 @@ import com.google.maps.errors.ApiException;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.sps.data.Output;
 import com.google.sps.data.YouTubeVideo;
+import java.net.URISyntaxException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class WorkoutFindTest {
   private static Logger log = LoggerFactory.getLogger(WorkoutFindTest.class);
 
   @Before
-  public void setUp() {
+  public void setUp() throws URISyntaxException {
     workoutTester = new WorkoutTestHelper();
   }
 
@@ -47,7 +48,7 @@ public class WorkoutFindTest {
    */
   @Test
   public void testWorkoutVideoStoringWhenUserLoggedIn()
-      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException {
+      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException,URISyntaxException {
 
     videos = getVideosList();
     parameters =
@@ -74,7 +75,7 @@ public class WorkoutFindTest {
   /** Checks that search results are not stored in datastore if user is not logged in */
   @Test
   public void testWorkoutVideoStoringWhenUserLoggedOut()
-      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException {
+      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException, URISyntaxException {
     workoutTester.setLoggedOut();
     videos = getVideosList();
     parameters =
@@ -94,7 +95,7 @@ public class WorkoutFindTest {
    */
   @Test
   public void testWorkoutVideoSavingWhenUserLoggedIn()
-      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException {
+      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException, URISyntaxException {
     videos = getVideosList();
     savedVideos = getSavedVideosList();
     parameters =
@@ -125,7 +126,7 @@ public class WorkoutFindTest {
 
   /** Testing output when user specifies all possible parameters */
   @Test
-  public void testWorkoutFind() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutFind() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -146,7 +147,7 @@ public class WorkoutFindTest {
 
   /** Testing output when user does not specify youtube-channel */
   @Test
-  public void testWorkoutFindWithoutChannel() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutFindWithoutChannel() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -167,7 +168,7 @@ public class WorkoutFindTest {
   /** Testing output when user does not specify workout-type */
   @Test
   public void testWorkoutFindWithoutWorkoutType()
-      throws InvalidProtocolBufferException, IOException {
+      throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -188,7 +189,7 @@ public class WorkoutFindTest {
 
   /** Testing output when user does not specify duration */
   @Test
-  public void testWorkoutFindWithoutDuration() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutFindWithoutDuration() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -208,7 +209,7 @@ public class WorkoutFindTest {
 
   /** Testing output when user only specifies youtube-channel */
   @Test
-  public void testWorkoutFindWithChannelOnly() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutFindWithChannelOnly() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -229,7 +230,7 @@ public class WorkoutFindTest {
   /** Testing output when user only specifies workout-type */
   @Test
   public void testWorkoutFindWithWorkoutTypeOnly()
-      throws InvalidProtocolBufferException, IOException {
+      throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -249,7 +250,7 @@ public class WorkoutFindTest {
 
   /** Testing output when user only specifies duration */
   @Test
-  public void testWorkoutFindWithDurationOnly() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutFindWithDurationOnly() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(

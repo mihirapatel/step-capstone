@@ -20,9 +20,9 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.appengine.http.UrlFetchTransport;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.books.v1.*;
 import com.google.api.services.books.v1.Books;
 import com.google.api.services.books.v1.Books.Volumes.List;
+import com.google.api.services.books.v1.BooksRequestInitializer;
 import com.google.api.services.books.v1.model.Bookshelf;
 import com.google.api.services.books.v1.model.Bookshelves;
 import com.google.api.services.books.v1.model.Volume;
@@ -190,7 +190,7 @@ public class BookUtils {
    * This function returns a Bookshelves object containing the Bookshelves from the Google Books API
    * that match the authenticated user's bookshelves and throws an exception otherwise.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Bookshelves object of results
    */
@@ -208,7 +208,7 @@ public class BookUtils {
    * This function returns a list of the names of the authenticated user's bookshelves from the
    * Google Books API and throws an exception otherwise.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return ArrayList<String> list of bookshelf names
    */
@@ -233,7 +233,7 @@ public class BookUtils {
    * This function returns a Bookshelf object of the authenticated user's specified bookshelf from
    * the Google Books API and throws an exception otherwise.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param bookshelfName bookshelf to retrieve
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Bookshelf object
@@ -259,7 +259,7 @@ public class BookUtils {
    *
    * @param query BookQuery object containing parameters for user requested query
    * @param startIndex the index of the first result to return from Google Books API
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param helper OAuthHelper instance used to access OAuth methods
    * @return Volumes object
    */
@@ -283,7 +283,7 @@ public class BookUtils {
    * This function returns the volumes contained in the authenticated user's specified bookshelf
    * from the Google Books API and throws an exception otherwise.
    *
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param startIndex the index of the first result to return from Google Books API
    * @param query BookQuery object containing parameters for user requested query
    * @param helper OAuthHelper instance used to access OAuth methods
@@ -318,7 +318,7 @@ public class BookUtils {
    * exception otherwise.
    *
    * @param bookshelfName name of bookshelf to add volume to
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param volumeId unique id of volume to add
    * @param helper OAuthHelper instance used to access OAuth methods
    */
@@ -344,7 +344,7 @@ public class BookUtils {
    * exception otherwise.
    *
    * @param bookshelfName name of bookshelf to delete volume from
-   * @param userID unique userID
+   * @param userID String containing current user's unique ID
    * @param volumeId unique id of volume to delete
    * @param helper OAuthHelper instance used to access OAuth methods
    */

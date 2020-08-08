@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 const record = document.querySelector('.record');
 const stop = document.querySelector('.stop');
 const canvas = document.querySelector('.visualizer');
@@ -8,6 +24,9 @@ stop.addEventListener("click", stopRecording);
 
 var streamingStarted;
  
+/**
+ * Handles recording audio once record button is clicked.
+ */
 function startRecording() {
     console.log("recordButton clicked");
     streamingContainer.style.display = "initial";
@@ -54,6 +73,9 @@ function startRecording() {
     });
 }
 
+/** 
+ * Handles breaking up input audio into audio streams.
+ */
 function streamAudio() {
   rec.stop();
   rec.exportWAV(getAudioStream);
@@ -61,11 +83,11 @@ function streamAudio() {
 }
 
 /**
-* Backend call to speech-to-text that handles streaming inputs while the user 
-* is talking and converts them to text.
-* 
-* @param blob Mini audio file containing a subset of the user's entire speech.
-*/
+ * Backend call to speech-to-text that handles streaming inputs while the user 
+ * is talking and converts them to text.
+ * 
+ * @param blob Mini audio file containing a subset of the user's entire speech.
+ */
 function getAudioStream(blob) {
   fetch('/audio-stream' + '?language=' + getLanguage(), {
     method: 'POST',
@@ -82,6 +104,9 @@ function getAudioStream(blob) {
   });
 }
  
+/**
+ * Handles audio recording creation once stop button is clicked.
+ */
 function stopRecording() {
   console.log("stopButton clicked");
   clearInterval(streamingStarted);
@@ -102,6 +127,9 @@ function stopRecording() {
   rec.exportWAV(getResponseFromAudio);
 }
 
+/**
+ * Creates the visual audio waves.
+ */
 function visualize(stream) {
   if (!audioCtx) {
     audioCtx = new AudioContext();
@@ -190,6 +218,11 @@ if (navigator.mediaDevices.getUserMedia) {
    console.log('getUserMedia not supported on your browser!');
 }
 
+/**
+ * Creates output audio fulfillment and extra audio output from backend agents.
+ *
+ * @param stream Backend data stream containing audio information.
+ */
 function outputAudio(stream) {
   var outputAsJson = JSON.parse(stream);
   getAudio(outputAsJson.byteStringToByteArray);
@@ -211,12 +244,23 @@ function outputAudio(stream) {
   }
 }
 
+/**
+ * Converts byte array into output audio.
+ *
+ * @param byteArray Byte array containing audio output information 
+ */
 function getAudio(byteArray) {
   var base64 = arrayBufferToBase64(byteArray);
   var audioURL = base64toURL(base64, "audio/mp3");
   play(audioURL);
 }
- 
+
+/**
+ * Converts audio bytes into base64 configuration
+ *
+ * @param buffer Byte array containing audio output information
+ * @return base64 audio representation
+ */
 function arrayBufferToBase64(buffer) {
   var binary = '';
   var bytes = new Uint8Array(buffer);
@@ -227,11 +271,22 @@ function arrayBufferToBase64(buffer) {
   return window.btoa(binary);
 }
  
+/**
+ * Converts base64 representation into an audio url
+ *
+ * @param b64Data Audio output in base 64 configuration
+ * @param type Audio type as mp3
+ * @return String representing audio url
+ */
 function base64toURL(b64Data, type) {
   var audioURL = "data:" + type + ";base64," + b64Data;
   return audioURL;
 }
  
+/**
+ * Plays the audio file to the user.
+ * @param src url to the audio output file
+ */
 function play(src) {
   var elem = document.getElementById('sound-player'),
       body = document.body;
@@ -256,6 +311,10 @@ function play(src) {
   }
 }
 
+/**
+ * Redirects page to given url
+ * @param URL New url tab to open and redirect to.
+ */
 function sendRedirect(URL){
   window.open(URL);
 }

@@ -49,7 +49,10 @@ public class SessionIdServlet extends HttpServlet {
    * information.
    *
    * <p>If the user is logged in, their sessionID is their userID. Otherwise, a unique guest session
-   * ID is generated for their sessionID.
+   * ID is generated for their session ID
+   *
+   * @param request HTTP request for Session ID servlet
+   * @param response Writer to return http response to input request
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -85,7 +88,12 @@ public class SessionIdServlet extends HttpServlet {
     response.getWriter().write(id);
   }
 
-  /** Deletes all stored Entity in Datastore that match the "session-id" parameter. */
+  /**
+   * Deletes all stored Entity in Datastore that match the "session-id" parameter
+   *
+   * @param request HTTP request for Session ID servlet
+   * @param response Writer to return http response to input request
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String sessionID = request.getParameter("session-id");

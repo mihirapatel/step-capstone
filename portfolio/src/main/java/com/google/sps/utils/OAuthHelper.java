@@ -42,7 +42,7 @@ public class OAuthHelper {
   /**
    * Loads stored Credential for userID, or null if one does not exist.
    *
-   * @param userID current unique user ID
+   * @param userID String containing current user's unique ID
    * @return Credential object for current user
    */
   public static Credential loadUserCredential(String userID) throws IOException {
@@ -54,7 +54,7 @@ public class OAuthHelper {
    * Loads and updates stored Credential for userID if needed, or returns null if one does not
    * exist.
    *
-   * @param userID current unique user ID
+   * @param userID String containing current user's unique ID
    * @return Credential object for current user
    */
   public static Credential loadUpdatedCredential(String userID) throws IOException {
@@ -84,7 +84,7 @@ public class OAuthHelper {
   /**
    * Creates an AuthorizationCodeFlow to handle OAuth access tokens.
    *
-   * @param userID current unique user ID
+   * @param userID String containing current user's unique ID
    * @return AuthorizationCodeFlow
    */
   public static AuthorizationCodeFlow createFlow(String userID) throws IOException {
@@ -114,7 +114,7 @@ public class OAuthHelper {
   /**
    * This function determines if the current user has stored book credentials.
    *
-   * @param userID ID of current user logged in
+   * @param userID String containing current user's unique ID
    * @return boolean indicating if user has book credentials
    */
   public boolean hasBookAuthentication(String userID) throws IOException {

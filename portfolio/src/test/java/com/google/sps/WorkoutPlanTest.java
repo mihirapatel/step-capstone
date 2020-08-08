@@ -11,6 +11,7 @@ import com.google.sps.data.Output;
 import com.google.sps.data.WorkoutPlan;
 import com.google.sps.data.YouTubeVideo;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.*;
@@ -34,7 +35,7 @@ public class WorkoutPlanTest {
   private static Logger log = LoggerFactory.getLogger(WorkoutPlanTest.class);
 
   @Before
-  public void setUp() {
+  public void setUp() throws URISyntaxException {
     workoutTester = new WorkoutTestHelper();
   }
 
@@ -46,7 +47,7 @@ public class WorkoutPlanTest {
   /** Checks if WorkoutPlan search results is stored in datastore if user is logged in */
   @Test
   public void testWorkoutPlanStoringWhenUserLoggedIn()
-      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException {
+      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException, URISyntaxException {
 
     workoutPlans = getWorkoutPlans();
     parameters =
@@ -75,7 +76,7 @@ public class WorkoutPlanTest {
   /** Checks that WorkoutPlan search results are not stored in datastore if user is logged out */
   @Test
   public void testWorkoutPlanStoringWhenUserLoggedOut()
-      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException {
+      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException, URISyntaxException {
     workoutTester.setLoggedOut();
     workoutPlans = getWorkoutPlans();
     parameters =
@@ -98,7 +99,7 @@ public class WorkoutPlanTest {
    */
   @Test
   public void testWorkoutPlanSavingWhenUserLoggedIn()
-      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException {
+      throws IOException, InvalidProtocolBufferException, ApiException, InterruptedException, URISyntaxException {
     workoutPlans = getWorkoutPlans();
     savedWorkoutPlans = getSavedWorkoutPlans();
     parameters =
@@ -136,7 +137,7 @@ public class WorkoutPlanTest {
    * Testing output when user specifies all possible parameters to create workout plan for 28 days
    */
   @Test
-  public void testWorkoutPlan28Days() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutPlan28Days() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -158,7 +159,7 @@ public class WorkoutPlanTest {
    * Testing output when user specifies all possible parameters to create workout plan for 2 weeks
    */
   @Test
-  public void testWorkoutPlan2Weeks() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutPlan2Weeks() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(
@@ -180,7 +181,7 @@ public class WorkoutPlanTest {
    * Testing output when user specifies all possible parameters to create workout plan for 1 month
    */
   @Test
-  public void testWorkoutPlan1Month() throws InvalidProtocolBufferException, IOException {
+  public void testWorkoutPlan1Month() throws InvalidProtocolBufferException, IOException, URISyntaxException {
 
     TestHelper tester =
         new TestHelper(

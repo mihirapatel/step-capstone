@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.recommendations;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -18,7 +34,7 @@ public class StemUtils {
   /**
    * Stores the stem-to-word dictionary.
    *
-   * @param userID The logged-in user's ID
+   * @param userID String containing current user's unique ID
    * @param datastore Database entity to retrieve data from
    * @param itemName Name of the item to be stemmed and saved.
    */
@@ -57,7 +73,7 @@ public class StemUtils {
     SnowballStemmer snowballStemmer = new englishStemmer();
     snowballStemmer.setCurrent(word);
     snowballStemmer.stem();
-    return snowballStemmer.getCurrent().toLowerCase().replaceAll("\\s+","");
+    return snowballStemmer.getCurrent().toLowerCase().replaceAll("\\s+", "");
   }
 
   /**
@@ -65,7 +81,7 @@ public class StemUtils {
    * not exist in the given user's stem history, takes the unstemmed version from the universal stem
    * dictionary. Throws an error if stem-to-unstem mapping does not exist anywhere.
    *
-   * @param userID The logged-in user's ID
+   * @param userID String containing current user's unique ID
    * @param datastore Database entity to retrieve data from
    * @param stemmedWord Stemmed version of a word to be unstemmed.
    * @return unstemmed version of the input word as given by the specified user
@@ -102,7 +118,7 @@ public class StemUtils {
   /**
    * Stems each string entry in a list of strings.
    *
-   * @param items List of strings to be stemmed
+   * @param items List of strings containing items to add to list
    * @return List of stemmed strings
    */
   public static List<String> stemmedList(List<String> items) {

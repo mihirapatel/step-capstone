@@ -160,7 +160,7 @@ public class BookTestHelper {
    * their friends' likes and sets matchingFriend to return a list containing 1 Friend element for
    * each friend in the list, and an empty list otherwise.
    *
-   * @param userId unique Id of user
+   * @param userID String containing current user's unique ID
    * @param friends list of Friend objects
    */
   public void setFriends(String userID, ArrayList<Friend> friends) throws IOException {
@@ -179,7 +179,7 @@ public class BookTestHelper {
    * getMatchingFriends function is called. The PeopleUtils mock will return the specified
    * matchingFriends list.
    *
-   * @param userId unique Id of user
+   * @param userID String containing current user's unique ID
    * @param friendName friend name to retrun matchingFriends list
    * @param matchingFriends list of Friend objects
    */
@@ -193,7 +193,7 @@ public class BookTestHelper {
    * Sets Friend object for a user returned from PeopleUtils mock when a user requests to see their
    * likes.
    *
-   * @param userId unique Id of user
+   * @param userID String containing current user's unique ID
    * @param friend Friend object to return from PeopleUtils mock
    */
   public void setUserInfo(String userID, Friend friend) throws IOException {
@@ -205,7 +205,7 @@ public class BookTestHelper {
    * Sets the list of bookshelf names returned from the BookUtils mock when a user requests
    * bookshelves from their libraries.
    *
-   * @param userId unique Id of user
+   * @param userID String containing current user's unique ID
    * @param bookshelfNames list of Bookshelf names
    */
   public void setBookshelfNames(String userId, ArrayList<String> bookshelfNames)
@@ -219,7 +219,7 @@ public class BookTestHelper {
    * user's bookshelf and throw a GoogleJsonResponseException.
    *
    * @param bookshelfName name of bookshelf to edit
-   * @param userId unique Id of user
+   * @param userID String containing current user's unique ID
    * @param allowEditing boolean determining whether BookUtilsMock throws exception, indicating it
    *     could not edit user's bookshelf, or edits the user's bookshelf and returns nothing
    */
@@ -252,7 +252,7 @@ public class BookTestHelper {
    * Sets the list of books returned from the BookUtils mock when a user requests books from their
    * authenticated bookshelf.
    *
-   * @param userId unique Id of user
+   * @param userID String containing current user's unique ID
    * @param bookshelfBooks list of Book objects
    * @param totalBooksFound number of books in certain bookshelf
    */
@@ -318,7 +318,7 @@ public class BookTestHelper {
    * This function adds a liked book for a user from the customDatastore.
    *
    * @param book book to like
-   * @param userID unique id of user to add book for
+   * @param userID String containing current user's unique ID
    * @param userEmail unique email of user to add liked book for
    */
   public void setLikedBook(Book book, String userID, String userEmail) {
@@ -329,7 +329,7 @@ public class BookTestHelper {
    * This function deletes a liked book for a user from the customDatastore.
    *
    * @param book book to unlike
-   * @param userID unique id of user to delete book for
+   * @param userID String containing current user's unique ID
    * @param userEmail unique email of user to delete liked book for
    */
   public void setUnlikedBook(Book book, String userID, String userEmail) {

@@ -32,7 +32,7 @@ import java.util.Map;
  * Time Agent handles users' requests for time information. It determines appropriate outputs and
  * display information to send to the user interface based on Dialogflow's detected Time intents.
  */
-public class Time implements Agent {
+public class TimeAgent implements Agent {
   private final String intentName;
   private String output = null;
   private String locationFormatted;
@@ -43,13 +43,27 @@ public class Time implements Agent {
   private String locationFromDisplay;
   private ZonedDateTime timeFrom;
 
-  public Time(String intentName, Map<String, Value> parameters)
+  /**
+   * Time agent constructor that uses intent and parameter to determnine fulfillment for user
+   * request.
+   *
+   * @param intentName String containing the specific intent within memory agent that user is
+   *     requesting.
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
+  public TimeAgent(String intentName, Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {
     this.intentName = intentName;
     setParameters(parameters);
   }
 
+  /**
+   * Method that handles parameter assignment for fulfillment text and display based on the user's
+   * input intent and extracted parameters
+   *
+   * @param parameters Map containing the detected entities in the user's intent.
+   */
   public void setParameters(Map<String, Value> parameters)
       throws IllegalStateException, IOException, ApiException, InterruptedException,
           ArrayIndexOutOfBoundsException {

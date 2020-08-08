@@ -1,16 +1,18 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  
 /**
  * Starts listening to user input and fetches user input string.
@@ -31,13 +33,13 @@ var commandIndex = pastCommands.length;
 var unsentLastCommand;
 
 /**
-* Function triggered with each character typed in the text input container that handles 
-* submitting the text input on the RETURN key, getting the command used before with the 
-* UP key, and getting the command used after with the DOWN key (same basic functionality 
-* as in terminal).
-* 
-* @param e The key pressed.
-*/
+ * Function triggered with each character typed in the text input container that handles 
+ * submitting the text input on the RETURN key, getting the command used before with the 
+ * UP key, and getting the command used after with the DOWN key (same basic functionality 
+ * as in terminal).
+ * 
+ * @param e The key pressed.
+ */
 formContainer.onkeyup = function(e){
   if(e.keyCode == 13 && !isEmptyString(textInputContainer.value)) { //return key and non-empty input
     getResponseFromText();
@@ -86,8 +88,10 @@ window.onclick = function(event) {
 }
 
 /**
-* Retrives the saved language from session storage or English as default.
-*/
+ * Retrives the saved language from session storage or English as default.
+ *
+ * @return The language to use in audio conversation.
+ */
 function getLanguage() {
   var language = window.sessionStorage.getItem("language");
   language = language == null ? "English" : language;
@@ -95,12 +99,12 @@ function getLanguage() {
 }
 
 /**
-* Backend call to Dialogflow that handles recognizing the user's intent and 
-* accomplishing the necessary backend fulfillment to carry out the user's request.
-* Creates an audio output and handles making any displays that are necessary.
-* 
-* @param blob Audio file containing the user's entire speech from start to stop recording.
-*/
+ * Backend call to Dialogflow that handles recognizing the user's intent and 
+ * accomplishing the necessary backend fulfillment to carry out the user's request.
+ * Creates an audio output and handles making any displays that are necessary.
+ * 
+ * @param blob Audio file containing the user's entire speech from start to stop recording.
+ */
 function getResponseFromAudio(blob) {
   const formData = new FormData();
   formData.append('audio-file', blob);
@@ -111,10 +115,10 @@ function getResponseFromAudio(blob) {
 }
 
 /**
-* Backend call to dialogflow that takes the user's text input from the form container and 
-* accomplishes the necessary backend fulfillment to carry out the user's request.
-* Creates an audio output and handles making any displays that are necessary.
-*/
+ * Backend call to dialogflow that takes the user's text input from the form container and 
+ * accomplishes the necessary backend fulfillment to carry out the user's request.
+ * Creates an audio output and handles making any displays that are necessary.
+ */
 function getResponseFromText(){
   var input = textInputContainer.value;
   saveCommand(input);
@@ -126,8 +130,8 @@ function getResponseFromText(){
 }
 
 /**
-* Backend call to UserServices to determine if user is logged in and display a personalized greeting.
-*/
+ * Backend call to UserServices to determine if user is logged in and display a personalized greeting.
+ */
 function authSetup() {
   fetch("/auth").then((response) => response.json()).then((displayText) => {
     var authContainer = document.getElementsByClassName("auth-link")[0];
@@ -151,11 +155,11 @@ function authSetup() {
 }
 
 /**
-* Saves each command made by the user into a string in session storage so that the user 
-* can use the UP/DOWN arrows to access recently used commands.
-*
-* @param text The string command typed by the user.
-*/
+ * Saves each command made by the user into a string in session storage so that the user 
+ * can use the UP/DOWN arrows to access recently used commands.
+ *
+ * @param text The string command typed by the user.
+ */
 function saveCommand(text) {
   if (isEmptyString(text)) {
     return;
@@ -172,9 +176,9 @@ function saveCommand(text) {
 }
 
 /**
-* Loads all past commands from the previous session so that user initially
-* has access to their recent past commands.
-*/
+ * Loads all past commands from the previous session so that user initially
+ * has access to their recent past commands.
+ */
 function loadCommands() {
   var commandHistory = window.sessionStorage.getItem("commandHistory");
   if (commandHistory == null) {
@@ -184,10 +188,12 @@ function loadCommands() {
   return commandHistory.split("\n");
 }
 
-function isEmptyString(text) {
-  return text == null || text.trim() === "";
-}
-
+/**
+ * Checks if a given string is empty.
+ *
+ * @param text Input string to check
+ * @return boolean indicating if the input string is empty
+ */
 function isEmptyString(text) {
   return text == null || text.trim() === "";
 }
@@ -320,14 +326,12 @@ function deleteSessionInformation(){
   }).then(response => response.text()).then(() => {
       console.log('Deleted comments for ' + sessionId)
   });
-  return null;
 }
 
 /** Saves workout plan using SaveWorkoutServlet for current user
  *
  * @param workoutPlan workoutPlan string with userId and workoutPlanId 
  */
-
 function saveWorkoutPlan(workoutPlan){
 
   //Change button text to show user that workout plan has been saved
@@ -353,15 +357,20 @@ function saveWorkoutPlan(workoutPlan){
   });
 }
 
+/**
+ * Updates the scroll of the dropdown menu with each new added element.
+ *
+ * @param element Div for the dropdown container
+ */
 function updateDropdownScroll(element) {
   element.scrollTop = 0;
 }
 
 /** Saves workout video using SaveVideoServlet for current user
  *
- * @param workoutVideo workoutVideo string with userId and videoId 
+ * @param videos workoutVideo string with userId and videoId 
+ * @param buttonID Unique ID of the button
  */
-
 function saveWorkoutVideo(videos, buttonId) {
 
   workoutVideo = videos[parseInt(buttonId)];
@@ -389,6 +398,11 @@ function saveWorkoutVideo(videos, buttonId) {
   });
 }
 
+/**
+ * Retrieves the login status of the user
+ * 
+ * @return Boolean indicating if the user is logged in
+ */
 function getUserLoginStatus() {
     return isUserLoggedIn;
 }

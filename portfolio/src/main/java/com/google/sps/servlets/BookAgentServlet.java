@@ -26,7 +26,6 @@ import com.google.protobuf.Struct;
 import com.google.protobuf.Struct.Builder;
 import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
-import com.google.sps.agents.*;
 import com.google.sps.agents.BooksAgent;
 import com.google.sps.data.BookQuery;
 import com.google.sps.data.Output;
@@ -53,9 +52,12 @@ public class BookAgentServlet extends HttpServlet {
   private String bookshelfName = "";
   private String friendName = "";
   /**
-   * Retrieves corresponding Output object for given Book intent passed as a parameter to request.
-   * If a number parameter was passed to request, then it is placed into parameterMap to be sent to
-   * Book Agent.
+   * POST method that retrieves corresponding Output object for given Book intent passed as a
+   * parameter to request. If a number parameter was passed to request, then it is placed into
+   * parameterMap to be sent to Book Agent.
+   *
+   * @param request HTTP request
+   * @param response Writer to return http response to input request
    */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -105,10 +107,10 @@ public class BookAgentServlet extends HttpServlet {
    * @param intent intent String passed as parameter to Servlet
    * @param sessionID unique ID for current session
    * @param parameterMap map containing parameters needed, if any, by BookAgent
-   * @param languageCode language code
+   * @param languageCode Two-letter representation of input language
    * @param queryID unique ID (within sessionID) for current query
-   * @param datastore DataStore service to use
-   * @return Output object to be sent to frontend
+   * @param datastore DataStore service used to access stored book information
+   * @return Output object containing all output audio, text, and display information.
    */
   public Output getOutputFromBookAgent(
       String intent,
@@ -165,8 +167,8 @@ public class BookAgentServlet extends HttpServlet {
   /**
    * Converts a json string into a Map object.
    *
-   * @param json json string
-   * @return Map<String, Value>
+   * @param json json string to be converted into map object
+   * @return Map<String, Value> of the input json
    */
   public static Map<String, Value> stringToMap(String json) throws InvalidProtocolBufferException {
     JSONObject jsonObject = new JSONObject(json);

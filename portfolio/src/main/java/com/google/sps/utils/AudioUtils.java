@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.sps.utils;
 
 // Imports the Google Cloud client library
@@ -16,6 +32,12 @@ import java.io.IOException;
 /** DialogFlow API Detect Intent sample with audio files processes as an audio stream. */
 public class AudioUtils {
 
+  /**
+   * Detects the appropriate intent corresponding to the user's audio input stream
+   *
+   * @param bytestring Bytestring containing user input audio recording
+   * @return DialogFlow Client instance containing dialogflow result
+   */
   public static DialogFlowClient detectIntentStream(ByteString bytestring) {
     DialogFlowClient queryResult = null;
 
@@ -31,6 +53,14 @@ public class AudioUtils {
     return queryResult;
   }
 
+  /**
+   * Detects the appropriate intent corresponding to the user's audio input stream for the specified
+   * sample hertz header for the recording wav file.
+   *
+   * @param bytestring Bytestring containing user input audio recording
+   * @param sampleHertz Sample frequency of audio recording in hertz
+   * @return DialogFlow Client instance containing dialogflow result
+   */
   public static DialogFlowClient detectIntentStream(ByteString bytestring, int sampleHertz) {
     DialogFlowClient queryResult = null;
 
@@ -46,7 +76,9 @@ public class AudioUtils {
   /**
    * Transcribe a short audio file using synchronous speech recognition
    *
-   * @param localFilePath Path to local audio file, e.g. /path/audio.wav
+   * @param data Input audio file recording
+   * @param languageCode Two-letter representation of input audio language
+   * @return transcribed text of audio input
    */
   public static String detectSpeechLanguage(byte[] data, String languageCode) {
     try (SpeechClient speechClient = SpeechClient.create()) {
@@ -61,6 +93,15 @@ public class AudioUtils {
     return null;
   }
 
+  /**
+   * Helper function for transcribing a short audio file using synchronous speech recognition
+   *
+   * @param speechClient Speech client instance for audio transcription
+   * @param data Input audio file recording
+   * @param languageCode Two-letter representation of input audio language
+   * @param sampleRate Sample frequency of audio recording in hertz
+   * @return transcribed text of audio input
+   */
   private static String getAudioLanguage(
       SpeechClient speechClient, byte[] data, String languageCode, int sampleRate) {
     RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.LINEAR16;
@@ -77,7 +118,6 @@ public class AudioUtils {
     RecognizeResponse response = speechClient.recognize(request);
     for (SpeechRecognitionResult result : response.getResultsList()) {
       SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
-      System.out.printf("Transcript: %s\n", alternative.getTranscript());
       return alternative.getTranscript();
     }
     return null;
