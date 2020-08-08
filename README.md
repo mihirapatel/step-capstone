@@ -38,6 +38,6 @@ The **Books Feature** creates a social books experience that allows users to dis
 
 The **Workout Feature** ...
 
-The **Memory Feature** ...
+The **Memory Feature** serves as an agent that provides useful information specifically curated for users based on their interaction history with the assistant. Specifically, it provides two main functionalities: allowing queries to conversation history if the user wanted to remember something they talked about in the past and providing an easily accessible method for storing ideas or items into lists. The first functionality is a user-triggered history search that responds to requests for keywords and/or time periods, for which the assistant will respond by showing the user all instances of a keyword showing up in their conversation history along with contextual surrounding conversation or all comments within a specified timeframe. The latter feature allows the user to easily create, update, and view lists. Additionally, for popular lists, the system will provide item recommendations to add based on either the user's personal list item preferences or predicted user interest in comparison to other similar user preferences. Ultimately, the goal of this recommendation feature is to make the list creation process easier and also introduce the user to discover new items of interest.
 
 By: Abby Mapes, Mihira Patel, Angela Liu
