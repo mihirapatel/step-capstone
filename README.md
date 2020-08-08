@@ -13,17 +13,25 @@ We created this full-stack web application using a variety of Google APIs and se
 
 [MVP Demo](https://drive.google.com/file/d/1Z4b51Q4gQNconXoqCp40vSlvPqqmQnIr/view?usp=sharing)
 
+[Currency Converter Demo] (https://drive.google.com/file/d/1vv7TdeK9xY4HUkZ4U3gABweLTTiZZRIM/view?usp=sharing)
+
+[Date Feature Demo](https://drive.google.com/file/d/1IXy-AIu2iDR3VhrodWOOZVCyZU_WJGww/view?usp=sharing)
+
 [Language Change Demo](https://drive.google.com/file/d/1PVdw4ppLtQXUsprxqGoxdb7pYnmrpAlI/view?usp=sharing)
 
-[Maps Find Demo](https://drive.google.com/file/d/14362PxOUdGKRNw49zlx4yfPf_QO68xMq/view?usp=sharing)
+[Maps Demo](https://drive.google.com/file/d/1zRA-nX9D79xKZZ1vqKPNxZXAEgph1qsf/view?usp=sharing)
 
 [Name Change Demo](https://drive.google.com/file/d/1C7MukFIrGJJVbYyATl1iyr5RtFPOukuW/view?usp=sharing)
 
-[Timer Demo](https://drive.google.com/file/d/15HQN-ZJMxnCwONlNKTP_VWLe98I1JdqP/view?usp=sharing)
-
 [Time Feature Demo](https://drive.google.com/file/d/1-kmvyrTo_TRQU8v8WJIQ5dR7_1plZzi2/view?usp=sharing)
 
-[Date Feature Demo](https://drive.google.com/file/d/1IXy-AIu2iDR3VhrodWOOZVCyZU_WJGww/view?usp=sharing)
+[Timer Demo](https://drive.google.com/file/d/15HQN-ZJMxnCwONlNKTP_VWLe98I1JdqP/view?usp=sharing)
+
+[Tip Demo](https://drive.google.com/file/d/1yCsl45LGFGwegbnvi_d7vzBsfBUbQGe2/view?usp=sharing)
+
+[Translate Demo](https://drive.google.com/file/d/1SacV1KONbigi_tAvm8CEJbfk3v3LR9q5/view?usp=sharing)
+
+[Unit Converter Demo](https://drive.google.com/file/d/11BBjnG28tKJovYAXmte3cRwSfj56JHjG/view?usp=sharing)
 
 [Weather Feature Demo](https://drive.google.com/file/d/1icfUNumgtVbamJtELaAaEoDluTUMCsxw/view?usp=sharing)
 
@@ -36,7 +44,9 @@ The **Books Feature** creates a social books experience that allows users to dis
 
 [Books Feature Demo](https://drive.google.com/file/d/1tUzpzXgt7OvJrJtQSi9VyRZD95snOUja/view?usp=sharing)
 
-The **Workout Feature** ...
+The **Workout Feature** helps users workout in three main way. The first is by helping users find workout videos. Uses can specify workout type, YouTube channel, or workout length to get relevant results. They can also save these videos to their workout dashboard and new more pages of videos. The second is creating workout plans for the user. Users can ask the assistant to generate a workout plan by specifying workout plan length and workout type and the assistant generates a workout plan that they can save to their dashboard. Finally, the workout agents gives logged in users access to their workout dashboard. Here, users can also see all of their saved workout content (saved videos and workout plans) as well as a graph of their recently tracked activity minutes. When users click on specific workout plans, they can track progress for each day by marking the workout as done.
+
+[Workout Feature Demo](https://drive.google.com/file/d/1C6QG1zplKnywT1L89OAn4Xq_uVcidPqN/view?usp=sharing)
 
 The **Memory Feature** serves as an agent that provides useful information specifically curated for users based on their interaction history with the assistant. Specifically, it provides two main functionalities: allowing queries to conversation history if the user wanted to remember something they talked about in the past and providing an easily accessible method for storing ideas or items into lists. The first functionality is a user-triggered history search that responds to requests for keywords and/or time periods, for which the assistant will respond by showing the user all instances of a keyword showing up in their conversation history along with contextual surrounding conversation or all comments within a specified timeframe. The latter feature allows the user to easily create, update, and view lists. Additionally, for popular lists, the system will provide item recommendations to add based on either the user's personal list item preferences or predicted user interest in comparison to other similar user preferences. Ultimately, the goal of this recommendation feature is to make the list creation process easier and also introduce the user to discover new items of interest.
 
